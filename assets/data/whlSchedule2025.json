@@ -1,0 +1,6571 @@
+[
+  {
+    "id": "whl_20250831_001",
+    "league": "WHL",
+    "team": "Wenatchee Wild",
+    "opponent": "Tri-City Americans",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA",
+    "date": "2025-08-31T23:00:00Z"
+  },
+  {
+    "id": "whl_20250902_001",
+    "league": "WHL",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Everett Silvertips",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA",
+    "date": "2025-09-02T23:00:00Z"
+  },
+  {
+    "id": "whl_20250902_002",
+    "league": "WHL",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK",
+    "date": "2025-09-02T23:00:00Z"
+  },
+  {
+    "id": "whl_20250902_003",
+    "league": "WHL",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB",
+    "date": "2025-09-02T23:00:00Z"
+  },
+  {
+    "id": "whl_20250903_001",
+    "league": "WHL",
+    "team": "Swift Current Broncos",
+    "opponent": "Regina Pats",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK",
+    "date": "2025-09-03T23:00:00Z"
+  },
+  {
+    "id": "whl_20250903_002",
+    "league": "WHL",
+    "team": "Prince Albert Raiders",
+    "opponent": "Saskatoon Blades",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK",
+    "date": "2025-09-03T23:00:00Z"
+  },
+  {
+    "id": "whl_20250903_003",
+    "league": "WHL",
+    "team": "Kelowna Rockets",
+    "opponent": "Penticton Vees",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC",
+    "date": "2025-09-03T23:00:00Z"
+  },
+  {
+    "id": "whl_20250903_004",
+    "league": "WHL",
+    "team": "Kamloops Blazers",
+    "opponent": "Vancouver Giants",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC",
+    "date": "2025-09-03T23:00:00Z"
+  },
+  {
+    "id": "whl_20250903_005",
+    "league": "WHL",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB",
+    "date": "2025-09-03T23:00:00Z"
+  },
+  {
+    "id": "whl_20250904_001",
+    "league": "WHL",
+    "team": "Penticton Vees",
+    "opponent": "Vancouver Giants",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC",
+    "date": "2025-09-04T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_001",
+    "league": "WHL",
+    "team": "Swift Current Broncos",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_002",
+    "league": "WHL",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_003",
+    "league": "WHL",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_004",
+    "league": "WHL",
+    "team": "Prince Albert Raiders",
+    "opponent": "Saskatoon Blades",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_005",
+    "league": "WHL",
+    "team": "Kamloops Blazers",
+    "opponent": "Kelowna Rockets",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_006",
+    "league": "WHL",
+    "team": "Everett Silvertips",
+    "opponent": "Tri-City Americans",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_007",
+    "league": "WHL",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Prince George Cougars",
+    "arena": "Dr. Duncan Murray Recreation Centre",
+    "city": "Hinton, AB",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250905_008",
+    "league": "WHL",
+    "team": "Calgary Hitmen",
+    "opponent": "Red Deer Rebels",
+    "arena": "Seven Chiefs Sportsplex",
+    "city": "Tsuut'ina Nation, AB",
+    "date": "2025-09-05T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_001",
+    "league": "WHL",
+    "team": "Wenatchee Wild",
+    "opponent": "Tri-City Americans",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_002",
+    "league": "WHL",
+    "team": "Spokane Chiefs",
+    "opponent": "Portland Winterhawks",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_003",
+    "league": "WHL",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Warman Home Centre Communiplex",
+    "city": "Warman, SK",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_004",
+    "league": "WHL",
+    "team": "Red Deer Rebels",
+    "opponent": "Calgary Hitmen",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_005",
+    "league": "WHL",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "Southland Co-op Centre",
+    "city": "Assiniboia, SK",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_006",
+    "league": "WHL",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_007",
+    "league": "WHL",
+    "team": "Kelowna Rockets",
+    "opponent": "Kamloops Blazers",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_008",
+    "league": "WHL",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250906_009",
+    "league": "WHL",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Regina Pats",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB",
+    "date": "2025-09-06T23:00:00Z"
+  },
+  {
+    "id": "whl_20250907_001",
+    "league": "WHL",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Prince George Cougars",
+    "arena": "Dr. Duncan Murray Recreation Centre",
+    "city": "Hinton, AB",
+    "date": "2025-09-07T23:00:00Z"
+  },
+  {
+    "id": "whl_20250907_002",
+    "league": "WHL",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-07T23:00:00Z"
+  },
+  {
+    "id": "whl_20250907_003",
+    "league": "WHL",
+    "team": "Everett Silvertips",
+    "opponent": "Wenatchee Wild",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA",
+    "date": "2025-09-07T23:00:00Z"
+  },
+  {
+    "id": "whl_20250909_001",
+    "league": "WHL",
+    "team": "Vancouver Giants",
+    "opponent": "Victoria Royals",
+    "arena": "Ladner Leisure Centre",
+    "city": "Delta, BC",
+    "date": "2025-09-09T23:00:00Z"
+  },
+  {
+    "id": "whl_20250909_002",
+    "league": "WHL",
+    "team": "Regina Pats",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK",
+    "date": "2025-09-09T23:00:00Z"
+  },
+  {
+    "id": "whl_20250910_001",
+    "league": "WHL",
+    "team": "Vancouver Giants",
+    "opponent": "Victoria Royals",
+    "arena": "Jon Baillie Arena",
+    "city": "Port Coquitlam, BC",
+    "date": "2025-09-10T23:00:00Z"
+  },
+  {
+    "id": "whl_20250911_001",
+    "league": "WHL",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Westland Arena",
+    "city": "Yorkton, SK",
+    "date": "2025-09-11T23:00:00Z"
+  },
+  {
+    "id": "whl_20250911_002",
+    "league": "WHL",
+    "team": "Spokane Chiefs",
+    "opponent": "Portland Winterhawks",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA",
+    "date": "2025-09-11T23:00:00Z"
+  },
+  {
+    "id": "whl_20250912_001",
+    "league": "WHL",
+    "team": "Victoria Royals",
+    "opponent": "Everett Silvertips",
+    "arena": "Kerry Park Recreation Centre",
+    "city": "Mill Bay, BC",
+    "date": "2025-09-13T02:05:00Z"
+  },
+  {
+    "id": "whl_20250912_002",
+    "league": "WHL",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "Toyota Arena",
+    "city": "Kennewick, WA",
+    "date": "2025-09-12T22:30:00Z"
+  },
+  {
+    "id": "whl_20250912_003",
+    "league": "WHL",
+    "team": "Portland Winterhawks",
+    "opponent": "Penticton Vees",
+    "arena": "Toyota Arena",
+    "city": "Kennewick, WA",
+    "date": "2025-09-13T02:00:00Z"
+  },
+  {
+    "id": "whl_20250912_004",
+    "league": "WHL",
+    "team": "Red Deer Rebels",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB",
+    "date": "2025-09-13T01:00:00Z"
+  },
+  {
+    "id": "whl_20250912_005",
+    "league": "WHL",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Saskatoon Blades",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK",
+    "date": "2025-09-13T01:00:00Z"
+  },
+  {
+    "id": "whl_20250912_006",
+    "league": "WHL",
+    "team": "Kelowna Rockets",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Tahkini Arena",
+    "city": "Whitehorse, YK",
+    "date": "2025-09-13T02:00:00Z"
+  },
+  {
+    "id": "whl_20250912_007",
+    "league": "WHL",
+    "team": "Kamloops Blazers",
+    "opponent": "Prince George Cougars",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC",
+    "date": "2025-09-13T02:00:00Z"
+  },
+  {
+    "id": "whl_20250912_008",
+    "league": "WHL",
+    "team": "Calgary Hitmen",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Carstairs Memorial Arena",
+    "city": "Carstairs, AB",
+    "date": "2025-09-13T01:00:00Z"
+  },
+  {
+    "id": "whl_20250912_009",
+    "league": "WHL",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB",
+    "date": "2025-09-13T00:30:00Z"
+  },
+  {
+    "id": "whl_20250913_001",
+    "league": "WHL",
+    "team": "Victoria Royals",
+    "opponent": "Everett Silvertips",
+    "arena": "Cowichan Community Centre",
+    "city": "Duncan, BC",
+    "date": "2025-09-13T22:05:00Z"
+  },
+  {
+    "id": "whl_20250913_002",
+    "league": "WHL",
+    "team": "Tri-City Americans",
+    "opponent": "Spokane Chiefs",
+    "arena": "Toyota Arena",
+    "city": "Kennewick, WA",
+    "date": "2025-09-14T01:00:00Z"
+  },
+  {
+    "id": "whl_20250913_003",
+    "league": "WHL",
+    "team": "Swift Current Broncos",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Tundra Oil & Gas Place",
+    "city": "Virden, MB",
+    "date": "2025-09-14T00:30:00Z"
+  },
+  {
+    "id": "whl_20250913_004",
+    "league": "WHL",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Penticton Vees",
+    "arena": "Toyota Arena",
+    "city": "Kennewick, WA",
+    "date": "2025-09-13T18:00:00Z"
+  },
+  {
+    "id": "whl_20250913_005",
+    "league": "WHL",
+    "team": "Saskatoon Blades",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Martensville Sports Centre",
+    "city": "Martensville, SK",
+    "date": "2025-09-14T01:00:00Z"
+  },
+  {
+    "id": "whl_20250913_006",
+    "league": "WHL",
+    "team": "Prince George Cougars",
+    "opponent": "Kamloops Blazers",
+    "arena": "West Fraser Centre",
+    "city": "Quesnel, BC",
+    "date": "2025-09-14T00:00:00Z"
+  },
+  {
+    "id": "whl_20250913_007",
+    "league": "WHL",
+    "team": "Prince Albert Raiders",
+    "opponent": "Regina Pats",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK",
+    "date": "2025-09-14T00:00:00Z"
+  },
+  {
+    "id": "whl_20250913_008",
+    "league": "WHL",
+    "team": "Portland Winterhawks",
+    "opponent": "Wenatchee Wild",
+    "arena": "Toyota Arena",
+    "city": "Kennewick, WA",
+    "date": "2025-09-13T21:30:00Z"
+  },
+  {
+    "id": "whl_20250913_009",
+    "league": "WHL",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Kelowna Rockets",
+    "arena": "Tahkini Arena",
+    "city": "Whitehorse, YK",
+    "date": "2025-09-14T02:00:00Z"
+  },
+  {
+    "id": "whl_20250913_010",
+    "league": "WHL",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB",
+    "date": "2025-09-14T00:00:00Z"
+  },
+  {
+    "id": "whl_20250914_001",
+    "league": "WHL",
+    "team": "Tri-City Americans",
+    "opponent": "Wenatchee Wild",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA",
+    "date": "2025-09-14T21:00:00Z"
+  },
+  {
+    "id": "whl_20250914_002",
+    "league": "WHL",
+    "date": "2025-09-14T20:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Westlock Rotary Spirit Centre",
+    "city": "Westlock, AB"
+  },
+  {
+    "id": "whl_20250919_001",
+    "league": "WHL",
+    "date": "2025-09-19T23:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20250919_002",
+    "league": "WHL",
+    "date": "2025-09-20T02:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Spokane Chiefs",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20250919_003",
+    "league": "WHL",
+    "date": "2025-09-20T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20250919_004",
+    "league": "WHL",
+    "date": "2025-09-20T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Saskatoon Blades",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20250919_005",
+    "league": "WHL",
+    "date": "2025-09-20T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Portland Winterhawks",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20250919_006",
+    "league": "WHL",
+    "date": "2025-09-20T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20250919_007",
+    "league": "WHL",
+    "date": "2025-09-20T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Regina Pats",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20250919_008",
+    "league": "WHL",
+    "date": "2025-09-20T02:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Penticton Vees",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20250920_001",
+    "league": "WHL",
+    "date": "2025-09-21T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20250920_002",
+    "league": "WHL",
+    "date": "2025-09-20T22:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20250920_003",
+    "league": "WHL",
+    "date": "2025-09-21T01:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Wenatchee Wild",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20250920_004",
+    "league": "WHL",
+    "date": "2025-09-21T01:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Spokane Chiefs",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20250920_005",
+    "league": "WHL",
+    "date": "2025-09-21T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Regina Pats",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20250920_006",
+    "league": "WHL",
+    "date": "2025-09-21T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20250920_007",
+    "league": "WHL",
+    "date": "2025-09-21T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Portland Winterhawks",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20250920_008",
+    "league": "WHL",
+    "date": "2025-09-21T00:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20250920_009",
+    "league": "WHL",
+    "date": "2025-09-21T01:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Tri-City Americans",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20250920_010",
+    "league": "WHL",
+    "date": "2025-09-21T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Penticton Vees",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20250926_001",
+    "league": "WHL",
+    "date": "2025-09-27T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20250926_002",
+    "league": "WHL",
+    "date": "2025-09-27T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Saskatoon Blades",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20250926_003",
+    "league": "WHL",
+    "date": "2025-09-27T02:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Kelowna Rockets",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20250926_004",
+    "league": "WHL",
+    "date": "2025-09-27T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20250926_005",
+    "league": "WHL",
+    "date": "2025-09-27T00:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20250926_006",
+    "league": "WHL",
+    "date": "2025-09-27T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Victoria Royals",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20250927_001",
+    "league": "WHL",
+    "date": "2025-09-28T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20250927_002",
+    "league": "WHL",
+    "date": "2025-09-28T00:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20250927_003",
+    "league": "WHL",
+    "date": "2025-09-28T01:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20250927_004",
+    "league": "WHL",
+    "date": "2025-09-28T01:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Penticton Vees",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20250927_005",
+    "league": "WHL",
+    "date": "2025-09-28T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Saskatoon Blades",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20250927_006",
+    "league": "WHL",
+    "date": "2025-09-28T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20250927_007",
+    "league": "WHL",
+    "date": "2025-09-28T00:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20250927_008",
+    "league": "WHL",
+    "date": "2025-09-28T01:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Tri-City Americans",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20250927_009",
+    "league": "WHL",
+    "date": "2025-09-28T01:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Vancouver Giants",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20250927_010",
+    "league": "WHL",
+    "date": "2025-09-28T01:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Everett Silvertips",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20250928_001",
+    "league": "WHL",
+    "date": "2025-09-28T23:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Portland Winterhawks",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251001_001",
+    "league": "WHL",
+    "date": "2025-10-02T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251003_001",
+    "league": "WHL",
+    "date": "2025-10-04T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Tri-City Americans",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251003_002",
+    "league": "WHL",
+    "date": "2025-10-04T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251003_003",
+    "league": "WHL",
+    "date": "2025-10-04T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251003_004",
+    "league": "WHL",
+    "date": "2025-10-04T02:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Portland Winterhawks",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251003_005",
+    "league": "WHL",
+    "date": "2025-10-04T00:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Red Deer Rebels",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251003_006",
+    "league": "WHL",
+    "date": "2025-10-04T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Kamloops Blazers",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251003_007",
+    "league": "WHL",
+    "date": "2025-10-04T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Prince George Cougars",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251003_008",
+    "league": "WHL",
+    "date": "2025-10-04T00:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Vancouver Giants",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251003_009",
+    "league": "WHL",
+    "date": "2025-10-04T02:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Victoria Royals",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251004_001",
+    "league": "WHL",
+    "date": "2025-10-05T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251004_002",
+    "league": "WHL",
+    "date": "2025-10-05T01:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Victoria Royals",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251004_003",
+    "league": "WHL",
+    "date": "2025-10-05T01:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Portland Winterhawks",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251004_004",
+    "league": "WHL",
+    "date": "2025-10-05T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Calgary Hitmen",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251004_005",
+    "league": "WHL",
+    "date": "2025-10-05T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Vancouver Giants",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251004_006",
+    "league": "WHL",
+    "date": "2025-10-05T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251004_007",
+    "league": "WHL",
+    "date": "2025-10-05T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Red Deer Rebels",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251004_008",
+    "league": "WHL",
+    "date": "2025-10-05T01:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Prince George Cougars",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251004_009",
+    "league": "WHL",
+    "date": "2025-10-05T00:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Regina Pats",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251004_010",
+    "league": "WHL",
+    "date": "2025-10-05T01:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Wenatchee Wild",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251005_001",
+    "league": "WHL",
+    "date": "2025-10-05T21:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251005_002",
+    "league": "WHL",
+    "date": "2025-10-05T22:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251005_003",
+    "league": "WHL",
+    "date": "2025-10-05T23:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Everett Silvertips",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251005_004",
+    "league": "WHL",
+    "date": "2025-10-05T23:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Penticton Vees",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251007_001",
+    "league": "WHL",
+    "date": "2025-10-08T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251007_002",
+    "league": "WHL",
+    "date": "2025-10-08T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251007_003",
+    "league": "WHL",
+    "date": "2025-10-08T00:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Vancouver Giants",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251008_001",
+    "league": "WHL",
+    "date": "2025-10-09T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251008_002",
+    "league": "WHL",
+    "date": "2025-10-09T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Vancouver Giants",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251008_003",
+    "league": "WHL",
+    "date": "2025-10-09T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Kelowna Rockets",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251010_001",
+    "league": "WHL",
+    "date": "2025-10-11T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Vancouver Giants",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251010_002",
+    "league": "WHL",
+    "date": "2025-10-11T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251010_003",
+    "league": "WHL",
+    "date": "2025-10-11T02:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251010_004",
+    "league": "WHL",
+    "date": "2025-10-11T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Portland Winterhawks",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251010_005",
+    "league": "WHL",
+    "date": "2025-10-11T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Kamloops Blazers",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251010_006",
+    "league": "WHL",
+    "date": "2025-10-11T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251010_007",
+    "league": "WHL",
+    "date": "2025-10-11T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Wenatchee Wild",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251010_008",
+    "league": "WHL",
+    "date": "2025-10-11T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Saskatoon Blades",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251010_009",
+    "league": "WHL",
+    "date": "2025-10-11T02:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Everett Silvertips",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251011_001",
+    "league": "WHL",
+    "date": "2025-10-11T20:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251011_002",
+    "league": "WHL",
+    "date": "2025-10-12T00:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Red Deer Rebels",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251011_003",
+    "league": "WHL",
+    "date": "2025-10-12T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Portland Winterhawks",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251011_004",
+    "league": "WHL",
+    "date": "2025-10-12T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Kelowna Rockets",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251011_005",
+    "league": "WHL",
+    "date": "2025-10-12T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Tri-City Americans",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251011_006",
+    "league": "WHL",
+    "date": "2025-10-12T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Vancouver Giants",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251011_007",
+    "league": "WHL",
+    "date": "2025-10-12T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Kamloops Blazers",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251011_008",
+    "league": "WHL",
+    "date": "2025-10-12T01:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251011_009",
+    "league": "WHL",
+    "date": "2025-10-11T23:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Everett Silvertips",
+    "arena": "Save-On-Foods Memorial Centre",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251012_001",
+    "league": "WHL",
+    "date": "2025-10-12T21:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251012_002",
+    "league": "WHL",
+    "date": "2025-10-12T21:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Tri-City Americans",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251012_003",
+    "league": "WHL",
+    "date": "2025-10-12T23:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251013_001",
+    "league": "WHL",
+    "date": "2025-10-13T19:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Portland Winterhawks",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251013_002",
+    "league": "WHL",
+    "date": "2025-10-13T18:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251013_003",
+    "league": "WHL",
+    "date": "2025-10-13T21:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Victoria Royals",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251013_004",
+    "league": "WHL",
+    "date": "2025-10-13T20:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Kamloops Blazers",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251014_001",
+    "league": "WHL",
+    "date": "2025-10-15T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Spokane Chiefs",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251015_001",
+    "league": "WHL",
+    "date": "2025-10-16T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Portland Winterhawks",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251015_002",
+    "league": "WHL",
+    "date": "2025-10-16T02:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Victoria Royals",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251015_003",
+    "league": "WHL",
+    "date": "2025-10-16T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Spokane Chiefs",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251015_004",
+    "league": "WHL",
+    "date": "2025-10-16T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Kamloops Blazers",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251016_001",
+    "league": "WHL",
+    "date": "2025-10-17T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Kamloops Blazers",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251017_001",
+    "league": "WHL",
+    "date": "2025-10-18T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251017_002",
+    "league": "WHL",
+    "date": "2025-10-18T02:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Everett Silvertips",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251017_003",
+    "league": "WHL",
+    "date": "2025-10-18T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Regina Pats",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251017_004",
+    "league": "WHL",
+    "date": "2025-10-18T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Portland Winterhawks",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251017_005",
+    "league": "WHL",
+    "date": "2025-10-18T00:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251017_006",
+    "league": "WHL",
+    "date": "2025-10-18T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Prince George Cougars",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251017_007",
+    "league": "WHL",
+    "date": "2025-10-18T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Wenatchee Wild",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251018_001",
+    "league": "WHL",
+    "date": "2025-10-19T01:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Everett Silvertips",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251018_002",
+    "league": "WHL",
+    "date": "2025-10-19T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Saskatoon Blades",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251018_003",
+    "league": "WHL",
+    "date": "2025-10-19T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Vancouver Giants",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251018_004",
+    "league": "WHL",
+    "date": "2025-10-19T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251018_005",
+    "league": "WHL",
+    "date": "2025-10-19T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Spokane Chiefs",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251018_006",
+    "league": "WHL",
+    "date": "2025-10-19T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251018_007",
+    "league": "WHL",
+    "date": "2025-10-19T01:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Wenatchee Wild",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251018_008",
+    "league": "WHL",
+    "date": "2025-10-19T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Kamloops Blazers",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  }, {
+    "id": "whl_20251018_009",
+    "league": "WHL",
+    "date": "2025-10-19T01:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251019_001",
+    "league": "WHL",
+    "date": "2025-10-19T20:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Spokane Chiefs",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251019_002",
+    "league": "WHL",
+    "date": "2025-10-19T22:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251019_003",
+    "league": "WHL",
+    "date": "2025-10-20T00:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Kelowna Rockets",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251019_004",
+    "league": "WHL",
+    "date": "2025-10-19T23:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251021_001",
+    "league": "WHL",
+    "date": "2025-10-22T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Spokane Chiefs",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251021_002",
+    "league": "WHL",
+    "date": "2025-10-22T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Red Deer Rebels",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251022_001",
+    "league": "WHL",
+    "date": "2025-10-23T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251022_002",
+    "league": "WHL",
+    "date": "2025-10-23T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251022_003",
+    "league": "WHL",
+    "date": "2025-10-23T00:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Red Deer Rebels",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251022_004",
+    "league": "WHL",
+    "date": "2025-10-23T02:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kelowna Rockets",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251024_001",
+    "league": "WHL",
+    "date": "2025-10-25T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Saskatoon Blades",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251024_002",
+    "league": "WHL",
+    "date": "2025-10-25T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251024_003",
+    "league": "WHL",
+    "date": "2025-10-25T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251024_004",
+    "league": "WHL",
+    "date": "2025-10-25T02:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Wenatchee Wild",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251024_005",
+    "league": "WHL",
+    "date": "2025-10-25T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Swift Current Broncos",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251024_006",
+    "league": "WHL",
+    "date": "2025-10-25T02:05:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251024_007",
+    "league": "WHL",
+    "date": "2025-10-25T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Regina Pats",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251024_008",
+    "league": "WHL",
+    "date": "2025-10-25T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Portland Winterhawks",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251024_009",
+    "league": "WHL",
+    "date": "2025-10-25T02:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Victoria Royals",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251025_001",
+    "league": "WHL",
+    "date": "2025-10-26T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251025_002",
+    "league": "WHL",
+    "date": "2025-10-26T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Regina Pats",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251025_003",
+    "league": "WHL",
+    "date": "2025-10-26T01:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Penticton Vees",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251025_004",
+    "league": "WHL",
+    "date": "2025-10-26T01:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Vancouver Giants",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251025_005",
+    "league": "WHL",
+    "date": "2025-10-26T01:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251025_006",
+    "league": "WHL",
+    "date": "2025-10-26T01:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Saskatoon Blades",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251025_007",
+    "league": "WHL",
+    "date": "2025-10-26T01:05:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251025_008",
+    "league": "WHL",
+    "date": "2025-10-26T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Calgary Hitmen",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251025_009",
+    "league": "WHL",
+    "date": "2025-10-26T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Prince Albert Raiders",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251025_010",
+    "league": "WHL",
+    "date": "2025-10-26T01:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Tri-City Americans",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251026_001",
+    "league": "WHL",
+    "date": "2025-10-26T21:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251026_002",
+    "league": "WHL",
+    "date": "2025-10-26T22:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251026_003",
+    "league": "WHL",
+    "date": "2025-10-26T23:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Victoria Royals",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251026_004",
+    "league": "WHL",
+    "date": "2025-10-27T00:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Everett Silvertips",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251026_005",
+    "league": "WHL",
+    "date": "2025-10-27T00:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kamloops Blazers",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251027_001",
+    "league": "WHL",
+    "date": "2025-10-28T01:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251028_001",
+    "league": "WHL",
+    "date": "2025-10-29T02:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Saskatoon Blades",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251029_001",
+    "league": "WHL",
+    "date": "2025-10-30T00:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Red Deer Rebels",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251029_002",
+    "league": "WHL",
+    "date": "2025-10-30T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Everett Silvertips",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251029_003",
+    "league": "WHL",
+    "date": "2025-10-30T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251029_004",
+    "league": "WHL",
+    "date": "2025-10-30T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251029_005",
+    "league": "WHL",
+    "date": "2025-10-30T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Saskatoon Blades",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251031_001",
+    "league": "WHL",
+    "date": "2025-11-01T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Regina Pats",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251031_002",
+    "league": "WHL",
+    "date": "2025-11-01T02:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Prince George Cougars",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251031_003",
+    "league": "WHL",
+    "date": "2025-11-01T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Calgary Hitmen",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251031_004",
+    "league": "WHL",
+    "date": "2025-11-01T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Saskatoon Blades",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251101_001",
+    "league": "WHL",
+    "date": "2025-11-02T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Regina Pats",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251101_002",
+    "league": "WHL",
+    "date": "2025-11-01T21:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251101_003",
+    "league": "WHL",
+    "date": "2025-11-02T00:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Tri-City Americans",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251101_004",
+    "league": "WHL",
+    "date": "2025-11-02T01:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Kamloops Blazers",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251101_005",
+    "league": "WHL",
+    "date": "2025-11-02T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251101_006",
+    "league": "WHL",
+    "date": "2025-11-02T00:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Swift Current Broncos",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251101_007",
+    "league": "WHL",
+    "date": "2025-11-02T01:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Prince George Cougars",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251101_008",
+    "league": "WHL",
+    "date": "2025-11-02T01:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Everett Silvertips",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251101_009",
+    "league": "WHL",
+    "date": "2025-11-02T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kelowna Rockets",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251101_010",
+    "league": "WHL",
+    "date": "2025-11-02T01:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Penticton Vees",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251101_011",
+    "league": "WHL",
+    "date": "2025-11-02T01:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Saskatoon Blades",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251102_001",
+    "league": "WHL",
+    "date": "2025-11-02T22:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251102_002",
+    "league": "WHL",
+    "date": "2025-11-02T21:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251102_003",
+    "league": "WHL",
+    "date": "2025-11-02T23:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Tri-City Americans",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251102_004",
+    "league": "WHL",
+    "date": "2025-11-03T00:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Prince George Cougars",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251102_005",
+    "league": "WHL",
+    "date": "2025-11-02T22:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Penticton Vees",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251102_006",
+    "league": "WHL",
+    "date": "2025-11-03T00:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Kamloops Blazers",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251104_001",
+    "league": "WHL",
+    "date": "2025-11-05T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Calgary Hitmen",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251104_002",
+    "league": "WHL",
+    "date": "2025-11-05T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Kamloops Blazers",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251105_001",
+    "league": "WHL",
+    "date": "2025-11-06T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251105_002",
+    "league": "WHL",
+    "date": "2025-11-06T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251105_003",
+    "league": "WHL",
+    "date": "2025-11-06T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Prince Albert Raiders",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251105_004",
+    "league": "WHL",
+    "date": "2025-11-06T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Calgary Hitmen",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251105_005",
+    "league": "WHL",
+    "date": "2025-11-06T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Kelowna Rockets",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251105_006",
+    "league": "WHL",
+    "date": "2025-11-06T03:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Prince George Cougars",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251107_001",
+    "league": "WHL",
+    "date": "2025-11-08T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Prince George Cougars",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251107_002",
+    "league": "WHL",
+    "date": "2025-11-08T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251107_003",
+    "league": "WHL",
+    "date": "2025-11-08T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251107_004",
+    "league": "WHL",
+    "date": "2025-11-08T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251107_005",
+    "league": "WHL",
+    "date": "2025-11-08T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Red Deer Rebels",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251107_006",
+    "league": "WHL",
+    "date": "2025-11-08T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251107_007",
+    "league": "WHL",
+    "date": "2025-11-08T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251107_008",
+    "league": "WHL",
+    "date": "2025-11-08T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Calgary Hitmen",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251107_009",
+    "league": "WHL",
+    "date": "2025-11-08T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Vancouver Giants",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251107_010",
+    "league": "WHL",
+    "date": "2025-11-08T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kelowna Rockets",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251107_011",
+    "league": "WHL",
+    "date": "2025-11-08T03:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Portland Winterhawks",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251108_001",
+    "league": "WHL",
+    "date": "2025-11-09T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Everett Silvertips",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251108_002",
+    "league": "WHL",
+    "date": "2025-11-09T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251108_003",
+    "league": "WHL",
+    "date": "2025-11-09T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Regina Pats",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251108_004",
+    "league": "WHL",
+    "date": "2025-11-09T02:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Spokane Chiefs",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251108_005",
+    "league": "WHL",
+    "date": "2025-11-09T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Calgary Hitmen",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251108_006",
+    "league": "WHL",
+    "date": "2025-11-09T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Vancouver Giants",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251108_007",
+    "league": "WHL",
+    "date": "2025-11-09T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251108_008",
+    "league": "WHL",
+    "date": "2025-11-09T02:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251108_009",
+    "league": "WHL",
+    "date": "2025-11-09T00:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kelowna Rockets",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251108_010",
+    "league": "WHL",
+    "date": "2025-11-09T02:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Prince George Cougars",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251109_001",
+    "league": "WHL",
+    "date": "2025-11-09T23:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Red Deer Rebels",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251109_002",
+    "league": "WHL",
+    "date": "2025-11-09T20:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Swift Current Broncos",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251110_001",
+    "league": "WHL",
+    "date": "2025-11-11T03:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Everett Silvertips",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251111_001",
+    "league": "WHL",
+    "date": "2025-11-11T20:30:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251111_002",
+    "league": "WHL",
+    "date": "2025-11-12T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251111_003",
+    "league": "WHL",
+    "date": "2025-11-11T22:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251111_004",
+    "league": "WHL",
+    "date": "2025-11-12T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Victoria Royals",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251111_005",
+    "league": "WHL",
+    "date": "2025-11-12T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Wenatchee Wild",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251111_006",
+    "league": "WHL",
+    "date": "2025-11-12T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Saskatoon Blades",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251112_001",
+    "league": "WHL",
+    "date": "2025-11-13T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251112_002",
+    "league": "WHL",
+    "date": "2025-11-13T03:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251112_003",
+    "league": "WHL",
+    "date": "2025-11-13T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Victoria Royals",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251114_001",
+    "league": "WHL",
+    "date": "2025-11-15T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Saskatoon Blades",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251114_002",
+    "league": "WHL",
+    "date": "2025-11-15T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251114_003",
+    "league": "WHL",
+    "date": "2025-11-15T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Spokane Chiefs",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251114_004",
+    "league": "WHL",
+    "date": "2025-11-15T03:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Wenatchee Wild",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251114_005",
+    "league": "WHL",
+    "date": "2025-11-15T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Kamloops Blazers",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251114_006",
+    "league": "WHL",
+    "date": "2025-11-15T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251114_007",
+    "league": "WHL",
+    "date": "2025-11-15T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Prince Albert Raiders",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251114_008",
+    "league": "WHL",
+    "date": "2025-11-15T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251114_009",
+    "league": "WHL",
+    "date": "2025-11-15T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Everett Silvertips",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251114_010",
+    "league": "WHL",
+    "date": "2025-11-15T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251116_001",
+    "league": "WHL",
+    "date": "2025-11-16T00:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Kelowna Rockets",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251116_002",
+    "league": "WHL",
+    "date": "2025-11-17T00:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Wenatchee Wild",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251118_001",
+    "league": "WHL",
+    "date": "2025-11-19T02:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Mosaic Place",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251118_002",
+    "league": "WHL",
+    "date": "2025-11-19T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251118_003",
+    "league": "WHL",
+    "date": "2025-11-19T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Kamloops Blazers",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251118_004",
+    "league": "WHL",
+    "date": "2025-11-19T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251119_001",
+    "league": "WHL",
+    "date": "2025-11-20T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251119_002",
+    "league": "WHL",
+    "date": "2025-11-20T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251119_003",
+    "league": "WHL",
+    "date": "2025-11-20T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Regina Pats",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251119_004",
+    "league": "WHL",
+    "date": "2025-11-20T03:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251121_001",
+    "league": "WHL",
+    "date": "2025-11-22T03:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Portland Winterhawks",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251121_002",
+    "league": "WHL",
+    "date": "2025-11-22T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Everett Silvertips",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251121_003",
+    "league": "WHL",
+    "date": "2025-11-22T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Vancouver Giants",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251121_004",
+    "league": "WHL",
+    "date": "2025-11-22T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251121_005",
+    "league": "WHL",
+    "date": "2025-11-22T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251121_006",
+    "league": "WHL",
+    "date": "2025-11-22T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251121_007",
+    "league": "WHL",
+    "date": "2025-11-22T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Swift Current Broncos",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251121_008",
+    "league": "WHL",
+    "date": "2025-11-22T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Victoria Royals",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251121_009",
+    "league": "WHL",
+    "date": "2025-11-22T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Regina Pats",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251123_001",
+    "league": "WHL",
+    "date": "2025-11-23T23:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251126_001",
+    "league": "WHL",
+    "date": "2025-11-27T03:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Regina Pats",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251126_002",
+    "league": "WHL",
+    "date": "2025-11-27T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Swift Current Broncos",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251126_003",
+    "league": "WHL",
+    "date": "2025-11-27T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Kelowna Rockets",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251126_004",
+    "league": "WHL",
+    "date": "2025-11-27T02:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Vancouver Giants",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251127_001",
+    "league": "WHL",
+    "date": "2025-11-28T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251128_001",
+    "league": "WHL",
+    "date": "2025-11-29T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251128_002",
+    "league": "WHL",
+    "date": "2025-11-29T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Swift Current Broncos",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251128_003",
+    "league": "WHL",
+    "date": "2025-11-29T03:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Spokane Chiefs",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251128_004",
+    "league": "WHL",
+    "date": "2025-11-29T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251128_005",
+    "league": "WHL",
+    "date": "2025-11-29T23:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Regina Pats",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251128_006",
+    "league": "WHL",
+    "date": "2025-11-29T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Vancouver Giants",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251128_007",
+    "league": "WHL",
+    "date": "2025-11-29T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251128_008",
+    "league": "WHL",
+    "date": "2025-11-29T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251128_009",
+    "league": "WHL",
+    "date": "2025-11-29T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Kelowna Rockets",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251128_010",
+    "league": "WHL",
+    "date": "2025-11-29T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251128_011",
+    "league": "WHL",
+    "date": "2025-11-29T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Prince George Cougars",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251129_001",
+    "league": "WHL",
+    "date": "2025-11-30T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Penticton Vees",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251129_002",
+    "league": "WHL",
+    "date": "2025-11-30T02:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Swift Current Broncos",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251129_003",
+    "league": "WHL",
+    "date": "2025-11-30T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251129_004",
+    "league": "WHL",
+    "date": "2025-11-30T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Kelowna Rockets",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251129_005",
+    "league": "WHL",
+    "date": "2025-11-30T02:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Prince George Cougars",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251129_006",
+    "league": "WHL",
+    "date": "2025-11-30T03:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Everett Silvertips",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251129_007",
+    "league": "WHL",
+    "date": "2025-11-30T02:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Regina Pats",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251130_001",
+    "league": "WHL",
+    "date": "2025-11-30T21:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Red Deer Rebels",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251130_002",
+    "league": "WHL",
+    "date": "2025-11-30T23:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251130_003",
+    "league": "WHL",
+    "date": "2025-11-30T22:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251202_001",
+    "league": "WHL",
+    "date": "2025-12-03T02:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Swift Current Broncos",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251203_001",
+    "league": "WHL",
+    "date": "2025-12-04T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251203_002",
+    "league": "WHL",
+    "date": "2025-12-04T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Red Deer Rebels",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251203_003",
+    "league": "WHL",
+    "date": "2025-12-04T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251203_004",
+    "league": "WHL",
+    "date": "2025-12-04T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Prince George Cougars",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251203_005",
+    "league": "WHL",
+    "date": "2025-12-04T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Swift Current Broncos",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251203_006",
+    "league": "WHL",
+    "date": "2025-12-04T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Spokane Chiefs",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251205_001",
+    "league": "WHL",
+    "date": "2025-12-06T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251205_002",
+    "league": "WHL",
+    "date": "2025-12-06T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251205_003",
+    "league": "WHL",
+    "date": "2025-12-06T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251205_004",
+    "league": "WHL",
+    "date": "2025-12-06T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Wenatchee Wild",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251205_005",
+    "league": "WHL",
+    "date": "2025-12-06T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251205_006",
+    "league": "WHL",
+    "date": "2025-12-06T03:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Penticton Vees",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251205_007",
+    "league": "WHL",
+    "date": "2025-12-06T03:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Portland Winterhawks",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251205_008",
+    "league": "WHL",
+    "date": "2025-12-06T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Kelowna Rockets",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251205_009",
+    "league": "WHL",
+    "date": "2025-12-06T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Swift Current Broncos",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251205_010",
+    "league": "WHL",
+    "date": "2025-12-06T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Everett Silvertips",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251205_011",
+    "league": "WHL",
+    "date": "2025-12-06T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Prince George Cougars",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251206_001",
+    "league": "WHL",
+    "date": "2025-12-07T00:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251206_002",
+    "league": "WHL",
+    "date": "2025-12-07T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251206_003",
+    "league": "WHL",
+    "date": "2025-12-07T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251206_004",
+    "league": "WHL",
+    "date": "2025-12-07T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Wenatchee Wild",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251206_005",
+    "league": "WHL",
+    "date": "2025-12-07T02:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251206_006",
+    "league": "WHL",
+    "date": "2025-12-07T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Tri-City Americans",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251206_007",
+    "league": "WHL",
+    "date": "2025-12-07T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Vancouver Giants",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251206_008",
+    "league": "WHL",
+    "date": "2025-12-07T02:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Kamloops Blazers",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251207_001",
+    "league": "WHL",
+    "date": "2025-12-07T22:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Regina Pats",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251207_002",
+    "league": "WHL",
+    "date": "2025-12-07T22:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Prince George Cougars",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251207_003",
+    "league": "WHL",
+    "date": "2025-12-08T00:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251207_004",
+    "league": "WHL",
+    "date": "2025-12-08T00:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Wenatchee Wild",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251207_005",
+    "league": "WHL",
+    "date": "2025-12-08T00:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Vancouver Giants",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251207_006",
+    "league": "WHL",
+    "date": "2025-12-08T01:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251209_001",
+    "league": "WHL",
+    "date": "2025-12-10T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Saskatoon Blades",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251209_002",
+    "league": "WHL",
+    "date": "2025-12-10T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Tri-City Americans",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251210_001",
+    "league": "WHL",
+    "date": "2025-12-11T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251210_002",
+    "league": "WHL",
+    "date": "2025-12-11T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Kelowna Rockets",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251212_001",
+    "league": "WHL",
+    "date": "2025-12-13T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Kelowna Rockets",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20251212_002",
+    "league": "WHL",
+    "date": "2025-12-13T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251212_003",
+    "league": "WHL",
+    "date": "2025-12-13T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Prince Albert Raiders",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251212_004",
+    "league": "WHL",
+    "date": "2025-12-13T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251212_005",
+    "league": "WHL",
+    "date": "2025-12-13T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251212_006",
+    "league": "WHL",
+    "date": "2025-12-13T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Kamloops Blazers",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251212_007",
+    "league": "WHL",
+    "date": "2025-12-13T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Penticton Vees",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251212_008",
+    "league": "WHL",
+    "date": "2025-12-13T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Portland Winterhawks",
+    "arena": "Spokane Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20251212_009",
+    "league": "WHL",
+    "date": "2025-12-13T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Victoria Royals",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251214_001",
+    "league": "WHL",
+    "date": "2025-12-14T22:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251214_002",
+    "league": "WHL",
+    "date": "2025-12-14T23:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251214_003",
+    "league": "WHL",
+    "date": "2025-12-14T23:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Spokane Chiefs",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251214_004",
+    "league": "WHL",
+    "date": "2025-12-14T23:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Portland Winterhawks",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251214_005",
+    "league": "WHL",
+    "date": "2025-12-15T00:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Everett Silvertips",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251214_006",
+    "league": "WHL",
+    "date": "2025-12-15T00:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20251216_001",
+    "league": "WHL",
+    "date": "2025-12-17T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Kelowna Rockets",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251216_002",
+    "league": "WHL",
+    "date": "2025-12-17T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251216_003",
+    "league": "WHL",
+    "date": "2025-12-17T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251216_004",
+    "league": "WHL",
+    "date": "2025-12-17T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Wenatchee Wild",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251216_005",
+    "league": "WHL",
+    "date": "2025-12-17T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Spokane Chiefs",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251217_001",
+    "league": "WHL",
+    "date": "2025-12-18T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251217_002",
+    "league": "WHL",
+    "date": "2025-12-18T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Kelowna Rockets",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20251217_003",
+    "league": "WHL",
+    "date": "2025-12-18T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Swift Current Broncos",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251217_004",
+    "league": "WHL",
+    "date": "2025-12-18T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251217_005",
+    "league": "WHL",
+    "date": "2025-12-18T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Prince George Cougars",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251217_006",
+    "league": "WHL",
+    "date": "2025-12-18T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Wenatchee Wild",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251218_001",
+    "league": "WHL",
+    "date": "2025-12-19T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Vancouver Giants",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251219_001",
+    "league": "WHL",
+    "date": "2025-12-19T20:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20251219_002",
+    "league": "WHL",
+    "date": "2025-12-20T02:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Kelowna Rockets",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251219_003",
+    "league": "WHL",
+    "date": "2025-12-20T03:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251219_004",
+    "league": "WHL",
+    "date": "2025-12-20T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Prince George Cougars",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251219_005",
+    "league": "WHL",
+    "date": "2025-12-20T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Kamloops Blazers",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20251227_001",
+    "league": "WHL",
+    "date": "2025-12-28T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20251227_002",
+    "league": "WHL",
+    "date": "2025-12-28T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251227_003",
+    "league": "WHL",
+    "date": "2025-12-28T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251227_004",
+    "league": "WHL",
+    "date": "2025-12-28T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Saskatoon Blades",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251227_005",
+    "league": "WHL",
+    "date": "2025-12-28T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Swift Current Broncos",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251227_006",
+    "league": "WHL",
+    "date": "2025-12-28T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Calgary Hitmen",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251227_007",
+    "league": "WHL",
+    "date": "2025-12-28T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Victoria Royals",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20251227_008",
+    "league": "WHL",
+    "date": "2025-12-28T02:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kelowna Rockets",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251227_009",
+    "league": "WHL",
+    "date": "2025-12-28T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251227_010",
+    "league": "WHL",
+    "date": "2025-12-28T02:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Spokane Chiefs",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251227_011",
+    "league": "WHL",
+    "date": "2025-12-28T02:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Tri-City Americans",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251228_001",
+    "league": "WHL",
+    "date": "2025-12-28T20:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Saskatoon Blades",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251228_002",
+    "league": "WHL",
+    "date": "2025-12-28T21:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20251228_003",
+    "league": "WHL",
+    "date": "2025-12-28T21:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Red Deer Rebels",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20251228_004",
+    "league": "WHL",
+    "date": "2025-12-28T23:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Tri-City Americans",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251228_005",
+    "league": "WHL",
+    "date": "2025-12-29T00:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Spokane Chiefs",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251228_006",
+    "league": "WHL",
+    "date": "2025-12-29T00:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kamloops Blazers",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251228_007",
+    "league": "WHL",
+    "date": "2025-12-29T00:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20251228_008",
+    "league": "WHL",
+    "date": "2025-12-29T01:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Prince George Cougars",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20251229_001",
+    "league": "WHL",
+    "date": "2025-12-30T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Swift Current Broncos",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20251229_002",
+    "league": "WHL",
+    "date": "2025-12-30T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Penticton Vees",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20251230_001",
+    "league": "WHL",
+    "date": "2025-12-31T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20251230_002",
+    "league": "WHL",
+    "date": "2025-12-31T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20251230_003",
+    "league": "WHL",
+    "date": "2025-12-31T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20251230_004",
+    "league": "WHL",
+    "date": "2025-12-31T02:35:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Victoria Royals",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20251230_005",
+    "league": "WHL",
+    "date": "2025-12-31T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Prince George Cougars",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20251230_006",
+    "league": "WHL",
+    "date": "2025-12-31T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Calgary Hitmen",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20251231_001",
+    "league": "WHL",
+    "date": "2025-12-31T22:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20251231_002",
+    "league": "WHL",
+    "date": "2025-12-31T22:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Everett Silvertips",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20251231_003",
+    "league": "WHL",
+    "date": "2025-12-31T23:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20251231_004",
+    "league": "WHL",
+    "date": "2026-01-01T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Tri-City Americans",
+    "arena": "Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260101_001",
+    "league": "WHL",
+    "date": "2026-01-01T20:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260101_002",
+    "league": "WHL",
+    "date": "2026-01-01T21:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260101_003",
+    "league": "WHL",
+    "date": "2026-01-01T22:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Calgary Hitmen",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260101_004",
+    "league": "WHL",
+    "date": "2026-01-02T00:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Prince George Cougars",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260102_001",
+    "league": "WHL",
+    "date": "2026-01-03T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Regina Pats",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260102_002",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Swift Current Broncos",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260102_003",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260102_004",
+    "league": "WHL",
+    "date": "2026-01-03T03:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Portland Winterhawks",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260102_005",
+    "league": "WHL",
+    "date": "2026-01-03T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Kamloops Blazers",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260102_006",
+    "league": "WHL",
+    "date": "2026-01-03T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Vancouver Giants",
+    "arena": "Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260103_001",
+    "league": "WHL",
+    "date": "2026-01-03T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260103_002",
+    "league": "WHL",
+    "date": "2026-01-03T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260103_003",
+    "league": "WHL",
+    "date": "2026-01-03T00:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Tri-City Americans",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260103_004",
+    "league": "WHL",
+    "date": "2026-01-03T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Peavey Mart Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260103_005",
+    "league": "WHL",
+    "date": "2026-01-03T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260103_006",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260103_007",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Kelowna Rockets",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260103_008",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Vancouver Giants",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260103_009",
+    "league": "WHL",
+    "date": "2026-01-03T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Calgary Hitmen",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260103_010",
+    "league": "WHL",
+    "date": "2026-01-03T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Penticton Vees",
+    "arena": "Veterans Memorial Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260104_001",
+    "league": "WHL",
+    "date": "2026-01-04T22:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260104_002",
+    "league": "WHL",
+    "date": "2026-01-04T23:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260104_003",
+    "league": "WHL",
+    "date": "2026-01-05T00:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Wenatchee Wild",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260106_001",
+    "league": "WHL",
+    "date": "2026-01-07T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Penticton Vees",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260107_001",
+    "league": "WHL",
+    "date": "2026-01-08T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260107_002",
+    "league": "WHL",
+    "date": "2026-01-08T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260107_003",
+    "league": "WHL",
+    "date": "2026-01-08T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260107_004",
+    "league": "WHL",
+    "date": "2026-01-08T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Penticton Vees",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260107_005",
+    "league": "WHL",
+    "date": "2026-01-08T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Tri-City Americans",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260109_001",
+    "league": "WHL",
+    "date": "2026-01-10T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Swift Current Broncos",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260109_002",
+    "league": "WHL",
+    "date": "2026-01-10T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Red Deer Rebels",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260109_003",
+    "league": "WHL",
+    "date": "2026-01-10T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260109_004",
+    "league": "WHL",
+    "date": "2026-01-10T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260109_005",
+    "league": "WHL",
+    "date": "2026-01-10T03:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Kelowna Rockets",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260109_006",
+    "league": "WHL",
+    "date": "2026-01-10T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260109_007",
+    "league": "WHL",
+    "date": "2026-01-10T03:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Tri-City Americans",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260109_008",
+    "league": "WHL",
+    "date": "2026-01-10T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Spokane Chiefs",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260111_001",
+    "league": "WHL",
+    "date": "2026-01-11T22:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Everett Silvertips",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260111_002",
+    "league": "WHL",
+    "date": "2026-01-11T23:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260111_003",
+    "league": "WHL",
+    "date": "2026-01-12T00:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Vancouver Giants",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260113_001",
+    "league": "WHL",
+    "date": "2026-01-14T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260113_002",
+    "league": "WHL",
+    "date": "2026-01-14T03:00:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260114_001",
+    "league": "WHL",
+    "date": "2026-01-15T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Swift Current Broncos",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260114_002",
+    "league": "WHL",
+    "date": "2026-01-15T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260114_003",
+    "league": "WHL",
+    "date": "2026-01-15T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Tri-City Americans",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260114_004",
+    "league": "WHL",
+    "date": "2026-01-15T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Red Deer Rebels",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260114_005",
+    "league": "WHL",
+    "date": "2026-01-15T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260114_006",
+    "league": "WHL",
+    "date": "2026-01-15T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260116_001",
+    "league": "WHL",
+    "date": "2026-01-17T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Victoria Royals",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260116_002",
+    "league": "WHL",
+    "date": "2026-01-17T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Swift Current Broncos",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260116_003",
+    "league": "WHL",
+    "date": "2026-01-17T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Prince Albert Raiders",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260116_004",
+    "league": "WHL",
+    "date": "2026-01-17T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260116_005",
+    "league": "WHL",
+    "date": "2026-01-17T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Tri-City Americans",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260116_006",
+    "league": "WHL",
+    "date": "2026-01-17T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Vancouver Giants",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260116_007",
+    "league": "WHL",
+    "date": "2026-01-17T02:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Prince George Cougars",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260116_008",
+    "league": "WHL",
+    "date": "2026-01-17T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Portland Winterhawks",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260116_009",
+    "league": "WHL",
+    "date": "2026-01-17T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260118_001",
+    "league": "WHL",
+    "date": "2026-01-18T23:00:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260118_002",
+    "league": "WHL",
+    "date": "2026-01-18T23:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260119_001",
+    "league": "WHL",
+    "date": "2026-01-19T23:00:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260120_001",
+    "league": "WHL",
+    "date": "2026-01-21T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Victoria Royals",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260120_002",
+    "league": "WHL",
+    "date": "2026-01-21T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260120_003",
+    "league": "WHL",
+    "date": "2026-01-21T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Regina Pats",
+    "arena": "ENMAX Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260121_001",
+    "league": "WHL",
+    "date": "2026-01-22T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Victoria Royals",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260121_002",
+    "league": "WHL",
+    "date": "2026-01-22T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260121_003",
+    "league": "WHL",
+    "date": "2026-01-22T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Regina Pats",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260121_004",
+    "league": "WHL",
+    "date": "2026-01-22T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Kelowna Rockets",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260122_001",
+    "league": "WHL",
+    "date": "2026-01-23T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260123_001",
+    "league": "WHL",
+    "date": "2026-01-24T01:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260123_002",
+    "league": "WHL",
+    "date": "2026-01-24T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260123_003",
+    "league": "WHL",
+    "date": "2026-01-24T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Prince Albert Raiders",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260123_004",
+    "league": "WHL",
+    "date": "2026-01-24T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Regina Pats",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260123_005",
+    "league": "WHL",
+    "date": "2026-01-24T02:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260123_006",
+    "league": "WHL",
+    "date": "2026-01-24T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Vancouver Giants",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260123_007",
+    "league": "WHL",
+    "date": "2026-01-24T02:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Tri-City Americans",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260123_008",
+    "league": "WHL",
+    "date": "2026-01-24T02:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Spokane Chiefs",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260123_009",
+    "league": "WHL",
+    "date": "2026-01-24T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260125_001",
+    "league": "WHL",
+    "date": "2026-01-25T23:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260125_002",
+    "league": "WHL",
+    "date": "2026-01-25T23:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Red Deer Rebels",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260125_003",
+    "league": "WHL",
+    "date": "2026-01-25T23:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260127_001",
+    "league": "WHL",
+    "date": "2026-01-28T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260127_002",
+    "league": "WHL",
+    "date": "2026-01-28T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Saskatoon Blades",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260127_003",
+    "league": "WHL",
+    "date": "2026-01-28T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Red Deer Rebels",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260127_004",
+    "league": "WHL",
+    "date": "2026-01-28T03:05:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260128_001",
+    "league": "WHL",
+    "date": "2026-01-29T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260128_002",
+    "league": "WHL",
+    "date": "2026-01-29T02:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260128_003",
+    "league": "WHL",
+    "date": "2026-01-29T02:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260128_004",
+    "league": "WHL",
+    "date": "2026-01-29T03:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260130_001",
+    "league": "WHL",
+    "date": "2026-01-31T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260130_002",
+    "league": "WHL",
+    "date": "2026-01-31T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Regina Pats",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260130_003",
+    "league": "WHL",
+    "date": "2026-01-31T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260130_004",
+    "league": "WHL",
+    "date": "2026-01-31T03:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Kelowna Rockets",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260130_005",
+    "league": "WHL",
+    "date": "2026-01-31T03:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Spokane Chiefs",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260130_006",
+    "league": "WHL",
+    "date": "2026-01-31T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260130_007",
+    "league": "WHL",
+    "date": "2026-01-31T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260130_008",
+    "league": "WHL",
+    "date": "2026-01-31T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kelowna Rockets",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260131_001",
+    "league": "WHL",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260131_002",
+    "league": "WHL",
+    "date": "2026-02-01T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260131_003",
+    "league": "WHL",
+    "date": "2026-02-01T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260131_004",
+    "league": "WHL",
+    "date": "2026-02-01T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260131_005",
+    "league": "WHL",
+    "date": "2026-02-01T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Everett Silvertips",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260131_006",
+    "league": "WHL",
+    "date": "2026-02-01T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260131_007",
+    "league": "WHL",
+    "date": "2026-02-01T02:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Wenatchee Wild",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260131_008",
+    "league": "WHL",
+    "date": "2026-02-01T02:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Red Deer Rebels",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260131_009",
+    "league": "WHL",
+    "date": "2026-02-01T03:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Portland Winterhawks",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260201_001",
+    "league": "WHL",
+    "date": "2026-02-01T22:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260201_002",
+    "league": "WHL",
+    "date": "2026-02-02T00:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260201_003",
+    "league": "WHL",
+    "date": "2026-02-02T00:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260201_004",
+    "league": "WHL",
+    "date": "2026-02-02T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260203_001",
+    "league": "WHL",
+    "date": "2026-02-04T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260203_002",
+    "league": "WHL",
+    "date": "2026-02-04T03:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260203_003",
+    "league": "WHL",
+    "date": "2026-02-04T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260203_004",
+    "league": "WHL",
+    "date": "2026-02-04T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260204_001",
+    "league": "WHL",
+    "date": "2026-02-05T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260204_002",
+    "league": "WHL",
+    "date": "2026-02-05T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260204_003",
+    "league": "WHL",
+    "date": "2026-02-05T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260204_004",
+    "league": "WHL",
+    "date": "2026-02-05T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260204_005",
+    "league": "WHL",
+    "date": "2026-02-05T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260206_001",
+    "league": "WHL",
+    "date": "2026-02-07T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260206_002",
+    "league": "WHL",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260206_003",
+    "league": "WHL",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260206_004",
+    "league": "WHL",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260206_005",
+    "league": "WHL",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260206_006",
+    "league": "WHL",
+    "date": "2026-02-07T03:00:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260206_007",
+    "league": "WHL",
+    "date": "2026-02-07T03:00:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260206_008",
+    "league": "WHL",
+    "date": "2026-02-07T03:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260206_009",
+    "league": "WHL",
+    "date": "2026-02-07T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260206_010",
+    "league": "WHL",
+    "date": "2026-02-07T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260206_011",
+    "league": "WHL",
+    "date": "2026-02-07T03:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260210_001",
+    "league": "WHL",
+    "date": "2026-02-11T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260210_002",
+    "league": "WHL",
+    "date": "2026-02-11T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260210_003",
+    "league": "WHL",
+    "date": "2026-02-11T02:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260210_004",
+    "league": "WHL",
+    "date": "2026-02-11T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260211_001",
+    "league": "WHL",
+    "date": "2026-02-12T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260211_002",
+    "league": "WHL",
+    "date": "2026-02-12T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260211_003",
+    "league": "WHL",
+    "date": "2026-02-12T02:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260211_004",
+    "league": "WHL",
+    "date": "2026-02-12T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260212_001",
+    "league": "WHL",
+    "date": "2026-02-13T03:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260213_001",
+    "league": "WHL",
+    "date": "2026-02-14T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260213_002",
+    "league": "WHL",
+    "date": "2026-02-14T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260213_003",
+    "league": "WHL",
+    "date": "2026-02-14T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260213_004",
+    "league": "WHL",
+    "date": "2026-02-14T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260213_005",
+    "league": "WHL",
+    "date": "2026-02-14T02:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260213_006",
+    "league": "WHL",
+    "date": "2026-02-14T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260213_007",
+    "league": "WHL",
+    "date": "2026-02-14T03:00:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260213_008",
+    "league": "WHL",
+    "date": "2026-02-14T03:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260213_009",
+    "league": "WHL",
+    "date": "2026-02-14T03:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260213_010",
+    "league": "WHL",
+    "date": "2026-02-14T03:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260214_001",
+    "league": "WHL",
+    "date": "2026-02-15T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260214_002",
+    "league": "WHL",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260214_003",
+    "league": "WHL",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260214_004",
+    "league": "WHL",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260214_005",
+    "league": "WHL",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260214_006",
+    "league": "WHL",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260214_007",
+    "league": "WHL",
+    "date": "2026-02-15T02:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260214_008",
+    "league": "WHL",
+    "date": "2026-02-15T02:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260214_009",
+    "league": "WHL",
+    "date": "2026-02-15T02:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260214_010",
+    "league": "WHL",
+    "date": "2026-02-15T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260215_001",
+    "league": "WHL",
+    "date": "2026-02-15T21:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260215_002",
+    "league": "WHL",
+    "date": "2026-02-15T23:00:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260216_001",
+    "league": "WHL",
+    "date": "2026-02-16T20:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260216_002",
+    "league": "WHL",
+    "date": "2026-02-16T21:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260216_003",
+    "league": "WHL",
+    "date": "2026-02-16T21:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260216_004",
+    "league": "WHL",
+    "date": "2026-02-16T20:30:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260216_005",
+    "league": "WHL",
+    "date": "2026-02-16T21:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260216_006",
+    "league": "WHL",
+    "date": "2026-02-16T21:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260216_007",
+    "league": "WHL",
+    "date": "2026-02-16T22:00:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260216_008",
+    "league": "WHL",
+    "date": "2026-02-16T22:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260216_009",
+    "league": "WHL",
+    "date": "2026-02-16T22:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260216_010",
+    "league": "WHL",
+    "date": "2026-02-16T22:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260220_001",
+    "league": "WHL",
+    "date": "2026-02-20T23:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260220_002",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260220_003",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260220_004",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260220_005",
+    "league": "WHL",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260220_006",
+    "league": "WHL",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260220_007",
+    "league": "WHL",
+    "date": "2026-02-21T03:00:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260220_008",
+    "league": "WHL",
+    "date": "2026-02-21T02:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260220_009",
+    "league": "WHL",
+    "date": "2026-02-21T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260220_010",
+    "league": "WHL",
+    "date": "2026-02-21T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260220_001",
+    "league": "WHL",
+    "date": "2026-02-20T23:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260220_002",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260220_003",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260220_004",
+    "league": "WHL",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260220_005",
+    "league": "WHL",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "ENMAX Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260220_006",
+    "league": "WHL",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260220_007",
+    "league": "WHL",
+    "date": "2026-02-21T03:00:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260220_008",
+    "league": "WHL",
+    "date": "2026-02-21T02:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260220_009",
+    "league": "WHL",
+    "date": "2026-02-21T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260220_010",
+    "league": "WHL",
+    "date": "2026-02-21T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260224_001",
+    "league": "WHL",
+    "date": "2026-02-24T18:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260224_002",
+    "league": "WHL",
+    "date": "2026-02-25T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260224_003",
+    "league": "WHL",
+    "date": "2026-02-25T02:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260224_004",
+    "league": "WHL",
+    "date": "2026-02-25T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260224_005",
+    "league": "WHL",
+    "date": "2026-02-25T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260225_001",
+    "league": "WHL",
+    "date": "2026-02-26T01:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260225_002",
+    "league": "WHL",
+    "date": "2026-02-26T01:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260225_003",
+    "league": "WHL",
+    "date": "2026-02-26T02:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Enmax Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260225_004",
+    "league": "WHL",
+    "date": "2026-02-26T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260225_005",
+    "league": "WHL",
+    "date": "2026-02-26T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Spokane Chiefs",
+    "arena": "Spokane Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260227_001",
+    "league": "WHL",
+    "date": "2026-02-28T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260227_002",
+    "league": "WHL",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260227_003",
+    "league": "WHL",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260227_004",
+    "league": "WHL",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260227_005",
+    "league": "WHL",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "Enmax Centre",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260227_006",
+    "league": "WHL",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260227_007",
+    "league": "WHL",
+    "date": "2026-02-28T03:00:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260227_008",
+    "league": "WHL",
+    "date": "2026-02-28T03:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260227_009",
+    "league": "WHL",
+    "date": "2026-02-28T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260227_010",
+    "league": "WHL",
+    "date": "2026-02-28T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260301_001",
+    "league": "WHL",
+    "date": "2026-03-01T23:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260301_002",
+    "league": "WHL",
+    "date": "2026-03-02T00:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260303_001",
+    "league": "WHL",
+    "date": "2026-03-04T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260303_002",
+    "league": "WHL",
+    "date": "2026-03-04T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260303_003",
+    "league": "WHL",
+    "date": "2026-03-04T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260303_004",
+    "league": "WHL",
+    "date": "2026-03-04T03:00:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260303_005",
+    "league": "WHL",
+    "date": "2026-03-04T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260304_001",
+    "league": "WHL",
+    "date": "2026-03-05T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260304_002",
+    "league": "WHL",
+    "date": "2026-03-05T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260304_003",
+    "league": "WHL",
+    "date": "2026-03-05T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260304_004",
+    "league": "WHL",
+    "date": "2026-03-05T03:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260306_001",
+    "league": "WHL",
+    "date": "2026-03-07T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260306_002",
+    "league": "WHL",
+    "date": "2026-03-07T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260306_003",
+    "league": "WHL",
+    "date": "2026-03-07T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260306_004",
+    "league": "WHL",
+    "date": "2026-03-07T02:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260306_005",
+    "league": "WHL",
+    "date": "2026-03-07T02:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260306_006",
+    "league": "WHL",
+    "date": "2026-03-07T03:00:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260306_007",
+    "league": "WHL",
+    "date": "2026-03-07T03:00:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260306_008",
+    "league": "WHL",
+    "date": "2026-03-07T03:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260306_009",
+    "league": "WHL",
+    "date": "2026-03-07T03:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260306_010",
+    "league": "WHL",
+    "date": "2026-03-07T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260306_011",
+    "league": "WHL",
+    "date": "2026-03-07T03:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260308_001",
+    "league": "WHL",
+    "date": "2026-03-08T20:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260308_002",
+    "league": "WHL",
+    "date": "2026-03-08T22:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260308_003",
+    "league": "WHL",
+    "date": "2026-03-08T23:00:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260308_004",
+    "league": "WHL",
+    "date": "2026-03-08T23:00:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260310_001",
+    "league": "WHL",
+    "date": "2026-03-11T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260310_002",
+    "league": "WHL",
+    "date": "2026-03-11T01:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260310_003",
+    "league": "WHL",
+    "date": "2026-03-11T03:00:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260310_004",
+    "league": "WHL",
+    "date": "2026-03-11T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260311_001",
+    "league": "WHL",
+    "date": "2026-03-11T17:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260311_002",
+    "league": "WHL",
+    "date": "2026-03-12T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260311_003",
+    "league": "WHL",
+    "date": "2026-03-12T01:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260311_004",
+    "league": "WHL",
+    "date": "2026-03-12T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260311_005",
+    "league": "WHL",
+    "date": "2026-03-12T02:00:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260311_006",
+    "league": "WHL",
+    "date": "2026-03-12T03:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260311_007",
+    "league": "WHL",
+    "date": "2026-03-12T03:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260313_001",
+    "league": "WHL",
+    "date": "2026-03-14T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260313_002",
+    "league": "WHL",
+    "date": "2026-03-14T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260313_003",
+    "league": "WHL",
+    "date": "2026-03-14T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260313_004",
+    "league": "WHL",
+    "date": "2026-03-14T01:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260313_005",
+    "league": "WHL",
+    "date": "2026-03-14T02:00:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260313_006",
+    "league": "WHL",
+    "date": "2026-03-14T02:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260313_007",
+    "league": "WHL",
+    "date": "2026-03-14T02:05:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260313_008",
+    "league": "WHL",
+    "date": "2026-03-14T02:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260313_009",
+    "league": "WHL",
+    "date": "2026-03-14T02:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260313_010",
+    "league": "WHL",
+    "date": "2026-03-14T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260314_001",
+    "league": "WHL",
+    "date": "2026-03-14T23:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260314_002",
+    "league": "WHL",
+    "date": "2026-03-15T00:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260314_003",
+    "league": "WHL",
+    "date": "2026-03-15T01:00:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260314_004",
+    "league": "WHL",
+    "date": "2026-03-15T01:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260314_005",
+    "league": "WHL",
+    "date": "2026-03-15T01:00:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260314_006",
+    "league": "WHL",
+    "date": "2026-03-15T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260314_007",
+    "league": "WHL",
+    "date": "2026-03-15T01:05:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260314_008",
+    "league": "WHL",
+    "date": "2026-03-15T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260314_009",
+    "league": "WHL",
+    "date": "2026-03-15T01:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260314_010",
+    "league": "WHL",
+    "date": "2026-03-15T01:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260314_011",
+    "league": "WHL",
+    "date": "2026-03-15T01:05:00Z",
+    "team": "Victoria Royals",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260315_001",
+    "league": "WHL",
+    "date": "2026-03-15T20:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260315_002",
+    "league": "WHL",
+    "date": "2026-03-15T23:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260315_003",
+    "league": "WHL",
+    "date": "2026-03-15T23:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260315_004",
+    "league": "WHL",
+    "date": "2026-03-16T00:05:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260317_001",
+    "league": "WHL",
+    "date": "2026-03-18T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260317_002",
+    "league": "WHL",
+    "date": "2026-03-18T01:35:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260317_003",
+    "league": "WHL",
+    "date": "2026-03-18T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Prince George Cougars",
+    "arena": "CN Centre",
+    "city": "Prince George, BC"
+  },
+  {
+    "id": "whl_20260317_004",
+    "league": "WHL",
+    "date": "2026-03-18T02:05:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260318_001",
+    "league": "WHL",
+    "date": "2026-03-19T01:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260318_002",
+    "league": "WHL",
+    "date": "2026-03-19T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260318_003",
+    "league": "WHL",
+    "date": "2026-03-19T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260318_004",
+    "league": "WHL",
+    "date": "2026-03-19T02:05:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260320_001",
+    "league": "WHL",
+    "date": "2026-03-21T01:00:00Z",
+    "team": "Edmonton Oil Kings",
+    "opponent": "Lethbridge Hurricanes",
+    "arena": "VisitLethbridge.com Arena",
+    "city": "Lethbridge, AB"
+  },
+  {
+    "id": "whl_20260320_002",
+    "league": "WHL",
+    "date": "2026-03-21T01:00:00Z",
+    "team": "Saskatoon Blades",
+    "opponent": "Prince Albert Raiders",
+    "arena": "Art Hauser Centre",
+    "city": "Prince Albert, SK"
+  },
+  {
+    "id": "whl_20260320_003",
+    "league": "WHL",
+    "date": "2026-03-21T01:00:00Z",
+    "team": "Medicine Hat Tigers",
+    "opponent": "Red Deer Rebels",
+    "arena": "Marchant Crane Centrium",
+    "city": "Red Deer, AB"
+  },
+  {
+    "id": "whl_20260320_004",
+    "league": "WHL",
+    "date": "2026-03-21T01:00:00Z",
+    "team": "Brandon Wheat Kings",
+    "opponent": "Regina Pats",
+    "arena": "Brandt Centre",
+    "city": "Regina, SK"
+  },
+  {
+    "id": "whl_20260320_005",
+    "league": "WHL",
+    "date": "2026-03-21T01:00:00Z",
+    "team": "Moose Jaw Warriors",
+    "opponent": "Swift Current Broncos",
+    "arena": "InnovationPlex",
+    "city": "Swift Current, SK"
+  },
+  {
+    "id": "whl_20260320_006",
+    "league": "WHL",
+    "date": "2026-03-21T02:00:00Z",
+    "team": "Vancouver Giants",
+    "opponent": "Kamloops Blazers",
+    "arena": "Sandman Centre",
+    "city": "Kamloops, BC"
+  },
+  {
+    "id": "whl_20260320_007",
+    "league": "WHL",
+    "date": "2026-03-21T02:00:00Z",
+    "team": "Everett Silvertips",
+    "opponent": "Wenatchee Wild",
+    "arena": "Town Toyota Center",
+    "city": "Wenatchee, WA"
+  },
+  {
+    "id": "whl_20260320_008",
+    "league": "WHL",
+    "date": "2026-03-21T02:05:00Z",
+    "team": "Spokane Chiefs",
+    "opponent": "Seattle Thunderbirds",
+    "arena": "accesso ShoWare Center",
+    "city": "Kent, WA"
+  },
+  {
+    "id": "whl_20260320_009",
+    "league": "WHL",
+    "date": "2026-03-21T02:05:00Z",
+    "team": "Portland Winterhawks",
+    "opponent": "Tri-City Americans",
+    "arena": "Toyota Center",
+    "city": "Kennewick, WA"
+  },
+  {
+    "id": "whl_20260320_010",
+    "league": "WHL",
+    "date": "2026-03-21T02:05:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260320_011",
+    "league": "WHL",
+    "date": "2026-03-21T02:05:00Z",
+    "team": "Kelowna Rockets",
+    "opponent": "Penticton Vees",
+    "arena": "South Okanagan Events Centre",
+    "city": "Penticton, BC"
+  },
+  {
+    "id": "whl_20260321_001",
+    "league": "WHL",
+    "date": "2026-03-22T00:00:00Z",
+    "team": "Regina Pats",
+    "opponent": "Brandon Wheat Kings",
+    "arena": "Assiniboine Credit Union Place",
+    "city": "Brandon, MB"
+  },
+  {
+    "id": "whl_20260321_002",
+    "league": "WHL",
+    "date": "2026-03-22T00:00:00Z",
+    "team": "Lethbridge Hurricanes",
+    "opponent": "Calgary Hitmen",
+    "arena": "Scotiabank Saddledome",
+    "city": "Calgary, AB"
+  },
+  {
+    "id": "whl_20260321_003",
+    "league": "WHL",
+    "date": "2026-03-22T00:00:00Z",
+    "team": "Swift Current Broncos",
+    "opponent": "Moose Jaw Warriors",
+    "arena": "Temple Gardens Centre",
+    "city": "Moose Jaw, SK"
+  },
+  {
+    "id": "whl_20260321_004",
+    "league": "WHL",
+    "date": "2026-03-22T01:00:00Z",
+    "team": "Red Deer Rebels",
+    "opponent": "Medicine Hat Tigers",
+    "arena": "Co-op Place",
+    "city": "Medicine Hat, AB"
+  },
+  {
+    "id": "whl_20260321_005",
+    "league": "WHL",
+    "date": "2026-03-22T01:00:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Portland Winterhawks",
+    "arena": "Veterans Memorial Coliseum",
+    "city": "Portland, OR"
+  },
+  {
+    "id": "whl_20260321_006",
+    "league": "WHL",
+    "date": "2026-03-22T01:00:00Z",
+    "team": "Prince Albert Raiders",
+    "opponent": "Saskatoon Blades",
+    "arena": "SaskTel Centre",
+    "city": "Saskatoon, SK"
+  },
+  {
+    "id": "whl_20260321_007",
+    "league": "WHL",
+    "date": "2026-03-22T01:05:00Z",
+    "team": "Penticton Vees",
+    "opponent": "Kelowna Rockets",
+    "arena": "Prospera Place",
+    "city": "Kelowna, BC"
+  },
+  {
+    "id": "whl_20260321_008",
+    "league": "WHL",
+    "date": "2026-03-22T01:05:00Z",
+    "team": "Tri-City Americans",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  },
+  {
+    "id": "whl_20260321_009",
+    "league": "WHL",
+    "date": "2026-03-22T01:05:00Z",
+    "team": "Wenatchee Wild",
+    "opponent": "Everett Silvertips",
+    "arena": "Angel of the Winds Arena",
+    "city": "Everett, WA"
+  },
+  {
+    "id": "whl_20260321_010",
+    "league": "WHL",
+    "date": "2026-03-22T01:05:00Z",
+    "team": "Prince George Cougars",
+    "opponent": "Victoria Royals",
+    "arena": "Save-On-Foods Memorial Arena",
+    "city": "Victoria, BC"
+  },
+  {
+    "id": "whl_20260321_011",
+    "league": "WHL",
+    "date": "2026-03-22T02:00:00Z",
+    "team": "Kamloops Blazers",
+    "opponent": "Vancouver Giants",
+    "arena": "Langley Events Centre",
+    "city": "Langley, BC"
+  },
+  {
+    "id": "whl_20260322_001",
+    "league": "WHL",
+    "date": "2026-03-22T22:00:00Z",
+    "team": "Calgary Hitmen",
+    "opponent": "Edmonton Oil Kings",
+    "arena": "Rogers Place",
+    "city": "Edmonton, AB"
+  },
+  {
+    "id": "whl_20260322_002",
+    "league": "WHL",
+    "date": "2026-03-22T23:05:00Z",
+    "team": "Seattle Thunderbirds",
+    "opponent": "Spokane Chiefs",
+    "arena": "Numerica Veterans Arena",
+    "city": "Spokane, WA"
+  }
+]

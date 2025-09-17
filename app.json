@@ -1,29 +1,36 @@
 {
   "expo": {
-    "name": "MyHockeyPassport",
+    "name": "My Hockey Passport",
     "slug": "MyHockeyPassport",
+    "scheme": "myhockeypassport",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/logo_with_font.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/images/logo_with_font.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      "edgeToEdgeEnabled": true,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
+        }
+      },
+      "package": "com.tkirk21.MyHockeyPassport"
     }
   }
 }

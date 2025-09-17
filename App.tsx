@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+//version 1 - 10am friday 1st of august
+//App.tsx
+import { Image, StyleSheet, View } from 'react-native';
+import { useEffect } from 'react';
+import { useRouter } from 'expo-router';
 
 export default function App() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace('/signup');
+    }, 2000); // Show splash screen for 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Image source={require('./assets/images/logo_with_font.png')} style={styles.logo} />
     </View>
   );
 }
@@ -13,8 +24,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0A2940',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logo: {
+    width: 280,
+    height: 280,
+    resizeMode: 'contain',
   },
 });
