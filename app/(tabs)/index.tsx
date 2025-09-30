@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, Image, ImageBackground, Linking, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, UIManager, View, LayoutAnimation, } from 'react-native';
-import { Picker } from '@react-native-picker/picker'; // install this package
+import { Dimensions, FlatList, Image, ImageBackground, Linking, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import * as Location from 'expo-location';
 import Constants from 'expo-constants';
 import { format } from 'date-fns';
@@ -12,7 +12,6 @@ import ahlSchedule2025 from '@/assets/data/ahlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
-
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -57,7 +56,7 @@ export default function HomeScreen() {
     ...aihlSchedule2025.map(game => ({
       id: `${game.homeTeam}_${game.awayTeam}_${game.date}`,
       league: game.league,
-      team: game.homeTeam,
+      homeTeam: game.homeTeam,
       opponent: game.awayTeam,
       arena: game.location,
       city: '',
@@ -115,7 +114,6 @@ export default function HomeScreen() {
     },
   ];
 
-  // Prepare leagues to display based on selectedGroup
   const leaguesToShow =
     selectedGroup === 'All Groups'
       ? leagueGroups.flatMap(g => g.leagues)
@@ -132,11 +130,11 @@ export default function HomeScreen() {
     router.push({
       pathname: '/checkin/live',
       params: {
-        arenaId: `${arenaData.find(a => a.arena === game.arena)?.latitude.toFixed(6)}_${arenaData.find(a => a.arena === game.arena)?.longitude.toFixed(6)}`,
-        arena: game.arena,
-        latitude: arenaData.find(a => a.arena === game.arena)?.latitude,
-        longitude: arenaData.find(a => a.arena === game.arena)?.longitude,
         league: game.league,
+        arenaName: game.arena,
+        homeTeam: game.homeTeam || game.team,   // supports both JSON formats
+        opponent: game.opponent || game.awayTeam,
+        gameDate: game.date,
       },
     });
   };
@@ -152,6 +150,7 @@ export default function HomeScreen() {
           <View style={styles.innerContainer}>
             <Text style={styles.header}>My Hockey Passport</Text>
 
+            {/* Closest Arenas */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Closest Arenas</Text>
               {!location ? (
@@ -190,6 +189,7 @@ export default function HomeScreen() {
               )}
             </View>
 
+            {/* Today's Games */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Today's Games</Text>
 
@@ -209,7 +209,7 @@ export default function HomeScreen() {
               ) : (
                 filteredGames.map((game) => (
                   <TouchableOpacity key={game.id} style={styles.gameCard}>
-                    <Text style={styles.cardText}>{game.team} vs {game.opponent}</Text>
+                    <Text style={styles.cardText}>{(game.homeTeam || game.team)} vs {game.opponent || game.awayTeam}</Text>
                     <Text style={styles.cardText}>{game.arena}</Text>
                     <Text style={styles.cardText}>{format(new Date(game.date), "h:mm a")}</Text>
 
@@ -232,7 +232,7 @@ export default function HomeScreen() {
               )}
             </View>
 
-            {/* Dropdown to select league group */}
+            {/* Explore Leagues */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Explore Leagues</Text>
               <View style={styles.pickerContainer}>
@@ -248,13 +248,12 @@ export default function HomeScreen() {
                 </Picker>
               </View>
 
-              {/* Show leagues for selected group in grid */}
               <FlatList
                 data={leaguesToShow}
                 keyExtractor={(item) => item.name}
                 numColumns={3}
                 showsVerticalScrollIndicator={false}
-                scrollEnabled={false}     // 👈 ADD THIS
+                scrollEnabled={false}
                 contentContainerStyle={styles.leagueGrid}
                 renderItem={({ item }) => (
                   <TouchableOpacity
@@ -335,31 +334,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#0A2940',
   },
-  leagueList: {
-    gap: 16,
-    paddingHorizontal: 10,
-  },
-  leagueItem: {
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  leagueLogo: {
-    width: 60,
-    height: 60,
-    marginBottom: 6,
-  },
-  leagueName: {
-    fontSize: 12,
-    color: '#374151',
-    textAlign: 'center',
-  },
-  logoPlaceholder: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#ddd',
-    borderRadius: 20,
-    marginRight: 12,
-  },
   gameCard: {
     flexDirection: 'column',
     backgroundColor: '#F0F4F8',
@@ -389,7 +363,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 8,
   },
-
   smallButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 6,
@@ -399,13 +372,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     alignItems: 'center',
   },
-
   smallButtonText: {
     color: '#fff',
     fontSize: 12,
     fontWeight: '600',
   },
-
   pickerContainer: {
     borderWidth: 1,
     borderColor: '#ddd',
@@ -413,20 +384,25 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 12,
   },
-
   leagueGrid: {
     paddingHorizontal: 5,
     gap: 16,
   },
-
   leagueGridItem: {
     flex: 1,
     maxWidth: '33%',
     alignItems: 'center',
     marginVertical: 10,
   },
+  leagueLogo: {
+    width: 60,
+    height: 60,
+    marginBottom: 6,
+  },
+  leagueName: {
+    fontSize: 12,
+    color: '#374151',
+    textAlign: 'center',
+  },
 });
-
-
-
 

@@ -335,72 +335,63 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Recent Check-Ins (keep your styled cards) */}
+            {/* Check-ins */}
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Recent Check-Ins</Text>
+              <Text style={styles.sectionTitle}>Check-ins</Text>
               {recentCheckIns.length === 0 ? (
                 <Text style={styles.placeholder}>No check-ins yet.</Text>
               ) : (
-                recentCheckIns.map((checkIn: any) => {
-                  const match = (arenasData as any[]).find(
-                    (a: any) =>
-                      a.league === checkIn.league && norm(a.arena) === norm(checkIn.arenaName)
+                recentCheckIns.map((checkIn) => {
+                  const arena = (arenasData as any[]).find(
+                    (a: any) => a.arena === checkIn.arenaName || a.arena === checkIn.arena
                   );
-                  const headerColor = match?.colorCode || '#0D2C42';
+                  const bgColor = arena?.colorCode ? arena.colorCode + '22' : '#ffffff';
+
                   return (
-                    <View
+                    <TouchableOpacity
                       key={checkIn.id}
-                      style={{
-                        backgroundColor: lightenColor(headerColor, 200),
-                        borderRadius: 10,
-                        marginBottom: 15,
-                        overflow: 'hidden',
-                      }}
+                      style={[
+                        styles.checkinCard,
+                        {
+                          borderLeftColor: arena?.colorCode || '#6B7280',
+                          backgroundColor: bgColor, // faded arena color
+                        },
+                      ]}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/checkin/[checkinId]',
+                          params: { checkinId: checkIn.id, userId: auth.currentUser?.uid },
+                        })
+                      }
                     >
-                      <View style={{ backgroundColor: headerColor, padding: 8 }}>
-                        <Text
-                          style={{
-                            color: '#fff',
-                            fontWeight: 'bold',
-                            fontSize: 16,
-                            textAlign: 'center',
-                          }}
+                      {/* League Badge */}
+                      <View
+                        style={[
+                          styles.leagueBadge,
+                          { borderColor: arena?.colorCode || '#0A2940' },
+                        ]}
+                      >
+                        <Text style={[
+                            styles.leagueBadgeText,
+                            { color: arena?.colorCode || '#0A2940' },
+                          ]}
                         >
-                          {checkIn.teamName || 'Unknown Team'}
+                          {checkIn.league}
                         </Text>
                       </View>
-                      <View style={{ flexDirection: 'row', padding: 10 }}>
-                        <Image
-                          source={
-                            checkIn.imageUrls?.[0]
-                              ? { uri: checkIn.imageUrls[0] }
-                              : require('@/assets/images/placeholder.png')
-                          }
-                          style={{ width: 80, height: 80, borderRadius: 6, marginRight: 10 }}
-                          resizeMode="cover"
-                        />
-                        <View style={{ flex: 1, justifyContent: 'center' }}>
-                          <Text
-                            style={{
-                              fontWeight: 'bold',
-                              color: '#0D2C42',
-                              fontSize: 14,
-                              textAlign: 'left',
-                            }}
-                          >
-                            vs {checkIn.opponent || 'Unknown Opponent'}
-                          </Text>
-                          <Text style={{ color: '#2F4F68', fontSize: 13, textAlign: 'left' }}>
-                            {checkIn.arenaName || 'Unknown Arena'}
-                          </Text>
-                          <Text style={{ color: '#2F4F68', fontSize: 12, textAlign: 'left' }}>
-                            {checkIn.timestamp?.seconds
-                              ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
-                              : 'Unknown Date'}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
+
+                      <Text style={styles.arenaText}>
+                        {checkIn.arenaName || checkIn.arena}
+                      </Text>
+                      <Text style={styles.teamsText}>
+                        {checkIn.teamName} vs {checkIn.opponent}
+                      </Text>
+                      <Text style={styles.dateText}>
+                        {checkIn.timestamp?.seconds
+                          ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
+                          : ''}
+                      </Text>
+                    </TouchableOpacity>
                   );
                 })
               )}
@@ -533,5 +524,46 @@ const styles = StyleSheet.create({
   teamRowText: {
     color: '#2F4F68',
     fontSize: 14,
+  },
+  checkinCard: {
+    padding: 14,
+    borderRadius: 10,
+    marginBottom: 12,
+    borderLeftWidth: 6,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  arenaText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0D2C42',
+    marginBottom: 4,
+  },
+  teamsText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#2F4F68',
+    marginBottom: 6,
+  },
+  dateText: {
+    fontSize: 12,
+    color: '#6B7280',
+    textAlign: 'right',
+  },
+  leagueBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 6,
+    marginBottom: 6,
+    borderWidth: 1.5, // outlined instead of filled
+    backgroundColor: 'transparent',
+  },
+  leagueBadgeText: {
+    fontSize: 12,
+    fontWeight: '600',
   },
 });

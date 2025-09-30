@@ -1,13 +1,40 @@
-//version 1 - 10am friday 1st of august
+//version 2 - with friends tab badge
 // app/(tabs)/_layout.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { getAuth } from 'firebase/auth';
+import { collection, getDocs, getFirestore, onSnapshot, } from 'firebase/firestore';
+import firebaseApp from '@/firebaseConfig';
+
+const db = getFirestore(firebaseApp);
 
 function CustomTabs() {
   const insets = useSafeAreaInsets();
+  const [pendingCount, setPendingCount] = useState(0);
+  const auth = getAuth(firebaseApp);
+  const currentUser = auth.currentUser;
+
+  useEffect(() => {
+    if (!currentUser) return;
+
+    const reqRef = collection(db, "profiles", currentUser.uid, "friendRequests");
+
+    // Listen in real-time instead of fetching once
+    const unsubscribe = onSnapshot(
+      reqRef,
+      (snap) => {
+        setPendingCount(snap.size);
+      },
+      (err) => {
+        console.error("Error loading pending requests:", err);
+      }
+    );
+
+    return () => unsubscribe(); // cleanup listener when unmounting
+  }, [currentUser]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#0A2940', paddingBottom: insets.bottom }}>
@@ -58,6 +85,7 @@ function CustomTabs() {
           options={{
             title: 'Friends',
             tabBarIcon: ({ color }) => <Ionicons name="people" size={28} color={color} />,
+            tabBarBadge: pendingCount > 0 ? pendingCount : undefined, // ✅ shows badge
           }}
         />
       </Tabs>
@@ -72,7 +100,3 @@ export default function TabLayout() {
     </SafeAreaProvider>
   );
 }
-
-
-
-

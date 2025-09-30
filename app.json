@@ -31,6 +31,10 @@
         }
       },
       "package": "com.tkirk21.MyHockeyPassport"
+    },
+    "updates": {
+      "enabled": false,
+      "fallbackToCacheTimeout": 0
     }
   }
 }

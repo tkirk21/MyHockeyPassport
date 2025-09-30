@@ -247,7 +247,7 @@
     "league": "NHL",
     "date": "2025-11-21T03:00:00Z",
     "team": "Anaheim Ducks",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Honda Center",
     "city": "Anaheim, California"
   },
@@ -363,7 +363,7 @@
     "id": "nhl_2025020525",
     "league": "NHL",
     "date": "2025-12-17T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Anaheim Ducks",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -382,7 +382,7 @@
     "league": "NHL",
     "date": "2025-12-21T03:00:00Z",
     "team": "Anaheim Ducks",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Honda Center",
     "city": "Anaheim, California"
   },
@@ -651,7 +651,7 @@
     "id": "nhl_2025021043",
     "league": "NHL",
     "date": "2026-03-14T17:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Anaheim Ducks",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -939,7 +939,7 @@
     "id": "nhl_2025020149",
     "league": "NHL",
     "date": "2025-10-27T23:30:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Boston Bruins",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -985,7 +985,7 @@
     "league": "NHL",
     "date": "2025-11-07T00:00:00Z",
     "team": "Boston Bruins",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "TD Garden",
     "city": "Boston, Massachusetts"
   },
@@ -1011,7 +1011,7 @@
     "id": "nhl_2025020271",
     "league": "NHL",
     "date": "2025-11-14T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Boston Bruins",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -1165,7 +1165,7 @@
     "league": "NHL",
     "date": "2025-12-22T00:00:00Z",
     "team": "Boston Bruins",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "TD Garden",
     "city": "Boston, Massachusetts"
   },
@@ -1354,7 +1354,7 @@
     "league": "NHL",
     "date": "2026-02-27T00:00:00Z",
     "team": "Boston Bruins",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "TD Garden",
     "city": "Boston, Massachusetts"
   },
@@ -1497,7 +1497,7 @@
     "id": "nhl_2025021170",
     "league": "NHL",
     "date": "2026-03-29T21:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Boston Bruins",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -1560,7 +1560,7 @@
     "id": "nhl_2025021278",
     "league": "NHL",
     "date": "2026-04-12T22:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Boston Bruins",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -1578,7 +1578,7 @@
     "id": "nhl_2025010014",
     "league": "NHL",
     "date": "2025-09-22T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Buffalo Sabres",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -1588,7 +1588,7 @@
     "league": "NHL",
     "date": "2025-09-23T23:00:00Z",
     "team": "Buffalo Sabres",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "KeyBank Center",
     "city": "New York"
   },
@@ -1651,7 +1651,7 @@
     "league": "NHL",
     "date": "2025-10-15T23:00:00Z",
     "team": "Buffalo Sabres",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "KeyBank Center",
     "city": "New York"
   },
@@ -1705,7 +1705,7 @@
     "league": "NHL",
     "date": "2025-10-28T22:45:00Z",
     "team": "Buffalo Sabres",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "KeyBank Center",
     "city": "New York"
   },
@@ -1929,7 +1929,7 @@
     "id": "nhl_2025020578",
     "league": "NHL",
     "date": "2025-12-24T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Buffalo Sabres",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -1956,7 +1956,7 @@
     "id": "nhl_2025020646",
     "league": "NHL",
     "date": "2026-01-03T20:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Buffalo Sabres",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -2253,7 +2253,7 @@
     "id": "nhl_2025021191",
     "league": "NHL",
     "date": "2026-04-02T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Buffalo Sabres",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -2290,7 +2290,7 @@
     "league": "NHL",
     "date": "2026-04-09T23:00:00Z",
     "team": "Buffalo Sabres",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "KeyBank Center",
     "city": "New York"
   },
@@ -2487,7 +2487,7 @@
     "id": "nhl_2025020168",
     "league": "NHL",
     "date": "2025-10-30T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Calgary Flames",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -2515,7 +2515,7 @@
     "league": "NHL",
     "date": "2025-11-06T02:30:00Z",
     "team": "Calgary Flames",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Scotiabank Saddledome",
     "city": "Mountain"
   },
@@ -2757,7 +2757,7 @@
     "id": "nhl_2025020728",
     "league": "NHL",
     "date": "2026-01-14T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Calgary Flames",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -2875,7 +2875,7 @@
     "league": "NHL",
     "date": "2026-03-06T02:00:00Z",
     "team": "Calgary Flames",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Scotiabank Saddledome",
     "city": "Mountain"
   },
@@ -3307,7 +3307,7 @@
     "league": "NHL",
     "date": "2025-12-10T00:00:00Z",
     "team": "Carolina Hurricanes",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Lenovo Center",
     "city": "Eastern"
   },
@@ -3495,7 +3495,7 @@
     "id": "nhl_2025020813",
     "league": "NHL",
     "date": "2026-01-25T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Carolina Hurricanes",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -3532,7 +3532,7 @@
     "league": "NHL",
     "date": "2026-02-04T00:00:00Z",
     "team": "Carolina Hurricanes",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Lenovo Center",
     "city": "Eastern"
   },
@@ -3621,7 +3621,7 @@
     "id": "nhl_2025021070",
     "league": "NHL",
     "date": "2026-03-17T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Carolina Hurricanes",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -3684,7 +3684,7 @@
     "id": "nhl_2025021185",
     "league": "NHL",
     "date": "2026-03-31T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Carolina Hurricanes",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -3694,7 +3694,7 @@
     "league": "NHL",
     "date": "2026-04-02T23:00:00Z",
     "team": "Carolina Hurricanes",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Lenovo Center",
     "city": "Eastern"
   },
@@ -3711,7 +3711,7 @@
     "id": "nhl_2025021225",
     "league": "NHL",
     "date": "2026-04-05T21:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Carolina Hurricanes",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -3874,7 +3874,7 @@
     "league": "NHL",
     "date": "2025-10-29T00:45:00Z",
     "team": "Chicago Blackhawks",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "United Center",
     "city": "Chicago, Illinois"
   },
@@ -4053,7 +4053,7 @@
     "id": "nhl_2025020551",
     "league": "NHL",
     "date": "2025-12-20T20:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Chicago Blackhawks",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -4207,7 +4207,7 @@
     "league": "NHL",
     "date": "2026-01-31T01:30:00Z",
     "team": "Chicago Blackhawks",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "United Center",
     "city": "Chicago, Illinois"
   },
@@ -4224,7 +4224,7 @@
     "id": "nhl_2025020894",
     "league": "NHL",
     "date": "2026-02-05T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Chicago Blackhawks",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -4503,7 +4503,7 @@
     "id": "nhl_2025020067",
     "league": "NHL",
     "date": "2025-10-16T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Colorado Avalanche",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -4783,7 +4783,7 @@
     "league": "NHL",
     "date": "2026-01-09T02:00:00Z",
     "team": "Colorado Avalanche",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Ball Arena",
     "city": "Denver, Colorado"
   },
@@ -4792,7 +4792,7 @@
     "league": "NHL",
     "date": "2026-01-10T21:00:00Z",
     "team": "Colorado Avalanche",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Ball Arena",
     "city": "Denver, Colorado"
   },
@@ -4845,7 +4845,7 @@
     "id": "nhl_2025020841",
     "league": "NHL",
     "date": "2026-01-29T00:30:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Colorado Avalanche",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -5079,7 +5079,7 @@
     "id": "nhl_2025010009",
     "league": "NHL",
     "date": "2025-09-21T21:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "St Louis Blues",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5088,7 +5088,7 @@
     "id": "nhl_2025010032",
     "league": "NHL",
     "date": "2025-09-24T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Pittsburgh Penguins",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5098,7 +5098,7 @@
     "league": "NHL",
     "date": "2025-09-27T23:00:00Z",
     "team": "Pittsburgh Penguins",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "PPG Paints Arena",
     "city": "Eastern"
   },
@@ -5106,7 +5106,7 @@
     "id": "nhl_2025010071",
     "league": "NHL",
     "date": "2025-09-30T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Washington Capitals",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5116,7 +5116,7 @@
     "league": "NHL",
     "date": "2025-10-04T23:00:00Z",
     "team": "Washington Capitals",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -5125,7 +5125,7 @@
     "league": "NHL",
     "date": "2025-10-10T00:00:00Z",
     "team": "Nashville Predators",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Bridgestone Arena",
     "city": "Nashville, Tennessee"
   },
@@ -5134,7 +5134,7 @@
     "league": "NHL",
     "date": "2025-10-12T00:00:00Z",
     "team": "Minnesota Wild",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Grand Casino Arena",
     "city": "Central"
   },
@@ -5142,7 +5142,7 @@
     "id": "nhl_2025020045",
     "league": "NHL",
     "date": "2025-10-13T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New Jersey Devils",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5151,7 +5151,7 @@
     "id": "nhl_2025020082",
     "league": "NHL",
     "date": "2025-10-18T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Tampa Bay Lightning",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5161,7 +5161,7 @@
     "league": "NHL",
     "date": "2025-10-22T00:00:00Z",
     "team": "Dallas Stars",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "American Airlines Center",
     "city": "Dallas, Texas"
   },
@@ -5169,7 +5169,7 @@
     "id": "nhl_2025020125",
     "league": "NHL",
     "date": "2025-10-24T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Washington Capitals",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5179,7 +5179,7 @@
     "league": "NHL",
     "date": "2025-10-25T23:00:00Z",
     "team": "Pittsburgh Penguins",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "PPG Paints Arena",
     "city": "Eastern"
   },
@@ -5187,7 +5187,7 @@
     "id": "nhl_2025020166",
     "league": "NHL",
     "date": "2025-10-29T23:30:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Toronto Maple Leafs",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5196,7 +5196,7 @@
     "id": "nhl_2025020189",
     "league": "NHL",
     "date": "2025-11-01T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "St Louis Blues",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5206,7 +5206,7 @@
     "league": "NHL",
     "date": "2025-11-02T22:00:00Z",
     "team": "New York Islanders",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "UBS Arena",
     "city": "New York"
   },
@@ -5215,7 +5215,7 @@
     "league": "NHL",
     "date": "2025-11-09T03:00:00Z",
     "team": "Vancouver Canucks",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Rogers Arena",
     "city": "Vancouver"
   },
@@ -5224,7 +5224,7 @@
     "league": "NHL",
     "date": "2025-11-11T01:30:00Z",
     "team": "Edmonton Oilers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Rogers Place",
     "city": "Edmonton"
   },
@@ -5233,7 +5233,7 @@
     "league": "NHL",
     "date": "2025-11-12T03:00:00Z",
     "team": "Seattle Kraken",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Climate Pledge Arena",
     "city": "Seattle, WA"
   },
@@ -5241,7 +5241,7 @@
     "id": "nhl_2025020274",
     "league": "NHL",
     "date": "2025-11-14T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Edmonton Oilers",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5250,7 +5250,7 @@
     "id": "nhl_2025020290",
     "league": "NHL",
     "date": "2025-11-16T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New York Rangers",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5259,7 +5259,7 @@
     "id": "nhl_2025020305",
     "league": "NHL",
     "date": "2025-11-18T00:30:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Montreal Canadiens",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5269,7 +5269,7 @@
     "league": "NHL",
     "date": "2025-11-19T01:00:00Z",
     "team": "Winnipeg Jets",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Canada Life Centre",
     "city": "Winnipeg"
   },
@@ -5278,7 +5278,7 @@
     "league": "NHL",
     "date": "2025-11-21T00:00:00Z",
     "team": "Toronto Maple Leafs",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Scotiabank Arena",
     "city": "Toronto"
   },
@@ -5287,7 +5287,7 @@
     "league": "NHL",
     "date": "2025-11-22T18:00:00Z",
     "team": "Detroit Red Wings",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan"
   },
@@ -5296,7 +5296,7 @@
     "league": "NHL",
     "date": "2025-11-25T00:00:00Z",
     "team": "Washington Capitals",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -5304,7 +5304,7 @@
     "id": "nhl_2025020369",
     "league": "NHL",
     "date": "2025-11-27T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Toronto Maple Leafs",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5313,7 +5313,7 @@
     "id": "nhl_2025020388",
     "league": "NHL",
     "date": "2025-11-29T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Pittsburgh Penguins",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5323,7 +5323,7 @@
     "league": "NHL",
     "date": "2025-12-02T00:00:00Z",
     "team": "New Jersey Devils",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Prudential Center",
     "city": "Eastern"
   },
@@ -5331,7 +5331,7 @@
     "id": "nhl_2025020432",
     "league": "NHL",
     "date": "2025-12-05T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Detroit Red Wings",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5341,7 +5341,7 @@
     "league": "NHL",
     "date": "2025-12-06T20:30:00Z",
     "team": "Florida Panthers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Amerant Bank Arena",
     "city": "Sunrise, Florida"
   },
@@ -5350,7 +5350,7 @@
     "league": "NHL",
     "date": "2025-12-08T00:00:00Z",
     "team": "Washington Capitals",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -5358,8 +5358,8 @@
     "id": "nhl_2025020486",
     "league": "NHL",
     "date": "2025-12-12T00:00:00Z",
-    "team": "CBJ",
-    "opponent": "OTT",
+    "team": "Columbus Blue Jackets",
+    "opponent": "Ottawa Senators",
     "arena": "Nationwide Arena",
     "city": "Eastern"
   },
@@ -5367,7 +5367,7 @@
     "id": "nhl_2025020502",
     "league": "NHL",
     "date": "2025-12-14T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Vegas Golden Knights",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5376,7 +5376,7 @@
     "id": "nhl_2025020540",
     "league": "NHL",
     "date": "2025-12-19T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Minnesota Wild",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5386,7 +5386,7 @@
     "league": "NHL",
     "date": "2025-12-23T03:00:00Z",
     "team": "LA Kings",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Crypto.com Arena",
     "city": "Los Angeles"
   },
@@ -5394,7 +5394,7 @@
     "id": "nhl_2025020603",
     "league": "NHL",
     "date": "2025-12-28T22:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New York Islanders",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5403,8 +5403,8 @@
     "id": "nhl_2025020606",
     "league": "NHL",
     "date": "2025-12-30T00:00:00Z",
-    "team": "OTT",
-    "opponent": "CBJ",
+    "team": "Ottawa Senators",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
   },
@@ -5412,7 +5412,7 @@
     "id": "nhl_2025020627",
     "league": "NHL",
     "date": "2026-01-01T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New Jersey Devils",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5421,7 +5421,7 @@
     "id": "nhl_2025020658",
     "league": "NHL",
     "date": "2026-01-04T20:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Pittsburgh Penguins",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5431,7 +5431,7 @@
     "league": "NHL",
     "date": "2026-01-07T03:00:00Z",
     "team": "San Jose Sharks",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "SAP Center at San Jose",
     "city": "San Jose, California"
   },
@@ -5440,7 +5440,7 @@
     "league": "NHL",
     "date": "2026-01-09T03:00:00Z",
     "team": "Vegas Golden Knights",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "T-Mobile Arena",
     "city": "Las Vegas, Nevada"
   },
@@ -5449,7 +5449,7 @@
     "league": "NHL",
     "date": "2026-01-12T00:00:00Z",
     "team": "Utah Mammoth",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Delta Center",
     "city": "Salt Lake City, Utah"
   },
@@ -5457,7 +5457,7 @@
     "id": "nhl_2025020743",
     "league": "NHL",
     "date": "2026-01-16T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Vancouver Canucks",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5467,7 +5467,7 @@
     "league": "NHL",
     "date": "2026-01-18T00:00:00Z",
     "team": "Pittsburgh Penguins",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "PPG Paints Arena",
     "city": "Eastern"
   },
@@ -5475,8 +5475,8 @@
     "id": "nhl_2025020782",
     "league": "NHL",
     "date": "2026-01-21T00:00:00Z",
-    "team": "CBJ",
-    "opponent": "OTT",
+    "team": "Columbus Blue Jackets",
+    "opponent": "Ottawa Senators",
     "arena": "Nationwide Arena",
     "city": "Eastern"
   },
@@ -5484,7 +5484,7 @@
     "id": "nhl_2025020797",
     "league": "NHL",
     "date": "2026-01-23T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Dallas Stars",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5493,7 +5493,7 @@
     "id": "nhl_2025020814",
     "league": "NHL",
     "date": "2026-01-25T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Tampa Bay Lightning",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5502,7 +5502,7 @@
     "id": "nhl_2025020828",
     "league": "NHL",
     "date": "2026-01-27T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "LA Kings",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5511,7 +5511,7 @@
     "id": "nhl_2025020840",
     "league": "NHL",
     "date": "2026-01-29T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Philadelphia Flyers",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5521,7 +5521,7 @@
     "league": "NHL",
     "date": "2026-02-01T00:00:00Z",
     "team": "St Louis Blues",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Enterprise Center",
     "city": "Central"
   },
@@ -5530,7 +5530,7 @@
     "league": "NHL",
     "date": "2026-02-04T00:00:00Z",
     "team": "New Jersey Devils",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Prudential Center",
     "city": "Eastern"
   },
@@ -5538,7 +5538,7 @@
     "id": "nhl_2025020937",
     "league": "NHL",
     "date": "2026-02-28T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New York Islanders",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5548,7 +5548,7 @@
     "league": "NHL",
     "date": "2026-03-03T00:00:00Z",
     "team": "New York Rangers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Madison Square Garden",
     "city": "New York"
   },
@@ -5556,7 +5556,7 @@
     "id": "nhl_2025020963",
     "league": "NHL",
     "date": "2026-03-04T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Nashville Predators",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5565,7 +5565,7 @@
     "id": "nhl_2025020978",
     "league": "NHL",
     "date": "2026-03-06T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Florida Panthers",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5574,7 +5574,7 @@
     "id": "nhl_2025020995",
     "league": "NHL",
     "date": "2026-03-08T00:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Utah Mammoth",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5584,7 +5584,7 @@
     "league": "NHL",
     "date": "2026-03-10T23:00:00Z",
     "team": "Tampa Bay Lightning",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Amalie Arena",
     "city": "Tampa, Florida"
   },
@@ -5593,7 +5593,7 @@
     "league": "NHL",
     "date": "2026-03-12T23:00:00Z",
     "team": "Florida Panthers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Amerant Bank Arena",
     "city": "Sunrise, Florida"
   },
@@ -5602,7 +5602,7 @@
     "league": "NHL",
     "date": "2026-03-14T23:00:00Z",
     "team": "Philadelphia Flyers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Wells Fargo Center",
     "city": "Eastern"
   },
@@ -5610,7 +5610,7 @@
     "id": "nhl_2025021086",
     "league": "NHL",
     "date": "2026-03-19T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "New York Rangers",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5619,7 +5619,7 @@
     "id": "nhl_2025021104",
     "league": "NHL",
     "date": "2026-03-21T21:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Seattle Kraken",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5629,7 +5629,7 @@
     "league": "NHL",
     "date": "2026-03-22T23:00:00Z",
     "team": "New York Islanders",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "UBS Arena",
     "city": "New York"
   },
@@ -5638,7 +5638,7 @@
     "league": "NHL",
     "date": "2026-03-24T23:00:00Z",
     "team": "Philadelphia Flyers",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Wells Fargo Center",
     "city": "Eastern"
   },
@@ -5647,7 +5647,7 @@
     "league": "NHL",
     "date": "2026-03-26T23:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -5655,7 +5655,7 @@
     "id": "nhl_2025021158",
     "league": "NHL",
     "date": "2026-03-28T21:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "San Jose Sharks",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5664,7 +5664,7 @@
     "id": "nhl_2025021215",
     "league": "NHL",
     "date": "2026-04-04T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Winnipeg Jets",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5674,7 +5674,7 @@
     "league": "NHL",
     "date": "2026-04-07T23:00:00Z",
     "team": "Detroit Red Wings",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan"
   },
@@ -5683,7 +5683,7 @@
     "league": "NHL",
     "date": "2026-04-11T23:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "CBJ",
+    "opponent": "Columbus Blue Jackets",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -5691,7 +5691,7 @@
     "id": "nhl_2025021295",
     "league": "NHL",
     "date": "2026-04-14T23:00:00Z",
-    "team": "CBJ",
+    "team": "Columbus Blue Jackets",
     "opponent": "Washington Capitals",
     "arena": "Nationwide Arena",
     "city": "Eastern"
@@ -5844,7 +5844,7 @@
     "id": "nhl_2025020258",
     "league": "NHL",
     "date": "2025-11-12T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Dallas Stars",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -5917,7 +5917,7 @@
     "league": "NHL",
     "date": "2025-11-30T23:00:00Z",
     "team": "Dallas Stars",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "American Airlines Center",
     "city": "Dallas, Texas"
   },
@@ -6591,7 +6591,7 @@
     "id": "nhl_2025020664",
     "league": "NHL",
     "date": "2026-01-06T00:30:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Detroit Red Wings",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -6628,7 +6628,7 @@
     "league": "NHL",
     "date": "2026-01-18T22:00:00Z",
     "team": "Detroit Red Wings",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan"
   },
@@ -6690,7 +6690,7 @@
     "id": "nhl_2025020920",
     "league": "NHL",
     "date": "2026-02-27T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Detroit Red Wings",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -6763,7 +6763,7 @@
     "league": "NHL",
     "date": "2026-03-24T23:00:00Z",
     "team": "Detroit Red Wings",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan"
   },
@@ -6942,7 +6942,7 @@
     "id": "nhl_2025020099",
     "league": "NHL",
     "date": "2025-10-21T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Edmonton Oilers",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -7276,7 +7276,7 @@
     "league": "NHL",
     "date": "2026-03-04T02:00:00Z",
     "team": "Edmonton Oilers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Rogers Place",
     "city": "Edmonton"
   },
@@ -7465,7 +7465,7 @@
     "league": "NHL",
     "date": "2025-10-11T23:00:00Z",
     "team": "Florida Panthers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Amerant Bank Arena",
     "city": "Sunrise, Florida"
   },
@@ -7707,7 +7707,7 @@
     "id": "nhl_2025020704",
     "league": "NHL",
     "date": "2026-01-11T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Florida Panthers",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -7870,7 +7870,7 @@
     "league": "NHL",
     "date": "2026-03-31T23:00:00Z",
     "team": "Florida Panthers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Amerant Bank Arena",
     "city": "Sunrise, Florida"
   },
@@ -7905,7 +7905,7 @@
     "id": "nhl_2025021249",
     "league": "NHL",
     "date": "2026-04-09T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Florida Panthers",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -8067,7 +8067,7 @@
     "id": "nhl_2025020286",
     "league": "NHL",
     "date": "2025-11-16T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "LA Kings",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -8095,7 +8095,7 @@
     "league": "NHL",
     "date": "2025-11-25T02:00:00Z",
     "team": "LA Kings",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Crypto.com Arena",
     "city": "Los Angeles"
   },
@@ -8590,7 +8590,7 @@
     "league": "NHL",
     "date": "2025-12-13T19:00:00Z",
     "team": "Minnesota Wild",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Grand Casino Arena",
     "city": "Central"
   },
@@ -8805,7 +8805,7 @@
     "id": "nhl_2025021208",
     "league": "NHL",
     "date": "2026-04-04T17:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Minnesota Wild",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -8877,7 +8877,7 @@
     "id": "nhl_2025010069",
     "league": "NHL",
     "date": "2025-09-30T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Montreal Canadiens",
     "arena": "Centre Videotron",
     "city": "Toronto"
@@ -8887,7 +8887,7 @@
     "league": "NHL",
     "date": "2025-10-04T23:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -8950,7 +8950,7 @@
     "league": "NHL",
     "date": "2025-11-01T23:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -9022,7 +9022,7 @@
     "league": "NHL",
     "date": "2025-12-03T00:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -9147,7 +9147,7 @@
     "id": "nhl_2025020758",
     "league": "NHL",
     "date": "2026-01-18T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Montreal Canadiens",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -9210,7 +9210,7 @@
     "id": "nhl_2025021025",
     "league": "NHL",
     "date": "2026-03-11T23:30:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Montreal Canadiens",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -9336,7 +9336,7 @@
     "id": "nhl_2025020041",
     "league": "NHL",
     "date": "2025-10-13T17:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Nashville Predators",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -9544,7 +9544,7 @@
     "league": "NHL",
     "date": "2026-01-23T01:00:00Z",
     "team": "Nashville Predators",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Bridgestone Arena",
     "city": "Nashville, Tennessee"
   },
@@ -9723,7 +9723,7 @@
     "id": "nhl_2025010056",
     "league": "NHL",
     "date": "2025-09-28T19:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New Jersey Devils",
     "arena": "Centre Videotron",
     "city": "Toronto"
@@ -9867,7 +9867,7 @@
     "id": "nhl_2025020467",
     "league": "NHL",
     "date": "2025-12-10T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New Jersey Devils",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10011,7 +10011,7 @@
     "id": "nhl_2025020866",
     "league": "NHL",
     "date": "2026-02-01T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New Jersey Devils",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10120,7 +10120,7 @@
     "league": "NHL",
     "date": "2026-04-12T23:00:00Z",
     "team": "New Jersey Devils",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Prudential Center",
     "city": "Eastern"
   },
@@ -10191,7 +10191,7 @@
     "id": "nhl_2025020077",
     "league": "NHL",
     "date": "2025-10-18T19:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New York Islanders",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10461,7 +10461,7 @@
     "id": "nhl_2025021084",
     "league": "NHL",
     "date": "2026-03-19T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New York Islanders",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10498,7 +10498,7 @@
     "league": "NHL",
     "date": "2026-04-11T17:00:00Z",
     "team": "New York Islanders",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "UBS Arena",
     "city": "New York"
   },
@@ -10614,7 +10614,7 @@
     "id": "nhl_2025020427",
     "league": "NHL",
     "date": "2025-12-05T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "New York Rangers",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10696,7 +10696,7 @@
     "league": "NHL",
     "date": "2026-01-15T00:30:00Z",
     "team": "New York Rangers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Madison Square Garden",
     "city": "New York"
   },
@@ -10786,7 +10786,7 @@
     "league": "NHL",
     "date": "2026-03-23T23:30:00Z",
     "team": "New York Rangers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Madison Square Garden",
     "city": "New York"
   },
@@ -10821,7 +10821,7 @@
     "id": "nhl_2025010010",
     "league": "NHL",
     "date": "2025-09-21T19:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Toronto Maple Leafs",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10831,7 +10831,7 @@
     "league": "NHL",
     "date": "2025-09-23T23:00:00Z",
     "team": "Toronto Maple Leafs",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Scotiabank Arena",
     "city": "Toronto"
   },
@@ -10840,7 +10840,7 @@
     "league": "NHL",
     "date": "2025-10-03T00:00:00Z",
     "team": "St Louis Blues",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Enterprise Center",
     "city": "Central"
   },
@@ -10849,7 +10849,7 @@
     "league": "NHL",
     "date": "2025-10-09T23:00:00Z",
     "team": "Tampa Bay Lightning",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Amalie Arena",
     "city": "Tampa, Florida"
   },
@@ -10857,7 +10857,7 @@
     "id": "nhl_2025020063",
     "league": "NHL",
     "date": "2025-10-16T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Seattle Kraken",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10866,7 +10866,7 @@
     "id": "nhl_2025020112",
     "league": "NHL",
     "date": "2025-10-23T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Philadelphia Flyers",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10876,7 +10876,7 @@
     "league": "NHL",
     "date": "2025-10-25T23:00:00Z",
     "team": "Washington Capitals",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -10885,7 +10885,7 @@
     "league": "NHL",
     "date": "2025-11-08T18:00:00Z",
     "team": "Philadelphia Flyers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Wells Fargo Center",
     "city": "Eastern"
   },
@@ -10893,7 +10893,7 @@
     "id": "nhl_2025020247",
     "league": "NHL",
     "date": "2025-11-10T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Utah Mammoth",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10903,7 +10903,7 @@
     "league": "NHL",
     "date": "2025-11-23T00:00:00Z",
     "team": "San Jose Sharks",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "SAP Center at San Jose",
     "city": "San Jose, California"
   },
@@ -10912,7 +10912,7 @@
     "league": "NHL",
     "date": "2025-11-27T03:00:00Z",
     "team": "Vegas Golden Knights",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "T-Mobile Arena",
     "city": "Las Vegas, Nevada"
   },
@@ -10921,7 +10921,7 @@
     "league": "NHL",
     "date": "2025-11-28T21:00:00Z",
     "team": "St Louis Blues",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Enterprise Center",
     "city": "Central"
   },
@@ -10929,7 +10929,7 @@
     "id": "nhl_2025020445",
     "league": "NHL",
     "date": "2025-12-07T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "St Louis Blues",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10939,7 +10939,7 @@
     "league": "NHL",
     "date": "2025-12-16T00:30:00Z",
     "team": "Winnipeg Jets",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Canada Life Centre",
     "city": "Winnipeg"
   },
@@ -10947,7 +10947,7 @@
     "id": "nhl_2025020537",
     "league": "NHL",
     "date": "2025-12-19T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Pittsburgh Penguins",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10957,7 +10957,7 @@
     "league": "NHL",
     "date": "2025-12-28T00:00:00Z",
     "team": "Toronto Maple Leafs",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Scotiabank Arena",
     "city": "Toronto"
   },
@@ -10965,7 +10965,7 @@
     "id": "nhl_2025020632",
     "league": "NHL",
     "date": "2026-01-01T18:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Washington Capitals",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10974,7 +10974,7 @@
     "id": "nhl_2025020650",
     "league": "NHL",
     "date": "2026-01-04T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Winnipeg Jets",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -10984,7 +10984,7 @@
     "league": "NHL",
     "date": "2026-01-08T02:30:00Z",
     "team": "Utah Mammoth",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Delta Center",
     "city": "Salt Lake City, Utah"
   },
@@ -10992,7 +10992,7 @@
     "id": "nhl_2025020725",
     "league": "NHL",
     "date": "2026-01-14T00:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Vancouver Canucks",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11001,7 +11001,7 @@
     "id": "nhl_2025020821",
     "league": "NHL",
     "date": "2026-01-25T22:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Vegas Golden Knights",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11011,7 +11011,7 @@
     "league": "NHL",
     "date": "2026-02-03T00:00:00Z",
     "team": "Pittsburgh Penguins",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "PPG Paints Arena",
     "city": "Eastern"
   },
@@ -11020,7 +11020,7 @@
     "league": "NHL",
     "date": "2026-02-06T00:00:00Z",
     "team": "Philadelphia Flyers",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Wells Fargo Center",
     "city": "Eastern"
   },
@@ -11029,7 +11029,7 @@
     "league": "NHL",
     "date": "2026-03-01T00:00:00Z",
     "team": "Toronto Maple Leafs",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Scotiabank Arena",
     "city": "Toronto"
   },
@@ -11038,7 +11038,7 @@
     "league": "NHL",
     "date": "2026-03-08T03:00:00Z",
     "team": "Seattle Kraken",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Climate Pledge Arena",
     "city": "Seattle, WA"
   },
@@ -11047,7 +11047,7 @@
     "league": "NHL",
     "date": "2026-03-10T01:00:00Z",
     "team": "Vancouver Canucks",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Rogers Arena",
     "city": "Vancouver"
   },
@@ -11055,7 +11055,7 @@
     "id": "nhl_2025021058",
     "league": "NHL",
     "date": "2026-03-15T21:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "San Jose Sharks",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11065,7 +11065,7 @@
     "league": "NHL",
     "date": "2026-03-18T23:30:00Z",
     "team": "Washington Capitals",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -11073,7 +11073,7 @@
     "id": "nhl_2025021106",
     "league": "NHL",
     "date": "2026-03-21T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Toronto Maple Leafs",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11082,7 +11082,7 @@
     "id": "nhl_2025021138",
     "league": "NHL",
     "date": "2026-03-26T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Pittsburgh Penguins",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11092,7 +11092,7 @@
     "league": "NHL",
     "date": "2026-03-28T17:00:00Z",
     "team": "Tampa Bay Lightning",
-    "opponent": "OTT",
+    "opponent": "Ottawa Senators",
     "arena": "Amalie Arena",
     "city": "Tampa, Florida"
   },
@@ -11100,7 +11100,7 @@
     "id": "nhl_2025021234",
     "league": "NHL",
     "date": "2026-04-07T23:00:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Tampa Bay Lightning",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
@@ -11109,7 +11109,7 @@
     "id": "nhl_2025021304",
     "league": "NHL",
     "date": "2026-04-15T23:30:00Z",
-    "team": "OTT",
+    "team": "Ottawa Senators",
     "opponent": "Toronto Maple Leafs",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"

@@ -1,181 +1,353 @@
 // app/checkin/live.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image, Pressable, SafeAreaView } from 'react-native';
+import Checkbox from 'expo-checkbox';
+import { AntDesign } from '@expo/vector-icons';
+import { getAuth } from 'firebase/auth';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import firebaseApp from '../../firebaseConfig';
+import * as ImagePicker from 'expo-image-picker';
+import { useRouter, useLocalSearchParams } from 'expo-router';
+
+const db = getFirestore(firebaseApp);
+
+// helper to normalize expo-router params (string | string[] | undefined) -> string
+const toStr = (v: any) => Array.isArray(v) ? (v[0] ?? '') : (v ?? '');
 
 export default function LiveCheckInScreen() {
-  const [rating, setRating] = useState(0);
+  const router = useRouter();
+  const params = useLocalSearchParams();
+
+  const league = toStr(params.league);
+  const arenaName = toStr(params.arenaName);
+  const homeTeam = toStr(params.homeTeam);
+  const opponent = toStr(params.opponent);
+  const gameDate = toStr(params.gameDate);
+
+  const [seatInfo, setSeatInfo] = useState('');
   const [favoritePlayer, setFavoritePlayer] = useState('');
   const [companions, setCompanions] = useState('');
   const [notes, setNotes] = useState('');
-  const [merch, setMerch] = useState({ jersey: false, puck: false, });
-  const [concessions, setConcessions] = useState({ beer: false, hotdog: false, });
+  const [images, setImages] = useState<string[]>([]);
 
-  const toggleMerch = (key) => {
-      setMerch({ ...merch, [key]: !merch[key] });
+  const [didBuyMerch, setDidBuyMerch] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+  const [merchItems, setMerchItems] = useState<Record<string, boolean>>({});
+
+  const [didBuyConcessions, setDidBuyConcessions] = useState(false);
+  const [concessionItems, setConcessionItems] = useState<Record<string, boolean>>({});
+
+  // --- SAME CATEGORIES AS manual.tsx ---
+  const merchCategories: Record<string, string[]> = {
+    'Jerseys': ['Home Jersey', 'Away Jersey', 'Third Jersey', 'Retro Jersey', 'Custom Jersey', 'Special Occasion Jersey'],
+    'Apparel & Headwear': [
+      'T-shirt','Hoodie','Sweatshirt','Long sleeve shirt','Jacket','Windbreaker',
+      'Beanie','Knit cap','Snapback hat','Dad hat','Baseball cap','Bucket hat',
+      'Winter hat','Scarf','Gloves','Socks','Shorts','Pajama pants','Face mask',
+      'Neck gaiter','Baby onesie','Toddler gear'
+    ],
+    'Equipment & Themed Items': ['Mini stick','Foam puck','Replica Puck','Foam finger','Souvenir helmet or goalie mask','Signed memorabilia (non-game-used)'],
+    'Game-Used Items': ['Game-used puck','Game-used stick','Game-worn jersey','Game-used glove','Game-used helmet'],
+    'Toys & Collectibles': ['Bobblehead','Plush mascot','LEGO-style players','Team figurines','Keychain','Pin / lapel pin','Trading cards','Souvenir coin / medallion','Zamboni toy'],
+    'Printed & Media': ['Team program','Poster','Schedule magnet','Wall calendar','Sticker set','Decals'],
+    'Home & Lifestyle': ['Coffee mug','Water bottle','Shot glass','Beer glass','Koozie','Blanket','Pillow','Towel','Christmas ornament','Wall flag','Mousepad','Air freshener','Magnets'],
+    'Auto Accessories': ['Car flag','Window decal','Steering wheel cover','Seatbelt pad','Car magnet','Hitch cover','License plate frame'],
+    'Bags & Utility': ['Drawstring bag','Backpack','Tote bag','Lanyard','Phone case','Wallet'],
   };
 
-  const toggleConcession = (key) => {
-    setConcessions({ ...concessions, [key]: !concessions[key] });
+  const concessionCategories: Record<string, string[]> = {
+    'Classic Arena Fare': ['Hot Dog','Corn Dog','Bratwurst','Sausage','Nachos','Soft Pretzel','French Fries','Cheese Curds','Popcorn','Pizza Slice'],
+    'Hot Food': ['Chicken Tenders','Buffalo Wings','Pulled Pork Sandwich','Cheeseburger','Veggie Burger','Loaded Fries','Mac and Cheese'],
+    'Cold Food & Snacks': ['Sandwich','Salad','Fruit Cup','Chips','Granola Bar','Trail Mix','Candy','Chocolate Bar'],
+    'Desserts & Treats': ['Ice Cream','Funnel Cake','Mini Donuts','Cotton Candy','Cookies','Brownie','Churros'],
+    'Non-Alcoholic Beverages': ['Soda','Bottled Water','Sports Drink','Lemonade','Iced Tea','Hot Chocolate','Coffee','Energy Drink'],
+    'Alcoholic Beverages': ['Beer (Domestic)','Beer (Craft)','Cider','Hard Seltzer','Wine','Cocktail','Spiked Slushie'],
   };
 
-  const handleRatingPress = (value) => {
-    setRating(value === rating ? value - 0.5 : value);
+  const getSelectedItems = (source: Record<string, boolean>, categories: Record<string, string[]>) => {
+    const out: Record<string, string[]> = {};
+    Object.keys(categories).forEach(cat => {
+      out[cat] = categories[cat].filter(item => source[item]);
+    });
+    return out;
   };
 
-  const renderStars = () => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      const isFull = rating >= i;
-      const isHalf = rating + 0.5 === i;
+  const handleCheckInSubmit = async () => {
+    try {
+      const user = getAuth(firebaseApp).currentUser;
+      if (!user) {
+        alert('You must be logged in to submit a check-in.');
+        return;
+      }
 
-      stars.push(
-        <TouchableOpacity key={i} onPress={() => handleRatingPress(i)}>
-          <Ionicons
-            name={isFull ? 'star' : isHalf ? 'star-half' : 'star-outline'}
-            size={32}
-            color="#FFD700"
-          />
-        </TouchableOpacity>
-      );
+      const docData = {
+        league,
+        arenaName,
+        teamName: homeTeam,
+        opponent,
+        favoritePlayer,
+        seatInfo,
+        companions,
+        notes,
+        merchBought: getSelectedItems(merchItems, merchCategories),
+        concessionsBought: getSelectedItems(concessionItems, concessionCategories),
+        gameDate: gameDate || new Date().toISOString(),
+        checkinType: 'live',
+        photos: images,
+        userId: user.uid,
+        timestamp: serverTimestamp(),
+      };
+
+      await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
+      alert('Live check-in saved!');
+    } catch (err) {
+      console.error('Error saving live check-in:', err);
+      alert('Failed to save live check-in.');
     }
-    return stars;
   };
+
+  const pickImage = async () => {
+    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!perm.granted) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 0.8,
+    });
+    if (!result.canceled && result.assets.length > 0) {
+      setImages([result.assets[0].uri]);
+    }
+  };
+
+  // Fallback if any required param missing
+  if (!league || !arenaName || !homeTeam || !opponent) {
+    return (
+      <SafeAreaView style={styles.background}>
+        <View style={styles.fallback}>
+          <Text style={styles.fallbackText}>
+            Unable to start a live check-in — no game details found.
+          </Text>
+          <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+            <Text style={styles.backButtonText}>Go Back</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.header}>Live Game Check-In</Text>
+    <SafeAreaView style={styles.background}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.section}>
+          <Text style={styles.title}>Live Game Check-In</Text>
 
-      {/* Star Rating */}
-      <Text style={styles.label}>Rating</Text>
-      <View style={styles.starContainer}>{renderStars()}</View>
+          <Text style={styles.label}>League</Text>
+          <Text style={styles.value}>{league}</Text>
 
-      {/* Favorite Player */}
-      <Text style={styles.label}>Favorite Player</Text>
-      <TextInput
-        style={styles.input}
-        value={favoritePlayer}
-        onChangeText={setFavoritePlayer}
-        placeholder="Enter favorite player"
-        placeholderTextColor="#999"
-      />
+          <Text style={styles.label}>Arena</Text>
+          <Text style={styles.value}>{arenaName}</Text>
 
-      {/* Companions */}
-      <Text style={styles.label}>Who did you go with?</Text>
-      <TextInput
-        style={styles.input}
-        value={companions}
-        onChangeText={setCompanions}
-        placeholder="e.g. Dad, Sarah, etc."
-        placeholderTextColor="#999"
-      />
+          <Text style={styles.label}>Home Team</Text>
+          <Text style={styles.value}>{homeTeam}</Text>
 
-      {/* Notes */}
-      <Text style={styles.label}>Notes / Memory</Text>
-      <TextInput
-        style={[styles.input, styles.textArea]}
-        value={notes}
-        onChangeText={setNotes}
-        placeholder="Write a quick memory or highlight..."
-        placeholderTextColor="#999"
-        multiline
-      />
+          <Text style={styles.label}>Opponent</Text>
+          <Text style={styles.value}>{opponent}</Text>
 
-      {/* Merch Checkboxes */}
-      <Text style={styles.label}>Merch Bought</Text>
-      <View style={styles.checkboxGroup}>
-        {Object.keys(merch).map((item) => (
-          <TouchableOpacity key={item} style={styles.checkboxRow} onPress={() => toggleMerch(item)}>
-            <Ionicons
-              name={merch[item] ? 'checkbox' : 'square-outline'}
-              size={24}
-              color="#0A2940"
-            />
-            <Text style={styles.checkboxLabel}>{item.charAt(0).toUpperCase() + item.slice(1)}</Text>
+          <Text style={styles.label}>Date / Time</Text>
+          <Text style={styles.value}>
+            {new Date(gameDate || Date.now()).toLocaleString()}
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <TextInput
+            placeholder="Seat Info (Section, Row, Seat)"
+            value={seatInfo}
+            onChangeText={setSeatInfo}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Favorite Player"
+            value={favoritePlayer}
+            onChangeText={setFavoritePlayer}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Who did you go with?"
+            value={companions}
+            onChangeText={setCompanions}
+            style={styles.input}
+          />
+          <TextInput
+            placeholder="Notes"
+            value={notes}
+            onChangeText={setNotes}
+            style={styles.input}
+            multiline
+          />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.label}>Upload Photo (1 only):</Text>
+          <TouchableOpacity style={styles.input} onPress={pickImage}>
+            <Text>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
           </TouchableOpacity>
-        ))}
-      </View>
+          {images.map((uri, i) => (
+            <Image key={i} source={{ uri }} style={styles.photo} />
+          ))}
+        </View>
 
-      {/* Concessions Checkboxes */}
-      <Text style={styles.label}>Concessions Bought</Text>
-      <View style={styles.checkboxGroup}>
-        {Object.keys(concessions).map((item) => (
-          <TouchableOpacity key={item} style={styles.checkboxRow} onPress={() => toggleConcession(item)}>
-            <Ionicons
-              name={concessions[item] ? 'checkbox' : 'square-outline'}
-              size={24}
-              color="#0A2940"
-            />
-            <Text style={styles.checkboxLabel}>{item.charAt(0).toUpperCase() + item.slice(1)}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+        <View style={styles.section}>
+          <Text style={styles.label}>Did you buy any merch?</Text>
+          <View style={styles.choiceRow}>
+            <Pressable
+              style={[styles.choiceButton, didBuyMerch && styles.choiceButtonSelected]}
+              onPress={() => setDidBuyMerch(true)}
+            >
+              <Text style={styles.choiceButtonText}>Yes</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.choiceButton, !didBuyMerch && styles.choiceButtonSelected]}
+              onPress={() => setDidBuyMerch(false)}
+            >
+              <Text style={styles.choiceButtonText}>No</Text>
+            </Pressable>
+          </View>
 
-      {/* Submit Button Placeholder */}
-      <TouchableOpacity style={styles.submitButton}>
-        <Text style={styles.submitButtonText}>Submit Check-In</Text>
-      </TouchableOpacity>
-    </ScrollView>
+          {didBuyMerch && (
+            <>
+              {Object.keys(merchCategories).map((category) => (
+                <View key={category} style={styles.categoryContainer}>
+                  <Pressable
+                    onPress={() =>
+                      setExpandedCategories((prev) => ({
+                        ...prev,
+                        [category]: !prev[category],
+                      }))
+                    }
+                    style={styles.categoryHeader}
+                  >
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                    <AntDesign
+                      name={expandedCategories[category] ? 'up' : 'down'}
+                      size={16}
+                      color="black"
+                    />
+                  </Pressable>
+
+                  {expandedCategories[category] &&
+                    merchCategories[category].map((item) => (
+                      <View key={item} style={styles.checkboxRow}>
+                        <Checkbox
+                          value={merchItems[item] || false}
+                          onValueChange={(v) =>
+                            setMerchItems((prev) => ({ ...prev, [item]: v }))
+                          }
+                        />
+                        <Text style={styles.checkboxLabel}>{item}</Text>
+                      </View>
+                    ))}
+                </View>
+              ))}
+            </>
+          )}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.label}>Did you buy any concessions?</Text>
+          <View style={styles.choiceRow}>
+            <Pressable
+              style={[styles.choiceButton, didBuyConcessions && styles.choiceButtonSelected]}
+              onPress={() => setDidBuyConcessions(true)}
+            >
+              <Text style={styles.choiceButtonText}>Yes</Text>
+            </Pressable>
+            <Pressable
+              style={[styles.choiceButton, !didBuyConcessions && styles.choiceButtonSelected]}
+              onPress={() => setDidBuyConcessions(false)}
+            >
+              <Text style={styles.choiceButtonText}>No</Text>
+            </Pressable>
+          </View>
+
+          {didBuyConcessions && (
+            <>
+              {Object.keys(concessionCategories).map((category) => (
+                <View key={category} style={styles.categoryContainer}>
+                  <Pressable
+                    onPress={() =>
+                      setExpandedCategories((prev) => ({
+                        ...prev,
+                        [category]: !prev[category],
+                      }))
+                    }
+                    style={styles.categoryHeader}
+                  >
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                    <AntDesign
+                      name={expandedCategories[category] ? 'up' : 'down'}
+                      size={16}
+                      color="black"
+                    />
+                  </Pressable>
+
+                  {expandedCategories[category] &&
+                    concessionCategories[category].map((item) => (
+                      <View key={item} style={styles.checkboxRow}>
+                        <Checkbox
+                          value={concessionItems[item] || false}
+                          onValueChange={(v) =>
+                            setConcessionItems((prev) => ({ ...prev, [item]: v }))
+                          }
+                        />
+                        <Text style={styles.checkboxLabel}>{item}</Text>
+                      </View>
+                    ))}
+                </View>
+              ))}
+            </>
+          )}
+        </View>
+
+        <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
+          <Text style={styles.submitText}>Submit Live Check-In</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#0A2940',
+  background: { flex: 1, backgroundColor: '#fff' },
+  scrollContainer: { padding: 16 },
+  section: {
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 20,
-    textAlign: 'center',
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 16,
-    color: '#0A2940',
-  },
-  input: {
-    borderColor: '#CBD5E0',
     borderWidth: 1,
-    borderRadius: 8,
-    padding: 10,
-    marginTop: 6,
-    fontSize: 16,
-    color: '#0A2940',
+    borderColor: '#ddd',
   },
-  textArea: {
-    height: 80,
-  },
-  starContainer: {
-    flexDirection: 'row',
-    marginTop: 8,
-  },
-  checkboxGroup: {
-    marginTop: 8,
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  checkboxLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    padding: 14,
-    borderRadius: 10,
-    marginTop: 30,
-    alignItems: 'center',
-  },
-  submitButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  title: { fontSize: 24, fontWeight: 'bold', color: '#0D2C42', textAlign: 'center', marginBottom: 12 },
+  label: { fontSize: 16, fontWeight: '600', color: '#1E3A8A', marginTop: 8 },
+  value: { fontSize: 16, color: '#0A2940', marginBottom: 4 },
+  input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginTop: 8, backgroundColor: '#fff' },
+  photo: { width: '100%', height: 200, borderRadius: 8, marginTop: 10 },
+  choiceRow: { flexDirection: 'row', marginTop: 8 },
+  choiceButton: { flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginHorizontal: 4, alignItems: 'center' },
+  choiceButtonSelected: { backgroundColor: '#0A2940', borderColor: '#0A2940' },
+  choiceButtonText: { color: '#fff' },
+  submitButton: { backgroundColor: '#0A2940', borderRadius: 10, padding: 14, marginTop: 10, alignItems: 'center' },
+  submitText: { color: '#fff', fontSize: 18, fontWeight: '600' },
+  checkboxRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
+  checkboxLabel: { marginLeft: 8, fontSize: 16, textTransform: 'capitalize' },
+  categoryContainer: { marginBottom: 12, borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 8 },
+  categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 6 },
+  categoryTitle: { fontSize: 16, fontWeight: 'bold' },
+  fallback: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
+  fallbackText: { fontSize: 18, color: '#333', textAlign: 'center', marginBottom: 20 },
+  backButton: { backgroundColor: '#0A2940', paddingVertical: 12, paddingHorizontal: 24, borderRadius: 6 },
+  backButtonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
 });
