@@ -41,16 +41,34 @@ export async function logFriendship(friendId: string) {
   });
 }
 
-// ✅ Log a cheer on a friend’s check-in
+// ✅ Log a cheer on any activity (usually a check-in)
 export async function logCheer(checkinId: string, friendId: string) {
   const user = auth.currentUser;
   if (!user) return;
+
+  const userSnap = await getDoc(doc(db, "profiles", user.uid));
+  const userName =
+    userSnap.exists() && userSnap.data().name
+      ? userSnap.data().name
+      : user.displayName || "Someone";
+
+  // 1️⃣ Save cheer in the check-in's subcollection
+  await setDoc(
+      doc(db, "profiles", friendId, "checkins", checkinId, "cheers", user.uid),
+      {
+        userId: user.uid,
+        name: userName,
+        timestamp: serverTimestamp(),
+      }
+    );
+
+  // 2️⃣ Log as activity for the feed
   await logActivity(user.uid, {
     type: "cheer",
     actorId: user.uid,
     targetId: checkinId,
     friendId,
-    message: `${user.displayName || "Someone"} cheered a check-in`,
+    message: `${userName} cheered a check-in 🎉`,
   });
 }
 

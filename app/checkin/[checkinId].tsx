@@ -1,9 +1,22 @@
+//app/checkin/[checkinId].tsx
 import { useLocalSearchParams, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, ImageBackground, } from "react-native";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import firebaseApp from "@/firebaseConfig";
 import arenasData from "@/assets/data/arenas.json"; // ✅ import arenas.json
+import { TouchableOpacity } from "react-native";
+import { logCheer } from "@/utils/activityLogger";
+
+const handleCheer = () => {
+  if (!checkin) return;
+  try {
+    logCheer(String(checkinId), String(userId));
+    alert("You cheered this 🎉");
+  } catch (err) {
+    console.error("Error cheering check-in:", err);
+  }
+};
 
 const db = getFirestore(firebaseApp);
 

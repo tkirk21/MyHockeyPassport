@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { doc, collection, getDoc, getDocs, getFirestore, orderBy, query, setDoc, } from 'firebase/firestore';
+import { doc, collection, getCountFromServer, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import arenasData from '@/assets/data/arenas.json';
 
@@ -30,6 +30,29 @@ function lightenColor(hex: string, amount: number) {
   g = Math.min(255, Math.max(0, g));
   b = Math.min(255, Math.max(0, b));
   return `rgb(${r},${g},${b})`;
+}
+
+async function getCheerCount(userId: string, checkinId: string) {
+  try {
+    const cheersRef = collection(
+      getFirestore(firebaseApp),
+      "profiles",
+      userId,
+      "checkins",
+      checkinId,
+      "cheers"
+    );
+
+    // ✅ use getDocs instead of getCountFromServer (works everywhere)
+    const snap = await getDocs(cheersRef);
+    const cheerCount = snap.docs.length;
+    const cheerNames = snap.docs.map(d => (d.data() as any).name || "").filter(Boolean);
+
+    return { cheerCount, cheerNames };
+  } catch (err) {
+    console.error("Error fetching cheer count:", err);
+    return { cheerCount: 0, cheerNames: [] };
+  }
 }
 
 export default function ProfileScreen() {
@@ -122,11 +145,19 @@ export default function ProfileScreen() {
       if (!user) return;
 
       try {
-        const checkInsRef = collection(db, 'profiles', user.uid, 'checkins');
-        const q = query(checkInsRef, orderBy('timestamp', 'desc'));
+        const checkInsRef = collection(db, "profiles", user.uid, "checkins");
+        const q = query(checkInsRef, orderBy("timestamp", "desc"));
         const snapshot = await getDocs(q);
 
-        const checkIns = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        const checkIns = await Promise.all(
+          snapshot.docs.map(async (d) => {
+            const data = d.data();
+            const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
+            return { id: d.id, ...data, cheerCount, cheerNames };
+          })
+        );
+
+        // ✅ now restore this line
         setRecentCheckIns(checkIns);
 
         // Unique arenas visited (by league+arenaName)
@@ -191,6 +222,16 @@ export default function ProfileScreen() {
   const toggleLeague = (league: string) => {
     setExpandedLeagues(prev => ({ ...prev, [league]: !prev[league] }));
   };
+
+  const cheerCount = 0;
+  const cheerNames: string[] = [];
+
+  const [visibleCheerList, setVisibleCheerList] = useState<string | null>(null);
+  const toggleCheerList = (id: string) => {
+    setVisibleCheerList(prev => (prev === id ? null : id));
+  };
+
+
 
   return (
     <ImageBackground
@@ -391,6 +432,52 @@ export default function ProfileScreen() {
                           ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
                           : ''}
                       </Text>
+                      {checkIn.cheerCount > 0 && (
+                        <View style={{ alignSelf: "flex-start", marginTop: 6, marginBottom: 2 }}>
+                          <TouchableOpacity
+                            onPress={() => toggleCheerList(checkIn.id)}
+                            activeOpacity={0.7}
+                          >
+                            <View style={{ position: "relative", width: 26, height: 26 }}>
+                              <Text style={{ fontSize: 22 }}>🎉</Text>
+                              <View
+                                style={{
+                                  position: "absolute",
+                                  top: -6,
+                                  right: -8,
+                                  backgroundColor: "#0A2940",
+                                  borderRadius: 10,
+                                  paddingHorizontal: 4,
+                                  paddingVertical: 1,
+                                  minWidth: 16,
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>
+                                  {checkIn.cheerCount}
+                                </Text>
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+
+                          {visibleCheerList === checkIn.id && checkIn.cheerNames?.length > 0 && (
+                            <View
+                              style={{
+                                backgroundColor: "rgba(13,44,66,0.9)",
+                                padding: 6,
+                                borderRadius: 6,
+                                marginTop: 4,
+                              }}
+                            >
+                              {checkIn.cheerNames.map((name: string, i: number) => (
+                                <Text key={i} style={{ color: "#fff", fontSize: 12, marginBottom: 2 }}>
+                                  {name}
+                                </Text>
+                              ))}
+                            </View>
+                          )}
+                        </View>
+                      )}
                     </TouchableOpacity>
                   );
                 })

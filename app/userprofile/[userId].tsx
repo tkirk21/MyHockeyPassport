@@ -1,32 +1,190 @@
 // app/userprofile/[userId].tsx
-import { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  ActivityIndicator,
-  ScrollView,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  collection,
-  query,
-  getDocs,
-  orderBy,
-  limit,
-} from 'firebase/firestore';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, View, Text, Image, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity, ImageBackground, } from 'react-native';
+import { getCountFromServer, getFirestore, doc, getDoc, collection, query, getDocs, orderBy, limit, setDoc, deleteDoc, } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { useLocalSearchParams, Stack, useRouter } from 'expo-router';
 import arenasData from '@/assets/data/arenas.json';
+import { logCheer } from "@/utils/activityLogger";
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+
+const handleCheer = async (checkinId: string, ownerId: string) => {
+  try {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    let userName = "Anonymous";
+    try {
+      const profileSnap = await getDoc(doc(db, "profiles", user.uid));
+      if (profileSnap.exists() && profileSnap.data().name) {
+        userName = profileSnap.data().name;
+      } else if (user.displayName) {
+        userName = user.displayName;
+      }
+    } catch (err) {
+      console.warn("Could not fetch user name:", err);
+    }
+
+    await logCheer(checkinId, ownerId);
+    alert(`${userName} cheered this 🎉`);
+  } catch (err) {
+    console.error("Error cheering check-in:", err);
+  }
+};
+
+function CheerButton({
+  ownerId,              // profile owner (whose check-in it is)
+  checkinId,
+}: {
+  ownerId: string;
+  checkinId: string;
+}) {
+  const [cheerCount, setCheerCount] = useState(0);
+  const [cheerNames, setCheerNames] = useState<string[]>([]);
+  const [visible, setVisible] = useState(false);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const loadCheers = async () => {
+      try {
+        const cheersRef = collection(db, "profiles", ownerId, "checkins", checkinId, "cheers");
+        const docsSnap = await getDocs(cheersRef);
+        setCheerCount(docsSnap.size);
+        setCheerNames(
+          docsSnap.docs
+            .map((d) => d.data().name as string)
+            .filter((n) => !!n && n.trim().length > 0)
+        );
+      } catch (err) {
+        console.error("Error loading cheers:", err);
+      }
+    };
+    loadCheers();
+  }, [ownerId, checkinId]);
+
+  const handleCheerPress = async (e?: any) => {
+    try {
+      e?.stopPropagation?.();
+      const user = auth.currentUser;
+      if (!user) return;
+
+      // pull display name from profile first
+      let userName = "Anonymous";
+      try {
+        const prof = await getDoc(doc(db, "profiles", user.uid));
+        if (prof.exists() && prof.data().name) userName = prof.data().name as string;
+        else if (user.displayName) userName = user.displayName;
+      } catch {}
+
+      const cheerRef = doc(db, "profiles", ownerId, "checkins", checkinId, "cheers", user.uid);
+      const existing = await getDoc(cheerRef);
+
+      if (existing.exists()) {
+        // remove cheer
+        await deleteDoc(cheerRef);
+        setCheerCount((c) => Math.max(0, c - 1));
+        setCheerNames((names) => names.filter((n) => n !== userName));
+        Animated.timing(fadeAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(() =>
+          setVisible(false)
+        );
+      } else {
+        // add cheer
+        await setDoc(cheerRef, { userId: user.uid, name: userName, timestamp: new Date() });
+        // log to activity feed
+        await logCheer(checkinId, ownerId);
+
+        setCheerCount((c) => c + 1);
+        setCheerNames((names) => [...names, userName]);
+        setVisible(true);
+        Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
+
+        // auto-hide after 3s
+        setTimeout(() => {
+          Animated.timing(fadeAnim, { toValue: 0, duration: 300, useNativeDriver: true }).start(
+            () => setVisible(false)
+          );
+        }, 3000);
+      }
+    } catch (err) {
+      console.error("Error toggling cheer:", err);
+    }
+  };
+
+  return (
+    <View style={{ marginTop: 6, alignSelf: "flex-start" }}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={handleCheerPress}
+        style={{
+          marginTop: 4,
+          alignSelf: "flex-start",
+          backgroundColor: "#1E3A8A",
+          paddingVertical: 2,
+          paddingHorizontal: 2,
+          borderRadius: 10,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+        }}
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold" }}>Cheer 🎉</Text>
+
+        {cheerCount > 0 && (
+          <View
+            style={{
+              position: "absolute",
+              top: -5,
+              right: -5,
+              backgroundColor: "#0A2940",
+              borderRadius: 8,
+              paddingHorizontal: 4,
+              paddingVertical: 1,
+              minWidth: 16,
+              alignItems: "center",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: "#ffffff",
+            }}
+          >
+            <Text style={{ color: "#ffffff", fontSize: 10, fontWeight: "700" }}>{cheerCount}</Text>
+          </View>
+        )}
+      </TouchableOpacity>
+
+      {visible && cheerNames.length > 0 && (
+        <Animated.View
+          style={{
+            opacity: fadeAnim,
+            transform: [
+              {
+                scale: fadeAnim.interpolate({ inputRange: [0, 1], outputRange: [0.95, 1] }),
+              },
+            ],
+            backgroundColor: "rgba(13,44,66,0.95)",
+            padding: 6,
+            borderRadius: 8,
+            marginTop: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.25,
+            shadowOffset: { width: 0, height: 2 },
+            shadowRadius: 4,
+            elevation: 3,
+          }}
+        >
+          {cheerNames.map((name, i) => (
+            <Text key={i} style={{ color: "#fff", fontSize: 12, marginBottom: 2 }}>
+              {name}
+            </Text>
+          ))}
+        </Animated.View>
+      )}
+    </View>
+  );
+}
 
 export default function UserProfileScreen() {
   const { userId } = useLocalSearchParams();
@@ -280,6 +438,8 @@ export default function UserProfileScreen() {
                       ? new Date(item.timestamp.seconds * 1000).toLocaleDateString()
                       : ''}
                   </Text>
+
+                 <CheerButton ownerId={String(userId)} checkinId={item.id} />
                 </TouchableOpacity>
               );
             })}
@@ -409,5 +569,33 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '600',
   },
+  cheerButton: {
+      marginTop: 4,
+      alignSelf: "flex-start",
+      backgroundColor: "#1E3A8A",
+      paddingVertical: 2,
+      paddingHorizontal: 2,
+      borderRadius: 10,
+    },
+    cheerButtonText: {
+      color: "#fff",
+      fontWeight: "bold",
+    },
+    cheerInfoRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginTop: 4,
+      gap: 6,
+    },
+    cheerCountText: {
+      fontSize: 14,
+      color: "#0A2940",
+      fontWeight: "600",
+    },
+    cheerNames: {
+      fontSize: 12,
+      color: "#6B7280",
+      flexShrink: 1,
+    },
 });
 

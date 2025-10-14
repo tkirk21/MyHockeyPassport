@@ -1,17 +1,183 @@
 // app/(tabs)/friends.tsx
-import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDocs, getFirestore, limit, orderBy, query, setDoc } from 'firebase/firestore';
-import { logFriendship } from "../../utils/activityLogger";
+import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc } from 'firebase/firestore';
+import { logFriendship, logCheer } from "../../utils/activityLogger";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
+const handleCheer = async (item: any) => {
+  console.log("👉 Cheer pressed for", item.id, "on", userId);
+
+  try {
+    // Decide which user to target
+    const targetId =
+      item.type === "checkin"
+        ? item.friendId
+        : item.actorId || item.friendId || "unknown";
+
+    await logCheer(item.id, String(targetId));
+
+    alert("You cheered this 🎉");
+  } catch (err) {
+    console.error("🔥 Error cheering activity:", err);
+    alert("Cheer failed: " + err.message);
+  }
+};
+
 export default function FriendsTab() {
+  function CheerButton({ friendId, checkinId }: { friendId: string; checkinId: string }) {
+    const [cheerCount, setCheerCount] = useState(0);
+    const [cheerNames, setCheerNames] = useState<string[]>([]);
+    const [visible, setVisible] = useState(false);
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+      const loadCheers = async () => {
+        try {
+          const cheersRef = collection(db, "profiles", friendId, "checkins", checkinId, "cheers");
+          const snap = await getDocs(cheersRef);
+          setCheerCount(snap.size);
+          setCheerNames(snap.docs.map((d) => d.data().name));
+        } catch (err) {
+          console.error("Error loading cheers:", err);
+        }
+      };
+      loadCheers();
+    }, [friendId, checkinId]);
+
+    const handleCheerPress = async () => {
+      try {
+        if (!auth.currentUser) return;
+        const userId = auth.currentUser.uid;
+
+        // ✅ Get profile name from Firestore (fallback to displayName)
+        let userName = "Anonymous";
+        try {
+          const profileDoc = await getDoc(doc(db, "profiles", userId));
+          if (profileDoc.exists() && profileDoc.data().name) {
+            userName = profileDoc.data().name;
+          } else if (auth.currentUser.displayName) {
+            userName = auth.currentUser.displayName;
+          }
+        } catch (err) {
+          console.warn("Could not fetch profile name:", err);
+        }
+
+        const cheerRef = doc(db, "profiles", friendId, "checkins", checkinId, "cheers", userId);
+        const cheersSnap = await getDocs(collection(db, "profiles", friendId, "checkins", checkinId, "cheers"));
+        const existing = cheersSnap.docs.find((d) => d.id === userId);
+
+        if (existing) {
+          // Remove cheer
+          await deleteDoc(cheerRef);
+          setCheerCount((c) => Math.max(0, c - 1));
+          setCheerNames((names) => names.filter((n) => n !== userName));
+          setVisible(false);
+        } else {
+          // Add cheer
+          await setDoc(cheerRef, {
+            name: userName,
+            timestamp: new Date(),
+          });
+          await logCheer(checkinId, friendId);
+          setCheerCount((c) => c + 1);
+          setCheerNames((names) => [...names, userName]);
+          setVisible(true);
+
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+          }).start();
+
+          setTimeout(() => {
+            Animated.timing(fadeAnim, {
+              toValue: 0,
+              duration: 300,
+              useNativeDriver: true,
+            }).start(() => setVisible(false));
+          }, 3000);
+        }
+      } catch (err) {
+        console.error("Error toggling cheer:", err);
+      }
+    };
+
+    return (
+      <View style={{ marginTop: 4 }}>
+        <TouchableOpacity
+          onPress={handleCheerPress}
+          style={{
+            marginTop: 4,
+            alignSelf: "flex-start",
+            backgroundColor: "#1E3A8A",
+            paddingVertical: 2,
+            paddingHorizontal: 6,
+            borderRadius: 10,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold" }}>Cheer 🎉</Text>
+          {cheerCount > 0 && (
+            <View
+              style={{
+                position: "absolute",
+                top: -6,
+                right: -6,
+                backgroundColor: "#0A2940",
+                borderRadius: 8,
+                paddingHorizontal: 4,
+                minWidth: 16,
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 1,
+                borderColor: "#fff",
+              }}
+            >
+              <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{cheerCount}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
+
+        {visible && cheerNames.length > 0 && (
+          <Animated.View
+            style={{
+              opacity: fadeAnim,
+              backgroundColor: "rgba(13,44,66,0.95)",
+              padding: 6,
+              borderRadius: 8,
+              marginTop: 4,
+              alignSelf: "flex-start",
+            }}
+          >
+            {cheerNames.map((n, i) => (
+              <Text
+                key={i}
+                style={{
+                  color: "#fff",
+                  fontSize: 12,
+                  marginBottom: 2,
+                  paddingHorizontal: 4,
+                }}
+              >
+                {n}
+              </Text>
+            ))}
+          </Animated.View>
+        )}
+      </View>
+    );
+  }
+
   const [allUsers, setAllUsers] = useState<any[]>([]);
   const [blockedFriends, setBlockedFriends] = useState<any[]>([]);
   const [feed, setFeed] = useState<any[]>([]);
@@ -368,13 +534,21 @@ export default function FriendsTab() {
         )}
 
         {/* Friends Activity */}
+        {/* Friends Activity */}
         {feed.length > 0 && (
           <View style={styles.card}>
             <Text style={styles.subheading}>Friends Activity</Text>
             {feed.map((item, index) => {
               const friend = allUsers.find((u) => u.id === item.friendId);
+              const time = item.timestamp?.seconds
+                ? new Date(item.timestamp.seconds * 1000).toLocaleString()
+                : "Unknown time";
 
+              // === Check-in event ===
               if (item.type === "checkin") {
+                const arenaName = item.arenaName ?? "Unknown arena";
+                const league = item.league ?? "Unknown league";
+
                 return (
                   <TouchableOpacity
                     key={index}
@@ -396,14 +570,11 @@ export default function FriendsTab() {
                     />
                     <View style={{ flex: 1 }}>
                       <Text style={styles.itemText}>
-                        <Text style={{ fontWeight: "bold" }}>{friend?.name}</Text> checked
-                        in at {item.arenaName} ({item.league})
+                        <Text style={{ fontWeight: "bold" }}>{friend?.name || "Someone"}</Text>{" "}
+                        checked in at {arenaName} ({league})
                       </Text>
-                      <Text style={styles.timestamp}>
-                        {item.timestamp?.seconds
-                          ? new Date(item.timestamp.seconds * 1000).toLocaleString()
-                          : ""}
-                      </Text>
+                      <Text style={styles.timestamp}>{time}</Text>
+                      <CheerButton friendId={item.friendId} checkinId={item.id} />
                     </View>
                   </TouchableOpacity>
                 );
@@ -426,29 +597,64 @@ export default function FriendsTab() {
                     />
                     <View style={{ flex: 1 }}>
                       <Text style={styles.itemText}>
-                        <Text style={{ fontWeight: "bold" }}>
-                          {userA?.name || "Someone"}
-                        </Text>{" "}
+                        <Text style={{ fontWeight: "bold" }}>{userA?.name || "Someone"}</Text>{" "}
                         is now friends with{" "}
-                        <Text style={{ fontWeight: "bold" }}>
-                          {userB?.name || "Someone"}
-                        </Text>
+                        <Text style={{ fontWeight: "bold" }}>{userB?.name || "Someone"}</Text>
                       </Text>
-                      <Text style={styles.timestamp}>
-                        {item.timestamp?.seconds
-                          ? new Date(item.timestamp.seconds * 1000).toLocaleString()
-                          : ""}
-                      </Text>
+                      <Text style={styles.timestamp}>{time}</Text>
+                      <TouchableOpacity
+                        onPress={() => handleCheer(item)}
+                        style={styles.cheerButton}
+                      >
+                        <Text style={styles.cheerButtonText}>Cheer 🎉</Text>
+                      </TouchableOpacity>
                     </View>
                   </View>
                 );
               }
 
+              // === Cheer event ===
+              if (item.type === "cheer") {
+                const actor = allUsers.find((u) => u.id === item.actorId);
+
+                return (
+                  <View key={index} style={styles.listRow}>
+                    <Image
+                      source={
+                        actor?.imageUrl
+                          ? { uri: actor.imageUrl }
+                          : require("@/assets/images/icon.png")
+                      }
+                      style={styles.avatar}
+                    />
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.itemText}>
+                        <Text style={{ fontWeight: "bold" }}>{actor?.name || "Someone"}</Text>{" "}
+                        cheered a check-in
+                      </Text>
+                      <Text style={styles.timestamp}>{time}</Text>
+                      <TouchableOpacity
+                        onPress={() => handleCheer(item)}
+                        style={styles.cheerButton}
+                      >
+                        <Text style={styles.cheerButtonText}>Cheer 🎉</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                );
+              }
+
+              // === Other activities fallback ===
               return (
                 <View key={index} style={styles.listRow}>
-                  <Text style={styles.itemText}>
-                    {item.message || "Unknown activity"}
-                  </Text>
+                  <Text style={styles.itemText}>{item.message || "Unknown activity"}</Text>
+                  <Text style={styles.timestamp}>{time}</Text>
+                  <TouchableOpacity
+                    onPress={() => handleCheer(item)}
+                    style={styles.cheerButton}
+                  >
+                    <Text style={styles.cheerButtonText}>Cheer 🎉</Text>
+                  </TouchableOpacity>
                 </View>
               );
             })}
@@ -611,6 +817,18 @@ const styles = StyleSheet.create({
   unblockText: {
     color: '#1E3A8A',
     fontWeight: 'bold',
+  },
+  cheerButton: {
+    marginTop: 4,
+    alignSelf: "flex-start",
+    backgroundColor: "#1E3A8A",
+    paddingVertical: 2,
+    paddingHorizontal: 2,
+    borderRadius: 10,
+  },
+  cheerButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
 
