@@ -1,10 +1,10 @@
 // app/userprofile/[userId].tsx
 import { useEffect, useRef, useState } from 'react';
-import { Animated, View, Text, Image, StyleSheet, ActivityIndicator, ScrollView, TouchableOpacity, ImageBackground, } from 'react-native';
-import { getCountFromServer, getFirestore, doc, getDoc, collection, query, getDocs, orderBy, limit, setDoc, deleteDoc, } from 'firebase/firestore';
+import { ActivityIndicator, Animated, Image, ImageBackground, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View,  } from 'react-native';
+import { addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc,  } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
-import { useLocalSearchParams, Stack, useRouter } from 'expo-router';
+import {  Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import arenasData from '@/assets/data/arenas.json';
 import { logCheer } from "@/utils/activityLogger";
 
@@ -182,6 +182,136 @@ function CheerButton({
           ))}
         </Animated.View>
       )}
+    </View>
+  );
+}
+
+function ChirpsSection({ ownerId, checkinId }: { ownerId: string; checkinId: string }) {
+  const [chirps, setChirps] = useState<any[]>([]);
+  const [text, setText] = useState("");
+  const auth = getAuth(firebaseApp);
+  const db = getFirestore(firebaseApp);
+
+  useEffect(() => {
+    const loadChirps = async () => {
+      try {
+        const chirpRef = collection(db, "profiles", ownerId, "checkins", checkinId, "chirps");
+        const q = query(chirpRef, orderBy("timestamp", "asc"));
+        const snap = await getDocs(q);
+        setChirps(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      } catch (e) {
+        console.error("Error loading chirps:", e);
+      }
+    };
+    loadChirps();
+  }, [ownerId, checkinId]);
+
+  const sendChirp = async () => {
+    const user = auth.currentUser;
+    if (!user || !text.trim()) return;
+
+    let userName = "Anonymous";
+    let imageUrl: string | null = null;
+
+    try {
+      const prof = await getDoc(doc(db, "profiles", user.uid));
+      if (prof.exists()) {
+        const data = prof.data();
+        if (data.name) userName = data.name;
+        if (data.imageUrl) imageUrl = data.imageUrl; // ✅ pull real profile photo
+      } else if (user.displayName) {
+        userName = user.displayName;
+      }
+    } catch (err) {
+      console.error("Error fetching user profile:", err);
+    }
+
+    try {
+      await addDoc(collection(db, "profiles", ownerId, "checkins", checkinId, "chirps"), {
+        userId: user.uid,
+        userName,
+        userImage: imageUrl,
+        text: text.trim(),
+        timestamp: new Date(),
+      });
+
+      setText("");
+      setChirps(prev => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          userName,
+          userImage: imageUrl, // ✅ include actual Firestore image
+          text: text.trim(),
+        },
+      ]);
+    } catch (e) {
+      console.error("Error sending chirp:", e);
+    }
+  };
+
+  return (
+    <View style={{ marginTop: 8 }}>
+      {chirps.map(c => (
+        <View
+          key={c.id || c.timestamp}
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: 6,
+          }}
+        >
+          <Image
+            source={
+              c.userImage
+                ? { uri: c.userImage }
+                : require("@/assets/images/icon.png") // placeholder if no image
+            }
+            style={{
+              width: 26,
+              height: 26,
+              borderRadius: 13,
+              marginRight: 8,
+            }}
+          />
+          <View style={{ flexShrink: 1 }}>
+            <Text style={{ fontWeight: "700", color: "#0A2940" }}>
+              {c.userName || "Someone"}
+            </Text>
+            <Text style={{ color: "#0A2940", flexShrink: 1 }}>
+              {c.text || c.message}
+            </Text>
+          </View>
+        </View>
+      ))}
+      <View style={{ flexDirection: "row", marginTop: 6 }}>
+        <TextInput
+          value={text}
+          onChangeText={setText}
+          placeholder="Add a chirp..."
+          style={{
+            flex: 1,
+            backgroundColor: "#fff",
+            borderRadius: 6,
+            paddingHorizontal: 8,
+            borderWidth: 1,
+            borderColor: "#ccc",
+            fontSize: 13,
+          }}
+        />
+        <TouchableOpacity
+          onPress={sendChirp}
+          style={{
+            marginLeft: 6,
+            backgroundColor: "#1E3A8A",
+            borderRadius: 6,
+            paddingHorizontal: 10,
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "600" }}>Chirp</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -433,13 +563,24 @@ export default function UserProfileScreen() {
                   <Text style={styles.teamsText}>
                     {item.teamName} vs {item.opponent}
                   </Text>
-                  <Text style={styles.dateText}>
-                    {item.timestamp?.seconds
-                      ? new Date(item.timestamp.seconds * 1000).toLocaleDateString()
-                      : ''}
-                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginTop: 6,
+                    }}
+                  >
+                    <Text style={styles.dateText}>
+                      {item.timestamp?.seconds
+                        ? new Date(item.timestamp.seconds * 1000).toLocaleDateString()
+                        : ""}
+                    </Text>
 
-                 <CheerButton ownerId={String(userId)} checkinId={item.id} />
+                    <CheerButton ownerId={String(userId)} checkinId={item.id} />
+                  </View>
+
+                  <ChirpsSection ownerId={String(userId)} checkinId={item.id} />
                 </TouchableOpacity>
               );
             })}
