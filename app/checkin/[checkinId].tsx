@@ -8,6 +8,7 @@ import arenasData from "@/assets/data/arenas.json"; // ✅ import arenas.json
 import { TouchableOpacity } from "react-native";
 import { logCheer } from "@/utils/activityLogger";
 
+
 const handleCheer = () => {
   if (!checkin) return;
   try {

@@ -23,9 +23,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack initialRouteName="signup">
-        <Stack.Screen name="signup" options={{ headerShown: false }} />
+      <Stack initialRouteName="login">
         <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="signup" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="checkin" options={{ headerShown: false }} />
         <Stack.Screen name="userprofile" />

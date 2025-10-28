@@ -1,7 +1,7 @@
 //version 1 - 10am friday 1st of august
 //signup.tsx
 import { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity, Image } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';

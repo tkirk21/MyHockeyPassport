@@ -1,12 +1,14 @@
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { doc, collection, getCountFromServer, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import arenasData from '@/assets/data/arenas.json';
+import { useFocusEffect } from '@react-navigation/native';
+import { ProfileAlertContext } from "./_layout";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -55,8 +57,60 @@ async function getCheerCount(userId: string, checkinId: string) {
   }
 }
 
+function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: string }) {
+  const [chirps, setChirps] = useState<any[]>([]);
+
+  useEffect(() => {
+    const chirpsRef = collection(db, "profiles", userId, "checkins", checkinId, "chirps");
+    const q = query(chirpsRef, orderBy("timestamp", "asc"));
+    const unsub = onSnapshot(q, snap => {
+      const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      setChirps(list);
+    });
+    return unsub;
+  }, [userId, checkinId]);
+
+  if (chirps.length === 0) return null;
+
+  return (
+    <View style={{ marginTop: 8, paddingHorizontal: 6 }}>
+      {chirps.map(c => (
+        <View key={c.id} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+          {c.userImage ? (
+            <Image
+              source={{ uri: c.userImage }}
+              style={{ width: 22, height: 22, borderRadius: 11, marginRight: 6 }}
+            />
+          ) : (
+            <View
+              style={{
+                width: 22,
+                height: 22,
+                borderRadius: 11,
+                backgroundColor: "#ccc",
+                marginRight: 6,
+              }}
+            />
+          )}
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontWeight: "700", color: "#0A2940" }}>{c.userName}</Text>
+            <Text style={{ color: "#0A2940", flexShrink: 1 }}>{c.text}</Text>
+          </View>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 export default function ProfileScreen() {
   const router = useRouter();
+  const { setProfileAlertCount } = useContext(ProfileAlertContext);
+
+  useFocusEffect(
+    useCallback(() => {
+      setProfileAlertCount(0); // clears the badge when profile opens
+    }, [setProfileAlertCount])
+  );
 
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
@@ -151,11 +205,17 @@ export default function ProfileScreen() {
 
         const checkIns = await Promise.all(
           snapshot.docs.map(async (d) => {
-            const data = d.data();
-            const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
-            return { id: d.id, ...data, cheerCount, cheerNames };
-          })
-        );
+              const data = d.data();
+              const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
+
+              // add chirp check here, not after fetchRecentCheckIns()
+              const chirpsRef = collection(db, "profiles", user.uid, "checkins", d.id, "chirps");
+              const chirpSnap = await getDocs(chirpsRef);
+              const hasChirps = chirpSnap.size > 0;
+
+              return { id: d.id, ...data, cheerCount, cheerNames, hasChirps };
+            })
+          );
 
         // ✅ now restore this line
         setRecentCheckIns(checkIns);
@@ -427,57 +487,109 @@ export default function ProfileScreen() {
                       <Text style={styles.teamsText}>
                         {checkIn.teamName} vs {checkIn.opponent}
                       </Text>
-                      <Text style={styles.dateText}>
-                        {checkIn.timestamp?.seconds
-                          ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
-                          : ''}
-                      </Text>
-                      {checkIn.cheerCount > 0 && (
-                        <View style={{ alignSelf: "flex-start", marginTop: 6, marginBottom: 2 }}>
-                          <TouchableOpacity
-                            onPress={() => toggleCheerList(checkIn.id)}
-                            activeOpacity={0.7}
-                          >
-                            <View style={{ position: "relative", width: 26, height: 26 }}>
-                              <Text style={{ fontSize: 22 }}>🎉</Text>
-                              <View
-                                style={{
-                                  position: "absolute",
-                                  top: -6,
-                                  right: -8,
-                                  backgroundColor: "#0A2940",
-                                  borderRadius: 10,
-                                  paddingHorizontal: 4,
-                                  paddingVertical: 1,
-                                  minWidth: 16,
-                                  alignItems: "center",
-                                }}
-                              >
-                                <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>
-                                  {checkIn.cheerCount}
-                                </Text>
-                              </View>
-                            </View>
-                          </TouchableOpacity>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginTop: 6,
+                        }}
+                      >
+                        <Text style={styles.dateText}>
+                          {checkIn.timestamp?.seconds
+                            ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
+                            : ""}
+                        </Text>
 
-                          {visibleCheerList === checkIn.id && checkIn.cheerNames?.length > 0 && (
-                            <View
-                              style={{
-                                backgroundColor: "rgba(13,44,66,0.9)",
-                                padding: 6,
-                                borderRadius: 6,
-                                marginTop: 4,
-                              }}
+                        {checkIn.cheerCount > 0 && (
+                          <View style={{ alignSelf: "flex-start", marginBottom: 2 }}>
+                            <TouchableOpacity
+                              onPress={() => toggleCheerList(checkIn.id)}
+                              activeOpacity={0.7}
                             >
-                              {checkIn.cheerNames.map((name: string, i: number) => (
-                                <Text key={i} style={{ color: "#fff", fontSize: 12, marginBottom: 2 }}>
-                                  {name}
-                                </Text>
-                              ))}
-                            </View>
-                          )}
+                              <View style={{ position: "relative", width: 26, height: 26 }}>
+                                <Text style={{ fontSize: 22 }}>🎉</Text>
+                                <View
+                                  style={{
+                                    position: "absolute",
+                                    top: -6,
+                                    right: -8,
+                                    backgroundColor: "#0A2940",
+                                    borderRadius: 10,
+                                    paddingHorizontal: 4,
+                                    paddingVertical: 1,
+                                    minWidth: 16,
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>
+                                    {checkIn.cheerCount}
+                                  </Text>
+                                </View>
+                              </View>
+                            </TouchableOpacity>
+                          </View>
+                        )}
+                      </View>
+                      <ChirpsSection userId={auth.currentUser?.uid!} checkinId={checkIn.id} />
+
+                      {/* allow replying only if chirps exist */}
+                      {checkIn.hasChirps && (
+                        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6 }}>
+                          <TextInput
+                            placeholder="Reply to this chirp..."
+                            placeholderTextColor="#666"
+                            style={{
+                              flex: 1,
+                              borderWidth: 1,
+                              borderColor: "#ccc",
+                              borderRadius: 6,
+                              paddingHorizontal: 8,
+                              paddingVertical: 6,
+                              fontSize: 14,
+                              color: "#0A2940",
+                            }}
+                            value={checkIn.newChirpText}
+                            onChangeText={(t) =>
+                              setRecentCheckIns((prev) =>
+                                prev.map((ci) =>
+                                  ci.id === checkIn.id ? { ...ci, newChirpText: t } : ci
+                                )
+                              )
+                            }
+                          />
+                          <TouchableOpacity
+                            onPress={async () => {
+                              const text = checkIn.newChirpText?.trim();
+                              if (!text) return;
+                              const user = auth.currentUser;
+                              const chirpsRef = collection(
+                                db,
+                                "profiles",
+                                user.uid,
+                                "checkins",
+                                checkIn.id,
+                                "chirps"
+                              );
+                              await setDoc(doc(chirpsRef), {
+                                text,
+                                userName: name || "Anonymous",
+                                userImage: image || null, // use current user’s profile photo
+                                timestamp: new Date(),
+                              });
+                              setRecentCheckIns((prev) =>
+                                prev.map((ci) =>
+                                  ci.id === checkIn.id ? { ...ci, newChirpText: "" } : ci
+                                )
+                              );
+                            }}
+                            style={{ marginLeft: 8 }}
+                          >
+                            <Text style={{ color: "#0A2940", fontWeight: "700" }}>Chirp</Text>
+                          </TouchableOpacity>
                         </View>
                       )}
+
                     </TouchableOpacity>
                   );
                 })

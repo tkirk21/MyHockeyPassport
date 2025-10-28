@@ -181,7 +181,6 @@ export default function FriendsTab() {
   function ChirpBox({ friendId, checkinId }: { friendId: string; checkinId: string }) {
     const [chirps, setChirps] = useState<any[]>([]);
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const loadChirps = async () => {
@@ -212,17 +211,22 @@ export default function FriendsTab() {
       }
 
       try {
+        const user = auth.currentUser;
+        const profileSnap = await getDoc(doc(db, "profiles", user.uid));
+        const imageUrl = profileSnap.exists() ? profileSnap.data().imageUrl || null : null;
+
         const chirpRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
         await addDoc(chirpRef, {
-          userId,
-          name,
-          message: message.trim(),
+          userId: user.uid,
+          userName: name,
+          userImage: imageUrl,
+          text: message.trim(),
           timestamp: new Date(),
         });
 
-        setChirps((prev) => [
+        setChirps(prev => [
           ...prev,
-          { userId, name, message: message.trim(), timestamp: new Date() },
+          { userId: user.uid, userName: name, userImage: imageUrl, text: message.trim(), timestamp: new Date() },
         ]);
         setMessage("");
       } catch (err) {
@@ -235,9 +239,29 @@ export default function FriendsTab() {
     return (
       <View style={{ marginTop: 4, backgroundColor: "rgba(13,44,66,0.05)", borderRadius: 8, padding: 6 }}>
         {chirps.map((c) => (
-          <Text key={c.id || c.timestamp} style={{ color: "#0A2940", fontSize: 13, marginBottom: 2 }}>
-            <Text style={{ fontWeight: "bold" }}>{c.name}:</Text> {c.message}
-          </Text>
+          <View key={c.id || c.timestamp} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+            <Image
+              source={
+                c.userImage
+                  ? { uri: c.userImage }
+                  : require("@/assets/images/icon.png") // placeholder
+              }
+              style={{
+                width: 26,
+                height: 26,
+                borderRadius: 13,
+                marginRight: 8,
+              }}
+            />
+            <View style={{ flexShrink: 1 }}>
+              <Text style={{ fontWeight: "700", color: "#0A2940" }}>
+                {c.userName || "Someone"}
+              </Text>
+              <Text style={{ color: "#0A2940", flexShrink: 1 }}>
+                {c.text || c.message}
+              </Text>
+            </View>
+          </View>
         ))}
 
         <View style={{ flexDirection: "row", alignItems: "center", marginTop: 2 }}>
@@ -647,79 +671,30 @@ export default function FriendsTab() {
                 const arenaName = item.arenaName ?? "Unknown arena";
                 const league = item.league ?? "Unknown league";
 
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    style={[styles.listRow, { alignItems: "flex-start" }]}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/checkin/[checkinId]",
-                        params: { checkinId: item.id, userId: item.friendId },
-                      })
-                    }
-                  >
-                    {/* Avatar */}
-                    <Image
-                      source={
-                        friend?.imageUrl
-                          ? { uri: friend.imageUrl }
-                          : require("@/assets/images/icon.png")
-                      }
-                      style={[styles.avatar, { marginTop: 2, marginRight: 10 }]}
-                    />
-
-                    {/* Text + Buttons */}
-                    <View style={{ flex: 1 }}>
-                      {/* Name + check-in info */}
-                      <Text style={[styles.itemText, { flexShrink: 1 }]}>
-                        <Text style={{ fontWeight: "bold" }}>{friend?.name || "Someone"}</Text>{" "}
-                        checked in at {arenaName} ({league})
-                      </Text>
-
-                      {/* Date + Cheer on same line */}
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          marginTop: 4,
-                        }}
-                      >
-                        <Text style={{ fontSize: 12, color: "#6B7280" }}>
-                          {new Date(
-                            item.timestamp?.seconds ? item.timestamp.seconds * 1000 : Date.now()
-                          ).toLocaleDateString()}
-                        </Text>
-
-                        <CheerButton friendId={item.friendId} checkinId={item.id} />
-                      </View>
-
-                      {/* Chirp box underneath */}
-                      <View style={{ flex: 1, marginTop: 6 }}>
-                        <ChirpBox friendId={item.friendId} checkinId={item.id} />
-                      </View>
-                    </View>
-                  </TouchableOpacity>
+                // ✅ pull colorCode from arenas.json
+                const arenasData = require("@/assets/data/arenas.json");
+                const arenaData = (arenasData as any[]).find(
+                  (a) => a.arena === item.arenaName || a.arena === item.arena
                 );
-              }
-
-              // === Friendship event ===
-              if (item.type === "friendship") {
-                const userA = allUsers.find((u) => u.id === item.actorId);
-                const userB = allUsers.find((u) => u.id === item.targetId);
+                const colorCode = arenaData?.colorCode || "#6B7280";
+                const bgColor = colorCode + "22";
 
                 return (
                   <TouchableOpacity
                     key={index}
-                    style={[
-                      styles.listRow,
-                      {
-                        alignItems: "flex-start",
-                        paddingVertical: 10,
-                        borderBottomWidth: 1,
-                        borderBottomColor: "#E5E7EB",
-                      },
-                    ]}
+                    style={{
+                      backgroundColor: bgColor,
+                      borderLeftColor: colorCode,
+                      borderLeftWidth: 6,
+                      borderRadius: 10,
+                      padding: 14,
+                      marginBottom: 12,
+                      shadowColor: "#000",
+                      shadowOpacity: 0.05,
+                      shadowOffset: { width: 0, height: 1 },
+                      shadowRadius: 3,
+                      elevation: 2,
+                    }}
                     onPress={() =>
                       router.push({
                         pathname: "/checkin/[checkinId]",
@@ -727,70 +702,53 @@ export default function FriendsTab() {
                       })
                     }
                   >
-                    {/* Avatar */}
-                    <Image
-                      source={
-                        friend?.imageUrl
-                          ? { uri: friend.imageUrl }
-                          : require("@/assets/images/icon.png")
-                      }
-                      style={[styles.avatar, { marginTop: 2, marginRight: 10 }]}
-                    />
-
-                    {/* Text + Actions */}
-                    <View style={{ flex: 1 }}>
-                      {/* Name + check-in info */}
-                      <Text
-                        style={{
-                          fontSize: 15,
-                          color: "#0A2940",
-                          flexShrink: 1,
-                          lineHeight: 20,
-                        }}
-                      >
-                        <Text style={{ fontWeight: "700" }}>
-                          {friend?.name || "Someone"}
-                        </Text>{" "}
-                        checked in at{" "}
-                        <Text style={{ fontWeight: "500", color: "#1E3A8A" }}>
-                          {arenaName}
-                        </Text>{" "}
-                        <Text style={{ color: "#6B7280" }}>({league})</Text>
+                    <View
+                      style={{
+                        alignSelf: "flex-start",
+                        paddingHorizontal: 8,
+                        paddingVertical: 2,
+                        borderRadius: 6,
+                        borderWidth: 1.5,
+                        borderColor: colorCode,
+                        marginBottom: 6,
+                      }}
+                    >
+                      <Text style={{ fontSize: 12, fontWeight: "600", color: colorCode }}>
+                        {league}
                       </Text>
-
-                      {/* Date + Cheer button on one line */}
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          marginTop: 6,
-                        }}
-                      >
-                        <Text style={{ fontSize: 12, color: "#6B7280" }}>
-                          {new Date(
-                            item.timestamp?.seconds
-                              ? item.timestamp.seconds * 1000
-                              : Date.now()
-                          ).toLocaleDateString()}
-                        </Text>
-
-                        <CheerButton friendId={item.friendId} checkinId={item.id} />
-                      </View>
-
-                      {/* Chirp box underneath */}
-                      <View
-                        style={{
-                          marginTop: 8,
-                          backgroundColor: "rgba(13,44,66,0.05)",
-                          borderRadius: 10,
-                          paddingVertical: 6,
-                          paddingHorizontal: 8,
-                        }}
-                      >
-                        <ChirpBox friendId={item.friendId} checkinId={item.id} />
-                      </View>
                     </View>
+
+                    <Text style={{ fontSize: 16, fontWeight: "700", color: "#0D2C42" }}>
+                      {arenaName}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontWeight: "500",
+                        color: "#2F4F68",
+                        marginBottom: 6,
+                      }}
+                    >
+                      {item.teamName} vs {item.opponent}
+                    </Text>
+
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        marginBottom: 6,
+                      }}
+                    >
+                      <Text style={{ fontSize: 12, color: "#6B7280" }}>
+                        {new Date(
+                          item.timestamp?.seconds ? item.timestamp.seconds * 1000 : Date.now()
+                        ).toLocaleDateString()}
+                      </Text>
+                      <CheerButton friendId={item.friendId} checkinId={item.id} />
+                    </View>
+
+                    <ChirpBox friendId={item.friendId} checkinId={item.id} />
                   </TouchableOpacity>
                 );
               }
@@ -798,45 +756,99 @@ export default function FriendsTab() {
               // === Cheer event ===
               if (item.type === "cheer") {
                 const actor = allUsers.find((u) => u.id === item.actorId);
-
                 return (
-                  <View key={index} style={styles.listRow}>
-                    <Image
-                      source={
-                        actor?.imageUrl
-                          ? { uri: actor.imageUrl }
-                          : require("@/assets/images/icon.png")
-                      }
-                      style={styles.avatar}
-                    />
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.itemText}>
-                        <Text style={{ fontWeight: "bold" }}>{actor?.name || "Someone"}</Text>{" "}
-                        cheered a check-in
+                  <View
+                    key={index}
+                    style={{
+                      backgroundColor: "#dce3ff",
+                      borderRadius: 10,
+                      padding: 14,
+                      marginBottom: 12,
+                      shadowColor: "#000",
+                      shadowOpacity: 0.05,
+                      shadowOffset: { width: 0, height: 1 },
+                      shadowRadius: 3,
+                      elevation: 2,
+                    }}
+                  >
+                    <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
+                      <Image
+                        source={
+                          actor?.imageUrl
+                            ? { uri: actor.imageUrl }
+                            : require("@/assets/images/icon.png")
+                        }
+                        style={{ width: 36, height: 36, borderRadius: 18, marginRight: 10 }}
+                      />
+                      <Text style={{ fontSize: 15, color: "#0A2940" }}>
+                        <Text style={{ fontWeight: "bold" }}>
+                          {actor?.name || "Someone"}
+                        </Text>{" "}
+                        cheered a check-in 🎉
                       </Text>
-                      <Text style={styles.timestamp}>{time}</Text>
-                      <TouchableOpacity
-                        onPress={() => handleCheer(item)}
-                        style={styles.cheerButton}
-                      >
-                        <Text style={styles.cheerButtonText}>Cheer 🎉</Text>
-                      </TouchableOpacity>
                     </View>
+                    <Text style={{ fontSize: 12, color: "#6B7280" }}>{time}</Text>
+                  </View>
+                );
+              }
+
+              // === Friendship event ===
+              if (item.type === "friendship") {
+                const userA = allUsers.find((u) => u.id === item.actorId);
+                const userB = allUsers.find((u) => u.id === item.targetId);
+                return (
+                  <View
+                    key={index}
+                    style={{
+                      backgroundColor: "#dce3ff",
+                      borderRadius: 10,
+                      padding: 14,
+                      marginBottom: 12,
+                      shadowColor: "#000",
+                      shadowOpacity: 0.05,
+                      shadowOffset: { width: 0, height: 1 },
+                      shadowRadius: 3,
+                      elevation: 2,
+                    }}
+                  >
+                    <Text style={{ fontSize: 15, color: "#0A2940" }}>
+                      <Text style={{ fontWeight: "bold" }}>
+                        {userA?.name || "Someone"}
+                      </Text>{" "}
+                      became friends with{" "}
+                      <Text style={{ fontWeight: "bold" }}>
+                        {userB?.name || "Someone"}
+                      </Text>
+                    </Text>
+                    <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
+                      {time}
+                    </Text>
                   </View>
                 );
               }
 
               // === Other activities fallback ===
               return (
-                <View key={index} style={styles.listRow}>
-                  <Text style={styles.itemText}>{item.message || "Unknown activity"}</Text>
-                  <Text style={styles.timestamp}>{time}</Text>
-                  <TouchableOpacity
-                    onPress={() => handleCheer(item)}
-                    style={styles.cheerButton}
-                  >
-                    <Text style={styles.cheerButtonText}>Cheer 🎉</Text>
-                  </TouchableOpacity>
+                <View
+                  key={index}
+                  style={{
+                    backgroundColor: "#dce3ff",
+                    borderRadius: 10,
+                    padding: 14,
+                    marginBottom: 12,
+                    shadowColor: "#000",
+                    shadowOpacity: 0.05,
+                    shadowOffset: { width: 0, height: 1 },
+                    shadowRadius: 3,
+                    elevation: 2,
+                  }}
+                >
+                  <Text style={{ fontSize: 15, color: "#0A2940" }}>
+                    {item.message || "Unknown activity"}
+                  </Text>
+                  <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
+                    {time}
+                  </Text>
                 </View>
               );
             })}
@@ -1012,5 +1024,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-
