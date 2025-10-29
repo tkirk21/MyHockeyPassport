@@ -1,30 +1,54 @@
 //version 2 - keyboard safe
 //login.tsx
-import { useState } from 'react';
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
+import LoadingPuck from "../components/loadingPuck";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const spinValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (loading) {
+      Animated.loop(
+        Animated.timing(spinValue, {
+          toValue: 1,
+          duration: 1200,
+          easing: Easing.linear,
+          useNativeDriver: true,
+        })
+      ).start();
+    } else {
+      spinValue.stopAnimation();
+      spinValue.setValue(0);
+    }
+  }, [loading]);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
 
   const handleLogin = async () => {
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.replace('/(tabs)');
     } catch (error: any) {
       console.log('Login error:', error.code);
       let message = 'Login failed.';
-      switch (error.code) {
-        case 'auth/wrong-password':
-        case 'auth/invalid-credential':
-          message = 'Incorrect email or password.';
-          break;
-      }
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential')
+        message = 'Incorrect email or password.';
       Alert.alert('Error', message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,9 +109,11 @@ export default function Login() {
             secureTextEntry
           />
 
-          <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Log In</Text>
-          </TouchableOpacity>
+          <View style={{ alignItems: 'center', marginTop: 10, backgroundColor: colors.light }}>
+            <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
+              <Text style={styles.buttonText}>Log In</Text>
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity
             onPress={handleForgotPassword}
@@ -101,6 +127,7 @@ export default function Login() {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      {loading && <LoadingPuck />}
     </KeyboardAvoidingView>
   );
 }
@@ -122,6 +149,11 @@ const styles = StyleSheet.create({
     width: '70%',
     alignItems: 'center',
     alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
   buttonText: {
     color: colors.light,
@@ -138,7 +170,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 200,
     alignSelf: 'center',
-    marginBottom: 0,
+    marginBottom: -15,
   },
   title: {
     fontSize: 28,
@@ -153,7 +185,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 12,
     marginBottom: 16,
-    borderRadius: 6,
+    borderRadius: 12,
     color: colors.primary,
   },
   linkContainer: {
@@ -163,5 +195,21 @@ const styles = StyleSheet.create({
   link: {
     color: colors.secondary,
     fontWeight: '500',
+  },
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 150, // moves it upward
+  },
+  puckContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  puck: {
+    width: 360,
+    height: 360,
   },
 });

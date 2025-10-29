@@ -7,6 +7,7 @@ import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc, addDoc } from 'firebase/firestore';
 import { logFriendship, logCheer } from "../../utils/activityLogger";
+import LoadingPuck from "../../components/loadingPuck";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -507,13 +508,7 @@ export default function FriendsTab() {
       !blockedFriends.some((b) => b.id === user.id)
   );
 
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#1E3A8A" />
-      </View>
-    );
-  }
+  if (loading) return <LoadingPuck />;
 
   return (
     <ImageBackground

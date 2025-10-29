@@ -8,6 +8,7 @@ import { View, ActivityIndicator, StyleSheet, Alert, Image, Text } from 'react-n
 import MapView, { Marker, UrlTile } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
 import arenasData from '@/assets/data/arenas.json';
+import LoadingPuck from "../../components/loadingPuck";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -78,13 +79,7 @@ export default function MapScreen() {
     fetchCheckIns();
   }, []);
 
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0D2C42" />
-      </View>
-    );
-  }
+  if (loading) return <LoadingPuck />;
 
   const visiblePins = selectedLeague === 'All'
     ? pins
