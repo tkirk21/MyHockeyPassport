@@ -1,17 +1,21 @@
 //version 2 - keyboard safe
 //login.tsx
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import LoadingPuck from "../components/loadingPuck";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [stayLoggedIn, setStayLoggedIn] = useState(false);
 
   const spinValue = useRef(new Animated.Value(0)).current;
 
@@ -36,10 +40,26 @@ export default function Login() {
     outputRange: ['0deg', '360deg'],
   });
 
+  useEffect(() => {
+    const checkStoredLogin = async () => {
+      const savedUser = await AsyncStorage.getItem('userEmail');
+      if (savedUser) router.replace('/(tabs)');
+    };
+    checkStoredLogin();
+  }, []);
+
   const handleLogin = async () => {
     setLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      // if toggle is ON, store the user email
+      if (stayLoggedIn) {
+        await AsyncStorage.setItem('userEmail', email);
+      } else {
+        await AsyncStorage.removeItem('userEmail');
+      }
+
       router.replace('/(tabs)');
     } catch (error: any) {
       console.log('Login error:', error.code);
@@ -99,15 +119,37 @@ export default function Login() {
             keyboardType="email-address"
           />
 
-          <TextInput
-            style={styles.input}
-            placeholder="Password"
-            placeholderTextColor={colors.secondary}
-            value={password}
-            onChangeText={setPassword}
-            autoCapitalize="none"
-            secureTextEntry
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={[styles.input, styles.passwordInput]}
+              placeholder="Password"
+              placeholderTextColor={colors.secondary}
+              value={password}
+              onChangeText={setPassword}
+              autoCapitalize="none"
+              secureTextEntry={!showPassword}
+            />
+            <TouchableOpacity
+              onPress={() => setShowPassword(!showPassword)}
+              style={styles.eyeButton}
+            >
+              <Ionicons
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={22}
+                color={colors.secondary}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.toggleRow}>
+            <Text style={styles.toggleText}>Stay logged in  </Text>
+            <Switch
+              value={stayLoggedIn}
+              onValueChange={setStayLoggedIn}
+              trackColor={{ false: '#ccc', true: colors.accent }}
+              thumbColor={stayLoggedIn ? colors.primary : '#f4f3f4'}
+            />
+          </View>
 
           <View style={{ alignItems: 'center', marginTop: 10, backgroundColor: colors.light }}>
             <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
@@ -117,7 +159,7 @@ export default function Login() {
 
           <TouchableOpacity
             onPress={handleForgotPassword}
-            style={{ alignItems: 'center', marginTop: 12, marginBottom: 16 }}
+            style={{ alignItems: 'center', justifyContent: 'center', marginTop: 12, marginBottom: 16 }}
           >
             <Text style={{ color: colors.accent, fontWeight: '500' }}>Forgot password?</Text>
           </TouchableOpacity>
@@ -184,7 +226,7 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
     borderWidth: 1,
     paddingHorizontal: 12,
-    marginBottom: 16,
+    marginBottom: 12,   // down from 16
     borderRadius: 12,
     color: colors.primary,
   },
@@ -211,5 +253,40 @@ const styles = StyleSheet.create({
   puck: {
     width: 360,
     height: 360,
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.accent,
+    borderRadius: 12,
+    marginBottom: 0,     // cleaner vertical balance
+    height: 48,
+    paddingRight: 12,
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 12,
+  },
+  passwordInput: {
+    borderWidth: 0,
+    flex: 1,
+    marginBottom: 0,
+  },
+  toggleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '70%',          // matches button and inputs
+    alignSelf: 'center',
+    marginTop: 0,          // gives breathing room below password box
+    marginBottom: -20,      // consistent with spacing above button
+
+  },
+  toggleText: {
+    fontSize: 13,
+    color: colors.secondary,
+    fontWeight: '500',
+    marginRight: -10, // tighten spacing between text and switch
   },
 });
