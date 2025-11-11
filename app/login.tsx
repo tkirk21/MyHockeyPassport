@@ -1,13 +1,17 @@
 //version 2 - keyboard safe
 //login.tsx
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View, } from 'react-native';
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/firebaseConfig';
+import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail, TwitterAuthProvider } from 'firebase/auth';
+import { auth, webClientId } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import LoadingPuck from "../components/loadingPuck";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function Login() {
   const router = useRouter();
@@ -16,6 +20,13 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [stayLoggedIn, setStayLoggedIn] = useState(false);
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    expoClientId: webClientId,
+    androidClientId: '853703034223-kd7chdctst44rgnh8r9pjr74v04fi6tv.apps.googleusercontent.com',
+    webClientId: webClientId,
+    redirectUri: 'https://auth.expo.io/@tkirk21/MyHockeyPassport',
+  });
 
   const spinValue = useRef(new Animated.Value(0)).current;
 
@@ -48,12 +59,24 @@ export default function Login() {
     checkStoredLogin();
   }, []);
 
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { id_token } = response.params;
+      const credential = GoogleAuthProvider.credential(id_token);
+      signInWithCredential(auth, credential)
+        .then(() => router.replace('/(tabs)'))
+        .catch((error) => {
+          console.error('Google login error:', error);
+          Alert.alert('Error', 'Google login failed. Try again.');
+        });
+    }
+  }, [response]);
+
   const handleLogin = async () => {
     setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-      // if toggle is ON, store the user email
       if (stayLoggedIn) {
         await AsyncStorage.setItem('userEmail', email);
       } else {
@@ -109,6 +132,32 @@ export default function Login() {
           />
           <Text style={styles.title}>Welcome Back</Text>
 
+          <View style={styles.socialRow}>
+            <TouchableOpacity
+              style={styles.googleBtn}
+              onPress={() => promptAsync()}
+              disabled={!request}
+            >
+              <Ionicons name="logo-google" size={20} color="#fff" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.socialBtn, { backgroundColor: '#1877F2' }]}
+              onPress={() => Alert.alert('Coming soon', 'Facebook sign-in')}
+              accessibilityLabel="Continue with Facebook"
+            >
+              <Ionicons name="logo-facebook" size={20} color="#fff" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.socialBtn, { backgroundColor: '#000' }]}
+              onPress={() => Alert.alert('Coming soon', 'X sign-in')}
+              accessibilityLabel="Continue with X"
+            >
+              <Text style={{ color: '#fff', fontWeight: '900', fontSize: 16 }}>X</Text>
+            </TouchableOpacity>
+          </View>
+
           <TextInput
             style={styles.input}
             placeholder="Email"
@@ -159,7 +208,7 @@ export default function Login() {
 
           <TouchableOpacity
             onPress={handleForgotPassword}
-            style={{ alignItems: 'center', justifyContent: 'center', marginTop: 12, marginBottom: 16 }}
+            style={{ alignItems: 'center', justifyContent: 'center', marginTop: 2 }}
           >
             <Text style={{ color: colors.accent, fontWeight: '500' }}>Forgot password?</Text>
           </TouchableOpacity>
@@ -226,7 +275,7 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
     borderWidth: 1,
     paddingHorizontal: 12,
-    marginBottom: 12,   // down from 16
+    marginBottom: 12,
     borderRadius: 12,
     color: colors.primary,
   },
@@ -238,29 +287,13 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     fontWeight: '500',
   },
-  loadingOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 150, // moves it upward
-  },
-  puckContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
-  puck: {
-    width: 360,
-    height: 360,
-  },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: colors.accent,
     borderRadius: 12,
-    marginBottom: 0,     // cleaner vertical balance
+    marginBottom: 0,
     height: 48,
     paddingRight: 12,
   },
@@ -277,16 +310,47 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '70%',          // matches button and inputs
+    width: '70%',
     alignSelf: 'center',
-    marginTop: 0,          // gives breathing room below password box
-    marginBottom: -20,      // consistent with spacing above button
-
+    marginTop: 0,
+    marginBottom: -20,
   },
   toggleText: {
     fontSize: 13,
     color: colors.secondary,
     fontWeight: '500',
-    marginRight: -10, // tighten spacing between text and switch
+    marginRight: -10,
+  },
+  socialRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 12,
+    marginBottom: 20,
+  },
+  socialBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: '#DB4437',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  googleBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: '#DB4437',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
