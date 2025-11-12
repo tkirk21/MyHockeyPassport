@@ -1,8 +1,8 @@
 //version 2 - keyboard safe
-//login.tsx
+//app/login.tsx
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail, TwitterAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, webClientId } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import LoadingPuck from "../components/loadingPuck";
@@ -10,6 +10,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
+import * as Facebook from 'expo-auth-session/providers/facebook';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -26,6 +28,11 @@ export default function Login() {
     androidClientId: '853703034223-kd7chdctst44rgnh8r9pjr74v04fi6tv.apps.googleusercontent.com',
     webClientId: webClientId,
     redirectUri: 'https://auth.expo.io/@tkirk21/MyHockeyPassport',
+  });
+
+  const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
+    clientId: '763545830068611',
+    expoClientId: '763545830068611',
   });
 
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -71,6 +78,16 @@ export default function Login() {
         });
     }
   }, [response]);
+
+  useEffect(() => {
+    if (fbResponse?.type === 'success') {
+      const { authentication } = fbResponse;
+      const credential = FacebookAuthProvider.credential(authentication?.accessToken);
+      signInWithCredential(auth, credential)
+        .then(() => router.replace('/(tabs)'))
+        .catch(err => Alert.alert('Error', err.message));
+    }
+  }, [fbResponse]);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -130,7 +147,6 @@ export default function Login() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.title}>Welcome Back</Text>
 
           <View style={styles.socialRow}>
             <TouchableOpacity
@@ -143,18 +159,10 @@ export default function Login() {
 
             <TouchableOpacity
               style={[styles.socialBtn, { backgroundColor: '#1877F2' }]}
-              onPress={() => Alert.alert('Coming soon', 'Facebook sign-in')}
-              accessibilityLabel="Continue with Facebook"
+              onPress={() => fbPromptAsync()}
+              disabled={!fbRequest}
             >
               <Ionicons name="logo-facebook" size={20} color="#fff" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.socialBtn, { backgroundColor: '#000' }]}
-              onPress={() => Alert.alert('Coming soon', 'X sign-in')}
-              accessibilityLabel="Continue with X"
-            >
-              <Text style={{ color: '#fff', fontWeight: '900', fontSize: 16 }}>X</Text>
             </TouchableOpacity>
           </View>
 
@@ -264,8 +272,8 @@ const styles = StyleSheet.create({
     marginBottom: -15,
   },
   title: {
-    fontSize: 28,
-    marginBottom: 24,
+    fontSize: 26,
+    marginBottom: 20,
     textAlign: 'center',
     fontWeight: 'bold',
     color: colors.primary,

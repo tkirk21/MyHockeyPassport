@@ -1,19 +1,24 @@
-//version 1 - 10am friday 1st of august
-// app/signup.tsx
+//app/signup.tsx
 import { useState, useEffect } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
 import { auth, webClientId } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import * as Google from 'expo-auth-session/providers/google';
-import { makeRedirectUri } from 'expo-auth-session';
+import * as Facebook from 'expo-auth-session/providers/facebook';
+import * as WebBrowser from 'expo-web-browser';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function Signup() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
+  // Google
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: webClientId,
     androidClientId: '853703034223-kd7chdctst44rgnh8r9pjr74v04fi6tv.apps.googleusercontent.com',
@@ -21,82 +26,72 @@ export default function Signup() {
     redirectUri: 'https://auth.expo.io/@tkirk21/MyHockeyPassport',
   });
 
+  // Facebook
+  const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
+    clientId: '763545830068611',
+    expoClientId: '763545830068611',
+  });
+
+  // Google handler
   useEffect(() => {
     if (response?.type === 'success') {
       const { id_token } = response.params;
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential)
-        .then(() => {
-          Alert.alert('Success', 'Signed up with Google!');
-          router.replace('/(tabs)');
-        })
-        .catch((error) => {
-          console.error('Google sign-up error:', error);
-          Alert.alert('Error', 'Google sign-up failed. Try again.');
-        });
+        .then(() => router.replace('/(tabs)'))
+        .catch(err => Alert.alert('Error', err.message));
     }
   }, [response]);
+
+  // Facebook handler
+  useEffect(() => {
+    if (fbResponse?.type === 'success') {
+      const { authentication } = fbResponse;
+      const credential = FacebookAuthProvider.credential(authentication?.accessToken);
+      signInWithCredential(auth, credential)
+        .then(() => router.replace('/(tabs)'))
+        .catch(err => Alert.alert('Error', err.message));
+    }
+  }, [fbResponse]);
 
   const handleSignUp = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      Alert.alert('Success', 'Account created successfully!');
       router.replace('/(tabs)');
-    } catch (error: any) {
-      Alert.alert('Error', error.message);
+    } catch (err: any) {
+      Alert.alert('Error', err.message);
     }
-  };
-
-  const goToLogin = () => {
-    router.replace('/login');
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('@/assets/images/logo_with_font.png')}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+
       <Text style={styles.title}>Create Account</Text>
 
       <View style={styles.socialRow}>
-              <TouchableOpacity
-                style={styles.socialBtn}
-                onPress={() => promptAsync({ useProxy: true })}
-                disabled={!request}
-              >
-                <Ionicons name="logo-google" size={20} color="#fff" />
-              </TouchableOpacity>
-            </View>
+        <TouchableOpacity style={styles.socialBtn} onPress={() => promptAsync()} disabled={!request}>
+          <Ionicons name="logo-google" size={20} color="#fff" />
+        </TouchableOpacity>
 
-            <Text style={styles.orText}>or</Text>
+        <TouchableOpacity style={[styles.socialBtn, { backgroundColor: '#1877F2' }]} onPress={() => fbPromptAsync()} disabled={!fbRequest}>
+          <Ionicons name="logo-facebook" size={20} color="#fff" />
+        </TouchableOpacity>
+      </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor={colors.secondary}
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-      />
+      <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor={colors.secondary}
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        autoCapitalize="none"
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput style={styles.passwordInput} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeButton}>
+          <Ionicons name={showPassword ? 'eye' : 'eye-off'} size={22} color={colors.secondary} />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity style={styles.buttonPrimary} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={goToLogin} style={styles.toggle}>
+      <TouchableOpacity onPress={() => router.replace('/login')} style={styles.toggle}>
         <Text style={styles.toggleText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>
@@ -118,8 +113,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
   },
   logo: {
-    width: 400,
-    height: 200,
+    width: 340,
+    height: 170,
     alignSelf: 'center',
     marginBottom: 0,
   },
@@ -129,26 +124,6 @@ const styles = StyleSheet.create({
     color: colors.primary,
     marginBottom: 24,
     textAlign: 'center',
-  },
-  googleButton: {
-    backgroundColor: '#DB4437',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 12,
-    marginBottom: 20,
-    width: '66%',
-    alignItems: 'center',
-    alignSelf: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  googleButtonText: {
-    color: colors.light,
-    fontSize: 18,
-    fontWeight: '600',
   },
   orText: {
     textAlign: 'center',
@@ -190,23 +165,43 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   socialRow: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      gap: 12,
-    },
-    socialBtn: {
-      width: 40,
-      height: 40,
-      borderRadius: 15,
-      backgroundColor: '#DB4437',
-      justifyContent: 'center',
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-      elevation: 4,
-    },
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 12,
+    marginBottom: 20,
+  },
+  socialBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: '#DB4437',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: colors.accent,
+    borderRadius: 6,
+    height: 50,
+    marginBottom: 16,
+    paddingRight: 12,
+  },
+  passwordInput: {
+    flex: 1,
+    height: 50,
+    paddingHorizontal: 12,
+    fontSize: 16,
+    color: colors.primary,
+  },
+  eyeButton: {
+    position: 'absolute',
+    right: 12,
+  },
 });
-
-

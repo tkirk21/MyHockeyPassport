@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.4.0",
     "@react-native-async-storage/async-storage": "^1.24.0",
     "@react-native-community/datetimepicker": "8.4.1",
     "@react-native-picker/picker": "^2.11.1",
@@ -33,6 +34,7 @@
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-star-rating-widget": "^1.9.2",
+    "react-native-twitter-signin": "^1.1.1",
     "react-native-web": "^0.20.0"
   },
   "devDependencies": {

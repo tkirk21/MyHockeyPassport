@@ -39,7 +39,8 @@
     "extra": {
       "eas": {
         "projectId": "a164aec3-4dc0-4576-b32e-273e889b6ada"
-      }
+      },
+      "EXPO_PUBLIC_FACEBOOK_APP_ID": "763545830068611"
     },
     "plugins": [
       "expo-web-browser",

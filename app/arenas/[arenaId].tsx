@@ -1,5 +1,5 @@
 //VERSION 2 - 8am 9TH AUGUST
-//[arenaID.tsx]
+//[arenaId.tsx]
 import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
@@ -11,6 +11,8 @@ import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
+import { useNavigation } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -19,67 +21,53 @@ export default function ArenaScreen() {
   const db = getFirestore(firebaseApp);
 
   const [visitCount, setVisitCount] = useState(0);
+  const [lastVisitDate, setLastVisitDate] = useState<Date | null>(null);
+  const [timeLeft, setTimeLeft] = useState<string>('00h 00m 00s');
+  const arena = arenaData.find((a) =>
+      `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
+    );
+
+    if (!arena) {
+      return (
+        <View style={styles.centered}>
+          <Text style={styles.errorText}>Arena not found.</Text>
+        </View>
+      );
+    }
 
   useEffect(() => {
-    const run = async () => {
-      const user = auth.currentUser;
-      if (!user || !arena) {
-        return;
-      }
+      const run = async () => {
+        const user = auth.currentUser;
+        if (!user || !arena) return;
 
-      const arenaName = arena.arena;
-      const league = arena.league;
+        try {
+          const q = query(
+            collection(db, 'profiles', user.uid, 'checkins'),
+            where('arenaName', '==', arena.arena)
+          );
+          const snapshot = await getDocs(q);
 
-      try {
-        // A) Count all checkins for this user
-        const qUser = query(
-          collection(db, 'profiles', user.uid, 'checkins')
-        );
-        const sUser = await getDocs(qUser);
+          if (snapshot.empty) {
+            setVisitCount(0);
+            setLastVisitDate(null);
+            return;
+          }
 
-        // B) Checkins at this arena
-        const qUserArena = query(
-          collection(db, 'profiles', user.uid, 'checkins'),
-          where('arenaName', '==', arenaName)
-        );
-        const sUserArena = await getDocs(qUserArena);
+          const dates = snapshot.docs
+            .map(doc => doc.data().timestamp?.toDate())
+            .filter(date => date instanceof Date);
 
-        // C) Checkins at this arena + league
-        const qUserArenaLeague = query(
-          collection(db, 'profiles', user.uid, 'checkins'),
-          where('arenaName', '==', arenaName),
-          where('league', '==', league)
-        );
-        const sUserArenaLeague = await getDocs(qUserArenaLeague);
+          const sorted = dates.sort((a, b) => b.getTime() - a.getTime());
 
-        // Pick the most specific result
-        if (sUserArenaLeague.size > 0) {
-          setVisitCount(sUserArenaLeague.size);
-        } else if (sUserArena.size > 0) {
-          setVisitCount(sUserArena.size);
-        } else {
-          setVisitCount(0);
+          setVisitCount(snapshot.size);
+          setLastVisitDate(sorted[0]);
+        } catch (err) {
+          console.log('Firestore error:', err);
         }
-      } catch (err) {
-        console.log('❌ Firestore query error:', err);
-      }
-    };
+      };
 
-    run();
-  }, [arena?.arena, arena?.league]);
-
-
-  const arena = arenaData.find((a) =>
-    `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
-  );
-
-  if (!arena) {
-    return (
-      <View style={styles.centered}>
-        <Text style={styles.errorText}>Arena not found.</Text>
-      </View>
-    );
-  }
+      run();
+    }, [arena]); // ← ONLY THIS CHANGE
 
   const teamCodeMap = Object.fromEntries(
     arenaData.map((a) => [`${a.league}_${a.teamCode}`, a.teamName])
@@ -110,7 +98,6 @@ export default function ArenaScreen() {
     })),
   ];
 
-
   // Filter & sort upcoming games at this arena
   const upcomingGames = combinedSchedule
     .filter((game) => game.arena === arena.arena && new Date(game.date) > new Date())
@@ -132,10 +119,62 @@ export default function ArenaScreen() {
     });
   }
 
+  useEffect(() => {
+    if (upcomingGames.length === 0) {
+      setTimeLeft('');
+      return;
+    }
+
+    const nextGameTime = new Date(upcomingGames[0].date).getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const diff = nextGameTime - now;
+
+      if (diff <= 0) {
+        setTimeLeft('PUCK DROP!');
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeLeft(
+        `${hours.toString().padStart(2, '0')}:${minutes
+          .toString()
+          .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+      );
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, [upcomingGames]);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {/* ← BACK BUTTON GOES RIGHT HERE */}
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => router.back()}
+      >
+        <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
+      </TouchableOpacity>
+
       <View style={[styles.header, { backgroundColor: arena.colorCode || '#0A2940' }]}>
         <Text style={styles.arenaName}>{arena.arena}</Text>
+      </View>
+
+      <View style={[styles.statCard, { backgroundColor: lightColor }]}>
+        <Text style={styles.statNumber}>{visitCount}</Text>
+        <Text style={styles.statLabel}>Times Visited</Text>
+        {lastVisitDate && (
+          <Text style={styles.lastVisitText}>
+            Last: {format(lastVisitDate, 'MMM d, yyyy')}
+          </Text>
+        )}
       </View>
 
       <View style={[styles.infoBox, { backgroundColor: lightColor }]}>
@@ -149,11 +188,6 @@ export default function ArenaScreen() {
         <Text style={styles.value}>{arena.league}</Text>
       </View>
 
-      <View style={[styles.statCard, { backgroundColor: lightColor }]}>
-        <Text style={styles.statNumber}>{visitCount}</Text>
-        <Text style={styles.statLabel}>Times Visited</Text>
-      </View>
-
       <TouchableOpacity style={styles.button} onPress={handleDirections}>
         <Text style={styles.buttonText}>Get Directions</Text>
       </TouchableOpacity>
@@ -161,6 +195,17 @@ export default function ArenaScreen() {
       {upcomingGames.length > 0 && (
         <View style={[styles.section, { backgroundColor: lightColor }]}>
           <Text style={styles.sectionTitle}>Upcoming Games</Text>
+
+          {/* ONE LINE: 70:54:16 */}
+              <View style={styles.countdownBox}>
+                <Text style={styles.countdownNumber}>
+                  {timeLeft}
+                </Text>
+                <Text style={styles.countdownLabel}>
+                  until next puck drop
+                </Text>
+              </View>
+
           {upcomingGames.map((game) => (
             <View key={game.id} style={styles.gameCard}>
               <Text style={styles.gameTextBold}>
@@ -198,16 +243,18 @@ const styles = StyleSheet.create({
   header: {
     padding: 24,
     alignItems: 'center',
+
   },
   arenaName: {
     fontSize: 28,
+    top: 10,
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
   },
   infoBox: {
     backgroundColor: 'rgba(255,255,255,0.95)', // will be overridden by lightColor
-    margin: 20,
+    margin: 4,
     padding: 16,
     borderRadius: 12,
     shadowColor: '#000',
@@ -282,24 +329,86 @@ const styles = StyleSheet.create({
   statCard: {
     marginHorizontal: 20,
     marginTop: 8,
-    marginBottom: 16,
-    paddingVertical: 14,
-    borderRadius: 12,
+    marginBottom: 8,
+    paddingVertical: 20,
+    borderRadius: 60,
     alignItems: 'center',
-    width: 100,
+    width: 120,
     alignSelf: 'center',
+    borderWidth: 4,
+    borderColor: arenaData.colorCode,
+    backgroundColor: '#FFFFFF',
   },
   statNumber: {
     fontSize: 28,
     fontWeight: '800',
     color: '#0A2940',
-    lineHeight: 32,
+    lineHeight: 24,
   },
   statLabel: {
     marginTop: 4,
     fontSize: 12,
     color: '#334155',
     letterSpacing: 0.3,
+  },
+  lastVisitText: {
+    marginTop: 0,
+    fontSize: 12,
+    color: '#475569',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 32,        // a little lower so it clears status bar
+    left: -5,
+    zIndex: 10,
+    borderRadius: 20,
+    padding: 8,
+  },
+  countdownText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: arenaData.colorCode,
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  countdownBox: {
+    backgroundColor: '#0A2940',
+    alignSelf: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 0,
+    borderRadius: 14,
+    marginBottom: 16,
+    minWidth: 150,
+    minHeight: 75,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.35,
+    shadowRadius: 8,
+    elevation: 12,
+  },
+  countdownNumber: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    lineHeight: 46,
+  },
+  countdownTime: {
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    letterSpacing: 2,
+    fontVariant: ['tabular-nums'],
+    marginTop: -6,
+  },
+  countdownLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginTop: 4,
+    opacity: 0.9,
   },
 });
 

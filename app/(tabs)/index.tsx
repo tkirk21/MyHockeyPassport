@@ -1,3 +1,4 @@
+//app/index.tsx
 import React, { useEffect, useState } from 'react';
 import { Dimensions, FlatList, Image, ImageBackground, Linking, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
@@ -5,6 +6,7 @@ import * as Location from 'expo-location';
 import Constants from 'expo-constants';
 import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
@@ -167,7 +169,7 @@ export default function HomeScreen() {
                     ),
                   }))
                   .sort((a, b) => a.distance - b.distance)
-                  .slice(0, 5)
+                  .slice(0, 3)
                   .map((arena, index) => (
                     <TouchableOpacity
                       key={index}
@@ -181,9 +183,14 @@ export default function HomeScreen() {
                         })
                       }
                     >
-                      <Text style={styles.cardText}>
-                        {arena.arena} – {arena.city} ({arena.distance.toFixed(1)} km)
-                      </Text>
+                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={[styles.cardText, { flex: 1 }]}>
+                          {arena.arena} – {arena.city}
+                        </Text>
+                        <Text style={{ fontWeight: 'bold', color: '#0D2C42' }}>
+                          {Math.round(arena.distance) === arena.distance ? Math.round(arena.distance) : arena.distance.toFixed(1)} km
+                        </Text>
+                      </View>
                     </TouchableOpacity>
                   ))
               )}
@@ -320,9 +327,14 @@ const styles = StyleSheet.create({
   arenaCard: {
     backgroundColor: '#E0E7FF',
     padding: 12,
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 12,
+    marginBottom: 12,
     width: '100%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 6,
   },
   cardText: {
     fontSize: 16,
