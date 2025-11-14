@@ -1,18 +1,21 @@
 //VERSION 2 - 8am 9TH AUGUST
 //[arenaId.tsx]
 import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from "@/assets/data/nhlSchedule2025.json";
-import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
+import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
+import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
+import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
+import whlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
-import { useNavigation } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import LoadingPuck from '@/components/loadingPuck';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -20,9 +23,10 @@ export default function ArenaScreen() {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
 
+  const [loading, setLoading] = useState(true);
   const [visitCount, setVisitCount] = useState(0);
   const [lastVisitDate, setLastVisitDate] = useState<Date | null>(null);
-  const [timeLeft, setTimeLeft] = useState<string>('00h 00m 00s');
+  const [timeLeft, setTimeLeft] = useState('00:00:00');
   const arena = arenaData.find((a) =>
       `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
     );
@@ -39,8 +43,8 @@ export default function ArenaScreen() {
       const run = async () => {
         const user = auth.currentUser;
         if (!user || !arena) return;
-
         try {
+          setLoading(true);
           const q = query(
             collection(db, 'profiles', user.uid, 'checkins'),
             where('arenaName', '==', arena.arena)
@@ -56,22 +60,23 @@ export default function ArenaScreen() {
           const dates = snapshot.docs
             .map(doc => doc.data().timestamp?.toDate())
             .filter(date => date instanceof Date);
-
           const sorted = dates.sort((a, b) => b.getTime() - a.getTime());
-
           setVisitCount(snapshot.size);
           setLastVisitDate(sorted[0]);
         } catch (err) {
           console.log('Firestore error:', err);
+        } finally {
+          setLoading(false);
         }
       };
-
       run();
-    }, [arena]); // ← ONLY THIS CHANGE
+    }, [arena, auth.currentUser]);
 
-  const teamCodeMap = Object.fromEntries(
-    arenaData.map((a) => [`${a.league}_${a.teamCode}`, a.teamName])
-  );
+  const teamCodeMap = useMemo(() => (
+    Object.fromEntries(
+      arenaData.map((a) => [`${a.league}_${a.teamCode}`, a.teamName])
+    )
+  ), []);
 
   const handleDirections = () => {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${arena.latitude},${arena.longitude}`;
@@ -88,7 +93,31 @@ export default function ArenaScreen() {
       homeTeam: teamCodeMap[`${game.league}_${game.team}`] || game.team,
       awayTeam: teamCodeMap[`${game.league}_${game.opponent}`] || game.opponent,
     })),
-    ...aihlSchedule2025.map((game) => ({
+    ...ahlSchedule2025.map((game) => ({
+      id: game.id,
+      league: game.league,
+      date: game.date,
+      arena: game.arena,
+      homeTeam: teamCodeMap[`${game.league}_${game.team}`] || game.team,
+      awayTeam: teamCodeMap[`${game.league}_${game.opponent}`] || game.opponent,
+    })),
+    ...echlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.location,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...ushlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.location,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...whlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
       arena: game.location,
@@ -99,10 +128,22 @@ export default function ArenaScreen() {
   ];
 
   // Filter & sort upcoming games at this arena
-  const upcomingGames = combinedSchedule
+  let upcomingGames = combinedSchedule
     .filter((game) => game.arena === arena.arena && new Date(game.date) > new Date())
     .sort((a, b) => new Date(a.date) - new Date(b.date))
     .slice(0, 3);
+
+  // ✅ Fallback: if no upcoming games, default to next preseason
+  if (upcomingGames.length === 0) {
+    upcomingGames = [{
+      id: 'default-next-season',
+      league: arena.league,
+      date: '2026-09-1T19:00:00Z', // adjust each year
+      arena: arena.arena,
+      homeTeam: arena.teamName,
+      awayTeam: 'TBD',
+    }];
+  }
 
   const lightColor = `${arena.colorCode}22`; // light transparent tint
 
@@ -167,17 +208,36 @@ export default function ArenaScreen() {
         <Text style={styles.arenaName}>{arena.arena}</Text>
       </View>
 
-      <View style={[styles.statCard, { backgroundColor: lightColor }]}>
-        <Text style={styles.statNumber}>{visitCount}</Text>
-        <Text style={styles.statLabel}>Times Visited</Text>
-        {lastVisitDate && (
-          <Text style={styles.lastVisitText}>
-            Last: {format(lastVisitDate, 'MMM d, yyyy')}
-          </Text>
+      <View
+        style={[
+          styles.statCard,
+          { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940", height: 120 }, // lock consistent height
+        ]}
+      >
+        {loading ? (
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              flex: 1,
+            }}
+          >
+            <LoadingPuck size={120} />
+          </View>
+        ) : (
+          <>
+            <Text style={styles.statNumber}>{visitCount}</Text>
+            <Text style={styles.statLabel}>Times Visited</Text>
+            {lastVisitDate && (
+              <Text style={styles.lastVisitText}>
+                Last: {format(lastVisitDate, "MMM d, yyyy")}
+              </Text>
+            )}
+          </>
         )}
       </View>
 
-      <View style={[styles.infoBox, { backgroundColor: lightColor }]}>
+      <View style={[styles.infoBox, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
         <Text style={styles.label}>Address</Text>
         <Text style={styles.value}>{arena.address}</Text>
 
@@ -188,22 +248,25 @@ export default function ArenaScreen() {
         <Text style={styles.value}>{arena.league}</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleDirections}>
+      <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleDirections}>
         <Text style={styles.buttonText}>Get Directions</Text>
       </TouchableOpacity>
 
+      {upcomingGames.length === 0 && (
+              <View style={[styles.section, { backgroundColor: lightColor }]}>
+                <Text style={styles.sectionTitle}>Upcoming Games</Text>
+                <Text style={styles.value}>No Upcoming Games</Text>
+              </View>
+            )}
+
       {upcomingGames.length > 0 && (
-        <View style={[styles.section, { backgroundColor: lightColor }]}>
+        <View style={[styles.section, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
           <Text style={styles.sectionTitle}>Upcoming Games</Text>
 
           {/* ONE LINE: 70:54:16 */}
-              <View style={styles.countdownBox}>
-                <Text style={styles.countdownNumber}>
-                  {timeLeft}
-                </Text>
-                <Text style={styles.countdownLabel}>
-                  until next puck drop
-                </Text>
+              <View style={[styles.countdownBox, { backgroundColor: arena.colorCode || "#0A2940" }]}>
+                <Text style={styles.countdownNumber}>{timeLeft}</Text>
+                <Text style={styles.countdownLabel}>until next puck drop</Text>
               </View>
 
           {upcomingGames.map((game) => (
@@ -218,8 +281,9 @@ export default function ArenaScreen() {
           ))}
         </View>
       )}
-      <TouchableOpacity style={styles.checkinButton} onPress={handleCheckIn}>
-        <Text style={styles.buttonText}>Check In at This Arena</Text>
+
+      <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleCheckIn}>
+        <Text style={styles.buttonText}>Check in at this arena</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -253,15 +317,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   infoBox: {
-    backgroundColor: 'rgba(255,255,255,0.95)', // will be overridden by lightColor
+    backgroundColor: 'rgba(255,255,255,0.95)',
     margin: 4,
     padding: 16,
+    marginHorizontal: 20,
     borderRadius: 12,
+    borderWidth: 4,
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
-    alignItems: 'center', // ✅ center all text
+    alignItems: 'center',
   },
   label: {
     fontSize: 14,
@@ -272,6 +338,7 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 16,
     color: '#1F2937',
+    alignItems: 'center',
   },
   button: {
     backgroundColor: '#0A2940',
@@ -292,6 +359,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#FFFFFF',
     borderRadius: 12,
+    borderWidth: 4,
     shadowColor: '#000',
     shadowOpacity: 0.05,
     shadowRadius: 4,
@@ -336,7 +404,6 @@ const styles = StyleSheet.create({
     width: 120,
     alignSelf: 'center',
     borderWidth: 4,
-    borderColor: arenaData.colorCode,
     backgroundColor: '#FFFFFF',
   },
   statNumber: {
@@ -358,7 +425,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 32,        // a little lower so it clears status bar
+    top: 32,
     left: -5,
     zIndex: 10,
     borderRadius: 20,
@@ -385,6 +452,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 8,
     elevation: 12,
+    borderWidth: 4,
   },
   countdownNumber: {
     fontSize: 22,
@@ -407,9 +475,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#FFFFFF',
     textAlign: 'center',
-    marginTop: 4,
+    marginTop: -10,
     opacity: 0.9,
   },
+
 });
 
 

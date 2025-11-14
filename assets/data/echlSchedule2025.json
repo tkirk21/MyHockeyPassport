@@ -1191,10 +1191,19 @@
     "id": "echl_20251114_013",
     "league": "ECHL",
     "date": "2025-11-14T02:10:00Z",
-    "team": "Idaho Steelheads",
-    "opponent": "Utah Grizzlies",
+    "team": "Utah Grizzlies",
+    "opponent": "Idaho Steelheads",
     "arena": "Maverik Center",
     "city": "West Valley City, Utah"
+  },
+  {
+    "id": "echl_20251115_014",
+    "league": "ECHL",
+    "date": "2025-11-15T02:10:00Z",
+    "team": "Idaho Steelheads",
+    "opponent": "Utah Grizzlies",
+    "arena": "Idaho Central Arena",
+    "city": "Boise, Idaho"
   },
   {
     "id": "echl_20251115_001",

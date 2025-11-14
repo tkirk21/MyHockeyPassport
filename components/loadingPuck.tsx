@@ -1,8 +1,13 @@
 // components/LoadingPuck.tsx
 import React, { useEffect, useRef } from "react";
-import { Animated, Easing, Image, StyleSheet, View } from "react-native";
+import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 
-export default function LoadingPuck() {
+type LoadingPuckProps = {
+  style?: ViewStyle;
+  size?: number;
+};
+
+export default function LoadingPuck({ style, size = 240 }: LoadingPuckProps) {
   const spinValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -22,10 +27,15 @@ export default function LoadingPuck() {
   });
 
   return (
-    <View style={styles.overlay}>
+    <View style={[styles.overlay, style]}>
       <Animated.Image
         source={require("@/assets/images/loading_puck.png")}
-        style={[styles.puck, { transform: [{ rotateY: spin }] }]}
+        style={{
+          width: size,
+          height: size,
+          transform: [{ rotateY: spin }],
+        }}
+        resizeMode="contain"
       />
     </View>
   );
@@ -33,14 +43,8 @@ export default function LoadingPuck() {
 
 const styles = StyleSheet.create({
   overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.4)",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 999,
-  },
-  puck: {
-    width: 240,
-    height: 240,
+    backgroundColor: "transparent",
   },
 });

@@ -1,12 +1,12 @@
-//app/index.tsx
-import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, Image, ImageBackground, Linking, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import * as Location from 'expo-location';
 import Constants from 'expo-constants';
 import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
@@ -15,11 +15,31 @@ import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 
+
 export default function HomeScreen() {
   const router = useRouter();
   const [location, setLocation] = useState(null);
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState('All Groups');
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const [nextPuckDrop, setNextPuckDrop] = useState('');
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(fadeAnim, {
+          toValue: 0.3,
+          duration: 600,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -31,6 +51,54 @@ export default function HomeScreen() {
       let loc = await Location.getCurrentPositionAsync({});
       setLocation(loc.coords);
     })();
+  }, []);
+
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = Date.now();
+
+      // Look in ALL games (not just today)
+      const upcoming = combinedSchedule
+        .filter(g => new Date(g.date) > now)
+        .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+
+      if (!upcoming) {
+        setNextPuckDrop('No games scheduled');
+        return;
+      }
+
+      const diff = new Date(upcoming.date) - now;
+
+      if (diff > 5 * 60 * 1000) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        setNextPuckDrop(`${hours}h ${minutes}m until next puck drop!`);
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      setNextPuckDrop(`Next puck drop in: ${minutes}:${seconds.toString().padStart(2, '0')}`);
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000); // every second when <5 min
+
+    return () => clearInterval(interval);
+  }, [combinedSchedule]);
+
+  useEffect(() => {
+    // Load saved league on start
+    const loadSavedLeague = async () => {
+      try {
+        const saved = await AsyncStorage.getItem('selectedLeague');
+        if (saved) setSelectedLeague(saved);
+      } catch (e) {
+        console.log('Failed to load league');
+      }
+    };
+    loadSavedLeague();
   }, []);
 
   const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
@@ -66,13 +134,16 @@ export default function HomeScreen() {
     })),
   ];
 
-  const filteredGames = combinedSchedule
-    .filter(game => new Date(game.date).toDateString() === today)
-    .filter(game => !selectedLeague || game.league === selectedLeague);
+  const filteredGames = useMemo(() => {
+      return combinedSchedule
+        .filter(game => new Date(game.date).toDateString() === today)
+        .filter(game => !selectedLeague || game.league === selectedLeague)
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    }, [today, selectedLeague]);
 
   const leagueGroups = [
     {
-      title: 'Major Professinal',
+      title: 'Major Professional',
       leagues: [
         { name: 'NHL', logo: require('@/assets/images/puck_logo_nhl.png') },
       ],
@@ -116,16 +187,41 @@ export default function HomeScreen() {
     },
   ];
 
-  const leaguesToShow =
-    selectedGroup === 'All Groups'
-      ? leagueGroups.flatMap(g => g.leagues)
-      : leagueGroups.find(g => g.title === selectedGroup)?.leagues || [];
+  const leaguesToShow = useMemo(() => {
+      return selectedGroup === 'All Groups'
+        ? leagueGroups.flatMap(g => g.leagues)
+        : leagueGroups.find(g => g.title === selectedGroup)?.leagues || [];
+    }, [selectedGroup]);
 
   const handleDirections = (arenaName) => {
-    const arenaInfo = arenaData.find(a => a.arena === arenaName);
-    if (!arenaInfo) return;
+    if (!arenaName) return;
+
+    // Normalize both input and DB entries
+    const normalize = (str) =>
+      str.normalize('NFD')                    // Decompose accented chars
+         .replace(/[\u0300-\u036f]/g, '')     // Remove accents
+         .toLowerCase()
+         .trim();
+
+    const normalizedInput = normalize(arenaName);
+
+    const arenaInfo = arenaData.find(a => {
+      const normalizedDB = normalize(a.arena);
+      return normalizedDB === normalizedInput ||
+             normalizedDB.includes(normalizedInput) ||
+             normalizedInput.includes(normalizedDB.split(' (')[0]);
+    });
+
+    if (!arenaInfo) {
+      console.log('ARENA NOT FOUND:', arenaName);
+      console.log('Normalized input:', normalizedInput);
+      console.log('DB entries (normalized):', arenaData.slice(0, 5).map(a => normalize(a.arena)));
+      return;
+    }
+
+    console.log('MATCHED:', arenaInfo.arena);
     const url = `https://www.google.com/maps/dir/?api=1&destination=${arenaInfo.latitude},${arenaInfo.longitude}`;
-    Linking.openURL(url);
+    Linking.openURL(url).catch(err => console.log('Linking error:', err));
   };
 
   const handleCheckIn = (game) => {
@@ -153,10 +249,12 @@ export default function HomeScreen() {
             <Text style={styles.header}>My Hockey Passport</Text>
 
             {/* Closest Arenas */}
-            <View style={styles.section}>
+            <View key="closest-arenas" style={styles.section}>
               <Text style={styles.sectionTitle}>Closest Arenas</Text>
               {!location ? (
-                <Text style={styles.placeholder}>Detecting location...</Text>
+                <Animated.Text style={[styles.placeholder, { opacity: fadeAnim }]}>
+                  Detecting location...
+                </Animated.Text>
               ) : (
                 arenaData
                   .map((arena) => ({
@@ -197,16 +295,21 @@ export default function HomeScreen() {
             </View>
 
             {/* Today's Games */}
-            <View style={styles.section}>
+            <View key="todays-games" style={styles.section}>
               <Text style={styles.sectionTitle}>Today's Games</Text>
 
+              <Text style={[styles.countdownMini, nextPuckDrop.includes(':') && styles.countdownLive]}>
+                {nextPuckDrop || 'Loading...'}
+              </Text>
+
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.leagueFilter}>
-                <TouchableOpacity onPress={() => setSelectedLeague(null)} style={styles.filterChip}>
-                  <Text style={styles.filterChipText}>All</Text>
+                <TouchableOpacity onPress={() => setSelectedLeague(null)} style={[styles.filterChip, selectedLeague === null && styles.filterChipActive]}>
+                  <Text style={[styles.filterChipText, selectedLeague === null && styles.filterChipTextActive]}>All</Text>
                 </TouchableOpacity>
+
                 {leagueGroups.flatMap(group => group.leagues).map((league) => (
-                  <TouchableOpacity key={league.name} onPress={() => setSelectedLeague(league.name)} style={styles.filterChip}>
-                    <Text style={styles.filterChipText}>{league.name}</Text>
+                  <TouchableOpacity key={league.name} onPress={() => setSelectedLeague(league.name)} style={[styles.filterChip, selectedLeague === league.name && styles.filterChipActive]}>
+                    <Text style={[styles.filterChipText, selectedLeague === league.name && styles.filterChipTextActive]}>{league.name}</Text>
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -215,38 +318,49 @@ export default function HomeScreen() {
                 <Text style={styles.placeholder}>No games scheduled for today.</Text>
               ) : (
                 filteredGames.map((game) => (
-                  <TouchableOpacity key={game.id} style={styles.gameCard}>
-                    <Text style={styles.cardText}>{(game.homeTeam || game.team)} vs {game.opponent || game.awayTeam}</Text>
-                    <Text style={styles.cardText}>{game.arena}</Text>
-                    <Text style={styles.cardText}>{format(new Date(game.date), "h:mm a")}</Text>
+                  <View key={game.id} style={styles.gameCard}>
+                    <TouchableOpacity onPress={() => handleCheckIn(game)}>
+                      <Text style={styles.cardText}>{(game.homeTeam || game.team)} vs {game.opponent || game.awayTeam}</Text>
+                      <Text style={styles.cardText}>{game.arena}</Text>
+                      <Text style={styles.cardText}>{format(new Date(game.date), "h:mm a")}</Text>
+                    </TouchableOpacity>
 
                     <View style={styles.buttonsRow}>
                       <TouchableOpacity
                         style={styles.smallButton}
                         onPress={() => handleDirections(game.arena)}
+                        accessibilityLabel={`Get directions to ${game.arena}`}
+                        accessibilityRole="button"
                       >
                         <Text style={styles.smallButtonText}>Get Directions</Text>
                       </TouchableOpacity>
+
                       <TouchableOpacity
                         style={styles.smallButton}
                         onPress={() => handleCheckIn(game)}
+                        accessibilityLabel={`Check in to ${game.homeTeam || game.team} vs ${game.opponent || game.awayTeam}`}
+                        accessibilityRole="button"
                       >
                         <Text style={styles.smallButtonText}>Check In</Text>
                       </TouchableOpacity>
                     </View>
-                  </TouchableOpacity>
+                  </View>
                 ))
               )}
             </View>
 
             {/* Explore Leagues */}
-            <View style={styles.section}>
+            <View key="explore-leagues" style={styles.section}>
               <Text style={styles.sectionTitle}>Explore Leagues</Text>
-              <View style={styles.pickerContainer}>
+              <View style={[
+                styles.pickerContainer,
+                selectedGroup === 'All Groups' && styles.pickerContainerActive
+              ]}>
                 <Picker
                   selectedValue={selectedGroup}
                   onValueChange={(itemValue) => setSelectedGroup(itemValue)}
                   mode="dropdown"
+                  style={styles.picker}
                 >
                   <Picker.Item label="All Groups" value="All Groups" />
                   {leagueGroups.map(group => (
@@ -263,13 +377,16 @@ export default function HomeScreen() {
                 scrollEnabled={false}
                 contentContainerStyle={styles.leagueGrid}
                 renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={styles.leagueGridItem}
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.leagueGridItem,
+                      pressed && styles.leagueGridItemPressed
+                    ]}
                     onPress={() => router.push(`/leagues/${item.name}`)}
                   >
                     <Image source={item.logo} style={styles.leagueLogo} resizeMode="contain" />
                     <Text style={styles.leagueName}>{item.name}</Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 )}
               />
             </View>
@@ -311,6 +428,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.85)',
     borderRadius: 12,
     padding: 12,
+    borderWidth: 4,
+    borderColor: '#0D2C42',
   },
   sectionTitle: {
     fontSize: 20,
@@ -390,21 +509,32 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   pickerContainer: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
+    height: 40,
+    borderWidth: 2,
+    borderColor: '#ccc',
+    borderRadius: 12,
     overflow: 'hidden',
     marginBottom: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   leagueGrid: {
-    paddingHorizontal: 5,
-    gap: 16,
+    paddingHorizontal: 8,
+    rowGap: 16,
+    columnGap: 8,
   },
   leagueGridItem: {
     flex: 1,
-    maxWidth: '33%',
+    maxWidth: '33.33%',
+    minWidth: 80,
     alignItems: 'center',
-    marginVertical: 10,
+    paddingHorizontal: 4,
+  },
+  leagueGridItemPressed: {
+    transform: [{ scale: 0.95 }],
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
   },
   leagueLogo: {
     width: 60,
@@ -416,5 +546,41 @@ const styles = StyleSheet.create({
     color: '#374151',
     textAlign: 'center',
   },
+  filterChipActive: {
+    backgroundColor: '#0A2940',
+  },
+  filterChipTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+  },
+  countdownMini: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#0A2940',
+    textAlign: 'center',
+    marginBottom: 10,
+    opacity: 0.9,
+  },
+  countdownLive: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: '#D32F2F', // red for urgency
+    letterSpacing: 2,
+    fontVariant: ['tabular-nums'],
+  },
+  picker: {
+    width: '100%',
+    height: 56,
+    fontSize: 16,
+    color: '#000',
+    backgroundColor: 'white',
+    paddingHorizontal: 0,
+    textAlign: 'center',
+  },
+  pickerContainerActive: {
+    backgroundColor: '#E0E7FF',
+    borderColor: '#0D2C42',
+  },
 });
+
 

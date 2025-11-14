@@ -10,20 +10,22 @@
     "longitude": -117.876573306138,
     "color": "Burnt Orange",
     "colorCode": "#d04420",
+    "secondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles"
   },
   {
     "teamName": "Boston Bruins",
     "teamCode": "BOS",
-    "arena": "TD Garden ",
+    "arena": "TD Garden",
     "city": "Boston, Massachusetts",
     "address": "100 Legends Way, Boston, MA 02114",
     "website": "https://nhl.com/bruins",
     "latitude": 42.3662,
     "longitude": -71.0621,
     "color": "Boston Gold",
-    "colorCode": "#febd00",
+    "colorCode": "#000000",
+    "Secondary Color": "#febd00",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -37,7 +39,8 @@
     "latitude": 42.875,
     "longitude": -78.8766,
     "color": "Royal Blue",
-    "colorCode": "#003087",
+    "colorCode": "#0055ff",
+    "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -52,6 +55,7 @@
     "longitude": -114.0529,
     "color": "Fiery Red",
     "colorCode": "#a60c00",
+    "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/Edmonton"
   },
@@ -65,7 +69,8 @@
     "latitude": 35.8033,
     "longitude": -78.7218,
     "color": "Dark Red",
-    "colorCode": "#b20f00",
+    "colorCode": "#000000",
+    "SecondaryColor": "#b20f00",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -80,6 +85,7 @@
     "longitude": -87.6742,
     "color": "Red",
     "colorCode": "#d2000d",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Chicago"
   },
@@ -94,13 +100,14 @@
     "longitude": -105.0077,
     "color": "Burgundy",
     "colorCode": "#81324a",
+    "SecondaryColor": "#000080",
     "league": "NHL",
     "timezone": "America/Denver"
   },
   {
     "teamName": "Columbus Blue Jackets",
     "teamCode": "CBJ",
-    "arena": "Nationwide Arena ",
+    "arena": "Nationwide Arena",
     "city": "Columbus, Ohio",
     "address": "200 W Nationwide Blvd, Columbus, OH 43215",
     "website": "https://nhl.com/bluejackets",
@@ -108,6 +115,7 @@
     "longitude": -83.0065,
     "color": "Navy Blue",
     "colorCode": "#414f72",
+    "SecondaryColor": "#8b0000",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -122,13 +130,14 @@
     "longitude": -96.81,
     "color": "Victory Green",
     "colorCode": "#01865b",
+    "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Chicago"
   },
   {
     "teamName": "Detroit Red Wings",
     "teamCode": "DET",
-    "arena": "Little Caesars Arena ",
+    "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan",
     "address": "2645 Woodward Ave, Detroit, MI 48201",
     "website": "https://nhl.com/redwings",
@@ -136,6 +145,7 @@
     "longitude": -83.055,
     "color": "Red",
     "colorCode": "#c10000",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Detroit"
   },
@@ -150,6 +160,7 @@
     "longitude": -113.4972,
     "color": "Navy Blue",
     "colorCode": "#00205b",
+    "SecondaryColor": "#ff4500",
     "league": "NHL",
     "timezone": "America/Edmonton"
   },
@@ -164,6 +175,7 @@
     "longitude": -80.3246,
     "color": "Panther Red",
     "colorCode": "#bf0010",
+    "SecondaryColor": "#0000ff",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -178,6 +190,7 @@
     "longitude": -80.2197875546084,
     "color": "Panther Red",
     "colorCode": "#bf0010",
+    "SecondaryColor": "#0000ff",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -191,6 +204,7 @@
     "latitude": 34.043,
     "longitude": -118.2673,
     "color": "Black",
+    "SecondaryColor": "#c0c0c0",
     "colorCode": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles"
@@ -198,7 +212,7 @@
   {
     "teamName": "Minnesota Wild",
     "teamCode": "MIN",
-    "arena": "Xcel Energy Center",
+    "arena": "Grand Casino Arena",
     "city": "Saint Paul, Minnesota",
     "address": "199 W Kellogg Blvd, St Paul, MN 55102",
     "website": "https://nhl.com/wild",
@@ -206,13 +220,14 @@
     "longitude": -93.101,
     "color": "Forest Green",
     "colorCode": "#008348",
+    "SecondaryColor": "#8B0000",
     "league": "NHL",
     "timezone": "America/Chicago"
   },
   {
     "teamName": "Montreal Canadiens",
     "teamCode": "MTL",
-    "arena": "Bell Centre",
+    "arena": "Centre Bell",
     "city": "Montreal, Quebec",
     "address": "1909 Av. des Canadiens-de-Montréal, Montréal, QC H3B 5E8, Canada",
     "website": "https://nhl.com/canadiens",
@@ -220,6 +235,7 @@
     "longitude": -73.5693,
     "color": "Red",
     "colorCode": "#c60000",
+    "SecondaryColor": "#191970",
     "league": "NHL",
     "timezone": "America/Toronto"
   },
@@ -234,6 +250,7 @@
     "longitude": -86.7785,
     "color": "Predator Gold",
     "colorCode": "#faae00",
+    "SecondaryColor": "#000080",
     "league": "NHL",
     "timezone": "America/Chicago"
   },
@@ -248,6 +265,7 @@
     "longitude": -74.1711513063333,
     "color": "Red",
     "colorCode": "#c10000",
+    "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -262,6 +280,7 @@
     "longitude": -73.7259,
     "color": "Royal Blue",
     "colorCode": "#000084",
+    "SecondaryColor": "#ffa500",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -276,6 +295,7 @@
     "longitude": -73.9934,
     "color": "Royal Blue",
     "colorCode": "#00209c",
+    "SecondaryColor": "#ff0000",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -290,6 +310,7 @@
     "longitude": -75.9269990267248,
     "color": "Black",
     "colorCode": "#000000",
+    "SecondaryColor": "#ff0000",
     "league": "NHL",
     "timezone": "America/Toronto"
   },
@@ -304,6 +325,7 @@
     "longitude": -75.1712,
     "color": "Red Orange",
     "colorCode": "#CC5500",
+    "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -318,13 +340,14 @@
     "longitude": -79.9895729137883,
     "color": "Black",
     "colorCode": "#000000",
+    "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/New_York"
   },
   {
     "teamName": "San Jose Sharks",
     "teamCode": "SJS",
-    "arena": "SAP Center",
+    "arena": "SAP Center at San Jose",
     "city": "San Jose, California",
     "address": "525 W Santa Clara St, San Jose, CA 95113",
     "website": "https://nhl.com/sharks",
@@ -332,6 +355,7 @@
     "longitude": -121.901297861203,
     "color": "Teal",
     "colorCode": "#296a65",
+    "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles"
   },
@@ -346,6 +370,7 @@
     "longitude": -122.3536,
     "color": "Deep Sea Blue",
     "colorCode": "#0a2334",
+    "SecondaryColor": "#99ccff",
     "league": "NHL",
     "timezone": "America/Los_Angeles"
   },
@@ -360,6 +385,7 @@
     "longitude": -90.2025549183672,
     "color": "Royal Blue",
     "colorCode": "#0065bd",
+    "SeconaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/Chicago"
   },
@@ -374,6 +400,7 @@
     "longitude": -82.451908432896,
     "color": "Royal Blue",
     "colorCode": "#003d7c",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/New_York"
   },
@@ -388,13 +415,14 @@
     "longitude": -82.5033936679143,
     "color": "Royal Blue",
     "colorCode": "#003d7c",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/New_York"
   },
   {
     "teamName": "Toronto Maple Leafs",
     "teamCode": "TOR",
-    "arena": "ScotiaBank Arena",
+    "arena": "Scotiabank Arena",
     "city": "Toronto, Ontario",
     "address": "40 Bay St., Toronto, ON M5J 3A5, Canada",
     "website": "https://nhl.com/mapleleafs",
@@ -402,6 +430,7 @@
     "longitude": -79.3792140933089,
     "color": "Royal Blue",
     "colorCode": "#08167f",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Toronto"
   },
@@ -416,6 +445,7 @@
     "longitude": -111.9009,
     "color": "Rock Black",
     "colorCode": "#000000",
+    "SecondaryColor": "#4f86c6",
     "league": "NHL",
     "timezone": "America/Denver"
   },
@@ -429,7 +459,8 @@
     "latitude": 49.277884795787,
     "longitude": -123.108688589509,
     "color": "Blue",
-    "colorCode": "#66b7ff",
+    "colorCode": "#0000ff",
+    "SecondaryColor": "#00843D",
     "league": "NHL",
     "timezone": "America/Vancouver"
   },
@@ -444,6 +475,7 @@
     "longitude": -115.178,
     "color": "Gold",
     "colorCode": "#b8985c",
+    "SecondaryColor": "#B0B7BC",
     "league": "NHL",
     "timezone": "America/Los_Angeles"
   },
@@ -458,13 +490,14 @@
     "longitude": -77.0209909104234,
     "color": "Red",
     "colorCode": "#c00000",
+    "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/New_York"
   },
   {
     "teamName": "Winnipeg Jets",
     "teamCode": "WPG",
-    "arena": "Canada Life Center",
+    "arena": "Canada Life Centre",
     "city": "Winnipeg, Manitoba",
     "address": "300 Portage Ave, Winnipeg, MB R3C 5S4, Canada",
     "website": "https://nhl.com/jets",
@@ -472,6 +505,7 @@
     "longitude": -97.144,
     "color": "Jets Blue",
     "colorCode": "#004c97",
+    "SecondaryColor": "#002D62",
     "league": "NHL",
     "timezone": "America/Winnipeg"
   },
@@ -4628,7 +4662,7 @@
     "latitude": 38.749177492772,
     "longitude": -90.4769850579419,
     "color": "Black",
-    "colorCode": "#FFD700",
+    "colorCode": "#000000",
     "league": "NCAA DIVISION I",
     "timezone": "America/Chicago"
   },
