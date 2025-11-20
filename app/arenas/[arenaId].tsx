@@ -305,9 +305,12 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   header: {
-    padding: 24,
+    padding: 34,
     alignItems: 'center',
-
+    fontWeight: 'bold',
+    color: '#0D2C42',
+    marginBottom: 15,
+    textAlign: 'center',
   },
   arenaName: {
     fontSize: 28,
@@ -478,7 +481,6 @@ const styles = StyleSheet.create({
     marginTop: -10,
     opacity: 0.9,
   },
-
 });
 
 

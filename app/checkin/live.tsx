@@ -24,7 +24,9 @@ export default function LiveCheckInScreen() {
   const opponent = toStr(params.opponent);
   const gameDate = toStr(params.gameDate);
 
-  const [seatInfo, setSeatInfo] = useState('');
+  const [seatSection, setSeatSection] = useState('');
+  const [seatRow, setSeatRow] = useState('');
+  const [seatNumber, setSeatNumber] = useState('');
   const [favoritePlayer, setFavoritePlayer] = useState('');
   const [companions, setCompanions] = useState('');
   const [notes, setNotes] = useState('');
@@ -86,7 +88,11 @@ export default function LiveCheckInScreen() {
         teamName: homeTeam,
         opponent,
         favoritePlayer,
-        seatInfo,
+        seatInfo: {
+          section: seatSection,
+          row: seatRow,
+          seat: seatNumber,
+        },
         companions,
         notes,
         merchBought: getSelectedItems(merchItems, merchCategories),
@@ -162,12 +168,17 @@ export default function LiveCheckInScreen() {
         </View>
 
         <View style={styles.section}>
-          <TextInput
-            placeholder="Seat Info (Section, Row, Seat)"
-            value={seatInfo}
-            onChangeText={setSeatInfo}
-            style={styles.input}
-          />
+          <Text style={{ fontWeight: "600", marginRight: 6 }}>Seat Information</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
+            <Text style={{ fontWeight: "500", marginRight: 6 }}>Section:</Text>
+            <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
+            <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6 }}>Row:</Text>
+            <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
+            <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6 }}>Seat:</Text>
+            <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
+          </View>
+        </View>
+        <View style={styles.section}>
           <TextInput
             placeholder="Favorite Player"
             value={favoritePlayer}

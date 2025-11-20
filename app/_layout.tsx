@@ -8,7 +8,6 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -28,7 +27,7 @@ export default function RootLayout() {
         <Stack.Screen name="signup" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="checkin" options={{ headerShown: false }} />
-        <Stack.Screen name="userprofile" />
+        <Stack.Screen name="userprofile" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
         <Stack.Screen name="arenas/[arenaId]" options={{ headerShown: false }} />
         <Stack.Screen name="leagues/[leagueName]" options={{ headerShown: false }} />

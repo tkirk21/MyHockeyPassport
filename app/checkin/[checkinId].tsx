@@ -1,58 +1,126 @@
 //app/checkin/[checkinId].tsx
-import { useLocalSearchParams, Stack } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, ImageBackground, } from "react-native";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { ActivityIndicator, Alert, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseApp from "@/firebaseConfig";
-import arenasData from "@/assets/data/arenas.json"; // ✅ import arenas.json
-import { TouchableOpacity } from "react-native";
-import { logCheer } from "@/utils/activityLogger";
-
-
-const handleCheer = () => {
-  if (!checkin) return;
-  try {
-    logCheer(String(checkinId), String(userId));
-    alert("You cheered this 🎉");
-  } catch (err) {
-    console.error("Error cheering check-in:", err);
-  }
-};
+import { getAuth } from "firebase/auth";
+import arenasData from "@/assets/data/arenas.json"; //
+import {  } from "react-native";
+import LoadingPuck from "@/components/loadingPuck";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const db = getFirestore(firebaseApp);
+const router = useRouter();
+const formatGameDate = (checkin: any) => {
+  if (!checkin.gameDate) return "";
+  return new Intl.DateTimeFormat(undefined, {dateStyle: "medium",timeStyle: checkin.checkinType === "live" ? "short" : undefined,}).format(new Date(checkin.gameDate));
+};
 
 export default function CheckinDetailsScreen() {
-  const { checkinId, userId } = useLocalSearchParams();
+  const params = useLocalSearchParams();
+  const checkinId = params.checkinId as string;
+  const userId = params.userId as string;
   const [checkin, setCheckin] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const isOwner = currentUser && String(currentUser.uid) === String(userId);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  const fetchCheckin = async () => {
+        if (!checkinId || !userId) {
+          setError("Invalid check-in reference.");
+          setLoading(false);
+          return;
+        }
+
+        try {
+          setError(null);
+
+          const ref = doc(db, "profiles", String(userId), "checkins", String(checkinId));
+          const snap = await getDoc(ref);
+
+          if (!snap.exists()) {
+            setError("This check-in does not exist or was deleted.");
+            return;
+          }
+
+          setCheckin(snap.data());
+        } catch (err: any) {
+          console.error("❌ Firestore error:", err);
+
+          if (err.code === "permission-denied") {
+            setError("You do not have permission to view this check-in.");
+          } else if (err.code === "unavailable") {
+            setError("Network error. Please check your connection.");
+          } else {
+            setError("An unexpected error occurred loading this check-in.");
+          }
+        } finally {
+          setLoading(false);
+        }
+      };
+
+  const handleDelete = () => {
+    Alert.alert(
+      "Delete Check-In",
+      "Are you sure you want to delete this check-in? This cannot be undone.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              const ref = doc(
+                db,
+                "profiles",
+                String(userId),
+                "checkins",
+                String(checkinId)
+              );
+              await deleteDoc(ref);
+              router.back();
+            } catch (err) {
+              console.error("Delete failed:", err);
+              Alert.alert("Error", "Could not delete check-in.");
+            }
+          },
+        },
+      ]
+    );
+  };
 
   useEffect(() => {
-    const fetchCheckin = async () => {
-      if (!checkinId || !userId) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const ref = doc(db, "profiles", String(userId), "checkins", String(checkinId));
-        const snap = await getDoc(ref);
-        if (snap.exists()) {
-          setCheckin(snap.data());
-        } else {
-          setCheckin(null);
-        }
-      } catch (err) {
-        console.error("❌ Error loading check-in:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchCheckin();
   }, [checkinId, userId]);
 
   if (loading) {
-    return <ActivityIndicator style={{ marginTop: 50 }} size="large" color="#0D2C42" />;
+    return <LoadingPuck />;
+  }
+
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.error}>{error}</Text>
+
+        <TouchableOpacity
+          onPress={fetchCheckin}
+          style={{
+            marginTop: 16,
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            backgroundColor: "#0A2940",
+            borderRadius: 8,
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "600" }}>Retry</Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   if (!checkin) {
@@ -72,7 +140,31 @@ export default function CheckinDetailsScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ headerTitle: "Check-in Details" }} />
+      <Stack.Screen
+        options={{
+          headerTitle: "",
+          headerTransparent: true,
+          headerStyle: {
+            backgroundColor: teamColor,
+          },
+          headerRight: () =>
+            isOwner ? (
+              <View style={{ flexDirection: "row", gap: 20 }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    router.push(`/checkin/edit/${checkinId}?userId=${userId}`)
+                  }
+                >
+                  <Ionicons name="create-outline" size={22} color="#fff" />
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={handleDelete}>
+                  <Ionicons name="trash-outline" size={22} color="#fff" />
+                </TouchableOpacity>
+              </View>
+            ) : null,
+        }}
+      />
       <ImageBackground
         source={require("@/assets/images/background.jpg")}
         style={styles.background}
@@ -80,85 +172,121 @@ export default function CheckinDetailsScreen() {
       >
         <View style={[styles.overlay, { backgroundColor: overlayColor }]} />
 
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+          contentContainerStyle={{ paddingBottom: 30 }}
+          style={{ flex: 1 }}
+        >
           {/* Arena + Game Info */}
-          <View style={[styles.card, { backgroundColor: teamColor }]}>
-            <Text style={styles.title}>{checkin.arenaName}</Text>
-            <Text style={styles.sub}>{checkin.league}</Text>
+          <View style={[styles.arenaCard, { backgroundColor: teamColor }]}>
+            <TouchableOpacity
+              onPress={() => {
+                const a = arenasData.find(x => x.arena === checkin.arenaName);
+                if (!a) return console.warn("Arena not found in arenas.json");
+                router.push(`/arenas/${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}`);
+              }}
+            >
+              <Text style={styles.title}>{checkin.arenaName}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={{ paddingVertical: 4 }}
+              onPress={() => router.push({ pathname: "/leagues/[leagueName]", params: { leagueName: checkin.league } })}
+            >
+              <Text style={[styles.sub, { textDecorationLine: "underline", textDecorationColor: "#FFF", fontWeight: "600" }]}>
+                {checkin.league}
+              </Text>
+            </TouchableOpacity>
             <Text style={styles.sub}>
-              {checkin.teamName} vs {checkin.opponent}
+              {checkin.teamName} VS {checkin.opponent}
             </Text>
-            <Text style={styles.sub}>
-              {checkin.timestamp?.seconds
-                ? new Date(checkin.timestamp.seconds * 1000).toLocaleString()
-                : ""}
+            <Text style={[styles.sub, styles.gameDate]}>
+              {formatGameDate(checkin)}
             </Text>
           </View>
 
           {/* Photo */}
-          {checkin.photos && checkin.photos.length > 0 && (
-            <View style={[styles.card, { backgroundColor: teamColor }]}>
-              <Image
-                source={{ uri: checkin.photos[0] }}
-                style={styles.photo}
-                resizeMode="cover"
-              />
+          {checkin.photos && checkin.photos.length > 0 && checkin.photos[0] && (
+            <View style={[styles.photoCard, { backgroundColor: teamColor }]}>
+              {!imageError ? (
+                <Image
+                  source={{ uri: checkin.photos[0] }}
+                  style={styles.photo}
+                  resizeMode="cover"
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <Image
+                  source={require("@/assets/images/placeholder.png")}
+                  style={styles.photo}
+                  resizeMode="cover"
+                />
+              )}
             </View>
           )}
 
           {/* Extra Details */}
           {(checkin.favoritePlayer || checkin.seatInfo || checkin.companions || checkin.notes) && (
-            <View style={[styles.card, { backgroundColor: teamColor }]}>
-              {checkin.favoritePlayer && (
-                <Text style={styles.detail}>Favorite Player: {checkin.favoritePlayer}</Text>
+            <View style={[styles.detailsCard, { backgroundColor: teamColor }]}>
+              {checkin.seatInfo && (() => {
+                const s = checkin.seatInfo;
+                const parts = [];
+                if (s.section) parts.push(`Section: ${s.section}`);
+                if (s.row) parts.push(`Row: ${s.row}`);
+                if (s.seat) parts.push(`Seat: ${s.seat}`);
+                return parts.length ? (
+                  <View style={{ marginBottom: 8 }}>
+                    <Text style={styles.label}>Seat Info</Text>
+                    <Text style={styles.value}>{parts.join("   ")}</Text>
+                  </View>
+                ) : null;
+              })()}
+
+              {checkin.companions && (
+                <View style={{ marginBottom: 8 }}>
+                  <Text style={styles.label}>Attended with</Text>
+                  <Text style={styles.value}>{checkin.companions}</Text>
+                </View>
               )}
-              {checkin.seatInfo && <Text style={styles.detail}>Seat: {checkin.seatInfo}</Text>}
-              {checkin.companions && <Text style={styles.detail}>With: {checkin.companions}</Text>}
-              {checkin.notes && <Text style={styles.detail}>Notes: {checkin.notes}</Text>}
+
+              {checkin.favoritePlayer && (
+                <View style={{ marginBottom: 8 }}>
+                  <Text style={styles.label}>Favorite Player</Text>
+                  <Text style={styles.value}>{checkin.favoritePlayer}</Text>
+                </View>
+              )}
+
+              {checkin.notes && (
+                <View style={{ marginBottom: 8 }}>
+                  <Text style={styles.label}>Notes</Text>
+                  <Text style={styles.value}>{checkin.notes}</Text>
+                </View>
+              )}
             </View>
           )}
 
           {/* Merch Bought */}
           {checkin.merchBought &&
-            Object.keys(checkin.merchBought).some(
-              (cat) => checkin.merchBought[cat].length > 0
-            ) && (
-              <View style={[styles.card, { backgroundColor: teamColor }]}>
+            Object.values(checkin.merchBought).flat().length > 0 && (
+              <View style={[styles.merchCard, { backgroundColor: teamColor }]}>
                 <Text style={styles.sectionTitle}>Merch Bought</Text>
-                {Object.entries(checkin.merchBought).map(([category, items]: any) =>
-                  items.length > 0 ? (
-                    <View key={category} style={styles.section}>
-                      <Text style={styles.category}>{category}</Text>
-                      {items.map((item: string) => (
-                        <Text key={item} style={styles.listItem}>
-                          {item}
-                        </Text>
-                      ))}
-                    </View>
-                  ) : null
-                )}
+                {Object.values(checkin.merchBought).flat().map((item: string) => (
+                  <Text key={item} style={styles.listItem}>
+                    {item}
+                  </Text>
+                ))}
               </View>
             )}
 
           {/* Concessions Bought */}
           {checkin.concessionsBought &&
-            Object.keys(checkin.concessionsBought).some(
-              (cat) => checkin.concessionsBought[cat].length > 0
-            ) && (
-              <View style={[styles.card, { backgroundColor: teamColor }]}>
+            Object.values(checkin.concessionsBought).flat().length > 0 && (
+              <View style={[styles.merchCard, { backgroundColor: teamColor }]}>
                 <Text style={styles.sectionTitle}>Concessions Bought</Text>
-                {Object.entries(checkin.concessionsBought).map(([category, items]: any) =>
-                  items.length > 0 ? (
-                    <View key={category} style={styles.section}>
-                      <Text style={styles.category}>{category}</Text>
-                      {items.map((item: string) => (
-                        <Text key={item} style={styles.listItem}>
-                          {item}
-                        </Text>
-                      ))}
-                    </View>
-                  ) : null
-                )}
+                {Object.values(checkin.concessionsBought).flat().map((item: string) => (
+                  <Text key={item} style={styles.listItem}>
+                    {item}
+                  </Text>
+                ))}
               </View>
             )}
         </ScrollView>
@@ -173,52 +301,48 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  container: {
-    padding: 20,
-  },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  card: {
+  arenaCard: {
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
+    marginTop: 65,
+    marginHorizontal: 10,
+  },
+  detailsCard: {
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
+    marginHorizontal: 20,
+    borderWidth: 1,
+    borderColor: "#ffffff44",
     shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#fff", // text white over team colors
-    marginBottom: 6,
-    textAlign: "center",
+  merchCard: {
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
+    marginHorizontal: 20,
+    borderWidth: 1,
+    borderColor: "#ffffff44",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
   },
-  sub: {
-    fontSize: 15,
-    color: "#fff",
-    textAlign: "center",
-    marginBottom: 2,
-  },
-  detail: {
-    fontSize: 15,
-    color: "#fff",
-    marginBottom: 6,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#fff",
-    marginBottom: 10,
-  },
-  section: {
-    marginBottom: 10,
+  photoCard: {
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 24,
+    marginHorizontal: 20,
+    borderWidth: 1,
+    borderColor: "#ffffff44",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
   },
   category: {
     fontSize: 15,
@@ -226,25 +350,72 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginBottom: 4,
   },
-  listItem: {
-    fontSize: 14,
+  centered: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  detail: {
+    fontSize: 16,
     color: "#fff",
-    marginLeft: 10,
-    marginBottom: 2,
+    marginBottom: 6,
   },
   error: {
     fontSize: 18,
     color: "red",
+  },
+  gameDate: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#FFFFFF",
+    marginTop: 4,
+    textAlign: "center",
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#FFFFFF",
+  },
+  listItem: {
+    fontSize: 15,
+    color: "#fff",
+    marginLeft: 20,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
   },
   photo: {
     width: "100%",
     height: 220,
     borderRadius: 10,
   },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#fff",
+  },
+  sub: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#fff",
+    textAlign: "center",
+    marginBottom: 2,
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: "bold",
+    color: "#fff", // text white over team colors
+    marginTop: -8,
+    textAlign: "center",
+    textShadowColor: '#ffffff',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  value: {
+    fontSize: 15,
+    fontWeight: "400",
+    marginLeft: 20,
+    color: "#FFFFFF",
+    marginBottom: 6,
+  },
 });
-
-
-
-
-
-

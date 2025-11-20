@@ -33,9 +33,10 @@
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-maps": "1.20.1",
     "react-native-paper": "^5.14.5",
-    "react-native-safe-area-context": "5.4.0",
+    "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.11.1",
     "react-native-star-rating-widget": "^1.9.2",
+    "react-native-svg": "^15.15.0",
     "react-native-twitter-signin": "^1.1.1",
     "react-native-web": "^0.20.0"
   },

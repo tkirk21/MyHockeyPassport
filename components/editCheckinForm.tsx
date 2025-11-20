@@ -1,21 +1,24 @@
-//app/checkin/manual.tsx
+// components/editCheckinForm.tsx
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Checkbox from 'expo-checkbox';
-import arenasData from '../../assets/data/arenas.json';
+import arenasData from "@/assets/data/arenas.json"; // Adjust path if needed
 import { Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import firebaseApp from '../../firebaseConfig';
+import { getFirestore, doc, updateDoc } from 'firebase/firestore';
+import firebaseApp from "@/firebaseConfig"; // Adjust path if needed
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
+import { Alert } from 'react-native';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 
 const db = getFirestore(firebaseApp);
 
-const ManualCheckIn = () => {
-  const [gameDate, setGameDate] = useState(new Date());
+export default function editCheckinForm({ initialData }: { initialData: any }) {
+  const router = useRouter();
+  const { userId } = useLocalSearchParams();
+  const [gameDate, setGameDate] = useState(new Date(initialData.gameDate || Date.now()));
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [arenas, setArenas] = useState([]);
   const [leagueOpen, setLeagueOpen] = useState(false);
@@ -23,22 +26,31 @@ const ManualCheckIn = () => {
   const [homeTeamOpen, setHomeTeamOpen] = useState(false);
   const [opponentTeamOpen, setOpponentTeamOpen] = useState(false);
 
-  const [selectedLeague, setSelectedLeague] = useState(null);
-  const [selectedArena, setSelectedArena] = useState(null);
-  const [selectedHomeTeam, setSelectedHomeTeam] = useState(null);
-  const [selectedOpponent, setSelectedOpponent] = useState(null);
-  const [favoritePlayer, setFavoritePlayer] = useState('');
-  const [seatSection, setSeatSection] = useState('');
-  const [seatRow, setSeatRow] = useState('');
-  const [seatNumber, setSeatNumber] = useState('');
-  const [companions, setCompanions] = useState('');
-  const [notes, setNotes] = useState('');
-  const [images, setImages] = useState<string[]>([]);
-  const [didBuyMerch, setDidBuyMerch] = useState(false);
+  const [selectedLeague, setSelectedLeague] = useState(initialData.league || null);
+  const [selectedArena, setSelectedArena] = useState(initialData.arenaName || null);
+  const [selectedHomeTeam, setSelectedHomeTeam] = useState(initialData.teamName || null);
+  const [selectedOpponent, setSelectedOpponent] = useState(initialData.opponent || null);
+  const [favoritePlayer, setFavoritePlayer] = useState(initialData.favoritePlayer || '');
+  const [seatSection, setSeatSection] = useState(initialData.seatInfo?.section || '');
+  const [seatRow, setSeatRow] = useState(initialData.seatInfo?.row || '');
+  const [seatNumber, setSeatNumber] = useState(initialData.seatInfo?.seat || '');
+  const [companions, setCompanions] = useState(initialData.companions || '');
+  const [notes, setNotes] = useState(initialData.notes || '');
+  const [images, setImages] = useState<string[]>(initialData.photos || []);
+  const [didBuyMerch, setDidBuyMerch] = useState(Object.keys(initialData.merchBought || {}).some(cat => initialData.merchBought[cat].length > 0));
   const [expandedCategories, setExpandedCategories] = useState({});
-  const [merchItems, setMerchItems] = useState({});
-  const [didBuyConcessions, setDidBuyConcessions] = useState(false);
-  const [concessionItems, setConcessionItems] = useState({});
+  const [merchItems, setMerchItems] = useState(() => {
+    const items = {};
+    Object.values(initialData.merchBought || {}).flat().forEach(item => { items[item] = true; });
+    return items;
+  });
+  const [didBuyConcessions, setDidBuyConcessions] = useState(Object.keys(initialData.concessionsBought || {}).some(cat => initialData.concessionsBought[cat].length > 0));
+  const [concessionItems, setConcessionItems] = useState(() => {
+    const items = {};
+    Object.values(initialData.concessionsBought || {}).flat().forEach(item => { items[item] = true; });
+    return items;
+  });
+
   const merchCategories = {
     'Jerseys': ['Home Jersey', 'Away Jersey', 'Third Jersey', 'Retro Jersey', 'Custom Jersey', 'Special Occasion Jersey'],
     'Apparel & Headwear': [
@@ -70,14 +82,8 @@ const ManualCheckIn = () => {
   const [homeTeamItems, setHomeTeamItems] = useState([]);
   const [opponentItems, setOpponentItems] = useState([]);
 
-  const handleCheckInSubmit = async () => {
+  const handleSave = async () => {
     try {
-      const user = getAuth(firebaseApp).currentUser;
-      if (!user) {
-        alert('You must be logged in to submit a check-in.');
-        return;
-      }
-
       const getSelectedItems = (sourceObject, categories) => {
         const result = {};
         Object.keys(categories).forEach((category) => {
@@ -110,19 +116,18 @@ const ManualCheckIn = () => {
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
-        checkinType: 'manual',
         photos: images,
-        userId: user.uid,
-        timestamp: serverTimestamp(),
         latitude: match?.latitude ?? null,
         longitude: match?.longitude ?? null,
       };
 
-      await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
-      alert('Check-in saved!');
+      const ref = doc(db, 'profiles', userId as string, 'checkins', initialData.id);
+      await updateDoc(ref, docData);
+      Alert.alert('Success', 'Check-in updated!');
+      router.back();
     } catch (error) {
-      console.error('Error saving check-in:', error);
-      alert('Failed to save check-in.');
+      console.error('Error updating check-in:', error);
+      Alert.alert('Failed to update check-in.');
     }
   };
 
@@ -143,9 +148,7 @@ const ManualCheckIn = () => {
       const uniqueTeams = Array.from(new Set(filtered.map(a => a.teamName))).sort();
       setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
 
-      setSelectedArena(null);
-      setSelectedHomeTeam(null);
-      setSelectedOpponent(null);
+      // No reset, since we're pre-populating
     }
   }, [selectedLeague]);
 
@@ -158,10 +161,6 @@ const ManualCheckIn = () => {
         .sort((a, b) => a.label.localeCompare(b.label));
 
       setHomeTeamItems(teamsAtArena);
-
-      if (selectedHomeTeam && !teamsAtArena.find(t => t.value === selectedHomeTeam)) {
-        setSelectedHomeTeam(null);
-      }
     }
   }, [selectedArena, selectedLeague, arenas]);
 
@@ -174,14 +173,10 @@ const ManualCheckIn = () => {
         .sort((a, b) => a.label.localeCompare(b.label));
 
       setArenaItems(arenasForTeam);
-
-      if (selectedArena && !arenasForTeam.find(a => a.value === selectedArena)) {
-        setSelectedArena(null);
-      }
     }
   }, [selectedHomeTeam, selectedLeague, arenas]);
 
-  // Home Team → Opponents (unchanged)
+  // Home Team → Opponents
   useEffect(() => {
     if (selectedHomeTeam && selectedLeague && arenas.length > 0) {
       const opponentOptions = arenas
@@ -196,7 +191,6 @@ const ManualCheckIn = () => {
       ).sort((a, b) => a.label.localeCompare(b.label));
 
       setOpponentItems(uniqueOpponents);
-      setSelectedOpponent(null);
     }
   }, [selectedHomeTeam, selectedLeague, arenas]);
 
@@ -204,7 +198,7 @@ const ManualCheckIn = () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (!permissionResult.granted) {
-      alert('Permission to access camera roll is required!');
+      Alert.alert('Permission to access camera roll is required!');
       return;
     }
 
@@ -221,7 +215,7 @@ const ManualCheckIn = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Manual Check-In</Text>
+      <Text style={styles.title}>Edit Check-In</Text>
 
       <Text style={styles.label}>Game Date:</Text>
       <TouchableOpacity
@@ -289,14 +283,14 @@ const ManualCheckIn = () => {
         onChangeText={setFavoritePlayer}
         style={styles.input}
       />
-      <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Seat Information</Text>
-      <View style={{ flexDirection:"row", alignItems:"center", flexWrap:"wrap", marginBottom:12 }}>
-        <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Section:</Text>
-        <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-        <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Row:</Text>
-        <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-        <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Seat:</Text>
-        <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
+      <Text style={{ fontWeight: "500", marginRight: 6, color: "#0A2940" }}>Seat Information</Text>
+      <View style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginBottom: 12 }}>
+        <Text style={{ fontWeight: "500", marginRight: 6, color: "#0A2940" }}>Section:</Text>
+        <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
+        <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6, color: "#0A2940" }}>Row:</Text>
+        <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
+        <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6, color: "#0A2940" }}>Seat:</Text>
+        <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
       </View>
       <TextInput
         placeholder="Who did you go with?"
@@ -450,8 +444,8 @@ const ManualCheckIn = () => {
         </>
       )}
 
-      <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-        <Text style={styles.submitText}>Submit Check-In</Text>
+      <TouchableOpacity style={styles.submitButton} onPress={handleSave}>
+        <Text style={styles.submitText}>Save Changes</Text>
       </TouchableOpacity>
 
       {showDatePicker && (
@@ -467,9 +461,7 @@ const ManualCheckIn = () => {
       )}
     </ScrollView>
   );
-};
-
-export default ManualCheckIn;
+}
 
 const styles = StyleSheet.create({
   container: {

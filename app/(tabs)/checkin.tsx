@@ -1,4 +1,3 @@
-//version 1 - 10am friday 1st of august
 // app/(tabs)/checkin.tsx
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';

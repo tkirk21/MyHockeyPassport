@@ -191,7 +191,7 @@
     "color": "Panther Red",
     "colorCode": "#bf0010",
     "SecondaryColor": "#0000ff",
-    "league": "NHL",
+    "league": "Stadium Series",
     "timezone": "America/New_York"
   },
   {
@@ -253,6 +253,21 @@
     "SecondaryColor": "#000080",
     "league": "NHL",
     "timezone": "America/Chicago"
+  },
+  {
+    "teamName": "Nashville Predators",
+    "teamCode": "NSH",
+    "arena": "Avicii Arena",
+    "city": "Stockholm, Sweden",
+    "address": "121 77 Johanneshov, Sweden",
+    "website": "https://nhl.com/predators",
+    "latitude": 59.293662667612324,
+    "longitude": 18.083153616157915,
+    "color": "Predator Gold",
+    "colorCode": "#faae00",
+    "SecondaryColor": "#000080",
+    "league": "Global Series",
+    "timezone": "Europe/Stockholm"
   },
   {
     "teamName": "New Jersey Devils",
@@ -345,6 +360,35 @@
     "timezone": "America/New_York"
   },
   {
+    "teamName": "Pittsburgh Penguins",
+    "teamCode": "PIT",
+    "arena": "Avicii Arena",
+    "city": "Stockholm, Sweden",
+    "address": "121 77 Johanneshov, Sweden",
+    "website": "https://nhl.com/penguins",
+    "latitude": 59.293662667612324,
+    "longitude": 18.083153616157915,
+    "color": "Black",
+    "colorCode": "#000000",
+    "SecondaryColor": "#ffff00",
+    "league": "Global Series",
+    "timezone": "Europe/Stockholm"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
     "teamName": "San Jose Sharks",
     "teamCode": "SJS",
     "arena": "SAP Center at San Jose",
@@ -416,7 +460,7 @@
     "color": "Royal Blue",
     "colorCode": "#003d7c",
     "SecondaryColor": "#ffffff",
-    "league": "NHL",
+    "league": "Stadium Series",
     "timezone": "America/New_York"
   },
   {

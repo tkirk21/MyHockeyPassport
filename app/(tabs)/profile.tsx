@@ -1,58 +1,36 @@
+//app/(tabs)/profile.tsx
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import * as React from 'react';
+import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { doc, collection, getCountFromServer, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
+import {doc, collection, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import arenasData from '@/assets/data/arenas.json';
 import { useFocusEffect } from '@react-navigation/native';
-import { ProfileAlertContext } from "./_layout";
+import { ProfileAlertContext } from './_layout';
+import arenasData from '@/assets/data/arenas.json';
+import leagues from '@/assets/data/leagues.json';
+import { leagueLogos } from '@/assets/images/leagueLogos';
+
+interface CheerIconProps { size?: number; color?: string; }
+interface Arena { arena: string; colorCode?: string; }
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
 
-function norm(s: any) {
-  return (s ?? '').toString().trim().toLowerCase();
-}
-
-function lightenColor(hex: string, amount: number) {
-  let useHex = (hex || '').replace('#', '');
-  if (!useHex) return `rgb(240,244,248)`;
-  if (useHex.length === 3) {
-    useHex = useHex[0] + useHex[0] + useHex[1] + useHex[1] + useHex[2] + useHex[2];
-  }
-  const num = parseInt(useHex, 16);
-  let r = (num >> 16) + amount;
-  let g = ((num >> 8) & 0x00ff) + amount;
-  let b = (num & 0x0000ff) + amount;
-  r = Math.min(255, Math.max(0, r));
-  g = Math.min(255, Math.max(0, g));
-  b = Math.min(255, Math.max(0, b));
-  return `rgb(${r},${g},${b})`;
-}
+function norm(s: any) { return (s ?? '').toString().trim().toLowerCase(); }
 
 async function getCheerCount(userId: string, checkinId: string) {
   try {
-    const cheersRef = collection(
-      getFirestore(firebaseApp),
-      "profiles",
-      userId,
-      "checkins",
-      checkinId,
-      "cheers"
-    );
-
-    // ✅ use getDocs instead of getCountFromServer (works everywhere)
+    const cheersRef = collection(db, "profiles", userId, "checkins", checkinId, "cheers");
     const snap = await getDocs(cheersRef);
-    const cheerCount = snap.docs.length;
-    const cheerNames = snap.docs.map(d => (d.data() as any).name || "").filter(Boolean);
-
+    const cheerCount = snap.size;
+    const cheerNames = snap.docs.map(d => d.data().name).filter(Boolean);
     return { cheerCount, cheerNames };
-  } catch (err) {
-    console.error("Error fetching cheer count:", err);
+  } catch {
     return { cheerCount: 0, cheerNames: [] };
   }
 }
@@ -61,10 +39,10 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
   const [chirps, setChirps] = useState<any[]>([]);
 
   useEffect(() => {
-    const chirpsRef = collection(db, "profiles", userId, "checkins", checkinId, "chirps");
-    const q = query(chirpsRef, orderBy("timestamp", "asc"));
-    const unsub = onSnapshot(q, snap => {
-      const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const chirpsRef = collection(db, 'profiles', userId, 'checkins', checkinId, 'chirps');
+    const q = query(chirpsRef, orderBy('timestamp', 'asc'));
+    const unsub = onSnapshot(q, (snap) => {
+      const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setChirps(list);
     });
     return unsub;
@@ -73,28 +51,17 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
   if (chirps.length === 0) return null;
 
   return (
-    <View style={{ marginTop: 8, paddingHorizontal: 6 }}>
-      {chirps.map(c => (
-        <View key={c.id} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+    <View style={styles.chirpsSection}>
+      {chirps.map((c) => (
+        <View key={c.id} style={styles.chirpItem}>
           {c.userImage ? (
-            <Image
-              source={{ uri: c.userImage }}
-              style={{ width: 22, height: 22, borderRadius: 11, marginRight: 6 }}
-            />
+            <Image source={{ uri: c.userImage }} style={styles.chirpAvatar} />
           ) : (
-            <View
-              style={{
-                width: 22,
-                height: 22,
-                borderRadius: 11,
-                backgroundColor: "#ccc",
-                marginRight: 6,
-              }}
-            />
+            <View style={styles.chirpAvatarPlaceholder} />
           )}
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontWeight: "700", color: "#0A2940" }}>{c.userName}</Text>
-            <Text style={{ color: "#0A2940", flexShrink: 1 }}>{c.text}</Text>
+          <View style={styles.chirpTextContainer}>
+            <Text style={styles.chirpUsername}>{c.userName}</Text>
+            <Text style={styles.chirpText}>{c.text}</Text>
           </View>
         </View>
       ))}
@@ -108,7 +75,7 @@ export default function ProfileScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      setProfileAlertCount(0); // clears the badge when profile opens
+      setProfileAlertCount(0);
     }, [setProfileAlertCount])
   );
 
@@ -116,21 +83,25 @@ export default function ProfileScreen() {
   const [location, setLocation] = useState('');
   const [favouriteTeam, setFavouriteTeam] = useState('');
   const [image, setImage] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const [recentCheckIns, setRecentCheckIns] = useState<any[]>([]);
   const [arenasVisited, setArenasVisited] = useState(0);
   const [teamsWatched, setTeamsWatched] = useState(0);
-  const [mostWatchedTeams, setMostWatchedTeams] = useState<{ team: string; count: number }[]>([]);
-  const [mostVisitedArena, setMostVisitedArena] = useState<{ arena: string; count: number } | null>(
-    null
-  );
-
-  // Collapsible data: Leagues -> Teams with counts
-  const [teamsByLeague, setTeamsByLeague] = useState<Record<string, Record<string, number>>>({});
+  const [mostWatchedTeams, setMostWatchedTeams] = useState<
+    { team: string; count: number }[]
+  >([]);
+  const [mostVisitedArena, setMostVisitedArena] = useState<{ arena: string; count: number } | null>(null);
+  const [teamsByLeague, setTeamsByLeague] = useState<
+    Record<string, Record<string, number>>
+  >({});
   const [leaguesExpanded, setLeaguesExpanded] = useState(false);
-  const [expandedLeagues, setExpandedLeagues] = useState<{ [league: string]: boolean }>({});
+  const [expandedLeagues, setExpandedLeagues] = useState<{
+    [league: string]: boolean;
+  }>({});
 
   const [loading, setLoading] = useState(false);
+  const [visibleCheerList, setVisibleCheerList] = useState<string | null>(null);
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -153,21 +124,16 @@ export default function ProfileScreen() {
     }
     setLoading(true);
     try {
-      let imageUrl: string | null = null;
+      let uploadedImageUrl: string | null = null;
       if (image) {
         const response = await fetch(image);
         const blob = await response.blob();
         const imageRef = ref(storage, `profilePictures/${user.uid}`);
         await uploadBytes(imageRef, blob);
-        imageUrl = await getDownloadURL(imageRef);
+        uploadedImageUrl = await getDownloadURL(imageRef);
       }
-      await setDoc(doc(db, 'profiles', user.uid), {
-        name,
-        location,
-        favouriteTeam,
-        imageUrl,
-        createdAt: new Date(),
-      });
+      await setDoc(
+        doc(db, 'profiles', user.uid), { name, location, favouriteTeam, imageUrl: uploadedImageUrl, createdAt: new Date(), }, { merge: true });
       Alert.alert('Success', 'Profile saved!');
       router.replace('/(tabs)');
     } catch (error: any) {
@@ -183,115 +149,135 @@ export default function ProfileScreen() {
       const user = auth.currentUser;
       if (!user) return;
 
-      const docRef = doc(db, 'profiles', user.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data() as any;
-        setName(data.name || '');
-        setLocation(data.location || '');
-        setFavouriteTeam(data.favouriteTeam || '');
+      const docRef = doc(db, "profiles", user.uid);
+      const snap = await getDoc(docRef);
+
+      if (snap.exists()) {
+        const data = snap.data() as any;
+        setName(data.name || "");
+        setLocation(data.location || "");
+        setFavouriteTeam(data.favouriteTeam || "");
         setImage(data.imageUrl || null);
-      }
-    };
-
-    const fetchRecentCheckIns = async () => {
-      const user = auth.currentUser;
-      if (!user) return;
-
-      try {
-        const checkInsRef = collection(db, "profiles", user.uid, "checkins");
-        const q = query(checkInsRef, orderBy("timestamp", "desc"));
-        const snapshot = await getDocs(q);
-
-        const checkIns = await Promise.all(
-          snapshot.docs.map(async (d) => {
-              const data = d.data();
-              const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
-
-              // add chirp check here, not after fetchRecentCheckIns()
-              const chirpsRef = collection(db, "profiles", user.uid, "checkins", d.id, "chirps");
-              const chirpSnap = await getDocs(chirpsRef);
-              const hasChirps = chirpSnap.size > 0;
-
-              return { id: d.id, ...data, cheerCount, cheerNames, hasChirps };
-            })
-          );
-
-        // ✅ now restore this line
-        setRecentCheckIns(checkIns);
-
-        // Unique arenas visited (by league+arenaName)
-        const arenaKeys = new Set(
-          checkIns.map((ci: any) => `${norm(ci.league)}|${norm(ci.arenaName)}`)
-        );
-        setArenasVisited(arenaKeys.size);
-
-        // Unique teams watched (both sides)
-        const teamSet = new Set<string>();
-        checkIns.forEach((ci: any) => {
-          if (ci.teamName) teamSet.add(norm(ci.teamName));
-          if (ci.opponent) teamSet.add(norm(ci.opponent));
-        });
-        setTeamsWatched(teamSet.size);
-
-        // Top 3 most watched teams (overall)
-        const teamCounts: Record<string, number> = {};
-        checkIns.forEach((ci: any) => {
-          if (ci.teamName) teamCounts[ci.teamName] = (teamCounts[ci.teamName] || 0) + 1;
-          if (ci.opponent) teamCounts[ci.opponent] = (teamCounts[ci.opponent] || 0) + 1;
-        });
-        const topTeams = Object.keys(teamCounts)
-          .map(k => ({ team: k, count: teamCounts[k] }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 3);
-        setMostWatchedTeams(topTeams);
-
-        // Most visited arena (single)
-        const rinkCounts: Record<string, number> = {};
-        checkIns.forEach((ci: any) => {
-          if (ci.arenaName) rinkCounts[ci.arenaName] = (rinkCounts[ci.arenaName] || 0) + 1;
-        });
-        const topArena = Object.keys(rinkCounts)
-          .map(k => ({ arena: k, count: rinkCounts[k] }))
-          .sort((a, b) => b.count - a.count)[0];
-        setMostVisitedArena(topArena || null);
-
-        // Build Teams by League structure for collapsible
-        const perLeague: Record<string, Record<string, number>> = {};
-        checkIns.forEach((ci: any) => {
-          const league = (ci.league || 'Unknown League').toString();
-          if (!perLeague[league]) perLeague[league] = {};
-          const bump = (teamName: any) => {
-            const pretty = (teamName ?? '').toString().trim();
-            if (!pretty) return;
-            perLeague[league][pretty] = (perLeague[league][pretty] || 0) + 1;
-          };
-          bump(ci.teamName || ci.teamCode);
-          bump(ci.opponent || ci.opponentCode);
-        });
-        setTeamsByLeague(perLeague);
-      } catch (error) {
-        console.error('Error fetching check-ins:', error);
+        setImageUrl(data.imageUrl || null);
       }
     };
 
     fetchProfile();
-    fetchRecentCheckIns();
+
+    const user = auth.currentUser;
+    if (!user) return;
+
+    const checkInsRef = collection(db, "profiles", user.uid, "checkins");
+    const q = query(checkInsRef, orderBy("timestamp", "desc")
+    );
+
+    const unsub = onSnapshot(q, async (snapshot) => {
+      const checkIns = await Promise.all(
+        snapshot.docs.map(async (d) => {
+          const data = d.data();
+
+          const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
+
+          const chirpsRef = collection(
+            db,
+            "profiles",
+            user.uid,
+            "checkins",
+            d.id,
+            "chirps"
+          );
+          const chirpSnap = await getDocs(chirpsRef);
+          const hasChirps = chirpSnap.size > 0;
+
+          return {
+            id: d.id,
+            ...data,
+            cheerCount,
+            cheerNames,
+            hasChirps,
+            newChirpText: "",
+          };
+        })
+      );
+
+      // 🔥 Sort newest game to oldest game
+      checkIns.sort((a, b) => {
+        const da = a.gameDate ? new Date(a.gameDate).getTime() : 0;
+        const db = b.gameDate ? new Date(b.gameDate).getTime() : 0;
+        return db - da;
+      });
+
+      setRecentCheckIns(checkIns);
+      recalcStats(checkIns);
+    });
+
+    return () => unsub();
   }, []);
-
   const toggleLeague = (league: string) => {
-    setExpandedLeagues(prev => ({ ...prev, [league]: !prev[league] }));
+    setExpandedLeagues((prev) => ({ ...prev, [league]: !prev[league] }));
   };
 
-  const cheerCount = 0;
-  const cheerNames: string[] = [];
-
-  const [visibleCheerList, setVisibleCheerList] = useState<string | null>(null);
   const toggleCheerList = (id: string) => {
-    setVisibleCheerList(prev => (prev === id ? null : id));
+    setVisibleCheerList((prev) => (prev === id ? null : id));
   };
 
+  function recalcStats(checkIns: any[]) {
+    const rinkCounts: Record<string, number> = {};
+    checkIns.forEach(ci => {
+      const key = norm(ci.arenaName);
+      if (key) rinkCounts[key] = (rinkCounts[key] || 0) + 1;
+    });
 
+    let topArena = null;
+    let maxCount = 0;
+    checkIns.forEach(ci => {
+      const key = norm(ci.arenaName);
+      const count = rinkCounts[key] || 0;
+      if (count > maxCount) {
+        maxCount = count;
+        topArena = { arena: ci.arenaName || ci.arena, count };
+      }
+    });
+    setMostVisitedArena(topArena);
+
+    const arenaKeys = new Set(
+      checkIns.map(ci => `${norm(ci.league)}|${norm(ci.arenaName)}`)
+    );
+    setArenasVisited(arenaKeys.size);
+
+    const teamSet = new Set<string>();
+    checkIns.forEach(ci => {
+      if (ci.teamName) teamSet.add(norm(ci.teamName));
+      if (ci.opponent) teamSet.add(norm(ci.opponent));
+    });
+    setTeamsWatched(teamSet.size);
+
+    const teamCounts: Record<string, number> = {};
+    checkIns.forEach(ci => {
+      if (ci.teamName) teamCounts[ci.teamName] = (teamCounts[ci.teamName] || 0) + 1;
+      if (ci.opponent) teamCounts[ci.opponent] = (teamCounts[ci.opponent] || 0) + 1;
+    });
+    const topTeams = Object.keys(teamCounts)
+      .map(k => ({ team: k, count: teamCounts[k] }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3);
+    setMostWatchedTeams(topTeams);
+
+    const perLeague: Record<string, Record<string, number>> = {};
+    checkIns.forEach(ci => {
+      const league = (ci.league || "Unknown League").toString();
+      if (!perLeague[league]) perLeague[league] = {};
+      const bump = (teamName: any) => {
+        const pretty = (teamName ?? "").toString().trim();
+        if (!pretty) return;
+        perLeague[league][pretty] =
+          (perLeague[league][pretty] || 0) + 1;
+      };
+      bump(ci.teamName);
+      bump(ci.opponent);
+    });
+    setTeamsByLeague(perLeague);
+  }
 
   return (
     <ImageBackground
@@ -299,12 +285,11 @@ export default function ProfileScreen() {
       style={styles.background}
       resizeMode="cover"
     >
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.innerContainer}>
             <Text style={styles.header}>Your Profile</Text>
 
-            {/* Profile Info */}
             <View style={styles.section}>
               <Image
                 source={image ? { uri: image } : require('@/assets/images/icon.png')}
@@ -345,7 +330,6 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Arenas Visited + Teams Watched side-by-side (separate boxes) */}
             <View style={styles.statsRow}>
               <View style={styles.statSection}>
                 <Text style={styles.sectionTitle}>Arenas Visited</Text>
@@ -357,7 +341,6 @@ export default function ProfileScreen() {
               </View>
             </View>
 
-            {/* Most Watched Teams */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Most Watched Teams</Text>
               {mostWatchedTeams.length === 0 ? (
@@ -371,7 +354,6 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Most Visited Arena */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Most Visited Arena</Text>
               {mostVisitedArena ? (
@@ -384,11 +366,8 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Collapsible: Leagues -> Teams Seen (hidden until expanded) */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Teams Seen</Text>
-
-              {/* Root: "Leagues" row */}
               <TouchableOpacity
                 onPress={() => setLeaguesExpanded(!leaguesExpanded)}
                 style={styles.collapseHeader}
@@ -398,12 +377,11 @@ export default function ProfileScreen() {
                 </Text>
               </TouchableOpacity>
 
-              {/* Level 1: leagues list (only when root expanded) */}
               {leaguesExpanded && (
-                <View style={{ marginTop: 8 }}>
+                <View style={styles.leaguesList}>
                   {Object.keys(teamsByLeague)
                     .sort()
-                    .map(league => {
+                    .map((league) => {
                       const isOpen = !!expandedLeagues[league];
                       const teamCount = Object.keys(teamsByLeague[league] || {}).length;
                       return (
@@ -417,11 +395,10 @@ export default function ProfileScreen() {
                             </Text>
                           </TouchableOpacity>
 
-                          {/* Level 2: teams list (only when league expanded) */}
                           {isOpen && (
                             <View style={styles.teamList}>
                               {Object.entries(teamsByLeague[league])
-                                .sort((a, b) => b[1] - a[1]) // sort by count desc
+                                .sort((a, b) => b[1] - a[1])
                                 .map(([team, count]) => (
                                   <Text key={`${league}-${team}`} style={styles.teamRowText}>
                                     {team}: {count} {count === 1 ? 'time' : 'times'}
@@ -436,15 +413,14 @@ export default function ProfileScreen() {
               )}
             </View>
 
-            {/* Check-ins */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Check-ins</Text>
               {recentCheckIns.length === 0 ? (
                 <Text style={styles.placeholder}>No check-ins yet.</Text>
               ) : (
                 recentCheckIns.map((checkIn) => {
-                  const arena = (arenasData as any[]).find(
-                    (a: any) => a.arena === checkIn.arenaName || a.arena === checkIn.arena
+                  const arena = arenasData.find(
+                    (a) => a.arena === checkIn.arenaName || a.arena === checkIn.arena
                   );
                   const bgColor = arena?.colorCode ? arena.colorCode + '22' : '#ffffff';
 
@@ -453,143 +429,107 @@ export default function ProfileScreen() {
                       key={checkIn.id}
                       style={[
                         styles.checkinCard,
-                        {
-                          borderLeftColor: arena?.colorCode || '#6B7280',
-                          backgroundColor: bgColor, // faded arena color
-                        },
+                        { borderLeftColor: arena?.colorCode || '#6B7280', backgroundColor: bgColor },
                       ]}
                       onPress={() =>
-                        router.push({
-                          pathname: '/checkin/[checkinId]',
-                          params: { checkinId: checkIn.id, userId: auth.currentUser?.uid },
-                        })
+                        router.push(`/checkin/${checkIn.id}?userId=${auth.currentUser?.uid}`)
                       }
                     >
-                      {/* League Badge */}
-                      <View
-                        style={[
-                          styles.leagueBadge,
-                          { borderColor: arena?.colorCode || '#0A2940' },
-                        ]}
-                      >
-                        <Text style={[
-                            styles.leagueBadgeText,
-                            { color: arena?.colorCode || '#0A2940' },
-                          ]}
-                        >
-                          {checkIn.league}
-                        </Text>
+                      <View style={styles.arenaHeaderRow}>
+                        <Image
+                          source={
+                            leagueLogos[
+                              leagues.find(l =>
+                                (l.league || '').toUpperCase() === (checkIn.league || '').toUpperCase()
+                              )?.logoFileName || 'placeholder.png'
+                            ]
+                          }
+                          style={styles.leaguePuck}
+                          resizeMode="contain"
+                        />
+                        <Text style={styles.arenaTextInline}>{checkIn.arenaName || checkIn.arena}</Text>
                       </View>
 
-                      <Text style={styles.arenaText}>
-                        {checkIn.arenaName || checkIn.arena}
-                      </Text>
-                      <Text style={styles.teamsText}>
-                        {checkIn.teamName} vs {checkIn.opponent}
-                      </Text>
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          marginTop: 6,
-                        }}
-                      >
+                      {/* Matchup */}
+                      {(checkIn.teamName || checkIn.opponent) && (
+                        <Text style={styles.sub}>
+                          {checkIn.teamName && checkIn.opponent
+                            ? `${checkIn.teamName} VS ${checkIn.opponent}`
+                            : checkIn.teamName || checkIn.opponent}
+                        </Text>
+                      )}
+
+                      <View style={styles.dateAndCheerRow}>
+                        {/* Date below matchup */}
                         <Text style={styles.dateText}>
-                          {checkIn.timestamp?.seconds
-                            ? new Date(checkIn.timestamp.seconds * 1000).toLocaleDateString()
+                          {checkIn.gameDate
+                            ? checkIn.checkinType === "manual"
+                              ? new Date(checkIn.gameDate).toLocaleDateString()       // manual = date only
+                              : new Date(checkIn.gameDate).toLocaleString()           // live = date + time
                             : ""}
                         </Text>
 
+                        {/* Cheers */}
                         {checkIn.cheerCount > 0 && (
-                          <View style={{ alignSelf: "flex-start", marginBottom: 2 }}>
-                            <TouchableOpacity
-                              onPress={() => toggleCheerList(checkIn.id)}
-                              activeOpacity={0.7}
-                            >
-                              <View style={{ position: "relative", width: 26, height: 26 }}>
-                                <Text style={{ fontSize: 22 }}>🎉</Text>
-                                <View
-                                  style={{
-                                    position: "absolute",
-                                    top: -6,
-                                    right: -8,
-                                    backgroundColor: "#0A2940",
-                                    borderRadius: 10,
-                                    paddingHorizontal: 4,
-                                    paddingVertical: 1,
-                                    minWidth: 16,
-                                    alignItems: "center",
-                                  }}
-                                >
-                                  <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>
-                                    {checkIn.cheerCount}
-                                  </Text>
+                          <View style={styles.cheerWrapper}>
+                            <TouchableOpacity onPress={() => toggleCheerList(checkIn.id)} activeOpacity={0.7}>
+                              <View style={styles.cheerBadgeContainer}>
+                                <Text style={{ fontSize: 16 }}>🎉</Text>
+                                <View style={styles.cheerCountBadge}>
+                                  <Text style={styles.cheerCountText}>{checkIn.cheerCount}</Text>
                                 </View>
                               </View>
                             </TouchableOpacity>
+                            {visibleCheerList === checkIn.id && (
+                              <Text style={styles.cheerNamesText}>{checkIn.cheerNames.join(', ')}</Text>
+                            )}
                           </View>
                         )}
                       </View>
-                      <ChirpsSection userId={auth.currentUser?.uid!} checkinId={checkIn.id} />
 
-                      {/* allow replying only if chirps exist */}
                       {checkIn.hasChirps && (
-                        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6 }}>
-                          <TextInput
-                            placeholder="Reply to this chirp..."
-                            placeholderTextColor="#666"
-                            style={{
-                              flex: 1,
-                              borderWidth: 1,
-                              borderColor: "#ccc",
-                              borderRadius: 6,
-                              paddingHorizontal: 8,
-                              paddingVertical: 6,
-                              fontSize: 14,
-                              color: "#0A2940",
-                            }}
-                            value={checkIn.newChirpText}
-                            onChangeText={(t) =>
-                              setRecentCheckIns((prev) =>
-                                prev.map((ci) =>
-                                  ci.id === checkIn.id ? { ...ci, newChirpText: t } : ci
+                        <View style={styles.chirpSectionWrapper}>
+                          <ChirpsSection userId={auth.currentUser?.uid!} checkinId={checkIn.id} />
+
+                          <View style={styles.chirpReplyRow}>
+                            <TextInput
+                              placeholder="Reply to this chirp..."
+                              placeholderTextColor="#999"
+                              style={styles.chirpInput}
+                              value={checkIn.newChirpText || ''}
+                              onChangeText={(t) =>
+                                setRecentCheckIns((prev) =>
+                                  prev.map((ci) =>
+                                    ci.id === checkIn.id ? { ...ci, newChirpText: t } : ci
+                                  )
                                 )
-                              )
-                            }
-                          />
-                          <TouchableOpacity
-                            onPress={async () => {
-                              const text = checkIn.newChirpText?.trim();
-                              if (!text) return;
-                              const user = auth.currentUser;
-                              const chirpsRef = collection(
-                                db,
-                                "profiles",
-                                user.uid,
-                                "checkins",
-                                checkIn.id,
-                                "chirps"
-                              );
-                              await setDoc(doc(chirpsRef), {
-                                text,
-                                userName: name || "Anonymous",
-                                userImage: image || null, // use current user’s profile photo
-                                timestamp: new Date(),
-                              });
-                              setRecentCheckIns((prev) =>
-                                prev.map((ci) =>
-                                  ci.id === checkIn.id ? { ...ci, newChirpText: "" } : ci
-                                )
-                              );
-                            }}
-                            style={{ marginLeft: 8 }}
-                          >
-                            <Text style={{ color: "#0A2940", fontWeight: "700" }}>Chirp</Text>
-                          </TouchableOpacity>
+                              }
+                            />
+                            <TouchableOpacity
+                              onPress={async () => {
+                                const text = checkIn.newChirpText?.trim();
+                                if (!text) return;
+                                const user = auth.currentUser;
+                                const chirpsRef = collection(db, 'profiles', user.uid, 'checkins', checkIn.id, 'chirps');
+                                await setDoc(doc(chirpsRef), {
+                                  text,
+                                  userName: name || 'Anonymous',
+                                  userImage: imageUrl || null,
+                                  timestamp: new Date(),
+                                });
+                                setRecentCheckIns((prev) =>
+                                  prev.map((ci) =>
+                                    ci.id === checkIn.id ? { ...ci, newChirpText: '' } : ci
+                                  )
+                                );
+                              }}
+                              style={styles.chirpSendButton}
+                            >
+                              <Text style={styles.chirpSendText}>Chirp</Text>
+                            </TouchableOpacity>
+                          </View>
                         </View>
                       )}
-
                     </TouchableOpacity>
                   );
                 })
@@ -603,18 +543,27 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+  },
   innerContainer: {
     paddingTop: 40,
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
-  background: { flex: 1, width: '100%', height: '100%' },
-  scrollContainer: { flexGrow: 1 },
   header: {
     fontSize: 34,
     fontWeight: 'bold',
     color: '#0D2C42',
-    marginTop: -20,
+    marginTop: 10,
     marginBottom: 15,
     textAlign: 'center',
     textShadowColor: '#ffffff',
@@ -626,18 +575,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.85)',
     borderRadius: 12,
     padding: 12,
+    borderWidth: 4,
+    borderColor: '#0D2C42',
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '700',    // bold titles
+    fontWeight: '700',
     color: '#1E3A8A',
     marginBottom: 8,
     textAlign: 'center',
   },
-  placeholder: { fontSize: 16, color: '#374151', textAlign: 'center' },
-  cardText: { fontSize: 16, color: '#0A2940', textAlign: 'center' },
+  placeholder: {
+    fontSize: 16,
+    color: '#374151',
+    textAlign: 'center',
+  },
+  cardText: {
+    fontSize: 16,
+    color: '#0A2940',
+    textAlign: 'center',
+  },
   cardTextBold: {
-    fontSize: 26,          // bigger number
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#0A2940',
     textAlign: 'center',
@@ -668,9 +627,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
-  smallButtonText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-
-  // side-by-side stat cards
+  smallButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
   statsRow: {
     flexDirection: 'row',
     gap: 8,
@@ -680,12 +641,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(255,255,255,0.85)',
     borderRadius: 12,
-    paddingVertical: 20,   // more vertical padding
+    paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 4,
+    borderColor: '#0D2C42',
   },
-
-  // collapsible styles
   collapseHeader: {
     backgroundColor: '#E0E7FF',
     paddingVertical: 8,
@@ -697,6 +658,9 @@ const styles = StyleSheet.create({
     color: '#1E3A8A',
     fontSize: 16,
     fontWeight: '600',
+  },
+  leaguesList: {
+    marginTop: 8,
   },
   leagueBlock: {
     marginTop: 8,
@@ -720,9 +684,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     gap: 6,
   },
-  teamRowText: {
-    color: '#2F4F68',
-    fontSize: 14,
+
+
+
+
+
+  arenaHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  arenaText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0D2C42',
+    marginBottom: 4,
+  },
+  arenaTextInline: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0D2C42',
+    flex: 1,
   },
   checkinCard: {
     padding: 14,
@@ -735,34 +717,127 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 2,
   },
-  arenaText: {
-    fontSize: 16,
+  chirpAvatar: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    marginRight: 6,
+  },
+  chirpAvatarPlaceholder: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: '#ccc',
+    marginRight: 6,
+  },
+  cheerBadgeContainer: {
+    position: 'relative',
+    alignItems: 'center',
+  },
+  cheerCountBadge: {
+    position: 'absolute',
+    top: -6,
+    right: -8,
+    backgroundColor: '#0A2940',
+    borderRadius: 10,
+    paddingHorizontal: 4,
+    paddingVertical: 1,
+    minWidth: 16,
+  },
+  cheerCountText: {
+    color: '#fff',
+    fontSize: 10,
     fontWeight: '700',
-    color: '#0D2C42',
+  },
+  chirpInput: {
+    flex: 1,
+    borderWidth: 1.5,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    fontSize: 14,
+    backgroundColor: '#fff',
+    color: '#0A2940',
+  },
+  chirpItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 4,
+  },
+  cheerNamesText: {
+    fontSize: 12,
+    color: '#2F4F68',
+    fontWeight: '600',
+    marginTop: 2,
+    textAlign: 'center',
+  },
+  chirpReplyRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  chirpsSection: {
+    marginTop: 8,
+    paddingHorizontal: 6,
+  },
+  chirpSectionWrapper: {
+    marginTop: 12,
+    padding: 12,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+    borderRadius: 12,
+  },
+  chirpSendButton: {
+    marginLeft: 8,
+    backgroundColor: '#0A2940',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  chirpSendText: {
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: 14,
+  },
+  chirpText: {
+    color: '#0A2940',
+    flexShrink: 1,
+  },
+  chirpTextContainer: {
+    flex: 1,
+  },
+  chirpUsername: {
+    fontWeight: '700',
+    color: '#0A2940',
+  },
+  cheerWrapper: {
+    alignItems: 'flex-end',
+  },
+  dateAndCheerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 6,
+  },
+  dateText: {
+    fontSize: 14,
+    color: '#2F4F68',
+    textAlign: 'center',
+    marginBottom: 6,
+  },
+  leaguePuck: {
+    width: 28,
+    height: 28,
+    marginRight: 8,
+  },
+  teamRowText: {
+    color: '#2F4F68',
+    fontSize: 14,
   },
   teamsText: {
     fontSize: 14,
     fontWeight: '500',
     color: '#2F4F68',
-    marginBottom: 6,
-  },
-  dateText: {
-    fontSize: 12,
-    color: '#6B7280',
-    textAlign: 'right',
-  },
-  leagueBadge: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 6,
-    marginBottom: 6,
-    borderWidth: 1.5, // outlined instead of filled
-    backgroundColor: 'transparent',
-  },
-  leagueBadgeText: {
-    fontSize: 12,
-    fontWeight: '600',
   },
 });

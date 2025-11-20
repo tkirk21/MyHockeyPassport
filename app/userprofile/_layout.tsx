@@ -7,7 +7,7 @@ export default function UserProfileLayout() {
     <Stack
       screenOptions={{
         headerShown: true,
-        headerTitle: 'Profile',
+        headerTitle: '',
         headerStyle: { backgroundColor: '#ECECEC' },
         headerTintColor: '#0D2C42',
         headerTitleAlign: 'center',
