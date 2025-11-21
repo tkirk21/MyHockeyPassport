@@ -323,7 +323,7 @@ export default function LiveCheckInScreen() {
         </View>
 
         <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-          <Text style={styles.submitText}>Submit Live Check-In</Text>
+          <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
@@ -331,8 +331,13 @@ export default function LiveCheckInScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: { flex: 1, backgroundColor: '#fff' },
-  scrollContainer: { padding: 16 },
+  background: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  scrollContainer: {
+    padding: 16,
+  },
   section: {
     backgroundColor: 'rgba(255,255,255,0.95)',
     borderRadius: 12,
@@ -341,24 +346,122 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
   },
-  title: { fontSize: 24, fontWeight: 'bold', color: '#0D2C42', textAlign: 'center', marginBottom: 12 },
-  label: { fontSize: 16, fontWeight: '600', color: '#1E3A8A', marginTop: 8 },
-  value: { fontSize: 16, color: '#0A2940', marginBottom: 4 },
-  input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginTop: 8, backgroundColor: '#fff' },
-  photo: { width: '100%', height: 200, borderRadius: 8, marginTop: 10 },
-  choiceRow: { flexDirection: 'row', marginTop: 8 },
-  choiceButton: { flex: 1, borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 10, marginHorizontal: 4, alignItems: 'center' },
-  choiceButtonSelected: { backgroundColor: '#0A2940', borderColor: '#0A2940' },
-  choiceButtonText: { color: '#fff' },
-  submitButton: { backgroundColor: '#0A2940', borderRadius: 10, padding: 14, marginTop: 10, alignItems: 'center' },
-  submitText: { color: '#fff', fontSize: 18, fontWeight: '600' },
-  checkboxRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
-  checkboxLabel: { marginLeft: 8, fontSize: 16, textTransform: 'capitalize' },
-  categoryContainer: { marginBottom: 12, borderBottomWidth: 1, borderBottomColor: '#ccc', paddingBottom: 8 },
-  categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 6 },
-  categoryTitle: { fontSize: 16, fontWeight: 'bold' },
-  fallback: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  fallbackText: { fontSize: 18, color: '#333', textAlign: 'center', marginBottom: 20 },
-  backButton: { backgroundColor: '#0A2940', paddingVertical: 12, paddingHorizontal: 24, borderRadius: 6 },
-  backButtonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#0D2C42',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1E3A8A',
+    marginTop: 8,
+  },
+  value: {
+    fontSize: 16,
+    color: '#0A2940',
+    marginBottom: 4,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 8,
+    backgroundColor: '#fff',
+  },
+  photo: {
+    width: '100%',
+    height: 200,
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  choiceRow: {
+    flexDirection: 'row',
+    marginTop: 8,
+  },
+  choiceButton: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    marginHorizontal: 4,
+    alignItems: 'center',
+  },
+  choiceButtonSelected: {
+    backgroundColor: '#0A2940',
+    borderColor: '#0A2940',
+  },
+  choiceButtonText: {
+    color: '#0A2940',
+    fontSize: 16,
+  },
+  submitButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginTop: 28,
+    width: '50%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+  },
+  submitText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  checkboxLabel: {
+    marginLeft: 8,
+    fontSize: 16,
+    textTransform: 'capitalize',
+  },
+  categoryContainer: {
+    marginBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    paddingBottom: 8,
+  },
+  categoryHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 6,
+  },
+  categoryTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  fallback: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  fallbackText: {
+    fontSize: 18,
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  backButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
+  },
+  backButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });

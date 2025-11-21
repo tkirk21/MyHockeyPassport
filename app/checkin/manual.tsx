@@ -177,7 +177,7 @@ const ManualCheckIn = () => {
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
   }, [gameDate]);
 
-  // League → arena dropdown WITH ARENA HISTORY SUPPORT
+  // League → set both arenas & teams
   useEffect(() => {
     if (!selectedLeague) return;
 
@@ -225,10 +225,16 @@ const ManualCheckIn = () => {
 
     setArenaItems(arenaList);
 
-    // 4. HOMETEAMS (unchanged logic)
-    const uniqueTeams = Array.from(
-      new Set(filtered.map(a => a.teamName))
-    ).sort();
+    // 4. HOMETEAMS — NOW FILTERED BY DATE USING startDate/endDate
+    const validTeams = filtered.filter(team => {
+      const start = team.startDate ? new Date(team.startDate) : new Date(0);
+      const end = team.endDate ? new Date(team.endDate) : null;
+
+      return selectedDate >= start && (!end || selectedDate <= end);
+    });
+
+    const uniqueTeams = Array.from(new Set(validTeams.map(a => a.teamName)))
+      .sort();
 
     setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
 
@@ -271,11 +277,20 @@ const ManualCheckIn = () => {
     }
   }, [selectedHomeTeam, selectedLeague, arenas]);
 
-  // Home Team → Opponents (unchanged)
+  // Home Team → Opponents (with date filter)
   useEffect(() => {
-    if (selectedHomeTeam && selectedLeague && arenas.length > 0) {
+    if (selectedHomeTeam && selectedLeague && arenas.length > 0 && gameDate) {
+      const gameDateObj = new Date(gameDate);
+
       const opponentOptions = arenas
-        .filter(item => item.league === selectedLeague && item.teamName !== selectedHomeTeam)
+        .filter(item => {
+          if (item.league !== selectedLeague || item.teamName === selectedHomeTeam) return false;
+
+          const start = item.startDate ? new Date(item.startDate) : new Date(0); // very early if no start
+          const end = item.endDate ? new Date(item.endDate) : new Date(9999, 11, 31); // future if null
+
+          return gameDateObj >= start && gameDateObj <= end;
+        })
         .map(item => ({
           label: item.teamName,
           value: item.teamName,
@@ -287,8 +302,10 @@ const ManualCheckIn = () => {
 
       setOpponentItems(uniqueOpponents);
       setSelectedOpponent(null);
+    } else {
+      setOpponentItems([]);
     }
-  }, [selectedHomeTeam, selectedLeague, arenas]);
+  }, [selectedHomeTeam, selectedLeague, arenas, gameDate]);
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -350,6 +367,7 @@ const ManualCheckIn = () => {
         ListEmptyComponent={() => (
           <Text style={{ padding: 20, textAlign: "center", color: "#666" }}>
             Try selecting League first!
+            What if you don't Know the Arena name? Try select Home team
           </Text>
         )}
       />
@@ -634,9 +652,11 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 10,
     marginTop: 28,
+    width: '50%',
+    alignSelf: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: "#ffffff44",
+    borderWidth: 2,
+    borderColor: '#2F4F68',
   },
   submitText: {
     color: '#FFFFFF',

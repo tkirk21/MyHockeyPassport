@@ -178,62 +178,143 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
   }, [gameDate]);
 
-  // League → set both arenas & teams
+  // League + Date → populate arenas & teams with correct historical names + date filter
   useEffect(() => {
-    if (selectedLeague) {
-      const filtered = arenas.filter(a => a.league === selectedLeague);
-
-      const uniqueArenas = Array.from(new Set(filtered.map(a => a.arena))).sort();
-      setArenaItems(uniqueArenas.map(a => ({ label: a, value: a })));
-
-      const uniqueTeams = Array.from(new Set(filtered.map(a => a.teamName))).sort();
-      setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
-
-      // No reset, since we're pre-populating
+    if (!selectedLeague) {
+      setArenaItems([]);
+      setHomeTeamItems([]);
+      return;
     }
-  }, [selectedLeague]);
 
-  // Arena → filter Home Teams
+    const date = gameDate;
+
+    // --- Arenas (with historical names) ---
+    const arenaOptions: any[] = [];
+
+    // Historical names
+    for (const h of arenaHistoryData) {
+      if (h.league !== selectedLeague) continue;
+      const active = h.history.find(entry => {
+        const from = new Date(entry.from);
+        const to = entry.to ? new Date(entry.to) : null;
+        return date >= from && (to === null || date <= to);
+      });
+      if (active) arenaOptions.push({ label: active.name, value: active.name });
+    }
+
+    // Current names (unless overridden)
+    for (const a of arenasData) {
+      if (a.league !== selectedLeague) continue;
+      const overridden = arenaHistoryData.some(h => {
+        if (h.league !== selectedLeague || h.currentArena !== a.arena) return false;
+        return h.history.some(entry => {
+          const from = new Date(entry.from);
+          const to = entry.to ? new Date(entry.to) : null;
+          return date >= from && (to === null || date <= to) && entry.name !== a.arena;
+        });
+      });
+      if (!overridden) arenaOptions.push({ label: a.arena, value: a.arena });
+    }
+
+    const uniqueArenas = Array.from(new Map(arenaOptions.map(i => [i.value, i])).values())
+      .sort((a, b) => a.label.localeCompare(b.label));
+    setArenaItems(uniqueArenas);
+
+    // --- Home Teams (filtered by startDate/endDate) ---
+    const validTeams = arenas.filter(team => {
+      if (team.league !== selectedLeague) return false;
+      const start = team.startDate ? new Date(team.startDate) : new Date(0);
+      const end = team.endDate ? new Date(team.endDate) : null;
+      return date >= start && (!end || date <= end);
+    });
+
+    const uniqueTeams = Array.from(new Set(validTeams.map(a => a.teamName)))
+      .sort();
+    setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
+
+  }, [selectedLeague, gameDate]);
+
+  // Arena selected → set correct Home Team (works with historical names)
   useEffect(() => {
-    if (selectedArena && selectedLeague && arenas.length > 0) {
-      const teamsAtArena = arenas
-        .filter(item => item.arena === selectedArena && item.league === selectedLeague)
-        .map(item => ({ label: item.teamName, value: item.teamName }))
-        .sort((a, b) => a.label.localeCompare(b.label));
+    if (!selectedArena || !selectedLeague) return;
 
-      setHomeTeamItems(teamsAtArena);
+    const historical = arenaHistoryData.find(h =>
+      h.league === selectedLeague &&
+      h.history.some(entry => entry.name === selectedArena)
+    );
+
+    let teamName = null;
+
+    if (historical) {
+      const current = arenasData.find(a => a.arena === historical.currentArena && a.league === selectedLeague);
+      teamName = current?.teamName;
+    } else {
+      const current = arenasData.find(a => a.arena === selectedArena && a.league === selectedLeague);
+      teamName = current?.teamName;
     }
-  }, [selectedArena, selectedLeague, arenas]);
 
-  // Home Team → filter Arenas
+    if (teamName) {
+      setHomeTeamItems([{ label: teamName, value: teamName }]);
+      setSelectedHomeTeam(teamName);
+    } else {
+      setHomeTeamItems([]);
+      setSelectedHomeTeam(null);
+    }
+  }, [selectedArena, selectedLeague]);
+
+  // Home Team selected → set correct Arena (with historical name)
   useEffect(() => {
-    if (selectedHomeTeam && selectedLeague && arenas.length > 0) {
-      const arenasForTeam = arenas
-        .filter(item => item.league === selectedLeague && item.teamName === selectedHomeTeam)
-        .map(item => ({ label: item.arena, value: item.arena }))
-        .sort((a, b) => a.label.localeCompare(b.label));
+    if (!selectedHomeTeam || !selectedLeague) return;
 
-      setArenaItems(arenasForTeam);
+    const teamEntry = arenasData.find(a => a.teamName === selectedHomeTeam && a.league === selectedLeague);
+    if (!teamEntry) return;
+
+    const date = gameDate;
+
+    const historical = arenaHistoryData.find(h =>
+      h.currentArena === teamEntry.arena && h.league === selectedLeague
+    );
+
+    let correctName = teamEntry.arena;
+
+    if (historical) {
+      const active = historical.history.find(entry => {
+        const from = new Date(entry.from);
+        const to = entry.to ? new Date(entry.to) : null;
+        return date >= from && (to === null || date <= to);
+      });
+      if (active) correctName = active.name;
     }
-  }, [selectedHomeTeam, selectedLeague, arenas]);
 
-  // Home Team → Opponents
+    setArenaItems([{ label: correctName, value: correctName }]);
+    setSelectedArena(correctName);
+  }, [selectedHomeTeam, selectedLeague, gameDate]);
+
+  // Home Team → Opponents (filtered by date)
   useEffect(() => {
-    if (selectedHomeTeam && selectedLeague && arenas.length > 0) {
-      const opponentOptions = arenas
-        .filter(item => item.league === selectedLeague && item.teamName !== selectedHomeTeam)
-        .map(item => ({
-          label: item.teamName,
-          value: item.teamName,
-        }));
-
-      const uniqueOpponents = Array.from(
-        new Map(opponentOptions.map(item => [item.value, item])).values()
-      ).sort((a, b) => a.label.localeCompare(b.label));
-
-      setOpponentItems(uniqueOpponents);
+    if (!selectedHomeTeam || !selectedLeague || !gameDate) {
+      setOpponentItems([]);
+      return;
     }
-  }, [selectedHomeTeam, selectedLeague, arenas]);
+
+    const date = new Date(gameDate);
+
+    const opponents = arenas
+      .filter(item => {
+        if (item.league !== selectedLeague || item.teamName === selectedHomeTeam) return false;
+
+        const start = item.startDate ? new Date(item.startDate) : new Date(0);
+        const end = item.endDate ? new Date(item.endDate) : null;
+
+        return date >= start && (!end || date <= end);
+      })
+      .map(item => ({ label: item.teamName, value: item.teamName }));
+
+    const unique = Array.from(new Map(opponents.map(i => [i.value, i])).values())
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    setOpponentItems(unique);
+  }, [selectedHomeTeam, selectedLeague, gameDate]);
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
