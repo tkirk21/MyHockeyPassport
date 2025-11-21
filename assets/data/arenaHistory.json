@@ -1,0 +1,250 @@
+[
+  {
+    "currentTeam": "Utah Mammoth",
+    "oldTeam": "Utah Hockey Club",
+    "changedOn": "2025-06-01"
+  },
+  {
+    "currentTeam": "Anaheim Ducks",
+    "oldTeam": "Anaheim Mighty Ducks",
+    "changedOn": "2006-06-22"
+  },
+  {
+    "currentTeam": "Anaheim Mighty Ducks",
+    "oldTeam": "Mighty Ducks of Anaheim",
+    "changedOn": "1993-10-08"
+  },
+  {
+    "currentArena": "Honda Center",
+    "teamName": "Anaheim Ducks",
+    "league": "NHL",
+    "history": [
+      { "name": "Pond of Anaheim", "from": "1993-06-17", "to": "1993-10-08" },
+      { "name": "Arrowhead Pond of Anaheim", "from": "1993-10-08", "to": "2006-11-15" },
+      { "name": "Honda Center", "from": "2006-11-16", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Garden",
+    "teamName": "Boston Bruins",
+    "league": "NHL",
+    "history": [
+      { "name": "FleetCenter", "from": "1995-09-30", "to": "2005-03-08" },
+      { "name": "TD Banknorth Garden", "from": "2005-03-09", "to": "2009-07-15" },
+      { "name": "TD Garden", "from": "2009-07-16", "to": null }
+    ]
+  },
+  {
+    "currentArena": "KeyBank Center",
+    "teamName": "Buffalo Sabres",
+    "league": "NHL",
+    "history": [
+      { "name": "Marine Midland Arena", "from": "1996-09-21", "to": "2000-02-29" },
+      { "name": "HSBC Arena", "from": "2000-03-01", "to": "2011-08-31" },
+      { "name": "First Niagara Center", "from": "2011-09-01", "to": "2016-08-31" },
+      { "name": "KeyBank Center", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Scotiabank Saddledome",
+    "teamName": "Calgary Flames",
+    "league": "NHL",
+    "history": [
+      { "name": "Olympic Saddledome", "from": "1983-10-15", "to": "1995-03-14" },
+      { "name": "Canadian Airlines Saddledome", "from": "1995-03-15", "to": "2000-10-05" },
+      { "name": "Pengrowth Saddledome", "from": "2000-10-06", "to": "2010-08-19" },
+      { "name": "Scotiabank Saddledome", "from": "2010-08-20", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Lenovo Center",
+    "teamName": "Carolina Hurricanes",
+    "league": "NHL",
+    "history": [
+      { "name": "Raleigh Entertainment & Sports Arena", "from": "1999-10-29", "to": "2002-09-30" },
+      { "name": "RBC Center", "from": "2002-10-01", "to": "2012-03-15" },
+      { "name": "PNC Arena", "from": "2012-03-16", "to": "2024-08-31" },
+      { "name": "Lenovo Center", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Ball Arena",
+    "teamName": "Colorado Avalanche",
+    "league": "NHL",
+    "history": [
+      { "name": "Pepsi Center", "from": "1999-09-01", "to": "2020-10-21" },
+      { "name": "Ball Arena", "from": "2020-10-22", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Amerant Bank Arena",
+    "teamName": "Florida Panthers",
+    "league": "NHL",
+    "history": [
+      { "name": "National Car Rental Center", "from": "1998-10-09", "to": "2002-09-30" },
+      { "name": "Office Depot Center", "from": "2002-10-01", "to": "2005-09-30" },
+      { "name": "BankAtlantic Center", "from": "2005-10-01", "to": "2012-09-30" },
+      { "name": "BB&T Center", "from": "2012-10-01", "to": "2021-08-31" },
+      { "name": "FLA Live Arena", "from": "2021-09-01", "to": "2023-09-30" },
+      { "name": "Amerant Bank Arena", "from": "2023-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Crypto.com Arena",
+    "teamName": "Los Angeles Kings",
+    "league": "NHL",
+    "history": [
+      { "name": "Staples Center", "from": "1999-10-20", "to": "2021-12-24" },
+      { "name": "Crypto.com Arena", "from": "2021-12-25", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Grand Casino Arena",
+    "teamName": "Minnesota Wild",
+    "league": "NHL",
+    "history": [
+      { "name": "Xcel Energy Center", "from": "2000-10-11", "to": "2025-04-30" },
+      { "name": "Grand Casino Arena", "from": "2025-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Bell Centre",
+    "teamName": "Montreal Canadiens",
+    "league": "NHL",
+    "history": [
+      { "name": "Molson Centre", "from": "1996-02-16", "to": "2002-09-30" },
+      { "name": "Bell Centre", "from": "2002-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Bridgestone Arena",
+    "teamName": "Nashville Predators",
+    "league": "NHL",
+    "history": [
+      { "name": "Nashville Arena", "from": "1998-08-26", "to": "1999-12-31" },
+      { "name": "Gaylord Entertainment Center", "from": "2000-01-01", "to": "2007-05-17" },
+      { "name": "Sommet Center", "from": "2007-05-18", "to": "2009-11-30" },
+      { "name": "Nashville Arena", "from": "2007-01-01", "to": "2007-12-31" },
+      { "name": "Nashville Arena", "from": "2009-01-01", "to": "2010-12-31" },
+      { "name": "Bridgestone Arena", "from": "2010-01-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Canadian Tire Centre",
+    "teamName": "Ottawa Senators",
+    "league": "NHL",
+    "history": [
+      { "name": "The Palladium", "from": "1996-01-17", "to": "1996-02-17" },
+      { "name": "Corel Centre", "from": "1996-02-18", "to": "2006-01-10" },
+      { "name": "Scotiabank Place", "from": "2006-01-11", "to": "2013-07-17" },
+      { "name": "Canadian Tire Centre", "from": "2013-07-18", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Xfinity Mobile Center",
+    "teamName": "Philadelphia Flyers",
+    "league": "NHL",
+    "history": [
+      { "name": "CoreStates Center", "from": "1996-08-31", "to": "1998-09-30" },
+      { "name": "First Union Center", "from": "1998-10-01", "to": "2003-09-30" },
+      { "name": "Wachovia Center", "from": "2003-10-01", "to": "2010-07-26" },
+      { "name": "Wells Fargo Center", "from": "2010-07-27", "to": "2025-12-31" },
+      { "name": "Xfinity Mobile Center", "from": "2026-01-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "PPG Paints Arena",
+    "teamName": "Pittsburgh Penguins",
+    "league": "NHL",
+    "history": [
+      { "name": "Consol Energy Center", "from": "2010-10-07", "to": "2016-09-30" },
+      { "name": "PPG Paints Arena", "from": "2016-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "SAP Center",
+    "teamName": "San Jose Sharks",
+    "league": "NHL",
+    "history": [
+      { "name": "San Jose Arena", "from": "1993-09-01", "to": "2001-09-30" },
+      { "name": "Compaq Center", "from": "2001-10-01", "to": "2002-09-30" },
+      { "name": "HP Pavilion", "from": "2002-10-01", "to": "2013-09-30" },
+      { "name": "SAP Center", "from": "2013-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Enterprise Center",
+    "teamName": "St. Louis Blues",
+    "league": "NHL",
+    "history": [
+      { "name": "Kiel Center", "from": "1994-10-07", "to": "2000-01-31" },
+      { "name": "Savvis Center", "from": "2000-02-01", "to": "2006-06-30" },
+      { "name": "Scottrade Center", "from": "2006-07-01", "to": "2018-05-31" },
+      { "name": "Enterprise Center", "from": "2018-06-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Benchmark International Arena",
+    "teamName": "Tampa Bay Lightning",
+    "league": "NHL",
+    "history": [
+      { "name": "Ice Palace", "from": "1996-10-20", "to": "2002-09-30" },
+      { "name": "St. Pete Times Forum", "from": "2002-10-01", "to": "2012-09-30" },
+      { "name": "Tampa Bay Times Forum", "from": "2012-10-01", "to": "2014-09-30" },
+      { "name": "Amalie Arena", "from": "2014-10-01", "to": "2025-12-31" },
+      { "name": "Benchmark International Arena", "from": "2026-01-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Scotiabank Arena",
+    "teamName": "Toronto Maple Leafs",
+    "league": "NHL",
+    "history": [
+      { "name": "Air Canada Centre", "from": "1999-02-20", "to": "2018-02-05" },
+      { "name": "Scotiabank Arena", "from": "2018-07-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Rogers Arena",
+    "teamName": "Vancouver Canucks",
+    "league": "NHL",
+    "history": [
+      { "name": "General Motors Place", "from": "1995-07-01", "to": "2010-02-27" },
+      { "name": "Canada Hockey Place", "from": "2010-02-28", "to": "2010-03-31" },
+      { "name": "General Motors Place", "from": "2010-04-01", "to": "2010-07-05" },
+      { "name": "Rogers Arena", "from": "2010-07-06", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Rogers Arena",
+    "teamName": "Vancouver Canucks",
+    "league": "NHL",
+    "history": [
+      { "name": "General Motors Place", "from": "1995-07-01", "to": "2010-02-27" },
+      { "name": "Canada Hockey Place", "from": "2010-02-28", "to": "2010-03-31" },
+      { "name": "General Motors Place", "from": "2010-04-01", "to": "2010-07-05" },
+      { "name": "Rogers Arena", "from": "2010-07-06", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Capital One Arena",
+    "teamName": "Washington Capitals",
+    "league": "NHL",
+    "history": [
+      { "name": "MCI Center", "from": "1997-12-02", "to": "2006-01-03" },
+      { "name": "Verizon Center", "from": "2006-01-04", "to": "2017-08-01" },
+      { "name": "Capital One Arena", "from": "2017-08-02", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Canada Life Centre",
+    "teamName": "Winnipeg Jets",
+    "league": "NHL",
+    "history": [
+      { "name": "MTS Centre", "from": "2011-09-16", "to": "2017-05-31" },
+      { "name": "Bell MTS Place", "from": "2017-06-01", "to": "2021-11-01" },
+      { "name": "Canada Life Centre", "from": "2021-11-02", "to": null }
+    ]
+  }
+
+]

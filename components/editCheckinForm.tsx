@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Checkbox from 'expo-checkbox';
-import arenasData from "@/assets/data/arenas.json"; // Adjust path if needed
 import { Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { getFirestore, doc, updateDoc } from 'firebase/firestore';
@@ -12,6 +11,10 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+
+import arenasData from "@/assets/data/arenas.json";
+import historicalTeamsData from '@/assets/data/historicalTeams.json';
+import arenaHistoryData from "@/assets/data/arenaHistory.json";
 
 const db = getFirestore(firebaseApp);
 
@@ -131,11 +134,49 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     }
   };
 
+  // APPLY ARENA NAME HISTORY BASED ON EXISTING CHECK-IN DATE
   useEffect(() => {
-    setArenas(arenasData);
-    const leagues = [...new Set(arenasData.map(item => item.league))];
+    const selectedDate = gameDate;
+
+    const processed = arenasData.map(arena => {
+      const history = arenaHistoryData.find(
+        h =>
+          h.teamName === arena.teamName &&
+          h.league === arena.league
+      );
+
+      if (!history) {
+        return { ...arena, arena: arena.arena };
+      }
+
+      const correct = history.history.find(h => {
+        const from = new Date(h.from);
+        const to = h.to ? new Date(h.to) : null;
+
+        return (
+          selectedDate >= from &&
+          (to === null || selectedDate <= to)
+        );
+      });
+
+      return {
+        ...arena,
+        arena: correct ? correct.name : arena.arena,
+
+        // Keep the modern arena colors even when name changes
+        color: arena.color,
+        colorCode: arena.colorCode,
+        SecondaryColor: arena.SecondaryColor,
+      };
+    });
+
+    const allArenas = [...processed, ...historicalTeamsData];
+
+    setArenas(allArenas);
+
+    const leagues = [...new Set(allArenas.map(a => a.league))];
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
-  }, []);
+  }, [gameDate]);
 
   // League → set both arenas & teams
   useEffect(() => {

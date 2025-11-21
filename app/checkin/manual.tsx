@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Checkbox from 'expo-checkbox';
-import arenasData from '../../assets/data/arenas.json';
 import { Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
@@ -11,6 +10,11 @@ import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/fire
 import firebaseApp from '../../firebaseConfig';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
+import { Stack } from "expo-router";
+
+import arenasData from '../../assets/data/arenas.json';
+import historicalTeamsData from '../../assets/data/historicalTeams.json';
+import arenaHistoryData from '../../assets/data/arenaHistory.json';
 
 const db = getFirestore(firebaseApp);
 
@@ -110,7 +114,7 @@ const ManualCheckIn = () => {
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
-        checkinType: 'manual',
+        checkinType: 'Manual',
         photos: images,
         userId: user.uid,
         timestamp: serverTimestamp(),
@@ -126,28 +130,114 @@ const ManualCheckIn = () => {
     }
   };
 
+  // league dropdown
   useEffect(() => {
-    setArenas(arenasData);
-    const leagues = [...new Set(arenasData.map(item => item.league))];
+    const selectedDate = gameDate;
+
+    const processed = arenasData.map(arena => {
+      const history = arenaHistoryData.find(
+        h =>
+          h.teamName === arena.teamName &&
+          h.league === arena.league
+      );
+
+      // If team has no history → return arena unchanged
+      if (!history) {
+        return { ...arena, arena: arena.arena };
+      }
+
+      // Team HAS history → determine correct name
+      const correct = history.history.find(h => {
+        const from = new Date(h.from);
+        const to = h.to ? new Date(h.to) : null;
+
+        return (
+          selectedDate >= from &&
+          (to === null || selectedDate <= to)
+        );
+      });
+
+      return {
+        ...arena,
+        arena: correct ? correct.name : arena.arena,
+
+        // Keep the modern arena colors even when name changes
+        color: arena.color,
+        colorCode: arena.colorCode,
+        SecondaryColor: arena.SecondaryColor,
+      };
+    });
+
+    // Also include historicalTeamsData unchanged
+    const allArenas = [...processed, ...historicalTeamsData];
+
+    setArenas(allArenas);
+
+    const leagues = [...new Set(allArenas.map(a => a.league))];
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
-  }, []);
+  }, [gameDate]);
 
-  // League → set both arenas & teams
+  // League → arena dropdown WITH ARENA HISTORY SUPPORT
   useEffect(() => {
-    if (selectedLeague) {
-      const filtered = arenas.filter(a => a.league === selectedLeague);
+    if (!selectedLeague) return;
 
-      const uniqueArenas = Array.from(new Set(filtered.map(a => a.arena))).sort();
-      setArenaItems(uniqueArenas.map(a => ({ label: a, value: a })));
+    const selectedDate = gameDate; // <— we use the user's chosen date
 
-      const uniqueTeams = Array.from(new Set(filtered.map(a => a.teamName))).sort();
-      setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
+    // 1. FILTER ARENAS BY LEAGUE
+    let filtered = arenas.filter(a => a.league === selectedLeague);
 
-      setSelectedArena(null);
-      setSelectedHomeTeam(null);
-      setSelectedOpponent(null);
-    }
-  }, [selectedLeague]);
+    // 2. APPLY ARENA HISTORY FILTERING
+    const finalArenaNames = new Set<string>();
+
+    filtered.forEach(arenaItem => {
+      const historyRecord = arenaHistoryData.find(
+        h =>
+          h.teamName === arenaItem.teamName &&
+          h.league === selectedLeague
+      );
+
+      // If this team has NO history → always include the arena
+      if (!historyRecord) {
+        finalArenaNames.add(arenaItem.arena);
+        return;
+      }
+
+      // If the team DOES have history → pick the correct arena version
+      const record = historyRecord.history.find(h => {
+        const from = new Date(h.from);
+        const to = h.to ? new Date(h.to) : null;
+
+        return (
+          selectedDate >= from &&
+          (to === null || selectedDate <= to)
+        );
+      });
+
+      if (record) {
+        finalArenaNames.add(record.name);
+      }
+    });
+
+    // 3. BUILD ARENA DROPDOWN
+    const arenaList = Array.from(finalArenaNames)
+      .sort()
+      .map(a => ({ label: a, value: a }));
+
+    setArenaItems(arenaList);
+
+    // 4. HOMETEAMS (unchanged logic)
+    const uniqueTeams = Array.from(
+      new Set(filtered.map(a => a.teamName))
+    ).sort();
+
+    setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
+
+    // 5. RESET SELECTIONS
+    setSelectedArena(null);
+    setSelectedHomeTeam(null);
+    setSelectedOpponent(null);
+
+  }, [selectedLeague, gameDate]);
 
   // Arena → filter Home Teams
   useEffect(() => {
@@ -220,9 +310,11 @@ const ManualCheckIn = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Manual Check-In</Text>
-
+    <ScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="handled"
+    >
+      <Stack.Screen options={{ title: "Manual Check-In" }} />
       <Text style={styles.label}>Game Date:</Text>
       <TouchableOpacity
         onPress={() => setShowDatePicker(true)}
@@ -255,6 +347,11 @@ const ManualCheckIn = () => {
         style={styles.dropdown}
         zIndex={4000}
         listMode="SCROLLVIEW"
+        ListEmptyComponent={() => (
+          <Text style={{ padding: 20, textAlign: "center", color: "#666" }}>
+            Try selecting League first!
+          </Text>
+        )}
       />
 
       <DropDownPicker
@@ -268,6 +365,11 @@ const ManualCheckIn = () => {
         style={styles.dropdown}
         zIndex={3000}
         listMode="SCROLLVIEW"
+        ListEmptyComponent={() => (
+          <Text style={{ padding: 20, textAlign: "center", color: "#666" }}>
+            Try selecting League first!
+          </Text>
+        )}
       />
 
       <DropDownPicker
@@ -281,6 +383,11 @@ const ManualCheckIn = () => {
         style={styles.dropdown}
         zIndex={2000}
         listMode="SCROLLVIEW"
+        ListEmptyComponent={() => (
+          <Text style={{ padding: 20, textAlign: "center", color: "#666" }}>
+            Try selecting Home Team first!
+          </Text>
+        )}
       />
 
       <TextInput
@@ -451,7 +558,7 @@ const ManualCheckIn = () => {
       )}
 
       <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-        <Text style={styles.submitText}>Submit Check-In</Text>
+        <Text style={styles.submitText}>Submit</Text>
       </TouchableOpacity>
 
       {showDatePicker && (
@@ -474,19 +581,24 @@ export default ManualCheckIn;
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    paddingBottom: 100,   // ← adds safe space at the bottom
     backgroundColor: '#FFFFFF',
   },
   title: {
-    fontSize: 26,
+    fontSize: 34,
     fontWeight: 'bold',
-    color: '#0A2940',
-    marginBottom: 20,
+    color: '#0D2C42',
+    marginTop: 10,
+    marginBottom: 15,
     textAlign: 'center',
+    textShadowColor: '#ffffff',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
   dropdown: {
     marginBottom: 14,
-    borderColor: '#CBD5E0',
-    borderWidth: 1,
+    borderColor: '#0D2C42',
+    borderWidth: 2,
     borderRadius: 8,
     paddingHorizontal: 8,
   },
@@ -495,11 +607,11 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 18,
     marginBottom: 6,
-    color: '#0A2940',
+    color: '#0D2C42',
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#CBD5E0',
+    borderWidth: 2,
+    borderColor: '#0D2C42',
     borderRadius: 8,
     padding: 12,
     marginBottom: 12,
@@ -514,7 +626,7 @@ const styles = StyleSheet.create({
   checkboxLabel: {
     marginLeft: 10,
     fontSize: 16,
-    color: '#0A2940',
+    color: '#0D2C42',
     textTransform: 'capitalize',
   },
   submitButton: {
@@ -523,6 +635,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 28,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: "#ffffff44",
   },
   submitText: {
     color: '#FFFFFF',
@@ -555,7 +669,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   choiceButtonSelected: {
-    backgroundColor: '#0A2940',
+    backgroundColor: '#0E5B90',
     borderColor: '#0A2940',
   },
   choiceButtonText: {

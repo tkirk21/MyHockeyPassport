@@ -5,10 +5,12 @@ import { ActivityIndicator, Alert, Image, ImageBackground, ScrollView, StyleShee
 import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import firebaseApp from "@/firebaseConfig";
 import { getAuth } from "firebase/auth";
-import arenasData from "@/assets/data/arenas.json"; //
 import {  } from "react-native";
 import LoadingPuck from "@/components/loadingPuck";
 import Ionicons from "@expo/vector-icons/Ionicons";
+
+import arenasData from "@/assets/data/arenas.json";
+import historicalArenasData from '../../assets/data/historicalArenas.json';
 
 const db = getFirestore(firebaseApp);
 const router = useRouter();
@@ -131,19 +133,31 @@ export default function CheckinDetailsScreen() {
     );
   }
 
-  // ✅ Find arena in arenas.json
-  const arenaMatch = arenasData.find(
-    (a: any) => a.arena === checkin.arenaName && a.league === checkin.league
+  // STEP 1 — Try to match by current arena name
+  let arenaMatch = arenasData.find(
+    (a: any) =>
+      a.arena === checkin.arenaName &&
+      a.league === checkin.league
   );
+
+  // STEP 2 — If no match (e.g., Pepsi Center), fallback to matching by team + league
+  if (!arenaMatch) {
+    arenaMatch = arenasData.find(
+      (a: any) =>
+        a.teamName === checkin.teamName &&
+        a.league === checkin.league
+    );
+  }
+
+  // STEP 3 — Color resolution
   const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
-  const overlayColor = `${teamColor}DD`; // semi-transparent overlay
+  const overlayColor = `${teamColor}DD`;
 
   return (
     <>
       <Stack.Screen
         options={{
           headerTitle: "",
-          headerTransparent: true,
           headerStyle: {
             backgroundColor: teamColor,
           },
@@ -151,9 +165,10 @@ export default function CheckinDetailsScreen() {
             isOwner ? (
               <View style={{ flexDirection: "row", gap: 20 }}>
                 <TouchableOpacity
-                  onPress={() =>
-                    router.push(`/checkin/edit/${checkinId}?userId=${userId}`)
-                  }
+                  onPress={() => {
+                    console.log("EDIT BUTTON CLICKED!");  // ← ADD THIS LINE
+                    router.push(`/checkin/edit/${checkinId}?userId=${userId}`);
+                  }}
                 >
                   <Ionicons name="create-outline" size={22} color="#fff" />
                 </TouchableOpacity>
@@ -305,7 +320,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     marginBottom: 16,
-    marginTop: 65,
+    marginTop: -10,
     marginHorizontal: 10,
   },
   detailsCard: {

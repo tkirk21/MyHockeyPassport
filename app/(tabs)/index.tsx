@@ -496,9 +496,11 @@ const styles = StyleSheet.create({
   },
   smallButton: {
     backgroundColor: '#0A2940',
-    paddingVertical: 6,
+    paddingVertical: 10,
     paddingHorizontal: 12,
     borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
     flex: 1,
     marginHorizontal: 4,
     alignItems: 'center',

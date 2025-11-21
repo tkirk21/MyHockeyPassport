@@ -12,7 +12,9 @@
     "colorCode": "#d04420",
     "secondaryColor": "#000000",
     "league": "NHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "1994-09-01",
+    "endDate": null
   },
   {
     "teamName": "Boston Bruins",
@@ -27,7 +29,9 @@
     "colorCode": "#000000",
     "Secondary Color": "#febd00",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1925-09-01",
+    "endDate": null
   },
   {
     "teamName": "Buffalo Sabers",
@@ -42,7 +46,9 @@
     "colorCode": "#0055ff",
     "SecondaryColor": "#ffff00",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1971-09-01",
+    "endDate": null
   },
   {
     "teamName": "Calgary Flames",
@@ -57,7 +63,9 @@
     "colorCode": "#a60c00",
     "SecondaryColor": "#ffff00",
     "league": "NHL",
-    "timezone": "America/Edmonton"
+    "timezone": "America/Edmonton",
+    "startDate": "1981-09-01",
+    "endDate": null
   },
   {
     "teamName": "Carolina Hurricanes",
@@ -72,7 +80,9 @@
     "colorCode": "#000000",
     "SecondaryColor": "#b20f00",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1998-09-01",
+    "endDate": null
   },
   {
     "teamName": "Chicago Blackhawks",
@@ -87,7 +97,9 @@
     "colorCode": "#d2000d",
     "SecondaryColor": "#ffffff",
     "league": "NHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "1927-09-01",
+    "endDate": null
   },
   {
     "teamName": "Colorado Avalanche",
@@ -102,7 +114,9 @@
     "colorCode": "#81324a",
     "SecondaryColor": "#000080",
     "league": "NHL",
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "startDate": "1996-09-01",
+    "endDate": null
   },
   {
     "teamName": "Columbus Blue Jackets",
@@ -117,7 +131,9 @@
     "colorCode": "#414f72",
     "SecondaryColor": "#8b0000",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2001-09-01",
+    "endDate": null
   },
   {
     "teamName": "Dallas Stars",
@@ -132,7 +148,9 @@
     "colorCode": "#01865b",
     "SecondaryColor": "#000000",
     "league": "NHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "1994-09-01",
+    "endDate": null
   },
   {
     "teamName": "Detroit Red Wings",
@@ -147,7 +165,9 @@
     "colorCode": "#c10000",
     "SecondaryColor": "#ffffff",
     "league": "NHL",
-    "timezone": "America/Detroit"
+    "timezone": "America/Detroit",
+    "startDate": "1933-09-01",
+    "endDate": null
   },
   {
     "teamName": "Edmonton Oilers",
@@ -162,7 +182,9 @@
     "colorCode": "#00205b",
     "SecondaryColor": "#ff4500",
     "league": "NHL",
-    "timezone": "America/Edmonton"
+    "timezone": "America/Edmonton",
+    "startDate": "1980-09-01",
+    "endDate": null
   },
   {
     "teamName": "Florida Panthers",
@@ -177,7 +199,9 @@
     "colorCode": "#bf0010",
     "SecondaryColor": "#0000ff",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1994-09-01",
+    "endDate": null
   },
   {
     "teamName": "Florida Panthers",
@@ -192,7 +216,9 @@
     "colorCode": "#bf0010",
     "SecondaryColor": "#0000ff",
     "league": "Stadium Series",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2026-01-31",
+    "endDate": "2026-02-02"
   },
   {
     "teamName": "Los Angeles Kings",
@@ -207,7 +233,9 @@
     "SecondaryColor": "#c0c0c0",
     "colorCode": "#000000",
     "league": "NHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "1968-09-01",
+    "endDate": null
   },
   {
     "teamName": "Minnesota Wild",
@@ -222,7 +250,9 @@
     "colorCode": "#008348",
     "SecondaryColor": "#8B0000",
     "league": "NHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2001-09-01",
+    "endDate": null
   },
   {
     "teamName": "Montreal Canadiens",
@@ -237,7 +267,9 @@
     "colorCode": "#c60000",
     "SecondaryColor": "#191970",
     "league": "NHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1918-09-01",
+    "endDate": null
   },
   {
     "teamName": "Nashville Predators",
@@ -252,7 +284,9 @@
     "colorCode": "#faae00",
     "SecondaryColor": "#000080",
     "league": "NHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "1999-09-01",
+    "endDate": null
   },
   {
     "teamName": "Nashville Predators",
@@ -267,7 +301,9 @@
     "colorCode": "#faae00",
     "SecondaryColor": "#000080",
     "league": "Global Series",
-    "timezone": "Europe/Stockholm"
+    "timezone": "Europe/Stockholm",
+    "startDate": "2025-11-13",
+    "endDate": "2025-11-15"
   },
   {
     "teamName": "New Jersey Devils",
@@ -282,7 +318,9 @@
     "colorCode": "#c10000",
     "SecondaryColor": "#000000",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1983-09-01",
+    "endDate": null
   },
   {
     "teamName": "New York Islanders",
@@ -297,7 +335,9 @@
     "colorCode": "#000084",
     "SecondaryColor": "#ffa500",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1973-09-01",
+    "endDate": null
   },
   {
     "teamName": "New York Rangers",
@@ -312,7 +352,9 @@
     "colorCode": "#00209c",
     "SecondaryColor": "#ff0000",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1927-09-01",
+    "endDate": null
   },
   {
     "teamName": "Ottawa Senators",
@@ -327,12 +369,14 @@
     "colorCode": "#000000",
     "SecondaryColor": "#ff0000",
     "league": "NHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1993-09-01",
+    "endDate": null
   },
   {
     "teamName": "Philadelphia Flyers",
     "teamCode": "PHI",
-    "arena": "Wells Fargo Center",
+    "arena": "Xfinity Mobile Arena",
     "city": "Philadelphia, Pennsylvania",
     "address": "3601 S Broad St, Philadelphia, PA 19148",
     "website": "https://nhl.com/flyers",
@@ -342,7 +386,9 @@
     "colorCode": "#CC5500",
     "SecondaryColor": "#000000",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1968-09-01",
+    "endDate": null
   },
   {
     "teamName": "Pittsburgh Penguins",
@@ -357,7 +403,9 @@
     "colorCode": "#000000",
     "SecondaryColor": "#ffff00",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1968-09-01",
+    "endDate": null
   },
   {
     "teamName": "Pittsburgh Penguins",
@@ -372,22 +420,10 @@
     "colorCode": "#000000",
     "SecondaryColor": "#ffff00",
     "league": "Global Series",
-    "timezone": "Europe/Stockholm"
+    "timezone": "Europe/Stockholm",
+    "startDate": "2025-11-17",
+    "endDate": "2025-11-19"
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "teamName": "San Jose Sharks",
     "teamCode": "SJS",
@@ -401,7 +437,9 @@
     "colorCode": "#296a65",
     "SecondaryColor": "#000000",
     "league": "NHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "1992-09-01",
+    "endDate": null
   },
   {
     "teamName": "Seattle Kraken",
@@ -416,7 +454,9 @@
     "colorCode": "#0a2334",
     "SecondaryColor": "#99ccff",
     "league": "NHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2022-09-01",
+    "endDate": null
   },
   {
     "teamName": "St. Louis Blues",
@@ -431,12 +471,14 @@
     "colorCode": "#0065bd",
     "SeconaryColor": "#ffff00",
     "league": "NHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "1968-09-01",
+    "endDate": null
   },
   {
     "teamName": "Tampa Bay Lightning",
     "teamCode": "TBL",
-    "arena": "Amalie Arena",
+    "arena": "Benchmark International Arena",
     "city": "Tampa, Florida",
     "address": "401 Channelside Dr, Tampa, FL 33602",
     "website": "https://nhl.com/lightning",
@@ -446,7 +488,9 @@
     "colorCode": "#003d7c",
     "SecondaryColor": "#ffffff",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1993-09-01",
+    "endDate": null
   },
   {
     "teamName": "Tampa Bay Lightning",
@@ -461,7 +505,9 @@
     "colorCode": "#003d7c",
     "SecondaryColor": "#ffffff",
     "league": "Stadium Series",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2026-01-31",
+    "endDate": "2026-02-02"
   },
   {
     "teamName": "Toronto Maple Leafs",
@@ -476,7 +522,9 @@
     "colorCode": "#08167f",
     "SecondaryColor": "#ffffff",
     "league": "NHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1927-09-01",
+    "endDate": null
   },
   {
     "teamName": "Utah Mammoth",
@@ -491,7 +539,9 @@
     "colorCode": "#000000",
     "SecondaryColor": "#4f86c6",
     "league": "NHL",
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "startDate": "2024-09-01",
+    "endDate": null
   },
   {
     "teamName": "Vancouver Canucks",
@@ -506,7 +556,9 @@
     "colorCode": "#0000ff",
     "SecondaryColor": "#00843D",
     "league": "NHL",
-    "timezone": "America/Vancouver"
+    "timezone": "America/Vancouver",
+    "startDate": "1971-09-01",
+    "endDate": null
   },
   {
     "teamName": "Vegas Golden Knights",
@@ -521,7 +573,9 @@
     "colorCode": "#b8985c",
     "SecondaryColor": "#B0B7BC",
     "league": "NHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2018-09-01",
+    "endDate": null
   },
   {
     "teamName": "Washington Capitals",
@@ -536,7 +590,9 @@
     "colorCode": "#c00000",
     "SecondaryColor": "#ffffff",
     "league": "NHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1975-09-01",
+    "endDate": null
   },
   {
     "teamName": "Winnipeg Jets",
@@ -551,7 +607,9 @@
     "colorCode": "#004c97",
     "SecondaryColor": "#002D62",
     "league": "NHL",
-    "timezone": "America/Winnipeg"
+    "timezone": "America/Winnipeg",
+    "startDate": "2012-09-01",
+    "endDate": null
   },
   {
     "teamName": "Abbotsford Canucks",

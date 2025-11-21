@@ -419,17 +419,37 @@ export default function ProfileScreen() {
                 <Text style={styles.placeholder}>No check-ins yet.</Text>
               ) : (
                 recentCheckIns.map((checkIn) => {
-                  const arena = arenasData.find(
-                    (a) => a.arena === checkIn.arenaName || a.arena === checkIn.arena
+                  // 1. Hard-safe strings
+                  const arenaName = checkIn.arenaName ?? "";
+                  const arenaAlt  = checkIn.arena ?? "";
+                  const teamName  = checkIn.teamName ?? "";
+                  const league    = checkIn.league ?? "";
+
+                  // 2. Try direct arena match (Ball Arena / Pepsi Center)
+                  let arenaMatch = arenasData.find(
+                    (a) => a.arena === arenaName || a.arena === arenaAlt
                   );
-                  const bgColor = arena?.colorCode ? arena.colorCode + '22' : '#ffffff';
+
+                  // 3. Fallback to team+league ONLY if direct match fails
+                  if (!arenaMatch && teamName && league) {
+                    arenaMatch = arenasData.find(
+                      (a) => a.teamName === teamName && a.league === league
+                    );
+                  }
+
+                  // 4. Safe final color
+                  const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
+                  const bgColor = `${teamColor}22`;
 
                   return (
                     <TouchableOpacity
                       key={checkIn.id}
                       style={[
                         styles.checkinCard,
-                        { borderLeftColor: arena?.colorCode || '#6B7280', backgroundColor: bgColor },
+                        {
+                          borderLeftColor: teamColor,
+                          backgroundColor: bgColor,
+                        },
                       ]}
                       onPress={() =>
                         router.push(`/checkin/${checkIn.id}?userId=${auth.currentUser?.uid}`)
@@ -621,9 +641,11 @@ const styles = StyleSheet.create({
   },
   smallButton: {
     backgroundColor: '#0A2940',
-    paddingVertical: 10,
+    paddingVertical: 14,
     paddingHorizontal: 12,
     borderRadius: 8,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
     alignItems: 'center',
     marginTop: 8,
   },
@@ -684,11 +706,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     gap: 6,
   },
-
-
-
-
-
   arenaHeaderRow: {
     flexDirection: 'row',
     alignItems: 'center',
