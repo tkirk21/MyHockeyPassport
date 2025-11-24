@@ -7,7 +7,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
 import * as ImagePicker from 'expo-image-picker';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 
 const db = getFirestore(firebaseApp);
 
@@ -145,26 +145,31 @@ export default function LiveCheckInScreen() {
 
   return (
     <SafeAreaView style={styles.background}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.section}>
-          <Text style={styles.title}>Live Game Check-In</Text>
+    <Stack.Screen options={{ title: "Live Check-In" }} />
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustKeyboardInsets={true}
+      >
+        <View style={styles.gameInfoContainer}>
+          <View style={styles.gameInfoCard}>
+            <Text style={styles.gameInfoLabel}>League</Text>
+            <Text style={styles.gameInfoValue}>{league}</Text>
 
-          <Text style={styles.label}>League</Text>
-          <Text style={styles.value}>{league}</Text>
+            <Text style={styles.gameInfoLabel}>Arena</Text>
+            <Text style={styles.gameInfoValue}>{arenaName}</Text>
 
-          <Text style={styles.label}>Arena</Text>
-          <Text style={styles.value}>{arenaName}</Text>
+            <Text style={styles.gameInfoLabel}>Home Team</Text>
+            <Text style={styles.gameInfoValue}>{homeTeam}</Text>
 
-          <Text style={styles.label}>Home Team</Text>
-          <Text style={styles.value}>{homeTeam}</Text>
+            <Text style={styles.gameInfoLabel}>Opponent</Text>
+            <Text style={styles.gameInfoValue}>{opponent}</Text>
 
-          <Text style={styles.label}>Opponent</Text>
-          <Text style={styles.value}>{opponent}</Text>
-
-          <Text style={styles.label}>Date / Time</Text>
-          <Text style={styles.value}>
-            {new Date(gameDate || Date.now()).toLocaleString()}
-          </Text>
+            <Text style={styles.gameInfoLabel}>Date / Time</Text>
+            <Text style={styles.gameInfoValue}>
+              {new Date(gameDate || Date.now()).toLocaleString()}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.section}>
@@ -191,13 +196,6 @@ export default function LiveCheckInScreen() {
             onChangeText={setCompanions}
             style={styles.input}
           />
-          <TextInput
-            placeholder="Notes"
-            value={notes}
-            onChangeText={setNotes}
-            style={styles.input}
-            multiline
-          />
         </View>
 
         <View style={styles.section}>
@@ -212,18 +210,35 @@ export default function LiveCheckInScreen() {
 
         <View style={styles.section}>
           <Text style={styles.label}>Did you buy any merch?</Text>
-          <View style={styles.choiceRow}>
+          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
             <Pressable
-              style={[styles.choiceButton, didBuyMerch && styles.choiceButtonSelected]}
+              style={[
+                styles.choiceButton,
+                didBuyMerch === true && styles.choiceButtonSelected,
+              ]}
               onPress={() => setDidBuyMerch(true)}
             >
-              <Text style={styles.choiceButtonText}>Yes</Text>
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyMerch === true && { color: '#fff' }
+              ]}>
+                Yes
+              </Text>
             </Pressable>
+
             <Pressable
-              style={[styles.choiceButton, !didBuyMerch && styles.choiceButtonSelected]}
+              style={[
+                styles.choiceButton,
+                didBuyMerch === false && styles.choiceButtonSelected,
+              ]}
               onPress={() => setDidBuyMerch(false)}
             >
-              <Text style={styles.choiceButtonText}>No</Text>
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyMerch === false && { color: '#fff' }
+              ]}>
+                No
+              </Text>
             </Pressable>
           </View>
 
@@ -268,18 +283,35 @@ export default function LiveCheckInScreen() {
 
         <View style={styles.section}>
           <Text style={styles.label}>Did you buy any concessions?</Text>
-          <View style={styles.choiceRow}>
+          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
             <Pressable
-              style={[styles.choiceButton, didBuyConcessions && styles.choiceButtonSelected]}
+              style={[
+                styles.choiceButton,
+                didBuyConcessions === true && styles.choiceButtonSelected,
+              ]}
               onPress={() => setDidBuyConcessions(true)}
             >
-              <Text style={styles.choiceButtonText}>Yes</Text>
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyConcessions === true && { color: '#fff' }
+              ]}>
+                Yes
+              </Text>
             </Pressable>
+
             <Pressable
-              style={[styles.choiceButton, !didBuyConcessions && styles.choiceButtonSelected]}
+              style={[
+                styles.choiceButton,
+                didBuyConcessions === false && styles.choiceButtonSelected,
+              ]}
               onPress={() => setDidBuyConcessions(false)}
             >
-              <Text style={styles.choiceButtonText}>No</Text>
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyConcessions === false && { color: '#fff' }
+              ]}>
+                No
+              </Text>
             </Pressable>
           </View>
 
@@ -322,6 +354,15 @@ export default function LiveCheckInScreen() {
           )}
         </View>
 
+        {/* Notes — now LAST */}
+        <TextInput
+          placeholder="Notes"
+          value={notes}
+          onChangeText={setNotes}
+          style={styles.input}
+          multiline
+        />
+
         <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
@@ -331,89 +372,33 @@ export default function LiveCheckInScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollContainer: {
-    padding: 16,
-  },
-  section: {
-    backgroundColor: 'rgba(255,255,255,0.95)',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#ddd',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#0D2C42',
-    textAlign: 'center',
-    marginBottom: 12,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1E3A8A',
-    marginTop: 8,
-  },
-  value: {
-    fontSize: 16,
-    color: '#0A2940',
-    marginBottom: 4,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    padding: 10,
-    marginTop: 8,
-    backgroundColor: '#fff',
-  },
-  photo: {
-    width: '100%',
-    height: 200,
-    borderRadius: 8,
-    marginTop: 10,
-  },
-  choiceRow: {
-    flexDirection: 'row',
-    marginTop: 8,
-  },
-  choiceButton: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    padding: 10,
-    marginHorizontal: 4,
-    alignItems: 'center',
-  },
-  choiceButtonSelected: {
+  backButton: {
     backgroundColor: '#0A2940',
-    borderColor: '#0A2940',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 6,
   },
-  choiceButtonText: {
-    color: '#0A2940',
-    fontSize: 16,
-  },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginTop: 28,
-    width: '50%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-  },
-  submitText: {
+  backButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
+  },
+  categoryContainer: {
+    marginBottom: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E2E8F0',
+    paddingBottom: 10,
+  },
+  categoryHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  categoryTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#0A2940',
   },
   checkboxRow: {
     flexDirection: 'row',
@@ -421,25 +406,26 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   checkboxLabel: {
-    marginLeft: 8,
+    marginLeft: 10,
     fontSize: 16,
+    color: '#0D2C42',
     textTransform: 'capitalize',
   },
-  categoryContainer: {
-    marginBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    paddingBottom: 8,
+  choiceButton: {
+    borderWidth: 2,
+    borderColor: '#0D2C42',
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    marginRight: 10,
   },
-  categoryHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 6,
+  choiceButtonSelected: {
+    backgroundColor: '#0A2940',
+    borderColor: '#0A2940',
   },
-  categoryTitle: {
+  choiceButtonText: {
+    color: '#0D2C42',
     fontSize: 16,
-    fontWeight: 'bold',
   },
   fallback: {
     flex: 1,
@@ -453,13 +439,69 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  backButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 6,
+  gameInfoContainer: {
+    alignItems: 'center',
+    marginBottom: 24,           // ← space after the whole block
   },
-  backButtonText: {
+  gameInfoCard: {
+    backgroundColor: '#E3E8F0',
+    padding: 10,
+    width: '100%',
+    borderWidth: 2,
+    borderColor: '#0D2C42',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  gameInfoLabel: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#0D2C42',
+    marginTop: 12,
+    textAlign: 'center',
+  },
+  gameInfoValue: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#0A2940',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: '#0D2C42',
+    borderRadius: 8,
+    padding: 12,
+    marginTop: 8,
+    marginBottom: 12,
+    fontSize: 16,
+    color: '#0A2940',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#0D2C42',
+    marginTop: 18,
+    marginBottom: 6,
+  },
+  scrollContainer: {
+    padding: 16,
+    paddingBottom: 250,   // ← gives space for keyboard
+  },
+  submitButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginBottom: 40,
+    width: '50%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+  },
+  submitText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',

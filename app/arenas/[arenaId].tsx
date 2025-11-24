@@ -2,13 +2,13 @@
 //[arenaId.tsx]
 import { useLocalSearchParams } from 'expo-router';
 import { useMemo, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { Alert, View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from "@/assets/data/nhlSchedule2025.json";
 import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
-import whlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
+import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
@@ -16,6 +16,7 @@ import { collection, getDocs, getFirestore, query, where, } from 'firebase/fires
 import firebaseApp from '@/firebaseConfig';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import LoadingPuck from '@/components/loadingPuck';
+import * as Location from 'expo-location';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -24,6 +25,7 @@ export default function ArenaScreen() {
   const db = getFirestore(firebaseApp);
 
   const [loading, setLoading] = useState(true);
+  const [checkingIn, setCheckingIn] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
   const [lastVisitDate, setLastVisitDate] = useState<Date | null>(null);
   const [timeLeft, setTimeLeft] = useState('00:00:00');
@@ -147,18 +149,71 @@ export default function ArenaScreen() {
 
   const lightColor = `${arena.colorCode}22`; // light transparent tint
 
-  const handleCheckIn = () => {
-    router.push({
-      pathname: '/checkin/live',
-      params: {
-        arenaId,
-        arena: arena.arena,
-        latitude: arena.latitude,
-        longitude: arena.longitude,
-        league: arena.league,
-      },
-    });
-  }
+  const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
+    const R = 3958.8;
+    const toRad = (n) => (n * Math.PI) / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) *
+        Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) ** 2;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  };
+
+  const handleCheckIn = async () => {
+    setCheckingIn(true);
+
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setCheckingIn(false);
+        Alert.alert('Permission denied', 'Location is required to check in.');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Lowest,
+        maximumAge: 15000,
+      });
+
+      const distanceMiles = getDistanceMiles(
+        location.coords.latitude,
+        location.coords.longitude,
+        arena.latitude,
+        arena.longitude
+      );
+
+      if (distanceMiles > 0.28) {
+        setCheckingIn(false);
+        Alert.alert(
+          'Not close enough',
+          'You must be at the arena to check-in.'
+        );
+        return;
+      }
+
+      // *** This is the required delay ***
+      setTimeout(() => {
+        router.push({
+          pathname: '/checkin/live',
+          params: {
+            arenaId,
+            arena: arena.arena,
+            latitude: arena.latitude,
+            longitude: arena.longitude,
+            league: arena.league,
+          },
+        });
+      }, 250);
+
+    } catch (err) {
+      setCheckingIn(false);
+      Alert.alert('Location failed', 'Could not get your location. Try again.');
+    }
+  };
 
   useEffect(() => {
     if (upcomingGames.length === 0) {
@@ -195,97 +250,104 @@ export default function ArenaScreen() {
   }, [upcomingGames]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* ← BACK BUTTON GOES RIGHT HERE */}
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => router.back()}
-      >
-        <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
-      </TouchableOpacity>
-
-      <View style={[styles.header, { backgroundColor: arena.colorCode || '#0A2940' }]}>
-        <Text style={styles.arenaName}>{arena.arena}</Text>
-      </View>
-
-      <View
-        style={[
-          styles.statCard,
-          { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940", height: 120 }, // lock consistent height
-        ]}
-      >
-        {loading ? (
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flex: 1,
-            }}
-          >
-            <LoadingPuck size={120} />
-          </View>
-        ) : (
-          <>
-            <Text style={styles.statNumber}>{visitCount}</Text>
-            <Text style={styles.statLabel}>Times Visited</Text>
-            {lastVisitDate && (
-              <Text style={styles.lastVisitText}>
-                Last: {format(lastVisitDate, "MMM d, yyyy")}
-              </Text>
-            )}
-          </>
-        )}
-      </View>
-
-      <View style={[styles.infoBox, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
-        <Text style={styles.label}>Address</Text>
-        <Text style={styles.value}>{arena.address}</Text>
-
-        <Text style={styles.label}>Team</Text>
-        <Text style={styles.value}>{arena.teamName}</Text>
-
-        <Text style={styles.label}>League</Text>
-        <Text style={styles.value}>{arena.league}</Text>
-      </View>
-
-      <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleDirections}>
-        <Text style={styles.buttonText}>Get Directions</Text>
-      </TouchableOpacity>
-
-      {upcomingGames.length === 0 && (
-              <View style={[styles.section, { backgroundColor: lightColor }]}>
-                <Text style={styles.sectionTitle}>Upcoming Games</Text>
-                <Text style={styles.value}>No Upcoming Games</Text>
-              </View>
-            )}
-
-      {upcomingGames.length > 0 && (
-        <View style={[styles.section, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
-          <Text style={styles.sectionTitle}>Upcoming Games</Text>
-
-          {/* ONE LINE: 70:54:16 */}
-              <View style={[styles.countdownBox, { backgroundColor: arena.colorCode || "#0A2940" }]}>
-                <Text style={styles.countdownNumber}>{timeLeft}</Text>
-                <Text style={styles.countdownLabel}>until next puck drop</Text>
-              </View>
-
-          {upcomingGames.map((game) => (
-            <View key={game.id} style={styles.gameCard}>
-              <Text style={styles.gameTextBold}>
-                {game.homeTeam} vs {game.awayTeam}
-              </Text>
-              <Text style={styles.gameText}>
-                {format(new Date(game.date), 'EEE, MMM d – h:mm a')}
-              </Text>
-            </View>
-          ))}
+    <View style={{ flex: 1 }}>
+      {checkingIn && (
+        <View style={styles.loadingOverlay}>
+          <LoadingPuck size={140} />
         </View>
       )}
+      <ScrollView contentContainerStyle={styles.container}>
+        {/* ← BACK BUTTON GOES RIGHT HERE */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={28} color="#FFFFFF" />
+        </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleCheckIn}>
-        <Text style={styles.buttonText}>Check in at this arena</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <View style={[styles.header, { backgroundColor: arena.colorCode || '#0A2940' }]}>
+          <Text style={styles.arenaName}>{arena.arena}</Text>
+        </View>
+
+        <View
+          style={[
+            styles.statCard,
+            { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940", height: 120 }, // lock consistent height
+          ]}
+        >
+          {loading ? (
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <LoadingPuck size={120} />
+            </View>
+          ) : (
+            <>
+              <Text style={styles.statNumber}>{visitCount}</Text>
+              <Text style={styles.statLabel}>Times Visited</Text>
+              {lastVisitDate && (
+                <Text style={styles.lastVisitText}>
+                  Last: {format(lastVisitDate, "MMM d, yyyy")}
+                </Text>
+              )}
+            </>
+          )}
+        </View>
+
+        <View style={[styles.infoBox, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
+          <Text style={styles.label}>Address</Text>
+          <Text style={styles.value}>{arena.address}</Text>
+
+          <Text style={styles.label}>Team</Text>
+          <Text style={styles.value}>{arena.teamName}</Text>
+
+          <Text style={styles.label}>League</Text>
+          <Text style={styles.value}>{arena.league}</Text>
+        </View>
+
+        <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleDirections}>
+          <Text style={styles.buttonText}>Get Directions</Text>
+        </TouchableOpacity>
+
+        {upcomingGames.length === 0 && (
+                <View style={[styles.section, { backgroundColor: lightColor }]}>
+                  <Text style={styles.sectionTitle}>Upcoming Games</Text>
+                  <Text style={styles.value}>No Upcoming Games</Text>
+                </View>
+              )}
+
+        {upcomingGames.length > 0 && (
+          <View style={[styles.section, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
+            <Text style={styles.sectionTitle}>Upcoming Games</Text>
+
+            {/* ONE LINE: 70:54:16 */}
+                <View style={[styles.countdownBox, { backgroundColor: arena.colorCode || "#0A2940" }]}>
+                  <Text style={styles.countdownNumber}>{timeLeft}</Text>
+                  <Text style={styles.countdownLabel}>until next puck drop</Text>
+                </View>
+
+            {upcomingGames.map((game) => (
+              <View key={game.id} style={styles.gameCard}>
+                <Text style={styles.gameTextBold}>
+                  {game.homeTeam} vs {game.awayTeam}
+                </Text>
+                <Text style={styles.gameText}>
+                  {format(new Date(game.date), 'EEE, MMM d – h:mm a')}
+                </Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        <TouchableOpacity style={[styles.button, { backgroundColor: arena.colorCode || "#0A2940" }]} onPress={handleCheckIn}>
+          <Text style={styles.buttonText}>Check-in to live game</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -345,8 +407,8 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#0A2940',
-    marginHorizontal: 20,
-    paddingVertical: 14,
+    marginHorizontal: 90,
+    paddingVertical: 18,
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 10,
@@ -480,6 +542,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: -10,
     opacity: 0.9,
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    zIndex: 999,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

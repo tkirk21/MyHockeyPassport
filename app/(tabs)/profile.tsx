@@ -10,7 +10,9 @@ import {doc, collection, getDoc, getDocs, getFirestore, onSnapshot, orderBy, que
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from './_layout';
+
 import arenasData from '@/assets/data/arenas.json';
+import arenaHistoryData from '@/assets/data/arenaHistory.json';
 import leagues from '@/assets/data/leagues.json';
 import { leagueLogos } from '@/assets/images/leagueLogos';
 
@@ -222,36 +224,50 @@ export default function ProfileScreen() {
   };
 
   function recalcStats(checkIns: any[]) {
-    const rinkCounts: Record<string, number> = {};
+    // Map old arena name to current name
+    const getCurrentArenaName = (oldName: string) => {
+      if (!oldName) return oldName;
+      const lowerOld = oldName.toLowerCase().trim();
+      for (const h of arenaHistoryData) {
+        for (const entry of h.history) {
+          if (entry.name.toLowerCase().trim() === lowerOld) {
+            return h.currentArena;
+          }
+        }
+      }
+      return oldName;
+    };
+
+    // Arena counts using current names
+    const arenaCounts: Record<string, number> = {};
     checkIns.forEach(ci => {
-      const key = norm(ci.arenaName);
-      if (key) rinkCounts[key] = (rinkCounts[key] || 0) + 1;
+      const currentName = getCurrentArenaName(ci.arenaName || ci.arena || '');
+      arenaCounts[currentName] = (arenaCounts[currentName] || 0) + 1;
     });
 
+    // Most visited arena
     let topArena = null;
     let maxCount = 0;
-    checkIns.forEach(ci => {
-      const key = norm(ci.arenaName);
-      const count = rinkCounts[key] || 0;
+    for (const [name, count] of Object.entries(arenaCounts)) {
       if (count > maxCount) {
         maxCount = count;
-        topArena = { arena: ci.arenaName || ci.arena, count };
+        topArena = { arena: name, count };
       }
-    });
+    }
     setMostVisitedArena(topArena);
 
-    const arenaKeys = new Set(
-      checkIns.map(ci => `${norm(ci.league)}|${norm(ci.arenaName)}`)
-    );
-    setArenasVisited(arenaKeys.size);
+    // Unique arenas visited
+    setArenasVisited(Object.keys(arenaCounts).length);
 
+    // Teams watched
     const teamSet = new Set<string>();
     checkIns.forEach(ci => {
-      if (ci.teamName) teamSet.add(norm(ci.teamName));
-      if (ci.opponent) teamSet.add(norm(ci.opponent));
+      if (ci.teamName) teamSet.add(ci.teamName.toLowerCase().trim());
+      if (ci.opponent) teamSet.add(ci.opponent.toLowerCase().trim());
     });
     setTeamsWatched(teamSet.size);
 
+    // Most watched teams
     const teamCounts: Record<string, number> = {};
     checkIns.forEach(ci => {
       if (ci.teamName) teamCounts[ci.teamName] = (teamCounts[ci.teamName] || 0) + 1;
@@ -263,6 +279,7 @@ export default function ProfileScreen() {
       .slice(0, 3);
     setMostWatchedTeams(topTeams);
 
+    // Teams by league
     const perLeague: Record<string, Record<string, number>> = {};
     checkIns.forEach(ci => {
       const league = (ci.league || "Unknown League").toString();
@@ -270,8 +287,7 @@ export default function ProfileScreen() {
       const bump = (teamName: any) => {
         const pretty = (teamName ?? "").toString().trim();
         if (!pretty) return;
-        perLeague[league][pretty] =
-          (perLeague[league][pretty] || 0) + 1;
+        perLeague[league][pretty] = (perLeague[league][pretty] || 0) + 1;
       };
       bump(ci.teamName);
       bump(ci.opponent);

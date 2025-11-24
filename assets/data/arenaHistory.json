@@ -1,20 +1,5 @@
 [
   {
-    "currentTeam": "Utah Mammoth",
-    "oldTeam": "Utah Hockey Club",
-    "changedOn": "2025-06-01"
-  },
-  {
-    "currentTeam": "Anaheim Ducks",
-    "oldTeam": "Anaheim Mighty Ducks",
-    "changedOn": "2006-06-22"
-  },
-  {
-    "currentTeam": "Anaheim Mighty Ducks",
-    "oldTeam": "Mighty Ducks of Anaheim",
-    "changedOn": "1993-10-08"
-  },
-  {
     "currentArena": "Honda Center",
     "teamName": "Anaheim Ducks",
     "league": "NHL",

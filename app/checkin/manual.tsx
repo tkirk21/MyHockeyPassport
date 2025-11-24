@@ -328,8 +328,9 @@ const ManualCheckIn = () => {
 
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
+      contentContainerStyle={styles.scrollContainer}
       keyboardShouldPersistTaps="handled"
+      automaticallyAdjustKeyboardInsets={true}
     >
       <Stack.Screen options={{ title: "Manual Check-In" }} />
       <Text style={styles.label}>Game Date:</Text>
@@ -414,7 +415,7 @@ const ManualCheckIn = () => {
         onChangeText={setFavoritePlayer}
         style={styles.input}
       />
-      <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Seat Information</Text>
+      <Text style={styles.label}>Seat Information:</Text>
       <View style={{ flexDirection:"row", alignItems:"center", flexWrap:"wrap", marginBottom:12 }}>
         <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Section:</Text>
         <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
@@ -429,14 +430,6 @@ const ManualCheckIn = () => {
         onChangeText={setCompanions}
         style={styles.input}
       />
-      <TextInput
-        placeholder="Notes"
-        value={notes}
-        onChangeText={setNotes}
-        style={styles.input}
-        multiline
-      />
-
       <Text style={styles.label}>Upload Photo (1 only):</Text>
       <TouchableOpacity style={styles.input} onPress={pickImage}>
         <Text>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
@@ -574,6 +567,14 @@ const ManualCheckIn = () => {
           ))}
         </>
       )}
+      {/* Notes — now LAST */}
+      <TextInput
+        placeholder="Notes"
+        value={notes}
+        onChangeText={setNotes}
+        style={styles.input}
+        multiline
+      />
 
       <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
         <Text style={styles.submitText}>Submit</Text>
@@ -602,67 +603,6 @@ const styles = StyleSheet.create({
     paddingBottom: 100,   // ← adds safe space at the bottom
     backgroundColor: '#FFFFFF',
   },
-  title: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: '#0D2C42',
-    marginTop: 10,
-    marginBottom: 15,
-    textAlign: 'center',
-    textShadowColor: '#ffffff',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  dropdown: {
-    marginBottom: 14,
-    borderColor: '#0D2C42',
-    borderWidth: 2,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 18,
-    marginBottom: 6,
-    color: '#0D2C42',
-  },
-  input: {
-    borderWidth: 2,
-    borderColor: '#0D2C42',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 12,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  checkboxLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#0D2C42',
-    textTransform: 'capitalize',
-  },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginTop: 28,
-    width: '50%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-  },
-  submitText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
   categoryContainer: {
     marginBottom: 14,
     borderBottomWidth: 1,
@@ -680,20 +620,74 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#0A2940',
   },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  checkboxLabel: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#0D2C42',
+    textTransform: 'capitalize',
+  },
   choiceButton: {
-    borderWidth: 1,
-    borderColor: '#CBD5E0',
+    borderWidth: 2,
+    borderColor: '#0D2C42',
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
     marginRight: 10,
   },
   choiceButtonSelected: {
-    backgroundColor: '#0E5B90',
+    backgroundColor: '#0A2940',
     borderColor: '#0A2940',
   },
   choiceButtonText: {
-    color: '#0A2940',
+    color: '#0D2C42',
     fontSize: 16,
+  },
+  dropdown: {
+    marginBottom: 14,
+    borderColor: '#0D2C42',
+    borderWidth: 2,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  input: {
+    borderWidth: 2,
+    borderColor: '#0D2C42',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+    fontSize: 16,
+    color: '#0A2940',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 18,
+    marginBottom: 6,
+    color: '#0D2C42',
+  },
+  scrollContainer: {
+    padding: 16,
+    paddingBottom: 350,   // ← gives space for keyboard
+  },
+  submitButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginBottom: -40,
+    width: '50%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+  },
+  submitText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

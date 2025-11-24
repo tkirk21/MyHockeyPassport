@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import * as Location from 'expo-location';
 import Constants from 'expo-constants';
 import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadingPuck from '@/components/loadingPuck';
 
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
@@ -15,7 +16,6 @@ import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 
-
 export default function HomeScreen() {
   const router = useRouter();
   const [location, setLocation] = useState(null);
@@ -23,6 +23,7 @@ export default function HomeScreen() {
   const [selectedGroup, setSelectedGroup] = useState('All Groups');
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const [nextPuckDrop, setNextPuckDrop] = useState('');
+  const [checkingIn, setCheckingIn] = useState(false);
 
   useEffect(() => {
     Animated.loop(
@@ -101,16 +102,16 @@ export default function HomeScreen() {
     loadSavedLeague();
   }, []);
 
-  const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
-    const R = 6371;
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
+    const R = 3958.8;
+    const toRad = (n) => (n * Math.PI) / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
     const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) *
+        Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
@@ -243,6 +244,15 @@ export default function HomeScreen() {
       style={styles.background}
       resizeMode="cover"
     >
+
+      {/* 🔥 Loading overlay appears above the entire screen */}
+      {checkingIn && (
+
+        <View style={styles.loadingOverlay}>
+          <LoadingPuck />
+        </View>
+      )}
+
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.innerContainer}>
@@ -259,7 +269,7 @@ export default function HomeScreen() {
                 arenaData
                   .map((arena) => ({
                     ...arena,
-                    distance: getDistanceFromLatLonInKm(
+                    distance: getDistanceMiles(
                       location.latitude,
                       location.longitude,
                       arena.latitude,
@@ -286,7 +296,10 @@ export default function HomeScreen() {
                           {arena.arena} – {arena.city}
                         </Text>
                         <Text style={{ fontWeight: 'bold', color: '#0D2C42' }}>
-                          {Math.round(arena.distance) === arena.distance ? Math.round(arena.distance) : arena.distance.toFixed(1)} km
+                          {Math.round(arena.distance) === arena.distance
+                            ? Math.round(arena.distance)
+                            : arena.distance.toFixed(1)
+                          } mi
                         </Text>
                       </View>
                     </TouchableOpacity>
@@ -337,11 +350,59 @@ export default function HomeScreen() {
 
                       <TouchableOpacity
                         style={styles.smallButton}
-                        onPress={() => handleCheckIn(game)}
-                        accessibilityLabel={`Check in to ${game.homeTeam || game.team} vs ${game.opponent || game.awayTeam}`}
-                        accessibilityRole="button"
+                        onPress={async () => {
+                          setCheckingIn(true);
+                          try {
+                            const { status } = await Location.requestForegroundPermissionsAsync();
+                            if (status !== 'granted') {
+                              setCheckingIn(false);
+                              Alert.alert('Permission denied', 'Location is required to check in.');
+                              return;
+                            }
+
+                            const location = await Location.getCurrentPositionAsync({
+                              accuracy: Location.Accuracy.Lowest, // FASTER
+                              maximumAge: 10000,                  // Use cached if <10 sec old
+                              timeout: 5000,                      // Cut stall time
+                            });
+
+                            const arena = arenaData.find(a =>
+                              (a.arena === game.arena || a.arena === game.location) &&
+                              a.league === game.league
+                            );
+
+                            if (!arena) {
+                              setCheckingIn(false);
+                              Alert.alert('Error', 'Arena not found for this game.');
+                              return;
+                            }
+
+                            const distanceMiles = getDistanceMiles(
+                              location.coords.latitude,
+                              location.coords.longitude,
+                              arena.latitude,
+                              arena.longitude
+                            );
+
+                            if (distanceMiles > 0.28) {
+                              setCheckingIn(false);
+                              Alert.alert(
+                                'Cannot check in yet',
+                                'Not close enough to the arena. You need to be at the arena.'
+                              );
+                              return;
+                            }
+
+                            setCheckingIn(false);
+                            handleCheckIn(game);
+                          } catch (error) {
+                            setCheckingIn(false);
+                            console.log('Location error:', error);
+                            Alert.alert('Location failed', 'Could not get your location. Try again.');
+                          }
+                        }}
                       >
-                        <Text style={styles.smallButtonText}>Check In</Text>
+                        <Text style={styles.smallButtonText}>Check-in</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -582,6 +643,17 @@ const styles = StyleSheet.create({
   pickerContainerActive: {
     backgroundColor: '#E0E7FF',
     borderColor: '#0D2C42',
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 999,
   },
 });
 

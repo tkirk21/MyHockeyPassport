@@ -336,9 +336,11 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Edit Check-In</Text>
-
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      keyboardShouldPersistTaps="handled"
+      automaticallyAdjustKeyboardInsets={true}
+    >
       <Text style={styles.label}>Game Date:</Text>
       <TouchableOpacity
         onPress={() => setShowDatePicker(true)}
@@ -419,13 +421,6 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         value={companions}
         onChangeText={setCompanions}
         style={styles.input}
-      />
-      <TextInput
-        placeholder="Notes"
-        value={notes}
-        onChangeText={setNotes}
-        style={styles.input}
-        multiline
       />
 
       <Text style={styles.label}>Upload Photo (1 only):</Text>
@@ -566,6 +561,15 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         </>
       )}
 
+      {/* Notes — now LAST */}
+      <TextInput
+        placeholder="Notes"
+        value={notes}
+        onChangeText={setNotes}
+        style={styles.input}
+        multiline
+      />
+
       <TouchableOpacity style={styles.submitButton} onPress={handleSave}>
         <Text style={styles.submitText}>Save Changes</Text>
       </TouchableOpacity>
@@ -590,59 +594,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#FFFFFF',
   },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#0A2940',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  dropdown: {
-    marginBottom: 14,
-    borderColor: '#CBD5E0',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 18,
-    marginBottom: 6,
-    color: '#0A2940',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#CBD5E0',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 12,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  checkboxLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#0A2940',
-    textTransform: 'capitalize',
-  },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginTop: 28,
-    alignItems: 'center',
-  },
-  submitText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
   categoryContainer: {
     marginBottom: 14,
     borderBottomWidth: 1,
@@ -660,6 +611,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#0A2940',
   },
+  checkboxRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  checkboxLabel: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#0A2940',
+    textTransform: 'capitalize',
+  },
   choiceButton: {
     borderWidth: 1,
     borderColor: '#CBD5E0',
@@ -675,5 +637,48 @@ const styles = StyleSheet.create({
   choiceButtonText: {
     color: '#0A2940',
     fontSize: 16,
+  },
+  dropdown: {
+    marginBottom: 14,
+    borderColor: '#CBD5E0',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#CBD5E0',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+    fontSize: 16,
+    color: '#0A2940',
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 18,
+    marginBottom: 6,
+    color: '#0A2940',
+  },
+  scrollContainer: {
+    padding: 16,
+    paddingBottom: 250,
+  },
+  submitButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    borderRadius: 10,
+    marginBottom: 40,
+    width: '50%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+  },
+  submitText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
