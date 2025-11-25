@@ -1,13 +1,13 @@
+import { format } from 'date-fns';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
+import { useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import * as Location from 'expo-location';
-import Constants from 'expo-constants';
-import { format } from 'date-fns';
-import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoadingPuck from '@/components/loadingPuck';
 
+import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
@@ -559,7 +559,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A2940',
     paddingVertical: 10,
     paddingHorizontal: 12,
-    borderRadius: 8,
+    borderRadius: 30,
     borderWidth: 2,
     borderColor: '#2F4F68',
     flex: 1,
@@ -656,5 +656,3 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
 });
-
-

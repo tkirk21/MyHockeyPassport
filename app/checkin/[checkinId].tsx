@@ -1,14 +1,13 @@
 //app/checkin/[checkinId].tsx
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import firebaseApp from "@/firebaseConfig";
+import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
-import firebaseApp from "@/firebaseConfig";
-import { getAuth } from "firebase/auth";
-import {  } from "react-native";
-import LoadingPuck from "@/components/loadingPuck";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
+import LoadingPuck from "@/components/loadingPuck";
 import arenasData from "@/assets/data/arenas.json";
 import historicalArenasData from '../../assets/data/historicalArenas.json';
 

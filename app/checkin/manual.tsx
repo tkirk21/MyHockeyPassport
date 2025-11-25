@@ -1,16 +1,15 @@
 //app/checkin/manual.tsx
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, Image, TouchableOpacity } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import Checkbox from 'expo-checkbox';
-import { Pressable } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { Stack } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
+import React, { useEffect, useState, } from 'react';
+import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import * as ImagePicker from 'expo-image-picker';
-import { Stack } from "expo-router";
+import DropDownPicker from 'react-native-dropdown-picker';
 
 import arenasData from '../../assets/data/arenas.json';
 import historicalTeamsData from '../../assets/data/historicalTeams.json';
@@ -634,7 +633,7 @@ const styles = StyleSheet.create({
   choiceButton: {
     borderWidth: 2,
     borderColor: '#0D2C42',
-    borderRadius: 8,
+    borderRadius: 30,
     paddingVertical: 8,
     paddingHorizontal: 16,
     marginRight: 10,
@@ -677,7 +676,7 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 30,
     marginBottom: -40,
     width: '50%',
     alignSelf: 'center',

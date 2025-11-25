@@ -1,14 +1,14 @@
 // app/(tabs)/map.tsx
+import * as Location from 'expo-location';
+import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { getFirestore, collection, getDocs, query } from 'firebase/firestore';
 import React, { useEffect, useState, useRef } from 'react';
 import { Alert, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MapView, { Marker, UrlTile } from 'react-native-maps';
+import MapView, { Marker, Polyline, UrlTile } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
-import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from 'expo-router';
 
 import arenasData from '@/assets/data/arenas.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
@@ -27,6 +27,8 @@ export default function MapScreen() {
   const [selectedArenaCheckIns, setSelectedArenaCheckIns] = useState<any[]>([]);
   const [allCheckIns, setAllCheckIns] = useState<any[]>([]);
   const router = useRouter();
+  const [showTravelLines, setShowTravelLines] = useState(false);
+  const [travelAnimValue, setTravelAnimValue] = useState(0);
 
   useEffect(() => {
     const load = async () => {
@@ -39,6 +41,32 @@ export default function MapScreen() {
   useEffect(() => {
     AsyncStorage.setItem('mapSelectedLeague', selectedLeague);
   }, [selectedLeague]);
+
+  // Travel line animation when toggling
+    useEffect(() => {
+      if (showTravelLines) {
+        // Start fresh
+        setTravelAnimValue(0);
+
+        let start = Date.now();
+        let duration = 60000; // 1 minute animation
+
+        const tick = () => {
+          let elapsed = Date.now() - start;
+          let progress = Math.min(elapsed / duration, 1);
+          setTravelAnimValue(progress);
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        };
+
+        requestAnimationFrame(tick);
+      } else {
+        // If hidden, reset value
+        setTravelAnimValue(0);
+      }
+    }, [showTravelLines]);
 
   useEffect(() => {
     const loadEverything = async () => {
@@ -210,6 +238,42 @@ export default function MapScreen() {
     return oldName;
   };
 
+  // Build chronological travel path
+  const travelCoords = visiblePins
+    .map(pin => {
+      const checkInsHere = allCheckIns.filter(ci => {
+        if (!ci.arenaName || !pin.title) return false;
+        return norm(getCurrentArenaName(ci.arenaName)) === norm(pin.title);
+      });
+
+      if (!checkInsHere.length) return null;
+
+      const validDates = checkInsHere
+        .map(ci => {
+          const d = new Date(ci.gameDate);
+          return isNaN(d.getTime()) ? null : { ...ci, dateVal: d.getTime() };
+        })
+        .filter(Boolean);
+
+      if (!validDates.length) return null;
+
+      const earliest = validDates.reduce((a, b) =>
+        a.dateVal < b.dateVal ? a : b
+      );
+
+      return {
+        latitude: pin.latitude,
+        longitude: pin.longitude,
+        sortKey: earliest.dateVal,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.sortKey - b.sortKey)
+    .map(p => ({
+      latitude: p.latitude,
+      longitude: p.longitude,
+    }));
+
   return (
     <View style={{ flex: 1 }}>
       <Modal visible={modalVisible} transparent={true} animationType="slide">
@@ -258,6 +322,15 @@ export default function MapScreen() {
         </Picker>
       </View>
 
+      <TouchableOpacity
+        style={styles.travelLinesButton}
+        onPress={() => setShowTravelLines(prev => !prev)}
+      >
+        <Text style={styles.travelLinesButtonText}>
+          {showTravelLines ? 'Hide' : 'Show'} Travel Lines
+        </Text>
+      </TouchableOpacity>
+
       <MapView
         ref={mapRef}
         style={styles.map}
@@ -270,6 +343,22 @@ export default function MapScreen() {
           maximumZ={19}
           zIndex={0}
         />
+
+        {showTravelLines && travelCoords.length > 1 && (
+          <Polyline
+            coordinates={travelCoords.slice(
+              0,
+              Math.max(2, Math.floor(travelAnimValue * travelCoords.length))
+            )}
+            strokeColor="#0D2C42"
+            strokeWidth={4}
+            lineCap="round"
+            lineJoin="round"
+            geodesic={true}
+            lineDashPattern={[4, 12]}
+            zIndex={1}
+          />
+        )}
 
         {visiblePins.map(pin => {
           const safeNorm = (s: any) => (s ?? '').toString().trim().toLowerCase();
@@ -393,11 +482,33 @@ const styles = StyleSheet.create({
     color: '#0A2940',
     backgroundColor: '#FFFFFF',
   },
+  travelLinesButton: {
+    position: 'absolute',
+    bottom: 30,
+    alignSelf: 'center',
+    backgroundColor: "#0D2C42",  // ← change this color anytime
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 30,
+    zIndex: 10,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+    borderWidth: 3,
+    borderColor: '#2F4F68',
+  },
+  travelLinesButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   visitBadge: {
     backgroundColor: '#D32F2F',    // red
     width: 15,
     height: 15,
-    borderRadius: 11,
+    borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',

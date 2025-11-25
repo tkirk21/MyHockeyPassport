@@ -1,8 +1,8 @@
 //app/(tabs)/_layout.tsx
-import React, { createContext, useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
+import React, { createContext, useEffect, useState,  } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';

@@ -1,11 +1,12 @@
 // app/(tabs)/friends.tsx
-import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc, addDoc } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc,  } from 'firebase/firestore';
+
 import { logFriendship, logCheer } from "../../utils/activityLogger";
 import LoadingPuck from "../../components/loadingPuck";
 
@@ -14,16 +15,13 @@ const db = getFirestore(firebaseApp);
 
 const handleCheer = async (item: any) => {
   console.log("👉 Cheer pressed for", item.id, "on", userId);
-
   try {
     // Decide which user to target
     const targetId =
       item.type === "checkin"
         ? item.friendId
         : item.actorId || item.friendId || "unknown";
-
     await logCheer(item.id, String(targetId));
-
     alert("You cheered this 🎉");
   } catch (err) {
     console.error("🔥 Error cheering activity:", err);
@@ -57,7 +55,6 @@ export default function FriendsTab() {
         if (!auth.currentUser) return;
         const userId = auth.currentUser.uid;
 
-        // ✅ Get profile name from Firestore (fallback to displayName)
         let userName = "Anonymous";
         try {
           const profileDoc = await getDoc(doc(db, "profiles", userId));
@@ -893,97 +890,17 @@ export default function FriendsTab() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingVertical: 16, paddingHorizontal: 20 },
-  title: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: '#0D2C42',
-    marginTop: 30,
-    marginBottom: 15,
-    textAlign: 'center',
-    textShadowColor: '#ffffff',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+  container: {
+    flex: 1,
+    paddingVertical: 16,
+    paddingHorizontal: 20
   },
-  subheading: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1E3A8A',
-    textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 10,
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 12
   },
-  itemText: { fontSize: 16, color: '#0A2940' },
-  button: { color: '#1E3A8A', fontWeight: 'bold' },
-  buttonTextWhite: { color: '#fff', fontWeight: 'bold' },
-  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  avatar: { width: 40, height: 40, borderRadius: 20, marginRight: 12 },
-  searchRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 2,
-    elevation: 1,
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#CBD5E1',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-  },
-  searchIcon: { marginRight: 6 },
-  searchInput: { flex: 1, height: 40, color: '#1E3A8A' },
-  timestamp: { fontSize: 12, color: '#6B7280', marginTop: 2 },
-  background: { flex: 1, width: '100%', height: '100%' },
-  overlay: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 16 },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-  },
-  listRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
-  modalOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalCard: { backgroundColor: '#fff', padding: 20, borderRadius: 12, width: '80%' },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#0A2940',
-    textAlign: 'center',
-  },
-  modalButton: {
-    paddingVertical: 12,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  modalButtonText: { fontSize: 16, color: '#1E3A8A' },
   acceptButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 8,
@@ -998,24 +915,119 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginLeft: 8,
   },
-  mutualText: {
-    fontSize: 12,
-    color: '#6B7280',
-    marginTop: 2,
-  },
-  unblockText: {
+  button: {
     color: '#1E3A8A',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
+  },
+  buttonTextWhite: {
+    color: '#fff',
+    fontWeight: 'bold'
+  },
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%'
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+    borderWidth: 3,
+    borderColor: '#2F4F68',
   },
   cheerButton: {
     backgroundColor: "#1E3A8A",
     paddingVertical: 3,
     paddingHorizontal: 8,
     borderRadius: 10,
-    alignSelf: "flex-end",   // ✅ moves it to the right side next to the time
+    alignSelf: "flex-end",
   },
   cheerButtonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  itemText: {
+    fontSize: 16,
+    color: '#0A2940'
+  },
+  listRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12 },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalCard: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 12,
+    width: '80%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 12,
+    color: '#0A2940',
+    textAlign: 'center',
+  },
+  modalButton: {
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  modalButtonText: {
+    fontSize: 16,
+    color: '#1E3A8A'
+  },
+  mutualText: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginTop: 2,
+  },
+  overlay: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingTop: 16
+  },
+  subheading: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#1E3A8A',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: 'bold',
+    color: '#0D2C42',
+    marginTop: 30,
+    marginBottom: 15,
+    textAlign: 'center',
+    textShadowColor: '#ffffff',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
+  unblockText: {
+    color: '#1E3A8A',
+    fontWeight: 'bold',
   },
 });

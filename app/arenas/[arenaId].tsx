@@ -1,22 +1,22 @@
 //VERSION 2 - 8am 9TH AUGUST
 //[arenaId.tsx]
-import { useLocalSearchParams } from 'expo-router';
-import { useMemo, useEffect, useState } from 'react';
-import { Alert, View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { format } from 'date-fns';
+import * as Location from 'expo-location';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { getAuth } from 'firebase/auth';
+import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
+import firebaseApp from '@/firebaseConfig';
+import { useEffect, useMemo, useState } from 'react';
+import { Alert, Linking, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
+
+import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from "@/assets/data/nhlSchedule2025.json";
 import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
-import { format } from 'date-fns';
-import { useRouter } from 'expo-router';
-import { getAuth } from 'firebase/auth';
-import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
-import firebaseApp from '@/firebaseConfig';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import LoadingPuck from '@/components/loadingPuck';
-import * as Location from 'expo-location';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -409,7 +409,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A2940',
     marginHorizontal: 90,
     paddingVertical: 18,
-    borderRadius: 10,
+    borderRadius: 30,
     alignItems: 'center',
     marginTop: 10,
   },

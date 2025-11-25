@@ -1,10 +1,10 @@
 // app/(tabs)/checkin.tsx
-import React, { useState } from 'react';
-import { Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native';
-import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
-import LoadingPuck from '@/components/loadingPuck';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { Alert, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 
+import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
@@ -201,14 +201,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#2F4F68',
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: 30,
   },
   buttonSecondary: {
     backgroundColor: "#0D2C42",
     paddingVertical: 16,
     borderWidth: 2,
     borderColor: '#2F4F68',
-    borderRadius: 12,
+    borderRadius: 30,
   },
   buttonText: {
     fontSize: 16,

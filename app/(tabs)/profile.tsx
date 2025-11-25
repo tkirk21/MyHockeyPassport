@@ -7,7 +7,7 @@ import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollV
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import {doc, collection, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, getDownloadURL, ref, uploadBytes, } from 'firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from './_layout';
 
@@ -659,7 +659,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A2940',
     paddingVertical: 14,
     paddingHorizontal: 12,
-    borderRadius: 8,
+    borderRadius: 30,
     borderWidth: 2,
     borderColor: '#2F4F68',
     alignItems: 'center',
@@ -826,7 +826,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A2940',
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 20,
+    borderRadius: 30,
   },
   chirpSendText: {
     color: '#fff',

@@ -1,17 +1,15 @@
 // app/checkin/live.tsx
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, Image, Pressable, SafeAreaView } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { AntDesign } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
-import * as ImagePicker from 'expo-image-picker';
-import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
+import React, { useState } from 'react';
+import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 
 const db = getFirestore(firebaseApp);
-
-// helper to normalize expo-router params (string | string[] | undefined) -> string
 const toStr = (v: any) => Array.isArray(v) ? (v[0] ?? '') : (v ?? '');
 
 export default function LiveCheckInScreen() {
@@ -488,12 +486,12 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     padding: 16,
-    paddingBottom: 250,   // ← gives space for keyboard
+    paddingBottom: 250,
   },
   submitButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 14,
-    borderRadius: 10,
+    borderRadius: 30,
     marginBottom: 40,
     width: '50%',
     alignSelf: 'center',
