@@ -13,22 +13,6 @@ import LoadingPuck from "../../components/loadingPuck";
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
-const handleCheer = async (item: any) => {
-  console.log("👉 Cheer pressed for", item.id, "on", userId);
-  try {
-    // Decide which user to target
-    const targetId =
-      item.type === "checkin"
-        ? item.friendId
-        : item.actorId || item.friendId || "unknown";
-    await logCheer(item.id, String(targetId));
-    alert("You cheered this 🎉");
-  } catch (err) {
-    console.error("🔥 Error cheering activity:", err);
-    alert("Cheer failed: " + err.message);
-  }
-};
-
 export default function FriendsTab() {
   function CheerButton({ friendId, checkinId }: { friendId: string; checkinId: string }) {
     const [cheerCount, setCheerCount] = useState(0);
@@ -81,9 +65,14 @@ export default function FriendsTab() {
           // Add cheer
           await setDoc(cheerRef, {
             name: userName,
+            userId: userId,          // actor
+            actorId: userId,         // fix feed rendering
+            targetId: friendId,      // whose check-in is being cheered
+            checkinId: checkinId,    // which check-in was cheered
             timestamp: new Date(),
+            type: "cheer"
           });
-          await logCheer(checkinId, friendId);
+
           setCheerCount((c) => c + 1);
           setCheerNames((names) => [...names, userName]);
           setVisible(true);
@@ -179,6 +168,7 @@ export default function FriendsTab() {
   function ChirpBox({ friendId, checkinId }: { friendId: string; checkinId: string }) {
     const [chirps, setChirps] = useState<any[]>([]);
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const loadChirps = async () => {
@@ -236,8 +226,8 @@ export default function FriendsTab() {
 
     return (
       <View style={{ marginTop: 4, backgroundColor: "rgba(13,44,66,0.05)", borderRadius: 8, padding: 6 }}>
-        {chirps.map((c) => (
-          <View key={c.id || c.timestamp} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+        {chirps.map((c, index) => (
+          <View key={c.id || index} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
             <Image
               source={
                 c.userImage
@@ -312,12 +302,6 @@ export default function FriendsTab() {
   const currentUser = auth.currentUser;
   const router = useRouter();
 
-  const getMutualFriendsCount = (userId: string) => {
-    const theirFriends = userFriendsMap[userId] || [];
-    if (!theirFriends.length || !friends.length) return 0;
-    return friends.filter(fid => theirFriends.includes(fid)).length;
-  };
-
   useEffect(() => {
     const fetchUsersAndFriends = async () => {
       if (!currentUser) return;
@@ -334,6 +318,12 @@ export default function FriendsTab() {
           ...doc.data(),
         }));
         setPendingRequests(requests);
+
+        // Load requests the current user has SENT
+        const sentRef = collection(db, 'profiles', currentUser.uid, 'sentFriendRequests');
+        const sentSnap = await getDocs(sentRef);
+        const sentList = sentSnap.docs.map((d) => d.id);
+        setSentRequests(sentList);
 
         const snapshot = await getDocs(collection(db, 'profiles'));
         const users = snapshot.docs.map((doc) => ({
@@ -386,10 +376,13 @@ export default function FriendsTab() {
             query(activityRef, orderBy('timestamp', 'desc'), limit(5))
           );
           activitySnap.docs.forEach((doc) => {
+            const data = doc.data();
+
             activities.push({
               id: doc.id,
               friendId,
-              ...doc.data(),
+              type: data.type || "unknown",   // normalize type
+              ...data,
             });
           });
         }
@@ -506,6 +499,19 @@ export default function FriendsTab() {
   );
 
   if (loading) return <LoadingPuck />;
+
+  const getTimestamp = (ts: any) => {
+    if (!ts) return new Date(0); // fallback prevents crashes
+
+    if (ts.seconds) return new Date(ts.seconds * 1000); // Firestore Timestamp
+
+    if (typeof ts === "string" || typeof ts === "number")
+      return new Date(ts); // ISO or millis
+
+    if (ts.toDate) return ts.toDate(); // Firestore object with toDate()
+
+    return new Date(0);
+  };
 
   return (
     <ImageBackground
@@ -648,26 +654,71 @@ export default function FriendsTab() {
         )}
 
         {/* Friends Activity */}
-        {/* Friends Activity */}
         {feed.length > 0 && (
           <View style={styles.card}>
             <Text style={styles.subheading}>Friends Activity</Text>
             {feed.map((item, index) => {
               const friend = allUsers.find((u) => u.id === item.friendId);
-              const time = item.timestamp?.seconds
-                ? new Date(item.timestamp.seconds * 1000).toLocaleString()
-                : "Unknown time";
+              const time = getTimestamp(item.timestamp).toLocaleString();
 
               // === Check-in event ===
               if (item.type === "checkin") {
                 const arenaName = item.arenaName ?? "Unknown arena";
                 const league = item.league ?? "Unknown league";
 
-                // ✅ pull colorCode from arenas.json
+                // Load all arena datasets
                 const arenasData = require("@/assets/data/arenas.json");
-                const arenaData = (arenasData as any[]).find(
-                  (a) => a.arena === item.arenaName || a.arena === item.arena
+                const arenaHistory = require("@/assets/data/arenaHistory.json");
+                const historicalTeams = require("@/assets/data/historicalTeams.json");
+
+                let arenaData: any = null;
+
+                // 1. Try to match CURRENT arenas (exact + league-safe)
+                arenaData = (arenasData as any[]).find(
+                  (a) =>
+                    a.league === item.league &&
+                    (
+                      a.arena === item.arenaName ||
+                      a.arena === item.arena
+                    )
                 );
+
+                // 2. If not found, try ARENA HISTORY names (old arenas)
+                if (!arenaData) {
+                  const historyEntry = (arenaHistory as any[]).find(
+                    (h) =>
+                      h.league === item.league &&
+                      h.teamName === item.teamName &&
+                      h.history.some(
+                        (old) =>
+                          old.name === item.arenaName ||
+                          old.name === item.arena
+                      )
+                  );
+
+                  if (historyEntry) {
+                    arenaData = (arenasData as any[]).find(
+                      (a) =>
+                        a.league === historyEntry.league &&
+                        a.teamName === historyEntry.teamName &&
+                        a.arena === historyEntry.currentArena
+                    );
+                  }
+                }
+
+                // 3. If still not found → historical teams (relocated, renamed, folded)
+                if (!arenaData) {
+                  arenaData = (historicalTeams as any[]).find(
+                    (h) =>
+                      h.league === item.league &&
+                      (
+                        h.teamName === item.teamName ||
+                        h.teamCode === item.teamCode
+                      )
+                  );
+                }
+
+                // Fallback into safe colors
                 const colorCode = arenaData?.colorCode || "#6B7280";
                 const bgColor = colorCode + "22";
 
@@ -733,9 +784,7 @@ export default function FriendsTab() {
                       }}
                     >
                       <Text style={{ fontSize: 12, color: "#6B7280" }}>
-                        {new Date(
-                          item.timestamp?.seconds ? item.timestamp.seconds * 1000 : Date.now()
-                        ).toLocaleDateString()}
+                        {getTimestamp(item.timestamp).toLocaleDateString()}
                       </Text>
                       <CheerButton friendId={item.friendId} checkinId={item.id} />
                     </View>
