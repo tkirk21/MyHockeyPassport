@@ -38,7 +38,8 @@
     "react-native-star-rating-widget": "^1.9.2",
     "react-native-svg": "^15.15.0",
     "react-native-twitter-signin": "^1.1.1",
-    "react-native-web": "^0.20.0"
+    "react-native-web": "^0.20.0",
+    "use-debounce": "^10.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

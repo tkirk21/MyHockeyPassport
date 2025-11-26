@@ -6,17 +6,20 @@ import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, setDoc,  } from 'firebase/firestore';
+import { useDebouncedCallback } from 'use-debounce';
 
 import { logFriendship, logCheer } from "../../utils/activityLogger";
 import LoadingPuck from "../../components/loadingPuck";
 import CheerButton from '@/components/friends/cheerButton';
 import ChirpBox from '@/components/friends/chirpBox';
+import type { ActivityItem, Checkin, Chirp, Profile } from '@/types/friends';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const arenasData = require("@/assets/data/arenas.json");
 const arenaHistory = require("@/assets/data/arenaHistory.json");
 const historicalTeams = require("@/assets/data/historicalTeams.json");
+
 
 const resolveTeamName = (item: any): string => {
   return (
@@ -61,17 +64,20 @@ const getTimestamp = (ts: any): Date => {
 };
 
 export default function FriendsTab() {
-
-  const [allUsers, setAllUsers] = useState<any[]>([]);
-  const [blockedFriends, setBlockedFriends] = useState<any[]>([]);
-  const [feed, setFeed] = useState<any[]>([]);
+  const [allUsers, setAllUsers] = useState<Profile[]>([]);
+  const [blockedFriends, setBlockedFriends] = useState<Profile[]>([]);
+  const [feed, setFeed] = useState<ActivityItem[]>([]);
   const [friends, setFriends] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [pendingRequests, setPendingRequests] = useState<any[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedFriend, setSelectedFriend] = useState<any | null>(null);
   const [sentRequests, setSentRequests] = useState<string[]>([]);
   const [userFriendsMap, setUserFriendsMap] = useState<{ [uid: string]: string[] }>({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(10);
+  const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
+    setSearchQuery(value);
+  }, 300);
 
   const currentUser = auth.currentUser;
   const router = useRouter();
@@ -178,7 +184,6 @@ export default function FriendsTab() {
         setFeed(
           safeActivities
             .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
-            .slice(0, 10)
         );
 
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
@@ -235,7 +240,6 @@ export default function FriendsTab() {
               if (prev.some(i => i.id === newItem.id && i.type === "checkin")) return prev;
               return [...prev, newItem]
                 .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
-                .slice(0, 10);
             });
           }
         });
@@ -262,7 +266,6 @@ export default function FriendsTab() {
               if (prev.some(i => i.id === newItem.id)) return prev;
               return [...prev, newItem]
                 .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
-                .slice(0, 10);
             });
           }
         });
@@ -360,13 +363,16 @@ export default function FriendsTab() {
     return blockedFriends.some((u) => u.id === userId);
   };
 
-  const filteredUsers = allUsers.filter(
-    (user) =>
-      user.id !== currentUser.uid && // ⬅️ NEW — prevent showing yourself
-      user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      !friends.includes(user.id) &&
-      !sentRequests.includes(user.id) &&
-      !blockedFriends.some((b) => b.id === user.id)
+  const filteredUsers = React.useMemo(() =>
+    allUsers.filter(
+      (user) =>
+        user.id !== currentUser.uid &&
+        user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        !friends.includes(user.id) &&
+        !sentRequests.includes(user.id) &&
+        !blockedFriends.some((b) => b.id === user.id)
+    ),
+    [allUsers, searchQuery, friends, sentRequests, blockedFriends, currentUser.uid]
   );
 
   if (loading) {
@@ -395,7 +401,7 @@ export default function FriendsTab() {
               placeholder="Search for users..."
               placeholderTextColor="#6B7280"
               value={searchQuery}
-              onChangeText={setSearchQuery}
+              onChangeText={debouncedSetSearchQuery}
             />
           </View>
           {searchQuery.length > 0 && filteredUsers.length > 0 && (
@@ -504,6 +510,28 @@ export default function FriendsTab() {
           </View>
         )}
 
+        {friends.length === 0 && !loading && (
+          <View style={styles.card}>
+            <Text style={styles.emptyTitle}>No friends yet</Text>
+            <Text style={styles.emptyText}>
+              Search for people above and send some friend requests!
+            </Text>
+          </View>
+        )}
+
+        {feed.length === 0 && !loading && (
+          <View style={styles.card}>
+            <Text style={styles.emptyTitle}>Quiet in here...</Text>
+            <Text style={styles.emptyText}>
+              When your friends check in, cheer, or chirp — it’ll show up here.
+            </Text>
+          </View>
+        )}
+
+
+
+
+
         {/* Blocked Friends */}
         {blockedFriends.length > 0 && (
           <View style={styles.card}>
@@ -529,13 +557,13 @@ export default function FriendsTab() {
         {feed.length > 0 && (
           <View style={styles.card}>
             <Text style={styles.subheading}>Friends Activity</Text>
-            {feed.map((item, index) => {
+
+            {feed.slice(0, visibleCount).map((item, index) => {
               const friend = allUsers.find((u) => u.id === item.friendId);
               const friendName = friend?.name || "Unknown User";
               const friendImage = friend?.imageUrl || null;
               const time = getTimestamp(item.timestamp).toLocaleString();
 
-              // === Check-in event ===
               if (item.type === "checkin") {
                 const arenaName = resolveArenaName(item);
                 const league = item.league || item.leagueName || item.league_code || "Unknown league";
@@ -544,26 +572,19 @@ export default function FriendsTab() {
 
                 let arenaData: any = null;
 
-                // 1. Try to match CURRENT arenas (exact + league-safe)
                 arenaData = (arenasData as any[]).find(
                   (a) =>
                     a.league === item.league &&
-                    (
-                      a.arena === item.arenaName ||
-                      a.arena === item.arena
-                    )
+                    (a.arena === item.arenaName || a.arena === item.arena)
                 );
 
-                // 2. If not found, try ARENA HISTORY names (old arenas)
                 if (!arenaData) {
                   const historyEntry = (arenaHistory as any[]).find(
                     (h) =>
                       h.league === item.league &&
                       h.teamName === resolveTeamName(item) &&
                       h.history.some(
-                        (old) =>
-                          old.name === item.arenaName ||
-                          old.name === item.arena
+                        (old) => old.name === item.arenaName || old.name === item.arena
                       )
                   );
 
@@ -577,19 +598,14 @@ export default function FriendsTab() {
                   }
                 }
 
-                // 3. If still not found → historical teams (relocated, renamed, folded)
                 if (!arenaData) {
                   arenaData = (historicalTeams as any[]).find(
                     (h) =>
                       h.league === item.league &&
-                      (
-                        h.teamName === resolveTeamName(item) ||
-                        h.teamCode === resolveTeamCode(item)
-                      )
+                      (h.teamName === resolveTeamName(item) || h.teamCode === resolveTeamCode(item))
                   );
                 }
 
-                // === Final fallback color safety ===
                 const colorCode = arenaData?.colorCode || "#6B7280";
                 const bgColor = `${colorCode}22`;
 
@@ -665,7 +681,6 @@ export default function FriendsTab() {
                 );
               }
 
-              // === Cheer event ===
               if (item.type === "cheer") {
                 const actor = allUsers.find((u) => u.id === item.actorId);
                 return (
@@ -683,7 +698,7 @@ export default function FriendsTab() {
                       elevation: 2,
                     }}
                   >
-                    <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
+                    <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 6 }}>
                       <Image
                         source={
                           actor?.imageUrl
@@ -692,7 +707,7 @@ export default function FriendsTab() {
                         }
                         style={{ width: 36, height: 36, borderRadius: 18, marginRight: 10 }}
                       />
-                      <Text style={{ fontSize: 15, color: "#0A2940" }}>
+                      <Text style={{ fontSize: 15, color: "#0A2940", flex: 1 }}>
                         <Text style={{ fontWeight: "bold" }}>
                           {actor?.name || "Unknown User"}
                         </Text>{" "}
@@ -704,7 +719,6 @@ export default function FriendsTab() {
                 );
               }
 
-              // === Friendship event ===
               if (item.type === "friendship") {
                 const userA = allUsers.find((u) => u.id === item.actorId);
                 const userB = allUsers.find((u) => u.id === item.targetId);
@@ -739,7 +753,6 @@ export default function FriendsTab() {
                 );
               }
 
-              // === Other activities fallback ===
               return (
                 <View
                   key={index}
@@ -748,11 +761,6 @@ export default function FriendsTab() {
                     borderRadius: 10,
                     padding: 14,
                     marginBottom: 12,
-                    shadowColor: "#000",
-                    shadowOpacity: 0.05,
-                    shadowOffset: { width: 0, height: 1 },
-                    shadowRadius: 3,
-                    elevation: 2,
                   }}
                 >
                   <Text style={{ fontSize: 15, color: "#0A2940" }}>
@@ -764,8 +772,19 @@ export default function FriendsTab() {
                 </View>
               );
             })}
+
+            {visibleCount < feed.length && (
+              <TouchableOpacity
+                style={styles.loadMoreButton}
+                onPress={() => setVisibleCount(prev => Math.min(prev + 10, feed.length))}
+              >
+                <Text style={styles.loadMoreText}>Load more activity</Text>
+              </TouchableOpacity>
+            )}
           </View>
         )}
+
+
 
         {selectedFriend && (
           <View style={styles.modalOverlay}>
@@ -861,6 +880,19 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#2F4F68',
   },
+  emptyTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#1E3A8A",
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  emptyText: {
+    fontSize: 15,
+    color: "#6B7280",
+    textAlign: "center",
+    lineHeight: 20,
+  },
   itemText: {
     fontSize: 16,
     color: '#0A2940'
@@ -873,6 +905,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  loadMoreButton: {
+    alignSelf: "center",
+    backgroundColor: "#0D2C42",   // ← changed here
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+    borderRadius: 30,
+  },
+  loadMoreText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 14,
   },
   loadingOverlay: {
     flex: 1,
