@@ -1,4 +1,3 @@
-//STARTING STEP STEP 15 — FIX THE BLOCKED FRIENDS FILTER BUG
 // app/(tabs)/friends.tsx
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -6,10 +5,12 @@ import { ActivityIndicator, Animated, Image, ImageBackground, ScrollView, StyleS
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc,  } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, setDoc,  } from 'firebase/firestore';
 
 import { logFriendship, logCheer } from "../../utils/activityLogger";
 import LoadingPuck from "../../components/loadingPuck";
+import CheerButton from '@/components/friends/cheerButton';
+import ChirpBox from '@/components/friends/chirpBox';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -60,279 +61,6 @@ const getTimestamp = (ts: any): Date => {
 };
 
 export default function FriendsTab() {
-  function CheerButton({ friendId, checkinId }: { friendId: string; checkinId: string }) {
-    const [cheerCount, setCheerCount] = useState(0);
-    const [cheerNames, setCheerNames] = useState<string[]>([]);
-    const [visible, setVisible] = useState(false);
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-
-    useEffect(() => {
-      const loadCheers = async () => {
-        try {
-          const cheersRef = collection(db, "profiles", friendId, "checkins", checkinId, "cheers");
-          const snap = await getDocs(cheersRef);
-          setCheerCount(snap.size);
-          setCheerNames(snap.docs.map((d) => d.data().name));
-        } catch (err) {
-          console.error("Error loading cheers:", err);
-        }
-      };
-      loadCheers();
-    }, [friendId, checkinId]);
-
-    const handleCheerPress = async () => {
-      try {
-        if (!auth.currentUser) return;
-        const userId = auth.currentUser.uid;
-
-        let userName = "Anonymous";
-        try {
-          const profileDoc = await getDoc(doc(db, "profiles", userId));
-          if (profileDoc.exists() && profileDoc.data().name) {
-            userName = profileDoc.data().name;
-          } else if (auth.currentUser.displayName) {
-            userName = auth.currentUser.displayName;
-          }
-        } catch (err) {
-          console.warn("Could not fetch profile name:", err);
-        }
-
-        const cheerRef = doc(db, "profiles", friendId, "checkins", checkinId, "cheers", userId);
-        const cheersSnap = await getDocs(collection(db, "profiles", friendId, "checkins", checkinId, "cheers"));
-        const existing = cheersSnap.docs.find((d) => d.id === userId);
-
-        if (existing) {
-          // Remove cheer
-          await deleteDoc(cheerRef);
-          setCheerCount((c) => Math.max(0, c - 1));
-          setCheerNames((names) => names.filter((n) => n !== userName));
-          setVisible(false);
-        } else {
-          // Add cheer
-          await setDoc(cheerRef, {
-            name: userName,
-            userId: userId,          // actor
-            actorId: userId,         // fix feed rendering
-            targetId: friendId,      // whose check-in is being cheered
-            checkinId: checkinId,    // which check-in was cheered
-            timestamp: new Date(),
-            type: "cheer"
-          });
-
-          setCheerCount((c) => c + 1);
-          setCheerNames((names) => [...names, userName]);
-          setVisible(true);
-
-          Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-          }).start();
-
-          setTimeout(() => {
-            Animated.timing(fadeAnim, {
-              toValue: 0,
-              duration: 300,
-              useNativeDriver: true,
-            }).start(() => setVisible(false));
-          }, 3000);
-        }
-      } catch (err) {
-        console.error("Error toggling cheer:", err);
-      }
-    };
-
-    return (
-      <View style={{ marginTop: 4 }}>
-        <TouchableOpacity
-          onPress={handleCheerPress}
-          style={{
-            marginTop: 4,
-            alignSelf: "flex-start",
-            backgroundColor: "#1E3A8A",
-            paddingVertical: 2,
-            paddingHorizontal: 6,
-            borderRadius: 10,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-          }}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold" }}>Cheer 🎉</Text>
-          {cheerCount > 0 && (
-            <View
-              style={{
-                position: "absolute",
-                top: -6,
-                right: -6,
-                backgroundColor: "#0A2940",
-                borderRadius: 8,
-                paddingHorizontal: 4,
-                minWidth: 16,
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 1,
-                borderColor: "#fff",
-              }}
-            >
-              <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700" }}>{cheerCount}</Text>
-            </View>
-          )}
-        </TouchableOpacity>
-
-        {visible && cheerNames.length > 0 && (
-          <Animated.View
-            style={{
-              opacity: fadeAnim,
-              backgroundColor: "rgba(13,44,66,0.95)",
-              padding: 6,
-              borderRadius: 8,
-              marginTop: 4,
-              alignSelf: "flex-start",
-            }}
-          >
-            {cheerNames.map((n, i) => (
-              <Text
-                key={i}
-                style={{
-                  color: "#fff",
-                  fontSize: 12,
-                  marginBottom: 2,
-                  paddingHorizontal: 4,
-                }}
-              >
-                {n}
-              </Text>
-            ))}
-          </Animated.View>
-        )}
-      </View>
-    );
-  }
-
-  function ChirpBox({ friendId, checkinId }: { friendId: string; checkinId: string }) {
-    const [chirps, setChirps] = useState<any[]>([]);
-    const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-      const loadChirps = async () => {
-        try {
-          const chirpsRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
-          const snap = await getDocs(query(chirpsRef, orderBy("timestamp", "asc")));
-          setChirps(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-        } catch (err) {
-          console.error("Error loading chirps:", err);
-        }
-      };
-      loadChirps();
-    }, [friendId, checkinId]);
-
-    const handleChirp = async () => {
-      if (!auth.currentUser || !message.trim()) return;
-      setLoading(true);
-
-      const userId = auth.currentUser.uid;
-      let name = "Someone";
-      try {
-        const profileSnap = await getDoc(doc(db, "profiles", userId));
-        if (profileSnap.exists() && profileSnap.data().name) {
-          name = profileSnap.data().name;
-        }
-      } catch (err) {
-        console.warn("Could not fetch name:", err);
-      }
-
-      try {
-        const user = auth.currentUser;
-        const profileSnap = await getDoc(doc(db, "profiles", user.uid));
-        const imageUrl = profileSnap.exists() ? profileSnap.data().imageUrl || null : null;
-
-        const chirpRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
-        await addDoc(chirpRef, {
-          userId: user.uid,
-          userName: name,
-          userImage: imageUrl,
-          text: message.trim(),
-          timestamp: new Date(),
-        });
-
-        setChirps(prev => [
-          ...prev,
-          { userId: user.uid, userName: name, userImage: imageUrl, text: message.trim(), timestamp: new Date() },
-        ]);
-        setMessage("");
-      } catch (err) {
-        console.error("Error posting chirp:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    return (
-      <View style={{ marginTop: 4, backgroundColor: "rgba(13,44,66,0.05)", borderRadius: 8, padding: 6 }}>
-        {chirps.map((c) => (
-          <View key={c.id || c.timestamp} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
-            <Image
-              source={
-                c.userImage
-                  ? { uri: c.userImage }
-                  : require("@/assets/images/icon.png") // placeholder
-              }
-              style={{
-                width: 26,
-                height: 26,
-                borderRadius: 13,
-                marginRight: 8,
-              }}
-            />
-            <View style={{ flexShrink: 1 }}>
-              <Text style={{ fontWeight: "700", color: "#0A2940" }}>
-                {c.userName || "Someone"}
-              </Text>
-              <Text style={{ color: "#0A2940", flexShrink: 1 }}>
-                {c.text || c.message}
-              </Text>
-            </View>
-          </View>
-        ))}
-
-        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 2 }}>
-
-          <TextInput
-            style={{
-              flex: 1,
-              backgroundColor: "#fff",
-              borderRadius: 8,
-              paddingHorizontal: 8,
-              height: 34,
-              borderColor: "#ccc",
-              borderWidth: 1,
-            }}
-            placeholder="Leave a chirp..."
-            placeholderTextColor="#999"
-            value={message}
-            onChangeText={setMessage}
-          />
-          <TouchableOpacity
-            onPress={handleChirp}
-            disabled={loading || !message.trim()}
-            style={{
-              marginLeft: 6,
-              backgroundColor: "#1E3A8A",
-              borderRadius: 8,
-              paddingHorizontal: 10,
-              paddingVertical: 4,
-              opacity: loading || !message.trim() ? 0.6 : 1,
-            }}
-          >
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>Chirp</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
 
   const [allUsers, setAllUsers] = useState<any[]>([]);
   const [blockedFriends, setBlockedFriends] = useState<any[]>([]);
@@ -447,7 +175,11 @@ export default function FriendsTab() {
         const safeActivities = activities.filter(
           (a) => !isBlocked(a.friendId)
         );
-        setFeed(safeActivities.slice(0, 10));
+        setFeed(
+          safeActivities
+            .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
+            .slice(0, 10)
+        );
 
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
         const blockedSnap = await getDocs(blockedRef);
@@ -472,6 +204,74 @@ export default function FriendsTab() {
 
     fetchUsersAndFriends();
   }, []);
+
+  // Live feed updates — safe, no duplicates, friends list untouched
+  useEffect(() => {
+    if (!currentUser || friends.length === 0) return;
+
+    const unsubs: (() => void)[] = [];
+
+    friends.forEach(friendId => {
+      if (isBlocked(friendId)) return;
+
+      // Only new check-ins
+      const checkinsQuery = query(
+        collection(db, 'profiles', friendId, 'checkins'),
+        orderBy('timestamp', 'desc')
+      );
+
+      const unsubCheckins = onSnapshot(checkinsQuery, (snap) => {
+        snap.docChanges().forEach(change => {
+          if (change.type === "added") {
+            const data = change.doc.data();
+            const newItem = {
+              id: change.doc.id,
+              friendId,
+              type: "checkin",
+              ...data
+            };
+
+            setFeed(prev => {
+              if (prev.some(i => i.id === newItem.id && i.type === "checkin")) return prev;
+              return [...prev, newItem]
+                .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
+                .slice(0, 10);
+            });
+          }
+        });
+      });
+      unsubs.push(unsubCheckins);
+
+      // Only new activity (cheers, friendships)
+      const activityQuery = query(
+        collection(db, 'profiles', friendId, 'activity'),
+        orderBy('timestamp', 'desc')
+      );
+
+      const unsubActivity = onSnapshot(activityQuery, (snap) => {
+        snap.docChanges().forEach(change => {
+          if (change.type === "added") {
+            const data = change.doc.data();
+            const newItem = {
+              id: change.doc.id,
+              friendId,
+              ...data
+            };
+
+            setFeed(prev => {
+              if (prev.some(i => i.id === newItem.id)) return prev;
+              return [...prev, newItem]
+                .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
+                .slice(0, 10);
+            });
+          }
+        });
+      });
+      unsubs.push(unsubActivity);
+    });
+
+    return () => unsubs.forEach(u => u());
+  }, [currentUser, friends, blockedFriends]);
 
   const handleSendRequest = async (userId: string) => {
     if (!currentUser) return;
@@ -562,13 +362,20 @@ export default function FriendsTab() {
 
   const filteredUsers = allUsers.filter(
     (user) =>
+      user.id !== currentUser.uid && // ⬅️ NEW — prevent showing yourself
       user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
       !friends.includes(user.id) &&
       !sentRequests.includes(user.id) &&
-      !isBlocked(user.id)
+      !blockedFriends.some((b) => b.id === user.id)
   );
 
-  if (loading) return <LoadingPuck />;
+  if (loading) {
+    return (
+      <View style={styles.loadingOverlay}>
+        <LoadingPuck />
+      </View>
+    );
+  }
 
   return (
     <ImageBackground
@@ -724,12 +531,16 @@ export default function FriendsTab() {
             <Text style={styles.subheading}>Friends Activity</Text>
             {feed.map((item, index) => {
               const friend = allUsers.find((u) => u.id === item.friendId);
+              const friendName = friend?.name || "Unknown User";
+              const friendImage = friend?.imageUrl || null;
               const time = getTimestamp(item.timestamp).toLocaleString();
 
               // === Check-in event ===
               if (item.type === "checkin") {
-                const arenaName = item.arenaName ?? "Unknown arena";
-                const league = item.league ?? "Unknown league";
+                const arenaName = resolveArenaName(item);
+                const league = item.league || item.leagueName || item.league_code || "Unknown league";
+                const teamCode = resolveTeamCode(item);
+                const teamName = resolveTeamName(item);
 
                 let arenaData: any = null;
 
@@ -779,11 +590,8 @@ export default function FriendsTab() {
                 }
 
                 // === Final fallback color safety ===
-                let colorCode = "#6B7280";
-                if (arenaData?.colorCode) {
-                  colorCode = arenaData.colorCode;
-                }
-                const bgColor = colorCode + "22";
+                const colorCode = arenaData?.colorCode || "#6B7280";
+                const bgColor = `${colorCode}22`;
 
                 return (
                   <TouchableOpacity
@@ -835,7 +643,7 @@ export default function FriendsTab() {
                         marginBottom: 6,
                       }}
                     >
-                      {item.teamName} vs {item.opponent}
+                      {resolveTeamName(item)} vs {resolveTeamName(item.opponent ? { teamName: item.opponent } : item)}
                     </Text>
 
                     <View
@@ -886,7 +694,7 @@ export default function FriendsTab() {
                       />
                       <Text style={{ fontSize: 15, color: "#0A2940" }}>
                         <Text style={{ fontWeight: "bold" }}>
-                          {actor?.name || "Someone"}
+                          {actor?.name || "Unknown User"}
                         </Text>{" "}
                         cheered a check-in 🎉
                       </Text>
@@ -917,11 +725,11 @@ export default function FriendsTab() {
                   >
                     <Text style={{ fontSize: 15, color: "#0A2940" }}>
                       <Text style={{ fontWeight: "bold" }}>
-                        {userA?.name || "Someone"}
+                        {userA?.name || "Unknown User"}
                       </Text>{" "}
                       became friends with{" "}
                       <Text style={{ fontWeight: "bold" }}>
-                        {userB?.name || "Someone"}
+                        {userB?.name || "Unknown User"}
                       </Text>
                     </Text>
                     <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
@@ -1053,17 +861,6 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#2F4F68',
   },
-  cheerButton: {
-    backgroundColor: "#1E3A8A",
-    paddingVertical: 3,
-    paddingHorizontal: 8,
-    borderRadius: 10,
-    alignSelf: "flex-end",
-  },
-  cheerButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
   itemText: {
     fontSize: 16,
     color: '#0A2940'
@@ -1076,6 +873,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  loadingOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ffffff", // or your background color
   },
   modalOverlay: {
     position: 'absolute',
