@@ -1,3 +1,4 @@
+//STARTING STEP STEP 15 — FIX THE BLOCKED FRIENDS FILTER BUG
 // app/(tabs)/friends.tsx
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -12,6 +13,23 @@ import LoadingPuck from "../../components/loadingPuck";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+
+const getTimestamp = (ts: any): Date => {
+  if (!ts) return new Date(0);
+  if (ts.seconds) return new Date(ts.seconds * 1000);        // Firestore Timestamp object (seconds + nanoseconds)
+  if (ts instanceof Date) return ts;                         // JS Date object passed directly
+  if (typeof ts === "string") return new Date(ts);           // ISO string (unlikely but safe)
+
+  return new Date(0);
+};
+
+const resolveTeamName = (item: any): string => {
+  return item.teamName ||
+         item.team ||
+         item.homeTeam ||
+         item.home ||
+         null;
+};
 
 export default function FriendsTab() {
   function CheerButton({ friendId, checkinId }: { friendId: string; checkinId: string }) {
@@ -226,8 +244,8 @@ export default function FriendsTab() {
 
     return (
       <View style={{ marginTop: 4, backgroundColor: "rgba(13,44,66,0.05)", borderRadius: 8, padding: 6 }}>
-        {chirps.map((c, index) => (
-          <View key={c.id || index} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+        {chirps.map((c) => (
+          <View key={c.id || c.timestamp} style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
             <Image
               source={
                 c.userImage
@@ -302,6 +320,12 @@ export default function FriendsTab() {
   const currentUser = auth.currentUser;
   const router = useRouter();
 
+  const getMutualFriendsCount = (userId: string) => {
+    const theirFriends = userFriendsMap[userId] || [];
+    if (!theirFriends.length || !friends.length) return 0;
+    return friends.filter(fid => theirFriends.includes(fid)).length;
+  };
+
   useEffect(() => {
     const fetchUsersAndFriends = async () => {
       if (!currentUser) return;
@@ -319,10 +343,15 @@ export default function FriendsTab() {
         }));
         setPendingRequests(requests);
 
-        // Load requests the current user has SENT
-        const sentRef = collection(db, 'profiles', currentUser.uid, 'sentFriendRequests');
-        const sentSnap = await getDocs(sentRef);
-        const sentList = sentSnap.docs.map((d) => d.id);
+        // Load sent friend requests (safe mode)
+        let sentList: string[] = [];
+        try {
+          const sentRef = collection(db, "profiles", currentUser.uid, "sentFriendRequests");
+          const sentSnap = await getDocs(sentRef);
+          sentList = sentSnap.docs.map((d) => d.id);
+        } catch (err) {
+          console.warn("Could not load sentFriendRequests:", err);
+        }
         setSentRequests(sentList);
 
         const snapshot = await getDocs(collection(db, 'profiles'));
@@ -388,14 +417,23 @@ export default function FriendsTab() {
         }
 
         const safeActivities = activities.filter(
-          (a) => !blockedFriends.some((b) => b.id === a.friendId)
+          (a) => !isBlocked(a.friendId)
         );
         setFeed(safeActivities.slice(0, 10));
 
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
         const blockedSnap = await getDocs(blockedRef);
         const blockedIds = blockedSnap.docs.map((d) => d.id);
-        const blockedList = users.filter((u) => blockedIds.includes(u.id));
+        const blockedList = blockedIds
+          .map((id) => users.find((u) => u.id === id))
+          .filter((u) => u)                                // remove nulls
+          .map((u) => ({
+            id: u.id,
+            name: u.name || "Unknown",
+            imageUrl: u.imageUrl || null,
+            location: u.location || "",
+          }));
+
         setBlockedFriends(blockedList);
       } catch (error) {
         console.error('Error fetching users or feed:', error);
@@ -490,28 +528,19 @@ export default function FriendsTab() {
     }
   };
 
+  const isBlocked = (userId: string) => {
+    return blockedFriends.some((u) => u.id === userId);
+  };
+
   const filteredUsers = allUsers.filter(
     (user) =>
       user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
       !friends.includes(user.id) &&
       !sentRequests.includes(user.id) &&
-      !blockedFriends.some((b) => b.id === user.id)
+      !isBlocked(user.id)
   );
 
   if (loading) return <LoadingPuck />;
-
-  const getTimestamp = (ts: any) => {
-    if (!ts) return new Date(0); // fallback prevents crashes
-
-    if (ts.seconds) return new Date(ts.seconds * 1000); // Firestore Timestamp
-
-    if (typeof ts === "string" || typeof ts === "number")
-      return new Date(ts); // ISO or millis
-
-    if (ts.toDate) return ts.toDate(); // Firestore object with toDate()
-
-    return new Date(0);
-  };
 
   return (
     <ImageBackground
@@ -602,7 +631,7 @@ export default function FriendsTab() {
           <View style={styles.card}>
             <Text style={styles.subheading}>Your Friends</Text>
             {allUsers
-              .filter((u) => friends.includes(u.id) && !blockedFriends.some((b) => b.id === u.id))
+              .filter((u) => friends.includes(u.id) && !isBlocked(u.id))
               .map((item) => (
                 <View key={item.id} style={styles.listRow}>
                   <TouchableOpacity
@@ -624,7 +653,15 @@ export default function FriendsTab() {
                     />
                     <Text style={styles.itemText}>{item.name}</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => setSelectedFriend(item)}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      setSelectedFriend({
+                        id: item.id,
+                        name: item.name || "Unknown",
+                        imageUrl: item.imageUrl || null,
+                      })
+                    }
+                  >
                     <Ionicons name="ellipsis-vertical" size={20} color="#0A2940" />
                   </TouchableOpacity>
                 </View>
@@ -688,7 +725,7 @@ export default function FriendsTab() {
                   const historyEntry = (arenaHistory as any[]).find(
                     (h) =>
                       h.league === item.league &&
-                      h.teamName === item.teamName &&
+                      h.teamName === resolveTeamName(item) &&
                       h.history.some(
                         (old) =>
                           old.name === item.arenaName ||
@@ -712,7 +749,7 @@ export default function FriendsTab() {
                     (h) =>
                       h.league === item.league &&
                       (
-                        h.teamName === item.teamName ||
+                        h.teamName === resolveTeamName(item) ||
                         h.teamCode === item.teamCode
                       )
                   );
