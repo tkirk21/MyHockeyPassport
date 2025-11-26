@@ -13,6 +13,42 @@ import LoadingPuck from "../../components/loadingPuck";
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+const arenasData = require("@/assets/data/arenas.json");
+const arenaHistory = require("@/assets/data/arenaHistory.json");
+const historicalTeams = require("@/assets/data/historicalTeams.json");
+
+const resolveTeamName = (item: any): string => {
+  return (
+    item.teamName ||
+    item.team ||
+    item.homeTeam ||
+    item.team_name || // legacy
+    "Unknown"
+  );
+};
+
+const resolveTeamCode = (item: any): string | null => {
+  return (
+    item.teamCode ||
+    item.team_code ||
+    item.homeTeamCode ||
+    item.team_code_alt ||
+    null
+  );
+};
+
+const resolveArenaName = (item: any): string => {
+  return (
+    item.arenaName ||
+    item.arena ||
+    item.locationArena ||
+    item.venue ||
+    item.arena_name || // older format
+    item.checkinArena ||
+    item.arenaSelected ||
+    "Unknown arena"
+  );
+};
 
 const getTimestamp = (ts: any): Date => {
   if (!ts) return new Date(0);
@@ -21,14 +57,6 @@ const getTimestamp = (ts: any): Date => {
   if (typeof ts === "string") return new Date(ts);           // ISO string (unlikely but safe)
 
   return new Date(0);
-};
-
-const resolveTeamName = (item: any): string => {
-  return item.teamName ||
-         item.team ||
-         item.homeTeam ||
-         item.home ||
-         null;
 };
 
 export default function FriendsTab() {
@@ -703,11 +731,6 @@ export default function FriendsTab() {
                 const arenaName = item.arenaName ?? "Unknown arena";
                 const league = item.league ?? "Unknown league";
 
-                // Load all arena datasets
-                const arenasData = require("@/assets/data/arenas.json");
-                const arenaHistory = require("@/assets/data/arenaHistory.json");
-                const historicalTeams = require("@/assets/data/historicalTeams.json");
-
                 let arenaData: any = null;
 
                 // 1. Try to match CURRENT arenas (exact + league-safe)
@@ -750,13 +773,16 @@ export default function FriendsTab() {
                       h.league === item.league &&
                       (
                         h.teamName === resolveTeamName(item) ||
-                        h.teamCode === item.teamCode
+                        h.teamCode === resolveTeamCode(item)
                       )
                   );
                 }
 
-                // Fallback into safe colors
-                const colorCode = arenaData?.colorCode || "#6B7280";
+                // === Final fallback color safety ===
+                let colorCode = "#6B7280";
+                if (arenaData?.colorCode) {
+                  colorCode = arenaData.colorCode;
+                }
                 const bgColor = colorCode + "22";
 
                 return (
@@ -899,7 +925,7 @@ export default function FriendsTab() {
                       </Text>
                     </Text>
                     <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
-                      {time}
+                      {getTimestamp(item.timestamp).toLocaleString()}
                     </Text>
                   </View>
                 );
@@ -925,7 +951,7 @@ export default function FriendsTab() {
                     {item.message || "Unknown activity"}
                   </Text>
                   <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
-                    {time}
+                    {getTimestamp(item.timestamp).toLocaleString()}
                   </Text>
                 </View>
               );
