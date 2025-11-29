@@ -1,7 +1,7 @@
 // components/friends/chirpBox.tsx
 import React, { useEffect, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, orderBy, query } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 
@@ -55,12 +55,16 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
         userName,
         userImage,
         text: message.trim(),
-        timestamp: new Date(),
+        timestamp: serverTimestamp(),
       };
 
       await addDoc(collection(db, "profiles", friendId, "checkins", checkinId, "chirps"), newChirp);
 
-      setChirps(prev => [...prev, { id: Date.now().toString(), ...newChirp }]);
+      setChirps(prev => [...prev, {
+            id: Date.now().toString(),
+            ...newChirp,
+            timestamp: new Date(),
+          }]);
       setMessage('');
     } catch (err) {
       console.error("Error sending chirp:", err);

@@ -1,7 +1,7 @@
 // components/friends/cheerButton.tsx
 import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 
@@ -59,7 +59,7 @@ export default function CheerButton({ friendId, checkinId }: Props) {
           actorId: userId,
           targetId: friendId,
           checkinId,
-          timestamp: new Date(),
+          timestamp: serverTimestamp(),
           type: "cheer"
         });
         setCheerCount(c => c + 1);

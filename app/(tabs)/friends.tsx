@@ -1,12 +1,14 @@
 // app/(tabs)/friends.tsx
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Image, ImageBackground, Modal, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, setDoc,  } from 'firebase/firestore';
 import { useDebouncedCallback } from 'use-debounce';
+import { useFocusEffect } from '@react-navigation/native';
+import { ProfileAlertContext } from '../_layout';
 
 import { logFriendship, logCheer } from "../../utils/activityLogger";
 import LoadingPuck from "../../components/loadingPuck";
@@ -75,6 +77,7 @@ export default function FriendsTab() {
   const [userFriendsMap, setUserFriendsMap] = useState<{ [uid: string]: string[] }>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(10);
+  const [refreshing, setRefreshing] = useState(false);
   const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
     setSearchQuery(value);
   }, 300);
@@ -209,6 +212,49 @@ export default function FriendsTab() {
 
     fetchUsersAndFriends();
   }, []);
+
+  const onRefresh = async () => {
+      setRefreshing(true);
+      try {
+        let activities: any[] = [];
+        for (let friendId of friends) {
+          const checkinsRef = collection(db, 'profiles', friendId, 'checkins');
+          const checkinSnap = await getDocs(
+            query(checkinsRef, orderBy('timestamp', 'desc'), limit(3))
+          );
+          checkinSnap.docs.forEach(doc => {
+            activities.push({
+              id: doc.id,
+              friendId,
+              type: "checkin",
+              ...doc.data(),
+            });
+          });
+
+          const activityRef = collection(db, 'profiles', friendId, 'activity');
+          const activitySnap = await getDocs(
+            query(activityRef, orderBy('timestamp', 'desc'), limit(5))
+          );
+          activitySnap.docs.forEach(doc => {
+            activities.push({
+              id: doc.id,
+              friendId,
+              ...doc.data(),
+            });
+          });
+        }
+
+        const safeActivities = activities.filter(a => !isBlocked(a.friendId));
+        setFeed(
+          safeActivities
+            .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
+        );
+      } catch (err) {
+        console.error("Refresh failed:", err);
+      } finally {
+        setRefreshing(false);
+      }
+    };
 
   // Live feed updates — safe, no duplicates, friends list untouched
   useEffect(() => {
@@ -389,7 +435,17 @@ export default function FriendsTab() {
       style={styles.background}
       resizeMode="cover"
     >
-      <ScrollView contentContainerStyle={styles.overlay}>
+      <ScrollView
+        contentContainerStyle={styles.overlay}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["#0D2C42"]}
+            tintColor="#0D2C42"
+          />
+        }
+      >
         <Text style={styles.title}>Friends</Text>
 
         {/* Search Bar */}
@@ -527,10 +583,6 @@ export default function FriendsTab() {
             </Text>
           </View>
         )}
-
-
-
-
 
         {/* Blocked Friends */}
         {blockedFriends.length > 0 && (
@@ -784,44 +836,53 @@ export default function FriendsTab() {
           </View>
         )}
 
-
-
         {selectedFriend && (
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalCard}>
-              <Text style={styles.modalTitle}>{selectedFriend.name}</Text>
-              <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => {
-                  setSelectedFriend(null);
-                  router.push({
-                    pathname: '/userprofile/[userId]',
-                    params: { userId: selectedFriend.id },
-                  });
-                }}
-              >
-                <Text style={styles.modalButtonText}>View Profile</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => handleUnfriend(selectedFriend.id)}
-              >
-                <Text style={styles.modalButtonText}>Unfriend</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => handleBlock(selectedFriend)}
-              >
-                <Text style={styles.modalButtonText}>Block</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalButton, { backgroundColor: '#ccc' }]}
-                onPress={() => setSelectedFriend(null)}
-              >
-                <Text style={styles.modalButtonText}>Cancel</Text>
-              </TouchableOpacity>
+          <Modal
+            transparent={true}
+            visible={true}
+            animationType="fade"
+            onRequestClose={() => setSelectedFriend(null)}
+          >
+            <View style={styles.modalOverlay}>
+              <View style={styles.modalCard}>
+                <Text style={styles.modalTitle}>{selectedFriend.name}</Text>
+
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => {
+                    setSelectedFriend(null);
+                    router.push({
+                      pathname: '/userprofile/[userId]',
+                      params: { userId: selectedFriend.id },
+                    });
+                  }}
+                >
+                  <Text style={styles.modalButtonText}>View Profile</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => handleUnfriend(selectedFriend.id)}
+                >
+                  <Text style={styles.modalButtonText}>Unfriend</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => handleBlock(selectedFriend)}
+                >
+                  <Text style={styles.modalButtonText}>Block</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[styles.modalButton, { backgroundColor: '#ccc' }]}
+                  onPress={() => setSelectedFriend(null)}
+                >
+                  <Text style={styles.modalButtonText}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
+          </Modal>
         )}
       </ScrollView>
     </ImageBackground>
@@ -928,11 +989,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff", // or your background color
   },
   modalOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
@@ -940,25 +997,32 @@ const styles = StyleSheet.create({
   modalCard: {
     backgroundColor: '#fff',
     padding: 20,
-    borderRadius: 12,
-    width: '80%',
+    borderRadius: 16,
+    width: '85%',
+    maxWidth: 340,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 10,
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 12,
-    color: '#0A2940',
+    marginBottom: 20,
+    color: '#0D2C42',
     textAlign: 'center',
   },
   modalButton: {
-    paddingVertical: 12,
+    paddingVertical: 16,
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
   modalButtonText: {
-    fontSize: 16,
-    color: '#1E3A8A'
+    fontSize: 17,
+    color: '#1E3A8A',
+    fontWeight: '600',
   },
   mutualText: {
     fontSize: 12,

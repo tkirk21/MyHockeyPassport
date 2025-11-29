@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import {doc, collection, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, setDoc, } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc, } from 'firebase/firestore';
 import { getStorage, getDownloadURL, ref, uploadBytes, } from 'firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from './_layout';
@@ -78,6 +78,15 @@ export default function ProfileScreen() {
   useFocusEffect(
     useCallback(() => {
       setProfileAlertCount(0);
+
+      const user = auth.currentUser;
+      if (user) {
+        setDoc(
+          doc(db, 'profiles', user.uid, 'notifications', 'lastViewedProfile'),
+          { timestamp: serverTimestamp() },
+          { merge: true }
+        );
+      }
     }, [setProfileAlertCount])
   );
 
@@ -551,7 +560,7 @@ export default function ProfileScreen() {
                                   text,
                                   userName: name || 'Anonymous',
                                   userImage: imageUrl || null,
-                                  timestamp: new Date(),
+                                  timestamp: serverTimestamp(),
                                 });
                                 setRecentCheckIns((prev) =>
                                   prev.map((ci) =>

@@ -1,16 +1,26 @@
-//app/(tabs)/_layout.tsx
+// app/(tabs)/_layout.tsx
 import { getAuth } from 'firebase/auth';
-import { collection, getDocs, getFirestore, onSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  onSnapshot,
+} from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
-import React, { createContext, useEffect, useState,  } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
-export const ProfileAlertContext = createContext({
+export const ProfileAlertContext = createContext<{
+  profileAlertCount: number;
+  setProfileAlertCount: (n: number) => void;
+}>({
   profileAlertCount: 0,
-  setProfileAlertCount: (_: number) => {},
+  setProfileAlertCount: () => {},
 });
 
 const db = getFirestore(firebaseApp);
@@ -27,39 +37,65 @@ function CustomTabs({
   const auth = getAuth(firebaseApp);
   const currentUser = auth.currentUser;
 
-  // friend request listener
+  // Friend requests badge
   useEffect(() => {
     if (!currentUser) return;
-    const reqRef = collection(db, 'profiles', currentUser.uid, 'friendRequests');
-    const unsub = onSnapshot(reqRef, snap => setPendingCount(snap.size));
+    const unsub = onSnapshot(
+      collection(db, 'profiles', currentUser.uid, 'friendRequests'),
+      snap => setPendingCount(snap.size)
+    );
     return () => unsub();
   }, [currentUser]);
 
-  // cheers + chirps listener
+  // RED DOT — fixed "odd number of segments" error
   useEffect(() => {
     if (!currentUser) return;
 
-    const cheersRoot = collection(db, 'profiles', currentUser.uid, 'checkins');
-    const unsub = onSnapshot(cheersRoot, async snap => {
-      let total = 0;
+    const calc = async () => {
+      try {
+        const lastSnap = await getDoc(
+          doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedProfile')
+        );
+        const lastViewed = lastSnap.exists() ? lastSnap.data()?.timestamp?.toDate() : null;
 
-      for (const d of snap.docs) {
-        const cheerRef = collection(db, 'profiles', currentUser.uid, 'checkins', d.id, 'cheers');
-        const chirpRef = collection(db, 'profiles', currentUser.uid, 'checkins', d.id, 'chirps');
+        let count = 0;
 
-        const [cheersSnap, chirpsSnap] = await Promise.all([
-          getDocs(cheerRef),
-          getDocs(chirpRef),
-        ]);
+        // THIS LINE WAS WRONG BEFORE — fixed now
+        const checkinsRef = collection(db, 'profiles', currentUser.uid, 'checkins');
+        const checkinsSnap = await getDocs(checkinsRef);
 
-        total += cheersSnap.size + chirpsSnap.size;
+        for (const checkinDoc of checkinsSnap.docs) {
+          const cheersRef = collection(checkinDoc.ref, 'cheers');
+          const chirpsRef = collection(checkinDoc.ref, 'chirps');
+
+          const [cheersSnap, chirpsSnap] = await Promise.all([
+            getDocs(cheersRef),
+            getDocs(chirpsRef),
+          ]);
+
+          cheersSnap.forEach(d => {
+            const ts = d.data()?.timestamp?.toDate();
+            if (!lastViewed || (ts && ts > lastViewed)) count++;
+          });
+          chirpsSnap.forEach(d => {
+            const ts = d.data()?.timestamp?.toDate();
+            if (!lastViewed || (ts && ts > lastViewed)) count++;
+          });
+        }
+
+        setProfileAlertCount(count);
+      } catch (e) {
+        console.error('Red dot error:', e);
       }
+    };
 
-      setProfileAlertCount(total);
-    });
-
+    calc();
+    const unsub = onSnapshot(
+      collection(db, 'profiles', currentUser.uid, 'checkins'),
+      () => calc()
+    );
     return () => unsub();
-  }, [currentUser, setProfileAlertCount]);
+  }, [currentUser]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#0A2940', paddingBottom: insets.bottom }}>
@@ -77,40 +113,18 @@ function CustomTabs({
           tabBarInactiveTintColor: '#657B8D',
         }}
       >
-        <Tabs.Screen
-          name="index"
-          options={{
-            title: 'Home',
-            tabBarIcon: ({ color }) => <Ionicons name="home" size={28} color={color} />,
-          }}
-        />
+        <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={28} color={color} /> }} />
         <Tabs.Screen
           name="profile"
           options={{
             title: 'Profile',
             tabBarIcon: ({ color }) => <Ionicons name="person" size={28} color={color} />,
             tabBarBadge: profileAlertCount > 0 ? profileAlertCount : undefined,
-            tabBarBadgeStyle: {
-              backgroundColor: '#EF4444',
-              color: '#fff',
-              fontWeight: 'bold',
-            },
+            tabBarBadgeStyle: { backgroundColor: '#EF4444', color: '#fff', fontWeight: 'bold' },
           }}
         />
-        <Tabs.Screen
-          name="checkin"
-          options={{
-            title: 'Check-In',
-            tabBarIcon: ({ color }) => <Ionicons name="location" size={28} color={color} />,
-          }}
-        />
-        <Tabs.Screen
-          name="map"
-          options={{
-            title: 'Map',
-            tabBarIcon: ({ color }) => <Ionicons name="map" size={28} color={color} />,
-          }}
-        />
+        <Tabs.Screen name="checkin" options={{ title: 'Check-In', tabBarIcon: ({ color }) => <Ionicons name="location" size={28} color={color} /> }} />
+        <Tabs.Screen name="map" options={{ title: 'Map', tabBarIcon: ({ color }) => <Ionicons name="map" size={28} color={color} /> }} />
         <Tabs.Screen
           name="friends"
           options={{
@@ -130,10 +144,7 @@ export default function TabLayout() {
   return (
     <SafeAreaProvider>
       <ProfileAlertContext.Provider value={{ profileAlertCount, setProfileAlertCount }}>
-        <CustomTabs
-          profileAlertCount={profileAlertCount}
-          setProfileAlertCount={setProfileAlertCount}
-        />
+        <CustomTabs profileAlertCount={profileAlertCount} setProfileAlertCount={setProfileAlertCount} />
       </ProfileAlertContext.Provider>
     </SafeAreaProvider>
   );
