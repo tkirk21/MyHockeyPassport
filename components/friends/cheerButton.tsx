@@ -73,7 +73,7 @@ export default function CheerButton({ friendId, checkinId }: Props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleCheerPress} style={styles.button} activeOpacity={0.7}>
-        <Text style={styles.text}>Cheer 🎉</Text>
+        <Text style={styles.text}>Cheer🎉</Text>
         {cheerCount > 0 && (
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{cheerCount}</Text>
@@ -113,17 +113,19 @@ const styles = {
   },
   button: {
     backgroundColor: '#0A2940',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingHorizontal: 7,
+    paddingVertical: 6,
     borderRadius: 30,
-    minWidth: 60,
+    minWidth: 55,
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,
     borderColor: "#2F4F68",
+    marginLeft: -20,               // ← Add this (adjust -8 to -20 until perfect)
   },
   container: {
-    alignItems: "flex-start"
+    marginLeft: -12,          // this moves the whole cheer button left
+    alignItems: "flex-start",
   },
   nameText: {
     color: "#444",
@@ -135,7 +137,7 @@ const styles = {
   },
   text: {
     color: "#fff",
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "bold"
   }
 };

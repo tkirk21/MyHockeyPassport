@@ -1,11 +1,11 @@
 // app/(tabs)/friends.tsx
 import { useRouter } from 'expo-router';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, ImageBackground, Modal, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { ActivityIndicator, Animated, Image, ImageBackground, KeyboardAvoidingView, Modal, Platform, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, setDoc,  } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc,  } from 'firebase/firestore';
 import { useDebouncedCallback } from 'use-debounce';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from '../_layout';
@@ -76,7 +76,7 @@ export default function FriendsTab() {
   const [sentRequests, setSentRequests] = useState<string[]>([]);
   const [userFriendsMap, setUserFriendsMap] = useState<{ [uid: string]: string[] }>({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(5);
   const [refreshing, setRefreshing] = useState(false);
   const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
     setSearchQuery(value);
@@ -175,7 +175,7 @@ export default function FriendsTab() {
             activities.push({
               id: doc.id,
               friendId,
-              type: data.type || "unknown",   // normalize type
+              type: data.type || "unknown",
               ...data,
             });
           });
@@ -194,7 +194,7 @@ export default function FriendsTab() {
         const blockedIds = blockedSnap.docs.map((d) => d.id);
         const blockedList = blockedIds
           .map((id) => users.find((u) => u.id === id))
-          .filter((u) => u)                                // remove nulls
+          .filter((u) => u)
           .map((u) => ({
             id: u.id,
             name: u.name || "Unknown",
@@ -256,7 +256,6 @@ export default function FriendsTab() {
       }
     };
 
-  // Live feed updates — safe, no duplicates, friends list untouched
   useEffect(() => {
     if (!currentUser || friends.length === 0) return;
 
@@ -265,7 +264,6 @@ export default function FriendsTab() {
     friends.forEach(friendId => {
       if (isBlocked(friendId)) return;
 
-      // Only new check-ins
       const checkinsQuery = query(
         collection(db, 'profiles', friendId, 'checkins'),
         orderBy('timestamp', 'desc')
@@ -292,7 +290,6 @@ export default function FriendsTab() {
       });
       unsubs.push(unsubCheckins);
 
-      // Only new activity (cheers, friendships)
       const activityQuery = query(
         collection(db, 'profiles', friendId, 'activity'),
         orderBy('timestamp', 'desc')
@@ -341,10 +338,10 @@ export default function FriendsTab() {
     setPendingRequests((prev) => prev.filter((r) => r.id !== senderId));
     try {
       await setDoc(doc(db, 'profiles', currentUser.uid, 'friends', senderId), {
-        addedAt: new Date(),
+        addedAt: serverTimestamp(),
       });
       await setDoc(doc(db, 'profiles', senderId, 'friends', currentUser.uid), {
-        addedAt: new Date(),
+        addedAt: serverTimestamp(),
       });
       await deleteDoc(doc(db, 'profiles', currentUser.uid, 'friendRequests', senderId));
       await logFriendship(senderId);
@@ -430,6 +427,11 @@ export default function FriendsTab() {
   }
 
   return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+    >
     <ImageBackground
       source={require('@/assets/images/background.jpg')}
       style={styles.background}
@@ -438,6 +440,7 @@ export default function FriendsTab() {
       <ScrollView
         contentContainerStyle={styles.overlay}
         refreshControl={
+
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
@@ -445,19 +448,20 @@ export default function FriendsTab() {
             tintColor="#0D2C42"
           />
         }
+        keyboardShouldPersistTaps="handled"
       >
         <Text style={styles.title}>Friends</Text>
 
         {/* Search Bar */}
         <View style={styles.card}>
-          <View style={styles.searchBar}>
-            <Ionicons name="search" size={20} color="#6B7280" style={styles.searchIcon} />
+          <View style={styles.searchContainer}>
+            <Ionicons name="search" style={styles.searchIcon} />
             <TextInput
               style={styles.searchInput}
               placeholder="Search for users..."
               placeholderTextColor="#6B7280"
               value={searchQuery}
-              onChangeText={debouncedSetSearchQuery}
+              onChangeText={setSearchQuery}
             />
           </View>
           {searchQuery.length > 0 && filteredUsers.length > 0 && (
@@ -563,329 +567,293 @@ export default function FriendsTab() {
                   </TouchableOpacity>
                 </View>
               ))}
-          </View>
-        )}
+            </View>
+          )}
 
-        {friends.length === 0 && !loading && (
-          <View style={styles.card}>
-            <Text style={styles.emptyTitle}>No friends yet</Text>
-            <Text style={styles.emptyText}>
-              Search for people above and send some friend requests!
-            </Text>
-          </View>
-        )}
+          {friends.length === 0 && !loading && (
+            <View style={styles.card}>
+              <Text style={styles.emptyTitle}>No friends yet</Text>
+              <Text style={styles.emptyText}>
+                Search for people above and send some friend requests!
+              </Text>
+            </View>
+          )}
 
-        {feed.length === 0 && !loading && (
-          <View style={styles.card}>
-            <Text style={styles.emptyTitle}>Quiet in here...</Text>
-            <Text style={styles.emptyText}>
-              When your friends check in, cheer, or chirp — it’ll show up here.
-            </Text>
-          </View>
-        )}
+          {feed.length === 0 && !loading && (
+            <View style={styles.card}>
+              <Text style={styles.emptyTitle}>Quiet in here...</Text>
+              <Text style={styles.emptyText}>
+                When your friends check in, cheer, or chirp — it’ll show up here.
+              </Text>
+            </View>
+          )}
 
-        {/* Blocked Friends */}
-        {blockedFriends.length > 0 && (
-          <View style={styles.card}>
-            <Text style={styles.subheading}>Blocked Friends</Text>
-            {blockedFriends.map((item) => (
-              <View key={item.id} style={styles.listRow}>
-                <Image
-                  source={
-                    item.imageUrl ? { uri: item.imageUrl } : require('@/assets/images/icon.png')
-                  }
-                  style={styles.avatar}
-                />
-                <Text style={[styles.itemText, { flex: 1 }]}>{item.name}</Text>
-                <TouchableOpacity onPress={() => handleUnblock(item.id)}>
-                  <Text style={styles.unblockText}>Unblock</Text>
-                </TouchableOpacity>
-              </View>
-            ))}
-          </View>
-        )}
+          {/* Blocked Friends */}
+          {blockedFriends.length > 0 && (
+            <View style={styles.card}>
+              <Text style={styles.subheading}>Blocked Friends</Text>
+              {blockedFriends.map((item) => (
+                <View key={item.id} style={styles.listRow}>
+                  <Image
+                    source={
+                      item.imageUrl ? { uri: item.imageUrl } : require('@/assets/images/icon.png')
+                    }
+                    style={styles.avatar}
+                  />
+                  <Text style={[styles.itemText, { flex: 1 }]}>{item.name}</Text>
+                  <TouchableOpacity onPress={() => handleUnblock(item.id)}>
+                    <Text style={styles.unblockText}>Unblock</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+          )}
 
-        {/* Friends Activity */}
-        {feed.length > 0 && (
-          <View style={styles.card}>
-            <Text style={styles.subheading}>Friends Activity</Text>
+          {/* Friends Activity */}
+          {feed.length > 0 && (
+            <View style={styles.card}>
+              <Text style={styles.subheading}>Friends Activity</Text>
 
-            {feed.slice(0, visibleCount).map((item, index) => {
-              const friend = allUsers.find((u) => u.id === item.friendId);
-              const friendName = friend?.name || "Unknown User";
-              const friendImage = friend?.imageUrl || null;
-              const time = getTimestamp(item.timestamp).toLocaleString();
+              {feed.slice(0, visibleCount).map((item, index) => {
+                const friend = allUsers.find((u) => u.id === item.friendId);
+                const friendName = friend?.name || "Unknown User";
+                const friendImage = friend?.imageUrl || null;
+                const time = getTimestamp(item.timestamp).toLocaleString();
 
-              if (item.type === "checkin") {
-                const arenaName = resolveArenaName(item);
-                const league = item.league || item.leagueName || item.league_code || "Unknown league";
-                const teamCode = resolveTeamCode(item);
-                const teamName = resolveTeamName(item);
+                if (item.type === "checkin") {
+                  const arenaName = resolveArenaName(item);
+                  const league = item.league || item.leagueName || item.league_code || "Unknown league";
+                  const teamCode = resolveTeamCode(item);
+                  const teamName = resolveTeamName(item);
 
-                let arenaData: any = null;
+                  let arenaData: any = null;
 
-                arenaData = (arenasData as any[]).find(
-                  (a) =>
-                    a.league === item.league &&
-                    (a.arena === item.arenaName || a.arena === item.arena)
-                );
-
-                if (!arenaData) {
-                  const historyEntry = (arenaHistory as any[]).find(
-                    (h) =>
-                      h.league === item.league &&
-                      h.teamName === resolveTeamName(item) &&
-                      h.history.some(
-                        (old) => old.name === item.arenaName || old.name === item.arena
-                      )
+                  arenaData = (arenasData as any[]).find(
+                    (a) =>
+                      a.league === item.league &&
+                      (a.arena === item.arenaName || a.arena === item.arena)
                   );
 
-                  if (historyEntry) {
-                    arenaData = (arenasData as any[]).find(
-                      (a) =>
-                        a.league === historyEntry.league &&
-                        a.teamName === historyEntry.teamName &&
-                        a.arena === historyEntry.currentArena
+                  if (!arenaData) {
+                    const historyEntry = (arenaHistory as any[]).find(
+                      (h) =>
+                        h.league === item.league &&
+                        h.teamName === resolveTeamName(item) &&
+                        h.history.some(
+                          (old) => old.name === item.arenaName || old.name === item.arena
+                        )
+                    );
+
+                    if (historyEntry) {
+                      arenaData = (arenasData as any[]).find(
+                        (a) =>
+                          a.league === historyEntry.league &&
+                          a.teamName === historyEntry.teamName &&
+                          a.arena === historyEntry.currentArena
+                      );
+                    }
+                  }
+
+                  if (!arenaData) {
+                    arenaData = (historicalTeams as any[]).find(
+                      (h) =>
+                        h.league === item.league &&
+                        (h.teamName === resolveTeamName(item) || h.teamCode === resolveTeamCode(item))
                     );
                   }
-                }
 
-                if (!arenaData) {
-                  arenaData = (historicalTeams as any[]).find(
-                    (h) =>
-                      h.league === item.league &&
-                      (h.teamName === resolveTeamName(item) || h.teamCode === resolveTeamCode(item))
+                  const colorCode = arenaData?.colorCode || "#6B7280";
+                  const bgColor = `${colorCode}22`;
+
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      style={[styles.activityCard, { backgroundColor: bgColor, borderLeftColor: colorCode }]}
+                      onPress={() =>
+                        router.push({
+                          pathname: "/checkin/[checkinId]",
+                          params: { checkinId: item.id, userId: item.friendId },
+                        })
+                      }
+                    >
+
+                      <View style={styles.activityHeader}>
+                        <Image
+                          source={friendImage ? { uri: friendImage } : require('@/assets/images/icon.png')}
+                          style={styles.activityAvatar}
+                        />
+                        <Text style={styles.activityUserText}>
+                          {friendName} checked in at
+                        </Text>
+                      </View>
+
+                      <View style={styles.leagueAndArenaRow}>
+                        <View style={[styles.leagueBadgeInline, { borderColor: colorCode }]}>
+                          <Text style={[styles.leagueBadgeTextInline, { color: colorCode }]}>
+                            {league}
+                          </Text>
+                        </View>
+                        <Text style={styles.arenaNameText}>
+                          {arenaName}
+                        </Text>
+                      </View>
+
+                      <Text style={styles.matchupText}>
+                        {resolveTeamName(item)} vs {resolveTeamName(item.opponent ? { teamName: item.opponent } : item)}
+                      </Text>
+
+                      <View
+                        style={styles.dateAndCheerRow}
+                      >
+                        <Text style={styles.dateText}>
+                          {new Date(item.gameDate || item.timestamp).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </Text>
+                        <CheerButton friendId={item.friendId} checkinId={item.id} />
+                      </View>
+
+                      <ChirpBox friendId={item.friendId} checkinId={item.id} />
+                    </TouchableOpacity>
                   );
                 }
 
-                const colorCode = arenaData?.colorCode || "#6B7280";
-                const bgColor = `${colorCode}22`;
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    style={{
-                      backgroundColor: bgColor,
-                      borderLeftColor: colorCode,
-                      borderLeftWidth: 6,
-                      borderRadius: 10,
-                      padding: 14,
-                      marginBottom: 12,
-                      shadowColor: "#000",
-                      shadowOpacity: 0.05,
-                      shadowOffset: { width: 0, height: 1 },
-                      shadowRadius: 3,
-                      elevation: 2,
-                    }}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/checkin/[checkinId]",
-                        params: { checkinId: item.id, userId: item.friendId },
-                      })
-                    }
-                  >
+                if (item.type === "cheer") {
+                  const actor = allUsers.find((u) => u.id === item.actorId);
+                  return (
                     <View
-                      style={{
-                        alignSelf: "flex-start",
-                        paddingHorizontal: 8,
-                        paddingVertical: 2,
-                        borderRadius: 6,
-                        borderWidth: 1.5,
-                        borderColor: colorCode,
-                        marginBottom: 6,
-                      }}
+                      key={index}
+                      style={styles.activityItemCard}
                     >
-                      <Text style={{ fontSize: 12, fontWeight: "600", color: colorCode }}>
-                        {league}
-                      </Text>
+                      <View style={styles.cheerHeader}>
+                        <Image
+                          source={
+                            actor?.imageUrl
+                              ? { uri: actor.imageUrl }
+                              : require("@/assets/images/icon.png")
+                          }
+                          style={styles.cheerAvatar}
+                        />
+                        <Text style={styles.activityItemText}>
+                          <Text style={styles.activityItemBold}>
+                            {actor?.name || "Unknown User"}
+                          </Text>{" "}
+                          cheered a check-in 🎉
+                        </Text>
+                      </View>
+                      <Text style={styles.cheerTime}>{time}</Text>
                     </View>
-
-                    <Text style={{ fontSize: 16, fontWeight: "700", color: "#0D2C42" }}>
-                      {arenaName}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontWeight: "500",
-                        color: "#2F4F68",
-                        marginBottom: 6,
-                      }}
-                    >
-                      {resolveTeamName(item)} vs {resolveTeamName(item.opponent ? { teamName: item.opponent } : item)}
-                    </Text>
-
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginBottom: 6,
-                      }}
-                    >
-                      <Text style={{ fontSize: 12, color: "#6B7280" }}>
-                        {getTimestamp(item.timestamp).toLocaleDateString()}
-                      </Text>
-                      <CheerButton friendId={item.friendId} checkinId={item.id} />
-                    </View>
-
-                    <ChirpBox friendId={item.friendId} checkinId={item.id} />
-                  </TouchableOpacity>
-                );
-              }
-
-              if (item.type === "cheer") {
-                const actor = allUsers.find((u) => u.id === item.actorId);
-                return (
-                  <View
-                    key={index}
-                    style={{
-                      backgroundColor: "#dce3ff",
-                      borderRadius: 10,
-                      padding: 14,
-                      marginBottom: 12,
-                      shadowColor: "#000",
-                      shadowOpacity: 0.05,
-                      shadowOffset: { width: 0, height: 1 },
-                      shadowRadius: 3,
-                      elevation: 2,
-                    }}
-                  >
-                    <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 6 }}>
-                      <Image
-                        source={
-                          actor?.imageUrl
-                            ? { uri: actor.imageUrl }
-                            : require("@/assets/images/icon.png")
-                        }
-                        style={{ width: 36, height: 36, borderRadius: 18, marginRight: 10 }}
-                      />
-                      <Text style={{ fontSize: 15, color: "#0A2940", flex: 1 }}>
-                        <Text style={{ fontWeight: "bold" }}>
-                          {actor?.name || "Unknown User"}
-                        </Text>{" "}
-                        cheered a check-in 🎉
-                      </Text>
-                    </View>
-                    <Text style={{ fontSize: 12, color: "#6B7280" }}>{time}</Text>
-                  </View>
-                );
-              }
+                  );
+                }
 
               if (item.type === "friendship") {
-                const userA = allUsers.find((u) => u.id === item.actorId);
-                const userB = allUsers.find((u) => u.id === item.targetId);
+                  const userA = allUsers.find((u) => u.id === item.actorId);
+                  const userB = allUsers.find((u) => u.id === item.targetId);
+                  return (
+                    <View
+                      key={index}
+                      style={styles.activityItemCard}
+                    >
+                      <Text style={styles.activityItemText}>
+                        <Text style={styles.friendshipBoldName}>
+                          {userA?.name || "Unknown User"}
+                        </Text>
+                        {" became friends with "}
+                        <Text style={styles.friendshipBoldName}>
+                          {userB?.name || "Unknown User"}
+                        </Text>
+                      </Text>
+                      <Text style={styles.friendshipTime}>
+                        {new Date(item.timestamp?.seconds ? item.timestamp.seconds * 1000 : item.timestamp)
+                          .toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                      </Text>
+                    </View>
+                  );
+                }
+
                 return (
                   <View
                     key={index}
-                    style={{
-                      backgroundColor: "#dce3ff",
-                      borderRadius: 10,
-                      padding: 14,
-                      marginBottom: 12,
-                      shadowColor: "#000",
-                      shadowOpacity: 0.05,
-                      shadowOffset: { width: 0, height: 1 },
-                      shadowRadius: 3,
-                      elevation: 2,
-                    }}
+                    style={styles.unknownActivityCard}
                   >
-                    <Text style={{ fontSize: 15, color: "#0A2940" }}>
-                      <Text style={{ fontWeight: "bold" }}>
-                        {userA?.name || "Unknown User"}
-                      </Text>{" "}
-                      became friends with{" "}
-                      <Text style={{ fontWeight: "bold" }}>
-                        {userB?.name || "Unknown User"}
-                      </Text>
+                    <Text style={styles.unknownActivityText}>
+                      {item.message || "Unknown activity"}
                     </Text>
-                    <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
+                    <Text style={styles.unknownActivityTime}>
                       {getTimestamp(item.timestamp).toLocaleString()}
                     </Text>
                   </View>
                 );
-              }
+              })}
 
-              return (
-                <View
-                  key={index}
-                  style={{
-                    backgroundColor: "#dce3ff",
-                    borderRadius: 10,
-                    padding: 14,
-                    marginBottom: 12,
-                  }}
-                >
-                  <Text style={{ fontSize: 15, color: "#0A2940" }}>
-                    {item.message || "Unknown activity"}
-                  </Text>
-                  <Text style={{ fontSize: 12, color: "#6B7280", marginTop: 4 }}>
-                    {getTimestamp(item.timestamp).toLocaleString()}
-                  </Text>
-                </View>
-              );
-            })}
-
-            {visibleCount < feed.length && (
-              <TouchableOpacity
-                style={styles.loadMoreButton}
-                onPress={() => setVisibleCount(prev => Math.min(prev + 10, feed.length))}
-              >
-                <Text style={styles.loadMoreText}>Load more activity</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        )}
-
-        {selectedFriend && (
-          <Modal
-            transparent={true}
-            visible={true}
-            animationType="fade"
-            onRequestClose={() => setSelectedFriend(null)}
-          >
-            <View style={styles.modalOverlay}>
-              <View style={styles.modalCard}>
-                <Text style={styles.modalTitle}>{selectedFriend.name}</Text>
-
+              {visibleCount < feed.length && (
                 <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => {
-                    setSelectedFriend(null);
-                    router.push({
-                      pathname: '/userprofile/[userId]',
-                      params: { userId: selectedFriend.id },
-                    });
-                  }}
+                  style={styles.loadMoreButton}
+                  onPress={() => setVisibleCount(prev => Math.min(prev + 5, feed.length))}
                 >
-                  <Text style={styles.modalButtonText}>View Profile</Text>
+                  <Text style={styles.loadMoreText}>Load more</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => handleUnfriend(selectedFriend.id)}
-                >
-                  <Text style={styles.modalButtonText}>Unfriend</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => handleBlock(selectedFriend)}
-                >
-                  <Text style={styles.modalButtonText}>Block</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[styles.modalButton, { backgroundColor: '#ccc' }]}
-                  onPress={() => setSelectedFriend(null)}
-                >
-                  <Text style={styles.modalButtonText}>Cancel</Text>
-                </TouchableOpacity>
-              </View>
+              )}
             </View>
-          </Modal>
-        )}
-      </ScrollView>
-    </ImageBackground>
+          )}
+
+          {selectedFriend && (
+            <Modal
+              transparent={true}
+              visible={true}
+              animationType="fade"
+              onRequestClose={() => setSelectedFriend(null)}
+            >
+              <View style={styles.modalOverlay}>
+                <View style={styles.modalCard}>
+                  <Text style={styles.modalTitle}>{selectedFriend.name}</Text>
+
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={() => {
+                      setSelectedFriend(null);
+                      router.push({
+                        pathname: '/userprofile/[userId]',
+                        params: { userId: selectedFriend.id },
+                      });
+                    }}
+                  >
+                    <Text style={styles.modalButtonText}>View Profile</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={() => handleUnfriend(selectedFriend.id)}
+                  >
+                    <Text style={styles.modalButtonText}>Unfriend</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={styles.modalButton}
+                    onPress={() => handleBlock(selectedFriend)}
+                  >
+                    <Text style={styles.modalButtonText}>Block</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={[styles.modalButton, { backgroundColor: '#ccc' }]}
+                    onPress={() => setSelectedFriend(null)}
+                  >
+                    <Text style={styles.modalButtonText}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+          )}
+        </ScrollView>
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -894,6 +862,38 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 16,
     paddingHorizontal: 20
+  },
+  activityAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    marginRight: 8,
+  },
+  activityCard: {
+    borderLeftWidth: 6,
+    borderRadius: 10,
+    padding: 14,
+    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  activityHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  activityUserText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#0A2940',
+  },
+  arenaNameText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0D2C42',
   },
   avatar: {
     width: 40,
@@ -941,6 +941,53 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#2F4F68',
   },
+  activityItemCard: {
+    backgroundColor: "#dce3ff",
+    borderRadius: 10,
+    padding: 14,
+    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 1 },
+    shadowRadius: 3,
+    elevation: 2,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+  },
+  cheerHeader: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 6,
+  },
+  cheerAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginRight: 10,
+  },
+  activityItemText: {
+    fontSize: 15,
+    color: "#0A2940",
+    flex: 1,
+  },
+  activityItemBold: {
+    fontWeight: "bold",
+  },
+  cheerTime: {
+    fontSize: 12,
+    color: "#6B7280",
+  },
+  dateAndCheerRow: {
+    flexDirection: "row",
+    justifyContent: "flex-start",  // ← Change to this (from "space-between")
+    alignItems: "center",
+    gap: 108,                       // ← Add this for natural spacing between date and button (adjust 8-16)
+    marginBottom: 6,
+  },
+  dateText: {
+    fontSize: 12,
+    color: "#6B7280",
+  },
   emptyTitle: {
     fontSize: 20,
     fontWeight: "700",
@@ -954,9 +1001,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 20,
   },
+  friendshipBoldName: {
+    fontWeight: "bold",
+  },
+  friendshipTime: {
+    fontSize: 12,
+    color: "#6B7280",
+    marginTop: 4,
+  },
   itemText: {
     fontSize: 16,
     color: '#0A2940'
+  },
+  leagueBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    marginBottom: 6,
+  },
+  leagueBadgeText: {
+    fontSize: 12,
+    fontWeight: '600',
   },
   listRow: {
     flexDirection: 'row',
@@ -987,6 +1054,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff", // or your background color
+  },
+  matchupText: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#2F4F68',
+    marginBottom: 6,
   },
   modalOverlay: {
     flex: 1,
@@ -1034,6 +1107,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 16
   },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    backgroundColor: '#F9FAFB',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    height: 48,
+  },
+  searchIcon: {
+    marginRight: 10,
+    fontSize: 20,
+    color: '#6B7280',
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: '#0A2940',
+    height: '100%',
+  },
   subheading: {
     fontSize: 20,
     fontWeight: '600',
@@ -1055,5 +1149,40 @@ const styles = StyleSheet.create({
   unblockText: {
     color: '#1E3A8A',
     fontWeight: 'bold',
+  },
+  unknownActivityCard: {
+    backgroundColor: "#dce3ff",
+    borderRadius: 10,
+    padding: 14,
+    marginBottom: 12,
+  },
+  unknownActivityText: {
+    fontSize: 15,
+    color: "#0A2940",
+  },
+  unknownActivityTime: {
+    fontSize: 12,
+    color: "#6B7280",
+    marginTop: 4,
+  },
+  leagueAndArenaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+    marginBottom: 6,
+  },
+  leagueBadgeInline: {
+    borderWidth: 1,
+    borderRadius: 4,
+  },
+  leagueBadgeTextInline: {
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  arenaNameText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0D2C42',
+    flex: 1,
   },
 });

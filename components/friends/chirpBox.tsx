@@ -73,8 +73,8 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
     }
   };
 
-  return (
-    <View style={styles.container}>
+return (
+    <View style={styles.chirpSectionWrapper}>
       {chirps.map((c) => (
         <View key={c.id || c.timestamp} style={styles.chirpRow}>
           <Image
@@ -99,7 +99,7 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
         <TouchableOpacity
           onPress={sendChirp}
           disabled={loading || !message.trim()}
-          style={[styles.sendButton, (loading || !message.trim()) && styles.sendButtonDisabled]}
+          style={styles.sendButton}
         >
           <Text style={styles.sendText}>Chirp</Text>
         </TouchableOpacity>
@@ -152,6 +152,7 @@ const styles = {
     borderRadius: 30,
     borderWidth: 2,
     borderColor: "#2F4F68",
+    opacity: 1,
   },
   sendButtonDisabled: {
     opacity: 0.5,
@@ -169,5 +170,12 @@ const styles = {
     color: "#0A2940",
     fontSize: 13,
     marginBottom: 2,
+  },
+  chirpSectionWrapper: {
+    marginTop: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    borderRadius: 12,
   },
 };

@@ -1,0 +1,6158 @@
+[
+  {
+    "id": "ohl_20250918_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Oshawa Generals",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-09-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250918_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Brampton Battalion",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-09-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_002",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Owen Sound Attack",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Ottawa 67's",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_005",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "North Bay, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Windsor Spitfires",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_007",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Saginaw Spirit",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250919_008",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Erie Otters",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250920_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250920_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Kitchener Rangers",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250920_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "London Knights",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250920_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Flint Firebirds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250920_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Guelph Storm",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250921_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-09-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250921_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sarnia Sting",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-09-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250921_003",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-09-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250925_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Owen Sound Attack",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-09-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250925_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-09-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250925_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-09-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250925_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-09-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Ottawa 67's",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_002",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Erie Otters",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Brampton Battalion",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Sudbury Wolves",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_006",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Niagara IceDogs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250926_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Oshawa Generals",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Peterborough Petes",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_003",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Niagara IceDogs",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "London Knights",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_005",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Kitchener Rangers",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_006",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Guelph Storm",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250927_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Windsor Spitfires",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_002",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Barrie Colts",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_003",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Flint Firebirds",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_005",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20250928_006",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251002_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-10-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251002_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Erie Otters",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-10-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251002_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Niagara IceDogs",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Owen Sound Attack",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_004",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Flint Firebirds",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_005",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Oshawa Generals",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_006",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "North Bay Battalion",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_007",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Niagara IceDogs",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251003_008",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Saginaw Spirit",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Erie Otters",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Windsor Spitfires",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Saginaw Spirit",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_004",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "London Knights",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Flint Firebirds",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251004_006",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Oshawa Generals",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251005_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251005_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Barrie Colts",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251005_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Windsor Spitfires",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251005_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Erie Otters",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251005_005",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Saginaw Spirit",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251008_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Kitchener Rangers",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-10-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251009_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Barrie Colts",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-10-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251009_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251009_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-10-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251009_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Guelph Storm",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Ottawa 67's",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Erie Otters",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Peterborough Petes",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Oshawa Generals",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Kitchener Rangers",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251010_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "North Bay Battalion",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Oshawa Generals",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Erie Otters",
+    "arena": "Erie Insurance Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "North Bay Battalion",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_004",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Sarnia Sting",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Kitchener Rangers",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Windsor Spitfires",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251011_007",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251012_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Ottawa 67's",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-12T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251012_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-12T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251013_001",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "North Bay Battalion",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251013_002",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Windsor Spitfires",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251014_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Guelph Storm",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251015_001",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Barrie Colts",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251015_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Saginaw Spirit",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251016_001",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Oshawa Generals",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-10-16T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Brantford Bulldogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Niagara IceDogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA, USA",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "London Knights",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Ottawa 67's",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Windsor Spitfires",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251017_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Owen Sound Attack",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Brampton Battalion",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_002",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Oshawa Generals",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Erie Otters",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_004",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Saginaw Spirit",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_005",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Guelph Storm",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_006",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Ottawa 67's",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_007",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sarnia Sting",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_008",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sudbury Wolves",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251018_009",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "North Bay Battalion",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Erie Otters",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Kitchener Rangers",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Flint Firebirds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251019_006",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Peterborough Petes",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251022_001",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Erie Otters",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251023_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Peterborough Petes",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-10-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251023_002",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Ottawa 67's",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Barrie Colts",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Peterborough Petes",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brampton Battalion",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_004",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Flint Firebirds",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_005",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Ottawa 67's",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Brantford Blast",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_007",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Owen Sound Attack",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_008",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Erie Otters",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251024_009",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "North Bay Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_002",
+    "league": "OHL",
+    "team": "Brantford Blast",
+    "opponent": "Oshawa Generals",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Meridian Centre",
+    "city": "St. Catharines, ON",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_004",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Erie Otters",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Owen Sound Attack",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251025_006",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Kitchener Rangers",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Peterborough Petes",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_003",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "London Knights",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_004",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Ottawa 67's",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_005",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Owen Sound Attack",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_006",
+    "league": "OHL",
+    "team": "WFCU Centre",
+    "opponent": "Saginaw Spirit",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_007",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "North Bay Battalion",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251026_008",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brantford Blast",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251029_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Brampton Battalion",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251029_002",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Sarnia Sting",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251029_003",
+    "league": "OHL",
+    "team": "Brantford Blast",
+    "opponent": "Barrie Colts",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251029_004",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251030_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sarnia Sting",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251030_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251030_003",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Guelph Storm",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA, USA",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251030_004",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "London Knights",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251030_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Flint Firebirds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251031_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brampton Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251031_002",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "London Knights",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251031_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Sudbury Wolves",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Kitchener Rangers",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_002",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_004",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Sudbury Wolves",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_005",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Brantford Bandits",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI, USA",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_006",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251101_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Erie Otters",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_002",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_003",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Sarnia Sting",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "London Knights",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_005",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Flint Firebirds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_006",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Brantford Bandits",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI, USA",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251102_007",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67's",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251105_001",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Owen Sound Attack",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-11-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251105_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "London Knights",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251105_003",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Flint Firebirds",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-11-05T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251106_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-11-06T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251106_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Ottawa 67's",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-11-06T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251106_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Brantford Bandits",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-06T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251106_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Kingston Frontenacs",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-06T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "North Bay Battalion",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Ottawa 67's",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Saginaw Spirit",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_004",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_005",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brantford Bandits",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_006",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Barrie Colts",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_007",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Brampton Battalion",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251107_008",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Guelph Storm",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Guelph Storm",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Niagara IceDogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "London Knights",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Brampton Battalion",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_005",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Saginaw Spirit",
+    "arena": "North Bay Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251108_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Barrie Colts",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251109_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Brantford Bandits",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251109_002",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Kitchener Rangers",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251109_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251109_004",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sarnia Sting",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251109_005",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251111_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Peterborough Petes",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-11T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251112_001",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Ottawa 67's",
+    "arena": "Canadian Tire Centre",
+    "city": "Ottawa, ON",
+    "date": "2025-11-12T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251112_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Flint Firebirds",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-12T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251113_001",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Barrie Colts",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-11-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251113_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "North Bay Battalion",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-11-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251113_003",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Peterborough Petes",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251113_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-13T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Brantford Bandits",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Ottawa 67's",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_003",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brampton Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Kitchener Rangers",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_005",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "London Knights",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_006",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_007",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251114_008",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Ottawa 67's",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Brantford Bandits",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Flint Firebirds",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_005",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251115_006",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Barrie Colts",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251116_001",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "London Knights",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251116_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251116_003",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "North Bay Battalion",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251116_004",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251118_001",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Kitchener Rangers",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-18T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251119_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251119_002",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-19T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251120_001",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "North Bay Battalion",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-11-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251120_002",
+    "league": "OHL",
+    "team": "Brantford Bandits",
+    "opponent": "Niagara IceDogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-11-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251120_003",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Peterborough Petes",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-20T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_001",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Brantford Bandits",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Brampton Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_003",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Erie Otters",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Kitchener Rangers",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_006",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_007",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_008",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251121_009",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_002",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Niagara IceDogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_003",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Erie Otters",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Owen Sound Attack",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_005",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Peterborough Petes",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_006",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Saginaw Spirit",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251122_007",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251123_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Brampton Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251123_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Owen Sound Attack",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251123_003",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251123_004",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251126_001",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Flint Firebirds",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251126_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Erie Otters",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251126_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Windsor Spitfires",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251127_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Peterborough Petes",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-11-27T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67's",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Brampton Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Kitchener Rangers",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "London Knights",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_005",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_006",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_007",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sarnia Sting",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251128_008",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Brampton Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_002",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Owen Sound Attack",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Brantford Bulldogs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Flint Firebirds",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Erie Otters",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_006",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Saginaw Spirit",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251129_007",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Barrie Colts",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_001",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Niagara IceDogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_002",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Owen Sound Attack",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_003",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sarnia Sting",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_004",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Guelph Storm",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_005",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Ottawa 67's",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251130_006",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "ohl_20251202_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Erie Otters",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-12-02T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251203_003",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Guelph Storm",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-03T15:00:00Z"
+  },
+  {
+    "id": "ohl_20251203_001",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Kitchener Rangers",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-12-03T23:30:00Z"
+  },
+  {
+    "id": "ohl_20251203_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-12-04T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251204_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sarnia Sting",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-12-04T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251204_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Flint Firebirds",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-12-04T00:05:00Z"
+  },
+  {
+    "id": "ohl_20251205_001",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Barrie Colts",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251205_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251205_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Peterborough Petes",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251205_004",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251205_005",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Windsor Spitfires",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251205_006",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Flint Firebirds",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-05T00:05:00Z"
+  },
+  {
+    "id": "ohl_20251205_007",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Sarnia Sting",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-05T00:05:00Z"
+  },
+  {
+    "id": "ohl_20251205_008",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Oshawa Generals",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-05T00:07:00Z"
+  },
+  {
+    "id": "ohl_20251205_009",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Saginaw Spirit",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-12-05T00:07:00Z"
+  },
+  {
+    "id": "ohl_20251206_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-12-06T21:00:00Z"
+  },
+  {
+    "id": "ohl_20251206_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Saginaw Spirit",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-06T21:00:00Z"
+  },
+  {
+    "id": "ohl_20251206_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Barrie Colts",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-06T21:05:00Z"
+  },
+  {
+    "id": "ohl_20251206_004",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-12-06T00:00:00Z"
+  },
+  {
+    "id": "ohl_20251206_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Ottawa 67’s",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-12-06T00:05:00Z"
+  },
+  {
+    "id": "ohl_20251206_006",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "London Knights",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-12-06T00:05:00Z"
+  },
+  {
+    "id": "ohl_20251207_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "North Bay Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251207_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Oshawa Generals",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-07T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251207_003",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sarnia Sting",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-07T19:07:00Z"
+  },
+  {
+    "id": "ohl_20251207_004",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Kitchener Rangers",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-12-07T19:07:00Z"
+  },
+  {
+    "id": "ohl_20251207_005",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Flint Firebirds",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-07T20:00:00Z"
+  },
+  {
+    "id": "ohl_20251210_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Guelph Storm",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-12-10T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251210_002",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Oshawa Generals",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-10T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251210_003",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Kitchener Rangers",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-10T19:07:00Z"
+  },
+  {
+    "id": "ohl_20251211_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Owen Sound Attack",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-12-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251211_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Brampton Battalion",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-12-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251211_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "London Knights",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251211_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-12-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251211_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Windsor Spitfires",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-12-11T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251212_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Kitchener Rangers",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-12-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251212_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Saginaw Spirit",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-12-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251212_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Windsor Spitfires",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251212_004",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67’s",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-12-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251212_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Owen Sound Attack",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251212_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Brampton Battalion",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-12T19:07:00Z"
+  },
+  {
+    "id": "ohl_20251212_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Sarnia Sting",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2025-12-12T19:07:00Z"
+  },
+  {
+    "id": "ohl_20251213_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sarnia Sting",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-12-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251213_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "North Bay Battalion",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-12-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251213_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-12-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251213_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Kitchener Rangers",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-12-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251213_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Niagara IceDogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-12-13T19:30:00Z"
+  },
+  {
+    "id": "ohl_20251214_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "London Knights",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-12-14T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251214_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "North Bay Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-14T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251214_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Brampton Battalion",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-14T14:05:00Z"
+  },
+  {
+    "id": "ohl_20251214_004",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Guelph Storm",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-12-14T14:05:00Z"
+  },
+  {
+    "id": "ohl_20251214_005",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Owen Sound Attack",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-14T14:07:00Z"
+  },
+  {
+    "id": "ohl_20251214_006",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Windsor Spitfires",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-14T15:00:00Z"
+  },
+  {
+    "id": "ohl_20251214_007",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-12-14T18:05:00Z"
+  },
+  {
+    "id": "ohl_20251217_001",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "London Knights",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-12-17T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251217_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Kitchener Rangers",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-12-17T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251217_003",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-12-17T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251218_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-12-18T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251218_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Guelph Storm",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-12-18T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251218_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Niagara IceDogs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2025-12-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251218_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-12-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251219_001",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Flint Firebirds",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Sarnia Sting",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_005",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Owen Sound Attack",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_006",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Oshawa Generals",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-12-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251219_007",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-19T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251219_008",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Guelph Storm",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-19T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251220_001",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Brantford Bulldogs",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-20T15:00:00Z"
+  },
+  {
+    "id": "ohl_20251220_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Kingston Frontenacs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-20T16:00:00Z"
+  },
+  {
+    "id": "ohl_20251220_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Sarnia Sting",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251220_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Flint Firebirds",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-12-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251220_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Oshawa Generals",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-12-20T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251220_006",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "London Knights",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-12-20T19:30:00Z"
+  },
+  {
+    "id": "ohl_20251228_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-12-28T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brampton Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-28T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Erie Otters",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2025-12-28T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_004",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2025-12-28T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_005",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Saginaw Spirit",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-28T14:07:00Z"
+  },
+  {
+    "id": "ohl_20251228_006",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-28T15:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_007",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2025-12-28T16:00:00Z"
+  },
+  {
+    "id": "ohl_20251228_008",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Peterborough Petes",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2025-12-28T18:05:00Z"
+  },
+  {
+    "id": "ohl_20251228_009",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "London Knights",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2025-12-28T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251229_001",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-29T19:00:00Z"
+  },
+  {
+    "id": "ohl_20251230_001",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Guelph Storm",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2025-12-30T15:00:00Z"
+  },
+  {
+    "id": "ohl_20251230_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Erie Otters",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2025-12-30T16:00:00Z"
+  },
+  {
+    "id": "ohl_20251230_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Kitchener Rangers",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2025-12-30T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251230_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sarnia Sting",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2025-12-30T19:05:00Z"
+  },
+  {
+    "id": "ohl_20251231_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Kitchener Rangers",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2025-12-31T13:00:00Z"
+  },
+  {
+    "id": "ohl_20251231_002",
+    "league": "OHL",
+    "team": "Brampton Battalion",
+    "opponent": "Owen Sound Attack",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2025-12-31T14:00:00Z"
+  },
+  {
+    "id": "ohl_20251231_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Guelph Storm",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2025-12-31T14:05:00Z"
+  },
+  {
+    "id": "ohl_20251231_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Saginaw Spirit",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2025-12-31T14:05:00Z"
+  },
+  {
+    "id": "ohl_20251231_005",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Sarnia Sting",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2025-12-31T16:00:00Z"
+  },
+  {
+    "id": "ohl_20251231_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Flint Firebirds",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2025-12-31T16:07:00Z"
+  },
+  {
+    "id": "ohl_20251231_007",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Oshawa Generals",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2025-12-31T18:00:00Z"
+  },
+  {
+    "id": "ohl_20251231_008",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2025-12-31T18:00:00Z"
+  },
+  {
+    "id": "ohl_20251231_009",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sudbury Wolves",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2025-12-31T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260101_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67’s",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-01T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260101_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-01T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260102_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Windsor Spitfires",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-01-02T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260102_002",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Barrie Colts",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-02T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260102_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Flint Firebirds",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-02T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260102_004",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Ottawa 67’s",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-01-02T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260102_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "North Bay Battalion",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-02T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260102_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Owen Sound Attack",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-02T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260102_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-02T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260103_001",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-01-03T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260103_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Windsor Spitfires",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-01-03T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260103_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Peterborough Petes",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-03T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260103_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-03T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260103_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Niagara IceDogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-03T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260104_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sudbury Wolves",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-04T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260104_002",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "London Knights",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-04T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260104_003",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Peterborough Petes",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-04T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260104_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-04T17:30:00Z"
+  },
+  {
+    "id": "ohl_20260107_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Niagara IceDogs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-01-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260107_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sarnia Sting",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-01-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260107_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Guelph Storm",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260107_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sudbury Wolves",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-07T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260108_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Ottawa 67’s",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-08T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260108_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Oshawa Generals",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-08T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260108_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Erie Otters",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-01-08T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260108_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-08T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260109_001",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-01-09T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260109_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Saginaw Spirit",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-01-09T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260109_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Oshawa Generals",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-09T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260109_004",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-09T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260109_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Niagara IceDogs",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-09T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260109_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Erie Otters",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-09T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260109_007",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Ottawa 67’s",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-09T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260109_008",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Barrie Colts",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-09T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260110_001",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Erie Otters",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-10T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260110_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-01-10T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260110_003",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Kitchener Rangers",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-10T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260110_004",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Guelph Storm",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-10T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260110_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-10T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260110_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Niagara IceDogs",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-10T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260110_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-10T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260111_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Ottawa 67’s",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-11T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260111_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-11T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260111_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Brantford Bulldogs",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-01-11T16:05:00Z"
+  },
+  {
+    "id": "ohl_20260111_004",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Barrie Colts",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-11T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260115_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Flint Firebirds",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-15T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260115_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sudbury Wolves",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-15T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260115_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Guelph Storm",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-01-15T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260115_004",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-15T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260116_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-01-16T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260116_002",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-16T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260116_003",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Windsor Spitfires",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-01-16T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260116_004",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Saginaw Spirit",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-16T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260116_005",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-01-16T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260116_006",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "North Bay Battalion",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-16T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260116_007",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Flint Firebirds",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-16T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260116_008",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "London Knights",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-16T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260116_009",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-16T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260117_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-01-17T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260117_002",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Slush Puppie Centre",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-17T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260117_003",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Windsor Spitfires",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-01-17T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260117_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "London Knights",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-17T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260117_005",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Saginaw Spirit",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-01-17T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260117_006",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Niagara IceDogs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-17T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260117_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Oshawa Generals",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-17T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260118_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Flint Firebirds",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-18T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260118_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-01-18T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260118_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Guelph Storm",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-18T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260118_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Barrie Colts",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-18T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260118_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Oshawa Generals",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-18T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260118_006",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-18T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260118_007",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-18T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260121_001",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Kitchener Rangers",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-01-21T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260121_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "London Knights",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-21T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260122_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-01-22T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260122_002",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Niagara IceDogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-22T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260122_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Saginaw Spirit",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-22T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260123_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Owen Sound",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-23T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260123_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Sarnia",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-23T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260123_003",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-23T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260123_004",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-23T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260123_005",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Flint Firebirds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-01-23T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260123_006",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Erie Otters",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-23T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260124_001",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Oshawa Generals",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-24T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260124_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-01-24T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260124_003",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Kitchener Rangers",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-01-24T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260124_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Niagara IceDogs",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-24T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260124_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Peterborough Petes",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-24T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260124_006",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "North Bay Battalion",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-24T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260124_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-24T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260125_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Barrie Colts",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-01-25T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260125_002",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-01-25T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260125_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Peterborough Petes",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-25T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260125_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "North Bay Battalion",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-25T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260125_005",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Saginaw Spirit",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-25T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260125_006",
+    "league": "OHL",
+    "team": "Glencore Arena",
+    "opponent": "Sudbury Wolves",
+    "arena": "Glencore Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-25T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260125_007",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Oshawa Generals",
+    "arena": "Tribute Communities Centre",
+    "city": "Kingston, ON",
+    "date": "2026-01-25T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260127_001",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Kitchener Rangers",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-27T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260128_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Owen Sound",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-01-28T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260129_001",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Niagara IceDogs",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-29T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260129_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Peterborough Petes",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-29T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260129_003",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Windsor Spitfires",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-29T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260130_001",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Ottawa 67’s",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_003",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Flint Firebirds",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Erie Otters",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_005",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Kitchener Rangers",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_006",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "London Knights",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-01-30T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260130_007",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-30T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260130_008",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Oshawa Generals",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-01-30T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260130_009",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sarnia Sting",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-01-30T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260130_010",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Guelph Storm",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-01-30T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260131_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-01-31T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260131_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Flint Firebirds",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-01-31T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260131_003",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Erie Otters",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-01-31T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260131_004",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Owen Sound",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-01-31T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260131_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Saginaw Spirit",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-01-31T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260201_001",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-02-01T13:00:00Z"
+  },
+  {
+    "id": "ohl_20260201_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Brantford Bulldogs",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-01T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260201_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Ottawa 67’s",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-01T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260201_004",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Niagara IceDogs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-01T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260201_005",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Oshawa Generals",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-01T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260201_006",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Windsor Spitfires",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-01T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260204_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "London Knights",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-04T18:30:00Z"
+  },
+  {
+    "id": "ohl_20260204_002",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-02-04T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260204_003",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sarnia Sting",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-04T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260204_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Saginaw Spirit",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-04T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260205_001",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Erie Otters",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-05T11:00:00Z"
+  },
+  {
+    "id": "ohl_20260205_002",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "North Bay Battalion",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-05T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260205_003",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Peterborough Petes",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-05T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260206_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260206_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Kitchener Rangers",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260206_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "London Knights",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260206_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260206_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Oshawa Generals",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260206_006",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sudbury Wolves",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260206_007",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Saginaw Spirit",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-02-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260206_008",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-06T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260207_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Ottawa 67’s",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-02-07T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260207_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-07T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260207_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Niagara IceDogs",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260207_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Flint Firebirds",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-02-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260207_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Peterborough Petes",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-07T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260207_006",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Saginaw Spirit",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-02-07T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260207_007",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-07T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260208_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "North Bay Battalion",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-08T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260208_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-02-08T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260208_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Oshawa Generals",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-08T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260208_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-08T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260208_005",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Ottawa 67’s",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-08T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260210_001",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Kitchener Rangers",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-02-10T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260211_001",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "London Knights",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-11T18:30:00Z"
+  },
+  {
+    "id": "ohl_20260211_002",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67’s",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-02-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260211_003",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Flint Firebirds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-02-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260211_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-11T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260211_005",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-11T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260212_001",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Barrie Colts",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-02-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260212_002",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260212_003",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Niagara IceDogs",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260212_004",
+    "league": "OHL",
+    "team": "Ottawa 67’s",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-02-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260212_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Windsor Spitfires",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260213_001",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-02-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260213_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "London Knights",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260213_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260213_004",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Oshawa Generals",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-02-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260213_005",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260213_006",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sarnia Sting",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-02-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260213_007",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Guelph Storm",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-13T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260214_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Ottawa 67’s",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-14T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260214_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-14T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260214_003",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Erie Otters",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-14T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260214_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Owen Sound",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-14T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260214_005",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Saginaw Spirit",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-14T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260215_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "North Bay Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-15T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260216_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-16T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260216_002",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "London Knights",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-16T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260216_003",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_004",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Oshawa Generals",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_005",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Peterborough Petes",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_006",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_007",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sarnia Sting",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_008",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-02-16T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260216_009",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Guelph Storm",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-02-16T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260216_010",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Ottawa 67’s",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-16T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260218_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-02-18T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260218_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Sarnia Sting",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260219_001",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Barrie Colts",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260219_002",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Peterborough Petes",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-19T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260219_003",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Saginaw Spirit",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-19T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260220_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Ottawa 67’s",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260220_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-02-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260220_003",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Erie Otters",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-02-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260220_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Kitchener Rangers",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260220_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "London Knights",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260220_006",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-20T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260220_007",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-20T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260221_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-21T16:05:00Z"
+  },
+  {
+    "id": "ohl_20260221_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Flint Firebirds",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260221_003",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Erie Otters",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260221_004",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Owen Sound",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260221_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Saginaw Spirit",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-02-21T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260221_006",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-21T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260221_007",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Barrie Colts",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-02-21T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260222_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "London Knights",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-02-22T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260222_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-02-22T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260222_003",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Ottawa 67’s",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-22T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260222_004",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Windsor Spitfires",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-02-22T16:05:00Z"
+  },
+  {
+    "id": "ohl_20260222_005",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Saginaw Spirit",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-02-22T17:30:00Z"
+  },
+  {
+    "id": "ohl_20260222_006",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Oshawa Generals",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-02-22T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260225_001",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Guelph Storm",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-02-25T18:37:00Z"
+  },
+  {
+    "id": "ohl_20260225_002",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-25T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260225_003",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Owen Sound",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-02-25T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260225_004",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Sudbury Wolves",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-02-25T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260226_001",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "North Bay Battalion",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-02-26T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260226_002",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Niagara IceDogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-02-26T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260226_003",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Windsor Spitfires",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-02-26T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260226_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Saginaw Spirit",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-02-26T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260227_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-02-27T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260227_002",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Kitchener Rangers",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-02-27T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260227_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "London Knights",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-02-27T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260227_004",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Sudbury Wolves",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-02-27T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260227_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Sarnia Sting",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-27T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260227_006",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-02-27T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260227_007",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Guelph Storm",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-02-27T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260228_001",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-02-28T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260228_002",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Flint Firebirds",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-02-28T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260228_003",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-02-28T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260228_004",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Windsor Spitfires",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-02-28T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260228_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Saginaw Spirit",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-02-28T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260301_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "North Bay Battalion",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-03-01T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260301_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Kitchener Rangers",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-03-01T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260301_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Sudbury Wolves",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-03-01T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260301_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Sarnia Sting",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-01T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260301_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Flint Firebirds",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-01T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260301_006",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Erie Otters",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-03-01T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260301_007",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Oshawa Generals",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-03-01T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260304_001",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-03-04T11:00:00Z"
+  },
+  {
+    "id": "ohl_20260304_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "London Knights",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-03-04T18:30:00Z"
+  },
+  {
+    "id": "ohl_20260304_003",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Flint Firebirds",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-04T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260304_004",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Sarnia Sting",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-03-04T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260305_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Barrie Colts",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-03-05T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260305_002",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "North Bay Battalion",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-03-05T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260305_003",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Niagara IceDogs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-03-05T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260305_004",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Peterborough Petes",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-05T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260306_001",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-03-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260306_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Niagara IceDogs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260306_003",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Kitchener Rangers",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260306_004",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "London Knights",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, PA",
+    "date": "2026-03-06T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260306_005",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Kingston Frontenacs",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-03-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260306_006",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Sudbury Wolves",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-03-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260306_007",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Sarnia Sting",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-03-06T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260306_008",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Guelph Storm",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-03-06T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260307_001",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Ottawa 67's",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-03-07T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260307_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Guelph Storm",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-07T16:07:00Z"
+  },
+  {
+    "id": "ohl_20260307_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Flint Firebirds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-03-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260307_004",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Erie Otters",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-03-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260307_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Owen Sound",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-03-07T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260307_006",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Barrie Colts",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-03-07T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260308_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-03-08T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260308_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "North Bay Battalion",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-03-08T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260308_003",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-03-08T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260308_004",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Ottawa 67's",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-08T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260308_005",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Erie Otters",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-03-08T16:00:00Z"
+  },
+  {
+    "id": "ohl_20260308_006",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Windsor Spitfires",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-03-08T16:05:00Z"
+  },
+  {
+    "id": "ohl_20260311_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Oshawa Generals",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-03-11T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260312_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Barrie Colts",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260312_002",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-03-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260312_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Niagara IceDogs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-03-12T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260312_004",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Peterborough Petes",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-03-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260312_005",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Windsor Spitfires",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-12T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260313_001",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Brampton Bulldogs",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260313_002",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Flint Firebirds",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260313_003",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Erie Otters",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-03-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260313_004",
+    "league": "OHL",
+    "team": "Owen Sound",
+    "opponent": "Kitchener Rangers",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-03-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260313_005",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "London Knights",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-03-13T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260313_006",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-03-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260313_007",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sarnia Sting",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-03-13T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260314_001",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Erie Otters",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-03-14T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260314_002",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Owen Sound",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-03-14T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260314_003",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Saginaw Spirit",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-03-14T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260314_004",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Barrie Colts",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-03-14T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260315_001",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-03-15T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260315_002",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "North Bay Battalion",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-15T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260315_003",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Niagara IceDogs",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-15T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260315_004",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sarnia Sting",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-03-15T14:05:00Z"
+  },
+  {
+    "id": "ohl_20260315_005",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-03-15T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260315_006",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Windsor Spitfires",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-03-15T16:05:00Z"
+  },
+  {
+    "id": "ohl_20260315_007",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Oshawa Generals",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-03-15T18:05:00Z"
+  },
+  {
+    "id": "ohl_20260315_008",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Guelph Storm",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-03-15T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260317_001",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "Brampton Bulldogs",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-03-17T12:30:00Z"
+  },
+  {
+    "id": "ohl_20260317_002",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Kitchener Rangers",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-03-17T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260317_003",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Windsor Spitfires",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2026-03-17T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260318_001",
+    "league": "OHL",
+    "team": "Oshawa Generals",
+    "opponent": "Ottawa 67's",
+    "arena": "Tribute Communities Centre",
+    "city": "Oshawa, ON",
+    "date": "2026-03-18T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260318_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Guelph Storm",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-03-18T18:37:00Z"
+  },
+  {
+    "id": "ohl_20260318_003",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-03-18T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260318_004",
+    "league": "OHL",
+    "team": "Flint Firebirds",
+    "opponent": "Owen Sound",
+    "arena": "Dort Financial Center",
+    "city": "Flint, MI",
+    "date": "2026-03-18T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260318_005",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-03-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260318_006",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Sarnia Sting",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2026-03-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260318_007",
+    "league": "OHL",
+    "team": "Sault Ste. Marie Greyhounds",
+    "opponent": "Saginaw Spirit",
+    "arena": "GFL Memorial Gardens",
+    "city": "Sault Ste. Marie, ON",
+    "date": "2026-03-18T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260319_001",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "North Bay Battalion",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-03-19T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260319_002",
+    "league": "OHL",
+    "team": "Barrie Colts",
+    "opponent": "Peterborough Petes",
+    "arena": "Sadlon Arena",
+    "city": "Barrie, ON",
+    "date": "2026-03-19T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260320_001",
+    "league": "OHL",
+    "team": "North Bay Battalion",
+    "opponent": "Brantford Bulldogs",
+    "arena": "Boart Longyear Memorial Gardens",
+    "city": "North Bay, ON",
+    "date": "2026-03-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260320_002",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Kitchener Rangers",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-03-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260320_003",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "London Knights",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-03-20T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260320_004",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Kingston Frontenacs",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-20T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260320_005",
+    "league": "OHL",
+    "team": "Ottawa 67's",
+    "opponent": "Oshawa Generals",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-03-20T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260320_006",
+    "league": "OHL",
+    "team": "Brampton Bulldogs",
+    "opponent": "Sudbury Wolves",
+    "arena": "CAA Centre",
+    "city": "Brampton, ON",
+    "date": "2026-03-20T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260320_007",
+    "league": "OHL",
+    "team": "Saginaw Spirit",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "Dow Event Center",
+    "city": "Saginaw, MI",
+    "date": "2026-03-20T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260320_008",
+    "league": "OHL",
+    "team": "Owen Sound Attack",
+    "opponent": "Guelph Storm",
+    "arena": "Harry Lumley Bayshore Community Centre",
+    "city": "Owen Sound, ON",
+    "date": "2026-03-20T19:07:00Z"
+  },
+  {
+    "id": "ohl_20260321_001",
+    "league": "OHL",
+    "team": "Kingston Frontenacs",
+    "opponent": "Ottawa 67's",
+    "arena": "Slush Puppie Place",
+    "city": "Kingston, ON",
+    "date": "2026-03-21T15:00:00Z"
+  },
+  {
+    "id": "ohl_20260321_002",
+    "league": "OHL",
+    "team": "London Knights",
+    "opponent": "Flint Firebirds",
+    "arena": "Canada Life Place",
+    "city": "London, ON",
+    "date": "2026-03-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260321_003",
+    "league": "OHL",
+    "team": "Guelph Storm",
+    "opponent": "Erie Otters",
+    "arena": "Sleeman Centre",
+    "city": "Guelph, ON",
+    "date": "2026-03-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260321_004",
+    "league": "OHL",
+    "team": "Kitchener Rangers",
+    "opponent": "Owen Sound Attack",
+    "arena": "Kitchener Memorial Auditorium",
+    "city": "Kitchener, ON",
+    "date": "2026-03-21T19:00:00Z"
+  },
+  {
+    "id": "ohl_20260321_005",
+    "league": "OHL",
+    "team": "Sarnia Sting",
+    "opponent": "Saginaw Spirit",
+    "arena": "Progressive Auto Sales Arena",
+    "city": "Sarnia, ON",
+    "date": "2026-03-21T19:05:00Z"
+  },
+  {
+    "id": "ohl_20260321_006",
+    "league": "OHL",
+    "team": "Niagara IceDogs",
+    "opponent": "Barrie Colts",
+    "arena": "Meridian Centre",
+    "city": "Niagara, ON",
+    "date": "2026-03-21T19:30:00Z"
+  },
+  {
+    "id": "ohl_20260322_001",
+    "league": "OHL",
+    "team": "Brantford Bulldogs",
+    "opponent": "Brampton Bulldogs",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, ON",
+    "date": "2026-03-22T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260322_002",
+    "league": "OHL",
+    "team": "Sudbury Wolves",
+    "opponent": "North Bay Battalion",
+    "arena": "Sudbury Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-03-22T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260322_003",
+    "league": "OHL",
+    "team": "Erie Otters",
+    "opponent": "Niagara IceDogs",
+    "arena": "Erie Insurance Arena",
+    "city": "Erie, ON",
+    "date": "2026-03-22T14:00:00Z"
+  },
+  {
+    "id": "ohl_20260322_004",
+    "league": "OHL",
+    "team": "Windsor Spitfires",
+    "opponent": "Sault Ste. Marie Greyhounds",
+    "arena": "WFCU Centre",
+    "city": "Windsor, ON",
+    "date": "2026-03-22T14:07:00Z"
+  },
+  {
+    "id": "ohl_20260322_005",
+    "league": "OHL",
+    "team": "Peterborough Petes",
+    "opponent": "Oshawa Generals",
+    "arena": "Peterborough Memorial Centre",
+    "city": "Peterborough, ON",
+    "date": "2026-03-22T18:05:00Z"
+  }
+]

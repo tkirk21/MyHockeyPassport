@@ -1,6 +1,6 @@
 // app/userprofile/[userId].tsx
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, ImageBackground, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View,  } from 'react-native';
+import { ActivityIndicator, Animated, Image, ImageBackground, KeyboardAvoidingView, Platform, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View,  } from 'react-native';
 import { addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc, startAfter } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
@@ -151,197 +151,204 @@ export default function UserProfileScreen() {
   }
 
   return (
-    <>
-      <Stack.Screen options={{ headerShown: false }} />
-      <ImageBackground
-        source={require('@/assets/images/background.jpg')}
-        style={styles.background}
-        resizeMode="cover"
-      >
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}>{profile.name}</Text>
+      <>
+        <Stack.Screen options={{ headerShown: false }} />
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+        >
+          <ImageBackground
+            source={require('@/assets/images/background.jpg')}
+            style={styles.background}
+            resizeMode="cover"
+          >
+            <ScrollView
+              contentContainerStyle={styles.container}>
+              <Text style={styles.title}>{profile.name}</Text>
 
-          <Image
-            source={
-              profile.imageUrl
-                ? { uri: profile.imageUrl }
-                : require('@/assets/images/icon.png')
-            }
-            style={styles.profileImage}
-          />
+              <Image
+                source={
+                  profile.imageUrl
+                    ? { uri: profile.imageUrl }
+                    : require('@/assets/images/icon.png')
+                }
+                style={styles.profileImage}
+              />
 
-          {/* Location + Favorite Team in one box */}
-          <View style={styles.section}>
-            <Text style={styles.cardText}>
-              Location: {profile.location || 'Not set'}
-            </Text>
-            <Text style={styles.cardText}>
-              Favorite Team: {profile.favouriteTeam || 'Not set'}
-            </Text>
-          </View>
+              {/* Location + Favorite Team in one box */}
+              <View style={styles.section}>
+                <Text style={styles.cardText}>
+                  Location: {profile.location || 'Not set'}
+                </Text>
+                <Text style={styles.cardText}>
+                  Favorite Team: {profile.favouriteTeam || 'Not set'}
+                </Text>
+              </View>
 
-          <View style={styles.statsRow}>
-            <View style={styles.statSection}>
-              <Text style={styles.sectionTitle}>Arenas Visited</Text>
-              <Text style={styles.cardTextBold}>{arenasVisited}</Text>
-            </View>
-            <View style={styles.statSection}>
-              <Text style={styles.sectionTitle}>Teams Watched</Text>
-              <Text style={styles.cardTextBold}>{teamsWatched}</Text>
-            </View>
-          </View>
+              <View style={styles.statsRow}>
+                <View style={styles.statSection}>
+                  <Text style={styles.sectionTitle}>Arenas Visited</Text>
+                  <Text style={styles.cardTextBold}>{arenasVisited}</Text>
+                </View>
+                <View style={styles.statSection}>
+                  <Text style={styles.sectionTitle}>Teams Watched</Text>
+                  <Text style={styles.cardTextBold}>{teamsWatched}</Text>
+                </View>
+              </View>
 
-          {/* Most Watched Teams */}
-          {allCheckins.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Most Watched Teams</Text>
-              {Object.entries(
-                allCheckins
-                  .flatMap((c) => [c.teamName, c.opponent].filter(Boolean))
-                  .reduce((acc: any, team: string) => {
-                    acc[team] = (acc[team] || 0) + 1;
-                    return acc;
-                  }, {})
-              )
-                .sort((a: any, b: any) => b[1] - a[1])
-                .slice(0, 3)
-                .map(([team, count]: any) => (
-                  <Text key={team} style={styles.cardText}>
-                    {team}: {count} {count === 1 ? 'time' : 'times'}
+              {/* Most Watched Teams */}
+              {allCheckins.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Most Watched Teams</Text>
+                  {Object.entries(
+                    allCheckins
+                      .flatMap((c) => [c.teamName, c.opponent].filter(Boolean))
+                      .reduce((acc: any, team: string) => {
+                        acc[team] = (acc[team] || 0) + 1;
+                        return acc;
+                      }, {})
+                  )
+                    .sort((a: any, b: any) => b[1] - a[1])
+                    .slice(0, 3)
+                    .map(([team, count]: any) => (
+                      <Text key={team} style={styles.cardText}>
+                        {team}: {count} {count === 1 ? 'time' : 'times'}
+                      </Text>
+                    ))}
+                </View>
+              )}
+
+              {/* Most Visited Arena */}
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Most Visited Arena</Text>
+                {mostVisitedArena ? (
+                  <Text style={styles.cardText}>
+                    {mostVisitedArena.arena}: {mostVisitedArena.count}{' '}
+                    {mostVisitedArena.count === 1 ? 'visit' : 'visits'}
                   </Text>
-                ))}
-            </View>
-          )}
+                ) : (
+                  <Text style={styles.placeholder}>No arenas yet.</Text>
+                )}
+              </View>
 
-          {/* Most Visited Arena */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Most Visited Arena</Text>
-            {mostVisitedArena ? (
-              <Text style={styles.cardText}>
-                {mostVisitedArena.arena}: {mostVisitedArena.count}{' '}
-                {mostVisitedArena.count === 1 ? 'visit' : 'visits'}
-              </Text>
-            ) : (
-              <Text style={styles.placeholder}>No arenas yet.</Text>
-            )}
-          </View>
+              {/* Recent Check-ins */}
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Check-ins</Text>
+                {checkins.map((item) => {
+                  const arena = (arenasData as any[]).find(
+                    (a) => a.arena === item.arenaName || a.arena === item.arena
+                  );
+                  const bgColor = arena?.colorCode ? arena.colorCode + '22' : '#ffffff';
 
-          {/* Recent Check-ins */}
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Check-ins</Text>
-            {checkins.map((item) => {
-              const arena = (arenasData as any[]).find(
-                (a) => a.arena === item.arenaName || a.arena === item.arena
-              );
-              const bgColor = arena?.colorCode ? arena.colorCode + '22' : '#ffffff';
-
-              return (
-                <TouchableOpacity
-                  key={item.id}
-                  style={[
-                    styles.checkinCard,
-                    {
-                      borderLeftColor: arena?.colorCode || '#6B7280',
-                      backgroundColor: bgColor,
-                    },
-                  ]}
-                  onPress={() =>
-                    router.push({
-                      pathname: '/checkin/[checkinId]',
-                      params: { checkinId: item.id, userId: String(userId) }, // ✅ use profile’s userId
-                    })
-                  }
-                >
-                  <View
-                    style={[
-                      styles.leagueBadge,
-                      { borderColor: arena?.colorCode || '#0A2940' },
-                    ]}
-                  >
-                    <Text
+                  return (
+                    <TouchableOpacity
+                      key={item.id}
                       style={[
-                        styles.leagueBadgeText,
-                        { color: arena?.colorCode || '#0A2940' },
+                        styles.checkinCard,
+                        {
+                          borderLeftColor: arena?.colorCode || '#6B7280',
+                          backgroundColor: bgColor,
+                        },
                       ]}
+                      onPress={() =>
+                        router.push({
+                          pathname: '/checkin/[checkinId]',
+                          params: { checkinId: item.id, userId: String(userId) },
+                        })
+                      }
                     >
-                      {item.league}
-                    </Text>
-                  </View>
+                      <View
+                        style={[
+                          styles.leagueBadge,
+                          { borderColor: arena?.colorCode || '#0A2940' },
+                        ]}
+                      >
+                        <Text
+                          style={[
+                            styles.leagueBadgeText,
+                            { color: arena?.colorCode || '#0A2940' },
+                          ]}
+                        >
+                          {item.league}
+                        </Text>
+                      </View>
 
-                  <Text style={styles.arenaText}>
-                    {item.arenaName || item.arena}
-                  </Text>
-                  <Text style={styles.teamsText}>
-                    {item.teamName} vs {item.opponent}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginTop: 6,
+                      <Text style={styles.arenaText}>
+                        {item.arenaName || item.arena}
+                      </Text>
+                      <Text style={styles.teamsText}>
+                        {item.teamName} vs {item.opponent}
+                      </Text>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginTop: 6,
+                        }}
+                      >
+                        <Text style={styles.dateText}>
+                          {item.gameDate
+                            ? new Date(item.gameDate).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })
+                            : 'No date'}
+                        </Text>
+
+                        <CheerButton friendId={String(userId)} checkinId={item.id} />
+                      </View>
+
+                      <ChirpBox friendId={String(userId)} checkinId={item.id} />
+                    </TouchableOpacity>
+                  );
+                })}
+
+                {/* Load more */}
+                {checkins.length > 0 && checkins.length % 5 === 0 && (
+                  <TouchableOpacity
+                    style={styles.loadMoreButton}
+                    onPress={async () => {
+                      try {
+                        const lastDoc = checkins[checkins.length - 1];
+                        if (!lastDoc?.gameDate) return;
+
+                        const q = query(
+                          collection(db, 'profiles', userId as string, 'checkins'),
+                          orderBy('gameDate', 'desc'),
+                          startAfter(lastDoc.gameDate),
+                          limit(5)
+                        );
+
+                        const snapshot = await getDocs(q);
+
+                        if (snapshot.empty) {
+                          console.log("No more check-ins to load");
+                          return;
+                        }
+
+                        const moreCheckins = snapshot.docs.map(doc => ({
+                          id: doc.id,
+                          ...doc.data()
+                        }));
+
+                        setCheckins(prev => [...prev, ...moreCheckins]);
+                      } catch (err) {
+                        console.error("Load more failed:", err);
+                      }
                     }}
                   >
-                    <Text style={styles.dateText}>
-                      {item.gameDate
-                        ? new Date(item.gameDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })
-                        : 'No date'}
-                    </Text>
-
-                    <CheerButton friendId={String(userId)} checkinId={item.id} />
-                  </View>
-
-                  <ChirpBox friendId={String(userId)} checkinId={item.id} />
-                </TouchableOpacity>
-              );
-            })}
-
-            {/* Load more – now INSIDE the Check-ins box */}
-            {checkins.length > 0 && checkins.length % 5 === 0 && (
-              <TouchableOpacity
-                style={styles.loadMoreButton}
-                onPress={async () => {
-                  try {
-                    const lastDoc = checkins[checkins.length - 1];
-                    if (!lastDoc?.gameDate) return;
-
-                    const q = query(
-                      collection(db, 'profiles', userId as string, 'checkins'),
-                      orderBy('gameDate', 'desc'),
-                      startAfter(lastDoc.gameDate),
-                      limit(5)
-                    );
-
-                    const snapshot = await getDocs(q);
-
-                    if (snapshot.empty) {
-                      console.log("No more check-ins to load");
-                      return;
-                    }
-
-                    const moreCheckins = snapshot.docs.map(doc => ({
-                      id: doc.id,
-                      ...doc.data()
-                    }));
-
-                    setCheckins(prev => [...prev, ...moreCheckins]);
-                  } catch (err) {
-                    console.error("Load more failed:", err);
-                  }
-                }}
-              >
-                <Text style={styles.loadMoreText}>Load more check-ins</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        </ScrollView>
-      </ImageBackground>
-    </>
-  );
+                    <Text style={styles.loadMoreText}>Load more</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            </ScrollView>
+          </ImageBackground>
+        </KeyboardAvoidingView>
+      </>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -468,7 +475,6 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '600',
   },
-
   loadMoreButton: {
       alignSelf: 'center',
       marginTop: 15,

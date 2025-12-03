@@ -3,7 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import * as React from 'react';
-import { Alert, ActivityIndicator, Image, ImageBackground, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
+import { Alert, ActivityIndicator, Image, ImageBackground, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc, } from 'firebase/firestore';
@@ -113,6 +113,7 @@ export default function ProfileScreen() {
 
   const [loading, setLoading] = useState(false);
   const [visibleCheerList, setVisibleCheerList] = useState<string | null>(null);
+  const [visibleCheckins, setVisibleCheckins] = useState(5);
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -305,14 +306,19 @@ export default function ProfileScreen() {
   }
 
   return (
-    <ImageBackground
-      source={require('../../assets/images/background.jpg')}
-      style={styles.background}
-      resizeMode="cover"
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.innerContainer}>
+      <ImageBackground
+        source={require('../../assets/images/background.jpg')}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <View style={styles.innerContainer}>
             <Text style={styles.header}>Your Profile</Text>
 
             <View style={styles.section}>
@@ -320,8 +326,8 @@ export default function ProfileScreen() {
                 source={image ? { uri: image } : require('@/assets/images/icon.png')}
                 style={styles.profileImage}
               />
-              <TouchableOpacity style={styles.smallButton} onPress={pickImage}>
-                <Text style={styles.smallButtonText}>Upload Profile Picture</Text>
+              <TouchableOpacity style={styles.uploadPhotoButton} onPress={pickImage}>
+                <Text style={styles.smallButtonText}>Upload Photo</Text>
               </TouchableOpacity>
 
               <TextInput
@@ -349,7 +355,7 @@ export default function ProfileScreen() {
               {loading ? (
                 <ActivityIndicator size="large" color="#0D2C42" />
               ) : (
-                <TouchableOpacity style={styles.smallButton} onPress={saveProfile}>
+                <TouchableOpacity style={styles.smallSaveProfileButton} onPress={saveProfile}>
                   <Text style={styles.smallButtonText}>Save Profile</Text>
                 </TouchableOpacity>
               )}
@@ -443,147 +449,160 @@ export default function ProfileScreen() {
               {recentCheckIns.length === 0 ? (
                 <Text style={styles.placeholder}>No check-ins yet.</Text>
               ) : (
-                recentCheckIns.map((checkIn) => {
-                  // 1. Hard-safe strings
-                  const arenaName = checkIn.arenaName ?? "";
-                  const arenaAlt  = checkIn.arena ?? "";
-                  const teamName  = checkIn.teamName ?? "";
-                  const league    = checkIn.league ?? "";
+                <>
+                  {recentCheckIns.slice(0, visibleCheckins).map((checkIn) => {
+                    // 1. Hard-safe strings
+                    const arenaName = checkIn.arenaName ?? "";
+                    const arenaAlt  = checkIn.arena ?? "";
+                    const teamName  = checkIn.teamName ?? "";
+                    const league    = checkIn.league ?? "";
 
-                  // 2. Try direct arena match (Ball Arena / Pepsi Center)
-                  let arenaMatch = arenasData.find(
-                    (a) => a.arena === arenaName || a.arena === arenaAlt
-                  );
-
-                  // 3. Fallback to team+league ONLY if direct match fails
-                  if (!arenaMatch && teamName && league) {
-                    arenaMatch = arenasData.find(
-                      (a) => a.teamName === teamName && a.league === league
+                    // 2. Try direct arena match (Ball Arena / Pepsi Center)
+                    let arenaMatch = arenasData.find(
+                      (a) => a.arena === arenaName || a.arena === arenaAlt
                     );
-                  }
 
-                  // 4. Safe final color
-                  const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
-                  const bgColor = `${teamColor}22`;
+                    // 3. Fallback to team+league ONLY if direct match fails
+                    if (!arenaMatch && teamName && league) {
+                      arenaMatch = arenasData.find(
+                        (a) => a.teamName === teamName && a.league === league
+                      );
+                    }
 
-                  return (
-                    <TouchableOpacity
-                      key={checkIn.id}
-                      style={[
-                        styles.checkinCard,
-                        {
-                          borderLeftColor: teamColor,
-                          backgroundColor: bgColor,
-                        },
-                      ]}
-                      onPress={() =>
-                        router.push(`/checkin/${checkIn.id}?userId=${auth.currentUser?.uid}`)
-                      }
-                    >
-                      <View style={styles.arenaHeaderRow}>
-                        <Image
-                          source={
-                            leagueLogos[
-                              leagues.find(l =>
-                                (l.league || '').toUpperCase() === (checkIn.league || '').toUpperCase()
-                              )?.logoFileName || 'placeholder.png'
-                            ]
-                          }
-                          style={styles.leaguePuck}
-                          resizeMode="contain"
-                        />
-                        <Text style={styles.arenaTextInline}>{checkIn.arenaName || checkIn.arena}</Text>
-                      </View>
+                    // 4. Safe final color
+                    const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
+                    const bgColor = `${teamColor}22`;
 
-                      {/* Matchup */}
-                      {(checkIn.teamName || checkIn.opponent) && (
-                        <Text style={styles.sub}>
-                          {checkIn.teamName && checkIn.opponent
-                            ? `${checkIn.teamName} VS ${checkIn.opponent}`
-                            : checkIn.teamName || checkIn.opponent}
-                        </Text>
-                      )}
+                    return (
+                      <TouchableOpacity
+                        key={checkIn.id}
+                        style={[
+                          styles.checkinCard,
+                          {
+                            borderLeftColor: teamColor,
+                            backgroundColor: bgColor,
+                          },
+                        ]}
+                        onPress={() =>
+                          router.push(`/checkin/${checkIn.id}?userId=${auth.currentUser?.uid}`)
+                        }
+                      >
+                        <View style={styles.arenaHeaderRow}>
+                          <Image
+                            source={
+                              leagueLogos[
+                                leagues.find(l =>
+                                  (l.league || '').toUpperCase() === (checkIn.league || '').toUpperCase()
+                                )?.logoFileName || 'placeholder.png'
+                              ]
+                            }
+                            style={styles.leaguePuck}
+                            resizeMode="contain"
+                          />
+                          <Text style={styles.arenaTextInline}>{checkIn.arenaName || checkIn.arena}</Text>
+                        </View>
 
-                      <View style={styles.dateAndCheerRow}>
-                        {/* Date below matchup */}
-                        <Text style={styles.dateText}>
-                          {checkIn.gameDate
-                            ? checkIn.checkinType === "manual"
-                              ? new Date(checkIn.gameDate).toLocaleDateString()       // manual = date only
-                              : new Date(checkIn.gameDate).toLocaleString()           // live = date + time
-                            : ""}
-                        </Text>
+                        {/* Matchup */}
+                        {(checkIn.teamName || checkIn.opponent) && (
+                          <Text style={styles.sub}>
+                            {checkIn.teamName && checkIn.opponent
+                              ? `${checkIn.teamName} VS ${checkIn.opponent}`
+                              : checkIn.teamName || checkIn.opponent}
+                          </Text>
+                        )}
 
-                        {/* Cheers */}
-                        {checkIn.cheerCount > 0 && (
-                          <View style={styles.cheerWrapper}>
-                            <TouchableOpacity onPress={() => toggleCheerList(checkIn.id)} activeOpacity={0.7}>
-                              <View style={styles.cheerBadgeContainer}>
-                                <Text style={{ fontSize: 16 }}>🎉</Text>
-                                <View style={styles.cheerCountBadge}>
-                                  <Text style={styles.cheerCountText}>{checkIn.cheerCount}</Text>
+                        <View style={styles.dateAndCheerRow}>
+                          {/* Date below matchup */}
+                          <Text style={styles.dateText}>
+                            {checkIn.gameDate
+                              ? new Date(checkIn.gameDate).toLocaleDateString('en-US', {
+                                  month: 'long',
+                                  day: 'numeric',
+                                  year: 'numeric'
+                                })
+                              : 'No date'}
+                          </Text>
+
+                          {/* Cheers */}
+                          {checkIn.cheerCount > 0 && (
+                            <View style={styles.cheerWrapper}>
+                              <TouchableOpacity onPress={() => toggleCheerList(checkIn.id)} activeOpacity={0.7}>
+                                <View style={styles.cheerBadgeContainer}>
+                                  <Text style={{ fontSize: 16 }}>🎉</Text>
+                                  <View style={styles.cheerCountBadge}>
+                                    <Text style={styles.cheerCountText}>{checkIn.cheerCount}</Text>
+                                  </View>
                                 </View>
-                              </View>
-                            </TouchableOpacity>
-                            {visibleCheerList === checkIn.id && (
-                              <Text style={styles.cheerNamesText}>{checkIn.cheerNames.join(', ')}</Text>
-                            )}
+                              </TouchableOpacity>
+                              {visibleCheerList === checkIn.id && (
+                                <Text style={styles.cheerNamesText}>{checkIn.cheerNames.join(', ')}</Text>
+                              )}
+                            </View>
+                          )}
+                        </View>
+
+                        {checkIn.hasChirps && (
+                          <View style={styles.chirpSectionWrapper}>
+                            <ChirpsSection userId={auth.currentUser?.uid!} checkinId={checkIn.id} />
+                            <View style={styles.chirpReplyRow}>
+                              <TextInput
+                                placeholder="Reply to this chirp..."
+                                placeholderTextColor="#999"
+                                style={styles.chirpInput}
+                                value={checkIn.newChirpText || ''}
+                                onChangeText={(t) =>
+                                  setRecentCheckIns((prev) =>
+                                    prev.map((ci) =>
+                                      ci.id === checkIn.id ? { ...ci, newChirpText: t } : ci
+                                    )
+                                  )
+                                }
+                              />
+                              <TouchableOpacity
+                                onPress={async () => {
+                                  const text = checkIn.newChirpText?.trim();
+                                  if (!text) return;
+                                  const user = auth.currentUser;
+                                  const chirpsRef = collection(db, 'profiles', user.uid, 'checkins', checkIn.id, 'chirps');
+                                  await setDoc(doc(chirpsRef), {
+                                    text,
+                                    userName: name || 'Anonymous',
+                                    userImage: imageUrl || null,
+                                    timestamp: serverTimestamp(),
+                                  });
+                                  setRecentCheckIns((prev) =>
+                                    prev.map((ci) =>
+                                      ci.id === checkIn.id ? { ...ci, newChirpText: '' } : ci
+                                    )
+                                  );
+                                }}
+                                style={styles.chirpSendButton}
+                              >
+                                <Text style={styles.chirpSendText}>Chirp</Text>
+                              </TouchableOpacity>
+                            </View>
                           </View>
                         )}
-                      </View>
+                      </TouchableOpacity>
+                    );
+                  })}
 
-                      {checkIn.hasChirps && (
-                        <View style={styles.chirpSectionWrapper}>
-                          <ChirpsSection userId={auth.currentUser?.uid!} checkinId={checkIn.id} />
-
-                          <View style={styles.chirpReplyRow}>
-                            <TextInput
-                              placeholder="Reply to this chirp..."
-                              placeholderTextColor="#999"
-                              style={styles.chirpInput}
-                              value={checkIn.newChirpText || ''}
-                              onChangeText={(t) =>
-                                setRecentCheckIns((prev) =>
-                                  prev.map((ci) =>
-                                    ci.id === checkIn.id ? { ...ci, newChirpText: t } : ci
-                                  )
-                                )
-                              }
-                            />
-                            <TouchableOpacity
-                              onPress={async () => {
-                                const text = checkIn.newChirpText?.trim();
-                                if (!text) return;
-                                const user = auth.currentUser;
-                                const chirpsRef = collection(db, 'profiles', user.uid, 'checkins', checkIn.id, 'chirps');
-                                await setDoc(doc(chirpsRef), {
-                                  text,
-                                  userName: name || 'Anonymous',
-                                  userImage: imageUrl || null,
-                                  timestamp: serverTimestamp(),
-                                });
-                                setRecentCheckIns((prev) =>
-                                  prev.map((ci) =>
-                                    ci.id === checkIn.id ? { ...ci, newChirpText: '' } : ci
-                                  )
-                                );
-                              }}
-                              style={styles.chirpSendButton}
-                            >
-                              <Text style={styles.chirpSendText}>Chirp</Text>
-                            </TouchableOpacity>
-                          </View>
-                        </View>
-                      )}
+                  {visibleCheckins < recentCheckIns.length && (
+                    <TouchableOpacity
+                      style={[styles.smallLoadButton, { marginTop: 20 }]}   // ← add margin here
+                      onPress={() => setVisibleCheckins(prev => prev + 5)}
+                    >
+                      <Text style={styles.smallButtonText}>Load more</Text>
                     </TouchableOpacity>
-                  );
-                })
+                  )}
+                </>
               )}
             </View>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </ImageBackground>
+          </ScrollView>
+        </SafeAreaView>
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -657,7 +676,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 48,
-    borderColor: '#ddd',
+    borderColor: '#0A2940',
     borderWidth: 1,
     paddingHorizontal: 12,
     marginBottom: 12,
@@ -667,16 +686,46 @@ const styles = StyleSheet.create({
   smallButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 14,
-    paddingHorizontal: 12,
+    paddingHorizontal: 40,
     borderRadius: 30,
     borderWidth: 2,
     borderColor: '#2F4F68',
     alignItems: 'center',
-    marginTop: 8,
+  },
+  uploadPhotoButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+    borderWidth: 2,
+    marginBottom: 12,
+    borderColor: '#2F4F68',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  smallSaveProfileButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  smallLoadButton: {
+    backgroundColor: '#0A2940',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#2F4F68',
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   smallButtonText: {
     color: '#fff',
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: '600',
   },
   statsRow: {
@@ -826,8 +875,8 @@ const styles = StyleSheet.create({
   chirpSectionWrapper: {
     marginTop: 12,
     padding: 12,
-    borderWidth: 2,
-    borderColor: '#2F4F68',
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
     borderRadius: 12,
   },
   chirpSendButton: {
@@ -857,10 +906,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   dateAndCheerRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 6,
+    flexDirection: "row",
+    justifyContent: "flex-start",  // ← Change to this (from "space-between")
+    alignItems: "center",
+    gap: 2,
+    marginTop: 3,
+    marginBottom: 6,
   },
   dateText: {
     fontSize: 14,

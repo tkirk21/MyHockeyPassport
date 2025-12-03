@@ -15,6 +15,7 @@ import ahlSchedule2025 from '@/assets/data/ahlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
+import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -124,6 +125,7 @@ export default function HomeScreen() {
     ...ahlSchedule2025,
     ...echlSchedule2025,
     ...whlSchedule2025,
+    ...ohlSchedule2025,
     ...aihlSchedule2025.map(game => ({
       id: `${game.homeTeam}_${game.awayTeam}_${game.date}`,
       league: game.league,

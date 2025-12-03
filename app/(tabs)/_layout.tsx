@@ -1,13 +1,6 @@
 // app/(tabs)/_layout.tsx
 import { getAuth } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  onSnapshot,
-} from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
 import React, { createContext, useEffect, useState } from 'react';
 import { View } from 'react-native';
@@ -34,8 +27,45 @@ function CustomTabs({
 }) {
   const insets = useSafeAreaInsets();
   const [pendingCount, setPendingCount] = useState(0);
+  const [friendsReplyCount, setFriendsReplyCount] = useState(0);
   const auth = getAuth(firebaseApp);
   const currentUser = auth.currentUser;
+
+  useEffect(() => {
+      if (!currentUser) return;
+
+      const calc = async () => {
+        try {
+          const lastSnap = await getDoc(
+            doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriends')
+          );
+          const lastViewed = lastSnap.exists() ? lastSnap.data()?.timestamp?.toDate() : null;
+
+          let count = 0;
+          const checkinsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'checkins'));
+
+          for (const checkin of checkinsSnap.docs) {
+            const chirpsSnap = await getDocs(collection(checkin.ref, 'chirps'));
+
+            for (const chirp of chirpsSnap.docs) {
+              const data = chirp.data();
+              const ts = data.timestamp?.toDate();
+
+              const myChirp = chirpsSnap.docs.find(d => d.data().userId === currentUser.uid && d.id !== chirp.id);
+              if (myChirp && (!lastViewed || (ts && ts > lastViewed))) count++;
+            }
+          }
+
+          setFriendsReplyCount(count);
+        } catch (e) {
+          console.error('Friends reply count error:', e);
+        }
+      };
+
+      calc();
+      const unsub = onSnapshot(collection(db, 'profiles', currentUser.uid, 'checkins'), () => calc());
+      return () => unsub();
+    }, [currentUser]);
 
   // Friend requests badge
   useEffect(() => {
@@ -118,7 +148,7 @@ function CustomTabs({
           name="profile"
           options={{
             title: 'Profile',
-            tabBarIcon: ({ color }) => <Ionicons name="person" size={28} color={color} />,
+            tabBarIcon: ({ color }) => <Ionicons name="people" size={28} color={color} />,
             tabBarBadge: profileAlertCount > 0 ? profileAlertCount : undefined,
             tabBarBadgeStyle: { backgroundColor: '#EF4444', color: '#fff', fontWeight: 'bold' },
           }}
@@ -130,7 +160,8 @@ function CustomTabs({
           options={{
             title: 'Friends',
             tabBarIcon: ({ color }) => <Ionicons name="people" size={28} color={color} />,
-            tabBarBadge: pendingCount > 0 ? pendingCount : undefined,
+            tabBarBadge: pendingCount + friendsReplyCount > 0 ? pendingCount + friendsReplyCount : undefined,
+            tabBarBadgeStyle: { backgroundColor: '#EF4444', color: '#fff', fontWeight: 'bold' },
           }}
         />
       </Tabs>

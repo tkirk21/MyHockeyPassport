@@ -17,6 +17,7 @@ import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
+import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -106,7 +107,7 @@ export default function ArenaScreen() {
     ...echlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
-      arena: game.location,
+      arena: game.arena,
       date: game.date,
       homeTeam: game.team,
       awayTeam: game.opponent,
@@ -114,7 +115,7 @@ export default function ArenaScreen() {
     ...ushlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
-      arena: game.location,
+      arena: game.arena,
       date: game.date,
       homeTeam: game.team,
       awayTeam: game.opponent,
@@ -122,7 +123,15 @@ export default function ArenaScreen() {
     ...whlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
-      arena: game.location,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...ohlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
       date: game.date,
       homeTeam: game.team,
       awayTeam: game.opponent,
@@ -555,5 +564,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-
