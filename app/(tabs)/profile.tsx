@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Alert, ActivityIndicator, Image, ImageBackground, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc, } from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, getDownloadURL, ref, uploadBytes, } from 'firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from './_layout';
@@ -39,6 +39,34 @@ async function getCheerCount(userId: string, checkinId: string) {
 
 function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: string }) {
   const [chirps, setChirps] = useState<any[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState('');
+  const currentUser = auth.currentUser;
+  const isCheckinOwner = currentUser?.uid === userId;
+
+  const deleteChirp = async (chirpId: string) => {
+    try {
+      await deleteDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId));
+      setChirps(prev => prev.filter(c => c.id !== chirpId));
+    } catch (err) {
+      console.error('Delete failed:', err);
+    }
+  };
+
+  const saveEdit = async (chirpId: string) => {
+    if (!editText.trim()) return;
+    try {
+      await updateDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId), {
+        text: editText.trim(),
+      });
+      setChirps(prev => prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c));
+    } catch (err) {
+      console.error('Edit failed:', err);
+    } finally {
+      setEditingId(null);
+      setEditText('');
+    }
+  };
 
   useEffect(() => {
     const chirpsRef = collection(db, 'profiles', userId, 'checkins', checkinId, 'chirps');
@@ -54,19 +82,60 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
 
   return (
     <View style={styles.chirpsSection}>
-      {chirps.map((c) => (
-        <View key={c.id} style={styles.chirpItem}>
-          {c.userImage ? (
-            <Image source={{ uri: c.userImage }} style={styles.chirpAvatar} />
-          ) : (
-            <View style={styles.chirpAvatarPlaceholder} />
-          )}
-          <View style={styles.chirpTextContainer}>
-            <Text style={styles.chirpUsername}>{c.userName}</Text>
-            <Text style={styles.chirpText}>{c.text}</Text>
+      {chirps.map((c) => {
+        const isOwnChirp = c.userId === currentUser?.uid;
+        const isEditing = editingId === c.id;
+
+        return (
+          <View key={c.id} style={styles.chirpItem}>
+            {c.userImage ? (
+              <Image source={{ uri: c.userImage }} style={styles.chirpAvatar} />
+            ) : (
+              <View style={styles.chirpAvatarPlaceholder} />
+            )}
+            <View style={styles.chirpTextContainer}>
+              <Text style={styles.chirpUsername}>{c.userName || 'Someone'}</Text>
+
+              {isEditing ? (
+                <TextInput
+                  style={[styles.chirpText, { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 4 }]}
+                  value={editText}
+                  onChangeText={setEditText}
+                  autoFocus
+                />
+              ) : (
+                <Text style={styles.chirpText}>{c.text}</Text>
+              )}
+
+              {(isOwnChirp || isCheckinOwner) && !isEditing && (
+                <View style={{ flexDirection: 'row', gap: 12, marginTop: 4 }}>
+                  {isOwnChirp && (
+                    <TouchableOpacity onPress={() => { setEditingId(c.id); setEditText(c.text); }}>
+                      <Text style={{ color: '#1E3A8A', fontSize: 12, fontWeight: '600' }}>Edit</Text>
+                    </TouchableOpacity>
+                  )}
+                  {isCheckinOwner && (
+                    <TouchableOpacity onPress={() => deleteChirp(c.id)}>
+                      <Text style={{ color: '#F44336', fontSize: 12, fontWeight: '600' }}>Delete</Text>
+                    </TouchableOpacity>
+                  )}
+                </View>
+              )}
+
+              {isEditing && (
+                <View style={{ flexDirection: 'row', gap: 12, marginTop: 4 }}>
+                  <TouchableOpacity onPress={() => saveEdit(c.id)}>
+                    <Text style={{ color: '#4CAF50', fontWeight: 'bold', fontSize: 13 }}>Save</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
+                    <Text style={{ color: '#999', fontSize: 13 }}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
           </View>
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 }
@@ -564,10 +633,11 @@ export default function ProfileScreen() {
                                   if (!text) return;
                                   const user = auth.currentUser;
                                   const chirpsRef = collection(db, 'profiles', user.uid, 'checkins', checkIn.id, 'chirps');
-                                  await setDoc(doc(chirpsRef), {
+                                  await addDoc(chirpsRef, {
                                     text,
                                     userName: name || 'Anonymous',
                                     userImage: imageUrl || null,
+                                    userId: auth.currentUser?.uid,
                                     timestamp: serverTimestamp(),
                                   });
                                   setRecentCheckIns((prev) =>

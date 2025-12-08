@@ -1036,7 +1036,7 @@ const styles = StyleSheet.create({
   },
   loadMoreButton: {
     alignSelf: "center",
-    backgroundColor: "#0D2C42",   // ← changed here
+    backgroundColor: "#0D2C42",
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 12,
@@ -1053,7 +1053,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ffffff", // or your background color
+    backgroundColor: "#ffffff",
   },
   matchupText: {
     fontSize: 14,

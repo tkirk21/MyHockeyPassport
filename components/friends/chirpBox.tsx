@@ -1,7 +1,7 @@
 // components/friends/chirpBox.tsx
 import React, { useEffect, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { addDoc, collection, doc, getDoc, getDocs, getFirestore, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 
@@ -17,19 +17,24 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
   const [chirps, setChirps] = useState<any[]>([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editText, setEditText] = useState('');
 
   useEffect(() => {
-    const loadChirps = async () => {
-      try {
-        const chirpsRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
-        const q = query(chirpsRef, orderBy("timestamp", "asc"));
-        const snap = await getDocs(q);
-        setChirps(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-      } catch (err) {
-        console.error("Error loading chirps:", err);
-      }
-    };
-    loadChirps();
+    const chirpsRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
+    const q = query(chirpsRef, orderBy("timestamp", "asc"));
+
+    const unsub = onSnapshot(q, (snapshot) => {
+      const loaded: any[] = [];
+      snapshot.forEach((doc) => {
+        loaded.push({ id: doc.id, ...doc.data() });
+      });
+      setChirps(loaded);
+    }, (err) => {
+      console.error("Chirp listener error:", err);
+    });
+
+    return () => unsub();
   }, [friendId, checkinId]);
 
   const sendChirp = async () => {
@@ -73,21 +78,108 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
     }
   };
 
+  const deleteChirp = async (chirpId: string) => {
+      if (!auth.currentUser) return;
+
+      try {
+        const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", chirpId);
+        await deleteDoc(chirpRef);
+
+        setChirps(prev => prev.filter(c => c.id !== chirpId));
+      } catch (err) {
+        console.error("Delete failed:", err);
+      }
+    };
+
 return (
     <View style={styles.chirpSectionWrapper}>
-      {chirps.map((c) => (
-        <View key={c.id || c.timestamp} style={styles.chirpRow}>
-          <Image
-            source={c.userImage ? { uri: c.userImage } : require("@/assets/images/icon.png")}
-            style={styles.avatar}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.userName}>{c.userName || "Someone"}</Text>
-            <Text style={styles.chirpText}>{c.text}</Text>
-          </View>
-        </View>
-      ))}
+      {chirps.map((c) => {
+        const isOwnChirp = c.userId === auth.currentUser?.uid;
+        const isEditing = editingId === c.id;
 
+        return (
+          <View key={c.id || c.timestamp} style={styles.chirpRow}>
+            <Image
+              source={c.userImage ? { uri: c.userImage } : require("@/assets/images/icon.png")}
+              style={styles.avatar}
+            />
+
+            <View style={styles.textContainer}>
+              <Text style={styles.userName}>{c.userName || "Someone"}</Text>
+
+              {isEditing ? (
+                <TextInput
+                  style={[styles.input, { marginBottom: 4 }]}
+                  value={editText}
+                  onChangeText={setEditText}
+                  autoFocus
+                  selectTextOnFocus
+                />
+              ) : (
+                <Text style={styles.chirpText}>{c.text}</Text>
+              )}
+
+              {isOwnChirp && !isEditing && (
+                <View style={{ flexDirection: 'row', gap: 16, marginTop: 6 }}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEditingId(c.id);
+                      setEditText(c.text);
+                    }}
+                  >
+                    <Text style={{ color: "#1E3A8A", fontSize: 13, fontWeight: "600" }}>
+                      Edit
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => deleteChirp(c.id)}>
+                    <Text style={{ color: "#F44336", fontSize: 13, fontWeight: "600" }}>
+                      Delete
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+
+              {isEditing && (
+                <View style={{ flexDirection: "row", gap: 12, marginTop: 6 }}>
+                  <TouchableOpacity
+                    onPress={async () => {
+                      if (!editText.trim()) return;
+
+                      try {
+                        const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", c.id);
+                        await updateDoc(chirpRef, { text: editText.trim() });
+
+                        setChirps(prev =>
+                          prev.map(ch => (ch.id === c.id ? { ...ch, text: editText.trim() } : ch))
+                        );
+                      } catch (err) {
+                        console.error("Edit failed:", err);
+                      } finally {
+                        setEditingId(null);
+                        setEditText('');
+                      }
+                    }}
+                  >
+                    <Text style={{ color: "#4CAF50", fontWeight: "bold", fontSize: 13 }}>Save</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      setEditingId(null);
+                      setEditText('');
+                    }}
+                  >
+                    <Text style={{ color: "#999", fontSize: 13 }}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          </View>
+        );
+      })}
+
+      {/* Input row to send a new chirp */}
       <View style={styles.inputRow}>
         <TextInput
           style={styles.input}
