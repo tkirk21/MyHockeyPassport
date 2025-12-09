@@ -41,6 +41,7 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
   const [chirps, setChirps] = useState<any[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState('');
+  const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
   const currentUser = auth.currentUser;
   const isCheckinOwner = currentUser?.uid === userId;
 
@@ -93,44 +94,73 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
             ) : (
               <View style={styles.chirpAvatarPlaceholder} />
             )}
-            <View style={styles.chirpTextContainer}>
-              <Text style={styles.chirpUsername}>{c.userName || 'Someone'}</Text>
 
+            <View style={styles.chirpTextContainer}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text style={styles.chirpUsername}>{c.userName || 'Someone'}</Text>
+
+                {/* 3-dot menu – only show if you can edit or delete */}
+                {(isOwnChirp || isCheckinOwner) && (
+                  <View style={{ position: 'relative' }}>
+                    <TouchableOpacity
+                      hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                      onPress={() => setMenuOpenId(menuOpenId === c.id ? null : c.id)}
+                    >
+                      <Text style={{ fontSize: 24, color: '#666' }}>⋮</Text>
+                    </TouchableOpacity>
+
+                    {menuOpenId === c.id && !isEditing && (
+                      <View style={styles.dropdownMenu}>
+                        {isOwnChirp && (
+                          <TouchableOpacity
+                            onPress={() => {
+                              setEditingId(c.id);
+                              setEditText(c.text);
+                              setMenuOpenId(null);
+                            }}
+                            style={{ paddingVertical: 8, paddingHorizontal: 16 }}
+                          >
+                            <Text style={{ color: '#1E3A8A', fontWeight: '600' }}>Edit</Text>
+                          </TouchableOpacity>
+                        )}
+                        {(isOwnChirp || isCheckinOwner) && (
+                          <TouchableOpacity
+                            onPress={() => {
+                              deleteChirp(c.id);
+                              setMenuOpenId(null);
+                            }}
+                            style={{ paddingVertical: 8, paddingHorizontal: 16 }}
+                          >
+                            <Text style={{ color: '#F44336', fontWeight: '600' }}>Delete</Text>
+                          </TouchableOpacity>
+                        )}
+                      </View>
+                    )}
+                  </View>
+                )}
+              </View>
+
+              {/* Chirp text or edit input */}
               {isEditing ? (
-                <TextInput
-                  style={[styles.chirpText, { borderWidth: 1, borderColor: '#ccc', borderRadius: 6, padding: 4 }]}
-                  value={editText}
-                  onChangeText={setEditText}
-                  autoFocus
-                />
+                <View style={{ marginTop: 8 }}>
+                  <TextInput
+                    style={[styles.chirpText, { borderWidth: 1.5, borderColor: '#10B981', borderRadius: 8, padding: 8 }]}
+                    value={editText}
+                    onChangeText={setEditText}
+                    autoFocus
+                    multiline
+                  />
+                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16, marginTop: 8 }}>
+                    <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
+                      <Text style={{ color: '#666', fontWeight: '600' }}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => saveEdit(c.id)}>
+                      <Text style={{ color: '#10B981', fontWeight: '600' }}>Save</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               ) : (
                 <Text style={styles.chirpText}>{c.text}</Text>
-              )}
-
-              {(isOwnChirp || isCheckinOwner) && !isEditing && (
-                <View style={{ flexDirection: 'row', gap: 12, marginTop: 4 }}>
-                  {isOwnChirp && (
-                    <TouchableOpacity onPress={() => { setEditingId(c.id); setEditText(c.text); }}>
-                      <Text style={{ color: '#1E3A8A', fontSize: 12, fontWeight: '600' }}>Edit</Text>
-                    </TouchableOpacity>
-                  )}
-                  {isCheckinOwner && (
-                    <TouchableOpacity onPress={() => deleteChirp(c.id)}>
-                      <Text style={{ color: '#F44336', fontSize: 12, fontWeight: '600' }}>Delete</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              )}
-
-              {isEditing && (
-                <View style={{ flexDirection: 'row', gap: 12, marginTop: 4 }}>
-                  <TouchableOpacity onPress={() => saveEdit(c.id)}>
-                    <Text style={{ color: '#4CAF50', fontWeight: 'bold', fontSize: 13 }}>Save</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
-                    <Text style={{ color: '#999', fontSize: 13 }}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
               )}
             </View>
           </View>
@@ -988,6 +1018,23 @@ const styles = StyleSheet.create({
     color: '#2F4F68',
     textAlign: 'center',
     marginBottom: 6,
+  },
+  dropdownMenu: {
+    position: 'absolute',
+    right: -8,
+    top: 32,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    paddingVertical: 4,
+    minWidth: 110,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 8,
+    zIndex: 999,
   },
   leaguePuck: {
     width: 28,

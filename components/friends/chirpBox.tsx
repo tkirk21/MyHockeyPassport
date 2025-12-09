@@ -1,7 +1,7 @@
 // components/friends/chirpBox.tsx
 import React, { useEffect, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { addDoc, collection, doc, deleteDoc, getDoc, getDocs, getFirestore, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDoc, getFirestore, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 
@@ -19,6 +19,7 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState('');
+  const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
 
   useEffect(() => {
     const chirpsRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
@@ -66,10 +67,10 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
       await addDoc(collection(db, "profiles", friendId, "checkins", checkinId, "chirps"), newChirp);
 
       setChirps(prev => [...prev, {
-            id: Date.now().toString(),
-            ...newChirp,
-            timestamp: new Date(),
-          }]);
+        id: Date.now().toString(),
+        ...newChirp,
+        timestamp: new Date(),
+      }]);
       setMessage('');
     } catch (err) {
       console.error("Error sending chirp:", err);
@@ -79,107 +80,107 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
   };
 
   const deleteChirp = async (chirpId: string) => {
-      if (!auth.currentUser) return;
+    if (!auth.currentUser) return;
 
-      try {
-        const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", chirpId);
-        await deleteDoc(chirpRef);
+    try {
+      const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", chirpId);
+      await deleteDoc(chirpRef);
+      setChirps(prev => prev.filter(c => c.id !== chirpId));
+      setMenuOpenId(null);
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
 
-        setChirps(prev => prev.filter(c => c.id !== chirpId));
-      } catch (err) {
-        console.error("Delete failed:", err);
-      }
-    };
+  const saveEdit = async (chirpId: string) => {
+    if (!editText.trim()) return;
 
-return (
+    try {
+      const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", chirpId);
+      await updateDoc(chirpRef, { text: editText.trim() });
+
+      setChirps(prev =>
+        prev.map(chirp =>
+          chirp.id === chirpId ? { ...chirp, text: editText.trim() } : chirp
+        )
+      );
+    } catch (err) {
+      console.error("Edit save failed:", err);
+    } finally {
+      setEditingId(null);
+      setEditText('');
+      setMenuOpenId(null);
+    }
+  };
+
+  return (
     <View style={styles.chirpSectionWrapper}>
       {chirps.map((c) => {
         const isOwnChirp = c.userId === auth.currentUser?.uid;
         const isEditing = editingId === c.id;
 
         return (
-          <View key={c.id || c.timestamp} style={styles.chirpRow}>
+          <View key={c.id} style={styles.chirpRow}>
             <Image
               source={c.userImage ? { uri: c.userImage } : require("@/assets/images/icon.png")}
               style={styles.avatar}
             />
 
-            <View style={styles.textContainer}>
-              <Text style={styles.userName}>{c.userName || "Someone"}</Text>
+            <View style={{ flex: 1 }}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Text style={styles.userName}>{c.userName || "Someone"}</Text>
+
+                {isOwnChirp && (
+                  <View style={{ position: 'relative' }}>
+                    <TouchableOpacity
+                      hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                      onPress={() => setMenuOpenId(menuOpenId === c.id ? null : c.id)}
+                    >
+                      <Text style={{ fontSize: 24, color: '#666' }}>⋮</Text>
+                    </TouchableOpacity>
+
+                    {menuOpenId === c.id && !isEditing && (
+                      <View style={styles.dropdownMenu}>
+                        <TouchableOpacity onPress={() => { setEditingId(c.id); setEditText(c.text); setMenuOpenId(null); }}>
+                          <Text style={styles.menuTextEdit}>Edit</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => deleteChirp(c.id)}>
+                          <Text style={styles.menuTextDelete}>Delete</Text>
+                        </TouchableOpacity>
+                      </View>
+                    )}
+                  </View>
+                )}
+              </View>
 
               {isEditing ? (
-                <TextInput
-                  style={[styles.input, { marginBottom: 4 }]}
-                  value={editText}
-                  onChangeText={setEditText}
-                  autoFocus
-                  selectTextOnFocus
-                />
+                <View style={{ marginTop: 8 }}>
+                  <TextInput
+                    style={[styles.input, { borderColor: '#10B981', borderWidth: 1.5 }]}
+                    value={editText}
+                    onChangeText={setEditText}
+                    autoFocus
+                    selectTextOnFocus
+                    multiline
+                  />
+
+                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16, marginTop: 8 }}>
+                    <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
+                      <Text style={{ color: '#666', fontWeight: '600' }}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => saveEdit(c.id)}>
+                      <Text style={{ color: '#10B981', fontWeight: '600' }}>Save</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               ) : (
                 <Text style={styles.chirpText}>{c.text}</Text>
-              )}
-
-              {isOwnChirp && !isEditing && (
-                <View style={{ flexDirection: 'row', gap: 16, marginTop: 6 }}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setEditingId(c.id);
-                      setEditText(c.text);
-                    }}
-                  >
-                    <Text style={{ color: "#1E3A8A", fontSize: 13, fontWeight: "600" }}>
-                      Edit
-                    </Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={() => deleteChirp(c.id)}>
-                    <Text style={{ color: "#F44336", fontSize: 13, fontWeight: "600" }}>
-                      Delete
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
-
-              {isEditing && (
-                <View style={{ flexDirection: "row", gap: 12, marginTop: 6 }}>
-                  <TouchableOpacity
-                    onPress={async () => {
-                      if (!editText.trim()) return;
-
-                      try {
-                        const chirpRef = doc(db, "profiles", friendId, "checkins", checkinId, "chirps", c.id);
-                        await updateDoc(chirpRef, { text: editText.trim() });
-
-                        setChirps(prev =>
-                          prev.map(ch => (ch.id === c.id ? { ...ch, text: editText.trim() } : ch))
-                        );
-                      } catch (err) {
-                        console.error("Edit failed:", err);
-                      } finally {
-                        setEditingId(null);
-                        setEditText('');
-                      }
-                    }}
-                  >
-                    <Text style={{ color: "#4CAF50", fontWeight: "bold", fontSize: 13 }}>Save</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    onPress={() => {
-                      setEditingId(null);
-                      setEditText('');
-                    }}
-                  >
-                    <Text style={{ color: "#999", fontSize: 13 }}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
               )}
             </View>
           </View>
         );
       })}
 
-      {/* Input row to send a new chirp */}
       <View style={styles.inputRow}>
         <TextInput
           style={styles.input}
@@ -191,7 +192,7 @@ return (
         <TouchableOpacity
           onPress={sendChirp}
           disabled={loading || !message.trim()}
-          style={styles.sendButton}
+          style={[styles.sendButton, (loading || !message.trim()) && { opacity: 0.5 }]}
         >
           <Text style={styles.sendText}>Chirp</Text>
         </TouchableOpacity>
@@ -202,72 +203,88 @@ return (
 
 const styles = {
   avatar: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    marginRight: 8,
-  },
-  chirpRow: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    marginBottom: 8,
-  },
-  chirpText: {
-    color: "#0A2940",
-    fontSize: 13,
-    flexShrink: 1,
-  },
-  container: {
-    marginTop: 12,
-    paddingHorizontal: 4,
-  },
-  input: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    fontSize: 13,
-  },
-  inputRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 8,
-  },
-  sendButton: {
-    backgroundColor: '#0A2940',
-    marginLeft: 4,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 30,
-    borderWidth: 2,
-    borderColor: "#2F4F68",
-    opacity: 1,
-  },
-  sendButtonDisabled: {
-    opacity: 0.5,
-  },
-  sendText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 13,
-  },
-  textContainer: {
-    flex: 1,
-  },
-  userName: {
-    fontWeight: "700",
-    color: "#0A2940",
-    fontSize: 13,
-    marginBottom: 2,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    marginRight: 10
   },
   chirpSectionWrapper: {
     marginTop: 12,
     padding: 12,
     borderWidth: 1,
     borderColor: '#D1D5DB',
+    borderRadius: 12
+  },
+  chirpRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    marginBottom: 16
+  },
+  chirpText: {
+    color: "#0A2940",
+    fontSize: 14,
+    marginTop: 4,
+    lineHeight: 20
+  },
+  dropdownMenu: {
+    position: 'absolute',
+    right: -8,
+    top: 32,
+    backgroundColor: '#fff',
     borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#0D2C42',
+    paddingVertical: 6,
+    minWidth: 60,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 8,
+    zIndex: 999,
+  },
+  input: {
+    flex: 1,
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    fontSize: 14
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 12
+  },
+  menuTextEdit: {
+    color: '#1E3A8A',
+    fontWeight: '600',
+    paddingVertical: 4,
+    paddingHorizontal: 8
+  },
+  menuTextDelete: {
+    color: '#F44336',
+    fontWeight: '600',
+    paddingVertical: 4,
+    paddingHorizontal: 8
+  },
+  sendButton: {
+    backgroundColor: '#0A2940',
+    marginLeft: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 30
+  },
+  sendText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 14
+  },
+  userName: {
+    fontWeight: "700",
+    color: "#0A2940",
+    fontSize: 14
   },
 };
