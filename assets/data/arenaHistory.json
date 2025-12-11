@@ -62,6 +62,17 @@
     ]
   },
   {
+    "currentArena": "Rexall Place",
+    "teamName": "Edmonton Oilers",
+    "league": "NHL",
+    "history": [
+      { "name": "Northlands Coliseum", "from": "1974-09-01", "to": "1995-05-31" },
+      { "name": "Edmonton Coliseum", "from": "1995-09-01", "to": "1998-05-31" },
+      { "name": "Skyreach Centre ", "from": "1998-09-01", "to": "2003-05-31" },
+      { "name": "Rexall Place", "from": "2003-09-01", "to": "2016-05-31" }
+    ]
+  },
+  {
     "currentArena": "Amerant Bank Arena",
     "teamName": "Florida Panthers",
     "league": "NHL",
@@ -127,8 +138,8 @@
   },
   {
     "currentArena": "Xfinity Mobile Center",
-    "teamName": "Philadelphia Flyers",
-    "league": "NHL",
+    "teamName": ["Philadelphia Flyers", "Philadelphia Phantoms"],
+    "league": ["NHL", "AHL"],
     "history": [
       { "name": "CoreStates Center", "from": "1996-08-31", "to": "1998-09-30" },
       { "name": "First Union Center", "from": "1998-10-01", "to": "2003-09-30" },
@@ -230,6 +241,375 @@
       { "name": "Bell MTS Place", "from": "2017-06-01", "to": "2021-11-01" },
       { "name": "Canada Life Centre", "from": "2021-11-02", "to": null }
     ]
-  }
+  },
+  {
+    "currentArena": "Canada Life Centre",
+    "teamName": "Manitoba Moose",
+    "league": "AHL",
+    "history": [
+      { "name": "MTS Centre", "from": "2011-09-16", "to": "2017-05-31" },
+      { "name": "Bell MTS Place", "from": "2017-06-01", "to": "2021-11-01" },
+      { "name": "Canada Life Centre", "from": "2021-11-02", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Blue Arena",
+    "teamName": "Colorado Eagles",
+    "league": "AHL",
+    "history": [
+      { "name": "Budweiser Events Center", "from": "2003-06-01", "to": "2023-09-30" },
+      { "name": "Blue Arena", "from": "2023-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Rocket Arena",
+    "teamName": "Cleveland Monsters",
+    "league": "AHL",
+    "history": [
+      { "name": "Gund Arena", "from": "1994-09-01", "to": "2005-05-31" },
+      { "name": "Quicken Loans Arena", "from": "2005-09-01", "to": "2019-05-31" },
+      { "name": "Rocket Mortgage FieldHouse", "from": "2019-09-01", "to": "2025-08-30" },
+      { "name": "Rocket Arena", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Rocket Arena",
+    "teamName": "Cleveland Barons",
+    "league": "AHL",
+    "history": [
+      { "name": "Gund Arena", "from": "1994-09-01", "to": "2005-05-31" },
+      { "name": "Quicken Loans Arena", "from": "2005-09-01", "to": "2019-05-31" },
+      { "name": "Rocket Mortgage FieldHouse", "from": "2019-09-01", "to": "2025-08-30" },
+      { "name": "Rocket Arena", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Rocket Arena",
+    "teamName": "Lake Erie Monsters",
+    "league": "AHL",
+    "history": [
+      { "name": "Gund Arena", "from": "1994-09-01", "to": "2005-05-31" },
+      { "name": "Quicken Loans Arena", "from": "2005-09-01", "to": "2019-05-31" },
+      { "name": "Rocket Mortgage FieldHouse", "from": "2019-09-01", "to": "2025-08-30" },
+      { "name": "Rocket Arena", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Maverik Center",
+    "teamName": "Utah Grizzlies",
+    "league": "AHL",
+    "history": [
+      { "name": "E Center", "from": "1997-09-01", "to": "2010-05-31" },
+      { "name": "Maverik Center", "from": "2010-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Mary Brown's Centre",
+    "teamName": "St. John's IceCaps",
+    "league": "AHL",
+    "history": [
+      { "name": "Mile One Centre", "from": "2011-09-01", "to": "2021-05-31" },
+      { "name": "Mary Brown's Centre", "from": "2021-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "UW–Milwaukee Panther Arena",
+    "teamName": "Milwaukee Admirals",
+    "league": "AHL",
+    "history": [
+      { "name": "U.S. Cellular Arena", "from": "2000-09-01", "to": "2014-05-31" },
+      { "name": "UW–Milwaukee Panther Arena", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Toyota Arena",
+    "teamName": "Ontario Reign",
+    "league": "AHL",
+    "history": [
+      { "name": "Ontario Community Events Center", "from": "2006-01-01", "to": "2019-08-30" },
+      { "name": "Citizens Business Bank Arena", "from": "2006-09-01", "to": "2019-05-31" },
+      { "name": "Toyota Arena", "from": "2019-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "SNHU Arena",
+    "teamName": "Manchester Monarchs",
+    "league": "AHL",
+    "history": [
+      { "name": "Verizon Wireless Arena", "from": "2001-09-01", "to": "2016-05-31" },
+      { "name": "SNHU Arena", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Casey's Center",
+    "teamName": "Iowa Wild",
+    "league": "AHL",
+    "history": [
+      { "name": "Wells Fargo Arena", "from": "2005-09-01", "to": "2025-05-31" },
+      { "name": "Casey's Center", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Casey's Center",
+    "teamName": "Iowa Chops",
+    "league": "AHL",
+    "history": [
+      { "name": "Wells Fargo Arena", "from": "2005-09-01", "to": "2025-05-31" },
+      { "name": "Casey's Center", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Casey's Center",
+    "teamName": "Iowa Stars",
+    "league": "AHL",
+    "history": [
+      { "name": "Wells Fargo Arena", "from": "2005-09-01", "to": "2025-05-31" },
+      { "name": "Casey's Center", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Total Mortgage Arena",
+    "teamName": "Bridgeport Islanders",
+    "league": "AHL",
+    "history": [
+      { "name": "Arena at Harbor Yard", "from": "2001-09-01", "to": "2011-05-31" },
+      { "name": "Webster Bank Arena", "from": "2011-09-01", "to": "2022-05-31" },
+      { "name": "Total Mortgage Arena", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Total Mortgage Arena",
+    "teamName": "Bridgeport Sound Tigers",
+    "league": "AHL",
+    "history": [
+      { "name": "Arena at Harbor Yard", "from": "2001-09-01", "to": "2011-05-31" },
+      { "name": "Webster Bank Arena", "from": "2011-09-01", "to": "2022-05-31" },
+      { "name": "Total Mortgage Arena", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Pechanga Arena",
+    "teamName": "San Diego Gulls",
+    "league": "AHL",
+    "history": [
+      { "name": "Valley View Casino Center", "from": "2010-11-13", "to": "2018-12-04" },
+      { "name": "Pechanga Arena", "from": "2018-12-05", "to": null }
+    ]
+  },
+  {
+    "currentArena": "H-E-B Center at Cedar Park",
+    "teamName": "Texas Stars",
+    "league": "AHL",
+    "history": [
+      { "name": "Cedar Park Center", "from": "2009-11-13", "to": "2016-04-21" },
+      { "name": "H-E-B Center at Cedar Park", "from": "2016-04-22", "to": null }
+    ]
+  },
+  {
+    "currentArena": "BMO Center",
+    "teamName": "Rockford IceHogs",
+    "league": "AHL",
+    "history": [
+      { "name": "Rockford MetroCentre", "from": "1981-09-01", "to": "2011-05-31" },
+      { "name": "BMO Harris Bank Center", "from": "2011-09-01", "to": "2022-05-31" },
+      { "name": "BMO Center", "from": "2022-10-20", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Upstate Medical University Arena",
+    "teamName": "Syracuse Crunch",
+    "league": "AHL",
+    "history": [
+      { "name": "Onondaga County War Memorial", "from": "1951-09-01", "to": "1999-05-31" },
+      { "name": "Oncenter War Memorial Arena", "from": "2000-09-01", "to": "2019-12-19" },
+      { "name": "Upstate Medical University Arena", "from": "2019-12-20", "to": null }
+    ]
+  },
+  {
+    "currentArena": "MVP Arena",
+    "teamName": "Albany River Rats",
+    "league": "AHL",
+    "history": [
+      { "name": "Knickerbocker Arena", "from": "1990-09-01", "to": "1997-05-31" },
+      { "name": "Pepsi Arena", "from": "1997-09-01", "to": "2007-05-31" },
+      { "name": "Times Union Center", "from": "2007-09-01", "to": "2021-10-14" },
+      { "name": "MVP Arena", "from": "2021-10-15", "to": null }
+    ]
+  },
+  {
+    "currentArena": "MVP Arena",
+    "teamName": "Albany Devils",
+    "league": "AHL",
+    "history": [
+      { "name": "Knickerbocker Arena", "from": "1990-09-01", "to": "1997-05-31" },
+      { "name": "Pepsi Arena", "from": "1997-09-01", "to": "2007-05-31" },
+      { "name": "Times Union Center", "from": "2007-09-01", "to": "2021-10-14" },
+      { "name": "MVP Arena", "from": "2021-10-15", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Cross Insurance Arena",
+    "teamName": "Maine Mariners",
+    "league": "AHL",
+    "history": [
+      { "name": "Cumberland County Civic Center", "from": "1977-09-01", "to": "2014-05-31" },
+      { "name": "Cross Insurance Arena", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Cross Insurance Arena",
+    "teamName": "Portland Pirates",
+    "league": "AHL",
+    "history": [
+      { "name": "Cumberland County Civic Center", "from": "1977-09-01", "to": "2014-05-31" },
+      { "name": "Cross Insurance Arena", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Dignity Health Arena",
+    "teamName": "Bakersfield Condors",
+    "league": "AHL",
+    "history": [
+      { "name": "Centennial Garden", "from": "1998-09-01", "to": "2005-05-31" },
+      { "name": "Rabobank Arena", "from": "2005-09-01", "to": "2019-05-31" },
+      { "name": "Mechanics Bank Arena", "from": "2019-09-01", "to": "2025-03-30" },
+      { "name": "Dignity Health Arena", "from": "2025-04-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Coliseum",
+    "teamName": "Hamilton Bulldogs",
+    "league": "AHL",
+    "history": [
+      { "name": "Copps Coliseum", "from": "1985-09-01", "to": "2014-05-31" },
+      { "name": "FirstOntario Centre", "from": "2014-09-01", "to": "2024-05-31" },
+      { "name": "Hamilton Arena", "from": "2024-09-01", "to": "2025-05-31" },
+      { "name": "TD Coliseum", "from": "2025-06-25", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Mohegan Arena at Casey Plaza",
+    "teamName": "Hamilton Bulldogs",
+    "league": "AHL",
+    "history": [
+      { "name": "Northeastern Pennsylvania Civic Arena and Convention Center", "from": "1998-09-01", "to": "2000-05-31" },
+      { "name": "First Union Arena", "from": "2000-09-01", "to": "2003-05-31" },
+      { "name": "Wachovia Arena", "from": "2003-09-01", "to": "2010-05-31" },
+      { "name": "Mohegan Sun Arena at Casey Plaza", "from": "2010-09-01", "to": "2024-05-31" },
+      { "name": "Mohegan Arena at Casey Plaza", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Baltimore Arena",
+    "teamName": "Baltimore Skipjacks",
+    "league": "AHL",
+    "history": [
+      { "name": "Baltimore Civic Center", "from": "1961-09-01", "to": "1986-05-31" },
+      { "name": "Baltimore Arena", "from": "1986-09-01", "to": "2003-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Coca-Cola Coliseum",
+    "teamName": "Toronto Marlies",
+    "league": "AHL",
+    "history": [
+      { "name": "CNE Coliseum", "from": "1921-09-01", "to": "2003-05-31" },
+      { "name": "Ricoh Coliseum", "from": "2003-09-01", "to": "2018-05-31" },
+      { "name": "Coca-Cola Coliseum", "from": "2018-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Floyd L. Maines Veterans Memorial Arena",
+    "teamName": "Binghamton Senators",
+    "league": "AHL",
+    "history": [
+      { "name": "Broome County Veterans Memorial Arena", "from": "1973-09-01", "to": "2014-05-31" },
+      { "name": "Floyd L. Maines Veterans Memorial Arena", "from": "2014-09-01", "to": "2021-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Lee's Family Forum",
+    "teamName": "Henderson Silver Knights",
+    "league": "AHL",
+    "history": [
+      { "name": "The Dollar Loan Center", "from": "2020-09-01", "to": "2024-05-31" },
+      { "name": "Lee's Family Forum", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "AT&T Center",
+    "teamName": "San Antonio Rampage",
+    "league": "AHL",
+    "history": [
+      { "name": "SBC Cente", "from": "2002-09-01", "to": "2006-05-31" },
+      { "name": "AT&T Center", "from": "2006-09-01", "to": "2023-05-31" }
+    ]
+  },
 
+
+
+
+
+
+
+
+
+
+
+  {
+    "currentArena": "Harrah's Cherokee Center – Asheville",
+    "teamName": "Asheville Aces",
+    "league": "SPHL",
+    "history": [
+      { "name": "Asheville Civic Center Complex", "from": "1974-01-01", "to": "2011-05-31" },
+      { "name": "Harrah's Cherokee Center – Asheville", "from": "2011-06-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Crown Complex",
+    "teamName": "Fayetteville Marksmen",
+    "league": "SPHL",
+    "history": [
+      { "name": "Cumberland County Crown Coliseum", "from": "1997-10-01", "to": "2014-05-31" },
+      { "name": "Crown Coliseum", "from": "2014-06-01", "to": "2025-05-31" },
+      { "name": "Crown Complex", "from": "2025-06-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Crown Coliseum",
+    "teamName": "Fayetteville FireAntz",
+    "league": "SPHL",
+    "history": [
+      { "name": "Cumberland County Crown Coliseum", "from": "1997-10-01", "to": "2014-05-31" },
+      { "name": "Crown Coliseum", "from": "2014-06-01", "to": "2025-05-31" },
+      { "name": "Crown Complex", "from": "2025-06-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Vibrant Arena at The MARK",
+    "teamName": "Quad City Storm",
+    "league": "SPHL",
+    "history": [
+      { "name": "TaxSlayer Center", "from": "2017-10-01", "to": "2022-08-30" },
+      { "name": "Vibrant Arena at The MARK", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Berglund Center",
+    "teamName": "Roanoke Rail Yard Dawgs",
+    "league": "SPHL",
+    "history": [
+      { "name": "Roanoke Civic Center", "from": "1971-01-01", "to": "2014-05-31" },
+      { "name": "Berglund Center", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Pensacola Bay Center",
+    "teamName": "Pensacola Ice Flyers",
+    "league": "SPHL",
+    "history": [
+      { "name": "Pensacola Civic Cente", "from": "1985-01-01", "to": "2012-05-31" },
+      { "name": "Pensacola Bay Center", "from": "2012-09-01", "to": null }
+    ]
+  }
 ]

@@ -133,42 +133,42 @@ const ManualCheckIn = () => {
   useEffect(() => {
     const selectedDate = gameDate;
 
-    const processed = arenasData.map(arena => {
-      const history = arenaHistoryData.find(
-        h =>
-          h.teamName === arena.teamName &&
-          h.league === arena.league
-      );
+    const processed = arenasData
+      .filter(arena => !arena.startDate || selectedDate >= new Date(arena.startDate))
+      .map(arena => {
+        const history = arenaHistoryData.find(h => h.teamName === arena.teamName && h.league === arena.league);
+        if (!history) return arena;
 
-      // If team has no history → return arena unchanged
-      if (!history) {
-        return { ...arena, arena: arena.arena };
-      }
+        const correct = history.history.find(h => {
+          const from = new Date(h.from);
+          const to = h.to ? new Date(h.to) : null;
+          return selectedDate >= from && (!to || selectedDate <= to);
+        });
 
-      // Team HAS history → determine correct name
-      const correct = history.history.find(h => {
-        const from = new Date(h.from);
-        const to = h.to ? new Date(h.to) : null;
-
-        return (
-          selectedDate >= from &&
-          (to === null || selectedDate <= to)
-        );
+        return correct ? { ...arena, arena: correct.name } : arena;
       });
 
-      return {
-        ...arena,
-        arena: correct ? correct.name : arena.arena,
+    // Process historical teams (with history rename)
+    const processedHistorical = historicalTeamsData
+      .filter(hist => {
+        const start = new Date(hist.startDate);
+        const end = hist.endDate ? new Date(hist.endDate) : null;
+        return selectedDate >= start && (!end || selectedDate <= end);
+      })
+      .map(arena => {
+        const history = arenaHistoryData.find(h => h.teamName === arena.teamName && h.league === arena.league);
+        if (!history) return arena;
 
-        // Keep the modern arena colors even when name changes
-        color: arena.color,
-        colorCode: arena.colorCode,
-        SecondaryColor: arena.SecondaryColor,
-      };
-    });
+        const correct = history.history.find(h => {
+          const from = new Date(h.from);
+          const to = h.to ? new Date(h.to) : null;
+          return selectedDate >= from && (!to || selectedDate <= to);
+        });
 
-    // Also include historicalTeamsData unchanged
-    const allArenas = [...processed, ...historicalTeamsData];
+        return correct ? { ...arena, arena: correct.name } : arena;
+      });
+
+    const allArenas = [...processed, ...processedHistorical];
 
     setArenas(allArenas);
 
@@ -186,38 +186,33 @@ const ManualCheckIn = () => {
     let filtered = arenas.filter(a => a.league === selectedLeague);
 
     // 2. APPLY ARENA HISTORY FILTERING
-    const finalArenaNames = new Set<string>();
-
-    filtered.forEach(arenaItem => {
-      const historyRecord = arenaHistoryData.find(
-        h =>
-          h.teamName === arenaItem.teamName &&
-          h.league === selectedLeague
-      );
-
-      // If this team has NO history → always include the arena
-      if (!historyRecord) {
-        finalArenaNames.add(arenaItem.arena);
-        return;
-      }
-
-      // If the team DOES have history → pick the correct arena version
-      const record = historyRecord.history.find(h => {
-        const from = new Date(h.from);
-        const to = h.to ? new Date(h.to) : null;
-
-        return (
-          selectedDate >= from &&
-          (to === null || selectedDate <= to)
-        );
-      });
-
-      if (record) {
-        finalArenaNames.add(record.name);
-      }
+const validArenas = filtered.filter(arenaItem => {
+      const start = arenaItem.startDate ? new Date(arenaItem.startDate) : new Date(0);
+      const end = arenaItem.endDate ? new Date(arenaItem.endDate) : null;
+      return selectedDate >= start && (!end || selectedDate <= end);
     });
 
-    // 3. BUILD ARENA DROPDOWN
+    const finalArenaNames = new Set<string>();
+
+    validArenas.forEach(arenaItem => {
+      const historyRecord = arenaHistoryData.find(h =>
+        h.teamName === arenaItem.teamName && h.league === selectedLeague
+      );
+
+      let nameToAdd = arenaItem.arena;
+
+      if (historyRecord) {
+        const record = historyRecord.history.find(h => {
+          const from = new Date(h.from);
+          const to = h.to ? new Date(h.to) : null;
+          return selectedDate >= from && (!to || selectedDate <= to);
+        });
+        if (record) nameToAdd = record.name;
+      }
+
+      finalArenaNames.add(nameToAdd);
+    });
+
     const arenaList = Array.from(finalArenaNames)
       .sort()
       .map(a => ({ label: a, value: a }));

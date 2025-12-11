@@ -18,6 +18,7 @@ import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
+import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
 
 export default function ArenaScreen() {
   const { arenaId } = useLocalSearchParams();
@@ -105,6 +106,14 @@ export default function ArenaScreen() {
       awayTeam: teamCodeMap[`${game.league}_${game.opponent}`] || game.opponent,
     })),
     ...echlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...sphlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
       arena: game.arena,

@@ -78,6 +78,9 @@ export default function FriendsTab() {
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(5);
   const [refreshing, setRefreshing] = useState(false);
+  const [leaderboardData, setLeaderboardData] = useState<Array<{ id: string; name: string; imageUrl?: string; arenas: number; teams: number }>>([]);
+  const [lbLoading, setLbLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<'arenas' | 'teams'>('arenas');
   const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
     setSearchQuery(value);
   }, 300);
@@ -189,6 +192,10 @@ export default function FriendsTab() {
             .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
         );
 
+        if (friends.length > 0) {
+          loadLeaderboardData();
+        }
+
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
         const blockedSnap = await getDocs(blockedRef);
         const blockedIds = blockedSnap.docs.map((d) => d.id);
@@ -249,12 +256,78 @@ export default function FriendsTab() {
           safeActivities
             .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
         );
+
+        if (friends.length > 0) {
+          loadLeaderboardData();
+        }
+
       } catch (err) {
         console.error("Refresh failed:", err);
       } finally {
         setRefreshing(false);
       }
     };
+
+    const loadLeaderboardData = async () => {
+    if (!currentUser || friends.length === 0) {
+      setLeaderboardData([]);
+      setLbLoading(false);
+      return;
+    }
+
+    setLbLoading(true);
+
+    try {
+      // ONE SINGLE BATCH: get all friends' profiles + all their check-ins in parallel
+      const allFriendIds = [...friends, currentUser.uid]; // include yourself
+
+      const profilePromises = allFriendIds.map(id =>
+        getDoc(doc(db, 'profiles', id)).then(snap => ({ id, data: snap.data() }))
+      );
+
+      const checkinsPromises = allFriendIds.map(id =>
+        getDocs(collection(db, 'profiles', id, 'checkins'))
+          .then(snap => ({ id, checkins: snap.docs.map(d => d.data()) }))
+      );
+
+      const [profilesResult, checkinsResult] = await Promise.all([
+        Promise.all(profilePromises),
+        Promise.all(checkinsPromises)
+      ]);
+
+      // Merge the data
+      const leaderboard = allFriendIds.map(userId => {
+        const profile = profilesResult.find(p => p.id === userId)?.data || {};
+        const checkins = checkinsResult.find(c => c.id === userId)?.checkins || [];
+
+        const arenas = new Set(
+          checkins.map(c => c.arenaName || c.arena).filter(Boolean)
+        ).size;
+
+        const teams = new Set(
+          checkins.flatMap(c => [
+            c.teamName || c.team,
+            c.opponent
+          ].filter(Boolean))
+        ).size;
+
+        return {
+          id: userId,
+          name: profile.name || (userId === currentUser.uid ? 'You' : 'Unknown'),
+          imageUrl: profile.imageUrl,
+          arenas,
+          teams,
+        };
+      });
+
+      setLeaderboardData(leaderboard);
+    } catch (err) {
+      console.error('Leaderboard failed:', err);
+      setLeaderboardData([]);
+    } finally {
+      setLbLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (!currentUser || friends.length === 0) return;
@@ -464,6 +537,7 @@ export default function FriendsTab() {
               onChangeText={setSearchQuery}
             />
           </View>
+
           {searchQuery.length > 0 && filteredUsers.length > 0 && (
             <>
               <Text style={styles.subheading}>Search Results</Text>
@@ -479,7 +553,10 @@ export default function FriendsTab() {
                   />
                   <View style={{ flex: 1 }}>
                     <Text style={styles.itemText}>{item.name}</Text>
-                    <Text style={styles.mutualText}>{item.location || 'No location set'}</Text>
+                    <Text style={styles.mutualText}>
+                      {item.location || 'No location set'}
+                      {getMutualFriendsCount(item.id) > 0 && ` · ${getMutualFriendsCount(item.id)} mutual friend${getMutualFriendsCount(item.id) > 1 ? 's' : ''}`}
+                    </Text>
                   </View>
                   <TouchableOpacity onPress={() => handleSendRequest(item.id)}>
                     <Text style={styles.button}>Add Friend</Text>
@@ -488,6 +565,59 @@ export default function FriendsTab() {
               ))}
             </>
           )}
+
+          {searchQuery.length > 0 && filteredUsers.length === 0 && (
+            <Text style={styles.placeholder}>
+              No users found for "{searchQuery}"
+            </Text>
+          )}
+
+           {searchQuery.length === 0 && (
+             <>
+               <Text style={styles.subheading}>Suggested Friends</Text>
+               {allUsers
+                 .filter(u =>
+                   u.id !== currentUser?.uid &&                                   // ← THIS BLOCKS YOU 100%
+                   !friends.includes(u.id) &&
+                   !sentRequests.includes(u.id) &&
+                   !blockedFriends.some(b => b.id === u.id) &&
+                   getMutualFriendsCount(u.id) >= 2
+                 )
+                 .sort((a, b) => getMutualFriendsCount(b.id) - getMutualFriendsCount(a.id))
+                 .slice(0, 5)
+                 .map(item => {
+                   const mutualCount = getMutualFriendsCount(item.id);
+                   return (
+                     <View key={item.id} style={styles.searchRow}>
+                       <Image
+                         source={item.imageUrl ? { uri: item.imageUrl } : require('@/assets/images/icon.png')}
+                         style={styles.avatar}
+                       />
+                       <View style={{ flex: 1 }}>
+                         <Text style={styles.itemText}>{item.name}</Text>
+                         <Text style={styles.mutualText}>
+                           {mutualCount} mutual friend{mutualCount > 1 ? 's' : ''}
+                         </Text>
+                       </View>
+                       <TouchableOpacity onPress={() => handleSendRequest(item.id)}>
+                         <Text style={styles.button}>Add</Text>
+                       </TouchableOpacity>
+                     </View>
+                   );
+                 })}
+
+               {/* Empty state */}
+               {allUsers.filter(u =>
+                 u.id !== currentUser?.uid &&
+                 !friends.includes(u.id) &&
+                 !sentRequests.includes(u.id) &&
+                 !blockedFriends.some(b => b.id === u.id) &&
+                 getMutualFriendsCount(u.id) >= 2
+               ).length === 0 && (
+                 <Text style={[styles.placeholder, { textAlign: 'center' }]}>No suggested friends right now</Text>
+               )}
+             </>
+           )}
         </View>
 
         {/* Pending Friend Requests */}
@@ -530,45 +660,56 @@ export default function FriendsTab() {
         {/* Your Friends */}
         {friends.length > 0 && (
           <View style={styles.card}>
-            <Text style={styles.subheading}>Your Friends</Text>
+            <Text style={styles.subheading}>Your Friends ({friends.length})</Text>
             {allUsers
               .filter((u) => friends.includes(u.id) && !isBlocked(u.id))
-              .map((item) => (
-                <View key={item.id} style={styles.listRow}>
-                  <TouchableOpacity
-                    style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
-                    onPress={() =>
-                      router.push({
-                        pathname: '/userprofile/[userId]',
-                        params: { userId: item.id },
-                      })
-                    }
-                  >
-                    <Image
-                      source={
-                        item.imageUrl
-                          ? { uri: item.imageUrl }
-                          : require('@/assets/images/icon.png')
-                      }
-                      style={styles.avatar}
-                    />
-                    <Text style={styles.itemText}>{item.name}</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() =>
-                      setSelectedFriend({
-                        id: item.id,
-                        name: item.name || "Unknown",
-                        imageUrl: item.imageUrl || null,
-                      })
-                    }
-                  >
-                    <Ionicons name="ellipsis-vertical" size={20} color="#0A2940" />
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          )}
+              .sort((a, b) => {
+                // Put recently active friends at the top
+                const aActive = feed.some(act =>
+                  act.friendId === a.id &&
+                  act.timestamp &&
+                  Date.now() - getTimestamp(act.timestamp).getTime() < 24 * 60 * 60 * 1000
+                );
+                const bActive = feed.some(act =>
+                  act.friendId === b.id &&
+                  act.timestamp &&
+                  Date.now() - getTimestamp(act.timestamp).getTime() < 24 * 60 * 60 * 1000
+                );
+                return bActive - aActive || a.name.localeCompare(b.name);
+              })
+              .map((item) => {
+                const isActiveLast24h = feed.some((act) => {
+                  if (act.friendId !== item.id) return false;
+                  if (!act.timestamp) return false;
+                  const ts = getTimestamp(act.timestamp).getTime();
+                  return Date.now() - ts < 24 * 60 * 60 * 1000; // 24 hours
+                });
+
+                return (
+                  <View key={item.id} style={styles.listRow}>
+                    <TouchableOpacity
+                      style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
+                      onPress={() => router.push(`/userprofile/${item.id}`)}
+                    >
+                      <View style={{ position: 'relative' }}>
+                        <Image
+                          source={item.imageUrl ? { uri: item.imageUrl } : require('@/assets/images/icon.png')}
+                          style={styles.avatar}
+                        />
+                        {isActiveLast24h && <View style={styles.activeDot} />}
+                      </View>
+
+                      <Text style={[styles.itemText, { marginLeft: 12 }]}>{item.name}</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => setSelectedFriend(item)}>
+                      <Ionicons name="ellipsis-vertical" size={20} color="#0A2940" />
+                    </TouchableOpacity>
+                  </View>
+                );
+              })}
+          </View>
+        )}
 
           {friends.length === 0 && !loading && (
             <View style={styles.card}>
@@ -585,6 +726,84 @@ export default function FriendsTab() {
               <Text style={styles.emptyText}>
                 When your friends check in, cheer, or chirp — it’ll show up here.
               </Text>
+            </View>
+          )}
+
+          {/* FRIEND LEADERBOARD */}
+          {friends.length > 0 && (
+            <View style={styles.card}>
+              <Text style={styles.subheading}>Friend Leaderboard</Text>
+
+              <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 12, gap: 24 }}>
+                <TouchableOpacity
+                  onPress={() => setActiveTab('arenas')}
+                  style={[styles.tabButton, activeTab === 'arenas' && styles.tabActive]}
+                >
+                  <Text style={[styles.tabText, activeTab === 'arenas' && styles.tabTextActive]}>
+                    Arenas Visited
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => setActiveTab('teams')}
+                  style={[styles.tabButton, activeTab === 'teams' && styles.tabActive]}
+                >
+                  <Text style={[styles.tabText, activeTab === 'teams' && styles.tabTextActive]}>
+                    Teams Watched
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              {lbLoading ? (
+                <ActivityIndicator size="small" color="#0D2C42" />
+              ) : leaderboardData.length === 0 ? (
+                <Text style={{ textAlign: 'center', color: '#6B7280', paddingVertical: 20 }}>
+                  No check-ins yet
+                </Text>
+              ) : (
+                leaderboardData
+                  .sort((a, b) =>
+                    activeTab === 'arenas'
+                      ? b.arenas - a.arenas
+                      : b.teams - a.teams
+                  )
+                  .slice(0, 5)
+                  .map((user, index) => {
+                    const score = activeTab === 'arenas' ? user.arenas : user.teams;
+                    const isMe = user.id === currentUser?.uid;
+
+                    return (
+                      <View
+                        key={user.id}
+                        style={[
+                          styles.lbRow,
+                          isMe && styles.lbRowMe,
+                          index < 3 && styles.lbRowTop3
+                        ]}
+                      >
+                        <Text style={[styles.rank, index < 3 && styles.rankGold]}>
+                          {index === 0 ? '1st' : index === 1 ? '2nd' : index === 2 ? '3rd' : `${index + 1}.`}
+                        </Text>
+                        <TouchableOpacity
+                          style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
+                          onPress={() => router.push(`/userprofile/${user.id}`)}
+                        >
+                          <Image
+                            source={user.imageUrl ? { uri: user.imageUrl } : require('@/assets/images/icon.png')}
+                            style={styles.lbAvatar}
+                          />
+                          <Text style={[styles.lbName, isMe && { fontWeight: 'bold' }, index < 3 && styles.lbNameTop3]}>
+                            {user.name}{isMe ? ' (You)' : ''}
+                          </Text>
+                        </TouchableOpacity>
+
+                        <Text style={[styles.lbScore, index < 3 && styles.lbScoreTop3]}>
+                          {score}
+                        </Text>
+                      </View>
+                    );
+                  })
+              )}
             </View>
           )}
 
@@ -901,6 +1120,17 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginRight: 12
   },
+  activeDot: {
+    position: 'absolute',
+    right: -2,
+    bottom: -2,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#4ADE80',
+    borderWidth: 3,
+    borderColor: '#fff',
+  },
   acceptButton: {
     backgroundColor: '#4CAF50',
     paddingVertical: 8,
@@ -979,9 +1209,9 @@ const styles = StyleSheet.create({
   },
   dateAndCheerRow: {
     flexDirection: "row",
-    justifyContent: "flex-start",  // ← Change to this (from "space-between")
+    justifyContent: "flex-start",
     alignItems: "center",
-    gap: 108,                       // ← Add this for natural spacing between date and button (adjust 8-16)
+    gap: 108,
     marginBottom: 6,
   },
   dateText: {
@@ -1184,5 +1414,69 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#0D2C42',
     flex: 1,
+  },
+  tabButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    backgroundColor: '#E5E7EB',
+  },
+  tabActive: {
+    backgroundColor: '#0D2C42',
+  },
+  tabText: {
+    fontSize: 14,
+    color: '#6B7280',
+    fontWeight: '600',
+  },
+  tabTextActive: {
+    color: '#fff',
+  },
+  lbRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    borderRadius: 10,
+    marginBottom: 6,
+  },
+  lbRowMe: {
+    backgroundColor: '#FFFACD',
+    borderWidth: 2,
+    borderColor: '#FBBF24',
+  },
+  lbRowTop3: {
+    backgroundColor: '#E0E7FF',  // your dark blue as background
+    borderWidth: 2,
+    borderColor: '#0D2C42',
+  },
+  lbAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    marginRight: 10,
+  },
+  lbName: {
+    flex: 1,
+    fontSize: 16,
+    color: '#0A2940',
+  },
+  lbScore: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#0D2C42',
+    minWidth: 40,
+    textAlign: 'right',
+  },
+  rank: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#4B5563',
+    width: 50,
+  },
+  rankGold: {
+    color: '#0D2C42',
+    fontWeight: 'bold',
   },
 });

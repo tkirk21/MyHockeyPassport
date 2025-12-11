@@ -1007,7 +1007,7 @@ const styles = StyleSheet.create({
   },
   dateAndCheerRow: {
     flexDirection: "row",
-    justifyContent: "flex-start",  // ← Change to this (from "space-between")
+    justifyContent: "flex-start",
     alignItems: "center",
     gap: 2,
     marginTop: 3,

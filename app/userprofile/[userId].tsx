@@ -1,6 +1,7 @@
 // app/userprofile/[userId].tsx
 import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, ImageBackground, KeyboardAvoidingView, Platform, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View,  } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc, startAfter } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
@@ -9,6 +10,8 @@ import arenasData from '@/assets/data/arenas.json';
 import { logCheer } from "@/utils/activityLogger";
 import CheerButton from '@/components/friends/cheerButton';
 import ChirpBox from '@/components/friends/chirpBox';
+import TeamPin from '@/components/TeamPin';
+import * as Location from 'expo-location';
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -52,6 +55,8 @@ export default function UserProfileScreen() {
 
   const currentUser = auth.currentUser;
   const router = useRouter();
+
+
 
   useEffect(() => {
     const loadProfileAndCheckins = async () => {
@@ -150,6 +155,8 @@ export default function UserProfileScreen() {
     return <Text style={styles.error}>Profile not found.</Text>;
   }
 
+
+
   return (
       <>
         <Stack.Screen options={{ headerShown: false }} />
@@ -231,6 +238,91 @@ export default function UserProfileScreen() {
                   <Text style={styles.placeholder}>No arenas yet.</Text>
                 )}
               </View>
+
+              {/* MINI MAP – ALL ARENAS VISITED */}
+              {allCheckins.length > 0 && (
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Arenas Visited</Text>
+                  <MapView
+                    style={styles.miniMap}
+                    initialRegion={{
+                      latitude: 39.8283,
+                      longitude: -98.5795,
+                      latitudeDelta: 35,
+                      longitudeDelta: 35,
+                    }}
+                    scrollEnabled={true}
+                    zoomEnabled={true}
+                    rotateEnabled={true}
+                    pitchEnabled={true}
+                    showsUserLocation={false}
+                  >
+                    {allCheckins
+                      .filter(c => c.latitude && c.longitude)
+                      .map((checkin, index) => {
+                        // Match arena to get teamCode and color
+                        const arenaEntry = (arenasData as any[]).find(
+                          (a: any) =>
+                            a.league === checkin.league &&
+                            (a.arena === checkin.arenaName || a.arena === checkin.arena)
+                        );
+
+                        const teamCode = arenaEntry?.teamCode || '';
+                        const colorCode = arenaEntry?.colorCode || '#0D2C42';
+
+                        const visitCount = allCheckins.filter(
+                          c => (c.arenaName || c.arena) === (checkin.arenaName || checkin.arena)
+                        ).length;
+
+                        return (
+                          <Marker
+                            key={index}
+                            coordinate={{
+                              latitude: checkin.latitude,
+                              longitude: checkin.longitude,
+                            }}
+                            title={checkin.arenaName || checkin.arena}
+                            anchor={{ x: 0.5, y: 0.5 }}
+                            centerOffset={{ x: 0, y: -20 }}
+                          >
+                            <View style={{ alignItems: 'center' }}>
+                              {/* Visit Count Badge */}
+                              {visitCount >= 1 && (
+                                <View style={styles.visitBadge}>
+                                  <Text style={styles.visitBadgeText}>{visitCount}x</Text>
+                                </View>
+                              )}
+
+                              {/* Custom Pin */}
+                              <View style={{ width: 36, height: 36, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                                <Image
+                                  source={require('@/assets/images/pin_template.png')}
+                                  style={{
+                                    width: 36,
+                                    height: 36,
+                                    tintColor: colorCode,
+                                  }}
+                                  resizeMode="contain"
+                                />
+                                <Text style={{
+                                  position: 'absolute',
+                                  color: 'white',
+                                  fontWeight: 'bold',
+                                  fontSize: 8,
+                                  textShadowColor: 'rgba(0,0,0,0.8)',
+                                  textShadowOffset: { width: 1, height: 1 },
+                                  textShadowRadius: 2,
+                                }}>
+                                  {teamCode}
+                                </Text>
+                              </View>
+                            </View>
+                          </Marker>
+                        );
+                      })}
+                  </MapView>
+                </View>
+              )}
 
               {/* Recent Check-ins */}
               <View style={styles.section}>
@@ -476,19 +568,47 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   loadMoreButton: {
-      alignSelf: 'center',
-      marginTop: 15,
-      marginBottom: 10,
-      backgroundColor: '#0D2C42',
-      paddingHorizontal: 32,
-      paddingVertical: 14,
-      borderRadius: 30,
-      borderWidth: 3,
-      borderColor: '#2F4F68',
-    },
-    loadMoreText: {
-      color: '#fff',
-      fontWeight: 'bold',
-      fontSize: 18,
-    },
+    alignSelf: 'center',
+    marginTop: 15,
+    marginBottom: 10,
+    backgroundColor: '#0D2C42',
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 30,
+    borderWidth: 3,
+    borderColor: '#2F4F68',
+  },
+  loadMoreText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  miniMap: {
+    width: '100%',
+    height: 280,
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginTop: 8,
+    // small gap after the title
+  },
+  visitBadge: {
+    backgroundColor: '#D32F2F',    // red
+    width: 10,
+    height: 10,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 18,
+    right: 26,
+    zIndex: 2,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  visitBadgeText: {
+    color: 'white',
+    fontWeight: '900',
+    fontSize: 4,
+    includeFontPadding: false,
+  },
 });

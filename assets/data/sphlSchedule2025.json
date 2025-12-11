@@ -1,0 +1,2612 @@
+[
+  {
+    "id": "sphl_2025101701",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Huntsville Havoc",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-09-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025101702",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-09-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025101801",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-09-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025101802",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-10-18T00:00:00Z"
+  },
+  {
+    "id": "sphl_2025101802",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102401",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102402",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Macon Mayhem",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102403",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102404",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102405",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102501",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Huntsville Havoc",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102502",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102503",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102504",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Birmingham Bulls",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102505",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025102801",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Huntsville Havoc",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-10-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025103001",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025103101",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025103102",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110101",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110102",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110103",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110104",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110105",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Huntsville Havoc",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110201",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110202",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Huntsville Havoc",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110701",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110702",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110703",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Huntsville Havoc",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110704",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110705",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Quad City Storm",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-11-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110801",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110802",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110803",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025110901",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Birmingham Bulls",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111401",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Peoria Rivermen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111402",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Birmingham Bulls",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111403",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Macon Mayhem",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111404",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111405",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111501",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Peoria Rivermen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111502",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111503",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111601",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025111602",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Birmingham Bulls",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112101",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112102",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112103",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112104",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112105",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Quad City Storm",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112201",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112202",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112203",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112204",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Propst Arena",
+    "3": "Huntsville, Alabama",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112205",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112301",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112601",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112602",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Birmingham Bulls",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112603",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Knoxville Ice Bears",
+    "aren": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112604",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112605",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-11-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112701",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-27T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112801",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Macon Mayhem",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112802",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112803",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Quad City Storm",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112804",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112805",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112901",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Quad City Storm",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112902",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112903",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Birmingham Bulls",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025112904",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120401",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Quad City Storm",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-12-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120402",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-12-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120501",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Peoria Rivermen",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120502",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Quad City Storm",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120503",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Macon Mayhem",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120504",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120505",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120601",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Peoria Rivermen",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120602",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Huntsville Havoc",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120603",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Birmingham Bulls",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120604",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120701",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Peoria Rivermen",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-12-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025120702",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025121101",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-12-12T00:05:00Z"
+  },
+  {
+    "id": "sphl_2025121102",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-12T01:05:00Z"
+  },
+  {
+    "id": "sphl_2025121201",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-13T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025121202",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Birmingham Bulls",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-12-13T01:10:00Z"
+  },
+  {
+    "id": "sphl_2025121203",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-13T01:15:00Z"
+  },
+  {
+    "id": "sphl_2025121301",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Macon Mayhem",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-12-14T00:05:00Z"
+  },
+  {
+    "id": "sphl_2025121302",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Birmingham Bulls",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-12-14T01:10:00Z"
+  },
+  {
+    "id": "sphl_2025121303",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-14T01:15:00Z"
+  },
+  {
+    "id": "sphl_2025121401",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-12-14T20:10:00Z"
+  },
+  {
+    "id": "sphl_2025121801",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-18T16:30:00Z"
+  },
+  {
+    "id": "sphl_2025121802",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Quad City Storm",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-19T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025121901",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Quad City Storm",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-12-20T00:00:00Z"
+  },
+  {
+    "id": "sphl_2025121902",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-12-20T00:00:00Z"
+  },
+  {
+    "id": "sphl_2025121903",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Birmingham Bulls",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-12-20T00:30:00Z"
+  },
+  {
+    "id": "sphl_2025121904",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-20T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025122001",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Quad City Storm",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-12-20T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025122002",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2025-12-20T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025122003",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Birmingham Bulls",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-12-21T00:05:00Z"
+  },
+  {
+    "id": "sphl_2025122004",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2025-12-21T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025122005",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-21T01:05:00Z"
+  },
+  {
+    "id": "sphl_2025122101",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2025-12-21T20:00:00Z"
+  },
+  {
+    "id": "sphl_2025122301",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Birmingham Bulls",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-24T01:05:00Z"
+  },
+  {
+    "id": "sphl_2025122601",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2025-12-26T23:00:00Z"
+  },
+  {
+    "id": "sphl_2025122602",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-27T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025122603",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Macon Mayhem",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-12-27T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025122604",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-12-27T01:10:00Z"
+  },
+  {
+    "id": "sphl_2025122605",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-27T01:15:00Z"
+  },
+  {
+    "id": "sphl_2025122701",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-12-28T00:05:00Z"
+  },
+  {
+    "id": "sphl_2025122702",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Macon Mayhem",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2025-12-28T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025122703",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2025-12-28T01:05:00Z"
+  },
+  {
+    "id": "sphl_2025122704",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2025-12-28T01:10:00Z"
+  },
+  {
+    "id": "sphl_2025122705",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-28T01:15:00Z"
+  },
+  {
+    "id": "sphl_2025122801",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2025-12-28T21:15:00Z"
+  },
+  {
+    "id": "sphl_2025123001",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2025-12-31T01:00:00Z"
+  },
+  {
+    "id": "sphl_2025123101",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2025-12-31T23:05:00Z"
+  },
+  {
+    "id": "sphl_2025123102",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "sphl_2025123103",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-01T00:10:00Z"
+  },
+  {
+    "id": "sphl_2025123104",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Birmingham Bulls",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-01T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010201",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-03T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026010202",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Birmingham Bulls",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-01-03T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010203",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-03T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010204",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-03T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026010301",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-04T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026010302",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-03T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026010303",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-04T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010304",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-01-04T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010305",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-04T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026010401",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-05T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026010402",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-04T20:10:00Z"
+  },
+  {
+    "id": "sphl_2026010403",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-04T21:15:00Z"
+  },
+  {
+    "id": "sphl_2026010801",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Birmingham Bulls",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-09T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026010901",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Macon Mayhem",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-01-10T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026010902",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026010903",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Macon Mayhem",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-10T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026010904",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Peoria Rivermen",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-01-10T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026010905",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-01-10T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026011001",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-11T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026011002",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-01-11T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026011003",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Macon Mayhem",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-11T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026011004",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-01-11T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026011005",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Peoria Rivermen",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-01-11T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026011101",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-12T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026011401",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-14T20:10:00Z"
+  },
+  {
+    "id": "sphl_2026011601",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Birmingham Bulls",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-17T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026011602",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Birmingham Bulls",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026011603",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-17T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026011604",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Huntsville Havoc",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-01-17T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026011605",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-17T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026011606",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-01-17T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026011701",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Birmingham Bulls",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-17T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026011702",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-18T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026011703",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-01-18T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026011704",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-18T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026011801",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Quad City Storm",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-18T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026011802",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Quad City Storm",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-18T21:15:00Z"
+  },
+  {
+    "id": "sphl_2026011901",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-19T22:05:00Z"
+  },
+  {
+    "id": "sphl_2026012301",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-01-23T19:00:00Z"
+  },
+  {
+    "id": "sphl_2026012302",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026012303",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Huntsville Havoc",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026012304",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-01-24T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026012305",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Birmingham Bulls",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-24T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026012401",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Quad City Storm",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-24T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026012402",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-01-25T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026012403",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Huntsville Havoc",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-01-25T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026012404",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-01-25T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026012405",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-01-25T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026012501",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-01-25T20:00:00Z"
+  },
+  {
+    "id": "sphl_2026012502",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-01-25T21:15:00Z"
+  },
+  {
+    "id": "sphl_2026013001",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Quad City Storm",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-01-31T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026013002",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Macon Mayhem",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-01-31T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026013003",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-01-31T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026013004",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Peoria Rivermen",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-01-31T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026013005",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-01-31T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026013101",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Quad City Storm",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-01T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026013102",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Macon Mayhem",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-01T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026013103",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-01T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026013104",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Peoria Rivermen",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-01T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026013105",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-01T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026020401",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-02-05T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026020501",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-06T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026020502",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-06T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026020601",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026020602",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Birmingham Bulls",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026020603",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Peoria Rivermen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-07T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026020604",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Quad City Storm",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-07T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026020605",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-07T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026020701",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Quad City Storm",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "sphl_2026020702",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026020703",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Birmingham Bulls",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-02-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026020704",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Peoria Rivermen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-08T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026020705",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-08T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026021201",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-02-12T16:00:00Z"
+  },
+  {
+    "id": "sphl_2026021301",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-14T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026021302",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-14T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026021303",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Huntsville Havoc",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-02-14T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026021304",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Macon Mayhem",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-14T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026021401",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-02-15T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026021402",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-15T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026021403",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-15T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026021404",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Macon Mayhem",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-15T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026021501",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Peoria Rivermen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-02-16T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026021502",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-15T22:05:00Z"
+  },
+  {
+    "id": "sphl_2026021503",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-15T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026021601",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Huntsville Havoc",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-16T19:00:00Z"
+  },
+  {
+    "id": "sphl_2026021901",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-02-19T15:00:00Z"
+  },
+  {
+    "id": "sphl_2026022001",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026022002",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Quad City Storm",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-21T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026022003",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Macon Mayhem",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-21T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022004",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-21T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022101",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-02-22T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026022102",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-02-21T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026022103",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Quad City Storm",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-22T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026022104",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-02-22T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022105",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Macon Mayhem",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-02-22T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022201",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-23T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022202",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-02-22T21:00:00Z"
+  },
+  {
+    "id": "sphl_2026022601",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-26T15:30:00Z"
+  },
+  {
+    "id": "sphl_2026022602",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-27T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026022701",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-02-28T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022702",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-28T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026022703",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-02-28T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026022704",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-02-28T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026022705",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Birmingham Bulls",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-28T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026022801",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Huntsville Havoc",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-02-29T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026022802",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-02-28T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026022803",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-02-29T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026022804",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Birmingham Bulls",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-02-29T01:05:00Z"
+  },
+  {
+    "id": "sphl_2026022805",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-02-29T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026022806",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Huntsville Havoc",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-02-29T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026030101",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Huntsville Havoc",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-03-01T20:10:00Z"
+  },
+  {
+    "id": "sphl_2026030501",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-03-06T01:00:00Z"
+  },
+  {
+    "id": "sphl_2026030502",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-03-07T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026030601",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Birmingham Bulls",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-07T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026030602",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Huntsville Havoc",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-03-07T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026030603",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-03-07T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026030604",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-03-07T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026030701",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-03-08T01:15:00Z"
+  },
+  {
+    "id": "sphl_2026030702",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Birmingham Bulls",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-07T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026030703",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Huntsville Havoc",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-03-08T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026030704",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-03-08T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026030705",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-03-08T01:10:00Z"
+  },
+  {
+    "id": "sphl_2026030801",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Macon Mayhem",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-03-08T20:00:00Z"
+  },
+  {
+    "id": "sphl_2026030802",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-03-08T20:15:00Z"
+  },
+  {
+    "id": "sphl_2026031201",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-03-12T14:00:00Z"
+  },
+  {
+    "id": "sphl_2026031301",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Quad City Storm",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-03-13T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026031302",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-03-14T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026031303",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-03-14T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026031304",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-03-14T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026031401",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Quad City Storm",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-03-14T22:00:00Z"
+  },
+  {
+    "id": "sphl_2026031402",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Huntsville Havoc",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-03-14T23:30:00Z"
+  },
+  {
+    "id": "sphl_2026031403",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-03-15T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026031404",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Macon Mayhem",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-03-15T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026031501",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Huntsville Havoc",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-03-15T20:00:00Z"
+  },
+  {
+    "id": "sphl_2026032001",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026032002",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Peoria Rivermen",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-03-20T23:30:00Z"
+  },
+  {
+    "id": "sphl_2026032003",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-03-21T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032004",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-03-21T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032101",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-03-21T22:00:00Z"
+  },
+  {
+    "id": "sphl_2026032102",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Peoria Rivermen",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-03-21T23:30:00Z"
+  },
+  {
+    "id": "sphl_2026032103",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-03-22T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032104",
+    "league": "SPHL",
+    "team": "Birmingham Bulls",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Pelham Civic Complex",
+    "city": "Pelham, Alabama",
+    "date": "2026-03-22T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032105",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Quad City Storm",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-03-22T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032201",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-03-22T19:00:00Z"
+  },
+  {
+    "id": "sphl_2026032202",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-03-22T19:10:00Z"
+  },
+  {
+    "id": "sphl_2026032701",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-27T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026032702",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-03-27T23:05:00Z"
+  },
+  {
+    "id": "sphl_2026032703",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Peoria Rivermen",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-03-28T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032704",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Birmingham Bulls",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-03-28T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032801",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Quad City Storm",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-03-28T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026032802",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Knoxville Ice Bears",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-28T22:00:00Z"
+  },
+  {
+    "id": "sphl_2026032803",
+    "league": "SPHL",
+    "team": "Roanoke Rail Yard Dawgs",
+    "opponent": "Fayetteville Marksmen",
+    "arena": "Berglund Center",
+    "city": "Roanoke, Virginia",
+    "date": "2026-03-28T23:05:00Z"
+  },
+  {
+    "id": "sphl_2026032804",
+    "league": "SPHL",
+    "team": "Huntsville Havoc",
+    "opponent": "Birmingham Bulls",
+    "arena": "Propst Arena",
+    "city": "Huntsville, Alabama",
+    "date": "2026-03-29T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026032805",
+    "league": "SPHL",
+    "team": "Pensacola Ice Flyers",
+    "opponent": "Quad City Storm",
+    "arena": "Pensacola Bay Center",
+    "city": "Pensacola, Florida",
+    "date": "2026-03-29T00:05:00Z"
+  },
+  {
+    "id": "sphl_2026032901",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-03-29T00:15:00Z"
+  },
+  {
+    "id": "sphl_2026032902",
+    "league": "SPHL",
+    "team": "Macon Mayhem",
+    "opponent": "Huntsville Havoc",
+    "arena": "Macon Coliseum",
+    "city": "Macon, Georgia",
+    "date": "2026-03-29T19:00:00Z"
+  },
+  {
+    "id": "sphl_2026032903",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Evansville Thunderbolts",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-03-29T20:15:00Z"
+  },
+  {
+    "id": "sphl_2026040301",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-04-04T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026040302",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Birmingham Bulls",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-04-04T00:30:00Z"
+  },
+  {
+    "id": "sphl_2026040303",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-04-04T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026040304",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Huntsville Havoc",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-04-04T00:10:00Z"
+  },
+  {
+    "id": "sphl_2026040401",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-04-05T00:15:00Z"
+  },
+  {
+    "id": "sphl_2026040402",
+    "league": "SPHL",
+    "team": "Knoxville Ice Bears",
+    "opponent": "Birmingham Bulls",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
+    "city": "Knoxville, Tennessee",
+    "date": "2026-04-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026040403",
+    "league": "SPHL",
+    "team": "Fayetteville Marksmen",
+    "opponent": "Macon Mayhem",
+    "arena": "Crown Complex",
+    "city": "Fayetteville, North Carolina",
+    "date": "2026-04-04T23:00:00Z"
+  },
+  {
+    "id": "sphl_2026040404",
+    "league": "SPHL",
+    "team": "Evansville Thunderbolts",
+    "opponent": "Pensacola Ice Flyers",
+    "arena": "Ford Center",
+    "city": "Evansville, Indiana",
+    "date": "2026-04-05T00:00:00Z"
+  },
+  {
+    "id": "sphl_2026040405",
+    "league": "SPHL",
+    "team": "Quad City Storm",
+    "opponent": "Huntsville Havoc",
+    "arena": "Vibrant Arena at The MARK",
+    "city": "Moline, Illinois",
+    "date": "2026-04-05T00:10:00Z"
+  },
+  {
+    "id": "sphl_2026040406",
+    "league": "SPHL",
+    "team": "Peoria Rivermen",
+    "opponent": "Roanoke Rail Yard Dawgs",
+    "arena": "Peoria Civic Center",
+    "city": "Peoria, Illinois",
+    "date": "2026-04-05T00:15:00Z"
+  }
+]

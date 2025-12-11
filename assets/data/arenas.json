@@ -115,7 +115,7 @@
     "SecondaryColor": "#000080",
     "league": "NHL",
     "timezone": "America/Denver",
-    "startDate": "1996-09-01",
+    "startDate": "1999-09-01",
     "endDate": null
   },
   {
@@ -166,7 +166,7 @@
     "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Detroit",
-    "startDate": "1933-09-01",
+    "startDate": "2017-09-01",
     "endDate": null
   },
   {
@@ -183,7 +183,7 @@
     "SecondaryColor": "#ff4500",
     "league": "NHL",
     "timezone": "America/Edmonton",
-    "startDate": "1980-09-01",
+    "startDate": "2016-09-01",
     "endDate": null
   },
   {
@@ -637,7 +637,9 @@
     "color": "Royal Blue",
     "colorCode": "#002868",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "Belleville Senators",
@@ -651,7 +653,9 @@
     "color": "Black",
     "colorCode": "#000000",
     "league": "AHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2017-09-01",
+    "endDate": null
   },
   {
     "teamName": "Bridgeport Islanders",
@@ -665,7 +669,9 @@
     "color": "Blue",
     "colorCode": "#000084",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2021-09-01",
+    "endDate": null
   },
   {
     "teamName": "Calgary Wranglers",
@@ -679,7 +685,9 @@
     "color": "Red",
     "colorCode": "#a60c00",
     "league": "AHL",
-    "timezone": "America/Edmonton"
+    "timezone": "America/Edmonton",
+    "startDate": "2022-09-01",
+    "endDate": null
   },
   {
     "teamName": "Charlotte Checkers",
@@ -693,7 +701,9 @@
     "color": "Red",
     "colorCode": "#bf0010",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2010-09-01",
+    "endDate": null
   },
   {
     "teamName": "Chicago Wolves",
@@ -707,12 +717,14 @@
     "color": "Maroon",
     "colorCode": "#6f263d",
     "league": "AHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2001-09-01",
+    "endDate": null
   },
   {
     "teamName": "Cleveland Monsters",
     "teamCode": "CLE",
-    "arena": "Rocket Mortgage FieldHouse",
+    "arena": "Rocket Arena",
     "city": "Cleveland, Ohio",
     "address": "1 Center Court, Cleveland, OH 44115",
     "website": "https://clevelandmonsters.com",
@@ -721,7 +733,9 @@
     "color": "Blue",
     "colorCode": "#00a3e0",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2016-09-01",
+    "endDate": null
   },
   {
     "teamName": "Coachella Valley Firebirds",
@@ -735,7 +749,9 @@
     "color": "Deep Sea Blue",
     "colorCode": "#0a2334",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2022-09-01",
+    "endDate": null
   },
   {
     "teamName": "Colorado Eagles",
@@ -749,7 +765,9 @@
     "color": "Navy Blue",
     "colorCode": "#041e42",
     "league": "AHL",
-    "timezone": "America/Denver"
+    "timezone": "America/Denver",
+    "startDate": "2018-09-01",
+    "endDate": null
   },
   {
     "teamName": "Grand Rapids Griffins",
@@ -763,7 +781,9 @@
     "color": "Red",
     "colorCode": "#c10000",
     "league": "AHL",
-    "timezone": "America/Detroit"
+    "timezone": "America/Detroit",
+    "startDate": "2001-09-01",
+    "endDate": null
   },
   {
     "teamName": "Hartford Wolf Pack",
@@ -791,7 +811,9 @@
     "color": "Silver",
     "colorCode": "#97999b",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2022-09-01",
+    "endDate": null
   },
   {
     "teamName": "Hershey Bears",
@@ -810,7 +832,7 @@
   {
     "teamName": "Iowa Wild",
     "teamCode": "IA",
-    "arena": "Wells Fargo Arena",
+    "arena": "Casey's Center",
     "city": "Des Moines, Iowa",
     "address": "233 Center St, Des Moines, IA 50309",
     "website": "https://iowawild.com",
@@ -819,7 +841,9 @@
     "color": "Forest Green",
     "colorCode": "#008348",
     "league": "AHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2013-09-01",
+    "endDate": null
   },
   {
     "teamName": "Laval Rocket",
@@ -833,7 +857,9 @@
     "color": "Red",
     "colorCode": "#c60000",
     "league": "AHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2017-09-01",
+    "endDate": null
   },
   {
     "teamName": "Lehigh Valley Phantoms",
@@ -847,7 +873,9 @@
     "color": "Orange",
     "colorCode": "#ff5b00",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2014-09-01",
+    "endDate": null
   },
   {
     "teamName": "Manitoba Moose",
@@ -861,7 +889,9 @@
     "color": "Polar Night Blue",
     "colorCode": "#004c97",
     "league": "AHL",
-    "timezone": "America/Winnipeg"
+    "timezone": "America/Winnipeg",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "Milwaukee Admirals",
@@ -875,7 +905,9 @@
     "color": "Navy Blue",
     "colorCode": "#002855",
     "league": "AHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2001-09-01",
+    "endDate": null
   },
   {
     "teamName": "Ontario Reign",
@@ -889,7 +921,9 @@
     "color": "Black",
     "colorCode": "#000000",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "Providence Bruins",
@@ -903,7 +937,9 @@
     "color": "Black",
     "colorCode": "#000000",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1992-09-01",
+    "endDate": null
   },
   {
     "teamName": "Rochester Americans",
@@ -917,7 +953,9 @@
     "color": "Royal Blue",
     "colorCode": "#00205b",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1956-09-01",
+    "endDate": null
   },
   {
     "teamName": "Rockford IceHogs",
@@ -931,7 +969,9 @@
     "color": "Red",
     "colorCode": "#d2000d",
     "league": "AHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2007-09-01",
+    "endDate": null
   },
   {
     "teamName": "San Diego Gulls",
@@ -945,7 +985,9 @@
     "color": "Orange",
     "colorCode": "#f74902",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "San Jose Barracuda",
@@ -959,7 +1001,9 @@
     "color": "Teal",
     "colorCode": "#009687",
     "league": "AHL",
-    "timezone": "America/Los_Angeles"
+    "timezone": "America/Los_Angeles",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "Springfield Thunderbirds",
@@ -970,10 +1014,12 @@
     "website": "https://springfieldthunderbirds.com",
     "latitude": 42.102,
     "longitude": -72.5872,
-    "color": "Royal Blue",
-    "colorCode": "#0065bd",
+    "color": "Red",
+    "colorCode": "#E31837",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2016-09-01",
+    "endDate": null
   },
   {
     "teamName": "Syracuse Crunch",
@@ -987,7 +1033,9 @@
     "color": "Blue",
     "colorCode": "#003d7c",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1994-09-01",
+    "endDate": null
   },
   {
     "teamName": "Texas Stars",
@@ -1001,7 +1049,9 @@
     "color": "Victory Green",
     "colorCode": "#01865b",
     "league": "AHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Dallas",
+    "startDate": "2009-09-01",
+    "endDate": null
   },
   {
     "teamName": "Toronto Marlies",
@@ -1015,7 +1065,9 @@
     "color": "Royal Blue",
     "colorCode": "#08167f",
     "league": "AHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2005-09-01",
+    "endDate": null
   },
   {
     "teamName": "Tucson Roadrunners",
@@ -1029,7 +1081,9 @@
     "color": "Brick Red",
     "colorCode": "#8c2633",
     "league": "AHL",
-    "timezone": "America/Phoenix"
+    "timezone": "America/Phoenix",
+    "startDate": "2016-09-01",
+    "endDate": null
   },
   {
     "teamName": "Utica Comets",
@@ -1043,7 +1097,9 @@
     "color": "Red",
     "colorCode": "#c60000",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2021-09-01",
+    "endDate": null
   },
   {
     "teamName": "Wilkes-Barre/Scranton Penguins",
@@ -1057,7 +1113,9 @@
     "color": "Black",
     "colorCode": "#000000",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1999-09-01",
+    "endDate": null
   },
   {
     "teamName": "Adirondack Thunder",
@@ -1468,7 +1526,7 @@
   {
     "teamName": "Birmingham Bulls",
     "teamCode": "BIR",
-    "arena": "Pelham Civic Center",
+    "arena": "Pelham Civic Complex",
     "city": "Pelham, Alabama",
     "address": "500 Amphitheater Rd, Pelham, AL 35124",
     "website": "https://bullshockey.net",
@@ -1477,7 +1535,9 @@
     "color": "Crimson",
     "colorCode": "#a6192e",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2017-09-01",
+    "endDate": null
   },
   {
     "teamName": "Evansville Thunderbolts",
@@ -1491,12 +1551,14 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2016-09-01",
+    "endDate": null
   },
   {
     "teamName": "Fayetteville Marksmen",
     "teamCode": "FAY",
-    "arena": "Crown Coliseum",
+    "arena": "Crown Complex",
     "city": "Fayetteville, North Carolina",
     "address": "1960 Coliseum Dr, Fayetteville, NC 28306",
     "website": "https://marksmenhockey.com",
@@ -1505,12 +1567,14 @@
     "color": "Olive",
     "colorCode": "#5a6e4f",
     "league": "SPHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2017-09-01",
+    "endDate": null
   },
   {
     "teamName": "Huntsville Havoc",
     "teamCode": "HUN",
-    "arena": "Von Braun Center",
+    "arena": "Propst Arena",
     "city": "Huntsville, Alabama",
     "address": "700 Monroe St SW, Huntsville, AL 35801",
     "website": "https://huntsvillehavoc.com",
@@ -1519,12 +1583,14 @@
     "color": "Red",
     "colorCode": "#cf202f",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2004-09-01",
+    "endDate": null
   },
   {
     "teamName": "Knoxville Ice Bears",
     "teamCode": "KNX",
-    "arena": "Knoxville Civic Coliseum",
+    "arena": "General James White Memorial Civic Auditorium and Coliseum",
     "city": "Knoxville, Tennessee",
     "address": "500 Howard Baker Jr. Ave, Knoxville, TN 37915",
     "website": "https://knoxvilleicebears.com",
@@ -1533,7 +1599,9 @@
     "color": "Purple",
     "colorCode": "#4f2c89",
     "league": "SPHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2004-09-01",
+    "endDate": null
   },
   {
     "teamName": "Macon Mayhem",
@@ -1547,7 +1615,9 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "SPHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2015-09-01",
+    "endDate": null
   },
   {
     "teamName": "Pensacola Ice Flyers",
@@ -1561,12 +1631,14 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2009-09-01",
+    "endDate": null
   },
   {
     "teamName": "Peoria Rivermen",
     "teamCode": "PEO",
-    "arena": "Peoria Civic Center ",
+    "arena": "Peoria Civic Center",
     "city": "Peoria, Illinois",
     "address": "201 SW Jefferson Ave, Peoria, IL 61602",
     "website": "https://rivermen.net",
@@ -1575,7 +1647,9 @@
     "color": "Red",
     "colorCode": "#c8102e",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2013-09-01",
+    "endDate": null
   },
   {
     "teamName": "Quad City Storm",
@@ -1589,7 +1663,9 @@
     "color": "Black",
     "colorCode": "#231f20",
     "league": "SPHL",
-    "timezone": "America/Chicago"
+    "timezone": "America/Chicago",
+    "startDate": "2018-09-01",
+    "endDate": null
   },
   {
     "teamName": "Roanoke Rail Yard Dawgs",
@@ -1603,7 +1679,9 @@
     "color": "Blue",
     "colorCode": "#002d72",
     "league": "SPHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2016-09-01",
+    "endDate": null
   },
   {
     "teamName": "Athens Rock Lobsters",
@@ -3777,7 +3855,7 @@
   {
     "teamName": "Pelham Prowlers",
     "teamCode": "PEL",
-    "arena": "Pelham Civic Center",
+    "arena": "Pelham Civic Complex",
     "city": "Pelham, Alabama",
     "address": "500 Amphitheater Rd, Pelham, AL 35124",
     "website": "https://pelhamprowlers.com",
