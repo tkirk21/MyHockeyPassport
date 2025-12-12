@@ -1,6 +1,7 @@
 //app/(tabs)/profile.tsx
 import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import * as React from 'react';
 import { Alert, ActivityIndicator, Image, ImageBackground, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View   } from 'react-native';
@@ -451,13 +452,19 @@ export default function ProfileScreen() {
                 onChangeText={setFavouriteTeam}
               />
 
-              {loading ? (
-                <ActivityIndicator size="large" color="#0D2C42" />
-              ) : (
-                <TouchableOpacity style={styles.smallSaveProfileButton} onPress={saveProfile}>
-                  <Text style={styles.smallButtonText}>Save Profile</Text>
+              <View style={styles.profileActionsRow}>
+                <TouchableOpacity style={styles.settingsGearButton} onPress={() => router.push('/settings')}>
+                  <Ionicons name="settings-outline" size={28} color="#0A2940" />
                 </TouchableOpacity>
-              )}
+
+                {loading ? (
+                  <ActivityIndicator size="large" color="#0D2C42" />
+                ) : (
+                  <TouchableOpacity style={styles.smallSaveProfileButton} onPress={saveProfile}>
+                    <Text style={styles.smallButtonText}>Save Profile</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
             </View>
 
             <View style={styles.statsRow}>
@@ -795,7 +802,7 @@ const styles = StyleSheet.create({
   uploadPhotoButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 14,
-    paddingHorizontal: 30,
+    paddingHorizontal: 10,
     borderRadius: 30,
     borderWidth: 2,
     marginBottom: 12,
@@ -806,7 +813,7 @@ const styles = StyleSheet.create({
   smallSaveProfileButton: {
     backgroundColor: '#0A2940',
     paddingVertical: 14,
-    paddingHorizontal: 40,
+    paddingHorizontal: 10,
     borderRadius: 30,
     borderWidth: 2,
     borderColor: '#2F4F68',
@@ -1050,4 +1057,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#2F4F68',
   },
+  profileActionsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 12,
+    gap: 30,
+  },
+  settingsGearButton: {
+    padding: 10,
+  },
 });
+
+
+
