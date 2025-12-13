@@ -192,10 +192,6 @@ export default function FriendsTab() {
             .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
         );
 
-        if (friends.length > 0) {
-          loadLeaderboardData();
-        }
-
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
         const blockedSnap = await getDocs(blockedRef);
         const blockedIds = blockedSnap.docs.map((d) => d.id);
@@ -214,6 +210,7 @@ export default function FriendsTab() {
         console.error('Error fetching users or feed:', error);
       } finally {
         setLoading(false);
+        loadLeaderboardData();
       }
     };
 
@@ -257,77 +254,81 @@ export default function FriendsTab() {
             .sort((a, b) => getTimestamp(b.timestamp).getTime() - getTimestamp(a.timestamp).getTime())
         );
 
-        if (friends.length > 0) {
-          loadLeaderboardData();
-        }
-
       } catch (err) {
         console.error("Refresh failed:", err);
       } finally {
+
         setRefreshing(false);
+
+        if (currentUser) {
+          setDoc(
+            doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
+            { timestamp: serverTimestamp() },
+            { merge: true }
+          ).catch(() => {});
+        }
       }
     };
 
     const loadLeaderboardData = async () => {
-    if (!currentUser || friends.length === 0) {
-      setLeaderboardData([]);
-      setLbLoading(false);
-      return;
-    }
+      if (!currentUser) {
+        setLeaderboardData([]);
+        setLbLoading(false);
+        return;
+      }
 
-    setLbLoading(true);
+      setLbLoading(true);
 
-    try {
-      // ONE SINGLE BATCH: get all friends' profiles + all their check-ins in parallel
-      const allFriendIds = [...friends, currentUser.uid]; // include yourself
+      try {
+        // Always include yourself, even with 0 friends
+        const allFriendIds = Array.from(new Set([...friends, currentUser.uid].filter(Boolean)));
 
-      const profilePromises = allFriendIds.map(id =>
-        getDoc(doc(db, 'profiles', id)).then(snap => ({ id, data: snap.data() }))
-      );
+        const profilePromises = allFriendIds.map(id =>
+          getDoc(doc(db, 'profiles', id)).then(snap => ({ id, data: snap.data() }))
+        );
 
-      const checkinsPromises = allFriendIds.map(id =>
-        getDocs(collection(db, 'profiles', id, 'checkins'))
-          .then(snap => ({ id, checkins: snap.docs.map(d => d.data()) }))
-      );
+        const checkinsPromises = allFriendIds.map(id =>
+          getDocs(collection(db, 'profiles', id, 'checkins'))
+            .then(snap => ({ id, checkins: snap.docs.map(d => d.data()) }))
+        );
 
-      const [profilesResult, checkinsResult] = await Promise.all([
-        Promise.all(profilePromises),
-        Promise.all(checkinsPromises)
-      ]);
+        const [profilesResult, checkinsResult] = await Promise.all([
+          Promise.all(profilePromises),
+          Promise.all(checkinsPromises)
+        ]);
 
-      // Merge the data
-      const leaderboard = allFriendIds.map(userId => {
-        const profile = profilesResult.find(p => p.id === userId)?.data || {};
-        const checkins = checkinsResult.find(c => c.id === userId)?.checkins || [];
+        const leaderboard = allFriendIds.map(userId => {
+          const profile = profilesResult.find(p => p.id === userId)?.data || {};
+          const checkins = checkinsResult.find(c => c.id === userId)?.checkins || [];
 
-        const arenas = new Set(
-          checkins.map(c => c.arenaName || c.arena).filter(Boolean)
-        ).size;
+          const arenas = new Set(
+            checkins.map(c => c.arenaName || c.arena).filter(Boolean)
+          ).size;
 
-        const teams = new Set(
-          checkins.flatMap(c => [
-            c.teamName || c.team,
-            c.opponent
-          ].filter(Boolean))
-        ).size;
+          const teams = new Set(
+            checkins.flatMap(c => [
+              c.teamName || c.team,
+              c.opponent
+            ].filter(Boolean))
+          ).size;
 
-        return {
-          id: userId,
-          name: profile.name || (userId === currentUser.uid ? 'You' : 'Unknown'),
-          imageUrl: profile.imageUrl,
-          arenas,
-          teams,
-        };
-      });
+          return {
+            id: userId,
+            name: profile.name || (userId === currentUser.uid ? 'You' : 'Unknown'),
+            imageUrl: profile.imageUrl,
+            arenas,
+            teams,
+          };
+        });
 
-      setLeaderboardData(leaderboard);
-    } catch (err) {
-      console.error('Leaderboard failed:', err);
-      setLeaderboardData([]);
-    } finally {
-      setLbLoading(false);
-    }
-  };
+        setLeaderboardData(leaderboard);
+      } catch (err) {
+        console.error('Leaderboard failed:', err);
+        setLeaderboardData([]);
+      } finally {
+        setLbLoading(false);
+      }
+    };
 
   useEffect(() => {
     if (!currentUser || friends.length === 0) return;

@@ -1,12 +1,13 @@
 // app/(tabs)/_layout.tsx
 import { getAuth } from 'firebase/auth';
-import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
 import React, { createContext, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets, SafeAreaProvider } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 
 export const ProfileAlertContext = createContext<{
   profileAlertCount: number;
@@ -77,53 +78,45 @@ function CustomTabs({
     return () => unsub();
   }, [currentUser]);
 
+// ←←← CLEAR RED BLIMP WHEN FRIENDS TAB IS OPENED ←←←
+  useFocusEffect(
+    React.useCallback(() => {
+      if (!currentUser) return;
+
+      setDoc(
+        doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
+        { timestamp: serverTimestamp() },
+        { merge: true }
+      ).catch(() => {});
+    }, [currentUser])
+  );
+
   // RED DOT — fixed "odd number of segments" error
   useEffect(() => {
     if (!currentUser) return;
 
     const calc = async () => {
       try {
-        const lastSnap = await getDoc(
-          doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedProfile')
-        );
-        const lastViewed = lastSnap.exists() ? lastSnap.data()?.timestamp?.toDate() : null;
-
         let count = 0;
+        const checkinsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'checkins'));
 
-        // THIS LINE WAS WRONG BEFORE — fixed now
-        const checkinsRef = collection(db, 'profiles', currentUser.uid, 'checkins');
-        const checkinsSnap = await getDocs(checkinsRef);
-
-        for (const checkinDoc of checkinsSnap.docs) {
-          const cheersRef = collection(checkinDoc.ref, 'cheers');
-          const chirpsRef = collection(checkinDoc.ref, 'chirps');
-
-          const [cheersSnap, chirpsSnap] = await Promise.all([
-            getDocs(cheersRef),
-            getDocs(chirpsRef),
-          ]);
-
-          cheersSnap.forEach(d => {
-            const ts = d.data()?.timestamp?.toDate();
-            if (!lastViewed || (ts && ts > lastViewed)) count++;
-          });
-          chirpsSnap.forEach(d => {
-            const ts = d.data()?.timestamp?.toDate();
-            if (!lastViewed || (ts && ts > lastViewed)) count++;
-          });
+        for (const checkin of checkinsSnap.docs) {
+          const chirpsSnap = await getDocs(collection(checkin.ref, 'chirps'));
+          for (const chirp of chirpsSnap.docs) {
+            if (chirp.data().userId !== currentUser.uid) {
+              count++; // every reply from someone else = +1
+            }
+          }
         }
-
-        setProfileAlertCount(count);
+        setFriendsReplyCount(count);
       } catch (e) {
-        console.error('Red dot error:', e);
+        console.error('Friends reply count error:', e);
+        setFriendsReplyCount(0);
       }
     };
 
     calc();
-    const unsub = onSnapshot(
-      collection(db, 'profiles', currentUser.uid, 'checkins'),
-      () => calc()
-    );
+    const unsub = onSnapshot(collection(db, 'profiles', currentUser.uid, 'checkins'), () => calc());
     return () => unsub();
   }, [currentUser]);
 
@@ -160,7 +153,7 @@ function CustomTabs({
           options={{
             title: 'Friends',
             tabBarIcon: ({ color }) => <Ionicons name="people" size={28} color={color} />,
-            tabBarBadge: pendingCount + friendsReplyCount > 0 ? pendingCount + friendsReplyCount : undefined,
+            tabBarBadge: pendingCount > 0 ? pendingCount : undefined,
             tabBarBadgeStyle: { backgroundColor: '#EF4444', color: '#fff', fontWeight: 'bold' },
           }}
         />

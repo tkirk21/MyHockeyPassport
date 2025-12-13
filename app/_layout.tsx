@@ -1,4 +1,3 @@
-//version 2 - 1154am friday 1st of august
 //app\_layout.tsx
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -7,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
+import { setupNotifications } from '../utils/notifications';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -16,6 +16,10 @@ export default function RootLayout() {
 
   useEffect(() => {
     SystemUI.setBackgroundColorAsync('#0A2940');
+  }, []);
+
+  useEffect(() => {
+    setupNotifications();
   }, []);
 
   if (!loaded) return null;

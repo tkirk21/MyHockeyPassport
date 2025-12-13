@@ -44,6 +44,14 @@
     },
     "plugins": [
       "expo-web-browser",
-    ]
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#000000"
+        }
+      ]
+    ],
+    "firebaseServiceAccount": "./firebase/myhockeypassport-firebase-adminsdk-fbsvc-7e8f646d4b.json"
   }
 }
