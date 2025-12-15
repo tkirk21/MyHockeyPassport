@@ -93,51 +93,11 @@ export default function CheerButton({ friendId, checkinId }: Props) {
 }
 
 const styles = {
-  badge: {
-    position: "absolute",
-    top: -8,
-    right: -8,
-    backgroundColor: "#0A2940",
-    borderRadius: 10,
-    minWidth: 20,
-    height: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2,
-    borderColor: "#fff"
-  },
-  badgeText: {
-    color: "#fff",
-    fontSize: 10,
-    fontWeight: "700"
-  },
-  button: {
-    backgroundColor: '#0A2940',
-    paddingHorizontal: 7,
-    paddingVertical: 6,
-    borderRadius: 30,
-    minWidth: 55,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: "#2F4F68",
-    marginLeft: -20,               // ← Add this (adjust -8 to -20 until perfect)
-  },
-  container: {
-    marginLeft: -12,          // this moves the whole cheer button left
-    alignItems: "flex-start",
-  },
-  nameText: {
-    color: "#444",
-    fontSize: 11,
-    marginTop: 2
-  },
-  namesContainer: {
-    marginTop: 4
-  },
-  text: {
-    color: "#fff",
-    fontSize: 10,
-    fontWeight: "bold"
-  }
+  badge: { position: "absolute", top: -8, right: -8, backgroundColor: "#0A2940",borderRadius: 10, minWidth: 20, height: 20, justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#fff", },
+  badgeText: { color: "#fff", fontSize: 10, fontWeight: "700" },
+  button: { backgroundColor: '#0A2940', paddingHorizontal: 7, paddingVertical: 6, borderRadius: 30, minWidth: 55, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: "#2F4F68", marginLeft: -20, },
+  container: { marginLeft: -12, alignItems: "flex-start", },
+  nameText: { color: "#444", fontSize: 11, marginTop: 2, },
+  namesContainer: { marginTop: 4, },
+  text: { color: "#fff", fontSize: 10, fontWeight: "bold", }
 };

@@ -2,15 +2,11 @@
 import { useState, useEffect } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
-import { auth, webClientId } from '@/firebaseConfig';
+import { auth, webClientId, androidClientId } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
-import * as Google from 'expo-auth-session/providers/google';
-import * as Facebook from 'expo-auth-session/providers/facebook';
 import * as WebBrowser from 'expo-web-browser';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-
-WebBrowser.maybeCompleteAuthSession();
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export default function Signup() {
   const router = useRouter();
@@ -18,12 +14,11 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Google
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: webClientId,
-    androidClientId: '853703034223-kd7chdctst44rgnh8r9pjr74v04fi6tv.apps.googleusercontent.com',
-    webClientId: webClientId,
-    redirectUri: 'https://auth.expo.io/@tkirk21/MyHockeyPassport',
+  // Configure Google Signin with the web client ID from Firebase
+  GoogleSignin.configure({
+    webClientId: webClientId,       // REQUIRED for Firebase token
+    offlineAccess: true,            // helps force native flow
+    forceCodeForRefreshToken: true, // another flag for native
   });
 
   // Facebook
@@ -31,17 +26,6 @@ export default function Signup() {
     clientId: '763545830068611',
     expoClientId: '763545830068611',
   });
-
-  // Google handler
-  useEffect(() => {
-    if (response?.type === 'success') {
-      const { id_token } = response.params;
-      const credential = GoogleAuthProvider.credential(id_token);
-      signInWithCredential(auth, credential)
-        .then(() => router.replace('/(tabs)'))
-        .catch(err => Alert.alert('Error', err.message));
-    }
-  }, [response]);
 
   // Facebook handler
   useEffect(() => {
@@ -63,13 +47,42 @@ export default function Signup() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      // Check if Play Services are available (Android only, harmless on iOS)
+      await GoogleSignin.hasPlayServices();
+
+      // Trigger the native Google sign-in flow
+      const userInfo = await GoogleSignin.signIn();
+
+      // Get the idToken
+      const idToken = userInfo.idToken;  // note: it's under .data in newer versions
+
+      if (!idToken) {
+        throw new Error('No ID token returned from Google');
+      }
+
+      // Create Firebase credential
+      const credential = GoogleAuthProvider.credential(idToken);
+
+      // Sign in to Firebase
+      await signInWithCredential(auth, credential);
+
+      // Success → go to tabs
+      router.replace('/(tabs)');
+    } catch (error: any) {
+      console.log('Google sign-in error:', error);
+      Alert.alert('Google Sign-In Failed', error.message || 'Unknown error');
+    }
+  };
+
   return (
     <View style={styles.container}>
 
       <Text style={styles.title}>Create Account</Text>
 
       <View style={styles.socialRow}>
-        <TouchableOpacity style={styles.socialBtn} onPress={() => promptAsync()} disabled={!request}>
+        <TouchableOpacity style={styles.socialBtn} onPress={handleGoogleSignIn}>
           <Ionicons name="logo-google" size={20} color="#fff" />
         </TouchableOpacity>
 
@@ -151,57 +164,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
-  buttonText: {
-    color: colors.light,
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  toggle: {
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  toggleText: {
-    color: colors.secondary,
-    fontWeight: '500',
-  },
-  socialRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 12,
-    marginBottom: 20,
-  },
-  socialBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 15,
-    backgroundColor: '#DB4437',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.accent,
-    borderRadius: 6,
-    height: 50,
-    marginBottom: 16,
-    paddingRight: 12,
-  },
-  passwordInput: {
-    flex: 1,
-    height: 50,
-    paddingHorizontal: 12,
-    fontSize: 16,
-    color: colors.primary,
-  },
-  eyeButton: {
-    position: 'absolute',
-    right: 12,
-  },
+  buttonText: { color: colors.light, fontSize: 18, fontWeight: '600', },
+  toggle: { marginTop: 16, alignItems: 'center', },
+  toggleText: { color: colors.secondary, fontWeight: '500', },
+  socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
+  socialBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4, },
+  passwordContainer: { flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: colors.accent, borderRadius: 6, height: 50, marginBottom: 16, paddingRight: 12, },
+  passwordInput: { flex: 1, height: 50, paddingHorizontal: 12, fontSize: 16, color: colors.primary, },
+  eyeButton: { position: 'absolute', right: 12, },
 });

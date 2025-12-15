@@ -1,4 +1,3 @@
-//version 2 - keyboard safe
 //app/login.tsx
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -198,7 +197,7 @@ export default function Login() {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.toggleRow}>
+          <View style={[styles.toggleRow, { marginBottom: 20 }]}>
             <Text style={styles.toggleText}>Stay logged in  </Text>
             <Switch
               value={stayLoggedIn}
@@ -208,7 +207,7 @@ export default function Login() {
             />
           </View>
 
-          <View style={{ alignItems: 'center', marginTop: 10, backgroundColor: colors.light }}>
+          <View style={{ alignItems: 'center', backgroundColor: colors.light }}>
             <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
               <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
@@ -244,7 +243,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 24,
     borderRadius: 12,
-    marginBottom: 0,
+    marginBottom: 10,
     width: '70%',
     alignItems: 'center',
     alignSelf: 'center',
@@ -314,51 +313,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 0,
   },
-  toggleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '70%',
-    alignSelf: 'center',
-    marginTop: 0,
-    marginBottom: -20,
-  },
-  toggleText: {
-    fontSize: 13,
-    color: colors.secondary,
-    fontWeight: '500',
-    marginRight: -10,
-  },
-  socialRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 12,
-    marginBottom: 20,
-  },
-  socialBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 15,
-    backgroundColor: '#DB4437',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  googleBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 15,
-    backgroundColor: '#DB4437',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
+  toggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '70%', alignSelf: 'center', marginTop: 0, marginBottom: -20, },
+  toggleText: { fontSize: 13, color: colors.secondary, fontWeight: '500', marginRight: -10, },
+  socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
+  socialBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4, },
+  googleBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4, },
 });

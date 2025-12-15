@@ -14,6 +14,9 @@ export default function ChangePasswordScreen() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
@@ -42,11 +45,22 @@ export default function ChangePasswordScreen() {
       Alert.alert('Success', 'Password changed successfully');
       router.back();
     } catch (error: any) {
-      if (error.code === 'auth/wrong-password') {
-        Alert.alert('Wrong password', 'Your current password is incorrect');
-      } else {
-        Alert.alert('Error', error.message || 'Failed to change password');
+      let title = 'Error';
+      let message = 'Failed to change password. Please try again.';
+
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        title = 'Incorrect Password';
+        message = 'Your current password is incorrect. Please try again.';
+      } else if (error.code === 'auth/weak-password') {
+        message = 'New password is too weak. It must be at least 6 characters.';
+      } else if (error.code === 'auth/too-many-requests') {
+        message = 'Too many failed attempts. Please try again later.';
+      } else if (error.code) {
+        // For any other known Firebase error, show a clean version
+        message = error.message.replace(/^Firebase: /, '').replace(/\(auth\/.*\)/, '');
       }
+
+      Alert.alert(title, message);
     } finally {
       setLoading(false);
     }
@@ -69,38 +83,74 @@ export default function ChangePasswordScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 20 }}>
         <View style={styles.field}>
           <Text style={styles.label}>Current Password</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry
-            value={currentPassword}
-            onChangeText={setCurrentPassword}
-            placeholder="Enter current password"
-            placeholderTextColor="#888"
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={styles.passwordInput}
+              secureTextEntry={!showCurrent}
+              value={currentPassword}
+              onChangeText={setCurrentPassword}
+              placeholder="Enter current password"
+              placeholderTextColor="#888"
+            />
+            <TouchableOpacity
+              style={styles.eyeIcon}
+              onPress={() => setShowCurrent(!showCurrent)}
+            >
+              <Ionicons
+                name={showCurrent ? 'eye-off-outline' : 'eye-outline'}
+                size={24}
+                color="#888"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.field}>
           <Text style={styles.label}>New Password</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry
-            value={newPassword}
-            onChangeText={setNewPassword}
-            placeholder="Enter new password"
-            placeholderTextColor="#888"
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={styles.passwordInput}
+              secureTextEntry={!showNew}
+              value={newPassword}
+              onChangeText={setNewPassword}
+              placeholder="Enter new password"
+              placeholderTextColor="#888"
+            />
+            <TouchableOpacity
+              style={styles.eyeIcon}
+              onPress={() => setShowNew(!showNew)}
+            >
+              <Ionicons
+                name={showNew ? 'eye-off-outline' : 'eye-outline'}
+                size={24}
+                color="#888"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.field}>
           <Text style={styles.label}>Confirm New Password</Text>
-          <TextInput
-            style={styles.input}
-            secureTextEntry
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            placeholder="Confirm new password"
-            placeholderTextColor="#888"
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={styles.passwordInput}
+              secureTextEntry={!showConfirm}
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              placeholder="Confirm new password"
+              placeholderTextColor="#888"
+            />
+            <TouchableOpacity
+              style={styles.eyeIcon}
+              onPress={() => setShowConfirm(!showConfirm)}
+            >
+              <Ionicons
+                name={showConfirm ? 'eye-off-outline' : 'eye-outline'}
+                size={24}
+                color="#888"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
 
         <TouchableOpacity style={styles.saveButton} onPress={handleChangePassword} disabled={loading}>
@@ -114,23 +164,11 @@ export default function ChangePasswordScreen() {
 }
 
 const styles = StyleSheet.create({
+  eyeIcon: { padding: 16 },
   field: { marginBottom: 20 },
   label: { color: '#fff', fontSize: 16, marginBottom: 8 },
-  input: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 12,
-    fontSize: 18,
-    color: '#000',
-  },
-  saveButton: {
-    backgroundColor: '#0D9488',
-    padding: 18,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginTop: 30,
-    alignSelf: 'center',
-    width: 200,
-  },
+  passwordContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12 },
+  passwordInput: { flex: 1, padding: 16, fontSize: 18, color: '#000' },
+  saveButton: { backgroundColor: '#0D9488', padding: 18, borderRadius: 30, borderColor: '#2F4F68', borderWidth: 2, alignItems: 'center', marginTop: 30, alignSelf: 'center', width: 200 },
   saveButtonText: { color: '#fff', fontSize: 18, fontWeight: '700' },
 });

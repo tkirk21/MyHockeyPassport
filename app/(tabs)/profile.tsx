@@ -71,14 +71,19 @@ function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: strin
   };
 
   useEffect(() => {
+    if (!currentUser) {
+      setChirps([]);
+      return;
+    }
+
     const chirpsRef = collection(db, 'profiles', userId, 'checkins', checkinId, 'chirps');
     const q = query(chirpsRef, orderBy('timestamp', 'asc'));
     const unsub = onSnapshot(q, (snap) => {
       const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setChirps(list);
     });
-    return unsub;
-  }, [userId, checkinId]);
+    return () => unsub();
+  }, [userId, checkinId, currentUser?.uid]);
 
   if (chirps.length === 0) return null;
 
@@ -256,75 +261,68 @@ export default function ProfileScreen() {
     }
   };
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const user = auth.currentUser;
-      if (!user) return;
+useEffect(() => {
+  const user = auth.currentUser;
+  if (!user) {
+    setRecentCheckIns([]);
+    recalcStats([]);
+    return;
+  }
 
-      const docRef = doc(db, "profiles", user.uid);
-      const snap = await getDoc(docRef);
+  const fetchProfile = async () => {
+    const docRef = doc(db, "profiles", user.uid);
+    const snap = await getDoc(docRef);
 
-      if (snap.exists()) {
-        const data = snap.data() as any;
-        setName(data.name || "");
-        setLocation(data.location || "");
-        setFavouriteTeam(data.favouriteTeam || "");
-        setImage(data.imageUrl || null);
-        setImageUrl(data.imageUrl || null);
-      }
-    };
+    if (snap.exists()) {
+      const data = snap.data() as any;
+      setName(data.name || "");
+      setLocation(data.location || "");
+      setFavouriteTeam(data.favouriteTeam || "");
+      setImage(data.imageUrl || null);
+      setImageUrl(data.imageUrl || null);
+    }
+  };
 
-    fetchProfile();
+  fetchProfile();
 
-    const user = auth.currentUser;
-    if (!user) return;
+  const checkInsRef = collection(db, "profiles", user.uid, "checkins");
+  const q = query(checkInsRef, orderBy("timestamp", "desc"));
 
-    const checkInsRef = collection(db, "profiles", user.uid, "checkins");
-    const q = query(checkInsRef, orderBy("timestamp", "desc")
+  const unsub = onSnapshot(q, async (snapshot) => {
+    const checkIns = await Promise.all(
+      snapshot.docs.map(async (d) => {
+        const data = d.data();
+
+        const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
+
+        const chirpsRef = collection(db, "profiles", user.uid, "checkins", d.id, "chirps");
+        const chirpSnap = await getDocs(chirpsRef);
+        const hasChirps = chirpSnap.size > 0;
+
+        return {
+          id: d.id,
+          ...data,
+          cheerCount,
+          cheerNames,
+          hasChirps,
+          newChirpText: "",
+        };
+      })
     );
 
-    const unsub = onSnapshot(q, async (snapshot) => {
-      const checkIns = await Promise.all(
-        snapshot.docs.map(async (d) => {
-          const data = d.data();
-
-          const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
-
-          const chirpsRef = collection(
-            db,
-            "profiles",
-            user.uid,
-            "checkins",
-            d.id,
-            "chirps"
-          );
-          const chirpSnap = await getDocs(chirpsRef);
-          const hasChirps = chirpSnap.size > 0;
-
-          return {
-            id: d.id,
-            ...data,
-            cheerCount,
-            cheerNames,
-            hasChirps,
-            newChirpText: "",
-          };
-        })
-      );
-
-      // 🔥 Sort newest game to oldest game
-      checkIns.sort((a, b) => {
-        const da = a.gameDate ? new Date(a.gameDate).getTime() : 0;
-        const db = b.gameDate ? new Date(b.gameDate).getTime() : 0;
-        return db - da;
-      });
-
-      setRecentCheckIns(checkIns);
-      recalcStats(checkIns);
+    checkIns.sort((a, b) => {
+      const da = a.gameDate ? new Date(a.gameDate).getTime() : 0;
+      const db = b.gameDate ? new Date(b.gameDate).getTime() : 0;
+      return db - da;
     });
 
-    return () => unsub();
-  }, []);
+    setRecentCheckIns(checkIns);
+    recalcStats(checkIns);
+  });
+
+  return () => unsub();
+}, [auth.currentUser?.uid]);
+
   const toggleLeague = (league: string) => {
     setExpandedLeagues((prev) => ({ ...prev, [league]: !prev[league] }));
   };
@@ -928,145 +926,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     marginRight: 6,
   },
-  cheerBadgeContainer: {
-    position: 'relative',
-    alignItems: 'center',
-  },
-  cheerCountBadge: {
-    position: 'absolute',
-    top: -6,
-    right: -8,
-    backgroundColor: '#0A2940',
-    borderRadius: 10,
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    minWidth: 16,
-  },
-  cheerCountText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: '700',
-  },
-  chirpInput: {
-    flex: 1,
-    borderWidth: 1.5,
-    borderColor: '#ccc',
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    fontSize: 14,
-    backgroundColor: '#fff',
-    color: '#0A2940',
-  },
-  chirpItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-  cheerNamesText: {
-    fontSize: 12,
-    color: '#2F4F68',
-    fontWeight: '600',
-    marginTop: 2,
-    textAlign: 'center',
-  },
-  chirpReplyRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  chirpsSection: {
-    marginTop: 8,
-    paddingHorizontal: 6,
-  },
-  chirpSectionWrapper: {
-    marginTop: 12,
-    padding: 12,
-    borderWidth: 1,
-    borderColor: '#D1D5DB',
-    borderRadius: 12,
-  },
-  chirpSendButton: {
-    marginLeft: 8,
-    backgroundColor: '#0A2940',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 30,
-  },
-  chirpSendText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 14,
-  },
-  chirpText: {
-    color: '#0A2940',
-    flexShrink: 1,
-  },
-  chirpTextContainer: {
-    flex: 1,
-  },
-  chirpUsername: {
-    fontWeight: '700',
-    color: '#0A2940',
-  },
-  cheerWrapper: {
-    alignItems: 'flex-end',
-  },
-  dateAndCheerRow: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    gap: 2,
-    marginTop: 3,
-    marginBottom: 6,
-  },
-  dateText: {
-    fontSize: 14,
-    color: '#2F4F68',
-    textAlign: 'center',
-    marginBottom: 6,
-  },
-  dropdownMenu: {
-    position: 'absolute',
-    right: -8,
-    top: 32,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#D1D5DB',
-    paddingVertical: 4,
-    minWidth: 110,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 8,
-    zIndex: 999,
-  },
-  leaguePuck: {
-    width: 28,
-    height: 28,
-    marginRight: 8,
-  },
-  teamRowText: {
-    color: '#2F4F68',
-    fontSize: 14,
-  },
-  teamsText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#2F4F68',
-  },
-  profileActionsRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 12,
-    gap: 30,
-  },
-  settingsGearButton: {
-    padding: 10,
-  },
+  cheerBadgeContainer: { position: 'relative', alignItems: 'center', },
+  cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
+  cheerCountText: { color: '#fff', fontSize: 10, fontWeight: '700', },
+  chirpInput: { flex: 1, borderWidth: 1.5, borderColor: '#ccc', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 8, fontSize: 14, backgroundColor: '#fff', color: '#0A2940', },
+  chirpItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
+  cheerNamesText: { fontSize: 12, color: '#2F4F68', fontWeight: '600', marginTop: 2, textAlign: 'center', },
+  chirpReplyRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8, },
+  chirpsSection: { marginTop: 8, paddingHorizontal: 6, },
+  chirpSectionWrapper: { marginTop: 12, padding: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 12, },
+  chirpSendButton: { marginLeft: 8, backgroundColor: '#0A2940', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 30, },
+  chirpSendText: { color: '#fff', fontWeight: '700', fontSize: 14, },
+  chirpText: { color: '#0A2940',  flexShrink: 1, },
+  chirpTextContainer: {  flex: 1, },
+  chirpUsername: { fontWeight: '700', color: '#0A2940', },
+  cheerWrapper: { alignItems: 'flex-end', },
+  dateAndCheerRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 2, marginTop: 3, marginBottom: 6, },
+  dateText: { fontSize: 14, color: '#2F4F68', textAlign: 'center', marginBottom: 6, },
+  dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: '#fff', borderRadius: 12, borderWidth: 1, borderColor: '#D1D5DB', paddingVertical: 4, minWidth: 110, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
+  leaguePuck: {  width: 28, height: 28, marginRight: 8,  },
+  teamRowText: { color: '#2F4F68', fontSize: 14, },
+  teamsText: { fontSize: 14, fontWeight: '500', color: '#2F4F68', },
+  profileActionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  marginTop: 12, gap: 30, },
+  settingsGearButton: { padding: 10, },
 });
 
 

@@ -331,7 +331,10 @@ export default function FriendsTab() {
     };
 
   useEffect(() => {
-    if (!currentUser || friends.length === 0) return;
+    if (!currentUser || friends.length === 0) {
+      setFeed([]);
+      return () => {}; // no listeners
+    }
 
     const unsubs: (() => void)[] = [];
 
@@ -391,7 +394,7 @@ export default function FriendsTab() {
     });
 
     return () => unsubs.forEach(u => u());
-  }, [currentUser, friends, blockedFriends]);
+  }, [currentUser?.uid, friends, blockedFriends]);
 
   const handleSendRequest = async (userId: string) => {
     if (!currentUser) return;
@@ -1425,59 +1428,14 @@ const styles = StyleSheet.create({
   tabActive: {
     backgroundColor: '#0D2C42',
   },
-  tabText: {
-    fontSize: 14,
-    color: '#6B7280',
-    fontWeight: '600',
-  },
-  tabTextActive: {
-    color: '#fff',
-  },
-  lbRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 8,
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    borderRadius: 10,
-    marginBottom: 6,
-  },
-  lbRowMe: {
-    backgroundColor: '#FFFACD',
-    borderWidth: 2,
-    borderColor: '#FBBF24',
-  },
-  lbRowTop3: {
-    backgroundColor: '#E0E7FF',  // your dark blue as background
-    borderWidth: 2,
-    borderColor: '#0D2C42',
-  },
-  lbAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    marginRight: 10,
-  },
-  lbName: {
-    flex: 1,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  lbScore: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0D2C42',
-    minWidth: 40,
-    textAlign: 'right',
-  },
-  rank: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#4B5563',
-    width: 50,
-  },
-  rankGold: {
-    color: '#0D2C42',
-    fontWeight: 'bold',
-  },
+  tabText: { fontSize: 14, color: '#6B7280', fontWeight: '600', },
+  tabTextActive: { color: '#fff', },
+  lbRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: 10, marginBottom: 6, },
+  lbRowMe: { backgroundColor: '#FFFACD', borderWidth: 2, borderColor: '#FBBF24', },
+  lbRowTop3: { backgroundColor: '#E0E7FF', borderWidth: 2, borderColor: '#0D2C42', },
+  lbAvatar: { width: 36, height: 36, borderRadius: 18, marginRight: 10, },
+  lbName: { flex: 1,fontSize: 16, color: '#0A2940', },
+  lbScore: { fontSize: 18, fontWeight: 'bold', color: '#0D2C42', minWidth: 40, textAlign: 'right', },
+  rank: { fontSize: 16, fontWeight: '600', color: '#4B5563', width: 50, },
+  rankGold: { color: '#0D2C42', fontWeight: 'bold', },
 });

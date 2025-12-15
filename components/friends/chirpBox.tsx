@@ -22,6 +22,11 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
   const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!auth.currentUser) {
+      setChirps([]);
+      return;
+    }
+
     const chirpsRef = collection(db, "profiles", friendId, "checkins", checkinId, "chirps");
     const q = query(chirpsRef, orderBy("timestamp", "asc"));
 
@@ -36,7 +41,7 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
     });
 
     return () => unsub();
-  }, [friendId, checkinId]);
+  }, [friendId, checkinId, auth.currentUser?.uid]);
 
   const sendChirp = async () => {
     if (!auth.currentUser || !message.trim() || loading) return;
@@ -202,89 +207,16 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
 }
 
 const styles = {
-  avatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    marginRight: 10
-  },
-  chirpSectionWrapper: {
-    marginTop: 12,
-    padding: 12,
-    borderWidth: 1,
-    borderColor: '#D1D5DB',
-    borderRadius: 12
-  },
-  chirpRow: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    marginBottom: 16
-  },
-  chirpText: {
-    color: "#0A2940",
-    fontSize: 14,
-    marginTop: 4,
-    lineHeight: 20
-  },
-  dropdownMenu: {
-    position: 'absolute',
-    right: -8,
-    top: 32,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#0D2C42',
-    paddingVertical: 6,
-    minWidth: 60,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 8,
-    zIndex: 999,
-  },
-  input: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    fontSize: 14
-  },
-  inputRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 12
-  },
-  menuTextEdit: {
-    color: '#1E3A8A',
-    fontWeight: '600',
-    paddingVertical: 4,
-    paddingHorizontal: 8
-  },
-  menuTextDelete: {
-    color: '#F44336',
-    fontWeight: '600',
-    paddingVertical: 4,
-    paddingHorizontal: 8
-  },
-  sendButton: {
-    backgroundColor: '#0A2940',
-    marginLeft: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 30
-  },
-  sendText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 14
-  },
-  userName: {
-    fontWeight: "700",
-    color: "#0A2940",
-    fontSize: 14
-  },
+  avatar: { width: 32, height: 32, borderRadius: 16, marginRight: 10 },
+  chirpSectionWrapper: { marginTop: 12, padding: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 12, },
+  chirpRow: { flexDirection: "row", alignItems: "flex-start", marginBottom: 16, },
+  chirpText: { color: "#0A2940", fontSize: 14, marginTop: 4, lineHeight: 20 },
+  dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: '#fff', borderRadius: 12, borderWidth: 1, borderColor: '#0D2C42', paddingVertical: 6, minWidth: 60, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
+  input: { flex: 1, backgroundColor: "#fff", borderRadius: 12, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: "#ddd", fontSize: 14 },
+  inputRow: { flexDirection: "row", alignItems: "center", marginTop: 12 },
+  menuTextEdit: { color: '#1E3A8A', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8 },
+  menuTextDelete: { color: '#F44336', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8, },
+  sendButton: { backgroundColor: '#0A2940', marginLeft: 8, paddingHorizontal: 16, paddingVertical: 10, borderRadius: 30, },
+  sendText: { color: "#fff", fontWeight: "bold", fontSize: 14, },
+  userName: { fontWeight: "700", color: "#0A2940", fontSize: 14, },
 };

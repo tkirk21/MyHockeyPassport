@@ -139,12 +139,19 @@ export default function HomeScreen() {
     })),
   ];
 
+  const now = Date.now();
+  const liveBufferMs = 3 * 60 * 60 * 1000; // 3 hours — adjust if you want shorter/longer
+
   const filteredGames = useMemo(() => {
-      return combinedSchedule
-        .filter(game => new Date(game.date).toDateString() === today)
-        .filter(game => !selectedLeague || game.league === selectedLeague)
-        .sort((a, b) => new Date(a.date) - new Date(b.date));
-    }, [today, selectedLeague]);
+    return combinedSchedule
+      .filter(game => {
+        const gameTime = new Date(game.date).getTime();
+        const gameDay = new Date(game.date).toDateString();
+        return gameDay === today && gameTime >= (now - liveBufferMs);
+      })
+      .filter(game => !selectedLeague || game.league === selectedLeague)
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+  }, [today, selectedLeague]);
 
   const leagueGroups = [
     {
@@ -336,11 +343,11 @@ export default function HomeScreen() {
               ) : (
                 filteredGames.map((game) => (
                   <View key={game.id} style={styles.gameCard}>
-                    <TouchableOpacity onPress={() => handleCheckIn(game)}>
+                    <View>
                       <Text style={styles.cardText}>{(game.homeTeam || game.team)} vs {game.opponent || game.awayTeam}</Text>
                       <Text style={styles.cardText}>{game.arena}</Text>
                       <Text style={styles.cardText}>{format(new Date(game.date), "h:mm a")}</Text>
-                    </TouchableOpacity>
+                    </View>
 
                     <View style={styles.buttonsRow}>
                       <TouchableOpacity
@@ -620,43 +627,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '700',
   },
-  countdownMini: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#0A2940',
-    textAlign: 'center',
-    marginBottom: 10,
-    opacity: 0.9,
-  },
-  countdownLive: {
-    fontSize: 24,
-    fontWeight: '900',
-    color: '#D32F2F', // red for urgency
-    letterSpacing: 2,
-    fontVariant: ['tabular-nums'],
-  },
-  picker: {
-    width: '100%',
-    height: 56,
-    fontSize: 16,
-    color: '#000',
-    backgroundColor: 'white',
-    paddingHorizontal: 0,
-    textAlign: 'center',
-  },
-  pickerContainerActive: {
-    backgroundColor: '#E0E7FF',
-    borderColor: '#0D2C42',
-  },
-  loadingOverlay: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 999,
-  },
+  countdownMini: { fontSize: 14, fontWeight: '600', color: '#0A2940', textAlign: 'center', marginBottom: 10, opacity: 0.9, },
+  countdownLive: { fontSize: 24, fontWeight: '900', color: '#D32F2F', letterSpacing: 2, fontVariant: ['tabular-nums'], },
+  picker: { width: '100%', height: 56, fontSize: 16, color: '#000', backgroundColor: 'white', paddingHorizontal: 0, textAlign: 'center', },
+  pickerContainerActive: { backgroundColor: '#E0E7FF', borderColor: '#0D2C42', },
+  loadingOverlay: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center', zIndex: 999, },
 });

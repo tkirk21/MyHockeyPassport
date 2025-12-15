@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Loading...",
+    "name": "My Hockey Passport",
     "slug": "MyHockeyPassport",
     "scheme": "myhockeypassport",
     "version": "1.0.0",
@@ -17,7 +17,8 @@
       "supportsTablet": true,
       "config": {
         "googleMapsApiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
-      }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +31,8 @@
           "apiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
         }
       },
-      "package": "com.tkirk21.MyHockeyPassport"
+      "package": "com.tkirk21.MyHockeyPassport",
+      "googleServicesFile": "./google-services.json"
     },
     "updates": {
       "enabled": false,
@@ -50,7 +52,10 @@
           "icon": "./assets/images/notification-icon.png",
           "color": "#000000"
         }
-      ]
+      ],
+      "expo-dev-client",
+      "expo-router",
+      "@react-native-google-signin/google-signin"
     ],
     "firebaseServiceAccount": "./firebase/myhockeypassport-firebase-adminsdk-fbsvc-7e8f646d4b.json"
   }

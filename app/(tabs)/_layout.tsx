@@ -33,40 +33,35 @@ function CustomTabs({
   const currentUser = auth.currentUser;
 
   useEffect(() => {
-      if (!currentUser) return;
+    if (!currentUser) {
+      setFriendsReplyCount(0);
+      return;
+    }
 
-      const calc = async () => {
-        try {
-          const lastSnap = await getDoc(
-            doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriends')
-          );
-          const lastViewed = lastSnap.exists() ? lastSnap.data()?.timestamp?.toDate() : null;
+    const calc = async () => {
+      try {
+        let count = 0;
+        const checkinsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'checkins'));
 
-          let count = 0;
-          const checkinsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'checkins'));
-
-          for (const checkin of checkinsSnap.docs) {
-            const chirpsSnap = await getDocs(collection(checkin.ref, 'chirps'));
-
-            for (const chirp of chirpsSnap.docs) {
-              const data = chirp.data();
-              const ts = data.timestamp?.toDate();
-
-              const myChirp = chirpsSnap.docs.find(d => d.data().userId === currentUser.uid && d.id !== chirp.id);
-              if (myChirp && (!lastViewed || (ts && ts > lastViewed))) count++;
+        for (const checkin of checkinsSnap.docs) {
+          const chirpsSnap = await getDocs(collection(checkin.ref, 'chirps'));
+          for (const chirp of chirpsSnap.docs) {
+            if (chirp.data().userId !== currentUser.uid) {
+              count++; // every reply from someone else = +1
             }
           }
-
-          setFriendsReplyCount(count);
-        } catch (e) {
-          console.error('Friends reply count error:', e);
         }
-      };
+        setFriendsReplyCount(count);
+      } catch (e) {
+        console.error('Friends reply count error:', e);
+        setFriendsReplyCount(0);
+      }
+    };
 
-      calc();
-      const unsub = onSnapshot(collection(db, 'profiles', currentUser.uid, 'checkins'), () => calc());
-      return () => unsub();
-    }, [currentUser]);
+    calc();
+    const unsub = onSnapshot(collection(db, 'profiles', currentUser.uid, 'checkins'), () => calc());
+    return () => unsub();
+  }, [currentUser?.uid]);
 
   // Friend requests badge
   useEffect(() => {
@@ -155,6 +150,14 @@ function CustomTabs({
             tabBarIcon: ({ color }) => <Ionicons name="people" size={28} color={color} />,
             tabBarBadge: pendingCount > 0 ? pendingCount : undefined,
             tabBarBadgeStyle: { backgroundColor: '#EF4444', color: '#fff', fontWeight: 'bold' },
+          }}
+          listeners={{
+            tabPress: (e) => {
+              if (!currentUser) {
+                e.preventDefault();
+                router.push('/login');
+              }
+            },
           }}
         />
       </Tabs>

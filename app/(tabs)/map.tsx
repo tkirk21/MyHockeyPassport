@@ -11,7 +11,6 @@ import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import arenasData from '@/assets/data/arenas.json';
-import historicalTeamsData from '@/assets/data/historicalTeams.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
 import LoadingPuck from "../../components/loadingPuck";
 
@@ -134,10 +133,9 @@ export default function MapScreen() {
             (a: any) => a.league === data.league && a.arena === data.arenaName
           );
 
-          // 2. If not found, try name-change fallback (Staples → Crypto.com, etc.)
           if (!match && data.arenaName) {
             const historyEntry = arenaHistoryData.find((h: any) =>
-              h.history.some((e: any) => e.name === data.arenaName)
+              h.history.some((entry: any) => entry.name === data.arenaName)
             );
             if (historyEntry) {
               match = (arenasData as any[]).find(
@@ -147,26 +145,14 @@ export default function MapScreen() {
             }
           }
 
-          // 3. If still not found, try historical teams (Rexall, McNichols, etc.)
-          if (!match) {
-            match = historicalTeamsData.find(
-              (a: any) => a.league === data.league && a.arena === data.arenaName
-            );
-          }
-
-          // 4. Final fallback: use saved coordinates from check-in
           if (match) {
             lat = match.latitude;
             lng = match.longitude;
-            colorCode = match.colorCode || 'gray';
+            colorCode = match.colorCode || 'red';
             teamCode = match.teamCode || '';
           } else if (data.latitude != null && data.longitude != null) {
             lat = data.latitude;
             lng = data.longitude;
-            colorCode = 'gray';
-            teamCode = '';
-          } else {
-            return; // no location at all
           }
 
           if (lat != null && lng != null) {
