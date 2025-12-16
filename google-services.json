@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "853703034223",
+    "project_id": "myhockeypassport",
+    "storage_bucket": "myhockeypassport.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853703034223:android:0264623fa9c78f6b0ed49a",
+        "android_client_info": {
+          "package_name": "com.tkirk21.MyHockeyPassport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGktpRRV2BJzZ6tsGpQI5GroeMwiKgrKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "853703034223-59fejl2mrbfqg9p03l8eailbvtv6o14a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tkirk21.MyHockeyPassport"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

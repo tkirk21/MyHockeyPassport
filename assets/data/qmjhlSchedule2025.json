@@ -1,0 +1,5348 @@
+[
+  {
+    "id": "qmjhl_20250918_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Moncton Wildcats ",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-09-18T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Moncton Wildcats",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-09-19T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-09-19T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-09-19T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_008",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250919_009",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Québec Remparts",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-09-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_001",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-09-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_005",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-09-20T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250920_006",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-09-20T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250921_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-09-21T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250921_002",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-09-21T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250925_001",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Québec Remparts",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-09-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-09-26T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-09-26T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Québec Remparts",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250926_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-09-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_001",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-09-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_005",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-09-27T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_006",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-09-27T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250927_007",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-09-27T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250928_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-09-28T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20250928_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250928_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20250928_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-09-28T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251001_001",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251002_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-02T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251002_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-02T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251002_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-02T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-03T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_002",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251003_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-10-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_001",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-04T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_004",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-04T22:00:00Z"
+  },
+  {
+  "id": "qmjhl_20251004_001",
+  "league": "QMJHL",
+  "team": "Rimouski Océanic",
+  "opponent": "Québec Remparts",
+  "arena": "Colisée Financière Sun Life",
+  "city": "Rimouski, QC",
+  "date": "2025-10-04T23:00:00Z"
+},
+  {
+    "id": "qmjhl_20251004_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-04T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251004_004",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-04T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-05T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-10-05T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-05T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251005_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-10-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251009_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-09T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251009_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Rimouski Océanic",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-09T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251009_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-09T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-10T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_002",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Rimouski Océanic",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-10T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_003",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-10T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_004",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-10T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_005",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_006",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_007",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251010_008",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-10-10T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251011_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-10-11T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251011_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-11T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251011_003",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Moncton Wildcats",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-11T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251011_004",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Rimouski Océanic",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-10-11T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251012_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-12T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251012_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251012_003",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-10-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-13T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_002",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-10-13T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251013_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251015_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-15T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251015_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-15T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251016_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-16T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251016_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-10-16T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-17T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-17T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_003",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-17T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_004",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_005",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_006",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_007",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251017_008",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251018_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251018_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251018_003",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251018_004",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-18T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251018_005",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-10-18T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251019_001",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251019_002",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251019_003",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-10-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-24T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Moncton Wildcats",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-24T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251024_007",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-10-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_001",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-10-25T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_007",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-10-25T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251025_008",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-10-25T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251026_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-10-26T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251026_002",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-10-26T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251026_003",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-10-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251029_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-29T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251029_002",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251029_003",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-10-29T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251030_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-10-30T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251030_002",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-10-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251031_001",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251031_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251031_003",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251031_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-10-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_001",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-11-01T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251101_006",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-01T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Moncton Wildcats",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-02T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_002",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-02T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_005",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251102_006",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-11-02T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251105_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-06T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251105_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-06T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251106_001",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-11-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251106_002",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251106_003",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-11-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-07T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_002",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_005",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251107_007",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Moncton Wildcats",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251108_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-09T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251108_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-11-09T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251108_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-11-09T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251108_004",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-08T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251108_005",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-11-08T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251109_001",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-11-09T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251109_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Moncton Wildcats",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-11-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251109_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251109_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-11-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251109_005",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251112_001",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-13T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251113_001",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-11-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251113_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251113_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-11-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251113_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Québec Remparts",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-11-14T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_004",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_005",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_007",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251114_008",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251115_001",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Moncton Wildcats",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251115_002",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-11-16T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251115_003",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251115_004",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Québec Remparts",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-15T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Québec Remparts",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-16T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_003",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-11-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_006",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251116_007",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-11-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251119_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-11-19T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251119_002",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251119_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251120_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251120_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251120_003",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-11-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Moncton Wildcats",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-21T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_005",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_006",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_007",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Rimouski Océanic",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251121_008",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-11-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-11-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_002",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-11-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-11-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_004",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-11-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251122_006",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-11-22T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251123_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-11-23T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-28T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-28T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Québec Remparts",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-11-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-11-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Moncton Wildcats",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-11-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251128_007",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Québec Remparts",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-11-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-11-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-11-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-11-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-11-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_006",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-11-29T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251129_007",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-11-29T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251130_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Aitken",
+    "city": "Fredericton, NB",
+    "date": "2025-11-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251130_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251130_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251130_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251130_005",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251204_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251204_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251204_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251204_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Hippodrome Trois-Rivières",
+    "city": "Trois-Rivières, QC",
+    "date": "2025-12-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251205_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251205_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-05T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251205_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-06T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251205_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-12-06T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251205_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Hippodrome Trois-Rivières",
+    "city": "Trois-Rivières, QC",
+    "date": "2025-12-06T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251206_001",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Hippodrome Trois-Rivières",
+    "city": "Trois-Rivières, QC",
+    "date": "2025-12-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251206_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251206_003",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251207_001",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251207_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Moncton Wildcats",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-12-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251207_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-12-07T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251207_004",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Hippodrome Trois-Rivières",
+    "city": "Trois-Rivières, QC",
+    "date": "2025-12-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251207_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251208_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2025-12-08T23:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251210_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-12-11T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251211_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-11T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251211_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-11T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251211_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-12T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251211_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-12-12T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251211_005",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-12T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251212_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-12-13T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251212_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-12-13T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_003",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_004",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_005",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_006",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-12-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_007",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251213_008",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-14T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-14T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-12-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-12-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251214_006",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-17T15:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-17T15:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_002",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-12-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_004",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_006",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_008",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251217_009",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-12-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_003",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-18T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_004",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_008",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251218_009",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-12-19T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-28T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-28T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-12-28T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_004",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-28T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_005",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-12-28T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_006",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2025-12-28T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_007",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-12-28T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_008",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-12-28T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251228_009",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2025-12-28T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251229_001",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2025-12-29T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251229_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2025-12-29T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251229_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2025-12-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251229_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2025-12-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251229_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2025-12-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251230_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251230_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2025-12-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251230_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-12-31T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2025-12-31T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2025-12-31T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2025-12-31T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2025-12-31T18:30:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2025-12-31T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_006",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2025-12-31T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_007",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2025-12-31T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_008",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2025-12-31T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20251231_009",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2025-12-31T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-03T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-03T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_003",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-03T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-03T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-01-03T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_006",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-03T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_007",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260103_008",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Moncton Wildcats",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-03T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-04T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-01-04T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-04T19:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-04T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-04T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-04T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-01-04T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260104_008",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-04T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260107_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260107_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260107_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260107_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Québec Remparts",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-01-08T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260108_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Aitken",
+    "city": "Fredericton, NB",
+    "date": "2026-01-08T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260108_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-09T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260108_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-09T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-09T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-01-09T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_004",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260109_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-10T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_002",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-01-10T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_003",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-10T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-01-10T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-10T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260110_006",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-10T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-11T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-01-11T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-01-11T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-11T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-11T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260111_006",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-01-11T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260114_001",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260114_002",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-15T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Rimouski Océanic",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-15T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-15T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-16T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-16T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Rimouski Océanic",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-16T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-16T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_007",
+    "league": "QMJHL",
+    "team": "TD Place",
+    "opponent": "Gatineau Olympiques",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_002",
+    "league": "QMJHL",
+    "team": "Centre Slush Puppie",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_003",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_004",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_005",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Rimouski Océanic",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-15T22:30:00Z"
+},
+  {
+    "id": "qmjhl_20260115_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-15T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-16T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260115_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-16T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Rimouski Océanic",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-16T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-16T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260116_007",
+    "league": "QMJHL",
+    "team": "TD Place",
+    "opponent": "Gatineau Olympiques",
+    "arena": "TD Place",
+    "city": "Ottawa, ON",
+    "date": "2026-01-17T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_002",
+    "league": "QMJHL",
+    "team": "Centre Slush Puppie",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_003",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-17T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_004",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260117_005",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-17T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260118_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Rimouski Océanic",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-18T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260118_002",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-18T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260118_003",
+    "league": "QMJHL",
+    "team": "Community Arena",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Community Arena",
+    "city": "Sudbury, ON",
+    "date": "2026-01-18T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260118_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-01-18T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260118_005",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-01-18T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260121_001",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-22T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260122_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-22T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260122_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-22T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260122_003",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-22T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260122_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-01-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260122_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-23T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-01-23T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-23T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_004",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_005",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260123_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-24T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260124_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-01-24T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260124_002",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-01-24T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260124_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-01-24T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260124_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-24T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260124_005",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-24T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-25T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-01-25T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-01-25T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-01-25T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_005",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-01-25T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_006",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-01-25T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260125_007",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-25T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260128_001",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Rimouski Océanic",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260128_002",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-29T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260129_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-29T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260129_002",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-01-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260129_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-30T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-30T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-01-31T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-01-31T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_005",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-31T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260130_006",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Québec Remparts",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-01-31T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260131_001",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-01-31T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260131_002",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-01-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260131_003",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-01-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260131_004",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-01-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260131_005",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-01-31T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-02-01T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Aitken",
+    "city": "Fredericton, NB",
+    "date": "2026-02-01T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-01T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-02-01T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-01T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260201_006",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-01T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260204_001",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-02-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260204_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-02-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260204_003",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-02-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-02-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Moncton Wildcats",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-02-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_004",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_005",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_006",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_007",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_008",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260206_009",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-02-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_005",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_006",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-02-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_007",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-02-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_008",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Moncton Wildcats",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-02-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260207_009",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-02-07T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260211_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-02-11T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260211_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-02-11T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260211_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-12T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260212_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-02-12T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260212_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-02-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260212_003",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-02-13T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-02-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Moncton Wildcats",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-02-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_004",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-02-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_005",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260213_006",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-14T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260214_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-02-14T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260214_002",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-02-14T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260214_003",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-14T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260214_004",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-02-14T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260215_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-02-15T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260215_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-02-15T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260215_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-02-15T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260215_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-15T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260216_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-02-16T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260216_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-02-16T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260216_003",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-02-16T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260217_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-02-18T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_001",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_002",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Québec Remparts",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260219_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-02-20T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-02-20T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_002",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Moncton Wildcats",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-02-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Québec Remparts",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_005",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Rimouski Océanic",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_007",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260220_008",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-02-21T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260221_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-02-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260221_002",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-02-21T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260221_003",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-02-21T22:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-22T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-02-22T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-02-22T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-02-22T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-22T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260222_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-02-22T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260225_001",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-26T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260225_002",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-02-26T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260226_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Québec Remparts",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-02-26T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260226_002",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-27T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260226_003",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-02-27T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260226_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-27T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Québec Remparts",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-02-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-02-27T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_003",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-02-28T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_004",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-28T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_005",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-02-28T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260227_006",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Moncton Wildcats",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-02-28T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260228_001",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-02-28T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260228_002",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-02-28T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260228_003",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-02-28T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260228_004",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Charlottetown Islanders",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-02-28T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-03-01T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Québec Remparts",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-03-01T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_003",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-03-01T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Moncton Wildcats",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-01T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_005",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-03-01T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260301_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-03-01T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-03-04T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_002",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-03-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_003",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-03-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Gatineau Olympiques",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-03-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_005",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-03-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260304_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-05T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260306_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-03-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260306_002",
+    "league": "QMJHL",
+    "team": "Halifax Mooseheads",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Scotiabank Centre",
+    "city": "Halifax, NS",
+    "date": "2026-03-06T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260306_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-03-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260306_004",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-03-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260306_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Rimouski Océanic",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-07T00:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260307_001",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-03-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260307_002",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-03-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260307_003",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-03-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260307_004",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-03-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260307_005",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Rimouski Océanic",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-07T21:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-03-08T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-03-08T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-03-08T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_004",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-08T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-03-08T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260308_006",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Newfoundland Regiment",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-03-08T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260311_001",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-03-11T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260312_001",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-03-12T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260312_002",
+    "league": "QMJHL",
+    "team": "Rimouski Océanic",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Colisée Financière Sun Life",
+    "city": "Rimouski, QC",
+    "date": "2026-03-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260312_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-03-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260312_004",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Québec Remparts",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-03-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260312_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-03-12T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Cape Breton Eagles",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-03-13T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_002",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-03-13T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_003",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_004",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-03-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_005",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-03-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260313_006",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-13T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260314_001",
+    "league": "QMJHL",
+    "team": "Saint John Sea Dogs",
+    "opponent": "Halifax Mooseheads",
+    "arena": "TD Station",
+    "city": "Saint John, NB",
+    "date": "2026-03-14T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260314_002",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-14T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260314_003",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-03-14T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260314_004",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-14T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260314_005",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Moncton Wildcats",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-03-14T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_001",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-03-15T17:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_002",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Moncton Wildcats",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-03-15T19:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_003",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-03-15T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_004",
+    "league": "QMJHL",
+    "team": "Blainville-Boisbriand Armada",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre d'excellence Sports Rousseau",
+    "city": "Boisbriand, QC",
+    "date": "2026-03-15T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_005",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-03-15T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260315_006",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Baie-Comeau Drakkar",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-03-15T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_001",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-03-20T21:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_002",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-03-20T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_003",
+    "league": "QMJHL",
+    "team": "Charlottetown Islanders",
+    "opponent": "Moncton Wildcats",
+    "arena": "Eastlink Centre",
+    "city": "Charlottetown, PE",
+    "date": "2026-03-20T22:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_004",
+    "league": "QMJHL",
+    "team": "Québec Remparts",
+    "opponent": "Chicoutimi Saguenéens",
+    "arena": "Centre Vidéotron",
+    "city": "Québec, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_005",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_006",
+    "league": "QMJHL",
+    "team": "Rouyn-Noranda Huskies",
+    "opponent": "Val-d'Or Foreurs",
+    "arena": "Aréna Glencore",
+    "city": "Rouyn-Noranda, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_007",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_008",
+    "league": "QMJHL",
+    "team": "Drummondville Voltigeurs",
+    "opponent": "Sherbrooke Phoenix",
+    "arena": "Centre Marcel Dionne",
+    "city": "Drummondville, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260320_009",
+    "league": "QMJHL",
+    "team": "Victoriaville Tigres",
+    "opponent": "Shawinigan Cataractes",
+    "arena": "Colisée Desjardins",
+    "city": "Victoriaville, QC",
+    "date": "2026-03-20T23:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_001",
+    "league": "QMJHL",
+    "team": "Cape Breton Eagles",
+    "opponent": "Saint John Sea Dogs",
+    "arena": "Centre 200",
+    "city": "Sydney, NS",
+    "date": "2026-03-21T18:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_002",
+    "league": "QMJHL",
+    "team": "Newfoundland Regiment",
+    "opponent": "Halifax Mooseheads",
+    "arena": "Mary Brown's Centre",
+    "city": "St John's, NL",
+    "date": "2026-03-21T19:30:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_003",
+    "league": "QMJHL",
+    "team": "Moncton Wildcats",
+    "opponent": "Charlottetown Islanders",
+    "arena": "Avenir Centre",
+    "city": "Moncton, NB",
+    "date": "2026-03-21T19:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_004",
+    "league": "QMJHL",
+    "team": "Chicoutimi Saguenéens",
+    "opponent": "Québec Remparts",
+    "arena": "Centre Georges-Vézina",
+    "city": "Chicoutimi, QC",
+    "date": "2026-03-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_005",
+    "league": "QMJHL",
+    "team": "Baie-Comeau Drakkar",
+    "opponent": "Rimouski Océanic",
+    "arena": "Centre sportif Alcoa",
+    "city": "Baie-Comeau, QC",
+    "date": "2026-03-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_006",
+    "league": "QMJHL",
+    "team": "Gatineau Olympiques",
+    "opponent": "Drummondville Voltigeurs",
+    "arena": "Centre Slush Puppie",
+    "city": "Gatineau, QC",
+    "date": "2026-03-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_007",
+    "league": "QMJHL",
+    "team": "Shawinigan Cataractes",
+    "opponent": "Victoriaville Tigres",
+    "arena": "Centre Gervais Auto",
+    "city": "Shawinigan, QC",
+    "date": "2026-03-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_008",
+    "league": "QMJHL",
+    "team": "Val-d'Or Foreurs",
+    "opponent": "Rouyn-Noranda Huskies",
+    "arena": "Centre Agnico Eagle",
+    "city": "Val-d'Or, QC",
+    "date": "2026-03-21T20:00:00Z"
+  },
+  {
+    "id": "qmjhl_20260321_009",
+    "league": "QMJHL",
+    "team": "Sherbrooke Phoenix",
+    "opponent": "Blainville-Boisbriand Armada",
+    "arena": "Palais des Sports Léopold-Drolet",
+    "city": "Sherbrooke, QC",
+    "date": "2026-03-21T20:00:00Z"
+  }
+]
