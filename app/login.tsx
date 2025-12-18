@@ -60,7 +60,9 @@ export default function Login() {
   useEffect(() => {
     const checkStoredLogin = async () => {
       const savedUser = await AsyncStorage.getItem('userEmail');
-      if (savedUser) router.replace('/(tabs)');
+      if (savedUser && auth.currentUser) {
+        router.replace('/(tabs)');
+      }
     };
     checkStoredLogin();
   }, []);
