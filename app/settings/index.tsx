@@ -1,15 +1,37 @@
 //app/settings/index.tsx
-import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { useRouter, Stack } from 'expo-router';
+import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
-import { useRouter, Stack } from 'expo-router';
-import React from 'react';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebaseConfig';
+import PushSwitch from '@/components/PushSwitch';
 
 const auth = getAuth();
 
 export default function SettingsScreen() {
   const router = useRouter();
+
+  const [pushEnabled, setPushEnabled] = useState(false);
+
+    useEffect(() => {
+      const loadPushSetting = async () => {
+        if (!auth.currentUser) return;
+        const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+        if (docSnap.exists()) {
+          setPushEnabled(docSnap.data().pushNotifications ?? true);
+        }
+      };
+      loadPushSetting();
+    }, []);
+
+    const togglePushNotifications = async (value: boolean) => {
+      if (!auth.currentUser) return;
+      setPushEnabled(value);
+      await setDoc(doc(db, 'profiles', auth.currentUser.uid), { pushNotifications: value }, { merge: true });
+    };
 
   const logout = () => {
     Alert.alert('Log out', 'Are you sure?', [
@@ -97,11 +119,7 @@ export default function SettingsScreen() {
           {/* Notifications */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Notifications</Text>
-            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/notifications')}>
-              <Ionicons name="notifications-outline" size={26} color="#fff" />
-              <Text style={styles.label}>Push Notifications</Text>
-              <Ionicons name="chevron-forward" size={24} color="#888" />
-            </TouchableOpacity>
+            <PushSwitch />
 
             <TouchableOpacity style={styles.row}>
               <Ionicons name="mail-outline" size={26} color="#fff" />

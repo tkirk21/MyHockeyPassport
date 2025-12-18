@@ -7,61 +7,29 @@ import { getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 // Ask for permission + get the push token
-export async function registerForPushNotificationsAsync() {
-  let token = '';
+export async function setupNotifications() {
+  try {
+    const user = getAuth().currentUser;
+    if (!user) return;
 
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#000000',
-    });
-  }
+    // Load the pushNotifications setting from profile
+    const profileSnap = await getDoc(doc(db, 'profiles', user.uid));
+    const pushEnabled = profileSnap.exists() ? profileSnap.data().pushNotifications ?? true : true;
 
-  if (Device.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token – notifications won’t work');
+    if (!pushEnabled) {
+      // User turned off push – don't register token
       return;
     }
 
-    token = (await Notifications.getExpoPushTokenAsync({
-      projectId: 'a164aec3-4dc0-4576-b32e-273e889b6ada',
-    })).data;
-  } else {
-    alert('Must use physical device for push notifications');
-  }
-
-  return token;
-}
-
-// Save token to Firestore under the current user
-export async function saveTokenToDatabase(token: string) {
-  const user = getAuth().currentUser;
-  if (!user) return;
-
-  await setDoc(doc(db, 'users', user.uid), {
-    pushToken: token,
-  }, { merge: true });
-}
-
-// Call this once on app start (e.g. in App.tsx)
-export async function setupNotifications() {
-  try {
     const token = await registerForPushNotificationsAsync();
 
     if (token) {
       await saveTokenToDatabase(token);
-    } else {
     }
   } catch (error) {
+    console.log('Push setup error:', error);
   }
+
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
