@@ -21,23 +21,6 @@ export default function Signup() {
     forceCodeForRefreshToken: true, // another flag for native
   });
 
-  // Facebook
-  const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
-    clientId: '763545830068611',
-    expoClientId: '763545830068611',
-  });
-
-  // Facebook handler
-  useEffect(() => {
-    if (fbResponse?.type === 'success') {
-      const { authentication } = fbResponse;
-      const credential = FacebookAuthProvider.credential(authentication?.accessToken);
-      signInWithCredential(auth, credential)
-        .then(() => router.replace('/(tabs)'))
-        .catch(err => Alert.alert('Error', err.message));
-    }
-  }, [fbResponse]);
-
   const handleSignUp = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -86,7 +69,10 @@ export default function Signup() {
           <Ionicons name="logo-google" size={20} color="#fff" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.socialBtn, { backgroundColor: '#1877F2' }]} onPress={() => fbPromptAsync()} disabled={!fbRequest}>
+        <TouchableOpacity
+          style={[styles.socialBtn, { backgroundColor: '#1877F2' }]}
+          onPress={() => Alert.alert('Coming Soon', 'Facebook login is temporarily unavailable')}
+        >
           <Ionicons name="logo-facebook" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -111,59 +97,14 @@ export default function Signup() {
   );
 }
 
-const colors = {
-  primary: '#0D2C40',
-  secondary: '#2F4F68',
-  accent: '#5E819F',
-  light: '#FFFFFF',
-};
-
+const colors = { primary: '#0D2C40', secondary: '#2F4F68', accent: '#5E819F', light: '#FFFFFF', };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: colors.light,
-  },
-  logo: {
-    width: 340,
-    height: 170,
-    alignSelf: 'center',
-    marginBottom: 0,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: colors.primary,
-    marginBottom: 24,
-    textAlign: 'center',
-  },
-  orText: {
-    textAlign: 'center',
-    color: colors.secondary,
-    marginVertical: 12,
-    fontWeight: '500',
-  },
-  input: {
-    height: 50,
-    borderColor: colors.accent,
-    borderWidth: 1,
-    paddingHorizontal: 12,
-    marginBottom: 16,
-    borderRadius: 6,
-    fontSize: 16,
-    color: colors.primary,
-  },
-  buttonPrimary: {
-    backgroundColor: colors.primary,
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 12,
-    marginBottom: 20,
-    width: '66%',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
+  container: { flex: 1, padding: 24, justifyContent: 'center', backgroundColor: colors.light, },
+  logo: { width: 340, height: 170, alignSelf: 'center', marginBottom: 0, },
+  title: { fontSize: 26, fontWeight: 'bold', color: colors.primary, marginBottom: 24, textAlign: 'center', },
+  orText: { textAlign: 'center', color: colors.secondary, marginVertical: 12, fontWeight: '500', },
+  input: { height: 50, borderColor: colors.accent, borderWidth: 1, paddingHorizontal: 12, marginBottom: 16, borderRadius: 6, fontSize: 16, color: colors.primary, },
+  buttonPrimary: { backgroundColor: colors.primary, paddingVertical: 16, paddingHorizontal: 24, borderRadius: 12, marginBottom: 20, width: '66%', alignItems: 'center', alignSelf: 'center', },
   buttonText: { color: colors.light, fontSize: 18, fontWeight: '600', },
   toggle: { marginTop: 16, alignItems: 'center', },
   toggleText: { color: colors.secondary, fontWeight: '500', },

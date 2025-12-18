@@ -104,6 +104,22 @@ export default function HomeScreen() {
     loadSavedLeague();
   }, []);
 
+  useEffect(() => {
+    const saveSelectedLeague = async () => {
+      try {
+        if (selectedLeague === null) {
+          await AsyncStorage.removeItem('selectedLeague');
+        } else {
+          await AsyncStorage.setItem('selectedLeague', selectedLeague);
+        }
+      } catch (e) {
+        console.log('Failed to save selected league:', e);
+      }
+    };
+
+    saveSelectedLeague();
+  }, [selectedLeague]);
+
   const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
     const R = 3958.8;
     const toRad = (n) => (n * Math.PI) / 180;

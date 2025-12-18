@@ -39,8 +39,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#0A2940',
     borderRadius: 5,
   },
-  linkText: {
-    color: '#fff',
-    fontSize: 16,
-  },
+  linkText: { color: '#fff', fontSize: 16, },
 });

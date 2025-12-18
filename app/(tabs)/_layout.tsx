@@ -33,7 +33,7 @@ function CustomTabs({
   const currentUser = auth.currentUser;
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser?.uid) {
       setFriendsReplyCount(0);
       return;
     }
@@ -88,7 +88,10 @@ function CustomTabs({
 
   // RED DOT — fixed "odd number of segments" error
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser?.uid) {
+      setFriendsReplyCount(0);
+      return;
+    }
 
     const calc = async () => {
       try {
@@ -113,7 +116,7 @@ function CustomTabs({
     calc();
     const unsub = onSnapshot(collection(db, 'profiles', currentUser.uid, 'checkins'), () => calc());
     return () => unsub();
-  }, [currentUser]);
+  }, [currentUser?.uid]);
 
   return (
     <View style={{ flex: 1, backgroundColor: '#0A2940', paddingBottom: insets.bottom }}>

@@ -7,7 +7,8 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
 import React, { useState } from 'react';
-import { Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const db = getFirestore(firebaseApp);
 const toStr = (v: any) => Array.isArray(v) ? (v[0] ?? '') : (v ?? '');
@@ -488,20 +489,6 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingBottom: 250,
   },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 14,
-    borderRadius: 30,
-    marginBottom: 40,
-    width: '50%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-  },
-  submitText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  submitButton: { backgroundColor: '#0A2940', paddingVertical: 14, borderRadius: 30, marginBottom: 40, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#2F4F68', },
+  submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
 });

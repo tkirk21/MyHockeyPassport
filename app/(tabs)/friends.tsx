@@ -67,7 +67,7 @@ const getTimestamp = (ts: any): Date => {
 
 export default function FriendsTab() {
   const [allUsers, setAllUsers] = useState<Profile[]>([]);
-  const [blockedFriends, setBlockedFriends] = useState<Profile[]>([]);
+  const [blockedFriends, setBlockedFriends] = useState<string[]>([]);
   const [feed, setFeed] = useState<ActivityItem[]>([]);
   const [friends, setFriends] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -195,22 +195,11 @@ export default function FriendsTab() {
         const blockedRef = collection(db, 'profiles', currentUser.uid, 'blocked');
         const blockedSnap = await getDocs(blockedRef);
         const blockedIds = blockedSnap.docs.map((d) => d.id);
-        const blockedList = blockedIds
-          .map((id) => users.find((u) => u.id === id))
-          .filter((u) => u)
-          .map((u) => ({
-            id: u.id,
-            name: u.name || "Unknown",
-            imageUrl: u.imageUrl || null,
-            location: u.location || "",
-          }));
-
-        setBlockedFriends(blockedList);
+        setBlockedFriends(blockedIds);
       } catch (error) {
         console.error('Error fetching users or feed:', error);
       } finally {
         setLoading(false);
-        loadLeaderboardData();
       }
     };
 
@@ -461,8 +450,8 @@ export default function FriendsTab() {
       await setDoc(doc(db, 'profiles', currentUser.uid, 'blocked', user.id), {
         blockedAt: new Date(),
       });
-      setBlockedFriends((prev) => [...prev, user]);
-      setFriends((prev) => prev.filter((id) => id !== user.id));
+      // Only add to blocked list – DO NOT unfriend
+      setBlockedFriends((prev) => [...prev, user.id]);
       setSelectedFriend(null);
     } catch (err) {
       console.error('Error blocking user:', err);
@@ -473,14 +462,14 @@ export default function FriendsTab() {
     if (!currentUser) return;
     try {
       await deleteDoc(doc(db, 'profiles', currentUser.uid, 'blocked', userId));
-      setBlockedFriends((prev) => prev.filter((u) => u.id !== userId));
+      setBlockedFriends((prev) => prev.filter((id) => id !== userId));
     } catch (err) {
       console.error('Error unblocking user:', err);
     }
   };
 
   const isBlocked = (userId: string) => {
-    return blockedFriends.some((u) => u.id === userId);
+    return blockedFriends.includes(userId);
   };
 
   const filteredUsers = React.useMemo(() =>
@@ -490,10 +479,14 @@ export default function FriendsTab() {
         user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
         !friends.includes(user.id) &&
         !sentRequests.includes(user.id) &&
-        !blockedFriends.some((b) => b.id === user.id)
+        !blockedFriends.includes(user.id)
     ),
     [allUsers, searchQuery, friends, sentRequests, blockedFriends, currentUser.uid]
   );
+
+  useEffect(() => {
+    loadLeaderboardData();
+  }, [friends, currentUser?.uid]);
 
   if (loading) {
     return (
@@ -584,7 +577,7 @@ export default function FriendsTab() {
                    u.id !== currentUser?.uid &&                                   // ← THIS BLOCKS YOU 100%
                    !friends.includes(u.id) &&
                    !sentRequests.includes(u.id) &&
-                   !blockedFriends.some(b => b.id === u.id) &&
+                   !blockedFriends.includes(u.id) &&
                    getMutualFriendsCount(u.id) >= 2
                  )
                  .sort((a, b) => getMutualFriendsCount(b.id) - getMutualFriendsCount(a.id))
@@ -615,7 +608,7 @@ export default function FriendsTab() {
                  u.id !== currentUser?.uid &&
                  !friends.includes(u.id) &&
                  !sentRequests.includes(u.id) &&
-                 !blockedFriends.some(b => b.id === u.id) &&
+                 !blockedFriends.includes(u.id) &&
                  getMutualFriendsCount(u.id) >= 2
                ).length === 0 && (
                  <Text style={[styles.placeholder, { textAlign: 'center' }]}>No suggested friends right now</Text>
@@ -811,26 +804,7 @@ export default function FriendsTab() {
             </View>
           )}
 
-          {/* Blocked Friends */}
-          {blockedFriends.length > 0 && (
-            <View style={styles.card}>
-              <Text style={styles.subheading}>Blocked Friends</Text>
-              {blockedFriends.map((item) => (
-                <View key={item.id} style={styles.listRow}>
-                  <Image
-                    source={
-                      item.imageUrl ? { uri: item.imageUrl } : require('@/assets/images/icon.png')
-                    }
-                    style={styles.avatar}
-                  />
-                  <Text style={[styles.itemText, { flex: 1 }]}>{item.name}</Text>
-                  <TouchableOpacity onPress={() => handleUnblock(item.id)}>
-                    <Text style={styles.unblockText}>Unblock</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          )}
+
 
           {/* Friends Activity */}
           {feed.length > 0 && (

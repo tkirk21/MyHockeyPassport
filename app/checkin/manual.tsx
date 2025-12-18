@@ -679,9 +679,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#2F4F68',
   },
-  submitText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
 });

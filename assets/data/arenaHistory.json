@@ -14,6 +14,7 @@
     "teamName": "Boston Bruins",
     "league": "NHL",
     "history": [
+      { "name": "Boston Garden", "from": "1928-09-30", "to": "1995-05-31" },
       { "name": "FleetCenter", "from": "1995-09-30", "to": "2005-03-08" },
       { "name": "TD Banknorth Garden", "from": "2005-03-09", "to": "2009-07-15" },
       { "name": "TD Garden", "from": "2009-07-16", "to": null }
@@ -95,6 +96,18 @@
     ]
   },
   {
+    "currentArena": "Kia Forum",
+    "teamName": "Los Angeles Kings",
+    "league": "NHL",
+    "history": [
+      { "name": "The Forum", "from": "1967-09-01", "to": "1988-05-31" },
+      { "name": "Great Western Forum", "from": "1998-09-01", "to": "2003-05-31" },
+      { "name": "The Forum", "from": "2004-09-01", "to": "2012-05-31" },
+      { "name": "The Forum presented by Chase", "from": "2014-09-21", "to": "2022-05-31" },
+      { "name": "Kia Forum", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
     "currentArena": "Grand Casino Arena",
     "teamName": "Minnesota Wild",
     "league": "NHL",
@@ -104,12 +117,21 @@
     ]
   },
   {
-    "currentArena": "Bell Centre",
+    "currentArena": "Met Center",
+    "teamName": "Minnesota North Stars",
+    "league": "NHL",
+    "history": [
+      { "name": "Metropolitan Sports Center", "from": "1967-09-01", "to": "1982-05-31" },
+      { "name": "Met Center", "from": "1982-09-01", "to": "1993-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Centre Bell",
     "teamName": "Montreal Canadiens",
     "league": "NHL",
     "history": [
       { "name": "Molson Centre", "from": "1996-02-16", "to": "2002-09-30" },
-      { "name": "Bell Centre", "from": "2002-10-01", "to": null }
+      { "name": "Centre Bell", "from": "2002-10-01", "to": null }
     ]
   },
   {
@@ -126,6 +148,17 @@
     ]
   },
   {
+    "currentArena": "Meadowlands Arena",
+    "teamName": "New Jersey Devils",
+    "league": "NHL",
+    "history": [
+      { "name": "Brendan Byrne Arena", "from": "1981-09-01", "to": "1996-05-31" },
+      { "name": "Continental Airlines Arena", "from": "1996-09-01", "to": "2007-05-31" },
+      { "name": "Izod Center", "from": "2007-09-01", "to": "2015-05-31" },
+      { "name": "Meadowlands Arena", "from": "2010-01-01", "to": null }
+    ]
+  },
+  {
     "currentArena": "Canadian Tire Centre",
     "teamName": "Ottawa Senators",
     "league": "NHL",
@@ -138,8 +171,8 @@
   },
   {
     "currentArena": "Xfinity Mobile Center",
-    "teamName": ["Philadelphia Flyers", "Philadelphia Phantoms"],
-    "league": ["NHL", "AHL"],
+    "teamName": "Philadelphia Flyers",
+    "league": "NHL",
     "history": [
       { "name": "CoreStates Center", "from": "1996-08-31", "to": "1998-09-30" },
       { "name": "First Union Center", "from": "1998-10-01", "to": "2003-09-30" },
@@ -149,12 +182,32 @@
     ]
   },
   {
+    "currentArena": "Xfinity Mobile Center",
+    "teamName": "Philadelphia Flyers",
+    "league": "NHL",
+    "history": [
+      { "name": "Spectrum", "from": "1967-10-01", "to": "1994-09-30" },
+      { "name": "CoreStates Spectrum", "from": "1994-10-01", "to": "1998-07-26" },
+      { "name": "First Union Spectrum", "from": "1998-09-01", "to": "2003-05-31" },
+      { "name": "Wachovia Spectrum", "from": "2003-09-01", "to": "2009-05-31" }
+    ]
+  },
+  {
     "currentArena": "PPG Paints Arena",
     "teamName": "Pittsburgh Penguins",
     "league": "NHL",
     "history": [
       { "name": "Consol Energy Center", "from": "2010-10-07", "to": "2016-09-30" },
       { "name": "PPG Paints Arena", "from": "2016-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Mellon Arena",
+    "teamName": "Pittsburgh Penguins",
+    "league": "NHL",
+    "history": [
+      { "name": "Civic Arena", "from": "1961-10-07", "to": "1999-09-30" },
+      { "name": "Mellon Arena", "from": "1999-09-01", "to": "2010-05-31" }
     ]
   },
   {
@@ -173,10 +226,20 @@
     "teamName": "St. Louis Blues",
     "league": "NHL",
     "history": [
-      { "name": "Kiel Center", "from": "1994-10-07", "to": "2000-01-31" },
+      { "name": "Kiel Center", "from": "1994-09-01", "to": "2000-01-31" },
       { "name": "Savvis Center", "from": "2000-02-01", "to": "2006-06-30" },
       { "name": "Scottrade Center", "from": "2006-07-01", "to": "2018-05-31" },
       { "name": "Enterprise Center", "from": "2018-06-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "St. Louis Arena",
+    "teamName": "St. Louis Blues",
+    "league": "NHL",
+    "history": [
+      { "name": "St. Louis Arena", "from": "1967-09-01", "to": "1977-09-01" },
+      { "name": "Checkerdome", "from": "1977-09-01", "to": "1983-05-31" },
+      { "name": "St. Louis Arena", "from": "1983-09-01", "to": "1994-05-31" }
     ]
   },
   {
@@ -189,6 +252,16 @@
       { "name": "Tampa Bay Times Forum", "from": "2012-10-01", "to": "2014-09-30" },
       { "name": "Amalie Arena", "from": "2014-10-01", "to": "2025-12-31" },
       { "name": "Benchmark International Arena", "from": "2026-01-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Tropicana Field",
+    "teamName": "Tampa Bay Lightning",
+    "league": "NHL",
+    "history": [
+      { "name": "Florida Suncoast Dome", "from": "1990-09-01", "to": "1993-05-31" },
+      { "name": "ThunderDome", "from": "1993-09-01", "to": "1996-05-31" },
+      { "name": "Tropicana Field", "from": "1996-09-01", "to": null }
     ]
   },
   {
@@ -388,6 +461,19 @@
     ]
   },
   {
+    "currentArena": "Xfinity Mobile Center",
+    "teamName": "Philadelphia Phantoms",
+    "league": "AHL",
+    "history": [
+      { "name": "CoreStates Center", "from": "1996-08-31", "to": "1998-09-30" },
+      { "name": "First Union Center", "from": "1998-10-01", "to": "2003-09-30" },
+      { "name": "Wachovia Center", "from": "2003-10-01", "to": "2010-07-26" },
+      { "name": "Wells Fargo Center", "from": "2010-07-27", "to": "2025-12-31" },
+      { "name": "Xfinity Mobile Center", "from": "2026-01-01", "to": null }
+    ]
+  },
+
+  {
     "currentArena": "Pechanga Arena",
     "teamName": "San Diego Gulls",
     "league": "AHL",
@@ -545,8 +631,6 @@
       { "name": "AT&T Center", "from": "2006-09-01", "to": "2023-05-31" }
     ]
   },
-
-
 
 
 

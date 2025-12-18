@@ -1,4 +1,3 @@
-//VERSION 2 - 8am 9TH AUGUST
 //[arenaId.tsx]
 import { format } from 'date-fns';
 import * as Location from 'expo-location';
@@ -8,16 +7,18 @@ import { getAuth } from 'firebase/auth';
 import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, Linking, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
+import { Alert, ImageBackground, Linking, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
 
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
+import arenaHistoryData from '@/assets/data/arenaHistory.json';
 import nhlSchedule2025 from "@/assets/data/nhlSchedule2025.json";
 import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
+import qmjhlSchedule2025 from '@/assets/data/qmjhlSchedule2025.json';
 import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
 
 export default function ArenaScreen() {
@@ -44,37 +45,55 @@ export default function ArenaScreen() {
     }
 
   useEffect(() => {
-      const run = async () => {
-        const user = auth.currentUser;
-        if (!user || !arena) return;
-        try {
-          setLoading(true);
-          const q = query(
-            collection(db, 'profiles', user.uid, 'checkins'),
-            where('arenaName', '==', arena.arena)
-          );
-          const snapshot = await getDocs(q);
+    const run = async () => {
+      const user = auth.currentUser;
+      if (!user || !arena) return;
+      try {
+        setLoading(true);
 
-          if (snapshot.empty) {
-            setVisitCount(0);
-            setLastVisitDate(null);
-            return;
-          }
+        // Get all past names for this arena
+        const historyEntry = arenaHistoryData.find(
+          h => h.currentArena === arena.arena
+        );
+        const oldNames = historyEntry
+          ? historyEntry.history.map(h => h.name)
+          : [];
 
-          const dates = snapshot.docs
-            .map(doc => doc.data().timestamp?.toDate())
-            .filter(date => date instanceof Date);
-          const sorted = dates.sort((a, b) => b.getTime() - a.getTime());
-          setVisitCount(snapshot.size);
-          setLastVisitDate(sorted[0]);
-        } catch (err) {
-          console.log('Firestore error:', err);
-        } finally {
-          setLoading(false);
+        // Build query that matches current name OR any old name
+        const q = query(
+          collection(db, 'profiles', user.uid, 'checkins'),
+          where('arenaName', 'in', [arena.arena, ...oldNames])
+        );
+
+        const snapshot = await getDocs(q);
+
+        if (snapshot.empty) {
+          setVisitCount(0);
+          setLastVisitDate(null);
+          return;
         }
-      };
-      run();
-    }, [arena, auth.currentUser]);
+
+        setVisitCount(snapshot.size);
+
+        const gameDates = snapshot.docs
+          .map(doc => {
+            const gameDateStr = doc.data().gameDate;
+            if (!gameDateStr) return null;
+            const date = new Date(gameDateStr);
+            return isNaN(date.getTime()) ? null : date;
+          })
+          .filter(date => date !== null);
+
+        const sorted = gameDates.sort((a, b) => b.getTime() - a.getTime());
+        setLastVisitDate(sorted[0] || null);
+      } catch (err) {
+        console.log('Firestore error:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    run();
+  }, [arena, auth.currentUser]);
 
   const teamCodeMap = useMemo(() => (
     Object.fromEntries(
@@ -145,6 +164,14 @@ export default function ArenaScreen() {
       homeTeam: game.team,
       awayTeam: game.opponent,
     })),
+    ...qmjhlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
   ];
 
   // Filter & sort upcoming games at this arena
@@ -165,7 +192,7 @@ export default function ArenaScreen() {
     }];
   }
 
-  const lightColor = `${arena.colorCode}22`; // light transparent tint
+  const lightColor = `${arena.colorCode}66`;
 
   const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
     const R = 3958.8;
@@ -268,7 +295,11 @@ export default function ArenaScreen() {
   }, [upcomingGames]);
 
   return (
-    <View style={{ flex: 1 }}>
+    <ImageBackground
+      source={require('@/assets/images/background_inside_arena.jpg')}
+      style={styles.background}
+      resizeMode="cover"
+    >
       {checkingIn && (
         <View style={styles.loadingOverlay}>
           <LoadingPuck size={140} />
@@ -287,20 +318,20 @@ export default function ArenaScreen() {
           <Text style={styles.arenaName}>{arena.arena}</Text>
         </View>
 
-        <View
-          style={[
-            styles.statCard,
-            { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940", height: 120 }, // lock consistent height
-          ]}
-        >
+        <View style={[styles.statCard, { borderColor: arena.colorCode || "#0A2940", height: 120 }]}>
+          <View style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: '#FFFFFF',
+            borderRadius: 60,
+          }} />
+          <View style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: lightColor,
+            opacity: 0.3,
+            borderRadius: 60,
+          }} />
           {loading ? (
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flex: 1,
-              }}
-            >
+            <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
               <LoadingPuck size={120} />
             </View>
           ) : (
@@ -316,7 +347,18 @@ export default function ArenaScreen() {
           )}
         </View>
 
-        <View style={[styles.infoBox, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
+        <View style={[styles.infoBox, { borderColor: arena.colorCode || "#0A2940" }]}>
+          <View style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: '#FFFFFF',
+            borderRadius: 12,
+          }} />
+          <View style={{
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: lightColor,
+            opacity: 0.3,
+            borderRadius: 12,
+          }} />
           <Text style={styles.label}>Address</Text>
           <Text style={styles.value}>{arena.address}</Text>
 
@@ -332,21 +374,42 @@ export default function ArenaScreen() {
         </TouchableOpacity>
 
         {upcomingGames.length === 0 && (
-                <View style={[styles.section, { backgroundColor: lightColor }]}>
-                  <Text style={styles.sectionTitle}>Upcoming Games</Text>
-                  <Text style={styles.value}>No Upcoming Games</Text>
-                </View>
-              )}
+          <View style={[styles.section]}>
+            <View style={{
+              ...StyleSheet.absoluteFillObject,
+              backgroundColor: '#FFFFFF',
+              borderRadius: 12,
+            }} />
+            <View style={{
+              ...StyleSheet.absoluteFillObject,
+              backgroundColor: lightColor,
+              opacity: 0.3,
+              borderRadius: 12,
+            }} />
+            <Text style={styles.sectionTitle}>Upcoming Games</Text>
+            <Text style={styles.value}>No Upcoming Games</Text>
+          </View>
+        )}
 
         {upcomingGames.length > 0 && (
-          <View style={[styles.section, { backgroundColor: lightColor, borderColor: arena.colorCode || "#0A2940" }]}>
+          <View style={[styles.section, { borderColor: arena.colorCode || "#0A2940" }]}>
+            <View style={{
+              ...StyleSheet.absoluteFillObject,
+              backgroundColor: '#FFFFFF',
+              borderRadius: 12,
+            }} />
+            <View style={{
+              ...StyleSheet.absoluteFillObject,
+              backgroundColor: lightColor,
+              opacity: 0.3,
+              borderRadius: 12,
+            }} />
             <Text style={styles.sectionTitle}>Upcoming Games</Text>
 
-            {/* ONE LINE: 70:54:16 */}
-                <View style={[styles.countdownBox, { backgroundColor: arena.colorCode || "#0A2940" }]}>
-                  <Text style={styles.countdownNumber}>{timeLeft}</Text>
-                  <Text style={styles.countdownLabel}>until next puck drop</Text>
-                </View>
+            <View style={[styles.countdownBox, { backgroundColor: arena.colorCode || "#0A2940" }]}>
+              <Text style={styles.countdownNumber}>{timeLeft}</Text>
+              <Text style={styles.countdownLabel}>until next puck drop</Text>
+            </View>
 
             {upcomingGames.map((game) => (
               <View key={game.id} style={styles.gameCard}>
@@ -365,116 +428,33 @@ export default function ArenaScreen() {
           <Text style={styles.buttonText}>Check-in to live game</Text>
         </TouchableOpacity>
       </ScrollView>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 40,
-    backgroundColor: '#F4F7FA',
-  },
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F4F7FA',
-  },
-  errorText: {
-    fontSize: 18,
-    color: 'red',
-  },
-  header: {
-    padding: 34,
-    alignItems: 'center',
-    fontWeight: 'bold',
-    color: '#0D2C42',
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  arenaName: {
-    fontSize: 28,
-    top: 10,
-    fontWeight: 'bold',
-    color: '#fff',
-    textAlign: 'center',
-  },
-  infoBox: {
-    backgroundColor: 'rgba(255,255,255,0.95)',
-    margin: 4,
-    padding: 16,
-    marginHorizontal: 20,
-    borderRadius: 12,
-    borderWidth: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    alignItems: 'center',
-  },
-  label: {
-    fontSize: 14,
-    color: '#0A2940',
-    fontWeight: 'bold',
-    marginTop: 12,
-  },
-  value: {
-    fontSize: 16,
-    color: '#1F2937',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#0A2940',
-    marginHorizontal: 90,
-    paddingVertical: 18,
-    borderRadius: 30,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  section: {
-    marginTop: 30,
-    marginHorizontal: 20,
-    padding: 16,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    borderWidth: 4,
-    shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#0A2940',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  gameCard: {
-    marginBottom: 12,
-  },
-  gameTextBold: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#0A2940',
-    textAlign: 'center',
-  },
-  gameText: {
-    fontSize: 14,
-    color: '#1F2937',
-    textAlign: 'center',
-  },
-  checkinButton: { backgroundColor: '#0A2940', marginHorizontal: 20, paddingVertical: 14, borderRadius: 10, alignItems: 'center', marginTop: 20, },
-  statCard: { marginHorizontal: 20, marginTop: 8, marginBottom: 8, paddingVertical: 20, borderRadius: 60, alignItems: 'center', width: 120, alignSelf: 'center', borderWidth: 4, backgroundColor: '#FFFFFF', },
-  statNumber: { fontSize: 28, fontWeight: '800', color: '#0A2940', lineHeight: 24, },
-  statLabel: { marginTop: 4, fontSize: 12, color: '#334155', letterSpacing: 0.3, },
-  lastVisitText: { marginTop: 0, fontSize: 12, color: '#475569', },
+  arenaName: { fontSize: 28, top: 10, fontWeight: 'bold', color: '#fff', textAlign: 'center', },
   backButton: { position: 'absolute', top: 32, left: -5, zIndex: 10, borderRadius: 20, padding: 8, },
-  countdownText: { fontSize: 15, fontWeight: '700', color: arenaData.colorCode, textAlign: 'center', marginBottom: 8, },
+  button: { backgroundColor: '#0A2940', marginHorizontal: 90, paddingVertical: 18, borderRadius: 30, alignItems: 'center', marginTop: 10, borderWidth: 2, borderColor: '#2F4F68', },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600', },
+  centered: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F4F7FA', },
+  container: { paddingBottom: 40, backgroundColor: 'transparent', },
   countdownBox: { backgroundColor: '#0A2940', alignSelf: 'center', paddingHorizontal: 24, paddingVertical: 0, borderRadius: 14, marginBottom: 16, minWidth: 150, minHeight: 75, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.35, shadowRadius: 8, elevation: 12, borderWidth: 1, },
-  countdownNumber: { fontSize: 22, fontWeight: '900', color: '#FFFFFF', textAlign: 'center', lineHeight: 46, },
-  countdownTime: { fontSize: 22, fontWeight: '800', color: '#FFFFFF', textAlign: 'center', letterSpacing: 2, fontVariant: ['tabular-nums'], marginTop: -6, },
   countdownLabel: { fontSize: 11, fontWeight: '600', color: '#FFFFFF', textAlign: 'center', marginTop: -10, opacity: 0.9, },
-  loadingOverlay: { position: 'absolute', top: 0, left: 0,  right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', zIndex: 999, justifyContent: 'center', alignItems: 'center', },
+  countdownNumber: { fontSize: 22, fontWeight: '900', color: '#FFFFFF', textAlign: 'center', lineHeight: 46, },
+  errorText: { fontSize: 18, color: 'red', },
+  gameCard: { marginBottom: 12, },
+  gameText: { fontSize: 14, color: '#1F2937', textAlign: 'center', },
+  gameTextBold: { fontSize: 16, fontWeight: 'bold', color: '#0A2940', textAlign: 'center', },
+  header: { padding: 34, alignItems: 'center', fontWeight: 'bold', color: '#0D2C42', marginBottom: 15, textAlign: 'center', },
+  infoBox: { backgroundColor: 'rgba(255,255,255,0.95)', margin: 4, padding: 16, marginHorizontal: 20, borderRadius: 12, borderWidth: 4, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 6, shadowOffset: { width: 0, height: 2 }, alignItems: 'center', },
+  label: { fontSize: 14, color: '#0A2940', fontWeight: 'bold', marginTop: 12, },
+  lastVisitText: { marginTop: 0, fontSize: 12, color: '#475569', },
+  loadingOverlay: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.4)', zIndex: 999, justifyContent: 'center', alignItems: 'center', },
+  section: { marginTop: 30, marginHorizontal: 20, padding: 16, backgroundColor: '#FFFFFF', borderRadius: 12, borderWidth: 4, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4, shadowOffset: { width: 0, height: 2 }, },
+  sectionTitle: { fontSize: 18, fontWeight: '600', color: '#0A2940', marginBottom: 12, textAlign: 'center', },
+  statCard: { marginHorizontal: 20, marginTop: 8, marginBottom: 8, paddingVertical: 20, borderRadius: 60, alignItems: 'center', width: 120, alignSelf: 'center', borderWidth: 4, backgroundColor: '#FFFFFF', },
+  statLabel: { marginTop: 4, fontSize: 12, color: '#334155', letterSpacing: 0.3, },
+  statNumber: { fontSize: 28, fontWeight: '800', color: '#0A2940', lineHeight: 24, },
+  value: { fontSize: 16, color: '#1F2937', textAlign: 'center', },
 });

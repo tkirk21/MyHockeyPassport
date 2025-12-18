@@ -55,8 +55,9 @@
       ],
       "expo-dev-client",
       "expo-router",
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      "expo-asset",
+      "expo-font"
     ],
-    "firebaseServiceAccount": "./firebase/myhockeypassport-firebase-adminsdk-fbsvc-7e8f646d4b.json"
   }
 }

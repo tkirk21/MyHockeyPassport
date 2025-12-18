@@ -42,9 +42,5 @@ export default function LoadingPuck({ style, size = 240 }: LoadingPuckProps) {
 }
 
 const styles = StyleSheet.create({
-  overlay: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent",
-  },
+  overlay: { justifyContent: "center", alignItems: "center", backgroundColor: "transparent", },
 });

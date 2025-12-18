@@ -14,14 +14,39 @@ export default function SettingsScreen() {
   const logout = () => {
     Alert.alert('Log out', 'Are you sure?', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Log Out', onPress: () => auth.signOut().then(() => router.replace('/login')) },
+      {
+        text: 'Log Out',
+        onPress: async () => {
+          try {
+            await auth.signOut();
+            // Force full navigation reset – unmounts EVERYTHING
+            router.dismissAll();  // clears the entire stack
+            router.replace('/login');
+          } catch (error) {
+            console.error('Logout error:', error);
+          }
+        },
+      },
     ]);
   };
 
   const deleteAccount = () => {
     Alert.alert('Delete Account', 'This cannot be undone.', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Delete', style: 'destructive', onPress: () => auth.signOut().then(() => router.replace('/login')) },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await auth.signOut();
+            // Force full navigation reset – unmounts all tabs and kills all listeners
+            router.dismissAll();
+            router.replace('/login');
+          } catch (error) {
+            console.error('Delete account logout error:', error);
+          }
+        },
+      },
     ]);
   };
 

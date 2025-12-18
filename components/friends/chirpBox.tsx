@@ -22,7 +22,8 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
   const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!auth.currentUser) {
+    // If no authenticated user, clear chirps and don't set up listener
+    if (!auth.currentUser?.uid) {
       setChirps([]);
       return;
     }
@@ -40,6 +41,7 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
       console.error("Chirp listener error:", err);
     });
 
+    // Cleanup on unmount or when user/friendId/checkinId changes
     return () => unsub();
   }, [friendId, checkinId, auth.currentUser?.uid]);
 

@@ -13,7 +13,7 @@
     "secondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles",
-    "startDate": "1994-09-01",
+    "startDate": "1993-09-01",
     "endDate": null
   },
   {
@@ -25,12 +25,12 @@
     "website": "https://nhl.com/bruins",
     "latitude": 42.3662,
     "longitude": -71.0621,
-    "color": "Boston Gold",
+    "color": "Black",
     "colorCode": "#000000",
     "Secondary Color": "#febd00",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1925-09-01",
+    "startDate": "1929-09-01",
     "endDate": null
   },
   {
@@ -47,7 +47,7 @@
     "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1971-09-01",
+    "startDate": "1996-09-01",
     "endDate": null
   },
   {
@@ -64,7 +64,7 @@
     "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/Edmonton",
-    "startDate": "1981-09-01",
+    "startDate": "1983-09-01",
     "endDate": null
   },
   {
@@ -81,7 +81,7 @@
     "SecondaryColor": "#b20f00",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1998-09-01",
+    "startDate": "1999-09-01",
     "endDate": null
   },
   {
@@ -98,7 +98,7 @@
     "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Chicago",
-    "startDate": "1927-09-01",
+    "startDate": "1995-09-01",
     "endDate": null
   },
   {
@@ -149,7 +149,7 @@
     "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Chicago",
-    "startDate": "1994-09-01",
+    "startDate": "2001-09-01",
     "endDate": null
   },
   {
@@ -200,7 +200,7 @@
     "SecondaryColor": "#0000ff",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1994-09-01",
+    "startDate": "1998-09-01",
     "endDate": null
   },
   {
@@ -234,7 +234,7 @@
     "colorCode": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles",
-    "startDate": "1968-09-01",
+    "startDate": "1999-09-01",
     "endDate": null
   },
   {
@@ -268,7 +268,7 @@
     "SecondaryColor": "#191970",
     "league": "NHL",
     "timezone": "America/Toronto",
-    "startDate": "1918-09-01",
+    "startDate": "1996-09-01",
     "endDate": null
   },
   {
@@ -319,7 +319,7 @@
     "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1983-09-01",
+    "startDate": "2008-09-01",
     "endDate": null
   },
   {
@@ -336,7 +336,7 @@
     "SecondaryColor": "#ffa500",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1973-09-01",
+    "startDate": "2001-09-01",
     "endDate": null
   },
   {
@@ -353,7 +353,7 @@
     "SecondaryColor": "#ff0000",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1927-09-01",
+    "startDate": "1968-09-01",
     "endDate": null
   },
   {
@@ -370,7 +370,7 @@
     "SecondaryColor": "#ff0000",
     "league": "NHL",
     "timezone": "America/Toronto",
-    "startDate": "1993-09-01",
+    "startDate": "1996-09-01",
     "endDate": null
   },
   {
@@ -387,7 +387,7 @@
     "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1968-09-01",
+    "startDate": "1996-09-01",
     "endDate": null
   },
   {
@@ -404,7 +404,7 @@
     "SecondaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1968-09-01",
+    "startDate": "2010-09-01",
     "endDate": null
   },
   {
@@ -438,7 +438,7 @@
     "SecondaryColor": "#000000",
     "league": "NHL",
     "timezone": "America/Los_Angeles",
-    "startDate": "1992-09-01",
+    "startDate": "1994-09-01",
     "endDate": null
   },
   {
@@ -472,7 +472,7 @@
     "SeconaryColor": "#ffff00",
     "league": "NHL",
     "timezone": "America/Chicago",
-    "startDate": "1968-09-01",
+    "startDate": "1994-09-01",
     "endDate": null
   },
   {
@@ -489,7 +489,7 @@
     "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1993-09-01",
+    "startDate": "1996-09-01",
     "endDate": null
   },
   {
@@ -523,7 +523,7 @@
     "SecondaryColor": "#ffffff",
     "league": "NHL",
     "timezone": "America/Toronto",
-    "startDate": "1927-09-01",
+    "startDate": "1999-09-01",
     "endDate": null
   },
   {
@@ -557,7 +557,7 @@
     "SecondaryColor": "#00843D",
     "league": "NHL",
     "timezone": "America/Vancouver",
-    "startDate": "1971-09-01",
+    "startDate": "1995-09-01",
     "endDate": null
   },
   {
@@ -623,7 +623,9 @@
     "color": "Field Green",
     "colorCode": "#105842",
     "league": "AHL",
-    "timezone": "America/Vancouver"
+    "timezone": "America/Vancouver",
+    "startDate": "2021-09-01",
+    "endDate": null
   },
   {
     "teamName": "Bakersfield Condors",
@@ -788,7 +790,7 @@
   {
     "teamName": "Hartford Wolf Pack",
     "teamCode": "HFD",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "address": "1 Civic Center Plaza, Hartford, CT 06103",
     "website": "https://hartfordwolfpack.com",
@@ -797,7 +799,9 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "2013-09-01",
+    "endDate": null
   },
   {
     "teamName": "Henderson Silver Knights",
@@ -827,7 +831,9 @@
     "color": "Chocolate",
     "colorCode": "#3b1d0f",
     "league": "AHL",
-    "timezone": "America/New_York"
+    "timezone": "America/New_York",
+    "startDate": "1938-09-01",
+    "endDate": null
   },
   {
     "teamName": "Iowa Wild",
@@ -2232,7 +2238,7 @@
   {
     "teamName": "Baie-Comeau Drakkar",
     "teamCode": "BAC",
-    "arena": "Centre Henry-Leonard",
+    "arena": "Centre sportif Alcoa",
     "city": "Baie-Comeau, Quebec",
     "address": "70 Av. Michel-Émond, Baie-Comeau, QC G4Z 2A5, Canada",
     "website": "https://le-drakkar.com",
@@ -2241,7 +2247,9 @@
     "color": "Dark Red",
     "colorCode": "#c8102e",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1997-09-01",
+    "endDate": null
   },
   {
     "teamName": "Chicoutimi Saguenéens",
@@ -2255,7 +2263,9 @@
     "color": "Blue",
     "colorCode": "#0055a4",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1973-09-01",
+    "endDate": null
   },
   {
     "teamName": "Quebec Remparts",
@@ -2269,7 +2279,9 @@
     "color": "Red",
     "colorCode": "#e4002b",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1997-09-01",
+    "endDate": null
   },
   {
     "teamName": "Rimouski Océanic",
@@ -2283,21 +2295,25 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1995-09-01",
+    "endDate": null
   },
   {
-    "teamName": "Acadie–Bathurst Titan",
-    "teamCode": "ABT",
-    "arena": "K.C. Irving Regional Centre",
-    "city": "Bathurst, New Brunswick",
-    "address": "14 Sean Couturier Ave, Bathurst, NB E2A 6X2, Canada",
-    "website": "https://letitan.com",
-    "latitude": 47.62877278,
-    "longitude": -65.68085434,
-    "color": "Red",
-    "colorCode": "#841617",
+    "teamName": "Cape Breton Eagles",
+    "teamCode": "CBE",
+    "arena": "Centre 200",
+    "city": "Sydney, Nova Scotia",
+    "address": "481 George St, Sydney, NS B1P 1K5, Canada",
+    "website": "https://chl.ca/lhjmq-eagles",
+    "latitude": 46.13735796674902,
+    "longitude": -60.190371633890805,
+    "color": "Black",
+    "colorCode": "#000000",
     "league": "QMJHL",
-    "timezone": "America/Moncton"
+    "timezone": "America/Toronto",
+    "startDate": "2019-09-01",
+    "endDate": null
   },
   {
     "teamName": "Charlottetown Islanders",
@@ -2311,7 +2327,9 @@
     "color": "Gold",
     "colorCode": "#b4975a",
     "league": "QMJHL",
-    "timezone": "America/Halifax"
+    "timezone": "America/Halifax",
+    "startDate": "2013-09-01",
+    "endDate": null
   },
   {
     "teamName": "Halifax Mooseheads",
@@ -2325,7 +2343,9 @@
     "color": "Green",
     "colorCode": "#007749",
     "league": "QMJHL",
-    "timezone": "America/Halifax"
+    "timezone": "America/Halifax",
+    "startDate": "1994-09-01",
+    "endDate": null
   },
   {
     "teamName": "Moncton Wildcats",
@@ -2339,7 +2359,9 @@
     "color": "Red",
     "colorCode": "#c8102e",
     "league": "QMJHL",
-    "timezone": "America/Moncton"
+    "timezone": "America/Moncton",
+    "startDate": "1996-09-01",
+    "endDate": null
   },
   {
     "teamName": "Newfoundland Regiment",
@@ -2353,7 +2375,9 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "QMJHL",
-    "timezone": "America/St_Johns"
+    "timezone": "America/St_Johns",
+    "startDate": "2025-09-01",
+    "endDate": null
   },
   {
     "teamName": "Saint John Sea Dogs",
@@ -2367,7 +2391,9 @@
     "color": "Blue",
     "colorCode": "#0066b3",
     "league": "QMJHL",
-    "timezone": "America/Moncton"
+    "timezone": "America/Moncton",
+    "startDate": "2005-09-01",
+    "endDate": null
   },
   {
     "teamName": "Blainville-Boisbriand Armada",
@@ -2381,7 +2407,9 @@
     "color": "Black",
     "colorCode": "#000000",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2011-09-01",
+    "endDate": null
   },
   {
     "teamName": "Gatineau Olympiques",
@@ -2395,7 +2423,9 @@
     "color": "Black",
     "colorCode": "#000001",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2003-09-01",
+    "endDate": null
   },
   {
     "teamName": "Rouyn-Noranda Huskies",
@@ -2409,12 +2439,14 @@
     "color": "Red",
     "colorCode": "#c8102e",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1996-09-01",
+    "endDate": null
   },
   {
     "teamName": "Val-d'Or Foreurs",
     "teamCode": "VAL",
-    "arena": "Centre Aignico Eagle",
+    "arena": "Centre Agnico Eagle",
     "city": "Val-d'Or, Quebec",
     "address": "810 6e Ave, Val-d'Or, Quebec J9P 1B4, Canada",
     "website": "https://foreurs.qc.ca",
@@ -2423,7 +2455,9 @@
     "color": "Green",
     "colorCode": "#007749",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1993-09-01",
+    "endDate": null
   },
   {
     "teamName": "Drummondville Voltigeurs",
@@ -2437,7 +2471,9 @@
     "color": "Red",
     "colorCode": "#c8102e",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1982-09-01",
+    "endDate": null
   },
   {
     "teamName": "Shawinigan Cataractes",
@@ -2451,7 +2487,9 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1978-09-01",
+    "endDate": null
   },
   {
     "teamName": "Sherbrooke Phoenix",
@@ -2465,7 +2503,9 @@
     "color": "Navy Blue",
     "colorCode": "#00205b",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "2012-09-01",
+    "endDate": null
   },
   {
     "teamName": "Victoriaville Tigres",
@@ -2479,7 +2519,9 @@
     "color": "Gold",
     "colorCode": "#f1b20f",
     "league": "QMJHL",
-    "timezone": "America/Toronto"
+    "timezone": "America/Toronto",
+    "startDate": "1987-09-01",
+    "endDate": null
   },
   {
     "teamName": "Kamloops Blazers",

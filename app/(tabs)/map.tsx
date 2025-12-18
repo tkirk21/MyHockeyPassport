@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { getFirestore, collection, getDocs, query } from 'firebase/firestore';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Alert, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, Polyline, UrlTile } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
@@ -26,9 +26,11 @@ export default function MapScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedArenaCheckIns, setSelectedArenaCheckIns] = useState<any[]>([]);
   const [allCheckIns, setAllCheckIns] = useState<any[]>([]);
+  const [travelCoords, setTravelCoords] = useState<{latitude: number, longitude: number}[]>([]);
   const router = useRouter();
   const [showTravelLines, setShowTravelLines] = useState(false);
   const [travelAnimValue, setTravelAnimValue] = useState(0);
+  const showTravel = showTravelLines && travelCoords.length > 1;
 
   useEffect(() => {
     const load = async () => {
@@ -43,30 +45,77 @@ export default function MapScreen() {
   }, [selectedLeague]);
 
   // Travel line animation when toggling
-    useEffect(() => {
-      if (showTravelLines) {
-        // Start fresh
-        setTravelAnimValue(0);
+  useEffect(() => {
+    if (showTravelLines) {
+      setTravelAnimValue(0);
 
-        let start = Date.now();
-        let duration = 60000; // 1 minute animation
+      let start = Date.now();
+      let duration = 60000;
 
-        const tick = () => {
-          let elapsed = Date.now() - start;
-          let progress = Math.min(elapsed / duration, 1);
-          setTravelAnimValue(progress);
+      const tick = () => {
+        let elapsed = Date.now() - start;
+        let progress = Math.min(elapsed / duration, 1);
+        setTravelAnimValue(progress);
 
-          if (progress < 1) {
-            requestAnimationFrame(tick);
-          }
-        };
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      };
 
-        requestAnimationFrame(tick);
-      } else {
-        // If hidden, reset value
-        setTravelAnimValue(0);
+      requestAnimationFrame(tick);
+    } else {
+      setTravelAnimValue(0);
+    }
+  }, [showTravelLines]);
+
+  const norm = (s: string) => (s ?? '').toString().trim().toLowerCase();
+
+  const getCurrentArenaName = (oldName: string) => {
+    if (!oldName) return oldName;
+    const lowerOld = norm(oldName);
+    for (const h of arenaHistoryData) {
+      if (h.history.some((e: any) => norm(e.name) === lowerOld)) {
+        return h.currentArena;
       }
-    }, [showTravelLines]);
+    }
+    return oldName;
+  };
+
+  const groupedCheckIns = useMemo(() => {
+    if (selectedArenaCheckIns.length === 0) return [];
+
+    const groups = new Map<string, any[]>();
+
+    selectedArenaCheckIns.forEach(ci => {
+      const oldName = ci.arenaName || 'Unknown';
+
+      // Group purely by the original name that was used in the check-in
+      const groupKey = oldName;
+
+      if (!groups.has(groupKey)) groups.set(groupKey, []);
+      groups.get(groupKey)!.push(ci);
+    });
+
+    // Sort each group's check-ins newest → oldest
+    groups.forEach(list => {
+      list.sort((a, b) => new Date(b.gameDate).getTime() - new Date(a.gameDate).getTime());
+    });
+
+    // Build the result array
+    const result: { name: string; checkIns: any[] }[] = [];
+    groups.forEach((checkIns, name) => {
+      result.push({ name, checkIns });
+    });
+
+    // Sort the groups themselves by the newest check-in in each group (newest group on top)
+    result.sort((a, b) => {
+      const newestA = new Date(a.checkIns[0].gameDate).getTime(); // a.checkIns[0] is newest in its group
+      const newestB = new Date(b.checkIns[0].gameDate).getTime();
+      return newestB - newestA; // descending = newest group first
+    });
+
+    return result;
+  }, [selectedArenaCheckIns]);
 
   useEffect(() => {
     const loadEverything = async () => {
@@ -104,19 +153,6 @@ export default function MapScreen() {
           const data = doc.data();
           all.push({ id: doc.id, ...data });
 
-          const norm = (s: any) => (s ?? '').toString().trim().toLowerCase();
-
-          const getCurrentArenaName = (oldName: any) => {
-            if (!oldName) return oldName;
-            const lowerOld = norm(oldName);
-            for (const h of arenaHistoryData) {
-              if (h.history.some((e: any) => norm(e.name) === lowerOld)) {
-                return h.currentArena;
-              }
-            }
-            return oldName;
-          };
-
           const currentArenaName = getCurrentArenaName(data.arenaName);
           const key = `${data.league}-${currentArenaName}`;
 
@@ -135,7 +171,7 @@ export default function MapScreen() {
 
           if (!match && data.arenaName) {
             const historyEntry = arenaHistoryData.find((h: any) =>
-              h.history.some((entry: any) => entry.name === data.arenaName)
+              h.history.some((entry: any) => norm(entry.name) === norm(data.arenaName))
             );
             if (historyEntry) {
               match = (arenasData as any[]).find(
@@ -170,8 +206,32 @@ export default function MapScreen() {
 
         setAllCheckIns(all);
         setPins(markers);
+
         const leaguesSet = new Set(markers.map(m => String(m.league || '').toUpperCase()).filter(Boolean));
         setLeagueOptions(['All', ...Array.from(leaguesSet)]);
+
+        // Build travel coordinates - oldest to newest
+        const sortedCheckIns = [...all].sort((a, b) => new Date(a.gameDate).getTime() - new Date(b.gameDate).getTime());
+
+        const coords = sortedCheckIns
+          .map(ci => {
+            const currentName = getCurrentArenaName(ci.arenaName);
+            const match = (arenasData as any[]).find(
+              (a: any) => a.league === ci.league && a.arena === currentName
+            );
+
+            let lat = match ? match.latitude : ci.latitude;
+            let lng = match ? match.longitude : ci.longitude;
+
+            if (lat != null && lng != null) {
+              return { latitude: lat, longitude: lng };
+            }
+            return null;
+          })
+          .filter(Boolean) as { latitude: number; longitude: number }[];
+
+        setTravelCoords(coords);
+
       } catch (error: any) {
         console.error('Error loading check-ins:', error);
         if (error.code === 'permission-denied') {
@@ -208,8 +268,8 @@ export default function MapScreen() {
 
   if (pins.length === 0) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#0A2940', textAlign: 'center' }}>
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>
           No arenas visited yet
         </Text>
       </View>
@@ -221,85 +281,41 @@ export default function MapScreen() {
     : pins.filter(p => String(p.league || '').toUpperCase() === selectedLeague.toUpperCase());
 
   const openCheckInModal = (checkIns: any[]) => {
-    setSelectedArenaCheckIns(checkIns);
+    setSelectedArenaCheckIns(checkIns.sort((a, b) => new Date(b.gameDate).getTime() - new Date(a.gameDate).getTime()));
     setModalVisible(true);
   };
-
-  const norm = (s: string) => s.toString().trim().toLowerCase();
-
-  const getCurrentArenaName = (oldName: string) => {
-    if (!oldName) return oldName;
-    const lowerOld = norm(oldName);
-    for (const h of arenaHistoryData) {
-      if (h.history.some((e: any) => norm(e.name) === lowerOld)) {
-        return h.currentArena;
-      }
-    }
-    return oldName;
-  };
-
-  // Build chronological travel path
-  const travelCoords = visiblePins
-    .map(pin => {
-      const checkInsHere = allCheckIns.filter(ci => {
-        if (!ci.arenaName || !pin.title) return false;
-        return norm(getCurrentArenaName(ci.arenaName)) === norm(pin.title);
-      });
-
-      if (!checkInsHere.length) return null;
-
-      const validDates = checkInsHere
-        .map(ci => {
-          const d = new Date(ci.gameDate);
-          return isNaN(d.getTime()) ? null : { ...ci, dateVal: d.getTime() };
-        })
-        .filter(Boolean);
-
-      if (!validDates.length) return null;
-
-      const earliest = validDates.reduce((a, b) =>
-        a.dateVal < b.dateVal ? a : b
-      );
-
-      return {
-        latitude: pin.latitude,
-        longitude: pin.longitude,
-        sortKey: earliest.dateVal,
-      };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.sortKey - b.sortKey)
-    .map(p => ({
-      latitude: p.latitude,
-      longitude: p.longitude,
-    }));
 
   return (
     <View style={{ flex: 1 }}>
       <Modal visible={modalVisible} transparent={true} animationType="slide">
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>
-              {selectedArenaCheckIns[0]?.arenaName || 'Check-ins'}
-            </Text>
             <FlatList
-              data={selectedArenaCheckIns}
-              keyExtractor={(item) => item.id}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.checkInRow}
-                  onPress={() => {
-                    setModalVisible(false);
-                    router.push(`/checkin/${item.id}?userId=${auth.currentUser?.uid}`);
-                  }}
-                >
-                  <Text style={styles.checkInDate}>
-                    {new Date(item.gameDate).toLocaleDateString()}
+              data={groupedCheckIns}
+              keyExtractor={(group) => group.name}
+              renderItem={({ item: group }) => (
+                <View style={{ marginBottom: 20 }}>
+                  <Text style={styles.groupTitle}>
+                    {group.name}
                   </Text>
-                  <Text style={styles.checkInMatchup}>
-                    {item.teamName} vs {item.opponent}
-                  </Text>
-                </TouchableOpacity>
+                  {group.checkIns.map((ci) => (
+                    <TouchableOpacity
+                      key={ci.id}
+                      style={styles.checkInRow}
+                      onPress={() => {
+                        setModalVisible(false);
+                        router.push(`/checkin/${ci.id}?userId=${auth.currentUser?.uid}`);
+                      }}
+                    >
+                      <Text style={styles.checkInDate}>
+                        {new Date(ci.gameDate).toLocaleDateString()}
+                      </Text>
+                      <Text style={styles.checkInMatchup}>
+                        {ci.teamName} vs {ci.opponent}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
               )}
             />
             <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
@@ -344,7 +360,7 @@ export default function MapScreen() {
           zIndex={0}
         />
 
-        {showTravelLines && travelCoords.length > 1 && (
+        {showTravel && (
           <Polyline
             coordinates={travelCoords.slice(
               0,
@@ -361,13 +377,9 @@ export default function MapScreen() {
         )}
 
         {visiblePins.map(pin => {
-          const safeNorm = (s: any) => (s ?? '').toString().trim().toLowerCase();
-
-          const checkInsAtArena = allCheckIns.filter(ci => {
-            const ciName = ci.arenaName || '';
-            const pinName = pin.title || '';
-            return safeNorm(getCurrentArenaName(ciName)) === safeNorm(pinName);
-          });
+          const checkInsAtArena = allCheckIns.filter(ci =>
+            norm(getCurrentArenaName(ci.arenaName || '')) === norm(pin.title || '')
+          );
 
           const visitCount = checkInsAtArena.length;
 
@@ -378,22 +390,23 @@ export default function MapScreen() {
               title={pin.title || 'Arena'}
               onPress={() => openCheckInModal(checkInsAtArena)}
             >
-              <View style={{ alignItems: 'center' }}>
-                {/* Visit Count Badge */}
+              <View style={styles.markerContainer}>
                 {visitCount > 1 && (
                   <View style={styles.visitBadge}>
                     <Text style={styles.visitBadgeText}>{visitCount}x</Text>
                   </View>
                 )}
 
-                {/* Pin */}
-                <View style={{ width: 40, height: 40, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+                <View style={styles.pinContainer}>
                   <Image
                     source={require('../../assets/images/pin_template.png')}
-                    style={{ width: 40, height: 40, tintColor: pin.colorCode || 'black' }}
+                    style={[styles.pinImage, { tintColor: pin.colorCode || 'black' }]}
                     resizeMode="contain"
                   />
-                  <Text style={{ position: 'absolute', top: 6, left: 10, color: 'white', fontWeight: 'bold', fontSize: 8 }}>
+                  <Text
+                    key="teamCode"
+                    style={styles.teamCodeText}
+                  >
                     {pin.teamCode || ''}
                   </Text>
                 </View>
@@ -407,120 +420,26 @@ export default function MapScreen() {
 }
 
 const styles = StyleSheet.create({
+  checkInRow: { padding: 12, borderBottomWidth: 1, borderBottomColor: '#eee', },
+  checkInDate: { fontSize: 16, fontWeight: '600', },
+  checkInMatchup: { fontSize: 14, color: '#555', },
+  closeButton: { marginTop: 10, padding: 10, backgroundColor: '#0D2C42', borderRadius: 8, alignItems: 'center', },
+  closeButtonText: { color: 'white', fontWeight: 'bold', },
+  dropdownContainer: { position: 'absolute', top: 55, alignSelf: 'center', width: '92%', zIndex: 10, backgroundColor: '#FFFFFF', borderRadius: 16, overflow: 'hidden', elevation: 12, shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 12, shadowOffset: { width: 0, height: 6 }, borderWidth: 3, borderColor: '#0D2C42', },
+  emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', },
+  emptyText: { fontSize: 18, fontWeight: '600', color: '#0A2940', textAlign: 'center', },
+  groupTitle: { fontSize: 18, fontWeight: 'bold', color: '#0A2940', marginBottom: 8, textAlign: 'center', width: '100%', },
+  loadingOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF', },
   map: { flex: 1 },
-  checkInRow: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  checkInDate: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  checkInMatchup: {
-    fontSize: 14,
-    color: '#555',
-  },
-  closeButton: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: '#0D2C42',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  closeButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  dropdownContainer: {
-    position: 'absolute',
-    top: 55,
-    alignSelf: 'center',
-    width: '92%',
-    zIndex: 10,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    overflow: 'hidden',
-    elevation: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 6 },
-    borderWidth: 3,
-    borderColor: '#0D2C42',
-  },
-  loadingOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContent: {
-    width: '90%',
-    maxHeight: '80%',
-    backgroundColor: 'white',
-    borderRadius: 12,
-    padding: 20,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  picker: {
-    height: 56,
-    width: '100%',
-    fontSize: 17,
-    fontWeight: '600',
-    color: '#0A2940',
-    backgroundColor: '#FFFFFF',
-  },
-  travelLinesButton: {
-    position: 'absolute',
-    bottom: 30,
-    alignSelf: 'center',
-    backgroundColor: "#0D2C42",  // ← change this color anytime
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 30,
-    zIndex: 10,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 4 },
-    borderWidth: 3,
-    borderColor: '#2F4F68',
-  },
-  travelLinesButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  visitBadge: {
-    backgroundColor: '#D32F2F',    // red
-    width: 15,
-    height: 15,
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 16,
-    right: 26,
-    zIndex: 2,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  visitBadgeText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 6,
-  },
+  markerContainer: { alignItems: 'center', },
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', },
+  modalContent: { width: '90%', maxHeight: '80%', backgroundColor: 'white', borderRadius: 12, padding: 20, },
+  pinContainer: { width: 40, height: 40, justifyContent: 'center', alignItems: 'center', position: 'relative', },
+  pinImage: { width: 40, height: 40, },
+  picker: { height: 56, width: '100%', fontSize: 17, fontWeight: '600', color: '#0A2940', backgroundColor: '#FFFFFF', },
+  teamCodeText: { position: 'absolute', top: 6, left: 10, color: 'white', fontWeight: 'bold', fontSize: 8, },
+  travelLinesButton: { position: 'absolute', bottom: 30, alignSelf: 'center', backgroundColor: "#0D2C42", paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, zIndex: 10, elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, borderWidth: 3, borderColor: '#2F4F68', },
+  travelLinesButtonText: { color: 'white', fontWeight: 'bold', fontSize: 16, },
+  visitBadge: { backgroundColor: '#D32F2F', width: 15, height: 15, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 16, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
+  visitBadgeText: { color: 'white', fontWeight: 'bold', fontSize: 6, },
 });

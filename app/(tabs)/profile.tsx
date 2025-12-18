@@ -950,6 +950,3 @@ const styles = StyleSheet.create({
   profileActionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  marginTop: 12, gap: 30, },
   settingsGearButton: { padding: 10, },
 });
-
-
-

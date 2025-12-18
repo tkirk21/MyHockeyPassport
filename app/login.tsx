@@ -308,11 +308,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 12,
   },
-  passwordInput: {
-    borderWidth: 0,
-    flex: 1,
-    marginBottom: 0,
-  },
+  passwordInput: { borderWidth: 0, flex: 1, marginBottom: 0, },
   toggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '70%', alignSelf: 'center', marginTop: 0, marginBottom: -20, },
   toggleText: { fontSize: 13, color: colors.secondary, fontWeight: '500', marginRight: -10, },
   socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },

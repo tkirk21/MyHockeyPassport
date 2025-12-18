@@ -53,26 +53,15 @@ export async function saveTokenToDatabase(token: string) {
 
 // Call this once on app start (e.g. in App.tsx)
 export async function setupNotifications() {
-  console.log('Starting notification setup...');
-
   try {
-    console.log('Calling registerForPushNotificationsAsync...');
     const token = await registerForPushNotificationsAsync();
-    console.log('registerForPushNotificationsAsync finished');
 
     if (token) {
-      console.log('✅ Push token received:', token);
       await saveTokenToDatabase(token);
-      console.log('Token saved to database');
     } else {
-      console.log('❌ No token returned');
     }
   } catch (error) {
-    console.log('💥 ERROR in notification setup:', error);
-    console.log('Full error:', JSON.stringify(error));
   }
-
-  console.log('Setting notification handler...');
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -80,5 +69,4 @@ export async function setupNotifications() {
       shouldSetBadge: false,
     }),
   });
-  console.log('Notification handler set');
 }
