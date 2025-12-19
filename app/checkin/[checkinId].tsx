@@ -50,6 +50,14 @@ export default function CheckinDetailsScreen() {
           }
 
           setCheckin(snap.data());
+
+          if (currentUser) {
+            await setDoc(
+              doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
+              { timestamp: serverTimestamp() },
+              { merge: true }
+            ).catch(() => {});
+          }
         } catch (err: any) {
           console.error("❌ Firestore error:", err);
 
@@ -310,126 +318,22 @@ export default function CheckinDetailsScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-  arenaCard: {
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
-    marginTop: -10,
-    marginHorizontal: 10,
-  },
-  detailsCard: {
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
-    marginHorizontal: 20,
-    borderWidth: 1,
-    borderColor: "#ffffff44",
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-  },
-  merchCard: {
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
-    marginHorizontal: 20,
-    borderWidth: 1,
-    borderColor: "#ffffff44",
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-  },
-  photoCard: {
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 24,
-    marginHorizontal: 20,
-    borderWidth: 1,
-    borderColor: "#ffffff44",
-    shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 3 },
-  },
-  category: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#fff",
-    marginBottom: 4,
-  },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  detail: {
-    fontSize: 16,
-    color: "#fff",
-    marginBottom: 6,
-  },
-  error: {
-    fontSize: 18,
-    color: "red",
-  },
-  gameDate: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#FFFFFF",
-    marginTop: 4,
-    textAlign: "center",
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#FFFFFF",
-  },
-  listItem: {
-    fontSize: 15,
-    color: "#fff",
-    marginLeft: 20,
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  photo: {
-    width: "100%",
-    height: 220,
-    borderRadius: 10,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#fff",
-  },
-  sub: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#fff",
-    textAlign: "center",
-    marginBottom: 2,
-  },
-  title: {
-    fontSize: 34,
-    fontWeight: "bold",
-    color: "#fff", // text white over team colors
-    marginTop: -8,
-    textAlign: "center",
-    textShadowColor: '#ffffff',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  value: {
-    fontSize: 15,
-    fontWeight: "400",
-    marginLeft: 20,
-    color: "#FFFFFF",
-    marginBottom: 6,
-  },
+  background: { flex: 1, width: "100%", height: "100%", },
+  arenaCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginTop: -10, marginHorizontal: 10, },
+  detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  merchCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  photoCard: { padding: 16, borderRadius: 12, marginBottom: 24, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  category: { fontSize: 15, fontWeight: "600", color: "#fff", marginBottom: 4, },
+  centered: { flex: 1, justifyContent: "center", alignItems: "center", },
+  detail: { fontSize: 16, color: "#fff", marginBottom: 6, },
+  error: { fontSize: 18, color: "red", },
+  gameDate: { fontSize: 16, fontWeight: "500", color: "#FFFFFF", marginTop: 4, textAlign: "center", },
+  label: { fontSize: 18, fontWeight: "700", color: "#FFFFFF", },
+  listItem: { fontSize: 15, color: "#fff", marginLeft: 20, },
+  overlay: { ...StyleSheet.absoluteFillObject, },
+  photo: { width: "100%", height: 220, borderRadius: 10, },
+  sectionTitle: { fontSize: 18, fontWeight: "700", color: "#fff", },
+  sub: { fontSize: 16, fontWeight: "600", color: "#fff", textAlign: "center", marginBottom: 2, },
+  title: { fontSize: 34, fontWeight: "bold", color: "#fff", marginTop: -8, textAlign: "center", textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+  value: { fontSize: 15, fontWeight: "400", marginLeft: 20, color: "#FFFFFF", marginBottom: 6, },
 });

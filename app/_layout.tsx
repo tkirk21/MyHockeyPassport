@@ -6,7 +6,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
-import { setupNotifications } from '../utils/notifications';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -19,7 +20,13 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    setupNotifications();
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        registerForPushNotificationsAsync();
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
   if (!loaded) return null;

@@ -1,122 +1,309 @@
 [
   {
-    "date": "2025-08-09T17:00:00+10:00",
-    "awayTeam": "Adelaide Adrenaline",
-    "homeTeam": "Newcastle Northstars",
-    "location": "Hunter Ice Skating Stadium",
-    "league": "AIHL"
+    "id": "aihl_2025080901",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2025-08-09T07:00:00Z"
   },
   {
-    "date": "2025-08-09T17:00:00+10:00",
-    "awayTeam": "Central Coast Rhinos",
-    "homeTeam": "Canberra Brave",
-    "location": "AIS Arena",
-    "league": "AIHL"
+    "id": "aihl_2025080902",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Central Coast Rhinos",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2025-08-09T07:00:00Z"
   },
   {
-    "date": "2025-08-10T15:30:00+10:00",
-    "awayTeam": "Adelaide Adrenaline",
-    "homeTeam": "Central Coast Rhinos",
-    "location": "Erina Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081003",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2025-08-10T05:30:00Z"
   },
   {
-    "date": "2025-08-10T15:30:00+10:00",
-    "awayTeam": "Newcastle Northstars",
-    "homeTeam": "Canberra Brave",
-    "location": "AIS Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081004",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Newcastle Northstars",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2025-08-10T05:30:00Z"
   },
   {
-    "date": "2025-08-16T15:30:00+10:00",
-    "awayTeam": "Brisbane Lightning",
-    "homeTeam": "Central Coast Rhinos",
-    "location": "Erina Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081605",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Brisbane Lightning",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2025-08-16T05:30:00Z"
   },
   {
-    "date": "2025-08-16T17:00:00+10:00",
-    "awayTeam": "Canberra Brave",
-    "homeTeam": "Melbourne Mustangs",
-    "location": "O'Brien Icehouse",
-    "league": "AIHL"
+    "id": "aihl_2025081606",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2025-08-16T07:00:00Z"
   },
   {
-    "date": "2025-08-16T16:15:00+09:30",
-    "awayTeam": "Perth Thunder",
-    "homeTeam": "Adelaide Adrenaline",
-    "location": "Adelaide Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081607",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Perth Thunder",
+    "arena": "Adelaide Ice Arena",
+    "city": "Adelaide, SA",
+    "date": "2025-08-16T06:45:00Z"
   },
   {
-    "date": "2025-08-17T14:00:00+10:00",
-    "awayTeam": "Canberra Brave",
-    "homeTeam": "Melbourne Ice",
-    "location": "O'Brien Icehouse",
-    "league": "AIHL"
+    "id": "aihl_2025081708",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2025-08-17T04:00:00Z"
   },
   {
-    "date": "2025-08-17T15:30:00+10:00",
-    "awayTeam": "Brisbane Lightning",
-    "homeTeam": "Central Coast Rhinos",
-    "location": "Erina Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081709",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Brisbane Lightning",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2025-08-17T05:30:00Z"
   },
   {
-    "date": "2025-08-17T16:15:00+09:30",
-    "awayTeam": "Perth Thunder",
-    "homeTeam": "Adelaide Adrenaline",
-    "location": "Adelaide Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025081710",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Perth Thunder",
+    "arena": "Adelaide Ice Arena",
+    "city": "Adelaide, SA",
+    "date": "2025-08-17T06:45:00Z"
   },
   {
-    "date": "2025-08-23T16:45:00+10:00",
-    "awayTeam": "Newcastle Northstars",
-    "homeTeam": "Brisbane Lightning",
-    "location": "Boondall Iceworld",
-    "league": "AIHL"
+    "id": "aihl_2025082311",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Newcastle Northstars",
+    "arena": "Boondall Iceworld",
+    "city": "Brisbane, QLD",
+    "date": "2025-08-23T06:45:00Z"
   },
   {
-    "date": "2025-08-23T17:00:00+10:00",
-    "awayTeam": "Adelaide Adrenaline",
-    "homeTeam": "Melbourne Ice",
-    "location": "O'Brien Icehouse",
-    "league": "AIHL"
+    "id": "aihl_2025082312",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2025-08-23T07:00:00Z"
   },
   {
-    "date": "2025-08-23T16:00:00+08:00",
-    "awayTeam": "Melbourne Mustangs",
-    "homeTeam": "Perth Thunder",
-    "location": "Perth Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025082313",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2025-08-23T08:00:00Z"
   },
   {
-    "date": "2025-08-24T14:00:00+10:00",
-    "awayTeam": "Adelaide Adrenaline",
-    "homeTeam": "Melbourne Ice",
-    "location": "O'Brien Icehouse",
-    "league": "AIHL"
+    "id": "aihl_2025082414",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2025-08-24T04:00:00Z"
   },
   {
-    "date": "2025-08-24T15:30:00+10:00",
-    "awayTeam": "Canberra Brave",
-    "homeTeam": "Central Coast Rhinos",
-    "location": "Erina Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025082415",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Canberra Brave",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2025-08-24T05:30:00Z"
   },
   {
-    "date": "2025-08-24T15:45:00+10:00",
-    "awayTeam": "Newcastle Northstars",
-    "homeTeam": "Brisbane Lightning",
-    "location": "Boondall Iceworld",
-    "league": "AIHL"
+    "id": "aihl_2025082416",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Newcastle Northstars",
+    "arena": "Boondall Iceworld",
+    "city": "Brisbane, QLD",
+    "date": "2025-08-24T05:45:00Z"
   },
   {
-    "date": "2025-08-24T16:00:00+08:00",
-    "awayTeam": "Melbourne Mustangs",
-    "homeTeam": "Perth Thunder",
-    "location": "Perth Ice Arena",
-    "league": "AIHL"
+    "id": "aihl_2025082417",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2025-08-24T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026041701",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Sydney Bears",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-04-17T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026041802",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Central Coast Rhinos",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-04-18T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026041803",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Brisbane Lightning",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-04-18T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026041804",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Newcastle Northstars",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-04-18T07:15:00Z"
+  },
+  {
+    "id": "aihl_2026041805",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Canberra Brave",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-04-18T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026041906",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Newcastle Northstars",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-04-19T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026041907",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Brisbane Lightning",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-04-19T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026041908",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Canberra Brave",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-04-19T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026042409",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-04-24T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026042510",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Melbourne Ice",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-04-25T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026042511",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Canberra Brave",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-04-25T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026042512",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Perth Thunder",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-04-25T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026042613",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Perth Thunder",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-04-26T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026042614",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-04-26T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026042615",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Melbourne Ice",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-04-26T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026042616",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Newcastle Northstars",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-04-26T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026050117",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Melbourne Mustangs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-01T09:30:00Z"
   }
 ]
 

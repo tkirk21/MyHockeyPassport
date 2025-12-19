@@ -7,23 +7,38 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
 
 export default function PushSwitch() {
-  const [enabled, setEnabled] = useState(true); // default on
-
+  const [enabled, setEnabled] = useState(true);
   const user = getAuth().currentUser;
 
   useEffect(() => {
     if (!user) return;
     const load = async () => {
       const snap = await getDoc(doc(db, 'profiles', user.uid));
-      if (snap.exists()) setEnabled(snap.data().pushNotifications ?? true);
+      if (snap.exists()) {
+        const data = snap.data();
+        setEnabled(data.pushNotifications ?? true);
+      }
     };
     load();
   }, [user]);
 
   const toggle = async (value: boolean) => {
     if (!user) return;
+
     setEnabled(value);
+
+    // Save the preference
     await setDoc(doc(db, 'profiles', user.uid), { pushNotifications: value }, { merge: true });
+
+    if (value) {
+      // Turning ON → register token (requests permission if needed)
+      const { registerForPushNotificationsAsync } = await import('@/utils/pushNotifications');
+      registerForPushNotificationsAsync();
+    } else {
+      // Turning OFF → clear token
+      const { disablePushToken } = await import('@/utils/pushNotifications');
+      disablePushToken();
+    }
   };
 
   return (

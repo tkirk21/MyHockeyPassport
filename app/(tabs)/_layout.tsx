@@ -1,17 +1,6 @@
 // app/(tabs)/_layout.tsx
 import { getAuth } from 'firebase/auth';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  onSnapshot,
-  query,
-  serverTimestamp,
-  setDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, query, serverTimestamp, setDoc, where, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
 import React, { createContext, useEffect, useState } from 'react';
 import { View } from 'react-native';
@@ -146,20 +135,7 @@ function CustomTabs({
     return () => unsub();
   }, [currentUser]);
 
-  // ==================== FRIENDS TAB LAST VIEWED ====================
-  useFocusEffect(
-    React.useCallback(() => {
-      if (!currentUser) return;
-
-      setDoc(
-        doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
-        { timestamp: serverTimestamp() },
-        { merge: true }
-      ).catch(() => {});
-    }, [currentUser])
-  );
-
-// ==================== FRIENDS REPLY COUNT (FASTER UPDATES + ONLY WHERE YOU CHIRPED) ====================
+// ==================== FRIENDS REPLY COUNT (FINAL CLEAN VERSION) ====================
   useEffect(() => {
     if (!currentUser?.uid) {
       setFriendsReplyCount(0);
@@ -181,25 +157,32 @@ function CustomTabs({
         }
 
         let count = 0;
-        const checkinsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'checkins'));
+        const friendsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'friends'));
+        const friendIds = friendsSnap.docs.map(d => d.id);
+        const owners = friendIds;
 
-        for (const checkin of checkinsSnap.docs) {
-          // Check if you have ever chirped here (any time, not just since last viewed)
-          const yourChirpsQuery = query(
-            collection(checkin.ref, 'chirps'),
-            where('userId', '==', currentUser.uid)
-          );
-          const yourChirpsSnap = await getDocs(yourChirpsQuery);
-          if (yourChirpsSnap.empty) continue;
+        for (const ownerId of owners) {
+          const checkinsSnap = await getDocs(collection(db, 'profiles', ownerId, 'checkins'));
 
-          // Count new replies from others since last viewed
-          const newRepliesQuery = query(
-            collection(checkin.ref, 'chirps'),
-            where('timestamp', '>', lastViewed),
-            where('userId', '!=', currentUser.uid)
-          );
-          const newRepliesSnap = await getDocs(newRepliesQuery);
-          count += newRepliesSnap.size;
+          for (const checkinDoc of checkinsSnap.docs) {
+            // Check if you have chirped
+            const yourChirpQuery = query(
+              collection(db, 'profiles', ownerId, 'checkins', checkinDoc.id, 'chirps'),
+              where('userId', '==', currentUser.uid),
+              limit(1)
+            );
+            const yourChirpSnap = await getDocs(yourChirpQuery);
+            if (yourChirpSnap.empty) continue;
+
+            // Count new replies from others
+            const repliesQuery = query(
+              collection(db, 'profiles', ownerId, 'checkins', checkinDoc.id, 'chirps'),
+              where('timestamp', '>', lastViewed),
+              where('userId', '!=', currentUser.uid)
+            );
+            const repliesSnap = await getDocs(repliesQuery);
+            count += repliesSnap.size;
+          }
         }
 
         setFriendsReplyCount(count);
@@ -209,36 +192,28 @@ function CustomTabs({
       }
     };
 
-    // Initial calc
     calc();
 
-    const allUnsubs: (() => void)[] = [];
+    // Only recalc when a chirp is added anywhere in friends' or your check-ins
+    const unsubs = [];
 
-    const checkinsQuery = collection(db, 'profiles', currentUser.uid, 'checkins');
+    const setup = async () => {
+      const friendsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'friends'));
+      const friendIds = friendsSnap.docs.map(d => d.id);
+      const owners = friendIds;
 
-    // Listen to checkins collection for new check-ins
-    const unsubCheckins = onSnapshot(checkinsQuery, (snap) => {
-      snap.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          const chirpsUnsub = onSnapshot(collection(change.doc.ref, 'chirps'), calc);
-          allUnsubs.push(chirpsUnsub);
-        }
-      });
-      calc();
-    });
-    allUnsubs.push(unsubCheckins);
-
-    // Listen to chirps on all existing check-ins
-    getDocs(checkinsQuery).then((snap) => {
-      snap.docs.forEach((checkinDoc) => {
-        const chirpsUnsub = onSnapshot(collection(checkinDoc.ref, 'chirps'), calc);
-        allUnsubs.push(chirpsUnsub);
-      });
-    });
-
-    return () => {
-      allUnsubs.forEach(unsub => unsub());
+      for (const ownerId of owners) {
+        const checkinsSnap = await getDocs(collection(db, 'profiles', ownerId, 'checkins'));
+        checkinsSnap.docs.forEach(checkinDoc => {
+          const unsub = onSnapshot(collection(db, 'profiles', ownerId, 'checkins', checkinDoc.id, 'chirps'), calc);
+          unsubs.push(unsub);
+        });
+      }
     };
+
+    setup();
+
+    return () => unsubs.forEach(u => u());
   }, [currentUser?.uid]);
 
   return (
