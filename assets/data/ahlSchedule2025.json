@@ -202,7 +202,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Wilkes-Barre/Scranton Penguins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-10-17T23:00:00Z"
   },
@@ -373,7 +373,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Springfield Thunderbirds",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-10-22T23:00:00Z"
   },
@@ -427,7 +427,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-10-24T23:00:00Z"
   },
@@ -742,7 +742,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Charlotte Checkers",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-10-29T23:00:00Z"
   },
@@ -832,7 +832,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Lehigh Valley Phantoms",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-10-31T23:00:00Z"
   },
@@ -913,7 +913,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Lehigh Valley Phantoms",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-01T22:00:00Z"
   },
@@ -1498,7 +1498,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Rochester Americans",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-14T23:00:00Z"
   },
@@ -1696,7 +1696,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Springfield Thunderbirds",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-18T16:00:00Z"
   },
@@ -1786,7 +1786,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Wilkes-Barre/Scranton Penguins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-21T23:00:00Z"
   },
@@ -1876,7 +1876,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Lehigh Valley Phantoms",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-22T23:00:00Z"
   },
@@ -2002,7 +2002,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Springfield Thunderbirds",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-11-26T23:00:00Z"
   },
@@ -2398,7 +2398,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Springfield Thunderbirds",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-12-05T00:00:00Z"
   },
@@ -2650,7 +2650,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Wilkes-Barre/Scranton Penguins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-12-10T00:00:00Z"
   },
@@ -3109,7 +3109,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Syracuse Crunch",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-12-19T00:00:00Z"
   },
@@ -3559,7 +3559,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2025-12-31T00:30:00Z"
   },
@@ -3649,7 +3649,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Providence Bruins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-01-02T23:00:00Z"
   },
@@ -4612,7 +4612,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-01-23T23:00:00Z"
   },
@@ -4846,7 +4846,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Charlotte Checkers",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-01-28T23:30:00Z"
   },
@@ -4909,7 +4909,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-01-31T00:00:00Z"
   },
@@ -5197,7 +5197,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Providence Bruins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-02-07T00:05:00Z"
   },
@@ -5485,7 +5485,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Charlotte Checkers",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-02-14T21:00:00Z"
   },
@@ -5863,7 +5863,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Providence Bruins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-02-22T20:05:00Z"
   },
@@ -6097,7 +6097,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Lehigh Valley Phantoms",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-02-28T02:05:00Z"
   },
@@ -6169,7 +6169,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Lehigh Valley Phantoms",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-03-01T20:05:00Z"
   },
@@ -6961,7 +6961,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Charlotte Checkers",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-03-17T23:00:00Z"
   },
@@ -7015,7 +7015,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Charlotte Checkers",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-03-18T23:00:00Z"
   },
@@ -7168,7 +7168,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Toronto Marlies",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-03-21T20:00:00Z"
   },
@@ -7267,7 +7267,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Rochester Americans",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-03-22T19:05:00Z"
   },
@@ -8185,7 +8185,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Providence Bruins",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-04-10T23:00:00Z"
   },
@@ -8419,7 +8419,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-04-12T21:00:00Z"
   },
@@ -8446,7 +8446,7 @@
     "league": "AHL",
     "team": "Hartford Wolf Pack",
     "opponent": "Bridgeport Islanders",
-    "arena": "XL Center",
+    "arena": "PeoplesBank Arena",
     "city": "Hartford, Connecticut",
     "date": "2026-04-15T22:30:00Z"
   },

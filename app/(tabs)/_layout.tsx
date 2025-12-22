@@ -80,7 +80,6 @@ function CustomTabs({
 
         setProfileUnreadCount(count);
       } catch (e) {
-        console.error('Profile unread count error:', e);
         setProfileUnreadCount(0);
       }
     };
@@ -187,7 +186,6 @@ function CustomTabs({
 
         setFriendsReplyCount(count);
       } catch (e) {
-        console.error('Friends reply count error:', e);
         setFriendsReplyCount(0);
       }
     };
@@ -256,7 +254,7 @@ function CustomTabs({
                 doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedProfileTab'),
                 { timestamp: serverTimestamp() },
                 { merge: true }
-              ).catch(err => console.error('Failed to update lastViewedProfileTab:', err));
+              ).catch(() => {});
             },
           }}
         />

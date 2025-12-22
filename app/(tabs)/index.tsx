@@ -1,3 +1,4 @@
+//(tabs)/index.tsx
 import { format } from 'date-fns';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
@@ -6,17 +7,24 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { db } from '@/firebaseConfig';
 
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
-import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
 import ahlSchedule2025 from '@/assets/data/ahlSchedule2025.json';
 import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
 import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
+import na3hlSchedule2025 from '@/assets/data/na3hlSchedule2025.json';
+import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
+import leaguesData from '@/assets/data/leagues.json';
+
+const auth = getAuth();
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -26,6 +34,7 @@ export default function HomeScreen() {
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const [nextPuckDrop, setNextPuckDrop] = useState('');
   const [checkingIn, setCheckingIn] = useState(false);
+  const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
 
   useEffect(() => {
     Animated.loop(
@@ -48,7 +57,6 @@ export default function HomeScreen() {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        console.warn('Permission to access location was denied');
         return;
       }
       let loc = await Location.getCurrentPositionAsync({});
@@ -98,7 +106,6 @@ export default function HomeScreen() {
         const saved = await AsyncStorage.getItem('selectedLeague');
         if (saved) setSelectedLeague(saved);
       } catch (e) {
-        console.log('Failed to load league');
       }
     };
     loadSavedLeague();
@@ -120,16 +127,49 @@ export default function HomeScreen() {
     saveSelectedLeague();
   }, [selectedLeague]);
 
-  const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
-    const R = 3958.8;
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const unitDoc = doc(db, 'profiles', auth.currentUser.uid);
+
+    const unsub = onSnapshot(unitDoc, (snap) => {
+      if (snap.exists()) {
+        const unit = snap.data().distanceUnit;
+        if (unit === 'km') {
+          setDistanceUnit('km');
+        } else {
+          setDistanceUnit('miles');
+        }
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    const loadDistanceUnit = async () => {
+      if (!auth.currentUser) return;
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        const unit = docSnap.data().distanceUnit;
+        if (unit === 'km') {
+          setDistanceUnit('km');
+        } else {
+          setDistanceUnit('miles');
+        }
+      }
+    };
+    loadDistanceUnit();
+  }, []);
+
+  const getDistance = (lat1, lon1, lat2, lon2) => {
+    const R = distanceUnit === 'km' ? 6371 : 3958.8; // Earth radius in km or miles
     const toRad = (n) => (n * Math.PI) / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
     const a =
       Math.sin(dLat / 2) ** 2 +
-      Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) ** 2;
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
@@ -144,6 +184,7 @@ export default function HomeScreen() {
     ...whlSchedule2025,
     ...ohlSchedule2025,
     ...sphlSchedule2025,
+    ...na3hlSchedule2025,
     ...aihlSchedule2025.map(game => ({
       id: `${game.homeTeam}_${game.awayTeam}_${game.date}`,
       league: game.league,
@@ -174,6 +215,7 @@ export default function HomeScreen() {
       title: 'Major Professional',
       leagues: [
         { name: 'NHL', logo: require('@/assets/images/puck_logo_nhl.png') },
+        { name: 'KHL', logo: require('@/assets/images/puck_logo_khl.png') },
       ],
     },
     {
@@ -205,6 +247,21 @@ export default function HomeScreen() {
       title: 'NCAA College Hockey',
       leagues: [
         { name: 'NCAA DIVISION I', logo: require('@/assets/images/puck_logo_ncaadiv1.png') },
+        { name: 'NCAA DIVISION II', logo: require('@/assets/images/puck_logo_ncaadiv2.png') },
+      ],
+    },
+    {
+      title: 'European Hockey',
+      leagues: [
+        { name: 'SHL', logo: require('@/assets/images/puck_logo_shl.png') },
+        { name: 'HockeyAllsvenskan', logo: require('@/assets/images/puck_logo_HockeyAllsvenskan.png') },
+        { name: 'NL', logo: require('@/assets/images/puck_logo_nl.png') },
+        { name: 'LIIGA', logo: require('@/assets/images/puck_logo_liiga.png') },
+        { name: 'DEL', logo: require('@/assets/images/puck_logo_del.png') },
+        { name: 'ELH', logo: require('@/assets/images/puck_logo_elh.png') },
+        { name: 'ICEHL', logo: require('@/assets/images/puck_logo_icehl.png') },
+        { name: 'Slovak Extraliga', logo: require('@/assets/images/puck_logo_Slovakextraliga.png') },
+        { name: 'EHL', logo: require('@/assets/images/puck_logo_ehl.png') },
       ],
     },
     {
@@ -241,13 +298,9 @@ export default function HomeScreen() {
     });
 
     if (!arenaInfo) {
-      console.log('ARENA NOT FOUND:', arenaName);
-      console.log('Normalized input:', normalizedInput);
-      console.log('DB entries (normalized):', arenaData.slice(0, 5).map(a => normalize(a.arena)));
       return;
     }
 
-    console.log('MATCHED:', arenaInfo.arena);
     const url = `https://www.google.com/maps/dir/?api=1&destination=${arenaInfo.latitude},${arenaInfo.longitude}`;
     Linking.openURL(url).catch(err => console.log('Linking error:', err));
   };
@@ -288,49 +341,51 @@ export default function HomeScreen() {
             {/* Closest Arenas */}
             <View key="closest-arenas" style={styles.section}>
               <Text style={styles.sectionTitle}>Closest Arenas</Text>
-              {!location ? (
+              {location ? (
+                <>
+                  {arenaData
+                    .map((arena) => ({
+                      ...arena,
+                      distance: getDistance(
+                        location.latitude,
+                        location.longitude,
+                        arena.latitude,
+                        arena.longitude
+                      ),
+                    }))
+                    .sort((a, b) => a.distance - b.distance)
+                    .slice(0, 3)
+                    .map((arena, index) => (
+                      <TouchableOpacity
+                        key={index}
+                        style={styles.arenaCard}
+                        onPress={() =>
+                          router.push({
+                            pathname: '/arenas/[arenaId]',
+                            params: {
+                              arenaId: `${arena.latitude.toFixed(6)}_${arena.longitude.toFixed(6)}`,
+                            },
+                          })
+                        }
+                      >
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <Text style={[styles.cardText, { flex: 1 }]}>
+                            {arena.arena} – {arena.city}
+                          </Text>
+                          <Text style={{ fontWeight: 'bold', color: '#0D2C42' }}>
+                            {Math.round(arena.distance) === arena.distance
+                              ? Math.round(arena.distance)
+                              : arena.distance.toFixed(1)}{' '}
+                            {distanceUnit === 'km' ? 'km' : 'mi'}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                </>
+              ) : (
                 <Animated.Text style={[styles.placeholder, { opacity: fadeAnim }]}>
                   Detecting location...
                 </Animated.Text>
-              ) : (
-                arenaData
-                  .map((arena) => ({
-                    ...arena,
-                    distance: getDistanceMiles(
-                      location.latitude,
-                      location.longitude,
-                      arena.latitude,
-                      arena.longitude
-                    ),
-                  }))
-                  .sort((a, b) => a.distance - b.distance)
-                  .slice(0, 3)
-                  .map((arena, index) => (
-                    <TouchableOpacity
-                      key={index}
-                      style={styles.arenaCard}
-                      onPress={() =>
-                        router.push({
-                          pathname: '/arenas/[arenaId]',
-                          params: {
-                            arenaId: `${arena.latitude.toFixed(6)}_${arena.longitude.toFixed(6)}`,
-                          },
-                        })
-                      }
-                    >
-                      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Text style={[styles.cardText, { flex: 1 }]}>
-                          {arena.arena} – {arena.city}
-                        </Text>
-                        <Text style={{ fontWeight: 'bold', color: '#0D2C42' }}>
-                          {Math.round(arena.distance) === arena.distance
-                            ? Math.round(arena.distance)
-                            : arena.distance.toFixed(1)
-                          } mi
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  ))
               )}
             </View>
 
@@ -404,14 +459,16 @@ export default function HomeScreen() {
                               return;
                             }
 
-                            const distanceMiles = getDistanceMiles(
+                            const distance = getDistance(
                               location.coords.latitude,
                               location.coords.longitude,
                               arena.latitude,
                               arena.longitude
                             );
 
-                            if (distanceMiles > 0.28) {
+                            const maxDistance = distanceUnit === 'km' ? 0.45 : 0.28; // 0.45 km ≈ 0.28 miles
+
+                            if (distance > maxDistance) {
                               setCheckingIn(false);
                               Alert.alert(
                                 'Cannot check in yet',
@@ -424,7 +481,6 @@ export default function HomeScreen() {
                             handleCheckIn(game);
                           } catch (error) {
                             setCheckingIn(false);
-                            console.log('Location error:', error);
                             Alert.alert('Location failed', 'Could not get your location. Try again.');
                           }
                         }}

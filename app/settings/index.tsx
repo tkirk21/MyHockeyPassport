@@ -8,30 +8,75 @@ import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
 import PushSwitch from '@/components/PushSwitch';
+import { Dropdown } from 'react-native-element-dropdown';
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const auth = getAuth();
 
 export default function SettingsScreen() {
   const router = useRouter();
-
   const [pushEnabled, setPushEnabled] = useState(false);
+  const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
+  const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
 
-    useEffect(() => {
-      const loadPushSetting = async () => {
+  useEffect(() => {
+    const loadPushSetting = async () => {
+      if (!auth.currentUser) return;
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        setPushEnabled(docSnap.data().pushNotifications ?? true);
+      }
+    };
+    loadPushSetting();
+  }, []);
+
+  useEffect(() => {
+    const loadDistanceUnit = async () => {
+      if (!auth.currentUser) return;
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        const unit = docSnap.data().distanceUnit;
+        if (unit === 'km') {
+          setDistanceUnit('km');
+        } else {
+          setDistanceUnit('miles');
+        }
+      } else {
+        setDistanceUnit('miles');
+      }
+    };
+    loadDistanceUnit();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadFavoriteLeagues = async () => {
         if (!auth.currentUser) return;
         const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
         if (docSnap.exists()) {
-          setPushEnabled(docSnap.data().pushNotifications ?? true);
+          const saved = docSnap.data()?.favoriteLeagues;
+          if (Array.isArray(saved)) {
+            setFavoriteLeagues(saved);
+          }
         }
       };
-      loadPushSetting();
-    }, []);
 
-    const togglePushNotifications = async (value: boolean) => {
-      if (!auth.currentUser) return;
-      setPushEnabled(value);
-      await setDoc(doc(db, 'profiles', auth.currentUser.uid), { pushNotifications: value }, { merge: true });
-    };
+      loadFavoriteLeagues();
+    }, [])
+  );
+
+  const togglePushNotifications = async (value: boolean) => {
+    if (!auth.currentUser) return;
+    setPushEnabled(value);
+    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { pushNotifications: value }, { merge: true });
+  };
+
+  const updateDistanceUnit = async (unit: 'miles' | 'km') => {
+    if (!auth.currentUser) return;
+    setDistanceUnit(unit);
+    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { distanceUnit: unit }, { merge: true });
+  };
 
   const logout = () => {
     Alert.alert('Log out', 'Are you sure?', [
@@ -140,9 +185,45 @@ export default function SettingsScreen() {
 
             <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/location-radius')}>
               <Ionicons name="location-outline" size={26} color="#fff" />
-              <Text style={styles.label}>Location Discovery Radius</Text>
+              <Text style={styles.label}>Closest Arenas Radius</Text>
               <Ionicons name="chevron-forward" size={24} color="#888" />
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/favorite-leagues')}>
+              <Ionicons name="star-outline" size={26} color="#fff" />
+              <Text style={styles.label}>Favorite Leagues</Text>
+              <Text style={{ color: '#aaa', fontSize: 16 }}>
+                {favoriteLeagues.length === 0 ? 'All leagues' : `${favoriteLeagues.length} selected`}
+              </Text>
+              <Ionicons name="chevron-forward" size={24} color="#888" />
+            </TouchableOpacity>
+
+            {/* Distance Unit */}
+            <View style={styles.row}>
+              <Ionicons name="speedometer-outline" size={26} color="#fff" />
+              <Text style={styles.label}>Distance Unit</Text>
+              <Dropdown
+                data={[
+                  { label: 'miles', value: 'miles' },
+                  { label: 'kms', value: 'km' },
+                ]}
+                labelField="label"
+                valueField="value"
+                value={distanceUnit}
+                onChange={(item) => updateDistanceUnit(item.value as 'mile' | 'km')}
+                style={styles.distanceDropdown}
+                selectedTextStyle={styles.distanceSelectedText}
+                placeholderStyle={{ opacity: 0 }}
+                iconStyle={styles.distanceIcon}
+                containerStyle={styles.distanceListContainer}
+                itemContainerStyle={styles.distanceItemContainer}
+                itemTextStyle={styles.distanceItemText}
+                activeColor="transparent"   // <--- add this exact line
+                renderRightIcon={() => (
+                  <Ionicons name="chevron-down" size={24} color="#fff" />
+                )}
+              />
+            </View>
 
             <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/theme')}>
               <Ionicons name="moon-outline" size={26} color="#fff" />
@@ -206,4 +287,31 @@ const styles = StyleSheet.create({
   versionText: { color: '#888', fontSize: 16 },
   logoutButton: { marginTop: 40, backgroundColor: '#EF4444', padding: 18, borderRadius: 12, alignItems: 'center' },
   logoutText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
-});
+  distanceDropdown: {
+    height: 35,
+    width: 130,
+    backgroundColor: '#1A3A5A',
+    borderRadius: 12,
+    paddingHorizontal: 12,
+  },
+  distanceSelectedText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  distanceIcon: {
+    width: 30,
+    height: 30,
+  },
+  distanceListContainer: {
+    backgroundColor: '#1A3A5A',
+    borderRadius: 12,
+    overflow: 'hidden' as const,
+  },
+  distanceItemContainer: {
+    backgroundColor: '#1A3A5A',
+  },
+  distanceItemText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  });

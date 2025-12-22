@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
     left: 70,     // ← this is what made them shorter
     right: 70,    // ← this too
   },
-
   buttonPrimary: {
     backgroundColor: "#0D2C42",
     borderWidth: 2,

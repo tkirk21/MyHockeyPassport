@@ -20,6 +20,7 @@ import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
 import qmjhlSchedule2025 from '@/assets/data/qmjhlSchedule2025.json';
 import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
+import na3hlSchedule2025 from '@/assets/data/na3hlSchedule2025.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
 
 export default function ArenaScreen() {
@@ -134,6 +135,14 @@ export default function ArenaScreen() {
       awayTeam: game.opponent,
     })),
     ...sphlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...na3hlSchedule2025.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
       arena: game.arena,

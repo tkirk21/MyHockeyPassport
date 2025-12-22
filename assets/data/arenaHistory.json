@@ -574,6 +574,16 @@
     ]
   },
   {
+    "currentArena": "PeoplesBank Arena",
+    "teamName": "HartFord Wolf Pack",
+    "league": "AHL",
+    "history": [
+      { "name": "Hartford Civic Center", "from": "1975-09-01", "to": "2007-05-31" },
+      { "name": "XL Center", "from": "2007-09-01", "to": "2025-05-31" },
+      { "name": "PeoplesBank Arena", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
     "currentArena": "Mohegan Arena at Casey Plaza",
     "teamName": "Hamilton Bulldogs",
     "league": "AHL",
@@ -629,6 +639,16 @@
     "history": [
       { "name": "SBC Cente", "from": "2002-09-01", "to": "2006-05-31" },
       { "name": "AT&T Center", "from": "2006-09-01", "to": "2023-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Harding Mazzotti Arena",
+    "teamName": "Adirondack Thunder",
+    "league": "AHL",
+    "history": [
+      { "name": "Glens Falls Civic Center", "from": "1979-09-01", "to": "2017-05-31" },
+      { "name": "Cool Insuring Arena", "from": "2017-09-01", "to": "2025-07-27" },
+      { "name": "Harding Mazzotti Arena", "from": "2025-07-28", "to": null }
     ]
   },
 
@@ -694,6 +714,25 @@
     "history": [
       { "name": "Pensacola Civic Cente", "from": "1985-01-01", "to": "2012-05-31" },
       { "name": "Pensacola Bay Center", "from": "2012-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Canada Life Place",
+    "teamName": "London Knights",
+    "league": "OHL",
+    "history": [
+      { "name": "John Labatt Centre", "from": "2002-01-01", "to": "2012-05-31" },
+      { "name": "Budweiser Gardens", "from": "2012-01-01", "to": "2024-05-31" },
+      { "name": "Canada Life Place", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Civic Centre",
+    "teamName": "Brantford Bulldogs",
+    "league": "OHL",
+    "history": [
+      { "name": "Brantford and District Civic Centre", "from": "1967-01-01", "to": "2025-05-31" },
+      { "name": "TD Civic Centre", "from": "2025-09-01", "to": null }
     ]
   }
 ]

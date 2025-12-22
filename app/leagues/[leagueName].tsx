@@ -182,13 +182,7 @@ export default function LeagueDetails() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    paddingBottom: 80,  // ← ADD THIS
-    alignItems: 'center',
-    backgroundColor: '#E6E8EA',
-    flexGrow: 1,
-  },
+  container: { padding: 20, paddingBottom: 80, alignItems: 'center', backgroundColor: '#E6E8EA', flexGrow: 1, },
   title: {
     fontSize: 26,
     fontWeight: 'bold',
@@ -284,6 +278,6 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: '#E6E8EA', // same as your background
+    backgroundColor: '#EDEEF0', // same as your background
   },
 });

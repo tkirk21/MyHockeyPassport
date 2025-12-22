@@ -15,55 +15,33 @@ Notifications.setNotificationHandler({
 });
 
 export async function registerForPushNotificationsAsync() {
-  console.log('🔥 registerForPushNotificationsAsync STARTED');
-
   const auth = getAuth();
   const user = auth.currentUser;
 
-  if (!user) {
-    console.log('No user logged in');
-    return;
-  }
-  console.log('User found:', user.uid);
+  if (!user) return;
 
-  if (!Device.isDevice) {
-    console.log('Not a physical device — push notifications disabled');
-    return;
-  }
-  console.log('Running on physical device');
+  if (!Device.isDevice) return;
 
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
-  console.log('Current permission status:', existingStatus);
-
   let finalStatus = existingStatus;
 
   if (existingStatus !== 'granted') {
-    console.log('Permission not granted yet — requesting...');
     const { status } = await Notifications.requestPermissionsAsync();
     finalStatus = status;
-    console.log('Permission request result:', finalStatus);
   }
 
   if (finalStatus !== 'granted') {
-    console.log('Final permission NOT granted');
     await setDoc(doc(db, 'profiles', user.uid), { pushToken: null }, { merge: true });
     return;
   }
-  console.log('Permission granted ✅');
 
   const projectId = Constants?.expoConfig?.extra?.eas?.projectId ?? Constants?.easConfig?.projectId;
-  console.log('Found projectId:', projectId);
 
-  if (!projectId) {
-    console.log('❌ NO projectId found — cannot get token');
-    return;
-  }
+  if (!projectId) return;
 
   try {
-    console.log('Getting Expo push token...');
     const tokenObject = await Notifications.getExpoPushTokenAsync({ projectId });
     const pushToken = tokenObject.data;
-    console.log('✅ Got push token:', pushToken);
 
     await setDoc(
       doc(db, 'profiles', user.uid),
@@ -74,9 +52,8 @@ export async function registerForPushNotificationsAsync() {
       },
       { merge: true }
     );
-    console.log('💾 Push token SAVED to Firestore');
   } catch (error) {
-    console.error('❌ Error in getExpoPushTokenAsync or save:', error);
+    // silent fail — push token save error is not critical
   }
 }
 

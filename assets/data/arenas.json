@@ -1126,7 +1126,7 @@
   {
     "teamName": "Adirondack Thunder",
     "teamCode": "ADK",
-    "arena": "Cool Insuring Arena",
+    "arena": "Harding Mazzotti Arena",
     "city": "Glens Falls, New York",
     "address": "1 Civic Center Plaza, Glens Falls, NY 12801",
     "website": "https://echlthunder.com",
@@ -1958,8 +1958,8 @@
   {
     "teamName": "Brantford Bulldogs",
     "teamCode": "BFD",
-    "arena": "Brantford Civic Centre",
-    "city": "Brantford, Ontario",
+    "arena": "TD Civic Centre",
+    "city": "Brantford, Ontario",
     "address": "79 Market St S, Brantford, ON N3S 2E4, Canada",
     "website": "https://chl.ca/ohl-bulldogs",
     "latitude": 43.13553942,
@@ -2070,7 +2070,7 @@
   {
     "teamName": "North Bay Battalion",
     "teamCode": "NB",
-    "arena": "North Bay Memorial Gardens",
+    "arena": "Boart Longyear Memorial Gardens",
     "city": "North Bay, Ontario",
     "address": "100 Chippewa St W, North Bay, ON P1B 6G2, Canada",
     "website": "https://chl.ca/ohl-battalion",
@@ -2126,7 +2126,7 @@
   {
     "teamName": "Kitchener Rangers",
     "teamCode": "KIT",
-    "arena": "Kitchener Memorial Auditorium Complex",
+    "arena": "Kitchener Memorial Auditorium",
     "city": "Kitchener, Ontario",
     "address": "400 East Ave, Kitchener, ON N2H 1Z6, Canada",
     "website": "https://chl.ca/ohl-rangers",
@@ -2140,7 +2140,7 @@
   {
     "teamName": "London Knights",
     "teamCode": "LDN",
-    "arena": "Budweiser Gardens",
+    "arena": "Canada Life Place",
     "city": "London, Ontario",
     "address": "99 Dundas St, London, ON N6A 6K1, Canada",
     "website": "https://chl.ca/ohl-knights",
@@ -2168,8 +2168,8 @@
   {
     "teamName": "Flint Firebirds",
     "teamCode": "FLI",
-    "arena": "Dort Federal Credit Union Event Center",
-    "city": "Flint, Michigan",
+    "arena": "Dort Financial Center",
+    "city": "Flint, Michigan",
     "address": "3501 Lapeer Rd, Flint, MI 48503",
     "website": "https://chl.ca/ohl-firebirds",
     "latitude": 43.01119966,
@@ -3184,7 +3184,7 @@
   {
     "teamName": "El Paso Rhinos",
     "teamCode": "ELP",
-    "arena": "El Paso County Events Center",
+    "arena": "El Paso County Coliseum",
     "city": "El Paso, Texas",
     "address": "4100 E Paisano, El Paso, TX 79905",
     "website": "https://elpasorhinos.com",
@@ -3379,7 +3379,8 @@
   },
   {
     "teamName": "New Mexico Ice Wolves",
-    "arena": "NMI",
+    "teamCode": "NMI",
+    "arena": "Outpost Ice Arena",
     "city": "Albuquerque, New Mexico",
     "address": "9530 Tramway Blvd. NE, Albuquerque, NM 87122",
     "website": "https://nmicewolves.com",
@@ -3561,7 +3562,7 @@
   {
     "teamName": "Atlanta Capitals",
     "teamCode": "ATL",
-    "arena": "Atlanta IceForum",
+    "arena": "Atlanta Ice Forum",
     "city": "Duluth, Georgia",
     "address": "2300 Satellite Blvd, Duluth, GA 30097",
     "website": "https://atlantacapitals.com",
@@ -3575,9 +3576,9 @@
   {
     "teamName": "Austin Ice Bats",
     "teamCode": "AIB",
-    "arena": "Chaparral Ice at The Crossover",
-    "city": "Cedar Park, Texas",
-    "address": "2525 W Anderson Ln. #400, Austin, TX 78757",
+    "arena": "The Crossover",
+    "city": "Leander, Texas",
+    "address": "1717 Scottsdale Dr, Leander, TX 78641",
     "website": "https://austinicebatsna3.com",
     "latitude": 30.3549565735528,
     "longitude": -97.7333093934795,
@@ -3659,7 +3660,7 @@
   {
     "teamName": "Carolina Rage",
     "teamCode": "CAR",
-    "arena": "The Ice station of Greer",
+    "arena": "The Ice Station",
     "city": "Greer, South Carolina",
     "address": "211 School St, Greer, SC 29651",
     "website": "https://carolinarage.com",
@@ -3687,12 +3688,12 @@
   {
     "teamName": "Gillette Wild",
     "teamCode": "GIL",
-    "arena": "Campbell County Ice Arena",
+    "arena": "Spirit Hall Ice Arena",
     "city": "Gillette, Wyoming",
-    "address": "121 4-J Rd, Gillette, WY 82716",
+    "address": "4101 Maverick Rd, Gillette, WY 82718",
     "website": "https://gillettewildhockey.com",
-    "latitude": 44.2943279889987,
-    "longitude": -105.509506052967,
+    "latitude": 44.27988331965049,
+    "longitude": -105.4430919834534,
     "color": "Teal",
     "colorCode": "#006778",
     "league": "NA3HL",
@@ -3729,7 +3730,7 @@
   {
     "teamName": "Helena Bighorns",
     "teamCode": "HLB",
-    "arena": "Helena Ice Arena",
+    "arena": "Steed Arena",
     "city": "Helena, Montana",
     "address": "400 Lola St, Helena, MT 59601",
     "website": "https://helenabighorns.com",
@@ -3757,7 +3758,7 @@
   {
     "teamName": "Louisiana Drillers",
     "teamCode": "LDR",
-    "arena": "Planet Ice Skating and Hockey Arena",
+    "arena": "Planet Ice Rink",
     "city": "Lafayette, Louisiana",
     "address": "4317 Johnston St, Lafayette, LA 70503",
     "website": "https://ladrillers.com",
@@ -3855,7 +3856,7 @@
   {
     "teamName": "New Mexico Ice Wolves",
     "teamCode": "NMI",
-    "arena": "Outpost Ice Arenas",
+    "arena": "Outpost Ice Arena",
     "city": "Albuquerque, New Mexico",
     "address": "9530 Tramway Blvd NE, Albuquerque, NM 87122",
     "website": "https://nmicewolves.com",
@@ -3939,7 +3940,7 @@
   {
     "teamName": "Sheridan Hawks",
     "teamCode": "SHE",
-    "arena": "Sheridan Ice M&M’s Center",
+    "arena": "Whitney Rink in the M&M's Center",
     "city": "Sheridan, Wyoming",
     "address": "475 E Brundage St, Sheridan, WY 82801",
     "website": "https://sheridanhawks.com",
@@ -4037,7 +4038,7 @@
   {
     "teamName": "West Texas Wranglers",
     "teamCode": "WTW",
-    "arena": "Amarillo Ice Ranch",
+    "arena": "Ice Ranch",
     "city": "Amarillo, Texas",
     "address": "301 S Grant St Suite A, Amarillo, TX 79101",
     "website": "https://wtxwranglers.com",
@@ -4079,7 +4080,7 @@
   {
     "teamName": "Yellowstone Quake",
     "teamCode": "YSQ",
-    "arena": "Victor J. Riley Arena",
+    "arena": "Riley Arena",
     "city": "Cody, Wyoming",
     "address": "1400 Heart Mountain St, Cody, WY 82414",
     "website": "https://theyellowstonequake.com",

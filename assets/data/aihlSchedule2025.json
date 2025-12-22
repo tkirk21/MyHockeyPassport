@@ -304,6 +304,1248 @@
     "arena": "O'Brien Icehouse",
     "city": "Melbourne, VIC",
     "date": "2026-05-01T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026042613",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Perth Thunder",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-04-26T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026042614",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-04-26T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026042615",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Melbourne Ice",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-04-26T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026042616",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Newcastle Northstars",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-04-26T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026050117",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Melbourne Mustangs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-01T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026050218",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Newcastle Northstars",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-05-02T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026050219",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-02T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026050220",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Sydney Bears",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-05-02T06:15:00Z"
+  },
+  {
+    "id": "aihl_2026050221",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Brisbane Lightning",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-05-02T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026050322",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-03T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026050323",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-03T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026050324",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Sydney Bears",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-05-03T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026050325",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Brisbane Lightning",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-05-03T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026050926",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-05-09T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026050927",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Melbourne Ice",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-09T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026051028",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-05-10T06:00:00Z"
+  },
+  {
+    "id": "aihl_2026051029",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-10T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026051530",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Melbourne Ice",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-15T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026051631",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Sydney Bears",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-05-16T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026051632",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-16T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026051633",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Newcastle Northstars",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-05-16T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026051634",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Central Coast Rhinos",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-05-16T06:15:00Z"
+  },
+  {
+    "id": "aihl_2026051735",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-17T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026051736",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Newcastle Northstars",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-05-17T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026051737",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Sydney Bears",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-05-17T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026051738",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-05-17T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026052239",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-22T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026052340",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-05-23T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026052341",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Newcastle Northstars",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-05-23T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026052342",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Perth Thunder",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-23T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026052343",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Canberra Brave",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-23T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026052444",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Perth Thunder",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-24T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026052445",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Canberra Brave",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-05-24T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026052446",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Newcastle Northstars",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-05-24T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026052447",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-24T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026052948",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Melbourne Mustangs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-29T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026053049",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-05-30T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026053050",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Brisbane Lightning",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-05-30T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026053051",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-30T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026053052",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Sydney Bears",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-05-30T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026053153",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-05-31T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026053154",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Central Coast Rhinos",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-05-31T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026053155",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Brisbane Lightning",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-05-31T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026053156",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-05-31T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026060657",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Sydney Bears",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-06-06T06:00:00Z"
+  },
+  {
+    "id": "aihl_2026060658",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Central Coast Rhinos",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-06-06T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026060659",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Melbourne Ice",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-06T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026060660",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Melbourne Mustangs",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-06T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026060761",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Melbourne Mustangs",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-07T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026060762",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Central Coast Rhinos",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-06-07T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026060763",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Melbourne Ice",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-06-07T06:00:00Z"
+  },
+  {
+    "id": "aihl_2026060764",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-06-07T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026061365",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Central Coast Rhinos",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-06-13T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026061366",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-13T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026061367",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Canberra Brave",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-06-13T06:15:00Z"
+  },
+  {
+    "id": "aihl_2026061468",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Central Coast Rhinos",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-06-14T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026061469",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-06-14T06:00:00Z"
+  },
+  {
+    "id": "aihl_2026061470",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Canberra Brave",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-06-14T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062071",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Melbourne Mustangs",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-06-20T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026062072",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-06-20T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062073",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Sydney Bears",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-20T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062074",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Perth Thunder",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-20T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062075",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Melbourne Ice",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-06-20T06:15:00Z"
+  },
+  {
+    "id": "aihl_2026062176",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Perth Thunder",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-21T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026062177",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Melbourne Mustangs",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-06-21T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062178",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Sydney Bears",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-06-21T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062179",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Newcastle Northstars",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-21T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062180",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Melbourne Ice",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-06-21T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062781",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Brisbane Lightning",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-06-27T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062782",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Newcastle Northstars",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-06-27T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062783",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Melbourne Ice",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-27T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062784",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-27T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062785",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-06-27T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026062886",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Newcastle Northstars",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-06-28T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026062887",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-06-28T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026062888",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Melbourne Ice",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-06-28T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026062889",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Brisbane Lightning",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-06-28T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026062890",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-06-28T08:00:00Z"
+  },
+  {
+    "id": "aihl_2026070391",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Perth Thunder",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-03T09:30:00Z"
+  },
+  {
+    "id": "aihl_2026070492",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Perth Thunder",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-07-04T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026070493",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-07-04T06:45:00Z"
+  },
+  {
+    "id": "aihl_2026070494",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-07-04T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026070495",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Canberra Brave",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-04T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026070596",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Sydney Bears",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-07-05T04:00:00Z"
+  },
+  {
+    "id": "aihl_2026070597",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Perth Thunder",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-07-05T05:45:00Z"
+  },
+  {
+    "id": "aihl_2026070598",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-05T07:00:00Z"
+  },
+  {
+    "id": "aihl_2026071199",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Sydney Bears",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-07-11T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260711100",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Brisbane Lightning",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-11T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260711101",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Melbourne Mustangs",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-07-11T06:15:00Z"
+  },
+  {
+    "id": "aihl_20260711102",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Ice",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-07-11T08:00:00Z"
+  },
+  {
+    "id": "aihl_20260712103",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-07-12T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260712104",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Brisbane Lightning",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-07-12T06:00:00Z"
+  },
+  {
+    "id": "aihl_20260712105",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-12T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260712106",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Melbourne Mustangs",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-07-12T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260712107",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Ice",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-07-12T08:00:00Z"
+  },
+  {
+    "id": "aihl_20260717108",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Melbourne Ice",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-07-17T09:30:00Z"
+  },
+  {
+    "id": "aihl_20260718109",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-07-18T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260718110",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Sydney Bears",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-07-18T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260718111",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-18T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260719112",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Sydney Bears",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-07-19T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260719113",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Canberra Brave",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-07-19T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260719114",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-19T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260725115",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Brisbane Lightning",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-07-25T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260725116",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-07-25T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260725117",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Central Coast Rhinos",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-07-25T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260725118",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Newcastle Northstars",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-07-25T08:00:00Z"
+  },
+  {
+    "id": "aihl_20260726119",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Brisbane Lightning",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-07-26T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260726120",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Sydney Bears",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-07-26T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260801121",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Canberra Brave",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-08-01T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260801122",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-01T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260801123",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Perth Thunder",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-08-01T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260802124",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Sydney Bears",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-02T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260802125",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Perth Thunder",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-08-02T06:00:00Z"
+  },
+  {
+    "id": "aihl_20260802126",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-08-02T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260808127",
+    "league": "AIHL",
+    "team": "Sydney Ice Dogs",
+    "opponent": "Newcastle Northstars",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-08-08T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260808128",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Melbourne Ice",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-08-08T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260808129",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Brisbane Lightning",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-08-08T06:15:00Z"
+  },
+  {
+    "id": "aihl_20260808130",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-08-08T08:00:00Z"
+  },
+  {
+    "id": "aihl_20260809131",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Melbourne Ice",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-08-09T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260809132",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-08-09T06:00:00Z"
+  },
+  {
+    "id": "aihl_20260809133",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Central Coast Rhinos",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-08-09T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260809134",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Brisbane Lightning",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-08-09T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260809135",
+    "league": "AIHL",
+    "team": "Perth Thunder",
+    "opponent": "Melbourne Mustangs",
+    "arena": "Perth Ice Arena",
+    "city": "Perth, WA",
+    "date": "2026-08-09T08:00:00Z"
+  },
+  {
+    "id": "aihl_20260815136",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Canberra Brave",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-08-15T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260815137",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-15T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260815138",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Perth Thunder",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-08-15T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260816139",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Adelaide Adrenaline",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-16T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260816140",
+    "league": "AIHL",
+    "team": "Canberra Brave",
+    "opponent": "Brisbane Lightning",
+    "arena": "AIS Arena",
+    "city": "Canberra, ACT",
+    "date": "2026-08-16T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260816141",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-08-16T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260816142",
+    "league": "AIHL",
+    "team": "Newcastle Northstars",
+    "opponent": "Perth Thunder",
+    "arena": "Hunter Ice Skating Stadium",
+    "city": "Newcastle, NSW",
+    "date": "2026-08-16T06:00:00Z"
+  },
+  {
+    "id": "aihl_20260822143",
+    "league": "AIHL",
+    "team": "Central Coast Rhinos",
+    "opponent": "Newcastle Northstars",
+    "arena": "Erina Ice Arena",
+    "city": "Erina, NSW",
+    "date": "2026-08-22T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260822144",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-08-22T06:45:00Z"
+  },
+  {
+    "id": "aihl_20260822145",
+    "league": "AIHL",
+    "team": "Melbourne Ice",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-22T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260822146",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Perth Thunder",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-08-22T06:15:00Z"
+  },
+  {
+    "id": "aihl_20260823147",
+    "league": "AIHL",
+    "team": "Melbourne Mustangs",
+    "opponent": "Canberra Brave",
+    "arena": "O'Brien Icehouse",
+    "city": "Melbourne, VIC",
+    "date": "2026-08-23T04:00:00Z"
+  },
+  {
+    "id": "aihl_20260823148",
+    "league": "AIHL",
+    "team": "Brisbane Lightning",
+    "opponent": "Sydney Ice Dogs",
+    "arena": "IceWorld Boondall",
+    "city": "Brisbane, QLD",
+    "date": "2026-08-23T05:45:00Z"
+  },
+  {
+    "id": "aihl_20260823149",
+    "league": "AIHL",
+    "team": "Sydney Bears",
+    "opponent": "Newcastle Northstars",
+    "arena": "Macquarie Ice Rink",
+    "city": "Sydney, NSW",
+    "date": "2026-08-23T07:00:00Z"
+  },
+  {
+    "id": "aihl_20260823150",
+    "league": "AIHL",
+    "team": "Adelaide Adrenaline",
+    "opponent": "Perth Thunder",
+    "arena": "IceArena Adelaide",
+    "city": "Adelaide, SA",
+    "date": "2026-08-23T05:45:00Z"
   }
 ]
 
