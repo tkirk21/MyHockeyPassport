@@ -5,20 +5,20 @@ import firebaseApp from "@/firebaseConfig";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
 
 import LoadingPuck from "@/components/loadingPuck";
 import arenasData from "@/assets/data/arenas.json";
 import historicalArenasData from '../../assets/data/historicalArenas.json';
 
 const db = getFirestore(firebaseApp);
-const router = useRouter();
 const formatGameDate = (checkin: any) => {
   if (!checkin.gameDate) return "";
   return new Intl.DateTimeFormat(undefined, {dateStyle: "medium",timeStyle: checkin.checkinType === "live" ? "short" : undefined,}).format(new Date(checkin.gameDate));
 };
 
 export default function CheckinDetailsScreen() {
+  const router = useRouter();
   const params = useLocalSearchParams();
   const checkinId = params.checkinId as string;
   const userId = params.userId as string;
@@ -170,7 +170,7 @@ export default function CheckinDetailsScreen() {
           },
           headerRight: () =>
             isOwner ? (
-              <View style={{ flexDirection: "row", gap: 20 }}>
+              <View style={{ flexDirection: "row", gap: 50 }}>
                 <TouchableOpacity
                   onPress={() => {
                     console.log("EDIT BUTTON CLICKED!");  // ← ADD THIS LINE
@@ -195,7 +195,7 @@ export default function CheckinDetailsScreen() {
         <View style={[styles.overlay, { backgroundColor: overlayColor }]} />
 
         <ScrollView
-          contentContainerStyle={{ paddingBottom: 30 }}
+          contentContainerStyle={{ paddingBottom: 20, }}
           style={{ flex: 1 }}
         >
           {/* Arena + Game Info */}
@@ -225,6 +225,18 @@ export default function CheckinDetailsScreen() {
               {formatGameDate(checkin)}
             </Text>
           </View>
+
+          {/* Final Score Box */}
+          {(checkin.homeScore !== undefined || checkin.awayScore !== undefined) && (
+            <View style={[styles.scoreCard, { backgroundColor: teamColor, marginTop: 8 }]}>
+              <Text style={styles.title}>Final Score</Text>
+              <Text style={styles.score}>
+                {checkin.homeScore ?? '?'}
+                {'  -  '}
+                {checkin.awayScore ?? '?'}
+              </Text>
+            </View>
+          )}
 
           {/* Photo */}
           {checkin.photos && checkin.photos.length > 0 && checkin.photos[0] && (
@@ -320,9 +332,9 @@ export default function CheckinDetailsScreen() {
 const styles = StyleSheet.create({
   background: { flex: 1, width: "100%", height: "100%", },
   arenaCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginTop: -10, marginHorizontal: 10, },
-  detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
-  merchCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
-  photoCard: { padding: 16, borderRadius: 12, marginBottom: 24, marginHorizontal: 20, borderWidth: 1, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  merchCard: { padding: 16, borderRadius: 12, marginBottom: 30, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  photoCard: { padding: 16, borderRadius: 12, marginBottom: 24, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
   category: { fontSize: 15, fontWeight: "600", color: "#fff", marginBottom: 4, },
   centered: { flex: 1, justifyContent: "center", alignItems: "center", },
   detail: { fontSize: 16, color: "#fff", marginBottom: 6, },
@@ -334,6 +346,8 @@ const styles = StyleSheet.create({
   photo: { width: "100%", height: 220, borderRadius: 10, },
   sectionTitle: { fontSize: 18, fontWeight: "700", color: "#fff", },
   sub: { fontSize: 16, fontWeight: "600", color: "#fff", textAlign: "center", marginBottom: 2, },
+  scoreCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginTop: -10, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+  score: { fontSize: 32, fontWeight: "600", color: "#fff", textAlign: "center", marginBottom: 2,  },
   title: { fontSize: 34, fontWeight: "bold", color: "#fff", marginTop: -8, textAlign: "center", textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
   value: { fontSize: 15, fontWeight: "400", marginLeft: 20, color: "#FFFFFF", marginBottom: 6, },
 });

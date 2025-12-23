@@ -22,11 +22,12 @@ export default function LiveCheckInScreen() {
   const homeTeam = toStr(params.homeTeam);
   const opponent = toStr(params.opponent);
   const gameDate = toStr(params.gameDate);
-
+  const [homeScore, setHomeScore] = useState('');
+  const [awayScore, setAwayScore] = useState('');
+  const [favoritePlayer, setFavoritePlayer] = useState('');
   const [seatSection, setSeatSection] = useState('');
   const [seatRow, setSeatRow] = useState('');
   const [seatNumber, setSeatNumber] = useState('');
-  const [favoritePlayer, setFavoritePlayer] = useState('');
   const [companions, setCompanions] = useState('');
   const [notes, setNotes] = useState('');
   const [images, setImages] = useState<string[]>([]);
@@ -172,6 +173,25 @@ export default function LiveCheckInScreen() {
         </View>
 
         <View style={styles.section}>
+          <TextInput
+            placeholder="Favorite Player"
+            value={favoritePlayer}
+            onChangeText={setFavoritePlayer}
+            style={styles.input}
+          />
+        </View>
+
+        <Text style={styles.label}>Seat Information:</Text>
+        <View style={{ flexDirection:"row", alignItems:"center", flexWrap:"wrap", marginBottom:12 }}>
+          <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Section:</Text>
+          <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
+          <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Row:</Text>
+          <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
+          <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Seat:</Text>
+          <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
+        </View>
+
+        <View style={styles.section}>
           <Text style={{ fontWeight: "600", marginRight: 6 }}>Seat Information</Text>
           <View style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
             <Text style={{ fontWeight: "500", marginRight: 6 }}>Section:</Text>
@@ -183,12 +203,6 @@ export default function LiveCheckInScreen() {
           </View>
         </View>
         <View style={styles.section}>
-          <TextInput
-            placeholder="Favorite Player"
-            value={favoritePlayer}
-            onChangeText={setFavoritePlayer}
-            style={styles.input}
-          />
           <TextInput
             placeholder="Who did you go with?"
             value={companions}

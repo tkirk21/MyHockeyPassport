@@ -33,6 +33,8 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   const [selectedArena, setSelectedArena] = useState(initialData.arenaName || null);
   const [selectedHomeTeam, setSelectedHomeTeam] = useState(initialData.teamName || null);
   const [selectedOpponent, setSelectedOpponent] = useState(initialData.opponent || null);
+  const [homeScore, setHomeScore] = useState(initialData.homeScore || '');
+  const [awayScore, setAwayScore] = useState(initialData.awayScore || '');
   const [favoritePlayer, setFavoritePlayer] = useState(initialData.favoritePlayer || '');
   const [seatSection, setSeatSection] = useState(initialData.seatInfo?.section || '');
   const [seatRow, setSeatRow] = useState(initialData.seatInfo?.row || '');
@@ -108,6 +110,8 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         arenaName: selectedArena,
         teamName: selectedHomeTeam,
         opponent: selectedOpponent,
+        homeScore,
+        awayScore,
         favoritePlayer,
         seatInfo: {
           section: seatSection,
@@ -401,6 +405,27 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         listMode="SCROLLVIEW"
       />
 
+      <Text style={styles.label}>Final Score:</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
+        <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{'Home'}:</Text>
+        <TextInput
+          value={homeScore}
+          onChangeText={setHomeScore}
+          style={[styles.input, { width: 60, textAlign: 'center' }]}
+          keyboardType="number-pad"
+          placeholder="-"
+        />
+        <Text style={{ fontWeight: '500', marginHorizontal: 12, color: '#0A2940' }}> - </Text>
+        <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{'Away'}:</Text>
+        <TextInput
+          value={awayScore}
+          onChangeText={setAwayScore}
+          style={[styles.input, { width: 60, textAlign: 'center' }]}
+          keyboardType="number-pad"
+          placeholder="-"
+        />
+      </View>
+
       <TextInput
         placeholder="Favorite Player"
         value={favoritePlayer}
@@ -676,9 +701,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#2F4F68',
   },
-  submitText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
 });

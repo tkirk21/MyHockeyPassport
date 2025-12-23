@@ -11,7 +11,6 @@ import PushSwitch from '@/components/PushSwitch';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useFocusEffect } from '@react-navigation/native';
 
-
 const auth = getAuth();
 
 export default function SettingsScreen() {
@@ -19,6 +18,7 @@ export default function SettingsScreen() {
   const [pushEnabled, setPushEnabled] = useState(false);
   const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
   const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
+  const [startupTab, setStartupTab] = useState<'home' | 'profile' | 'checkin' | 'map' | 'friends'>('home');
 
   useEffect(() => {
     const loadPushSetting = async () => {
@@ -49,6 +49,24 @@ export default function SettingsScreen() {
     loadDistanceUnit();
   }, []);
 
+  useEffect(() => {
+    const loadStartupTab = async () => {
+      if (!auth.currentUser) return;
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        const saved = docSnap.data().startupTab;
+        if (saved === 'home' || saved === 'profile' || saved === 'checkin' || saved === 'map' || saved === 'friends') {
+          setStartupTab(saved);
+        } else {
+          setStartupTab('home');
+        }
+      } else {
+        setStartupTab('home');
+      }
+    };
+    loadStartupTab();
+  }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       const loadFavoriteLeagues = async () => {
@@ -76,6 +94,12 @@ export default function SettingsScreen() {
     if (!auth.currentUser) return;
     setDistanceUnit(unit);
     await setDoc(doc(db, 'profiles', auth.currentUser.uid), { distanceUnit: unit }, { merge: true });
+  };
+
+  const updateStartupTab = async (tab: 'home' | 'profile' | 'checkin' | 'map' | 'friends') => {
+    if (!auth.currentUser) return;
+    setStartupTab(tab);
+    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { startupTab: tab }, { merge: true });
   };
 
   const logout = () => {
@@ -131,7 +155,10 @@ export default function SettingsScreen() {
         </Text>
       </View>
 
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 50 }}
+        >
         <View style={styles.inner}>
           {/* Account */}
           <View style={styles.section}>
@@ -177,26 +204,34 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Preferences</Text>
 
-            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/startup-tab')}>
+            <View style={styles.row}>
               <Ionicons name="home-outline" size={26} color="#fff" />
               <Text style={styles.label}>Default Startup Tab</Text>
-              <Ionicons name="chevron-forward" size={24} color="#888" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/location-radius')}>
-              <Ionicons name="location-outline" size={26} color="#fff" />
-              <Text style={styles.label}>Closest Arenas Radius</Text>
-              <Ionicons name="chevron-forward" size={24} color="#888" />
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/favorite-leagues')}>
-              <Ionicons name="star-outline" size={26} color="#fff" />
-              <Text style={styles.label}>Favorite Leagues</Text>
-              <Text style={{ color: '#aaa', fontSize: 16 }}>
-                {favoriteLeagues.length === 0 ? 'All leagues' : `${favoriteLeagues.length} selected`}
-              </Text>
-              <Ionicons name="chevron-forward" size={24} color="#888" />
-            </TouchableOpacity>
+              <Dropdown
+                data={[
+                  { label: 'Home', value: 'home' },
+                  { label: 'Profile', value: 'profile' },
+                  { label: 'Check-In', value: 'checkin' },
+                  { label: 'Map', value: 'map' },
+                  { label: 'Friends', value: 'friends' },
+                ]}
+                labelField="label"
+                valueField="value"
+                value={startupTab}
+                onChange={(item) => updateStartupTab(item.value as 'home' | 'profile' | 'checkin' | 'map' | 'friends')}
+                style={styles.distanceDropdown}
+                selectedTextStyle={styles.distanceSelectedText}
+                placeholderStyle={{ opacity: 0 }}
+                iconStyle={styles.distanceIcon}
+                containerStyle={styles.distanceListContainer}
+                itemContainerStyle={styles.distanceItemContainer}
+                itemTextStyle={styles.distanceItemText}
+                activeColor="transparent"
+                renderRightIcon={() => (
+                  <Ionicons name="chevron-down" size={24} color="#fff" />
+                )}
+              />
+            </View>
 
             {/* Distance Unit */}
             <View style={styles.row}>
@@ -224,6 +259,21 @@ export default function SettingsScreen() {
                 )}
               />
             </View>
+
+            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/location-radius')}>
+              <Ionicons name="location-outline" size={26} color="#fff" />
+              <Text style={styles.label}>Closest Arenas Radius</Text>
+              <Ionicons name="chevron-forward" size={24} color="#888" />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/favorite-leagues')}>
+              <Ionicons name="star-outline" size={26} color="#fff" />
+              <Text style={styles.label}>Favorite Leagues</Text>
+              <Text style={{ color: '#aaa', fontSize: 16 }}>
+                {favoriteLeagues.length === 0 ? 'All leagues' : `${favoriteLeagues.length} selected`}
+              </Text>
+              <Ionicons name="chevron-forward" size={24} color="#888" />
+            </TouchableOpacity>
 
             <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/theme')}>
               <Ionicons name="moon-outline" size={26} color="#fff" />
@@ -260,16 +310,16 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Log Out */}
-          <TouchableOpacity onPress={logout} style={styles.logoutButton}>
-            <Text style={styles.logoutText}>Log Out</Text>
-          </TouchableOpacity>
-
           <View style={styles.version}>
             <Text style={styles.versionText}>
               Version {Constants.expoConfig?.version || '1.0.0'}
             </Text>
           </View>
+
+          {/* Log Out */}
+          <TouchableOpacity onPress={logout} style={styles.logoutButton}>
+            <Text style={styles.logoutText}>Log Out</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -280,38 +330,17 @@ const styles = StyleSheet.create({
   inner: { paddingHorizontal: 20 },
   section: { marginBottom: 30 },
   sectionTitle: { fontSize: 20, fontWeight: '600', color: '#fff', marginBottom: 16, opacity: 0.9 },
-  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16 },
+  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8 },
   label: { flex: 1, color: '#fff', fontSize: 18, marginLeft: 16 },
-  link: { color: '#fff', fontSize: 17, paddingVertical: 12 },
-  version: { paddingVertical: 20 },
+  link: { color: '#fff', fontSize: 17, },
+  version: { paddingBottom: 20 },
   versionText: { color: '#888', fontSize: 16 },
-  logoutButton: { marginTop: 40, backgroundColor: '#EF4444', padding: 18, borderRadius: 12, alignItems: 'center' },
+  logoutButton: { backgroundColor: '#EF4444', padding: 18, borderRadius: 12, alignItems: 'center', width: 200, alignSelf: 'center', marginBottom: 30, },
   logoutText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
-  distanceDropdown: {
-    height: 35,
-    width: 130,
-    backgroundColor: '#1A3A5A',
-    borderRadius: 12,
-    paddingHorizontal: 12,
-  },
-  distanceSelectedText: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  distanceIcon: {
-    width: 30,
-    height: 30,
-  },
-  distanceListContainer: {
-    backgroundColor: '#1A3A5A',
-    borderRadius: 12,
-    overflow: 'hidden' as const,
-  },
-  distanceItemContainer: {
-    backgroundColor: '#1A3A5A',
-  },
-  distanceItemText: {
-    color: '#fff',
-    fontSize: 18,
-  },
+  distanceDropdown: { height: 35, width: 130, backgroundColor: '#1A3A5A', borderRadius: 12, paddingHorizontal: 12, },
+  distanceSelectedText: { color: '#fff', fontSize: 18, },
+  distanceIcon: { width: 30, height: 30, },
+  distanceListContainer: { backgroundColor: '#1A3A5A', borderRadius: 12, overflow: 'hidden' as const, },
+  distanceItemContainer: { backgroundColor: '#1A3A5A', },
+  distanceItemText: { color: '#fff', fontSize: 18, },
   });

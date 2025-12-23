@@ -30,11 +30,14 @@ export default function HomeScreen() {
   const router = useRouter();
   const [location, setLocation] = useState(null);
   const [selectedLeague, setSelectedLeague] = useState(null);
+  const [filterMode, setFilterMode] = useState('all');
   const [selectedGroup, setSelectedGroup] = useState('All Groups');
+  const [exploreFilterMode, setExploreFilterMode] = useState('all');
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const [nextPuckDrop, setNextPuckDrop] = useState('');
   const [checkingIn, setCheckingIn] = useState(false);
   const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
+  const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
 
   useEffect(() => {
     Animated.loop(
@@ -63,6 +66,45 @@ export default function HomeScreen() {
       setLocation(loc.coords);
     })();
   }, []);
+
+  useEffect(() => {
+    const loadSavedFilter = async () => {
+      try {
+        const savedMode = await AsyncStorage.getItem('gameFilterMode');
+        const savedLeague = await AsyncStorage.getItem('selectedLeague');
+
+        if (savedMode) {
+          setFilterMode(savedMode);
+        }
+        if (savedLeague) {
+          setSelectedLeague(savedLeague);
+        }
+      } catch (e) {
+        console.log('Failed to load saved filter:', e);
+      }
+    };
+    loadSavedFilter();
+  }, []);
+
+  useEffect(() => {
+    const saveFilter = async () => {
+      try {
+        if (filterMode === 'all') {
+          await AsyncStorage.removeItem('gameFilterMode');
+          await AsyncStorage.removeItem('selectedLeague');
+        } else if (filterMode === 'favorites') {
+          await AsyncStorage.setItem('gameFilterMode', 'favorites');
+          await AsyncStorage.removeItem('selectedLeague');
+        } else if (filterMode === 'league' && selectedLeague) {
+          await AsyncStorage.setItem('gameFilterMode', 'league');
+          await AsyncStorage.setItem('selectedLeague', selectedLeague);
+        }
+      } catch (e) {
+        console.log('Failed to save filter:', e);
+      }
+    };
+    saveFilter();
+  }, [filterMode, selectedLeague]);
 
   useEffect(() => {
     const updateCountdown = () => {
@@ -147,6 +189,71 @@ export default function HomeScreen() {
   }, []);
 
   useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const loadFavoriteLeagues = async () => {
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        const saved = docSnap.data()?.favoriteLeagues;
+        if (Array.isArray(saved)) {
+          setFavoriteLeagues(saved);
+        }
+      }
+    };
+
+    loadFavoriteLeagues();
+
+    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), (snap) => {
+      if (snap.exists()) {
+        const saved = snap.data()?.favoriteLeagues;
+        if (Array.isArray(saved)) {
+          setFavoriteLeagues(saved);
+        }
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    const loadSavedExploreFilter = async () => {
+      try {
+        const savedMode = await AsyncStorage.getItem('exploreFilterMode');
+        const savedGroup = await AsyncStorage.getItem('exploreSelectedGroup');
+
+        if (savedMode === 'favorites') {
+          setExploreFilterMode('favorites');
+        } else {
+          setExploreFilterMode('all');
+          if (savedGroup) {
+            setSelectedGroup(savedGroup);
+          }
+        }
+      } catch (e) {
+        console.log('Failed to load explore filter:', e);
+      }
+    };
+    loadSavedExploreFilter();
+  }, []);
+
+  useEffect(() => {
+    const saveExploreFilter = async () => {
+      try {
+        if (exploreFilterMode === 'favorites') {
+          await AsyncStorage.setItem('exploreFilterMode', 'favorites');
+          await AsyncStorage.removeItem('exploreSelectedGroup');
+        } else {
+          await AsyncStorage.removeItem('exploreFilterMode');
+          await AsyncStorage.setItem('exploreSelectedGroup', selectedGroup);
+        }
+      } catch (e) {
+        console.log('Failed to save explore filter:', e);
+      }
+    };
+    saveExploreFilter();
+  }, [exploreFilterMode, selectedGroup]);
+
+  useEffect(() => {
     const loadDistanceUnit = async () => {
       if (!auth.currentUser) return;
       const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
@@ -200,15 +307,22 @@ export default function HomeScreen() {
   const liveBufferMs = 3 * 60 * 60 * 1000; // 3 hours — adjust if you want shorter/longer
 
   const filteredGames = useMemo(() => {
-    return combinedSchedule
+    let games = combinedSchedule
       .filter(game => {
         const gameTime = new Date(game.date).getTime();
         const gameDay = new Date(game.date).toDateString();
         return gameDay === today && gameTime >= (now - liveBufferMs);
-      })
-      .filter(game => !selectedLeague || game.league === selectedLeague)
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
-  }, [today, selectedLeague]);
+      });
+
+    if (filterMode === 'favorites') {
+      games = games.filter(game => favoriteLeagues.includes(game.league));
+    } else if (filterMode === 'league' || selectedLeague) {
+      games = games.filter(game => game.league === selectedLeague);
+    }
+    // 'all' or no selection = show all today's games
+
+    return games.sort((a, b) => new Date(a.date) - new Date(b.date));
+  }, [today, selectedLeague, filterMode, favoriteLeagues]);
 
   const leagueGroups = [
     {
@@ -273,10 +387,16 @@ export default function HomeScreen() {
   ];
 
   const leaguesToShow = useMemo(() => {
-      return selectedGroup === 'All Groups'
-        ? leagueGroups.flatMap(g => g.leagues)
-        : leagueGroups.find(g => g.title === selectedGroup)?.leagues || [];
-    }, [selectedGroup]);
+    if (exploreFilterMode === 'favorites') {
+      return leagueGroups
+        .flatMap(g => g.leagues)
+        .filter(league => favoriteLeagues.includes(league.name));
+    }
+
+    return selectedGroup === 'All Groups'
+      ? leagueGroups.flatMap(g => g.leagues)
+      : leagueGroups.find(g => g.title === selectedGroup)?.leagues || [];
+  }, [selectedGroup, exploreFilterMode, favoriteLeagues]);
 
   const handleDirections = (arenaName) => {
     if (!arenaName) return;
@@ -353,6 +473,10 @@ export default function HomeScreen() {
                         arena.longitude
                       ),
                     }))
+                    .filter((arena) => {
+                      if (favoriteLeagues.length === 0) return true;
+                      return favoriteLeagues.includes(arena.league);
+                    })
                     .sort((a, b) => a.distance - b.distance)
                     .slice(0, 3)
                     .map((arena, index) => (
@@ -398,13 +522,43 @@ export default function HomeScreen() {
               </Text>
 
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.leagueFilter}>
-                <TouchableOpacity onPress={() => setSelectedLeague(null)} style={[styles.filterChip, selectedLeague === null && styles.filterChipActive]}>
-                  <Text style={[styles.filterChipText, selectedLeague === null && styles.filterChipTextActive]}>All</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    setSelectedLeague(null);
+                    setFilterMode('all');
+                  }}
+
+                  style={[styles.filterChip, filterMode === 'all' && styles.filterChipActive]}>
+                  <Text style={[styles.filterChipText, filterMode === 'all' && styles.filterChipTextActive]}>
+                    All
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+
+                    setFilterMode('favorites');
+                    setSelectedLeague(null);
+                  }}
+
+                  style={[styles.filterChip, filterMode === 'favorites' && styles.filterChipActive]}>
+                  <Text style={[styles.filterChipText, filterMode === 'favorites' && styles.filterChipTextActive]}>
+                    Favorites
+                  </Text>
                 </TouchableOpacity>
 
                 {leagueGroups.flatMap(group => group.leagues).map((league) => (
-                  <TouchableOpacity key={league.name} onPress={() => setSelectedLeague(league.name)} style={[styles.filterChip, selectedLeague === league.name && styles.filterChipActive]}>
-                    <Text style={[styles.filterChipText, selectedLeague === league.name && styles.filterChipTextActive]}>{league.name}</Text>
+                  <TouchableOpacity
+                    key={league.name}
+                    onPress={() => {
+                      setSelectedLeague(league.name);
+                      setFilterMode('league');
+                    }}
+
+                    style={[styles.filterChip, selectedLeague === league.name && styles.filterChipActive]}>
+                    <Text style={[styles.filterChipText, selectedLeague === league.name && styles.filterChipTextActive]}>
+                      {league.name}
+                    </Text>
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -501,12 +655,20 @@ export default function HomeScreen() {
                 selectedGroup === 'All Groups' && styles.pickerContainerActive
               ]}>
                 <Picker
-                  selectedValue={selectedGroup}
-                  onValueChange={(itemValue) => setSelectedGroup(itemValue)}
+                  selectedValue={exploreFilterMode === 'favorites' ? 'Favorites' : selectedGroup}
+                  onValueChange={(itemValue) => {
+                    if (itemValue === 'Favorites') {
+                      setExploreFilterMode('favorites');
+                    } else {
+                      setExploreFilterMode('all');
+                      setSelectedGroup(itemValue);
+                    }
+                  }}
                   mode="dropdown"
                   style={styles.picker}
                 >
                   <Picker.Item label="All Groups" value="All Groups" />
+                  <Picker.Item label="Favorites" value="Favorites" />
                   {leagueGroups.map(group => (
                     <Picker.Item key={group.title} label={group.title} value={group.title} />
                   ))}
@@ -545,7 +707,6 @@ const styles = StyleSheet.create({
   innerContainer: {
     paddingTop: Constants.statusBarHeight + 40,
     paddingHorizontal: 20,
-    paddingBottom: 40,
     minHeight: Dimensions.get('window').height,
   },
   background: {
@@ -676,29 +837,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 4,
   },
-  leagueGridItemPressed: {
-    transform: [{ scale: 0.95 }],
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  leagueLogo: {
-    width: 60,
-    height: 60,
-    marginBottom: 6,
-  },
-  leagueName: {
-    fontSize: 12,
-    color: '#374151',
-    textAlign: 'center',
-  },
-  filterChipActive: {
-    backgroundColor: '#0A2940',
-  },
-  filterChipTextActive: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-  },
+  leagueGridItemPressed: { transform: [{ scale: 0.95 }], shadowOpacity: 0.3, shadowRadius: 8, elevation: 8, },
+  leagueLogo: { width: 60, height: 60, marginBottom: 6, },
+  leagueName: { fontSize: 12, color: '#374151', textAlign: 'center',  },
+  filterChipActive: { backgroundColor: '#0A2940', },
+  filterChipTextActive: { color: '#FFFFFF', fontWeight: '700', },
   countdownMini: { fontSize: 14, fontWeight: '600', color: '#0A2940', textAlign: 'center', marginBottom: 10, opacity: 0.9, },
   countdownLive: { fontSize: 24, fontWeight: '900', color: '#D32F2F', letterSpacing: 2, fontVariant: ['tabular-nums'], },
   picker: { width: '100%', height: 56, fontSize: 16, color: '#000', backgroundColor: 'white', paddingHorizontal: 0, textAlign: 'center', },

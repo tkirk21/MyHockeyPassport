@@ -3,7 +3,7 @@ import * as Location from 'expo-location';
 import { useRouter } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
-import { getFirestore, collection, getDocs, query } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query } from 'firebase/firestore';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Alert, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, Polyline, UrlTile } from 'react-native-maps';
@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import arenasData from '@/assets/data/arenas.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
+import historicalTeamsData from '@/assets/data/historicalTeams.json';
 import LoadingPuck from "../../components/loadingPuck";
 
 const auth = getAuth(firebaseApp);
@@ -21,6 +22,7 @@ export default function MapScreen() {
   const [pins, setPins] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedLeague, setSelectedLeague] = useState<string>('All');
+  const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
   const [leagueOptions, setLeagueOptions] = useState<string[]>(['All']);
   const mapRef = useRef<MapView>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -31,6 +33,17 @@ export default function MapScreen() {
   const [showTravelLines, setShowTravelLines] = useState(false);
   const [travelAnimValue, setTravelAnimValue] = useState(0);
   const showTravel = showTravelLines && travelCoords.length > 1;
+
+  const visiblePins = useMemo(() => {
+    if (selectedLeague === 'Favorites') {
+      return pins.filter(pin =>
+        favoriteLeagues.includes(pin.league)
+      );
+    }
+    return selectedLeague === 'All'
+      ? pins
+      : pins.filter(p => String(p.league || '').toUpperCase() === selectedLeague.toUpperCase());
+  }, [pins, selectedLeague, favoriteLeagues]);
 
   useEffect(() => {
     const load = async () => {
@@ -43,6 +56,33 @@ export default function MapScreen() {
   useEffect(() => {
     AsyncStorage.setItem('mapSelectedLeague', selectedLeague);
   }, [selectedLeague]);
+
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const loadFavoriteLeagues = async () => {
+      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+      if (docSnap.exists()) {
+        const saved = docSnap.data()?.favoriteLeagues;
+        if (Array.isArray(saved)) {
+          setFavoriteLeagues(saved);
+        }
+      }
+    };
+
+    loadFavoriteLeagues();
+
+    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), (snap) => {
+      if (snap.exists()) {
+        const saved = snap.data()?.favoriteLeagues;
+        if (Array.isArray(saved)) {
+          setFavoriteLeagues(saved);
+        }
+      }
+    });
+
+    return () => unsub();
+  }, []);
 
   // Travel line animation when toggling
   useEffect(() => {
@@ -186,9 +226,23 @@ export default function MapScreen() {
             lng = match.longitude;
             colorCode = match.colorCode || 'red';
             teamCode = match.teamCode || '';
-          } else if (data.latitude != null && data.longitude != null) {
-            lat = data.latitude;
-            lng = data.longitude;
+          } else {
+            // Try historical teams json for old/defunct teams
+            const historicalMatch = historicalTeamsData.find((h: any) =>
+              h.teamName === data.teamName || h.arena === data.arenaName
+            );
+
+            if (historicalMatch) {
+              lat = historicalMatch.latitude;
+              lng = historicalMatch.longitude;
+              displayName = historicalMatch.arena || data.arenaName;
+              colorCode = 'gray'; // or whatever you want for historical
+              teamCode = historicalMatch.teamCode || '';
+            } else if (data.latitude != null && data.longitude != null) {
+              // Final fallback to check-in coords
+              lat = data.latitude;
+              lng = data.longitude;
+            }
           }
 
           if (lat != null && lng != null) {
@@ -276,10 +330,6 @@ export default function MapScreen() {
     );
   }
 
-  const visiblePins = selectedLeague === 'All'
-    ? pins
-    : pins.filter(p => String(p.league || '').toUpperCase() === selectedLeague.toUpperCase());
-
   const openCheckInModal = (checkIns: any[]) => {
     setSelectedArenaCheckIns(checkIns.sort((a, b) => new Date(b.gameDate).getTime() - new Date(a.gameDate).getTime()));
     setModalVisible(true);
@@ -332,7 +382,9 @@ export default function MapScreen() {
           mode="dropdown"
           style={styles.picker}
         >
-          {leagueOptions.map(opt => (
+          <Picker.Item label="Favorites" value="Favorites" />
+          <Picker.Item label="All" value="All" />
+          {leagueOptions.filter(opt => opt !== 'All').map(opt => (
             <Picker.Item key={opt} label={opt} value={opt} />
           ))}
         </Picker>

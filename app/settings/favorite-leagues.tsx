@@ -8,8 +8,8 @@ import { db } from '@/firebaseConfig';
 
 const auth = getAuth();
 const LEAGUES_DATA = [
-  "NHL", "KHL", "AHL", "ECHL", "SPHL", "FPHL", "LNAH", "OHL", "QMJHL", "WHL", "USHL", "NAHL", "NA3HL", "NCAA Div I",
-  "NCAA Div II", "SHL", "HockeyAllsvenskan", "EHL", "LIIGA", "ELH", "DEL", "NL", "ICEHL", "Slovak Extraliga", "AIHL",
+  "NHL", "KHL", "AHL", "ECHL", "SPHL", "FPHL", "LNAH", "OHL", "QMJHL", "WHL", "USHL", "NAHL", "NA3HL", "NCAA DIV I",
+  "NCAA DIV II", "SHL", "HockeyAllsvenskan", "EHL", "LIIGA", "ELH", "DEL", "NL", "ICEHL", "Slovak Extraliga", "AIHL",
 ];
 
 export default function FavoriteLeaguesScreen() {
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
   list: { paddingHorizontal: 20, },
   leagueRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1, borderBottomColor: '#1A3A5A', },
   leagueText: { color: '#fff', fontSize: 18, },
-  saveButton: { backgroundColor: "#0D2C42", borderWidth: 2, borderColor: '#2F4F68', paddingVertical: 16, borderRadius: 30, marginHorizontal: 20, marginTop: 10, marginBottom: 60, alignItems: 'center', width: 200, alignSelf: 'center', },
+  saveButton: { backgroundColor: "#0D2C42", borderWidth: 2, borderColor: '#2F4F68', paddingVertical: 16, borderRadius: 30, marginHorizontal: 20, marginTop: 10, marginBottom: 80, alignItems: 'center', width: 200, alignSelf: 'center', },
   saveButtonText: { color: '#fff', fontSize: 18, fontWeight: '600', },
 });

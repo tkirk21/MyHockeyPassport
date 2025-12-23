@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { auth, webClientId } from '@/firebaseConfig';
+import { auth, db, webClientId } from '@/firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'expo-router';
 import LoadingPuck from "../components/loadingPuck";
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -11,6 +12,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -35,6 +37,29 @@ export default function Login() {
   });
 
   const spinValue = useRef(new Animated.Value(0)).current;
+
+  const getStartupTabRoute = async () => {
+      const user = auth.currentUser;
+      if (!user) return 'index';
+
+      try {
+        const docSnap = await getDoc(doc(db, 'profiles', user.uid));
+        if (docSnap.exists()) {
+          const saved = docSnap.data()?.startupTab;
+          const tabMap: Record<string, string> = {
+            home: 'index',
+            profile: 'profile',
+            checkin: 'checkin',
+            map: 'map',
+            friends: 'friends',
+          };
+          return tabMap[saved] || 'index';
+        }
+      } catch (error) {
+        console.error('Failed to load startup tab:', error);
+      }
+      return 'index';
+    };
 
   useEffect(() => {
     if (loading) {
@@ -61,7 +86,8 @@ export default function Login() {
     const checkStoredLogin = async () => {
       const savedUser = await AsyncStorage.getItem('userEmail');
       if (savedUser && auth.currentUser) {
-        router.replace('/(tabs)');
+        const targetTab = await getStartupTabRoute();
+        router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
       }
     };
     checkStoredLogin();
@@ -72,7 +98,10 @@ export default function Login() {
       const { id_token } = response.params;
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential)
-        .then(() => router.replace('/(tabs)'))
+        .then(async () => {
+          const targetTab = await getStartupTabRoute();
+          router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+        })
         .catch((error) => {
           console.error('Google login error:', error);
           Alert.alert('Error', 'Google login failed. Try again.');
@@ -85,7 +114,10 @@ export default function Login() {
       const { authentication } = fbResponse;
       const credential = FacebookAuthProvider.credential(authentication?.accessToken);
       signInWithCredential(auth, credential)
-        .then(() => router.replace('/(tabs)'))
+        .then(async () => {
+          const targetTab = await getStartupTabRoute();
+          router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+        })
         .catch(err => Alert.alert('Error', err.message));
     }
   }, [fbResponse]);
@@ -101,7 +133,8 @@ export default function Login() {
         await AsyncStorage.removeItem('userEmail');
       }
 
-      router.replace('/(tabs)');
+      const targetTab = await getStartupTabRoute();
+      router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
     } catch (error: any) {
       console.log('Login error:', error.code);
       let message = 'Login failed.';

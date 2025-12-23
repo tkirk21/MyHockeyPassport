@@ -726,7 +726,7 @@ const styles = StyleSheet.create({
   innerContainer: {
     paddingTop: 40,
     paddingHorizontal: 20,
-    paddingBottom: 40,
+    paddingBottom: 10,
   },
   header: {
     fontSize: 34,
@@ -919,13 +919,7 @@ const styles = StyleSheet.create({
     borderRadius: 11,
     marginRight: 6,
   },
-  chirpAvatarPlaceholder: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#ccc',
-    marginRight: 6,
-  },
+  chirpAvatarPlaceholder: { width: 22, height: 22, borderRadius: 11, backgroundColor: '#ccc', marginRight: 6, },
   cheerBadgeContainer: { position: 'relative', alignItems: 'center', },
   cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
   cheerCountText: { color: '#fff', fontSize: 10, fontWeight: '700', },

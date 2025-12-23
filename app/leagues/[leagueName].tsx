@@ -227,57 +227,14 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#0D2C42',
     borderRadius: 12,
-    overflow: 'hidden',  // ← IMPORTANT: clips rounded corners
+    overflow: 'hidden',
     marginBottom: 16,
   },
-  backButton: {
-    position: 'absolute',
-    top: 35,        // 90px strip / 2 - 36px arrow / 2 = centered
-    left: -10,
-    zIndex: 10,     // above blue strip
-    padding: 12,
-  },
-  scrollContainer: {
-    padding: 20,
-    paddingTop: 60,
-    paddingBottom: 130,   // ← was 80, now 100 — this fixes bottom cutoff on all phones
-    alignItems: 'center',
-  },
-  blueStrip: {
-    position: 'absolute',
-    top: -30,
-    left: 0,
-    right: 0,
-    height: 120,               // ← covers status bar + header area
-    zIndex: 5,
-  },
-
-  logoContainer: {
-    top: 10,
-    left: -10,
-    alignSelf: 'center',
-    width: 136,           // 120 + 8 + 8 (logo + borders)
-    height: 136,
-    zIndex: 20,
-  },
-
-  logoInnerCircle: {
-    width: 168,               // 120 + 8 (inner white border)
-    height: 148,
-    borderWidth: 16,
-    borderColor: '#EDEEF0',   // ← WHITE INNER
-    borderRadius: 84,         // 128 / 2
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-  },
-  logoImage: {
-    width: 170,               // slightly smaller to fit
-    height: 170,
-  },
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#EDEEF0', // same as your background
-  },
+  backButton: { position: 'absolute', top: 35, left: -10, zIndex: 10, padding: 12, },
+  scrollContainer: { padding: 20, paddingTop: 60, paddingBottom: 170, alignItems: 'center', },
+  blueStrip: { position: 'absolute', top: -30, left: 0, right: 0, height: 120, zIndex: 5, },
+  logoContainer: { top: 10, left: -10, alignSelf: 'center', width: 136, height: 136, zIndex: 20, },
+  logoInnerCircle: { width: 168, height: 148, borderWidth: 16, borderColor: '#EDEEF0', borderRadius: 84, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginTop: 30, },
+  logoImage: { width: 170, height: 170, },
+  safeArea: { flex: 1, backgroundColor: '#EDEEF0', },
 });
