@@ -11,6 +11,7 @@ import { addDoc, collection, doc, deleteDoc, getDoc, getDocs, getFirestore, onSn
 import { getStorage, getDownloadURL, ref, uploadBytes, } from 'firebase/storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from './_layout';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 import arenasData from '@/assets/data/arenas.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
@@ -38,147 +39,10 @@ async function getCheerCount(userId: string, checkinId: string) {
   }
 }
 
-function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: string }) {
-  const [chirps, setChirps] = useState<any[]>([]);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editText, setEditText] = useState('');
-  const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
-  const currentUser = auth.currentUser;
-  const isCheckinOwner = currentUser?.uid === userId;
-
-  const deleteChirp = async (chirpId: string) => {
-    try {
-      await deleteDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId));
-      setChirps(prev => prev.filter(c => c.id !== chirpId));
-    } catch (err) {
-      console.error('Delete failed:', err);
-    }
-  };
-
-  const saveEdit = async (chirpId: string) => {
-    if (!editText.trim()) return;
-    try {
-      await updateDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId), {
-        text: editText.trim(),
-      });
-      setChirps(prev => prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c));
-    } catch (err) {
-      console.error('Edit failed:', err);
-    } finally {
-      setEditingId(null);
-      setEditText('');
-    }
-  };
-
-  useEffect(() => {
-    if (!currentUser) {
-      setChirps([]);
-      return;
-    }
-
-    const chirpsRef = collection(db, 'profiles', userId, 'checkins', checkinId, 'chirps');
-    const q = query(chirpsRef, orderBy('timestamp', 'asc'));
-    const unsub = onSnapshot(q, (snap) => {
-      const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setChirps(list);
-    });
-    return () => unsub();
-  }, [userId, checkinId, currentUser?.uid]);
-
-  if (chirps.length === 0) return null;
-
-  return (
-    <View style={styles.chirpsSection}>
-      {chirps.map((c) => {
-        const isOwnChirp = c.userId === currentUser?.uid;
-        const isEditing = editingId === c.id;
-
-        return (
-          <View key={c.id} style={styles.chirpItem}>
-            {c.userImage ? (
-              <Image source={{ uri: c.userImage }} style={styles.chirpAvatar} />
-            ) : (
-              <View style={styles.chirpAvatarPlaceholder} />
-            )}
-
-            <View style={styles.chirpTextContainer}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Text style={styles.chirpUsername}>{c.userName || 'Someone'}</Text>
-
-                {/* 3-dot menu – only show if you can edit or delete */}
-                {(isOwnChirp || isCheckinOwner) && (
-                  <View style={{ position: 'relative' }}>
-                    <TouchableOpacity
-                      hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                      onPress={() => setMenuOpenId(menuOpenId === c.id ? null : c.id)}
-                    >
-                      <Text style={{ fontSize: 24, color: '#666' }}>⋮</Text>
-                    </TouchableOpacity>
-
-                    {menuOpenId === c.id && !isEditing && (
-                      <View style={styles.dropdownMenu}>
-                        {isOwnChirp && (
-                          <TouchableOpacity
-                            onPress={() => {
-                              setEditingId(c.id);
-                              setEditText(c.text);
-                              setMenuOpenId(null);
-                            }}
-                            style={{ paddingVertical: 8, paddingHorizontal: 16 }}
-                          >
-                            <Text style={{ color: '#1E3A8A', fontWeight: '600' }}>Edit</Text>
-                          </TouchableOpacity>
-                        )}
-                        {(isOwnChirp || isCheckinOwner) && (
-                          <TouchableOpacity
-                            onPress={() => {
-                              deleteChirp(c.id);
-                              setMenuOpenId(null);
-                            }}
-                            style={{ paddingVertical: 8, paddingHorizontal: 16 }}
-                          >
-                            <Text style={{ color: '#F44336', fontWeight: '600' }}>Delete</Text>
-                          </TouchableOpacity>
-                        )}
-                      </View>
-                    )}
-                  </View>
-                )}
-              </View>
-
-              {/* Chirp text or edit input */}
-              {isEditing ? (
-                <View style={{ marginTop: 8 }}>
-                  <TextInput
-                    style={[styles.chirpText, { borderWidth: 1.5, borderColor: '#10B981', borderRadius: 8, padding: 8 }]}
-                    value={editText}
-                    onChangeText={setEditText}
-                    autoFocus
-                    multiline
-                  />
-                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16, marginTop: 8 }}>
-                    <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
-                      <Text style={{ color: '#666', fontWeight: '600' }}>Cancel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => saveEdit(c.id)}>
-                      <Text style={{ color: '#10B981', fontWeight: '600' }}>Save</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ) : (
-                <Text style={styles.chirpText}>{c.text}</Text>
-              )}
-            </View>
-          </View>
-        );
-      })}
-    </View>
-  );
-}
-
 export default function ProfileScreen() {
   const router = useRouter();
   const { setProfileAlertCount } = useContext(ProfileAlertContext);
+  const colorScheme = useColorScheme();
 
   useFocusEffect(
     useCallback(() => {
@@ -403,6 +267,201 @@ useEffect(() => {
     setTeamsByLeague(perLeague);
   }
 
+  function ChirpsSection({ userId, checkinId }: { userId: string; checkinId: string }) {
+    const [chirps, setChirps] = useState<any[]>([]);
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const [editText, setEditText] = useState('');
+    const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
+    const currentUser = auth.currentUser;
+    const isCheckinOwner = currentUser?.uid === userId;
+
+    const deleteChirp = async (chirpId: string) => {
+      try {
+        await deleteDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId));
+        setChirps(prev => prev.filter(c => c.id !== chirpId));
+      } catch (err) {
+        console.error('Delete failed:', err);
+      }
+    };
+
+    const saveEdit = async (chirpId: string) => {
+      if (!editText.trim()) return;
+      try {
+        await updateDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId), {
+          text: editText.trim(),
+        });
+        setChirps(prev => prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c));
+      } catch (err) {
+        console.error('Edit failed:', err);
+      } finally {
+        setEditingId(null);
+        setEditText('');
+      }
+    };
+
+    useEffect(() => {
+      if (!currentUser) {
+        setChirps([]);
+        return;
+      }
+
+      const chirpsRef = collection(db, 'profiles', userId, 'checkins', checkinId, 'chirps');
+      const q = query(chirpsRef, orderBy('timestamp', 'asc'));
+      const unsub = onSnapshot(q, (snap) => {
+        const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        setChirps(list);
+      });
+      return () => unsub();
+    }, [userId, checkinId, currentUser?.uid]);
+
+    if (chirps.length === 0) return null;
+
+    return (
+      <View style={styles.chirpsSection}>
+        {chirps.map((c) => {
+          const isOwnChirp = c.userId === currentUser?.uid;
+          const isEditing = editingId === c.id;
+
+          return (
+            <View key={c.id} style={styles.chirpItem}>
+              {c.userImage ? (
+                <Image source={{ uri: c.userImage }} style={styles.chirpAvatar} />
+              ) : (
+                <View style={styles.chirpAvatarPlaceholder} />
+              )}
+
+              <View style={styles.chirpTextContainer}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Text style={styles.chirpUsername}>{c.userName || 'Someone'}</Text>
+
+                  {/* 3-dot menu – only show if you can edit or delete */}
+                  {(isOwnChirp || isCheckinOwner) && (
+                    <View style={{ position: 'relative' }}>
+                      <TouchableOpacity
+                        hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                        onPress={() => setMenuOpenId(menuOpenId === c.id ? null : c.id)}
+                      >
+                        <Text style={{ fontSize: 24, color: '#666' }}>⋮</Text>
+                      </TouchableOpacity>
+
+                      {menuOpenId === c.id && !isEditing && (
+                        <View style={styles.dropdownMenu}>
+                          {isOwnChirp && (
+                            <TouchableOpacity
+                              onPress={() => {
+                                setEditingId(c.id);
+                                setEditText(c.text);
+                                setMenuOpenId(null);
+                              }}
+                              style={{ paddingVertical: 8, paddingHorizontal: 16 }}
+                            >
+                              <Text style={{ color: '#1E3A8A', fontWeight: '600' }}>Edit</Text>
+                            </TouchableOpacity>
+                          )}
+                          {(isOwnChirp || isCheckinOwner) && (
+                            <TouchableOpacity
+                              onPress={() => {
+                                deleteChirp(c.id);
+                                setMenuOpenId(null);
+                              }}
+                              style={{ paddingVertical: 8, paddingHorizontal: 16 }}
+                            >
+                              <Text style={{ color: '#F44336', fontWeight: '600' }}>Delete</Text>
+                            </TouchableOpacity>
+                          )}
+                        </View>
+                      )}
+                    </View>
+                  )}
+                </View>
+
+                {/* Chirp text or edit input */}
+                {isEditing ? (
+                  <View style={{ marginTop: 8 }}>
+                    <TextInput
+                      style={[styles.chirpText, { borderWidth: 1.5, borderColor: '#10B981', borderRadius: 8, padding: 8 }]}
+                      value={editText}
+                      onChangeText={setEditText}
+                      autoFocus
+                      multiline
+                    />
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 16, marginTop: 8 }}>
+                      <TouchableOpacity onPress={() => { setEditingId(null); setEditText(''); }}>
+                        <Text style={{ color: '#666', fontWeight: '600' }}>Cancel</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => saveEdit(c.id)}>
+                        <Text style={{ color: '#10B981', fontWeight: '600' }}>Save</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ) : (
+                  <Text style={styles.chirpText}>{c.text}</Text>
+                )}
+              </View>
+            </View>
+          );
+        })}
+      </View>
+    );
+  }
+
+  const styles = StyleSheet.create({
+    arenaHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
+    arenaText: { fontSize: 16, fontWeight: '700', color: '#0D2C42', marginBottom: 4, },
+    arenaTextInline: { fontSize: 16, fontWeight: '700', color: '#0D2C42', flex: 1, },
+    background: { flex: 1, width: '100%', height: '100%', },
+    cardText: { fontSize: 16, color: '#0A2940', textAlign: 'center', },
+    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: '#0A2940', textAlign: 'center', },
+    checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
+    cheerBadgeContainer: { position: 'relative', alignItems: 'center', },
+    cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
+    cheerCountText: { color: '#fff', fontSize: 10, fontWeight: '700', },
+    cheerNamesText: { fontSize: 12, color: '#2F4F68', fontWeight: '600', marginTop: 2, textAlign: 'center', },
+    cheerWrapper: { alignItems: 'flex-end', },
+    chirpAvatar: { width: 22, height: 22, borderRadius: 11, marginRight: 6, },
+    chirpAvatarPlaceholder: { width: 22, height: 22, borderRadius: 11, backgroundColor: '#ccc', marginRight: 6, },
+    chirpInput: { flex: 1, borderWidth: 1.5, borderColor: colorScheme === 'dark' ? '#ccc' : '#666', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 8, fontSize: 14, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', color: colorScheme === 'dark' ? '#0A2940' : '#fff', },
+    chirpItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
+    chirpReplyRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8, },
+    chirpsSection: { marginTop: 8, paddingHorizontal: 6, },
+    chirpSectionWrapper: { marginTop: 12, padding: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 12, },
+    chirpSendButton: { marginLeft: 8, backgroundColor: colorScheme === 'dark' ? '#E0E7FF' : '#0A2940', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 30, },
+    chirpSendText: { color: colorScheme === 'dark' ? '#0A2940' : '#fff', fontWeight: '700', fontSize: 14, },
+    chirpText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', flexShrink: 1, },
+    chirpTextContainer: {  flex: 1, },
+    chirpUsername: { fontWeight: '700', color: '#0A2940', },
+    collapseHeader: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8, alignItems: 'center', },
+    dateAndCheerRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 2, marginTop: 3, marginBottom: 6, },
+    dateText: { fontSize: 14, color: '#2F4F68', textAlign: 'center', marginBottom: 6, },
+    dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', borderRadius: 12, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#D1D5DB' : '#666', paddingVertical: 4, minWidth: 110, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
+    header: { fontSize: 34, fontWeight: 'bold', color: '#0D2C42', marginTop: 10, marginBottom: 15, textAlign: 'center', textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    innerContainer: { paddingTop: 40, paddingHorizontal: 20, paddingBottom: 10, },
+    input: { height: 48, borderColor: '#0A2940', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 6, color: '#0D2C42', },
+    leagueBlock: { marginTop: 8, backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#F0F4F8', borderRadius: 10, overflow: 'hidden', },
+    leaguesList: { marginTop: 8, },
+    leaguePuck: {  width: 28, height: 28, marginRight: 8,  },
+    leagueRow: { paddingVertical: 10, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: '#e5e7eb', },
+    leagueRowText: { color: '#0A2940', fontSize: 16, fontWeight: '600', },
+    placeholder: { fontSize: 16, color: '#374151', textAlign: 'center', },
+    profileActionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  marginTop: 12, gap: 30, },
+    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 12, borderColor: '#2F4F68', borderWidth: 2, },
+    safeArea: { flex: 1, },
+    scrollContainer: { flexGrow: 1, },
+    section: { marginBottom: 20, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: '#0D2C42', },
+    sectionTitle: { fontSize: 20, fontWeight: '700', color: '#1E3A8A', marginBottom: 8, textAlign: 'center', },
+    settingsGearButton: { padding: 10, },
+    smallButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', },
+    smallButtonText: { color: '#fff', fontSize: 18, fontWeight: '600', },
+    smallLoadButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+    smallSaveProfileButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+    statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
+    statSection: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: '#0D2C42', },
+    teamList: { paddingVertical: 8, paddingHorizontal: 14, gap: 6, },
+    teamRowText: { color: '#2F4F68', fontSize: 14, },
+    teamsText: { fontSize: 14, fontWeight: '500', color: '#2F4F68', },
+    uploadPhotoButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, marginBottom: 12, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+  });
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -410,7 +469,7 @@ useEffect(() => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
       <ImageBackground
-        source={require('../../assets/images/background.jpg')}
+        source={colorScheme === 'dark' ? require('../../assets/images/background_dark.jpg') : require('../../assets/images/background.jpg')}
         style={styles.background}
         resizeMode="cover"
       >
@@ -710,61 +769,3 @@ useEffect(() => {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  arenaHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
-  arenaText: { fontSize: 16, fontWeight: '700', color: '#0D2C42', marginBottom: 4, },
-  arenaTextInline: { fontSize: 16, fontWeight: '700', color: '#0D2C42', flex: 1, },
-  background: { flex: 1, width: '100%', height: '100%', },
-  cardText: { fontSize: 16, color: '#0A2940', textAlign: 'center', },
-  cardTextBold: { fontSize: 26, fontWeight: 'bold', color: '#0A2940', textAlign: 'center', },
-  checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
-  cheerBadgeContainer: { position: 'relative', alignItems: 'center', },
-  cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
-  cheerCountText: { color: '#fff', fontSize: 10, fontWeight: '700', },
-  cheerNamesText: { fontSize: 12, color: '#2F4F68', fontWeight: '600', marginTop: 2, textAlign: 'center', },
-  cheerWrapper: { alignItems: 'flex-end', },
-  chirpAvatar: { width: 22, height: 22, borderRadius: 11, marginRight: 6, },
-  chirpAvatarPlaceholder: { width: 22, height: 22, borderRadius: 11, backgroundColor: '#ccc', marginRight: 6, },
-  chirpInput: { flex: 1, borderWidth: 1.5, borderColor: '#ccc', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 8, fontSize: 14, backgroundColor: '#fff', color: '#0A2940', },
-  chirpItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
-  chirpReplyRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8, },
-  chirpsSection: { marginTop: 8, paddingHorizontal: 6, },
-  chirpSectionWrapper: { marginTop: 12, padding: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 12, },
-  chirpSendButton: { marginLeft: 8, backgroundColor: '#0A2940', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 30, },
-  chirpSendText: { color: '#fff', fontWeight: '700', fontSize: 14, },
-  chirpText: { color: '#0A2940',  flexShrink: 1, },
-  chirpTextContainer: {  flex: 1, },
-  chirpUsername: { fontWeight: '700', color: '#0A2940', },
-  collapseHeader: { backgroundColor: '#E0E7FF', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8, alignItems: 'center', },
-  collapseHeaderText: { color: '#1E3A8A', fontSize: 16, fontWeight: '600', },
-  dateAndCheerRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 2, marginTop: 3, marginBottom: 6, },
-  dateText: { fontSize: 14, color: '#2F4F68', textAlign: 'center', marginBottom: 6, },
-  dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: '#fff', borderRadius: 12, borderWidth: 1, borderColor: '#D1D5DB', paddingVertical: 4, minWidth: 110, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
-  header: { fontSize: 34, fontWeight: 'bold', color: '#0D2C42', marginTop: 10, marginBottom: 15, textAlign: 'center', textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
-  innerContainer: { paddingTop: 40, paddingHorizontal: 20, paddingBottom: 10, },
-  input: { height: 48, borderColor: '#0A2940', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 6, color: '#0D2C42', },
-  leagueBlock: { marginTop: 8, backgroundColor: '#F0F4F8', borderRadius: 10, overflow: 'hidden', },
-  leaguesList: { marginTop: 8, },
-  leaguePuck: {  width: 28, height: 28, marginRight: 8,  },
-  leagueRow: { paddingVertical: 10, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: '#e5e7eb', },
-  leagueRowText: { color: '#0A2940', fontSize: 16, fontWeight: '600', },
-  placeholder: { fontSize: 16, color: '#374151', textAlign: 'center', },
-  profileActionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  marginTop: 12, gap: 30, },
-  profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 12, borderColor: '#2F4F68', borderWidth: 2, },
-  safeArea: { flex: 1, },
-  scrollContainer: { flexGrow: 1, },
-  section: { marginBottom: 20, backgroundColor: 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: '#0D2C42', },
-  sectionTitle: { fontSize: 20, fontWeight: '700', color: '#1E3A8A', marginBottom: 8, textAlign: 'center', },
-  settingsGearButton: { padding: 10, },
-  smallButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', },
-  smallButtonText: { color: '#fff', fontSize: 18, fontWeight: '600', },
-  smallLoadButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
-  smallSaveProfileButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
-  statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
-  statSection: { flex: 1, backgroundColor: 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: '#0D2C42', },
-  teamList: { paddingVertical: 8, paddingHorizontal: 14, gap: 6, },
-  teamRowText: { color: '#2F4F68', fontSize: 14, },
-  teamsText: { fontSize: 14, fontWeight: '500', color: '#2F4F68', },
-  uploadPhotoButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, marginBottom: 12, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
-});
