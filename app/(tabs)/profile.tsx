@@ -407,19 +407,18 @@ useEffect(() => {
 
   const styles = StyleSheet.create({
     arenaHeaderRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
-    arenaText: { fontSize: 16, fontWeight: '700', color: '#0D2C42', marginBottom: 4, },
-    arenaTextInline: { fontSize: 16, fontWeight: '700', color: '#0D2C42', flex: 1, },
+    arenaTextInline: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', flex: 1, },
     background: { flex: 1, width: '100%', height: '100%', },
-    cardText: { fontSize: 16, color: '#0A2940', textAlign: 'center', },
-    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: '#0A2940', textAlign: 'center', },
+    cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
+    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
     checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
     cheerBadgeContainer: { position: 'relative', alignItems: 'center', },
-    cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
-    cheerCountText: { color: '#fff', fontSize: 10, fontWeight: '700', },
-    cheerNamesText: { fontSize: 12, color: '#2F4F68', fontWeight: '600', marginTop: 2, textAlign: 'center', },
+    cheerCountBadge: { position: 'absolute', top: -6, right: -8, backgroundColor: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', borderRadius: 10, paddingHorizontal: 4, paddingVertical: 1, minWidth: 16, },
+    cheerCountText: { color: colorScheme === 'dark' ? '#0A2940' : '#fff', fontSize: 10, fontWeight: '700', },
+    cheerNamesText: { fontSize: 12, color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', fontWeight: '600', marginTop: 2, textAlign: 'center', },
     cheerWrapper: { alignItems: 'flex-end', },
     chirpAvatar: { width: 22, height: 22, borderRadius: 11, marginRight: 6, },
-    chirpAvatarPlaceholder: { width: 22, height: 22, borderRadius: 11, backgroundColor: '#ccc', marginRight: 6, },
+    chirpAvatarPlaceholder: { width: 22, height: 22, borderRadius: 11, backgroundColor: colorScheme === 'dark' ? '#444' : '#ccc', marginRight: 6, },
     chirpInput: { flex: 1, borderWidth: 1.5, borderColor: colorScheme === 'dark' ? '#ccc' : '#666', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 8, fontSize: 14, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', color: colorScheme === 'dark' ? '#0A2940' : '#fff', },
     chirpItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, },
     chirpReplyRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8, },
@@ -429,37 +428,38 @@ useEffect(() => {
     chirpSendText: { color: colorScheme === 'dark' ? '#0A2940' : '#fff', fontWeight: '700', fontSize: 14, },
     chirpText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', flexShrink: 1, },
     chirpTextContainer: {  flex: 1, },
-    chirpUsername: { fontWeight: '700', color: '#0A2940', },
+    chirpUsername: { fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     collapseHeader: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF', paddingVertical: 8, paddingHorizontal: 12, borderRadius: 8, alignItems: 'center', },
+    collapseHeaderText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', fontSize: 16, fontWeight: '600', },
     dateAndCheerRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 2, marginTop: 3, marginBottom: 6, },
-    dateText: { fontSize: 14, color: '#2F4F68', textAlign: 'center', marginBottom: 6, },
+    dateText: { fontSize: 14, color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', textAlign: 'center', marginBottom: 6, },
     dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', borderRadius: 12, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#D1D5DB' : '#666', paddingVertical: 4, minWidth: 110, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
-    header: { fontSize: 34, fontWeight: 'bold', color: '#0D2C42', marginTop: 10, marginBottom: 15, textAlign: 'center', textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    header: { fontSize: 34, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginTop: 10, marginBottom: 15, textAlign: 'center', textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
     innerContainer: { paddingTop: 40, paddingHorizontal: 20, paddingBottom: 10, },
-    input: { height: 48, borderColor: '#0A2940', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 6, color: '#0D2C42', },
+    input: { height: 48, borderColor: colorScheme === 'dark' ? '#666' : '#0A2940', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 6, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', },
     leagueBlock: { marginTop: 8, backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#F0F4F8', borderRadius: 10, overflow: 'hidden', },
     leaguesList: { marginTop: 8, },
     leaguePuck: {  width: 28, height: 28, marginRight: 8,  },
-    leagueRow: { paddingVertical: 10, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: '#e5e7eb', },
-    leagueRowText: { color: '#0A2940', fontSize: 16, fontWeight: '600', },
-    placeholder: { fontSize: 16, color: '#374151', textAlign: 'center', },
+    leagueRow: { paddingVertical: 10, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: colorScheme === 'dark' ? '#444' : '#e5e7eb', },
+    leagueRowText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '300', },
+    placeholder: { fontSize: 16, color: colorScheme === 'dark' ? '#BBBBBB' : '#374151', textAlign: 'center', },
     profileActionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center',  marginTop: 12, gap: 30, },
-    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 12, borderColor: '#2F4F68', borderWidth: 2, },
+    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 12, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', borderWidth: 2, },
     safeArea: { flex: 1, },
     scrollContainer: { flexGrow: 1, },
     section: { marginBottom: 20, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: '#0D2C42', },
-    sectionTitle: { fontSize: 20, fontWeight: '700', color: '#1E3A8A', marginBottom: 8, textAlign: 'center', },
+    sectionTitle: { fontSize: 20, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', marginBottom: 8, textAlign: 'center', },
     settingsGearButton: { padding: 10, },
-    smallButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', },
-    smallButtonText: { color: '#fff', fontSize: 18, fontWeight: '600', },
-    smallLoadButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
-    smallSaveProfileButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+    smallButtonText: { color: colorScheme === 'dark' ? '#0A2940' : '#fff', fontSize: 18, fontWeight: '600', },
+    smallLoadButton: { backgroundColor: colorScheme === 'dark' ? '#E0E7FF' : '#0A2940', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+    smallSaveProfileButton: { backgroundColor: colorScheme === 'dark' ? '#E0E7FF' : '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', alignItems: 'center', alignSelf: 'center', },
     statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
     statSection: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: '#0D2C42', },
+    sub: { fontSize: 14, fontWeight: '600', color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', marginBottom: 6 },
     teamList: { paddingVertical: 8, paddingHorizontal: 14, gap: 6, },
-    teamRowText: { color: '#2F4F68', fontSize: 14, },
-    teamsText: { fontSize: 14, fontWeight: '500', color: '#2F4F68', },
-    uploadPhotoButton: { backgroundColor: '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, marginBottom: 12, borderColor: '#2F4F68', alignItems: 'center', alignSelf: 'center', },
+    teamRowText: { color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', fontSize: 14, },
+    teamsText: { fontSize: 14, fontWeight: '500', color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', },
+    uploadPhotoButton: { backgroundColor: colorScheme === 'dark' ? '#E0E7FF' : '#0A2940', paddingVertical: 14, paddingHorizontal: 10, borderRadius: 30, borderWidth: 2, marginBottom: 12, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', alignItems: 'center', alignSelf: 'center', },
   });
 
   return (
@@ -490,28 +490,28 @@ useEffect(() => {
               <TextInput
                 style={styles.input}
                 placeholder="Your Name"
-                placeholderTextColor="#374151"
+                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#374151'}
                 value={name}
                 onChangeText={setName}
               />
               <TextInput
                 style={styles.input}
                 placeholder="Location"
-                placeholderTextColor="#374151"
+                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#374151'}
                 value={location}
                 onChangeText={setLocation}
               />
               <TextInput
                 style={styles.input}
                 placeholder="Favourite Team"
-                placeholderTextColor="#374151"
+                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#374151'}
                 value={favouriteTeam}
                 onChangeText={setFavouriteTeam}
               />
 
               <View style={styles.profileActionsRow}>
                 <TouchableOpacity style={styles.settingsGearButton} onPress={() => router.push('/settings')}>
-                  <Ionicons name="settings-outline" size={28} color="#0A2940" />
+                  <Ionicons name="settings-outline" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
                 </TouchableOpacity>
 
                 {loading ? (
@@ -697,9 +697,9 @@ useEffect(() => {
                                   </View>
                                 </View>
                               </TouchableOpacity>
-                              {visibleCheerList === checkIn.id && (
-                                <Text style={styles.cheerNamesText}>{checkIn.cheerNames.join(', ')}</Text>
-                              )}
+                              {visibleCheerList === checkIn.id && checkIn.cheerNames.map((name, index) => (
+                                <Text key={index} style={styles.cheerNamesText}>{name}</Text>
+                              ))}
                             </View>
                           )}
                         </View>
@@ -710,7 +710,7 @@ useEffect(() => {
                             <View style={styles.chirpReplyRow}>
                               <TextInput
                                 placeholder="Reply to this chirp..."
-                                placeholderTextColor="#999"
+                                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#999'}
                                 style={styles.chirpInput}
                                 value={checkIn.newChirpText || ''}
                                 onChangeText={(t) =>
