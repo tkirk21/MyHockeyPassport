@@ -1,4 +1,3 @@
-//version 1 - 10am friday 1st of august
 //+not-found.tsx
 import { Stack } from 'expo-router';
 import { StyleSheet, Text, View, Pressable } from 'react-native';

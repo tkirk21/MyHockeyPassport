@@ -19,15 +19,20 @@ export default function FavoriteLeaguesScreen() {
 
   useEffect(() => {
     const loadFavoriteLeagues = async () => {
-      if (!auth.currentUser) return;
+      if (!auth.currentUser) {
+        setFavoriteLeagues([]);
+        return;
+      }
       const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
-      if (docSnap.exists()) {
-        const saved = docSnap.data()?.favoriteLeagues;
-        if (Array.isArray(saved)) {
-          setFavoriteLeagues(saved);
-        }
+      const saved = docSnap.data()?.favoriteLeagues;
+
+      if (Array.isArray(saved) && saved.length > 0) {
+        setFavoriteLeagues(saved.filter(l => typeof l === 'string' && l.trim() !== ''));
+      } else {
+        setFavoriteLeagues([]);
       }
     };
+
     loadFavoriteLeagues();
   }, []);
 

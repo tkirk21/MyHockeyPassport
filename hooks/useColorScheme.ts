@@ -1,17 +1,22 @@
-//version 1 - 10am friday 1st of august
-//useColorScheme.ts
-import { ColorSchemeName, useColorScheme as useSystemColorScheme } from 'react-native';
+// hooks/useColorScheme.ts
+import { Appearance } from 'react-native';
 import { useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
-export function useColorScheme(): NonNullable<ColorSchemeName> {
-  const systemColorScheme = useSystemColorScheme();
-  const [colorScheme, setColorScheme] = useState<NonNullable<ColorSchemeName>>('light');
+export function useColorScheme() {
+  const [scheme, setScheme] = useState(Appearance.getColorScheme() ?? 'light');
 
   useEffect(() => {
-    if (systemColorScheme) {
-      setColorScheme(systemColorScheme);
-    }
-  }, [systemColorScheme]);
+    const listener = Appearance.addChangeListener(({ colorScheme }) => {
+      setScheme(colorScheme ?? 'light');
+    });
+    return () => listener.remove();
+  }, []);
 
-  return colorScheme ?? 'light';
+  // Force refresh when screen comes into focus (fixes Android Expo Go bug)
+  useFocusEffect(() => {
+    setScheme(Appearance.getColorScheme() ?? 'light');
+  });
+
+  return scheme;
 }

@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { useEffect, useState } from 'react';
@@ -21,15 +21,19 @@ export default function Index() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A2940' }}>
-        <ActivityIndicator size="large" color="#ffffff" />
-      </View>
+      <>
+        <Stack.Screen options={{ headerShown: false }} />
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A2940' }}>
+          <ActivityIndicator size="large" color="#ffffff" />
+        </View>
+      </>
     );
   }
 
-  if (user) {
-    return <Redirect href="/(tabs)" />;
-  }
-
-  return <Redirect href="/login" />;
+  return (
+    <>
+      <Stack.Screen options={{ headerShown: false }} />
+      {user ? <Redirect href="/(tabs)" /> : <Redirect href="/login" />}
+    </>
+  );
 }

@@ -74,9 +74,9 @@ export default function SettingsScreen() {
         const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
         if (docSnap.exists()) {
           const saved = docSnap.data()?.favoriteLeagues;
-          if (Array.isArray(saved)) {
-            setFavoriteLeagues(saved);
-          }
+          setFavoriteLeagues(Array.isArray(saved) ? saved : []);
+        } else {
+          setFavoriteLeagues([]);
         }
       };
 
@@ -140,6 +140,7 @@ export default function SettingsScreen() {
       },
     ]);
   };
+
 
   return (
     <View style={{ flex: 1, backgroundColor: '#0A2940' }}>
@@ -260,16 +261,10 @@ export default function SettingsScreen() {
               />
             </View>
 
-            <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/location-radius')}>
-              <Ionicons name="location-outline" size={26} color="#fff" />
-              <Text style={styles.label}>Closest Arenas Radius</Text>
-              <Ionicons name="chevron-forward" size={24} color="#888" />
-            </TouchableOpacity>
-
             <TouchableOpacity style={styles.row} onPress={() => router.push('/settings/favorite-leagues')}>
               <Ionicons name="star-outline" size={26} color="#fff" />
               <Text style={styles.label}>Favorite Leagues</Text>
-              <Text style={{ color: '#aaa', fontSize: 16 }}>
+              <Text style={{ color: '#aaa', fontSize: 16, marginLeft: 'auto' }}>
                 {favoriteLeagues.length === 0 ? 'All leagues' : `${favoriteLeagues.length} selected`}
               </Text>
               <Ionicons name="chevron-forward" size={24} color="#888" />
