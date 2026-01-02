@@ -4,6 +4,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -16,6 +17,7 @@ type Props = {
 export default function CheerButton({ friendId, checkinId }: Props) {
   const [cheerCount, setCheerCount] = useState(0);
   const [cheerNames, setCheerNames] = useState<string[]>([]);
+  const colorScheme = useColorScheme();
 
   useEffect(() => {
     const loadCheers = async () => {
@@ -70,6 +72,16 @@ export default function CheerButton({ friendId, checkinId }: Props) {
     }
   };
 
+  const styles = {
+    badge: { position: "absolute", top: -8, right: -8, backgroundColor: "#0A2940",borderRadius: 10, minWidth: 20, height: 20, justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#fff", },
+    badgeText: { color: "#fff", fontSize: 10, fontWeight: "700" },
+    button: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 7, paddingVertical: 6, borderRadius: 30, minWidth: 55, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: "#2F4F68", marginLeft: -20, },
+    container: { marginLeft: -12, alignItems: "flex-start", },
+    nameText: { color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontSize: 11, marginTop: 2, },
+    namesContainer: { marginTop: 4, },
+    text: { color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontSize: 10, fontWeight: "bold", }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleCheerPress} style={styles.button} activeOpacity={0.7}>
@@ -92,12 +104,5 @@ export default function CheerButton({ friendId, checkinId }: Props) {
   );
 }
 
-const styles = {
-  badge: { position: "absolute", top: -8, right: -8, backgroundColor: "#0A2940",borderRadius: 10, minWidth: 20, height: 20, justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#fff", },
-  badgeText: { color: "#fff", fontSize: 10, fontWeight: "700" },
-  button: { backgroundColor: '#0A2940', paddingHorizontal: 7, paddingVertical: 6, borderRadius: 30, minWidth: 55, alignItems: "center", justifyContent: "center", borderWidth: 2, borderColor: "#2F4F68", marginLeft: -20, },
-  container: { marginLeft: -12, alignItems: "flex-start", },
-  nameText: { color: "#444", fontSize: 11, marginTop: 2, },
-  namesContainer: { marginTop: 4, },
-  text: { color: "#fff", fontSize: 10, fontWeight: "bold", }
-};
+
+

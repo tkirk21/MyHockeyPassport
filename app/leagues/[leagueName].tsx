@@ -9,10 +9,12 @@ import MapView, { Marker, UrlTile } from 'react-native-maps';
 import LoadingPuck from '@/components/loadingPuck';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 export default function LeagueDetails() {
   const [loading, setLoading] = React.useState(true);
   const { leagueName } = useLocalSearchParams();
+  const colorScheme = useColorScheme();
   const league = leagues.find((l: any) => (l.league || '').toUpperCase() === String(leagueName || '').toUpperCase());
   const leagueCode = (league?.league || '').toUpperCase();
   const leagueArenas = useMemo(() => {
@@ -48,12 +50,31 @@ export default function LeagueDetails() {
     );
   }
 
+  const styles = StyleSheet.create({
+    backButton: { position: 'absolute', top: 35, left: -10, zIndex: 10, padding: 12, },
+    blueStrip: { position: 'absolute', top: -30, left: 0, right: 0, height: 120, zIndex: 5, },
+    container: { padding: 20, paddingBottom: 80, alignItems: 'center', backgroundColor: '#E6E8EA', flexGrow: 1, },
+    description: { fontSize: 16, marginBottom: 20, textAlign: 'center', color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', },
+    info: { fontSize: 14, marginBottom: 8, color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', textAlign: 'center', },
+    infoBox: { backgroundColor: colorScheme === 'dark' ? 'rgba(15, 35, 55, 0.85)' : 'rgba(255,255,255,0.85)', padding: 16, borderRadius: 12, borderWidth: 4, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', width: '100%', alignItems: 'center', },
+    link: { fontSize: 16, color: '#99D9EA', marginTop: 12, },
+    loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', },
+    logoContainer: { top: 10, left: -10, alignSelf: 'center', width: 136, height: 136, zIndex: 20 },
+    logoInnerCircle: { width: 168, height: 94, borderWidth: 16, borderBottomWidth: 0, borderColor: colorScheme === 'dark' ? '#0A2940' : '#EDEEF0', borderTopLeftRadius: 84, borderTopRightRadius: 84, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginTop: 30 },
+    logoImage: { width: 170, height: 170, marginTop: -101  },
+    map: { width: 310, height: 300, borderColor: colorScheme === 'dark' ?  '#0D2C42' : '#334155' , },
+    mapWrapper: { borderWidth: 4, borderColor: colorScheme === 'dark' ?  '#334155' : '#334155', borderRadius: 12, overflow: 'hidden', marginBottom: 16, },
+    safeArea: { flex: 1, backgroundColor: '#EDEEF0', },
+    scrollContainer: { padding: 20, paddingTop: 60, paddingBottom: 170, alignItems: 'center', },
+    title: { fontSize: 26, fontWeight: 'bold', marginBottom: 12, textAlign: 'center', color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', },
+  });
+
   return loading ? (
     <View style={styles.loadingContainer}>
       <LoadingPuck size={320} />
     </View>
   ) : (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#EDEEF0' }}>
       <View style={styles.fullContainer}>
         <View style={[styles.blueStrip, { backgroundColor: league.colorCode || '#0A2940' }]} />
         <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
@@ -61,17 +82,19 @@ export default function LeagueDetails() {
         </TouchableOpacity>
         {/* ← CIRCULAR LOGO WITH BORDER AROUND PUCK */}
         <View style={styles.logoContainer}>
-          <View style={styles.logoInnerCircle}>
-            <Image
-              source={
-                league.logoFileName && leagueLogos[league.logoFileName]
-                  ? leagueLogos[league.logoFileName]
-                  : leagueLogos['placeholder.png']
-              }
-              style={styles.logoImage}
-              resizeMode="contain"
-            />
-          </View>
+          {/* Half circle border */}
+          <View style={styles.logoInnerCircle} />
+
+          {/* Logo image (separate, on top) */}
+          <Image
+            source={
+              league.logoFileName && leagueLogos[league.logoFileName]
+                ? leagueLogos[league.logoFileName]
+                : leagueLogos['placeholder.png']
+            }
+            style={styles.logoImage}
+            resizeMode="contain"
+          />
         </View>
 
         <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -90,7 +113,9 @@ export default function LeagueDetails() {
                   }}
                 >
                   <UrlTile
-                    urlTemplate="https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+                    urlTemplate={colorScheme === 'dark'
+                      ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+                      : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
                     maximumZ={19}
                     zIndex={0}
                   />
@@ -180,61 +205,3 @@ export default function LeagueDetails() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { padding: 20, paddingBottom: 80, alignItems: 'center', backgroundColor: '#E6E8EA', flexGrow: 1, },
-  title: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    marginBottom: 12,
-    textAlign: 'center',
-  },
-  description: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  info: {
-    fontSize: 14,
-    marginBottom: 8,
-  },
-  link: {
-    fontSize: 16,
-    color: 'blue',
-    marginTop: 12,
-  },
-  map: {
-    width: 310,
-    height: 300,
-    borderColor: '#0D2C42',
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  infoBox: {
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-    width: '100%',
-    alignItems: 'center',
-  },
-  mapWrapper: {
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginBottom: 16,
-  },
-  backButton: { position: 'absolute', top: 35, left: -10, zIndex: 10, padding: 12, },
-  scrollContainer: { padding: 20, paddingTop: 60, paddingBottom: 170, alignItems: 'center', },
-  blueStrip: { position: 'absolute', top: -30, left: 0, right: 0, height: 120, zIndex: 5, },
-  logoContainer: { top: 10, left: -10, alignSelf: 'center', width: 136, height: 136, zIndex: 20, },
-  logoInnerCircle: { width: 168, height: 148, borderWidth: 16, borderColor: '#EDEEF0', borderRadius: 84, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginTop: 30, },
-  logoImage: { width: 170, height: 170, },
-  safeArea: { flex: 1, backgroundColor: '#EDEEF0', },
-});

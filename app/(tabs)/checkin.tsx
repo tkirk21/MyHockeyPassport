@@ -3,18 +3,23 @@ import * as Location from 'expo-location';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Alert, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import nhlSchedule2025 from '@/assets/data/nhlSchedule2025.json';
-import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import ahlSchedule2025 from '@/assets/data/ahlSchedule2025.json';
+import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
+import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
+import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
+import na3hlSchedule2025 from '@/assets/data/na3hlSchedule2025.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
 
 export default function CheckInScreen() {
   const router = useRouter();
+  const colorScheme = useColorScheme();
   const [checkingIn, setCheckingIn] = useState(false);
 
   const handleLiveCheckIn = async () => {
@@ -37,10 +42,13 @@ export default function CheckInScreen() {
       const today = new Date().toDateString();
       const allGamesToday = [
         ...nhlSchedule2025,
-        ...ushlSchedule2025,
         ...ahlSchedule2025,
         ...echlSchedule2025,
+        ...sphlSchedule2025,
+        ...ohlSchedule2025,
         ...whlSchedule2025,
+        ...ushlSchedule2025,
+        ...na3hlSchedule2025,
         ...aihlSchedule2025.map(g => ({ ...g, league: 'AIHL' })),
       ].filter(g => new Date(g.date).toDateString() === today);
 
@@ -117,9 +125,22 @@ export default function CheckInScreen() {
 
   const deg2rad = (deg: number) => deg * (Math.PI / 180);
 
+  const styles = StyleSheet.create({
+    buttons: { position: "absolute", bottom: 139, left: 24, right: 24, gap: 40, left: 70, right: 70, },
+    buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', paddingVertical: 16, borderRadius: 30, },
+    buttonSecondary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', borderRadius: 30, },
+    buttonText: { fontSize: 16, color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontWeight: "600", textAlign: "center", },
+    container: { flex: 1, },
+    heroImage: { position: "absolute", top: 130, width: Dimensions.get("window").width * 0.6, height: 160, alignSelf: "center", },
+    header: { position: "absolute", top: 50, left: 0, right: 0, fontSize: 34, fontWeight: "bold", color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', textAlign: "center", textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    loadingOverlay: { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "rgba(0,0,0,0.4)", zIndex: 999, alignItems: "center", justifyContent: "center", },
+    overlay: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(30, 30, 30, 0.1)", },
+    subHeader: { position: "absolute", top: 100, left: 0, right: 0, fontSize: 16, color: colorScheme === 'dark' ? '#CCCCCC' : '#0A2940', textAlign: "center", },
+  });
+
   return (
     <ImageBackground
-      source={require("@/assets/images/background.jpg")}
+      source={colorScheme === 'dark' ? require('../../assets/images/background_dark.jpg') : require('../../assets/images/background.jpg')}
       style={styles.container}
       resizeMode="cover"
     >
@@ -148,83 +169,3 @@ export default function CheckInScreen() {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(30, 30, 30, 0.1)",
-  },
-  header: {
-    position: "absolute",
-    top: 50,
-    left: 0,
-    right: 0,
-    fontSize: 34,
-    fontWeight: "bold",
-    color: "#0D2C42",
-    textAlign: "center",
-    textShadowColor: "#ffffff",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  subHeader: {
-    position: "absolute",
-    top: 100,
-    left: 0,
-    right: 0,
-    fontSize: 16,
-    color: "#0A2940",
-    textAlign: "center",
-  },
-  heroImage: {
-    position: "absolute",
-    top: 130,
-    width: Dimensions.get("window").width * 0.6,
-    height: 160,
-    alignSelf: "center",
-  },
-  buttons: {
-    position: "absolute",
-    bottom: 139,
-    left: 24,
-    right: 24,
-    gap: 40,
-    left: 70,     // ← this is what made them shorter
-    right: 70,    // ← this too
-  },
-  buttonPrimary: {
-    backgroundColor: "#0D2C42",
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-    paddingVertical: 16,
-    borderRadius: 30,
-  },
-  buttonSecondary: {
-    backgroundColor: "#0D2C42",
-    paddingVertical: 16,
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-    borderRadius: 30,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "#FFFFFF",
-    fontWeight: "600",
-    textAlign: "center",
-  },
-  loadingOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(0,0,0,0.4)",
-    zIndex: 999,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-

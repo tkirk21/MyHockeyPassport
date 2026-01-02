@@ -4,9 +4,11 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { addDoc, collection, doc, deleteDoc, getDoc, getFirestore, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
+
 
 type Props = {
   friendId: string;
@@ -14,6 +16,7 @@ type Props = {
 };
 
 export default function ChirpBox({ friendId, checkinId }: Props) {
+  const colorScheme = useColorScheme();
   const [chirps, setChirps] = useState<any[]>([]);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -120,6 +123,21 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
     }
   };
 
+  const styles = {
+    avatar: { width: 32, height: 32, borderRadius: 16, marginRight: 10 },
+    chirpSectionWrapper: { marginTop: 12, padding: 12 },
+    chirpRow: { flexDirection: "row", alignItems: "flex-start", marginBottom: 16 },
+    chirpText: { color: colorScheme === 'dark' ? '#FFFFFF' : "#0A2940", fontSize: 14, marginTop: 4, lineHeight: 20 },
+    dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', borderRadius: 12, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#666' : '#0D2C42', paddingVertical: 6, minWidth: 60, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999 },
+    input: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#fff", borderRadius: 12, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#666' : "#ddd", fontSize: 14, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    inputRow: { flexDirection: "row", alignItems: "center", marginTop: 12 },
+    menuTextEdit: { color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8 },
+    menuTextDelete: { color: colorScheme === 'dark' ? '#FFFFFF' : '#F44336', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8 },
+    sendButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', marginLeft: 8, paddingHorizontal: 16, paddingVertical: 10, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
+    sendText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: "bold", fontSize: 14 },
+    userName: { fontWeight: "700", color: colorScheme === 'dark' ? '#FFFFFF' : "#0A2940", fontSize: 14 },
+  };
+
   return (
     <View style={styles.chirpSectionWrapper}>
       {chirps.map((c) => {
@@ -143,7 +161,11 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
                       hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                       onPress={() => setMenuOpenId(menuOpenId === c.id ? null : c.id)}
                     >
-                      <Text style={{ fontSize: 24, color: '#666' }}>⋮</Text>
+                      <Text style={{
+                        fontSize: 24,
+                        color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940',
+                        fontWeight: '300'  // optional: makes it a bit lighter/thinner like real ••• menus
+                      }}>⋮</Text>
                     </TouchableOpacity>
 
                     {menuOpenId === c.id && !isEditing && (
@@ -207,18 +229,3 @@ export default function ChirpBox({ friendId, checkinId }: Props) {
     </View>
   );
 }
-
-const styles = {
-  avatar: { width: 32, height: 32, borderRadius: 16, marginRight: 10 },
-  chirpSectionWrapper: { marginTop: 12, padding: 12, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 12, },
-  chirpRow: { flexDirection: "row", alignItems: "flex-start", marginBottom: 16, },
-  chirpText: { color: "#0A2940", fontSize: 14, marginTop: 4, lineHeight: 20 },
-  dropdownMenu: { position: 'absolute', right: -8, top: 32, backgroundColor: '#fff', borderRadius: 12, borderWidth: 1, borderColor: '#0D2C42', paddingVertical: 6, minWidth: 60, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8, elevation: 8, zIndex: 999, },
-  input: { flex: 1, backgroundColor: "#fff", borderRadius: 12, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: "#ddd", fontSize: 14 },
-  inputRow: { flexDirection: "row", alignItems: "center", marginTop: 12 },
-  menuTextEdit: { color: '#1E3A8A', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8 },
-  menuTextDelete: { color: '#F44336', fontWeight: '600', paddingVertical: 4, paddingHorizontal: 8, },
-  sendButton: { backgroundColor: '#0A2940', marginLeft: 8, paddingHorizontal: 16, paddingVertical: 10, borderRadius: 30, },
-  sendText: { color: "#fff", fontWeight: "bold", fontSize: 14, },
-  userName: { fontWeight: "700", color: "#0A2940", fontSize: 14, },
-};

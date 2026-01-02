@@ -9,7 +9,7 @@ import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limi
 import { useDebouncedCallback } from 'use-debounce';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from '../_layout';
-
+import { useColorScheme } from '../../hooks/useColorScheme';
 import { logFriendship, logCheer } from "../../utils/activityLogger";
 import LoadingPuck from "../../components/loadingPuck";
 import CheerButton from '@/components/friends/cheerButton';
@@ -87,6 +87,7 @@ export default function FriendsTab() {
 
   const currentUser = auth.currentUser;
   const router = useRouter();
+  const colorScheme = useColorScheme();
 
   const getMutualFriendsCount = (userId: string) => {
     const theirFriends = userFriendsMap[userId] || [];
@@ -488,6 +489,76 @@ export default function FriendsTab() {
     loadLeaderboardData();
   }, [friends, currentUser?.uid]);
 
+  const styles = StyleSheet.create({
+    activityAvatar: { width: 28, height: 28, borderRadius: 14, marginRight: 8, },
+    activityCard: { borderLeftWidth: 6, borderRadius: 10, padding: 14, marginBottom: 12, shadowColor: "#000", shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF' },
+    activityHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
+    activityItemBold: { fontWeight: "bold", color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    activityItemCard: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#dce3ff", borderRadius: 10, padding: 14, marginBottom: 12, shadowColor: "#000", shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#666' : '#D1D5DB' },
+    activityItemText: { fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : "#0A2940", flex: 1 },
+    activityUserText: { fontSize: 14, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    arenaNameText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', flex: 1 },
+    avatar: { width: 40, height: 40, borderRadius: 20, marginRight: 12 },
+    activeDot: { position: 'absolute', right: -2, bottom: -2, width: 16, height: 16, borderRadius: 8, backgroundColor: '#4ADE80', borderWidth: 3, borderColor: '#fff', },
+    acceptButton: { backgroundColor: '#4CAF50', paddingVertical: 8, paddingHorizontal: 16, borderRadius: 6, marginLeft: 8 },
+    background: { flex: 1, width: '100%', height: '100%' },
+    button: { color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', fontWeight: 'bold' },
+    buttonTextWhite: { color: '#FFFFFF', fontWeight: 'bold' },
+    card: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', borderRadius: 12, padding: 16, marginBottom: 30, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 6, shadowOffset: { width: 0, height: 2 }, elevation: 2, borderWidth: 4, borderColor: '#0D2C42' },
+    cheerAvatar: { width: 36, height: 36, borderRadius: 18, marginRight: 10, },
+    cheerDate: { fontSize: 12, color: colorScheme === 'dark' ? '#BBBBBB' : '#6B7280', marginTop: 4 },
+    cheerHeader: { flexDirection: "row", alignItems: "flex-start", marginBottom: 6, },
+    container: { flex: 1, paddingVertical: 16, paddingHorizontal: 20 },
+    dateAndCheerRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", gap: 108, marginBottom: 6, },
+    dateText: { fontSize: 12, color: colorScheme === 'dark' ? '#BBBBBB' : "#6B7280" },
+    denyButton: { backgroundColor: '#F44336', paddingVertical: 8, paddingHorizontal: 16, borderRadius: 6, marginLeft: 8 },
+    emptyText: { fontSize: 15, color: colorScheme === 'dark' ? '#BBBBBB' : '#6B7280', textAlign: "center", lineHeight: 20 },
+    emptyTitle: { fontSize: 20, fontWeight: "700", color: colorScheme === 'dark' ? '#FFFFFF' : "#1E3A8A", textAlign: "center", marginBottom: 8 },
+    friendshipBoldName: { fontWeight: "bold", color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    friendshipTime: { fontSize: 12, color: colorScheme === 'dark' ? '#BBBBBB' : "#6B7280", marginTop: 4 },
+    itemText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    lbAvatar: { width: 36, height: 36, borderRadius: 18, marginRight: 10, },
+    lbName: { flex: 1, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    lbRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, backgroundColor: colorScheme === 'dark' ? '#0A2940' : 'rgba(255,255,255,0.9)', borderRadius: 10, marginBottom: 6 },
+    lbRowMe: { backgroundColor: colorScheme === 'dark' ? '#333300' : '#FFFACD', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#FBBF24' : '#FBBF24' },
+    lbRowTop3: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF', borderWidth: 2, borderColor: '#0D2C42' },
+    lbScore: { fontSize: 18, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', minWidth: 40, textAlign: 'right' },
+    leagueAndArenaRow: { flexDirection: 'row', alignItems: 'center', gap: 2, marginBottom: 6, },
+    leagueBadge: { alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, borderWidth: 1.5, marginBottom: 6, },
+    leagueBadgeInline: { borderWidth: 1, borderRadius: 4, },
+    leagueBadgeText: { fontSize: 12, fontWeight: '600', },
+    leagueBadgeTextInline: { fontSize: 12, fontWeight: '600', },
+    listRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
+    loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+    loadMoreButton: { alignSelf: "center", backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68' },
+    loadMoreText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: "bold", fontSize: 14 },
+    loadingOverlay: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#ffffff" },
+    matchupText: { fontSize: 14, fontWeight: '500', color: colorScheme === 'dark' ? '#CCCCCC' : '#2F4F68', marginBottom: 6 },
+    modalOverlay: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
+    modalCard: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#fff', padding: 20, borderRadius: 16, width: '85%', maxWidth: 340, shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 10 },
+    modalTitle: { fontSize: 20, fontWeight: 'bold', marginBottom: 20, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', textAlign: 'center' },
+    modalButton: { paddingVertical: 16, alignItems: 'center', borderBottomWidth: 1, borderBottomColor: '#eee', },
+    modalButtonText: { fontSize: 17, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '600' },
+    mutualText: { fontSize: 12, color: colorScheme === 'dark' ? '#BBBBBB' : '#6B7280', marginTop: 2 },
+    overlay: { flexGrow: 1, paddingHorizontal: 20, paddingTop: 16 },
+    placeholder: { fontSize: 16, color: colorScheme === 'dark' ? '#BBBBBB' : '#374151', textAlign: 'center' },
+    rank: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#4B5563', width: 50 },
+    rankGold: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontWeight: 'bold' },
+    searchContainer: { flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: colorScheme === 'dark' ? '#fff' : '#D1D5DB', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#F9FAFB', borderRadius: 12, paddingHorizontal: 12, height: 48 },
+    searchIcon: { marginRight: 10, fontSize: 20, color: colorScheme === 'dark' ? '#fff' : '#6B7280' },
+    searchInput: { flex: 1, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', height: '100%', },
+    subheading: { fontSize: 20, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', textAlign: 'center', marginBottom: 10 },
+    tabActive: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#0D2C42' },
+    tabButton: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#E5E7EB' },
+    tabText: { fontSize: 14, color: colorScheme === 'dark' ? '#6B7280' : '#000000', fontWeight: '600' },
+    tabTextActive: { color: colorScheme === 'dark' ? '#fff' : '#FFF' },
+    title: { fontSize: 34, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginTop: 30,  marginBottom: 15, textAlign: 'center', textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    unblockText: { color: '#1E3A8A', fontWeight: 'bold', },
+    unknownActivityCard: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#dce3ff", borderRadius: 10, padding: 14, marginBottom: 12 },
+    unknownActivityText: { fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : "#0A2940" },
+    unknownActivityTime: { fontSize: 12, color: colorScheme === 'dark' ? '#BBBBBB' : "#6B7280", marginTop: 4 },
+  });
+
   if (loading) {
     return (
       <View style={styles.loadingOverlay}>
@@ -496,6 +567,8 @@ export default function FriendsTab() {
     );
   }
 
+
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -503,7 +576,7 @@ export default function FriendsTab() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
     <ImageBackground
-      source={require('@/assets/images/background.jpg')}
+      source={colorScheme === 'dark' ? require('@/assets/images/background_dark.jpg') : require('@/assets/images/background.jpg')}
       style={styles.background}
       resizeMode="cover"
     >
@@ -529,7 +602,7 @@ export default function FriendsTab() {
             <TextInput
               style={styles.searchInput}
               placeholder="Search for users..."
-              placeholderTextColor="#6B7280"
+              placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#6B7280'}
               value={searchQuery}
               onChangeText={setSearchQuery}
             />
@@ -700,7 +773,7 @@ export default function FriendsTab() {
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => setSelectedFriend(item)}>
-                      <Ionicons name="ellipsis-vertical" size={20} color="#0A2940" />
+                      <Ionicons name="ellipsis-vertical" size={20} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
                     </TouchableOpacity>
                   </View>
                 );
@@ -940,7 +1013,13 @@ export default function FriendsTab() {
                           cheered a check-in 🎉
                         </Text>
                       </View>
-                      <Text style={styles.cheerTime}>{time}</Text>
+                      <Text style={styles.cheerDate}>
+                        {new Date(getTimestamp(item.timestamp)).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </Text>
                     </View>
                   );
                 }
@@ -1039,7 +1118,7 @@ export default function FriendsTab() {
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={[styles.modalButton, { backgroundColor: '#ccc' }]}
+                    style={[styles.modalButton, { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#fff', borderRadius: 30, }]}
                     onPress={() => setSelectedFriend(null)}
                   >
                     <Text style={styles.modalButtonText}>Cancel</Text>
@@ -1053,296 +1132,3 @@ export default function FriendsTab() {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingVertical: 16, paddingHorizontal: 20 },
-  activityAvatar: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    marginRight: 8,
-  },
-  activityCard: {
-    borderLeftWidth: 6,
-    borderRadius: 10,
-    padding: 14,
-    marginBottom: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  activityHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  activityUserText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#0A2940',
-  },
-  arenaNameText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#0D2C42',
-  },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 12
-  },
-  activeDot: {
-    position: 'absolute',
-    right: -2,
-    bottom: -2,
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    backgroundColor: '#4ADE80',
-    borderWidth: 3,
-    borderColor: '#fff',
-  },
-  acceptButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 6,
-    marginLeft: 8,
-  },
-  denyButton: {
-    backgroundColor: '#F44336',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 6,
-    marginLeft: 8,
-  },
-  button: {
-    color: '#1E3A8A',
-    fontWeight: 'bold'
-  },
-  buttonTextWhite: {
-    color: '#fff',
-    fontWeight: 'bold'
-  },
-  background: {
-    flex: 1,
-    width: '100%',
-    height: '100%'
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 30,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-  },
-  activityItemCard: {
-    backgroundColor: "#dce3ff",
-    borderRadius: 10,
-    padding: 14,
-    marginBottom: 12,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    elevation: 2,
-    borderWidth: 1,
-    borderColor: '#D1D5DB',
-  },
-  cheerHeader: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    marginBottom: 6,
-  },
-  cheerAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    marginRight: 10,
-  },
-  activityItemText: {
-    fontSize: 15,
-    color: "#0A2940",
-    flex: 1,
-  },
-  activityItemBold: {
-    fontWeight: "bold",
-  },
-  cheerTime: {
-    fontSize: 12,
-    color: "#6B7280",
-  },
-  dateAndCheerRow: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    gap: 108,
-    marginBottom: 6,
-  },
-  dateText: {
-    fontSize: 12,
-    color: "#6B7280",
-  },
-  emptyTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#1E3A8A",
-    textAlign: "center",
-    marginBottom: 8,
-  },
-  emptyText: {
-    fontSize: 15,
-    color: "#6B7280",
-    textAlign: "center",
-    lineHeight: 20,
-  },
-  friendshipBoldName: {
-    fontWeight: "bold",
-  },
-  friendshipTime: {
-    fontSize: 12,
-    color: "#6B7280",
-    marginTop: 4,
-  },
-  itemText: {
-    fontSize: 16,
-    color: '#0A2940'
-  },
-  leagueBadge: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 6,
-    borderWidth: 1.5,
-    marginBottom: 6,
-  },
-  leagueBadgeText: {
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  listRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12 },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  loadMoreButton: {
-    alignSelf: "center",
-    backgroundColor: "#0D2C42",
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-    borderRadius: 30,
-  },
-  loadMoreText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 14,
-  },
-  loadingOverlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ffffff",
-  },
-  matchupText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#2F4F68',
-    marginBottom: 6,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalCard: {
-    backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 16,
-    width: '85%',
-    maxWidth: 340,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 10,
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#0D2C42',
-    textAlign: 'center',
-  },
-  modalButton: {
-    paddingVertical: 16,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  modalButtonText: {
-    fontSize: 17,
-    color: '#1E3A8A',
-    fontWeight: '600',
-  },
-  mutualText: {
-    fontSize: 12,
-    color: '#6B7280',
-    marginTop: 2,
-  },
-  overlay: {
-    flexGrow: 1,
-    paddingHorizontal: 20,
-    paddingTop: 16
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#D1D5DB',
-    backgroundColor: '#F9FAFB',
-    borderRadius: 12,
-    paddingHorizontal: 12,
-    height: 48,
-  },
-  searchIcon: { marginRight: 10, fontSize: 20, color: '#6B7280', },
-  searchInput: { flex: 1, fontSize: 16, color: '#0A2940', height: '100%', },
-  subheading: { fontSize: 20, fontWeight: '600', color: '#1E3A8A', textAlign: 'center', marginBottom: 10, },
-  title: { fontSize: 34, fontWeight: 'bold', color: '#0D2C42', marginTop: 30,  marginBottom: 15, textAlign: 'center', textShadowColor: '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
-  unblockText: { color: '#1E3A8A', fontWeight: 'bold', },
-  unknownActivityCard: { backgroundColor: "#dce3ff", borderRadius: 10, padding: 14, marginBottom: 12, },
-  unknownActivityText: { fontSize: 15, color: "#0A2940", },
-  unknownActivityTime: { fontSize: 12, color: "#6B7280", marginTop: 4, },
-  leagueAndArenaRow: { flexDirection: 'row', alignItems: 'center', gap: 2, marginBottom: 6, },
-  leagueBadgeInline: { borderWidth: 1, borderRadius: 4, },
-  leagueBadgeTextInline: { fontSize: 12, fontWeight: '600', },
-  arenaNameText: { fontSize: 16, fontWeight: '700', color: '#0D2C42', flex: 1, },
-  tabButton: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20, backgroundColor: '#E5E7EB', },
-  tabActive: { backgroundColor: '#0D2C42', },
-  tabText: { fontSize: 14, color: '#6B7280', fontWeight: '600', },
-  tabTextActive: { color: '#fff', },
-  lbRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 8, backgroundColor: 'rgba(255,255,255,0.9)', borderRadius: 10, marginBottom: 6, },
-  lbRowMe: { backgroundColor: '#FFFACD', borderWidth: 2, borderColor: '#FBBF24', },
-  lbRowTop3: { backgroundColor: '#E0E7FF', borderWidth: 2, borderColor: '#0D2C42', },
-  lbAvatar: { width: 36, height: 36, borderRadius: 18, marginRight: 10, },
-  lbName: { flex: 1,fontSize: 16, color: '#0A2940', },
-  lbScore: { fontSize: 18, fontWeight: 'bold', color: '#0D2C42', minWidth: 40, textAlign: 'right', },
-  rank: { fontSize: 16, fontWeight: '600', color: '#4B5563', width: 50, },
-  rankGold: { color: '#0D2C42', fontWeight: 'bold', },
-});

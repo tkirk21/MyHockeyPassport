@@ -1,7 +1,7 @@
 // app/userprofile/[userId].tsx
 import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, ImageBackground, KeyboardAvoidingView, Platform, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity, View,  } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, UrlTile } from 'react-native-maps';
 import { addDoc, collection, deleteDoc, doc, getCountFromServer, getDoc, getDocs, getFirestore, limit, orderBy, query, setDoc, startAfter } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
@@ -12,6 +12,7 @@ import CheerButton from '@/components/friends/cheerButton';
 import ChirpBox from '@/components/friends/chirpBox';
 import TeamPin from '@/components/TeamPin';
 import * as Location from 'expo-location';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -49,14 +50,11 @@ export default function UserProfileScreen() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [mostVisitedArena, setMostVisitedArena] = useState<any | null>(null);
   const [allCheckins, setAllCheckins] = useState<any[]>([]);
-
   const arenasVisited = new Set(allCheckins.map(c => c.arenaName || c.arena)).size;
   const teamsWatched = new Set(allCheckins.flatMap(c => [c.teamName, c.opponent].filter(Boolean))).size;
-
   const currentUser = auth.currentUser;
   const router = useRouter();
-
-
+  const colorScheme = useColorScheme();
 
   useEffect(() => {
     const loadProfileAndCheckins = async () => {
@@ -155,7 +153,33 @@ export default function UserProfileScreen() {
     return <Text style={styles.error}>Profile not found.</Text>;
   }
 
-
+  const styles = StyleSheet.create({
+    arenaText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
+    background: { flex: 1, width: '100%', height: '100%' },
+    blockedMessage: { marginTop: 50, textAlign: 'center', fontSize: 18, color: '#000', fontWeight: '600', },
+    cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center' },
+    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
+    checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
+    container: { padding: 20, flexGrow: 1, },
+    dateText: { fontSize: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'right', },
+    error: { marginTop: 50, textAlign: 'center', fontSize: 18, color: 'red', },
+    leagueBadge: { alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 6, borderWidth: 1.5, backgroundColor: 'transparent', },
+    leagueBadgeText: { fontSize: 12, fontWeight: '600', },
+    loadMoreButton: { alignSelf: "center", backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68' },
+    loadMoreText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: "bold", fontSize: 14 },
+    miniMap: { width: '100%', height: 280, borderRadius: 12, overflow: 'hidden', marginTop: 8, },
+    placeholder: { fontSize: 16, color: '#374151', textAlign: 'center' },
+    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    section: { marginBottom: 20, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    sectionTitle: { fontSize: 20, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', marginBottom: 8, textAlign: 'center', },
+    statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
+    statSection: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    teamsText: {fontSize: 14, fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 6, },
+    text: { fontSize: 16, textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
+    title: { fontSize: 34, fontWeight: 'bold', textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 16, marginTop: 30, textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    visitBadge: { backgroundColor: '#D32F2F', width: 10, height: 10, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 18, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
+    visitBadgeText: { color: 'white', fontWeight: '900', fontSize: 4, includeFontPadding: false, },
+  });
 
   return (
       <>
@@ -166,7 +190,7 @@ export default function UserProfileScreen() {
           keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
         >
           <ImageBackground
-            source={require('@/assets/images/background.jpg')}
+            source={colorScheme === 'dark' ? require('../../assets/images/background_dark.jpg') : require('../../assets/images/background.jpg')}
             style={styles.background}
             resizeMode="cover"
           >
@@ -251,12 +275,24 @@ export default function UserProfileScreen() {
                       latitudeDelta: 35,
                       longitudeDelta: 35,
                     }}
+                    mapType="none"  // THIS disables default tiles
                     scrollEnabled={true}
                     zoomEnabled={true}
                     rotateEnabled={true}
                     pitchEnabled={true}
                     showsUserLocation={false}
                   >
+                  {/* THEMED TILE LAYER – matches main map exactly */}
+                    <UrlTile
+                      urlTemplate={
+                        colorScheme === 'dark'
+                          ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+                          : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+                      }
+                      maximumZ={19}
+                      zIndex={-1}  // behind markers
+                    />
+
                     {allCheckins
                       .filter(c => c.latitude && c.longitude)
                       .map((checkin, index) => {
@@ -442,173 +478,3 @@ export default function UserProfileScreen() {
       </>
     );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    flexGrow: 1,
-  },
-  background: { flex: 1, width: '100%', height: '100%' },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#0D2C42',
-    marginBottom: 16,
-    marginTop: 30,
-    textShadowColor: '#ffffff',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  profileImage: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    alignSelf: 'center',
-    marginBottom: 16,
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-  },
-  text: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#2F4F68',
-    marginBottom: 4,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    gap: 8,
-    marginBottom: 20,
-  },
-  statSection: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    borderRadius: 12,
-    paddingVertical: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-  },
-  section: {
-    marginBottom: 20,
-    backgroundColor: 'rgba(255,255,255,0.85)',
-    borderRadius: 12,
-    padding: 12,
-    borderWidth: 4,
-    borderColor: '#0D2C42',
-  },
-  sectionTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#1E3A8A',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  placeholder: { fontSize: 16, color: '#374151', textAlign: 'center' },
-  cardText: { fontSize: 16, color: '#0A2940', textAlign: 'center' },
-  cardTextBold: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#0A2940',
-    textAlign: 'center',
-  },
-  checkinCard: {
-    padding: 14,
-    borderRadius: 10,
-    marginBottom: 12,
-    borderLeftWidth: 6,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  arenaText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#0D2C42',
-    marginBottom: 4,
-  },
-  teamsText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#2F4F68',
-    marginBottom: 6,
-  },
-  dateText: {
-    fontSize: 12,
-    color: '#6B7280',
-    textAlign: 'right',
-  },
-  leagueBadge: {
-    alignSelf: 'flex-start',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 6,
-    marginBottom: 6,
-    borderWidth: 1.5,
-    backgroundColor: 'transparent',
-  },
-  leagueBadgeText: {
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  error: {
-    marginTop: 50,
-    textAlign: 'center',
-    fontSize: 18,
-    color: 'red',
-  },
-  blockedMessage: {
-    marginTop: 50,
-    textAlign: 'center',
-    fontSize: 18,
-    color: '#000',
-    fontWeight: '600',
-  },
-  loadMoreButton: {
-    alignSelf: 'center',
-    marginTop: 15,
-    marginBottom: 10,
-    backgroundColor: '#0D2C42',
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 30,
-    borderWidth: 3,
-    borderColor: '#2F4F68',
-  },
-  loadMoreText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  miniMap: {
-    width: '100%',
-    height: 280,
-    borderRadius: 12,
-    overflow: 'hidden',
-    marginTop: 8,
-    // small gap after the title
-  },
-  visitBadge: {
-    backgroundColor: '#D32F2F',    // red
-    width: 10,
-    height: 10,
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 18,
-    right: 26,
-    zIndex: 2,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  visitBadgeText: {
-    color: 'white',
-    fontWeight: '900',
-    fontSize: 4,
-    includeFontPadding: false,
-  },
-});

@@ -184,7 +184,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Newcastle Northstars",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-04-18T07:15:00Z"
   },
@@ -238,7 +238,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Melbourne Ice",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-04-25T06:45:00Z"
   },
@@ -269,21 +269,13 @@
     "city": "Melbourne, VIC",
     "date": "2026-04-26T04:00:00Z"
   },
-  {
-    "id": "aihl_2026042614",
-    "league": "AIHL",
-    "team": "Central Coast Rhinos",
-    "opponent": "Adelaide Adrenaline",
-    "arena": "Erina Ice Arena",
-    "city": "Erina, NSW",
-    "date": "2026-04-26T05:45:00Z"
-  },
+
   {
     "id": "aihl_2026042615",
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Melbourne Ice",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-04-26T05:45:00Z"
   },
@@ -321,15 +313,6 @@
     "opponent": "Adelaide Adrenaline",
     "arena": "Erina Ice Arena",
     "city": "Erina, NSW",
-    "date": "2026-04-26T05:45:00Z"
-  },
-  {
-    "id": "aihl_2026042615",
-    "league": "AIHL",
-    "team": "Brisbane Lightning",
-    "opponent": "Melbourne Ice",
-    "arena": "IceWorld Boondall",
-    "city": "Brisbane, QLD",
     "date": "2026-04-26T05:45:00Z"
   },
   {
@@ -373,7 +356,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Sydney Bears",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-05-02T06:15:00Z"
   },
@@ -409,7 +392,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Sydney Bears",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-05-03T05:45:00Z"
   },
@@ -472,7 +455,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Sydney Bears",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-05-16T06:45:00Z"
   },
@@ -499,7 +482,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Central Coast Rhinos",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-05-16T06:15:00Z"
   },
@@ -526,7 +509,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Sydney Bears",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-05-17T05:45:00Z"
   },
@@ -562,7 +545,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Newcastle Northstars",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-05-23T06:45:00Z"
   },
@@ -607,7 +590,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Newcastle Northstars",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-05-24T05:45:00Z"
   },
@@ -715,7 +698,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Central Coast Rhinos",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-06-06T06:45:00Z"
   },
@@ -751,7 +734,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Central Coast Rhinos",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-06-07T05:45:00Z"
   },
@@ -796,7 +779,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Canberra Brave",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-06-13T06:15:00Z"
   },
@@ -823,7 +806,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Canberra Brave",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-06-14T05:45:00Z"
   },
@@ -832,7 +815,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Melbourne Mustangs",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-06-20T06:45:00Z"
   },
@@ -868,7 +851,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Melbourne Ice",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-06-20T06:15:00Z"
   },
@@ -886,7 +869,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Melbourne Mustangs",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-06-21T05:45:00Z"
   },
@@ -913,7 +896,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Melbourne Ice",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-06-21T05:45:00Z"
   },
@@ -1030,7 +1013,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Adelaide Adrenaline",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-07-04T06:45:00Z"
   },
@@ -1066,7 +1049,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Perth Thunder",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-07-05T05:45:00Z"
   },
@@ -1102,7 +1085,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Melbourne Mustangs",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-07-11T06:15:00Z"
   },
@@ -1147,7 +1130,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Melbourne Mustangs",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-07-12T05:45:00Z"
   },
@@ -1210,7 +1193,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Canberra Brave",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-07-19T05:45:00Z"
   },
@@ -1327,7 +1310,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Sydney Ice Dogs",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-08-02T05:45:00Z"
   },
@@ -1354,7 +1337,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Brisbane Lightning",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-08-08T06:15:00Z"
   },
@@ -1399,7 +1382,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Brisbane Lightning",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-08-09T05:45:00Z"
   },
@@ -1489,7 +1472,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Sydney Ice Dogs",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-08-22T06:45:00Z"
   },
@@ -1507,7 +1490,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Perth Thunder",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-08-22T06:15:00Z"
   },
@@ -1525,7 +1508,7 @@
     "league": "AIHL",
     "team": "Brisbane Lightning",
     "opponent": "Sydney Ice Dogs",
-    "arena": "IceWorld Boondall",
+    "arena": "Iceworld Olympic Ice Rink",
     "city": "Brisbane, QLD",
     "date": "2026-08-23T05:45:00Z"
   },
@@ -1543,7 +1526,7 @@
     "league": "AIHL",
     "team": "Adelaide Adrenaline",
     "opponent": "Perth Thunder",
-    "arena": "IceArena Adelaide",
+    "arena": "The Ice ArenA",
     "city": "Adelaide, SA",
     "date": "2026-08-23T05:45:00Z"
   }

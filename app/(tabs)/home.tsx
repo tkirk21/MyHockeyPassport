@@ -11,8 +11,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-picker/picker';
-
 import { useColorScheme } from '../../hooks/useColorScheme';
+
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import leaguesData from '@/assets/data/leagues.json';
@@ -370,7 +370,6 @@ export default function HomeScreen() {
     background: { flex: 1, width: '100%', height: '100%', },
     buttonsRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8, },
     cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
-    cardTextBold: { fontSize: 16, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     countdownMini: { fontSize: 14, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 10, opacity: 0.9, },
     countdownLive: { fontSize: 24, fontWeight: '900', color: '#D32F2F', letterSpacing: 2, fontVariant: ['tabular-nums'], },
     distanceText: { fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', },
@@ -391,7 +390,6 @@ export default function HomeScreen() {
     loadingOverlay: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'center', alignItems: 'center', zIndex: 999, },
     picker: { width: '100%', height: 56, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#000', backgroundColor: colorScheme === 'dark' ? '#0A2940' : 'white', paddingHorizontal: 0, textAlign: 'center', dropdownIconColor: colorScheme === 'dark' ? '#FFFFFF' : '#000', },
     pickerContainer: { height: 40, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#ccc', borderRadius: 12, overflow: 'hidden', marginBottom: 12, justifyContent: 'center', alignItems: 'center', },
-    pickerContainerActive: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF', borderColor: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', },
     pickerOverlayTextContainer: { position: 'absolute', left: 12, right: 40, top: 0, bottom: 0, justifyContent: 'center' },
     pickerOverlayArrowContainer: { position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center', pointerEvents: 'none' },
     pickerSelectedText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16 },
@@ -400,8 +398,8 @@ export default function HomeScreen() {
     scrollContainer: { flexGrow: 1, },
     section: { marginBottom: 30, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: '#0D2C42', },
     sectionTitle: { fontSize: 20, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', marginBottom: 10, textAlign: 'center', },
-    smallButton: { backgroundColor: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', paddingVertical: 10, paddingHorizontal: 12, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', flex: 1, marginHorizontal: 4, alignItems: 'center', },
-    smallButtonText: { color: colorScheme === 'dark' ? '#0A2940' : '#fff', fontSize: 12, fontWeight: '600', },
+    smallButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 10, paddingHorizontal: 12, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', flex: 1, marginHorizontal: 4, alignItems: 'center', },
+    smallButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 12, fontWeight: '600', },
   });
 
   return (
