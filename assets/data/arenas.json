@@ -200,25 +200,8 @@
     "SecondaryColor": "#0000ff",
     "league": "NHL",
     "timezone": "America/New_York",
-    "startDate": "1998-09-01",
+    "startDate": "2026-01-04",
     "endDate": null
-  },
-  {
-    "teamName": "Florida Panthers",
-    "teamCode": "FLA",
-    "arena": "LoanDepot Park",
-    "city": "Miami, Florida",
-    "address": "501 Marlins Way, Miami, FL 33125",
-    "website": "https://nhl.com/panthers",
-    "latitude": 25.7782066668876,
-    "longitude": -80.2197875546084,
-    "color": "Panther Red",
-    "colorCode": "#bf0010",
-    "SecondaryColor": "#0000ff",
-    "league": "Stadium Series",
-    "timezone": "America/New_York",
-    "startDate": "2026-01-31",
-    "endDate": "2026-02-02"
   },
   {
     "teamName": "Los Angeles Kings",

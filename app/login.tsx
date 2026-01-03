@@ -1,6 +1,6 @@
 //app/login.tsx
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, db, webClientId } from '@/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
@@ -12,17 +12,23 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
-
+import { useColorScheme } from '../hooks/useColorScheme';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function Login() {
   const router = useRouter();
+  const colorScheme = useColorScheme();
+  const switchTrackTrueColor = colorScheme === 'dark' ? '#5E819F' : '#0D2C42';
+  const switchThumbActiveColor = '#0D2C42';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [stayLoggedIn, setStayLoggedIn] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('Error');
+  const [alertMessage, setAlertMessage] = useState('');
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: webClientId,
@@ -103,8 +109,9 @@ export default function Login() {
           router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
         })
         .catch((error) => {
-          console.error('Google login error:', error);
-          Alert.alert('Error', 'Google login failed. Try again.');
+          setAlertTitle('Error');
+          setAlertMessage('Google login failed. Try again.');
+          setAlertVisible(true);
         });
     }
   }, [response]);
@@ -118,7 +125,11 @@ export default function Login() {
           const targetTab = await getStartupTabRoute();
           router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
         })
-        .catch(err => Alert.alert('Error', err.message));
+        .catch(err => {
+          setAlertTitle('Error');
+          setAlertMessage(err.message);
+          setAlertVisible(true);
+        });
     }
   }, [fbResponse]);
 
@@ -140,7 +151,9 @@ export default function Login() {
       let message = 'Login failed.';
       if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential')
         message = 'Incorrect email or password.';
-      Alert.alert('Error', message);
+      setAlertTitle('Error');
+      setAlertMessage(message);
+      setAlertVisible(true);
     } finally {
       setLoading(false);
     }
@@ -148,17 +161,22 @@ export default function Login() {
 
   const handleForgotPassword = async () => {
     if (!email) {
-      Alert.alert('Error', 'Please enter your email first.');
+      setAlertTitle('Error');
+      setAlertMessage('Please enter your email first.');
+      setAlertVisible(true);
       return;
     }
     try {
-      await sendPasswordResetEmail(auth, email);
-      Alert.alert('Password Reset', 'Check your email for reset instructions.');
+      setAlertTitle('Password Reset');
+      setAlertMessage('Check your email for reset instructions.');
+      setAlertVisible(true);
     } catch (error: any) {
       let message = 'Unable to send reset email.';
       if (error.code === 'auth/invalid-email') message = 'Invalid email address.';
       if (error.code === 'auth/user-not-found') message = 'Email not found.';
-      Alert.alert('Error', message);
+      setAlertTitle('Error');
+      setAlertMessage(message);
+      setAlertVisible(true);
     }
   };
 
@@ -166,187 +184,142 @@ export default function Login() {
     router.replace('/signup');
   };
 
+  const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0F1E33' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: '#0D2C42', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.4, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessageText: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: '#0D2C42', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
+    buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', marginBottom: 10, width: '70%', alignItems: 'center', alignSelf: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 3 }, shadowOpacity: colorScheme === 'dark' ? 0.5 : 0.2, shadowRadius: 4, elevation: 6, },
+    buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18, fontWeight: '600', },
+    container: { flex: 1, padding: 24, justifyContent: 'center', },eyeButton: { position: 'absolute', right: 12, },
+    eyeIcon: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontSize: 22 },
+    forgotPasswordContainer: { alignItems: 'center', justifyContent: 'center', marginTop: 2, },
+    forgotPasswordText: { color: '#5E819F', fontWeight: '500', },
+    googleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
+    input: { height: 48, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
+    link: { color: colorScheme === 'dark' ? '#5E819F' : '#5E819F', fontWeight: '600', },
+    linkContainer: { marginTop: 16, alignItems: 'center', },
+    logo: { width: 400, height: 200, alignSelf: 'center', },
+    passwordContainer: { flexDirection: 'row', alignItems: 'center', height: 48, marginBottom: 12, borderRadius: 12, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
+    passwordInput: { flex: 1, height: '100%', paddingHorizontal: 12, paddingVertical: 0, backgroundColor: 'transparent', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', },
+    screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF', },
+    scrollContent: { flexGrow: 1, justifyContent: 'center' },
+    socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
+    socialBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#1877F2', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
+    socialIcon: { color: '#FFFFFF', fontSize: 20 },
+    switchTrack: { false: '#767577', true: colorScheme === 'dark' ? '#5E819F' : '#0D2C42' },
+    switchThumb: { color: stayLoggedIn ? '#0D2C42' : '#f4f3f4' },
+    toggleRowWithMargin: { marginBottom: 20 },
+    toggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '70%', alignSelf: 'center', marginTop: 0, marginBottom: -20, },
+    toggleText: { fontSize: 13, color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontWeight: '500', marginRight: -10, },
+  });
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
-    >
-      <ScrollView
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}
-        keyboardShouldPersistTaps="handled"
+    <View style={styles.screenBackground}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
       >
-        <View style={styles.container}>
-          <Image
-            source={require('@/assets/images/logo_with_font.png')}
-            style={styles.logo}
-            resizeMode="contain"
-          />
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={styles.container}>
+            <Image
+              source={colorScheme === 'dark' ? require('@/assets/images/logo_with_font_dark.jpg') : require('@/assets/images/logo_with_font.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
 
-          <View style={styles.socialRow}>
-            <TouchableOpacity
-              style={styles.googleBtn}
-              onPress={() => promptAsync()}
-              disabled={!request}
-            >
-              <Ionicons name="logo-google" size={20} color="#fff" />
-            </TouchableOpacity>
+            <View style={styles.socialRow}>
+              <TouchableOpacity
+                style={styles.googleBtn}
+                onPress={() => Alert.alert('Coming Soon', 'Google sign-in is temporarily unavailable')}
+              >
+                <Ionicons name="logo-google" style={styles.socialIcon} />
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={[styles.socialBtn, { backgroundColor: '#1877F2' }]}
-              onPress={() => fbPromptAsync()}
-              disabled={!fbRequest}
-            >
-              <Ionicons name="logo-facebook" size={20} color="#fff" />
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                style={styles.socialBtn}
+                onPress={() => Alert.alert('Coming Soon', 'Facebook login is temporarily unavailable')}
+              >
+                <Ionicons name="logo-facebook" style={styles.socialIcon} />
+              </TouchableOpacity>
+            </View>
 
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor={colors.secondary}
-            value={email}
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
-
-          <View style={styles.passwordContainer}>
             <TextInput
-              style={[styles.input, styles.passwordInput]}
-              placeholder="Password"
-              placeholderTextColor={colors.secondary}
-              value={password}
-              onChangeText={setPassword}
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#AAAAAA"
+              value={email}
+              onChangeText={setEmail}
               autoCapitalize="none"
-              secureTextEntry={!showPassword}
+              keyboardType="email-address"
             />
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.eyeButton}
-            >
-              <Ionicons
-                name={showPassword ? 'eye' : 'eye-off'}
-                size={22}
-                color={colors.secondary}
+
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="Password"
+                placeholderTextColor="#AAAAAA"
+                value={password}
+                onChangeText={setPassword}
+                autoCapitalize="none"
+                secureTextEntry={!showPassword}
               />
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.eyeButton}
+              >
+                <Ionicons
+                  name={showPassword ? 'eye' : 'eye-off'}
+                  style={styles.eyeIcon}
+                />
+              </TouchableOpacity>
+            </View>
 
-          <View style={[styles.toggleRow, { marginBottom: 20 }]}>
-            <Text style={styles.toggleText}>Stay logged in  </Text>
-            <Switch
-              value={stayLoggedIn}
-              onValueChange={setStayLoggedIn}
-              trackColor={{ false: '#ccc', true: colors.accent }}
-              thumbColor={stayLoggedIn ? colors.primary : '#f4f3f4'}
-            />
-          </View>
+            <View style={[styles.toggleRow, styles.toggleRowWithMargin]}>
+              <Text style={styles.toggleText}>Stay logged in  </Text>
+              <Switch
+                value={stayLoggedIn}
+                onValueChange={setStayLoggedIn}
+                trackColor={{ false: '#767577', true: switchTrackTrueColor }}
+                thumbColor={stayLoggedIn ? switchThumbActiveColor : '#f4f3f4'}
+              />
+            </View>
 
-          <View style={{ alignItems: 'center', backgroundColor: colors.light }}>
             <TouchableOpacity style={styles.buttonPrimary} onPress={handleLogin}>
               <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handleForgotPassword}
+              style={styles.forgotPasswordContainer}
+            >
+              <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleGoToSignup} style={styles.linkContainer}>
+              <Text style={styles.link}>Don't have an account? Sign up</Text>
+            </TouchableOpacity>
           </View>
-
-          <TouchableOpacity
-            onPress={handleForgotPassword}
-            style={{ alignItems: 'center', justifyContent: 'center', marginTop: 2 }}
-          >
-            <Text style={{ color: colors.accent, fontWeight: '500' }}>Forgot password?</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={handleGoToSignup} style={styles.linkContainer}>
-            <Text style={styles.link}>Don't have an account? Sign up</Text>
-          </TouchableOpacity>
+        </ScrollView>
+        {loading && <LoadingPuck />}
+      </KeyboardAvoidingView>
+      {/* CUSTOM THEMED ALERT MODAL */}
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
+            <Text style={styles.alertMessageText}>{alertMessage}</Text>
+            <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </ScrollView>
-      {loading && <LoadingPuck />}
-    </KeyboardAvoidingView>
+      </Modal>
+    </View>
   );
 }
-
-const colors = {
-  primary: '#0D2C42',
-  secondary: '#2F4F68',
-  accent: '#5E819F',
-  light: '#FFFFFF',
-};
-
-const styles = StyleSheet.create({
-  buttonPrimary: {
-    backgroundColor: colors.primary,
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 12,
-    marginBottom: 10,
-    width: '70%',
-    alignItems: 'center',
-    alignSelf: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-  },
-  buttonText: {
-    color: colors.light,
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: colors.light,
-  },
-  logo: {
-    width: 400,
-    height: 200,
-    alignSelf: 'center',
-    marginBottom: -15,
-  },
-  title: {
-    fontSize: 26,
-    marginBottom: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: colors.primary,
-  },
-  input: {
-    height: 48,
-    borderColor: colors.accent,
-    borderWidth: 1,
-    paddingHorizontal: 12,
-    marginBottom: 12,
-    borderRadius: 12,
-    color: colors.primary,
-  },
-  linkContainer: {
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  link: {
-    color: colors.secondary,
-    fontWeight: '500',
-  },
-  passwordContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.accent,
-    borderRadius: 12,
-    marginBottom: 0,
-    height: 48,
-    paddingRight: 12,
-  },
-  eyeButton: {
-    position: 'absolute',
-    right: 12,
-  },
-  passwordInput: { borderWidth: 0, flex: 1, marginBottom: 0, },
-  toggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '70%', alignSelf: 'center', marginTop: 0, marginBottom: -20, },
-  toggleText: { fontSize: 13, color: colors.secondary, fontWeight: '500', marginRight: -10, },
-  socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
-  socialBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4, },
-  googleBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.2, shadowRadius: 4, elevation: 4, },
-});

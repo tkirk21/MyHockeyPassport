@@ -8,7 +8,7 @@ import { db } from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Animated, Dimensions, FlatList, Image, ImageBackground, Linking, Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-picker/picker';
 import { useColorScheme } from '../../hooks/useColorScheme';
@@ -43,6 +43,8 @@ export default function HomeScreen() {
   const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
   const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
   const today = new Date().toDateString();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   //Calculates distance between two coordinates in miles or km based on distanceUnit
   const getDistance = (lat1, lon1, lat2, lon2) => {
@@ -365,7 +367,15 @@ export default function HomeScreen() {
     });
   }, []);
 
+
+
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20, },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: '#0D2C42', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16, },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12, },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22, },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30, },
+    alertButtonText: { color: '#FFFFFF',fontWeight: '700', fontSize: 16, },
     arenaCard: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF', padding: 12, borderRadius: 12, marginBottom: 12, width: '100%', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.12, shadowRadius: 6, elevation: 6, },
     background: { flex: 1, width: '100%', height: '100%', },
     buttonsRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8, },
@@ -410,6 +420,24 @@ export default function HomeScreen() {
           <LoadingPuck />
         </View>
       )}
+
+      {/* CUSTOM THEMED ALERT MODAL */}
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>
+              {alertMessage.includes('Location is required') ? 'Permission denied' :
+               alertMessage.includes('Arena not found') ? 'Error' :
+               alertMessage.includes('Could not get') ? 'Location failed' :
+               'Cannot check in yet'}
+            </Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -478,17 +506,33 @@ export default function HomeScreen() {
                       setCheckingIn(true);
                       try {
                         const { status } = await Location.requestForegroundPermissionsAsync();
-                        if (status !== 'granted') return setCheckingIn(false), Alert.alert('Permission denied', 'Location is required to check in.');
+                        if (status !== 'granted') {
+                          setCheckingIn(false);
+                          setAlertMessage('Location is required to check in.');
+                          setAlertVisible(true);
+                          return;
+                        }
                         const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Lowest, maximumAge: 10000, timeout: 5000 });
                         const arena = arenaData.find(a => (a.arena === game.arena || a.arena === game.location) && a.league === game.league);
-                        if (!arena) return setCheckingIn(false), Alert.alert('Error', 'Arena not found for this game.');
+                        if (!arena) {
+                          setCheckingIn(false);
+                          setAlertMessage('Arena not found for this game.');
+                          setAlertVisible(true);
+                          return;
+                        }
                         const distance = getDistance(location.coords.latitude, location.coords.longitude, arena.latitude, arena.longitude);
-                        if (distance > (distanceUnit === 'km' ? 0.45 : 0.28)) return setCheckingIn(false), Alert.alert('Cannot check in yet', 'Not close enough to the arena. You need to be at the arena.');
+                        if (distance > (distanceUnit === 'km' ? 0.45 : 0.28)) {
+                          setCheckingIn(false);
+                          setAlertMessage('Not close enough to the arena. You need to be at the arena.');
+                          setAlertVisible(true);
+                          return;
+                        }
                         setCheckingIn(false);
                         handleCheckIn(game);
                       } catch {
                         setCheckingIn(false);
-                        Alert.alert('Location failed', 'Could not get your location. Try again.');
+                        setAlertMessage('Could not get your location. Try again.');
+                        setAlertVisible(true);
                       }
                     }}>
                       <Text style={styles.smallButtonText}>Check-in</Text>
