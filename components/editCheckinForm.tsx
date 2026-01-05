@@ -11,6 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 import arenasData from "@/assets/data/arenas.json";
 import historicalTeamsData from '@/assets/data/historicalTeams.json';
@@ -20,6 +21,7 @@ const db = getFirestore(firebaseApp);
 
 export default function editCheckinForm({ initialData }: { initialData: any }) {
   const router = useRouter();
+  const colorScheme = useColorScheme();
   const { userId } = useLocalSearchParams();
   const [gameDate, setGameDate] = useState(new Date(initialData.gameDate || Date.now()));
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -28,7 +30,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   const [arenaOpen, setArenaOpen] = useState(false);
   const [homeTeamOpen, setHomeTeamOpen] = useState(false);
   const [opponentTeamOpen, setOpponentTeamOpen] = useState(false);
-
+  const [allArenas, setAllArenas] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState(initialData.league || null);
   const [selectedArena, setSelectedArena] = useState(initialData.arenaName || null);
   const [selectedHomeTeam, setSelectedHomeTeam] = useState(initialData.teamName || null);
@@ -40,7 +42,8 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   const [seatRow, setSeatRow] = useState(initialData.seatInfo?.row || '');
   const [seatNumber, setSeatNumber] = useState(initialData.seatInfo?.seat || '');
   const [companions, setCompanions] = useState(initialData.companions || '');
-  const [notes, setNotes] = useState(initialData.notes || '');
+  const [highlights, setHighlights] = useState(initialData.highlights || '');
+  const [parkingAndTravel, setParkingAndTravel] = useState(initialData.ParkingAndTravel || '');
   const [images, setImages] = useState<string[]>(initialData.photos || []);
   const [didBuyMerch, setDidBuyMerch] = useState(Object.keys(initialData.merchBought || {}).some(cat => initialData.merchBought[cat].length > 0));
   const [expandedCategories, setExpandedCategories] = useState({});
@@ -114,12 +117,13 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         awayScore,
         favoritePlayer,
         seatInfo: {
-          section: seatSection,
-          row: seatRow,
-          seat: seatNumber,
+        section: seatSection,
+        row: seatRow,
+        seat: seatNumber,
         },
         companions,
-        notes,
+        highlights,
+        parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
@@ -137,6 +141,11 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
       Alert.alert('Failed to update check-in.');
     }
   };
+
+  useEffect(() => {
+    console.log('Initial opponent from initialData:', initialData.opponent);
+    console.log('selectedOpponent on mount:', selectedOpponent);
+  }, []);
 
   // APPLY ARENA NAME HISTORY BASED ON EXISTING CHECK-IN DATE
   useEffect(() => {
@@ -294,31 +303,54 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     setSelectedArena(correctName);
   }, [selectedHomeTeam, selectedLeague, gameDate]);
 
-  // Home Team → Opponents (filtered by date)
   useEffect(() => {
-    if (!selectedHomeTeam || !selectedLeague || !gameDate) {
+    if (!selectedLeague || !selectedHomeTeam) {
       setOpponentItems([]);
+      setSelectedOpponent(null);
       return;
     }
 
-    const date = new Date(gameDate);
+    const date = gameDate;
 
-    const opponents = arenas
-      .filter(item => {
-        if (item.league !== selectedLeague || item.teamName === selectedHomeTeam) return false;
+    // Use exact same filtering as homeTeamItems for consistency
+    const validTeams = arenas.filter(team => {
+      if (team.league !== selectedLeague) return false;
 
-        const start = item.startDate ? new Date(item.startDate) : new Date(0);
-        const end = item.endDate ? new Date(item.endDate) : null;
+      const start = team.startDate ? new Date(team.startDate) : new Date(0);
+      const end = team.endDate ? new Date(team.endDate) : null;
 
-        return date >= start && (!end || date <= end);
-      })
-      .map(item => ({ label: item.teamName, value: item.teamName }));
+      return date >= start && (!end || date <= end);
+    });
 
-    const unique = Array.from(new Map(opponents.map(i => [i.value, i])).values())
+    let opponentOptions = validTeams
+      .filter(team => team.teamName !== selectedHomeTeam)  // exclude home
+      .map(team => ({ label: team.teamName, value: team.teamName }))
       .sort((a, b) => a.label.localeCompare(b.label));
 
-    setOpponentItems(unique);
-  }, [selectedHomeTeam, selectedLeague, gameDate]);
+    // Dedupe
+    opponentOptions = Array.from(new Map(opponentOptions.map(i => [i.value, i])).values());
+
+    // Preserve saved opponent in list + selected ONLY if original context
+    const isOriginalContext = selectedLeague === initialData.league && selectedHomeTeam === initialData.teamName;
+
+    if (isOriginalContext && initialData.opponent) {
+      const savedInList = opponentOptions.some(o => o.value === initialData.opponent);
+      if (!savedInList) {
+        opponentOptions.push({ label: initialData.opponent, value: initialData.opponent });
+        opponentOptions.sort((a, b) => a.label.localeCompare(b.label));
+      }
+      // Ensure selected stays (it already is from initial state)
+    } else {
+      // Not original – if current selected is invalid, clear it
+      if (selectedOpponent && !opponentOptions.some(o => o.value === selectedOpponent)) {
+        setSelectedOpponent(null);
+      }
+    }
+
+    setOpponentItems(opponentOptions);
+
+    // NO auto-select ever
+  }, [selectedLeague, selectedHomeTeam, arenas, gameDate, initialData.league, initialData.teamName, initialData.opponent]);
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -339,367 +371,388 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     }
   };
 
+  const styles = StyleSheet.create({
+    buySectionLabel: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 12 },
+    container: { padding: 20, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 8, },
+    categoryContainer: { marginBottom: 14 },
+    categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 12, backgroundColor: colorScheme === 'dark' ? '#334155' : '#E0E7FF', paddingHorizontal: 16, borderRadius: 8 },
+    categoryTitle: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    checkboxLabel: { marginLeft: 12, fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42' },
+    checkboxRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 16 },
+    choiceButton: { borderWidth: 0, borderRadius: 30, paddingVertical: 8, paddingHorizontal: 16, marginRight: 10 },
+    choiceButtonSelected: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#5E819F' : '#0D2C42' },
+    choiceButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600' },
+    choiceButtonTextSelected: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700' },
+    companionsPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    dateDisplayText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    dropdown: { marginBottom: 14, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderWidth: 2, borderRadius: 8, paddingHorizontal: 8, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
+    dropDownContainer: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', borderColor: colorScheme === 'dark' ? '#334155' : '#E2E8F0' },
+    dropDownText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    dropDownListEmpty: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    dropdownPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    Placeholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    input: { borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderRadius: 8, padding: 12, marginBottom: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
+    label: { fontSize: 16, fontWeight: '600', marginTop: 18, marginBottom: 6, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    merchConcessionsContainer: { marginTop: 20, marginBottom: 20, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', padding: 16, borderRadius: 12 },
+    scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
+    scoreLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    scoreInput: { width: 60, textAlign: 'center', marginBottom: 0 },
+    screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    seatInfoTitle: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    seatInfoRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 },
+    seatLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginRight: 6 },
+    seatLabelRow: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginLeft: 12, marginRight: 6 },
+    seatInput: { width: 50, textAlign: 'center', marginBottom: 0 },
+    submitButton: { backgroundColor: '#0A2940', paddingVertical: 14, borderRadius: 10, marginBottom: 40, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#2F4F68', },
+    submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
+    uploadPhotoText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+  });
+
   return (
-    <ScrollView
-      contentContainerStyle={styles.scrollContainer}
-      keyboardShouldPersistTaps="handled"
-      automaticallyAdjustKeyboardInsets={true}
-    >
-      <Text style={styles.label}>Game Date:</Text>
-      <TouchableOpacity
-        onPress={() => setShowDatePicker(true)}
-        style={styles.input}
+    <View style={styles.screenBackground}>
+      <ScrollView
+        contentContainerStyle={{ padding: 16, paddingBottom: 100 }}
+        keyboardShouldPersistTaps="handled"
       >
-        <Text>{gameDate.toDateString()}</Text>
-      </TouchableOpacity>
+        <Text style={styles.label}>Game Date:</Text>
+        <TouchableOpacity
+          onPress={() => setShowDatePicker(true)}
+          style={styles.input}
+        >
+          <Text style={styles.dateDisplayText}>{gameDate.toDateString()}</Text>
+        </TouchableOpacity>
 
-      <DropDownPicker
-        open={leagueOpen}
-        value={selectedLeague}
-        items={leagueItems}
-        setOpen={setLeagueOpen}
-        setValue={setSelectedLeague}
-        setItems={setLeagueItems}
-        placeholder="Select League"
-        style={styles.dropdown}
-        zIndex={5000}
-        listMode="SCROLLVIEW"
-      />
-
-      <DropDownPicker
-        open={arenaOpen}
-        value={selectedArena}
-        items={arenaItems}
-        setOpen={setArenaOpen}
-        setValue={setSelectedArena}
-        setItems={setArenaItems}
-        placeholder="Select Arena"
-        style={styles.dropdown}
-        zIndex={4000}
-        listMode="SCROLLVIEW"
-      />
-
-      <DropDownPicker
-        open={homeTeamOpen}
-        value={selectedHomeTeam}
-        items={homeTeamItems}
-        setOpen={setHomeTeamOpen}
-        setValue={setSelectedHomeTeam}
-        setItems={setHomeTeamItems}
-        placeholder="Select Home Team"
-        style={styles.dropdown}
-        zIndex={3000}
-        listMode="SCROLLVIEW"
-      />
-
-      <DropDownPicker
-        open={opponentTeamOpen}
-        value={selectedOpponent}
-        items={opponentItems}
-        setOpen={setOpponentTeamOpen}
-        setValue={setSelectedOpponent}
-        setItems={setOpponentItems}
-        placeholder="Select Opponent"
-        style={styles.dropdown}
-        zIndex={2000}
-        listMode="SCROLLVIEW"
-      />
-
-      <Text style={styles.label}>Final Score:</Text>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-        <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{'Home'}:</Text>
-        <TextInput
-          value={homeScore}
-          onChangeText={setHomeScore}
-          style={[styles.input, { width: 60, textAlign: 'center' }]}
-          keyboardType="number-pad"
-          placeholder="-"
+        <DropDownPicker
+          open={leagueOpen}
+          value={selectedLeague}
+          items={leagueItems}
+          setOpen={setLeagueOpen}
+          setValue={setSelectedLeague}
+          setItems={setLeagueItems}
+          placeholder="Select League"
+          placeholderStyle={styles.dropdownPlaceholder}
+          style={styles.dropdown}
+          zIndex={5000}
+          listMode="SCROLLVIEW"
+          dropDownContainerStyle={styles.dropDownContainer}
+          textStyle={styles.dropDownText}
+          listEmptyTextStyle={styles.dropDownListEmpty}
         />
-        <Text style={{ fontWeight: '500', marginHorizontal: 12, color: '#0A2940' }}> - </Text>
-        <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{'Away'}:</Text>
-        <TextInput
-          value={awayScore}
-          onChangeText={setAwayScore}
-          style={[styles.input, { width: 60, textAlign: 'center' }]}
-          keyboardType="number-pad"
-          placeholder="-"
+
+        <DropDownPicker
+          open={arenaOpen}
+          value={selectedArena}
+          items={arenaItems}
+          setOpen={setArenaOpen}
+          setValue={setSelectedArena}
+          setItems={setArenaItems}
+          placeholder="Select Arena"
+          placeholderStyle={styles.dropdownPlaceholder}
+          style={styles.dropdown}
+          zIndex={4000}
+          listMode="SCROLLVIEW"
+          dropDownContainerStyle={styles.dropDownContainer}
+          textStyle={styles.dropDownText}
+          listEmptyTextStyle={styles.dropDownListEmpty}
         />
-      </View>
 
-      <TextInput
-        placeholder="Favorite Player"
-        value={favoritePlayer}
-        onChangeText={setFavoritePlayer}
-        style={styles.input}
-      />
-      <Text style={{ fontWeight: "500", marginRight: 6, color: "#0A2940" }}>Seat Information</Text>
-      <View style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginBottom: 12 }}>
-        <Text style={{ fontWeight: "500", marginRight: 6, color: "#0A2940" }}>Section:</Text>
-        <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
-        <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6, color: "#0A2940" }}>Row:</Text>
-        <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
-        <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6, color: "#0A2940" }}>Seat:</Text>
-        <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, { width: 50, textAlign: "center", marginBottom: 0 }]} />
-      </View>
-      <TextInput
-        placeholder="Who did you go with?"
-        value={companions}
-        onChangeText={setCompanions}
-        style={styles.input}
-      />
+        <DropDownPicker
+          open={homeTeamOpen}
+          value={selectedHomeTeam}
+          items={homeTeamItems}
+          setOpen={setHomeTeamOpen}
+          setValue={setSelectedHomeTeam}
+          setItems={setHomeTeamItems}
+          placeholder="Select Home Team"
+          placeholderStyle={styles.dropdownPlaceholder}
+          style={styles.dropdown}
+          zIndex={3000}
+          listMode="SCROLLVIEW"
+          dropDownContainerStyle={styles.dropDownContainer}
+          textStyle={styles.dropDownText}
+          listEmptyTextStyle={styles.dropDownListEmpty}
+        />
 
-      <Text style={styles.label}>Upload Photo (1 only):</Text>
-      <TouchableOpacity style={styles.input} onPress={pickImage}>
-        <Text>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
-      </TouchableOpacity>
+        <DropDownPicker
+          open={opponentTeamOpen}
+          value={selectedOpponent}
+          items={opponentItems}
+          setOpen={setOpponentTeamOpen}
+          setValue={setSelectedOpponent}
+          setItems={setOpponentItems}
+          placeholder="Select Opponent"
+          placeholderStyle={styles.dropdownPlaceholder}
+          style={styles.dropdown}
+          zIndex={2000}
+          listMode="SCROLLVIEW"
+          dropDownContainerStyle={styles.dropDownContainer}
+          textStyle={styles.dropDownText}
+          listEmptyTextStyle={styles.dropDownListEmpty}
+        />
 
-      <View style={{ marginTop: 10 }}>
-        {images.map((uri, index) => (
-          <Image
-            key={index}
-            source={{ uri }}
-            style={{ width: '100%', height: 200, borderRadius: 8 }}
-            resizeMode="cover"
+        <View style={{ marginTop: 20, alignItems: 'center' }}>
+          <Pressable
+            style={[
+              styles.choiceButton,
+              styles.choiceButtonSelected,
+            ]}
+            onPress={() => {
+              setSelectedLeague(null);
+              setSelectedArena(null);
+              setSelectedHomeTeam(null);
+              setSelectedOpponent(null);
+              setArenaItems([]);
+              setHomeTeamItems([]);
+              setOpponentItems([]);
+            }}
+          >
+            <Text style={styles.choiceButtonTextSelected}>
+              Reset League, Arena, Home Team, Opponent
+            </Text>
+          </Pressable>
+        </View>
+
+        <Text style={styles.label}>Final Score:</Text>
+        <View style={styles.scoreRow}>
+          <Text style={styles.scoreLabel}>{ 'Home  '}</Text>
+          <TextInput
+            value={homeScore}
+            onChangeText={setHomeScore}
+            style={[styles.input, styles.scoreInput]}
+            keyboardType="number-pad"
+            placeholder="0"
           />
-        ))}
-      </View>
+          <Text style={styles.scoreLabel}>{ '        Away  '}</Text>
+          <TextInput
+            value={awayScore}
+            onChangeText={setAwayScore}
+            style={[styles.input, styles.scoreInput]}
+            keyboardType="number-pad"
+            placeholder="0"
+          />
+        </View>
 
-      <Text style={styles.label}>Did you buy any merch?</Text>
-      <View style={{ flexDirection: 'row', marginBottom: 12 }}>
-        <Pressable
-          style={[
-            styles.choiceButton,
-            didBuyMerch === true && styles.choiceButtonSelected,
-          ]}
-          onPress={() => setDidBuyMerch(true)}
-        >
-          <Text style={styles.choiceButtonText}>Yes</Text>
-        </Pressable>
-
-        <Pressable
-          style={[
-            styles.choiceButton,
-            didBuyMerch === false && styles.choiceButtonSelected,
-          ]}
-          onPress={() => setDidBuyMerch(false)}
-        >
-          <Text style={styles.choiceButtonText}>No</Text>
-        </Pressable>
-      </View>
-
-      {didBuyMerch && (
-        <>
-          {Object.keys(merchCategories).map((category) => (
-            <View key={category} style={styles.categoryContainer}>
-              <Pressable
-                onPress={() =>
-                  setExpandedCategories((prev) => ({
-                    ...prev,
-                    [category]: !prev[category],
-                  }))
-                }
-                style={styles.categoryHeader}
-              >
-                <Text style={styles.categoryTitle}>{category}</Text>
-                <AntDesign
-                  name={expandedCategories[category] ? 'up' : 'down'}
-                  size={16}
-                  color="black"
-                />
-              </Pressable>
-
-              {expandedCategories[category] &&
-                merchCategories[category].map((item) => (
-                  <View key={item} style={styles.checkboxRow}>
-                    <Checkbox
-                      value={merchItems[item] || false}
-                      onValueChange={(v) =>
-                        setMerchItems((prev) => ({ ...prev, [item]: v }))
-                      }
-                    />
-                    <Text style={styles.checkboxLabel}>{item}</Text>
-                  </View>
-                ))}
-            </View>
-          ))}
-        </>
-      )}
-
-      <Text style={styles.label}>Did you buy any concessions?</Text>
-      <View style={{ flexDirection: 'row', marginBottom: 12 }}>
-        <Pressable
-          style={[
-            styles.choiceButton,
-            didBuyConcessions === true && styles.choiceButtonSelected,
-          ]}
-          onPress={() => setDidBuyConcessions(true)}
-        >
-          <Text style={styles.choiceButtonText}>Yes</Text>
-        </Pressable>
-
-        <Pressable
-          style={[
-            styles.choiceButton,
-            didBuyConcessions === false && styles.choiceButtonSelected,
-          ]}
-          onPress={() => setDidBuyConcessions(false)}
-        >
-          <Text style={styles.choiceButtonText}>No</Text>
-        </Pressable>
-      </View>
-
-      {didBuyConcessions && (
-        <>
-          {Object.keys(concessionCategories).map((category) => (
-            <View key={category} style={styles.categoryContainer}>
-              <Pressable
-                onPress={() =>
-                  setExpandedCategories((prev) => ({
-                    ...prev,
-                    [category]: !prev[category],
-                  }))
-                }
-                style={styles.categoryHeader}
-              >
-                <Text style={styles.categoryTitle}>{category}</Text>
-                <AntDesign
-                  name={expandedCategories[category] ? 'up' : 'down'}
-                  size={16}
-                  color="black"
-                />
-              </Pressable>
-
-              {expandedCategories[category] &&
-                concessionCategories[category].map((item) => (
-                  <View key={item} style={styles.checkboxRow}>
-                    <Checkbox
-                      value={concessionItems[item] || false}
-                      onValueChange={(v) =>
-                        setConcessionItems((prev) => ({ ...prev, [item]: v }))
-                      }
-                    />
-                    <Text style={styles.checkboxLabel}>{item}</Text>
-                  </View>
-                ))}
-            </View>
-          ))}
-        </>
-      )}
-
-      {/* Notes — now LAST */}
-      <TextInput
-        placeholder="Notes"
-        value={notes}
-        onChangeText={setNotes}
-        style={styles.input}
-        multiline
-      />
-
-      <TouchableOpacity style={styles.submitButton} onPress={handleSave}>
-        <Text style={styles.submitText}>Save Changes</Text>
-      </TouchableOpacity>
-
-      {showDatePicker && (
-        <DateTimePicker
-          value={gameDate}
-          mode="date"
-          display="default"
-          onChange={(event, selectedDate) => {
-            setShowDatePicker(false);
-            if (selectedDate) setGameDate(selectedDate);
-          }}
+        <TextInput
+          placeholder="Favorite Player"
+          placeholderTextColor={styles.Placeholder.color}
+          value={favoritePlayer}
+          onChangeText={setFavoritePlayer}
+          style={styles.input}
         />
-      )}
-    </ScrollView>
+        <Text style={styles.seatInfoTitle}>Seat Information</Text>
+        <View style={styles.seatInfoRow}>
+          <Text style={styles.seatLabel}>Section:</Text>
+          <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, styles.seatInput]} />
+          <Text style={styles.seatLabelRow}>Row:</Text>
+          <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, styles.seatInput]} />
+          <Text style={styles.seatLabelRow}>Seat:</Text>
+          <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, styles.seatInput]} />
+        </View>
+        <TextInput
+          placeholder="Who did you go with?"
+          placeholderTextColor={styles.companionsPlaceholder.color}
+          value={companions}
+          onChangeText={setCompanions}
+          style={styles.input}
+        />
+
+        <Text style={styles.label}>Upload Photo (1 only):</Text>
+        <TouchableOpacity style={styles.input} onPress={pickImage}>
+          <Text style={styles.uploadPhotoText}>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
+        </TouchableOpacity>
+
+        <View style={{ marginTop: 10 }}>
+          {images.map((uri, index) => (
+            <Image
+              key={index}
+              source={{ uri }}
+              style={{ width: '100%', height: 200, borderRadius: 8 }}
+              resizeMode="cover"
+            />
+          ))}
+        </View>
+
+        <View style={styles.merchConcessionsContainer}>
+          {/* Merch section */}
+          <Text style={styles.buySectionLabel}>Did you buy any merch?</Text>
+          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
+            <Pressable
+              style={[
+                styles.choiceButton,
+                didBuyMerch === true && styles.choiceButtonSelected,
+              ]}
+              onPress={() => setDidBuyMerch(true)}
+            >
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyMerch === true && styles.choiceButtonTextSelected
+              ]}>
+                Yes
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[
+                styles.choiceButton,
+                didBuyMerch === false && styles.choiceButtonSelected,
+              ]}
+              onPress={() => setDidBuyMerch(false)}
+            >
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyMerch === false && styles.choiceButtonTextSelected
+              ]}>
+                No
+              </Text>
+            </Pressable>
+          </View>
+
+          {didBuyMerch && (
+            <>
+              {Object.keys(merchCategories).map((category) => (
+                <View key={category} style={styles.categoryContainer}>
+                  <Pressable
+                    onPress={() =>
+                      setExpandedCategories((prev) => ({
+                        ...prev,
+                        [category]: !prev[category],
+                      }))
+                    }
+                    style={styles.categoryHeader}
+                  >
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                    <AntDesign
+                      name={expandedCategories[category] ? 'up' : 'down'}
+                      size={16}
+                      color={colorScheme === 'dark' ? '#FFFFFF' : '#000000'}
+                    />
+                  </Pressable>
+
+                  {expandedCategories[category] &&
+                    merchCategories[category].map((item) => (
+                      <View key={item} style={styles.checkboxRow}>
+                        <Checkbox
+                          value={merchItems[item] || false}
+                          onValueChange={(v) =>
+                            setMerchItems((prev) => ({ ...prev, [item]: v }))
+                          }
+                        />
+                        <Text style={styles.checkboxLabel}>{item}</Text>
+                      </View>
+                    ))}
+                  </View>
+              ))}
+            </>
+          )}
+
+          {/* Concessions section */}
+          <Text style={styles.buySectionLabel}>Did you buy any concessions?</Text>
+          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
+            <Pressable
+              style={[
+                styles.choiceButton,
+                didBuyConcessions === true && styles.choiceButtonSelected,
+              ]}
+              onPress={() => setDidBuyConcessions(true)}
+            >
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyConcessions === true && styles.choiceButtonTextSelected
+              ]}>
+                Yes
+              </Text>
+            </Pressable>
+
+            <Pressable
+              style={[
+                styles.choiceButton,
+                didBuyConcessions === false && styles.choiceButtonSelected,
+              ]}
+              onPress={() => setDidBuyConcessions(false)}
+            >
+              <Text style={[
+                styles.choiceButtonText,
+                didBuyConcessions === false && styles.choiceButtonTextSelected
+              ]}>
+                No
+              </Text>
+            </Pressable>
+          </View>
+
+          {didBuyConcessions && (
+            <>
+              {Object.keys(concessionCategories).map((category) => (
+                <View key={category} style={styles.categoryContainer}>
+                  <Pressable
+                    onPress={() =>
+                      setExpandedCategories((prev) => ({
+                        ...prev,
+                        [category]: !prev[category],
+                      }))
+                    }
+                    style={styles.categoryHeader}
+                  >
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                    <AntDesign
+                      name={expandedCategories[category] ? 'up' : 'down'}
+                      size={16}
+                      color={colorScheme === 'dark' ? '#FFFFFF' : '#000000'}
+                    />
+                  </Pressable>
+
+                  {expandedCategories[category] &&
+                    concessionCategories[category].map((item) => (
+                      <View key={item} style={styles.checkboxRow}>
+                        <Checkbox
+                          value={concessionItems[item] || false}
+                          onValueChange={(v) =>
+                            setConcessionItems((prev) => ({ ...prev, [item]: v }))
+                          }
+                        />
+                        <Text style={styles.checkboxLabel}>{item}</Text>
+                      </View>
+                    ))}
+                </View>
+              ))}
+            </>
+          )}
+        </View>
+
+        <TextInput
+          placeholder="Highlights"
+          placeholderTextColor={styles.Placeholder.color}
+          value={highlights}
+          onChangeText={setHighlights}
+          style={styles.input}
+          multiline
+        />
+
+        <TextInput
+          placeholder="Parking and Travel Tips"
+          placeholderTextColor={styles.Placeholder.color}
+          value={parkingAndTravel}
+          onChangeText={setParkingAndTravel}
+          style={styles.input}
+          multiline
+        />
+
+        <TouchableOpacity style={styles.submitButton} onPress={handleSave}>
+          <Text style={styles.submitText}>Save Changes</Text>
+        </TouchableOpacity>
+
+        {showDatePicker && (
+          <DateTimePicker
+            value={gameDate}
+            mode="date"
+            display="default"
+            onChange={(event, selectedDate) => {
+              setShowDatePicker(false);
+              if (selectedDate) setGameDate(selectedDate);
+            }}
+          />
+        )}
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-  },
-  categoryContainer: {
-    marginBottom: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
-    paddingBottom: 10,
-  },
-  categoryHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 8,
-  },
-  categoryTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#0A2940',
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  checkboxLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#0A2940',
-    textTransform: 'capitalize',
-  },
-  choiceButton: {
-    borderWidth: 1,
-    borderColor: '#CBD5E0',
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    marginRight: 10,
-  },
-  choiceButtonSelected: {
-    backgroundColor: '#0A2940',
-    borderColor: '#0A2940',
-  },
-  choiceButtonText: {
-    color: '#0A2940',
-    fontSize: 16,
-  },
-  dropdown: {
-    marginBottom: 14,
-    borderColor: '#CBD5E0',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#CBD5E0',
-    borderRadius: 8,
-    padding: 12,
-    marginBottom: 12,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 18,
-    marginBottom: 6,
-    color: '#0A2940',
-  },
-  scrollContainer: {
-    padding: 16,
-    paddingBottom: 250,
-  },
-  submitButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 14,
-    borderRadius: 10,
-    marginBottom: 40,
-    width: '50%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#2F4F68',
-  },
-  submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
-});
