@@ -15,6 +15,8 @@ import LoadingPuck from "../../components/loadingPuck";
 import CheerButton from '@/components/friends/cheerButton';
 import ChirpBox from '@/components/friends/chirpBox';
 import type { ActivityItem, Checkin, Chirp, Profile } from '@/types/friends';
+import ViewShot from 'react-native-view-shot';
+import * as Sharing from 'expo-sharing';
 
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
@@ -81,6 +83,7 @@ export default function FriendsTab() {
   const [leaderboardData, setLeaderboardData] = useState<Array<{ id: string; name: string; imageUrl?: string; arenas: number; teams: number }>>([]);
   const [lbLoading, setLbLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'arenas' | 'teams'>('arenas');
+  const friendsLeaderboardRef = useRef(null);
   const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
     setSearchQuery(value);
   }, 300);
@@ -88,6 +91,8 @@ export default function FriendsTab() {
   const currentUser = auth.currentUser;
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const getMutualFriendsCount = (userId: string) => {
     const theirFriends = userFriendsMap[userId] || [];
@@ -392,10 +397,12 @@ export default function FriendsTab() {
       const requestRef = doc(db, 'profiles', userId, 'friendRequests', currentUser.uid);
       await setDoc(requestRef, { fromId: currentUser.uid, createdAt: new Date() });
       setSentRequests((prev) => [...prev, userId]);
-      alert('Friend request sent!');
+      setAlertMessage('Friend request sent!');
+      setAlertVisible(true);
     } catch (err) {
       console.error('Error sending friend request:', err);
-      alert('Failed to send friend request. Try again.');
+      setAlertMessage('Failed to send friend request. Try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -485,6 +492,24 @@ export default function FriendsTab() {
     [allUsers, searchQuery, friends, sentRequests, blockedFriends, currentUser.uid]
   );
 
+  const handleFriendLeaderboardShare = async () => {
+    try {
+      const uri = await friendsLeaderboardRef.current?.capture();
+      if (!uri) {
+        Alert.alert('Error', 'Could not capture leaderboard');
+        return;
+      }
+
+      await Sharing.shareAsync(uri, {
+        mimeType: 'image/png',
+        dialogTitle: 'Share Friends Leaderboard',
+      });
+    } catch (error) {
+      console.error('Share failed:', error);
+      Alert.alert('Share Failed', 'Something went wrong');
+    }
+  };
+
   useEffect(() => {
     loadLeaderboardData();
   }, [friends, currentUser?.uid]);
@@ -497,6 +522,12 @@ export default function FriendsTab() {
     activityItemCard: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#dce3ff", borderRadius: 10, padding: 14, marginBottom: 12, shadowColor: "#000", shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#666' : '#D1D5DB' },
     activityItemText: { fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : "#0A2940", flex: 1 },
     activityUserText: { fontSize: 14, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16, },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
     arenaNameText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', flex: 1 },
     avatar: { width: 40, height: 40, borderRadius: 20, marginRight: 12 },
     activeDot: { position: 'absolute', right: -2, bottom: -2, width: 16, height: 16, borderRadius: 8, backgroundColor: '#4ADE80', borderWidth: 3, borderColor: '#fff', },
@@ -567,14 +598,24 @@ export default function FriendsTab() {
     );
   }
 
-
-
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
     >
+    {/* CUSTOM THEMED ALERT MODAL */}
+    <Modal visible={alertVisible} transparent animationType="fade">
+      <View style={styles.alertOverlay}>
+        <View style={styles.alertContainer}>
+          <Text style={styles.alertTitle}>Success</Text>
+          <Text style={styles.alertMessage}>{alertMessage}</Text>
+          <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
+            <Text style={styles.alertButtonText}>OK</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
     <ImageBackground
       source={colorScheme === 'dark' ? require('@/assets/images/background_dark.jpg') : require('@/assets/images/background.jpg')}
       style={styles.background}
@@ -802,82 +843,89 @@ export default function FriendsTab() {
           {/* FRIEND LEADERBOARD */}
           {friends.length > 0 && (
             <View style={styles.card}>
-              <Text style={styles.subheading}>Friend Leaderboard</Text>
+              <ViewShot ref={friendsLeaderboardRef} options={{ format: 'png', quality: 0.9 }} style={{ flex: 1 }}>
+                <Text style={styles.subheading}>Friend Leaderboard</Text>
 
-              <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 12, gap: 24 }}>
-                <TouchableOpacity
-                  onPress={() => setActiveTab('arenas')}
-                  style={[styles.tabButton, activeTab === 'arenas' && styles.tabActive]}
-                >
-                  <Text style={[styles.tabText, activeTab === 'arenas' && styles.tabTextActive]}>
-                    Arenas Visited
+                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 12, gap: 24 }}>
+                  <TouchableOpacity
+                    onPress={() => setActiveTab('arenas')}
+                    style={[styles.tabButton, activeTab === 'arenas' && styles.tabActive]}
+                  >
+                    <Text style={[styles.tabText, activeTab === 'arenas' && styles.tabTextActive]}>
+                      Arenas Visited
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => setActiveTab('teams')}
+                    style={[styles.tabButton, activeTab === 'teams' && styles.tabActive]}
+                  >
+                    <Text style={[styles.tabText, activeTab === 'teams' && styles.tabTextActive]}>
+                      Teams Watched
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {lbLoading ? (
+                  <ActivityIndicator size="small" color="#0D2C42" />
+                ) : leaderboardData.length === 0 ? (
+                  <Text style={{ textAlign: 'center', color: '#6B7280', paddingVertical: 20 }}>
+                    No check-ins yet
                   </Text>
-                </TouchableOpacity>
+                ) : (
+                  leaderboardData
+                    .sort((a, b) =>
+                      activeTab === 'arenas'
+                        ? b.arenas - a.arenas
+                        : b.teams - a.teams
+                    )
+                    .slice(0, 5)
+                    .map((user, index) => {
+                      const score = activeTab === 'arenas' ? user.arenas : user.teams;
+                      const isMe = user.id === currentUser?.uid;
 
-                <TouchableOpacity
-                  onPress={() => setActiveTab('teams')}
-                  style={[styles.tabButton, activeTab === 'teams' && styles.tabActive]}
-                >
-                  <Text style={[styles.tabText, activeTab === 'teams' && styles.tabTextActive]}>
-                    Teams Watched
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
-              {lbLoading ? (
-                <ActivityIndicator size="small" color="#0D2C42" />
-              ) : leaderboardData.length === 0 ? (
-                <Text style={{ textAlign: 'center', color: '#6B7280', paddingVertical: 20 }}>
-                  No check-ins yet
-                </Text>
-              ) : (
-                leaderboardData
-                  .sort((a, b) =>
-                    activeTab === 'arenas'
-                      ? b.arenas - a.arenas
-                      : b.teams - a.teams
-                  )
-                  .slice(0, 5)
-                  .map((user, index) => {
-                    const score = activeTab === 'arenas' ? user.arenas : user.teams;
-                    const isMe = user.id === currentUser?.uid;
-
-                    return (
-                      <View
-                        key={user.id}
-                        style={[
-                          styles.lbRow,
-                          isMe && styles.lbRowMe,
-                          index < 3 && styles.lbRowTop3
-                        ]}
-                      >
-                        <Text style={[styles.rank, index < 3 && styles.rankGold]}>
-                          {index === 0 ? '1st' : index === 1 ? '2nd' : index === 2 ? '3rd' : `${index + 1}.`}
-                        </Text>
-                        <TouchableOpacity
-                          style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
-                          onPress={() => router.push(`/userprofile/${user.id}`)}
+                      return (
+                        <View
+                          key={user.id}
+                          style={[
+                            styles.lbRow,
+                            isMe && styles.lbRowMe,
+                            index < 3 && styles.lbRowTop3
+                          ]}
                         >
-                          <Image
-                            source={user.imageUrl ? { uri: user.imageUrl } : require('@/assets/images/icon.png')}
-                            style={styles.lbAvatar}
-                          />
-                          <Text style={[styles.lbName, isMe && { fontWeight: 'bold' }, index < 3 && styles.lbNameTop3]}>
-                            {user.name}{isMe ? ' (You)' : ''}
+                          <Text style={[styles.rank, index < 3 && styles.rankGold]}>
+                            {index === 0 ? '1st' : index === 1 ? '2nd' : index === 2 ? '3rd' : `${index + 1}.`}
                           </Text>
-                        </TouchableOpacity>
+                          <TouchableOpacity
+                            style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
+                            onPress={() => router.push(`/userprofile/${user.id}`)}
+                          >
+                            <Image
+                              source={user.imageUrl ? { uri: user.imageUrl } : require('@/assets/images/icon.png')}
+                              style={styles.lbAvatar}
+                            />
+                            <Text style={[styles.lbName, isMe && { fontWeight: 'bold' }, index < 3 && styles.lbNameTop3]}>
+                              {user.name}{isMe ? ' (You)' : ''}
+                            </Text>
+                          </TouchableOpacity>
 
-                        <Text style={[styles.lbScore, index < 3 && styles.lbScoreTop3]}>
-                          {score}
-                        </Text>
-                      </View>
-                    );
-                  })
-              )}
+                          <Text style={[styles.lbScore, index < 3 && styles.lbScoreTop3]}>
+                            {score}
+                          </Text>
+                        </View>
+                      );
+                    })
+                )}
+              </ViewShot>
+
+              <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 12 }}
+                onPress={handleFriendLeaderboardShare}
+              >
+                <Ionicons name="share-social-outline" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+              </TouchableOpacity>
             </View>
           )}
-
-
 
           {/* Friends Activity */}
           {feed.length > 0 && (
@@ -1080,48 +1128,34 @@ export default function FriendsTab() {
           )}
 
           {selectedFriend && (
-            <Modal
-              transparent={true}
-              visible={true}
-              animationType="fade"
-              onRequestClose={() => setSelectedFriend(null)}
-            >
-              <View style={styles.modalOverlay}>
-                <View style={styles.modalCard}>
-                  <Text style={styles.modalTitle}>{selectedFriend.name}</Text>
+            <Modal transparent visible={true} animationType="fade" onRequestClose={() => setSelectedFriend(null)}>
+              <View style={styles.alertOverlay}>
+                <View style={styles.alertContainer}>
+                  <Text style={styles.alertTitle}>{selectedFriend.name}</Text>
 
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => {
-                      setSelectedFriend(null);
-                      router.push({
-                        pathname: '/userprofile/[userId]',
-                        params: { userId: selectedFriend.id },
-                      });
-                    }}
-                  >
-                    <Text style={styles.modalButtonText}>View Profile</Text>
+                  <TouchableOpacity style={styles.alertButton} onPress={() => {
+                    setSelectedFriend(null);
+                    router.push(`/userprofile/${selectedFriend.id}`);
+                  }}>
+                    <Text style={styles.alertButtonText}>View Profile</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => handleUnfriend(selectedFriend.id)}
-                  >
-                    <Text style={styles.modalButtonText}>Unfriend</Text>
+                  <TouchableOpacity style={[styles.alertButton, { backgroundColor: '#F59E0B' }]} onPress={() => {
+                    setSelectedFriend(null);
+                    handleUnfriend(selectedFriend.id);
+                  }}>
+                    <Text style={styles.alertButtonText}>Unfriend</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={styles.modalButton}
-                    onPress={() => handleBlock(selectedFriend)}
-                  >
-                    <Text style={styles.modalButtonText}>Block</Text>
+                  <TouchableOpacity style={[styles.alertButton, { backgroundColor: '#EF4444' }]} onPress={() => {
+                    setSelectedFriend(null);
+                    handleBlock(selectedFriend);
+                  }}>
+                    <Text style={styles.alertButtonText}>Block</Text>
                   </TouchableOpacity>
 
-                  <TouchableOpacity
-                    style={[styles.modalButton, { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#fff', borderRadius: 30, }]}
-                    onPress={() => setSelectedFriend(null)}
-                  >
-                    <Text style={styles.modalButtonText}>Cancel</Text>
+                  <TouchableOpacity style={styles.alertButton} onPress={() => setSelectedFriend(null)}>
+                    <Text style={styles.alertButtonText}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
               </View>

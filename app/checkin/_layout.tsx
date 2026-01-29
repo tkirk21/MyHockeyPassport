@@ -5,9 +5,7 @@ export default function CheckinLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
-        headerTintColor: "#fff",
-        headerStyle: { backgroundColor: "#0A2940" },
+        headerShown: false,
       }}
     />
   );

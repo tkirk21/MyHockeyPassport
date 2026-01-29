@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const auth = getAuth();
 const LEAGUES_DATA = [
@@ -14,6 +15,7 @@ const LEAGUES_DATA = [
 
 export default function FavoriteLeaguesScreen() {
   const router = useRouter();
+  const colorScheme = useColorScheme();
   const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
   const filteredLeagues = LEAGUES_DATA;
 
@@ -53,47 +55,55 @@ export default function FavoriteLeaguesScreen() {
     }
   };
 
+  const styles = StyleSheet.create({
+    backArrow: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    bottomContainer: { paddingBottom: 40, paddingHorizontal: 20 },
+    centeredList: { flex: 1, justifyContent: 'center', paddingHorizontal: 20 },
+    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 28, fontWeight: '700', marginLeft: 20 },
+    list: { paddingHorizontal: 20, },
+    leagueRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1, borderBottomColor: '#1A3A5A', },
+    leagueText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
+    saveButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 14, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', width: '70%', alignSelf: 'center', alignItems: 'center' },
+    saveButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18, fontWeight: '600' },
+    screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+  });
+
   return (
-    <View style={{ flex: 1, backgroundColor: '#0A2940' }}>
+    <View style={styles.screenBackground}>
       <Stack.Screen options={{ headerShown: false }} />
 
-      <View style={{ paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}>
+      {/* Custom header */}
+      <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={28} color="#fff" />
+          <Ionicons name="arrow-back" size={28} color={styles.backArrow.color} />
         </TouchableOpacity>
-        <Text style={{ color: '#fff', fontSize: 28, fontWeight: '700', marginLeft: 20 }}>
-          Favorite Leagues
-        </Text>
+        <Text style={styles.headerTitle}>Favorite Leagues</Text>
       </View>
 
       <ScrollView style={{ flex: 1 }}>
-        <View style={styles.list}>
-          {filteredLeagues.map(league => (
-            <TouchableOpacity
-              key={league}
-              style={styles.leagueRow}
-              onPress={() => toggleLeague(league)}
-            >
-              <Text style={styles.leagueText}>{league}</Text>
-              {favoriteLeagues.includes(league) && (
-                <Ionicons name="checkmark" size={24} color="#fff" />
-              )}
-            </TouchableOpacity>
-
-          ))}
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={styles.list}>
+            {filteredLeagues.map(league => (
+              <TouchableOpacity
+                key={league}
+                style={styles.leagueRow}
+                onPress={() => toggleLeague(league)}
+              >
+                <Text style={styles.leagueText}>{league}</Text>
+                {favoriteLeagues.includes(league) && (
+                  <Ionicons name="checkmark" size={24} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+                )}
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
       </ScrollView>
-        <TouchableOpacity style={styles.saveButton} onPress={() => router.back()}>
-          <Text style={styles.saveButtonText}>Save</Text>
-        </TouchableOpacity>
+        <View style={styles.bottomContainer}>
+          <TouchableOpacity style={styles.saveButton} onPress={() => router.back()}>
+            <Text style={styles.saveButtonText}>Save</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  list: { paddingHorizontal: 20, },
-  leagueRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16, borderBottomWidth: 1, borderBottomColor: '#1A3A5A', },
-  leagueText: { color: '#fff', fontSize: 18, },
-  saveButton: { backgroundColor: "#0D2C42", borderWidth: 2, borderColor: '#2F4F68', paddingVertical: 16, borderRadius: 30, marginHorizontal: 20, marginTop: 10, marginBottom: 80, alignItems: 'center', width: 200, alignSelf: 'center', },
-  saveButtonText: { color: '#fff', fontSize: 18, fontWeight: '600', },
-});

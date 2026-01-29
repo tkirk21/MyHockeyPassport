@@ -1,0 +1,2666 @@
+[
+  {
+    "id": "ncaaD1_20260127_01",
+    "league": "NCAA DIV I",
+    "date": "2026-01-28T04:00:00Z",
+    "team": "Alaska Anchorage Seawolves",
+    "opponent": "lIU Sharks",
+    "arena": "Avis Alaska Sports Complex",
+    "city": "Anchorage, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260129_01",
+    "league": "NCAA DIV I",
+    "date": "2026-01-30T00:00:00Z",
+    "team": "Holy Cross Crusaders",
+    "opponent": "Army Black Knights",
+    "arena": "Hart Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_01",
+    "league": "NCAA DIV I",
+    "date": "2026-01-30T23:00:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Michigan State Spartans",
+    "arena": "Pegula Ice Arena",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260130_02",
+    "league": "NCAA DIV I",
+    "date": "2026-01-30T23:30:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Michigan Wolverines",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260130_03",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Niagara Purple Eagles",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260130_04",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Cornell Big Red",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260130_05",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Dartmouth Big Green",
+    "opponent": "Union Garnet Chargers",
+    "arena": "Thompson Arena",
+    "city": "Hanover, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260130_06",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Colgate Raiders",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260130_07",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Holy Cross Crusaders",
+    "opponent": "Army Black Knights",
+    "arena": "Hart Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_08",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Quinnipiac Bobcats",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260130_09",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Harvard Crimson",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Bright-Landry Hockey Center",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_10",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Princeton Tigers",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260130_11",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "Omaha Mavericks",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260130_12",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Bentley Falcons",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260130_13",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Massachusetts Minutemen",
+    "opponent": "Northeastern Huskies",
+    "arena": "Mullins Center",
+    "city": "Amherst, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_14",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Merrimack Warriors",
+    "opponent": "New Hampshire Wildcats",
+    "arena": "Lawler Rink",
+    "city": "North Andover, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_15",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Boston University Terriers",
+    "opponent": "Boston College Eagles",
+    "arena": "Agganis Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260130_16",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "Stonehill Skyhawks",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260130_17",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Notre Dame Fighting Irish",
+    "opponent": "Bowling Green Falcons",
+    "arena": "Compton Family Ice Arena",
+    "city": "South Bend, Indiana"
+  },
+  {
+    "id": "ncaaD1_20260130_18",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:00:00Z",
+    "team": "Mercyhurst Lakers",
+    "opponent": "RIT Tigers",
+    "arena": "Mercyhurst Ice Center",
+    "city": "Erie, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260130_19",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:07:00Z",
+    "team": "Ferris State Bulldogs",
+    "opponent": "Minnesota State Mavericks",
+    "arena": "Ewigleben Ice Arena",
+    "city": "Big Rapids, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260130_20",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T00:07:00Z",
+    "team": "Northern Michigan Wildcats",
+    "opponent": "Bemidji State Beavers",
+    "arena": "Berry Events Center",
+    "city": "Marquette, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260130_21",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T01:00:00Z",
+    "team": "St. Cloud State Huskies",
+    "opponent": "Miami RedHawks",
+    "arena": "Herb Brooks National Hockey Center",
+    "city": "St. Cloud, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260130_22",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T01:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Wisconsin Badgers",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260130_23",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T01:07:00Z",
+    "team": "St. Thomas Tommies",
+    "opponent": "Michigan Tech Huskies",
+    "arena": "St. Thomas Ice Arena",
+    "city": "Mendota Heights, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260130_24",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T01:07:00Z",
+    "team": "Augustana Vikings",
+    "opponent": "Lake Superior State Lakers",
+    "arena": "Midco Arena",
+    "city": "Sioux Falls, South Dakota"
+  },
+  {
+    "id": "ncaaD1_20260130_25",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T02:00:00Z",
+    "team": "Colorado College Tigers",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Ed Robson Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260130_26",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T02:00:00Z",
+    "team": "Denver Pioneers",
+    "opponent": "Minnesota Duluth Bulldogs",
+    "arena": "Magness Arena",
+    "city": "Denver, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260130_27",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T02:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260130_28",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T04:07:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "LIU Sharks",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260131_01",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T18:00:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Michigan State Spartans",
+    "arena": "West Shore Home Field at Beaver Stadium",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260131_02",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T22:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Cornell Big Red",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260131_03",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T22:00:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Michigan Wolverines",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260131_04",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T22:00:00Z",
+    "team": "Mercyhurst Lakers",
+    "opponent": "RIT Tigers",
+    "arena": "Mercyhurst Ice Center",
+    "city": "Erie, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260131_05",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T23:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "Omaha Mavericks",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260131_06",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T23:07:00Z",
+    "team": "Ferris State Bulldogs",
+    "opponent": "Minnesota State Mavericks",
+    "arena": "Ewigleben Ice Arena",
+    "city": "Big Rapids, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260131_07",
+    "league": "NCAA DIV I",
+    "date": "2026-01-31T23:07:00Z",
+    "team": "Northern Michigan Wildcats",
+    "opponent": "Bemidji State Beavers",
+    "arena": "Berry Events Center",
+    "city": "Marquette, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260131_08",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Canisius Golden Griffins",
+    "arena": "Dwyer Arena",
+    "city": "Lewiston, New York"
+  },
+  {
+    "id": "ncaaD1_20260131_09",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "Providence Friars",
+    "arena": "Harold Alfond Sports Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260131_10",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "St. Cloud State Huskies",
+    "opponent": "Miami RedHawks",
+    "arena": "Herb Brooks National Hockey Center",
+    "city": "St. Cloud, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260131_11",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Princeton Tigers",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260131_12",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Quinnipiac Bobcats",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260131_13",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Dartmouth Big Green",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Thompson Arena",
+    "city": "Hanover, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260131_14",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Wisconsin Badgers",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260131_15",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Colgate Raiders",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260131_16",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Bentley Falcons",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260131_17",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Merrimack Warriors",
+    "arena": "Whittemore Center Arena",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260131_18",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:00:00Z",
+    "team": "Bowling Green Falcons",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Slater Family Ice Arena",
+    "city": "Bowling Green, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260131_19",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260131_20",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:07:00Z",
+    "team": "Augustana Vikings",
+    "opponent": "Lake Superior State Lakers",
+    "arena": "Midco Arena",
+    "city": "Sioux Falls, South Dakota"
+  },
+  {
+    "id": "ncaaD1_20260131_21",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T00:30:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "Stonehill Skyhawks",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260131_22",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T01:00:00Z",
+    "team": "Colorado College Tigers",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Ed Robson Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260131_23",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T01:00:00Z",
+    "team": "Denver Pioneers",
+    "opponent": "Minnesota Duluth Bulldogs",
+    "arena": "Magness Arena",
+    "city": "Denver, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260131_24",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T01:07:00Z",
+    "team": "St. Thomas Tommies",
+    "opponent": "Michigan Tech Huskies",
+    "arena": "St. Thomas Ice Arena",
+    "city": "Mendota Heights, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260201_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-01T20:30:00Z",
+    "team": "UMass Lowell River Hawks",
+    "opponent": "Massachusetts Minutemen",
+    "arena": "Tsongas Center",
+    "city": "Lowell, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260201_02",
+    "league": "NCAA DIV I",
+    "date": "2026-02-02T04:07:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "LIU Sharks",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260202_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-02T22:00:00Z",
+    "team": "Harvard Crimson",
+    "opponent": "Boston College Eagles",
+    "arena": "TD Garden",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260202_02",
+    "league": "NCAA DIV I",
+    "date": "2026-02-03T01:00:00Z",
+    "team": "Northeastern Huskies",
+    "opponent": "Boston University Terriers",
+    "arena": "TD Garden",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260203_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-04T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "Merrimack Warriors",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-06T09:00:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260206_02",
+    "league": "NCAA DIV I",
+    "date": "2026-02-06T23:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Air Force Falcons",
+    "arena": "Dwyer Arena",
+    "city": "Niagara University, New York"
+  },
+  {
+    "id": "ncaaD1_20260206_03",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Canisius Golden Griffins",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260206_04",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Colgate Raiders",
+    "opponent": "Cornell Big Red",
+    "arena": "Class of 1965 Arena",
+    "city": "Hamilton, New York"
+  },
+  {
+    "id": "ncaaD1_20260206_05",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Union Garnet Chargers",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260206_06",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Quinnipiac Bobcats",
+    "opponent": "Brown Bears",
+    "arena": "M&T Bank Arena",
+    "city": "Hamden, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260206_07",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Providence Friars",
+    "arena": "Whittemore Center",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260206_08",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Holy Cross Crusaders",
+    "opponent": "Bentley Falcons",
+    "arena": "Hart Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_09",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Army Black Knights",
+    "opponent": "RIT Tigers",
+    "arena": "Tate Rink",
+    "city": "West Point, New York"
+  },
+  {
+    "id": "ncaaD1_20260206_10",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260206_11",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Michigan State Spartans",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260206_12",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Harvard Crimson",
+    "opponent": "Dartmouth Big Green",
+    "arena": "Bright-Landry Hockey Center",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_13",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Northeastern Huskies",
+    "opponent": "UConn Huskies",
+    "arena": "Matthews Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_14",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Boston University Terriers",
+    "opponent": "Maine Black Bears",
+    "arena": "Agganis Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_15",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Princeton Tigers",
+    "opponent": "Yale Bulldogs",
+    "arena": "Hobey Baker Rink",
+    "city": "Princeton, New Jersey"
+  },
+  {
+    "id": "ncaaD1_20260206_16",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Boston College Eagles",
+    "opponent": "Vermont Catamounts",
+    "arena": "Conte Forum",
+    "city": "Chestnut Hill, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_17",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "Lindenwood Lions",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_18",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Sacred Heart Pioneers",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Martire Family Arena",
+    "city": "Fairfield, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260206_19",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:05:00Z",
+    "team": "Miami RedHawks",
+    "opponent": "Western Michigan Broncos",
+    "arena": "Goggin Ice Center",
+    "city": "Oxford, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260206_20",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:07:00Z",
+    "team": "Michigan Tech Huskies",
+    "opponent": "Augustana Vikings",
+    "arena": "John MacInnes Student Ice Arena",
+    "city": "Houghton, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260206_21",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:07:00Z",
+    "team": "Bowling Green Falcons",
+    "opponent": "St. Thomas Tommies",
+    "arena": "Slater Family Ice Arena",
+    "city": "Bowling Green, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260206_22",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T00:15:00Z",
+    "team": "UMass Lowell River Hawks",
+    "opponent": "Massachusetts Minutemen",
+    "arena": "Tsongas Center",
+    "city": "Lowell, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_23",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T01:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260206_24",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T01:00:00Z",
+    "team": "Wisconsin Badgers",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Kohl Center",
+    "city": "Madison, Wisconsin"
+  },
+  {
+    "id": "ncaaD1_20260206_25",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T01:07:00Z",
+    "team": "Minnesota Duluth Bulldogs",
+    "opponent": "North Dakota Fighting Hawks",
+    "arena": "AMSOIL Arena",
+    "city": "Duluth, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260206_26",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T01:07:00Z",
+    "team": "Bemidji State Beavers",
+    "opponent": "Ferris State Bulldogs",
+    "arena": "Sanford Center",
+    "city": "Bemidji, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260206_27",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Colorado College Tigers",
+    "opponent": "Denver Pioneers",
+    "arena": "Ed Robson Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260206_28",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T02:00:00Z",
+    "team": "Arizona State Sun Devils",
+    "opponent": "St. Cloud State Huskies",
+    "arena": "Mullett Arena",
+    "city": "Glendale, Arizona"
+  },
+  {
+    "id": "ncaaD1_20260207_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T20:00:00Z",
+    "team": "Sacred Heart Pioneers",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Martire Family Arena",
+    "city": "Fairfield, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260207_02",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T21:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Union Garnet Chargers",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260207_03",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T21:00:00Z",
+    "team": "Army Black Knights",
+    "opponent": "RIT Tigers",
+    "arena": "Tate Rink",
+    "city": "West Point, New York"
+  },
+  {
+    "id": "ncaaD1_20260207_04",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T22:07:00Z",
+    "team": "Michigan Tech Huskies",
+    "opponent": "Augustana Vikings",
+    "arena": "John MacInnes Student Ice Arena",
+    "city": "Houghton, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260207_05",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T23:00:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Holy Cross Crusaders",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260207_06",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T23:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Air Force Falcons",
+    "arena": "Dwyer Arena",
+    "city": "Niagara University, New York"
+  },
+  {
+    "id": "ncaaD1_20260207_07",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T23:05:00Z",
+    "team": "Miami RedHawks",
+    "opponent": "Western Michigan Broncos",
+    "arena": "Goggin Ice Center",
+    "city": "Oxford, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260207_08",
+    "league": "NCAA DIV I",
+    "date": "2026-02-07T23:30:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Michigan State Spartans",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260207_09",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Canisius Golden Griffins",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260207_10",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Cornell Big Red",
+    "opponent": "Colgate Raiders",
+    "arena": "Lynah Rink",
+    "city": "Ithaca, New York"
+  },
+  {
+    "id": "ncaaD1_20260207_11",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Princeton Tigers",
+    "opponent": "Brown Bears",
+    "arena": "Hobey Baker Rink",
+    "city": "Princeton, New Jersey"
+  },
+  {
+    "id": "ncaaD1_20260207_12",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Providence Friars",
+    "opponent": "Vermont Catamounts",
+    "arena": "Schneider Arena",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260207_13",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260207_14",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Massachusetts Minutemen",
+    "opponent": "UMass Lowell River Hawks",
+    "arena": "Mullins Center",
+    "city": "Amherst, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260207_15",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "Lindenwood Lions",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260207_16",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Arizona State Sun Devils",
+    "opponent": "St. Cloud State Huskies",
+    "arena": "Mullett Arena",
+    "city": "Glendale, Arizona"
+  },
+  {
+    "id": "ncaaD1_20260207_17",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:00:00Z",
+    "team": "Quinnipiac Bobcats",
+    "opponent": "Yale Bulldogs",
+    "arena": "M&T Bank Arena",
+    "city": "Hamden, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260207_18",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:07:00Z",
+    "team": "Minnesota Duluth Bulldogs",
+    "opponent": "North Dakota Fighting Hawks",
+    "arena": "AMSOIL Arena",
+    "city": "Duluth, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260207_19",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:07:00Z",
+    "team": "Bemidji State Beavers",
+    "opponent": "Ferris State Bulldogs",
+    "arena": "Sanford Center",
+    "city": "Bemidji, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260207_20",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T00:07:00Z",
+    "team": "Bowling Green Falcons",
+    "opponent": "St. Thomas Tommies",
+    "arena": "Slater Family Ice Arena",
+    "city": "Bowling Green, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260207_21",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T01:00:00Z",
+    "team": "Wisconsin Badgers",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Kohl Center",
+    "city": "Madison, Wisconsin"
+  },
+  {
+    "id": "ncaaD1_20260207_22",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T02:00:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260207_23",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T02:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260207_24",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T02:00:00Z",
+    "team": "Denver Pioneers",
+    "opponent": "Colorado College Tigers",
+    "arena": "Magness Arena",
+    "city": "Denver, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260209_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T02:00:00Z",
+    "team": "TBA",
+    "opponent": "Havard Crimson",
+    "arena": "Bright-Landry Hockey Center",
+    "city": "Cambridge, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260209_02",
+    "league": "NCAA DIV I",
+    "date": "2026-02-08T02:00:00Z",
+    "team": "Boston University Terriers",
+    "opponent": "TBA",
+    "arena": "TBA",
+    "city": "TBA"
+  },
+  {
+    "id": "ncaaD1_20260210_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-11T00:00:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Army Black Knights",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260210_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-11T00:05:00Z",
+    "team": "RIT Tigers",
+    "opponent": "Niagara Purple Eagles",
+    "arena": "Gene Polisseni Center",
+    "city": "Rochester, New York"
+  },
+  {
+    "id": "ncaaD1_20260213_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-13T07:00:00Z",
+    "team": "St. Cloud State Huskies",
+    "opponent": "Colorado College Tigers",
+    "arena": "Herb Brooks National Hockey Center",
+    "city": "St. Cloud, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260213_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-13T19:00:00Z",
+    "team": "LIU Sharks",
+    "opponent": "Stonehill Skyhawks",
+    "arena": "Northwell Health Ice Center",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260213_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-13T23:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Robert Morris Colonials",
+    "arena": "Dwyer Arena",
+    "city": "Niagara University, New York"
+  },
+  {
+    "id": "ncaaD1_20260213_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-13T23:30:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Penn State Nittany Lions",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260213_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-13T23:30:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Wisconsin Badgers",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260213_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Holy Cross Crusaders",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260213_07",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Rensselaer Engineers",
+    "opponent": "Cornell Big Red",
+    "arena": "Houston Field House",
+    "city": "Troy, New York"
+  },
+  {
+    "id": "ncaaD1_20260213_08",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Union Garnet Chargers",
+    "opponent": "Colgate Raiders",
+    "arena": "Achilles Rink",
+    "city": "Schenectady, New York"
+  },
+  {
+    "id": "ncaaD1_20260213_09",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Harvard Crimson",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260213_10",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Providence Friars",
+    "opponent": "Northeastern Huskies",
+    "arena": "Schneider Arena",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260213_11",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Dartmouth Big Green",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260213_12",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Notre Dame Fighting Irish",
+    "opponent": "Minnesota Golden Gophers",
+    "arena": "Compton Family Ice Arena",
+    "city": "South Bend, Indiana"
+  },
+  {
+    "id": "ncaaD1_20260213_13",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260213_14",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "UMass Lowell River Hawks",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260213_15",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Merrimack Warriors",
+    "opponent": "Boston College Eagles",
+    "arena": "Lawler Rink",
+    "city": "North Andover, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260213_16",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Boston University Terriers",
+    "arena": "Whittemore Center",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260213_17",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "UConn Huskies",
+    "arena": "Alfond Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260213_18",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:00:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260213_19",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:07:00Z",
+    "team": "Lake Superior State Lakers",
+    "opponent": "Michigan Tech Huskies",
+    "arena": "Taffy Abel Arena",
+    "city": "Sault Ste. Marie, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260213_20",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T00:07:00Z",
+    "team": "Ferris State Bulldogs",
+    "opponent": "Northern Michigan Wildcats",
+    "arena": "Ewigleben Ice Arena",
+    "city": "Big Rapids, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260213_21",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T01:00:00Z",
+    "team": "Lindenwood Lions",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Centene Community Ice Center",
+    "city": "Maryland Heights, Missouri"
+  },
+  {
+    "id": "ncaaD1_20260213_22",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T01:07:00Z",
+    "team": "Minnesota State Mavericks",
+    "opponent": "Bemidji State Beavers",
+    "arena": "Mayo Clinic Health System Event Center",
+    "city": "Mankato, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260213_23",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T01:07:00Z",
+    "team": "North Dakota Fighting Hawks",
+    "opponent": "Miami RedHawks",
+    "arena": "Ralph Engelstad Arena",
+    "city": "Grand Forks, North Dakota"
+  },
+  {
+    "id": "ncaaD1_20260213_24",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T01:07:00Z",
+    "team": "Augustana Vikings",
+    "opponent": "Bowling Green Falcons",
+    "arena": "Midco Arena",
+    "city": "Sioux Falls, South Dakota"
+  },
+  {
+    "id": "ncaaD1_20260213_25",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T02:00:00Z",
+    "team": "Omaha Mavericks",
+    "opponent": "Denver Pioneers",
+    "arena": "Baxter Arena",
+    "city": "Omaha, Nebraska"
+  },
+  {
+    "id": "ncaaD1_20260213_26",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T02:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260214_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T19:00:00Z",
+    "team": "LIU Sharks",
+    "opponent": "Stonehill Skyhawks",
+    "arena": "Northwell Health Ice Center",
+    "city": "Brookville, New York"
+  },
+  {
+    "id": "ncaaD1_20260214_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T21:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Holy Cross Crusaders",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260214_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T21:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Dartmouth Big Green",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260214_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T22:00:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Penn State Nittany Lions",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260214_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T22:30:00Z",
+    "team": "Providence Friars",
+    "opponent": "Northeastern Huskies",
+    "arena": "Schneider Arena",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260214_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:00:00Z",
+    "team": "Notre Dame Fighting Irish",
+    "opponent": "Minnesota Golden Gophers",
+    "arena": "Compton Family Ice Arena",
+    "city": "South Bend, Indiana"
+  },
+  {
+    "id": "ncaaD1_20260214_07",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260214_08",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:00:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "UMass Lowell River Hawks",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260214_09",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:00:00Z",
+    "team": "Boston University Terriers",
+    "opponent": "New Hampshire Wildcats",
+    "arena": "Agganis Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260214_10",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:00:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260214_11",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:07:00Z",
+    "team": "Lake Superior State Lakers",
+    "opponent": "Michigan Tech Huskies",
+    "arena": "Taffy Abel Arena",
+    "city": "Sault Ste. Marie, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260214_12",
+    "league": "NCAA DIV1",
+    "date": "2026-02-14T23:07:00Z",
+    "team": "Ferris State Bulldogs",
+    "opponent": "Northern Michigan Wildcats",
+    "arena": "Ewigleben Ice Arena",
+    "city": "Big Rapids, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260214_13",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Union Garnet Chargers",
+    "opponent": "Cornell Big Red",
+    "arena": "Achilles Rink",
+    "city": "Schenectady, New York"
+  },
+  {
+    "id": "ncaaD1_20260214_14",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Lindenwood Lions",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Centene Community Ice Center",
+    "city": "Maryland Heights, Missouri"
+  },
+  {
+    "id": "ncaaD1_20260214_15",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Harvard Crimson",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260214_16",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Niagara Purple Eagles",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260214_17",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "St. Cloud State Huskies",
+    "opponent": "Colorado College Tigers",
+    "arena": "Herb Brooks National Hockey Center",
+    "city": "St. Cloud, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260214_18",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Rensselaer Engineers",
+    "opponent": "Colgate Raiders",
+    "arena": "Houston Field House",
+    "city": "Troy, New York"
+  },
+  {
+    "id": "ncaaD1_20260214_19",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Quinnipiac Bobcats",
+    "opponent": "Princeton Tigers",
+    "arena": "M&T Bank Arena",
+    "city": "Hamden, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260214_20",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Boston College Eagles",
+    "opponent": "Merrimack Warriors",
+    "arena": "Conte Forum",
+    "city": "Chestnut Hill, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260214_21",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "UConn Huskies",
+    "arena": "Alfond Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260214_22",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260214_23",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:07:00Z",
+    "team": "Minnesota State Mavericks",
+    "opponent": "Bemidji State Beavers",
+    "arena": "Mayo Clinic Health System Event Center",
+    "city": "Mankato, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260214_24",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:07:00Z",
+    "team": "North Dakota Fighting Hawks",
+    "opponent": "Miami RedHawks",
+    "arena": "Ralph Engelstad Arena",
+    "city": "Grand Forks, North Dakota"
+  },
+  {
+    "id": "ncaaD1_20260214_25",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:07:00Z",
+    "team": "Augustana Vikings",
+    "opponent": "Bowling Green Falcons",
+    "arena": "Midco Arena",
+    "city": "Sioux Falls, South Dakota"
+  },
+  {
+    "id": "ncaaD1_20260214_26",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T00:30:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Wisconsin Badgers",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260214_27",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T02:00:00Z",
+    "team": "Omaha Mavericks",
+    "opponent": "Denver Pioneers",
+    "arena": "Baxter Arena",
+    "city": "Omaha, Nebraska"
+  },
+  {
+    "id": "ncaaD1_20260215_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-15T21:00:00Z",
+    "team": "Princeton Tigers",
+    "opponent": "Quinnipiac Bobcats",
+    "arena": "Hobey Baker Memorial Rink",
+    "city": "Princeton, New Jersey"
+  },
+  {
+    "id": "ncaaD1_20260219_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-20T00:30:00Z",
+    "team": "Michigan State Spartans",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Munn Ice Arena",
+    "city": "East Lansing, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260220_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-20T23:00:00Z",
+    "team": "Michigan State Spartans",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Munn Ice Arena",
+    "city": "East Lansing, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260220_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Robert Morris Colonials",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Quinnipiac Bobcats",
+    "opponent": "Cornell Big Red",
+    "arena": "M&T Bank Arena",
+    "city": "Hamden, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260220_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Union Garnet Chargers",
+    "opponent": "Harvard Crimson",
+    "arena": "Achilles Rink",
+    "city": "Schenectady, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Brown Bears",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "Providence Friars",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260220_07",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Sacred Heart Pioneers",
+    "opponent": "Holy Cross Crusaders",
+    "arena": "Martire Family Arena",
+    "city": "Fairfield, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260220_08",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Mercyhurst Lakers",
+    "opponent": "Niagara Purple Eagles",
+    "arena": "Mercyhurst Ice Center",
+    "city": "Erie, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260220_09",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Yale Bulldogs",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_10",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Rensselaer Engineers",
+    "opponent": "Dartmouth Big Green",
+    "arena": "Houston Field House",
+    "city": "Troy, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_11",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Princeton Tigers",
+    "opponent": "Colgate Raiders",
+    "arena": "Hobey Baker Memorial Rink",
+    "city": "Princeton, New Jersey"
+  },
+  {
+    "id": "ncaaD1_20260220_12",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Boston College Eagles",
+    "opponent": "UConn Huskies",
+    "arena": "Conte Forum",
+    "city": "Chestnut Hill, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260220_13",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "LIU Sharks",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260220_14",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Massachusetts Minutemen",
+    "opponent": "New Hampshire Wildcats",
+    "arena": "Mullins Center",
+    "city": "Amherst, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260220_15",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "Merrimack Warriors",
+    "arena": "Alfond Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260220_16",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:00:00Z",
+    "team": "RIT Tigers",
+    "opponent": "Bentley Falcons",
+    "arena": "Gene Polisseni Center",
+    "city": "Rochester, New York"
+  },
+  {
+    "id": "ncaaD1_20260220_17",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:05:00Z",
+    "team": "Miami RedHawks",
+    "opponent": "Minnesota Duluth Bulldogs",
+    "arena": "Goggin Ice Center",
+    "city": "Oxford, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260220_18",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:07:00Z",
+    "team": "Northern Michigan Wildcats",
+    "opponent": "Lake Superior State Lakers",
+    "arena": "Berry Events Center",
+    "city": "Marquette, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260220_19",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T00:15:00Z",
+    "team": "UMass Lowell River Hawks",
+    "opponent": "Northeastern Huskies",
+    "arena": "Tsongas Center",
+    "city": "Lowell, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260220_20",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T01:00:00Z",
+    "team": "Wisconsin Badgers",
+    "opponent": "Michigan Wolverines",
+    "arena": "Kohl Center",
+    "city": "Madison, Wisconsin"
+  },
+  {
+    "id": "ncaaD1_20260220_21",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T01:07:00Z",
+    "team": "Bowling Green Falcons",
+    "opponent": "Minnesota State Mavericks",
+    "arena": "Slater Family Ice Arena",
+    "city": "Bowling Green, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260220_22",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T01:07:00Z",
+    "team": "North Dakota Fighting Hawks",
+    "opponent": "St. Cloud State Huskies",
+    "arena": "Ralph Engelstad Arena",
+    "city": "Grand Forks, North Dakota"
+  },
+  {
+    "id": "ncaaD1_20260220_23",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T01:07:00Z",
+    "team": "St. Thomas Tommies",
+    "opponent": "Augustana Vikings",
+    "arena": "St. Thomas Ice Arena",
+    "city": "Mendota Heights, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260220_24",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T01:30:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "Pegula Ice Arena",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260220_25",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Colorado College Tigers",
+    "opponent": "Western Michigan Broncos",
+    "arena": "Ed Robson Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260220_26",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T02:00:00Z",
+    "team": "Arizona State Sun Devils",
+    "opponent": "Omaha Mavericks",
+    "arena": "Mullett Arena",
+    "city": "Glendale, Arizona"
+  },
+  {
+    "id": "ncaaD1_20260220_27",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T02:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Army Black Knights",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260220_28",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T04:00:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260221_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T20:00:00Z",
+    "team": "UConn Huskies",
+    "opponent": "Boston College Eagles",
+    "arena": "Toscano Family Ice Forum",
+    "city": "Storrs, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260221_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T21:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Robert Morris Colonials",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T21:00:00Z",
+    "team": "Clarkson Golden Knights",
+    "opponent": "Brown Bears",
+    "arena": "Cheel Arena",
+    "city": "Potsdam, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T22:00:00Z",
+    "team": "Union Garnet Chargers",
+    "opponent": "Dartmouth Big Green",
+    "arena": "Achilles Rink",
+    "city": "Schenectady, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T23:00:00Z",
+    "team": "Sacred Heart Pioneers",
+    "opponent": "Holy Cross Crusaders",
+    "arena": "Martire Family Arena",
+    "city": "Fairfield, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260221_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T23:05:00Z",
+    "team": "UMass Lowell River Hawks",
+    "opponent": "Northeastern Huskies",
+    "arena": "Tsongas Center",
+    "city": "Lowell, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260221_07",
+    "league": "NCAA DIV1",
+    "date": "2026-02-21T23:07:00Z",
+    "team": "Northern Michigan Wildcats",
+    "opponent": "Lake Superior State Lakers",
+    "arena": "Berry Events Center",
+    "city": "Marquette, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260221_08",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Princeton Tigers",
+    "opponent": "Cornell Big Red",
+    "arena": "Hobey Baker Memorial Rink",
+    "city": "Princeton, New Jersey"
+  },
+  {
+    "id": "ncaaD1_20260221_09",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "St. Lawrence Saints",
+    "opponent": "Yale Bulldogs",
+    "arena": "Appleton Arena",
+    "city": "Canton, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_10",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Rensselaer Engineers",
+    "opponent": "Harvard Crimson",
+    "arena": "Houston Field House",
+    "city": "Troy, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_11",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Dwyer Arena",
+    "city": "Niagara University, New York"
+  },
+  {
+    "id": "ncaaD1_20260221_12",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Wisconsin Badgers",
+    "opponent": "Michigan Wolverines",
+    "arena": "Kohl Center",
+    "city": "Madison, Wisconsin"
+  },
+  {
+    "id": "ncaaD1_20260221_13",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Quinnipiac Bobcats",
+    "opponent": "Colgate Raiders",
+    "arena": "M&T Bank Arena",
+    "city": "Hamden, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260221_14",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "LIU Sharks",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260221_15",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Massachusetts Minutemen",
+    "arena": "Whittemore Center",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260221_16",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "Merrimack Warriors",
+    "arena": "Alfond Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260221_17",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:00:00Z",
+    "team": "Arizona State Sun Devils",
+    "opponent": "Omaha Mavericks",
+    "arena": "Mullett Arena",
+    "city": "Glendale, Arizona"
+  },
+  {
+    "id": "ncaaD1_20260221_18",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:05:00Z",
+    "team": "Air Force Falcons",
+    "opponent": "Army Black Knights",
+    "arena": "Cadet Ice Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260221_19",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:05:00Z",
+    "team": "Miami RedHawks",
+    "opponent": "Minnesota Duluth Bulldogs",
+    "arena": "Goggin Ice Center",
+    "city": "Oxford, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260221_20",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:07:00Z",
+    "team": "Bowling Green Falcons",
+    "opponent": "Minnesota State Mavericks",
+    "arena": "Slater Family Ice Arena",
+    "city": "Bowling Green, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260221_21",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:07:00Z",
+    "team": "North Dakota Fighting Hawks",
+    "opponent": "St. Cloud State Huskies",
+    "arena": "Ralph Engelstad Arena",
+    "city": "Grand Forks, North Dakota"
+  },
+  {
+    "id": "ncaaD1_20260221_22",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:07:00Z",
+    "team": "St. Thomas Tommies",
+    "opponent": "Augustana Vikings",
+    "arena": "St. Thomas Ice Arena",
+    "city": "Mendota Heights, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260221_23",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T00:30:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "Providence Friars",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  },
+  {
+    "id": "ncaaD1_20260221_24",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T01:00:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "Pegula Ice Arena",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260221_25",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T01:00:00Z",
+    "team": "Colorado College Tigers",
+    "opponent": "Western Michigan Broncos",
+    "arena": "Ed Robson Arena",
+    "city": "Colorado Springs, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260221_26",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T01:07:00Z",
+    "team": "15St. Thomas Tommies",
+    "opponent": "16Augustana Vikings",
+    "arena": "St. Thomas Ice Arena",
+    "city": "Mendota Heights, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260221_27",
+    "league": "NCAA DIV1",
+    "date": "2026-02-22T02:00:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260226_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-26T23:30:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Minnesota Golden Gophers",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260226_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-27T00:00:00Z",
+    "team": "Lake Superior State Lakers",
+    "opponent": "Ferris State Bulldogs",
+    "arena": "Taffy Abel Arena",
+    "city": "Sault Ste. Marie, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-27T23:00:00Z",
+    "team": "Niagara Purple Eagles",
+    "opponent": "Canisius Golden Griffins",
+    "arena": "Dwyer Arena",
+    "city": "Niagara University, New York"
+  },
+  {
+    "id": "ncaaD1_20260227_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-27T23:00:00Z",
+    "team": "Michigan Wolverines",
+    "opponent": "Minnesota Golden Gophers",
+    "arena": "Yost Ice Arena",
+    "city": "Ann Arbor, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Cornell Big Red",
+    "opponent": "St. Lawrence Saints",
+    "arena": "Lynah Rink",
+    "city": "Ithaca, New York"
+  },
+  {
+    "id": "ncaaD1_20260227_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Union Garnet Chargers",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260227_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260227_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Providence Friars",
+    "opponent": "New Hampshire Wildcats",
+    "arena": "Schneider Arena",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260227_07",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Holy Cross Crusaders",
+    "opponent": "RIT Tigers",
+    "arena": "Hart Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_08",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Army Black Knights",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Tate Rink",
+    "city": "West Point, New York"
+  },
+  {
+    "id": "ncaaD1_20260227_09",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Harvard Crimson",
+    "opponent": "Princeton Tigers",
+    "arena": "Bright-Landry Hockey Center",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_10",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Dartmouth Big Green",
+    "opponent": "Quinnipiac Bobcats",
+    "arena": "Thompson Arena",
+    "city": "Hanover, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260227_11",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Notre Dame Fighting Irish",
+    "opponent": "Penn State Nittany Lions",
+    "arena": "Compton Family Ice Arena",
+    "city": "South Bend, Indiana"
+  },
+  {
+    "id": "ncaaD1_20260227_12",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Colgate Raiders",
+    "opponent": "Clarkson Golden Knights",
+    "arena": "Class of 1965 Arena",
+    "city": "Hamilton, New York"
+  },
+  {
+    "id": "ncaaD1_20260227_13",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260227_14",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Merrimack Warriors",
+    "opponent": "Vermont Catamounts",
+    "arena": "Lawler Rink",
+    "city": "North Andover, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_15",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Boston University Terriers",
+    "opponent": "Boston College Eagles",
+    "arena": "Agganis Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_16",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Stonehill Skyhawks",
+    "opponent": "Simon Fraser Clan",
+    "arena": "Bridgewater Ice Arena",
+    "city": "Bridgewater, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_17",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Maine Black Bears",
+    "opponent": "Northeastern Huskies",
+    "arena": "Alfond Arena",
+    "city": "Orono, Maine"
+  },
+  {
+    "id": "ncaaD1_20260227_18",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "UConn Huskies",
+    "opponent": "Massachusetts Minutemen",
+    "arena": "Toscano Family Ice Forum",
+    "city": "Storrs, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260227_19",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:00:00Z",
+    "team": "Lake Superior State Lakers",
+    "opponent": "Ferris State Bulldogs",
+    "arena": "Taffy Abel Arena",
+    "city": "Sault Ste. Marie, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_20",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T00:05:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Air Force Falcons",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260227_21",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "North Dakota Fighting Hawks",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_22",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:00:00Z",
+    "team": "Omaha Mavericks",
+    "opponent": "Miami RedHawks",
+    "arena": "Baxter Arena",
+    "city": "Omaha, Nebraska"
+  },
+  {
+    "id": "ncaaD1_20260227_23",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:07:00Z",
+    "team": "Michigan Tech Huskies",
+    "opponent": "Bowling Green Falcons",
+    "arena": "John MacInnes Student Ice Arena",
+    "city": "Houghton, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_24",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:07:00Z",
+    "team": "Minnesota State Mavericks",
+    "opponent": "Northern Michigan Wildcats",
+    "arena": "Mayo Clinic Health System Event Center",
+    "city": "Mankato, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260227_25",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:07:00Z",
+    "team": "Bemidji State Beavers",
+    "opponent": "St. Thomas Tommies",
+    "arena": "Sanford Center",
+    "city": "Bemidji, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260227_26",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:07:00Z",
+    "team": "Minnesota Duluth Bulldogs",
+    "opponent": "Colorado College Tigers",
+    "arena": "AMSOIL Arena",
+    "city": "Duluth, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260227_27",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T01:30:00Z",
+    "team": "Michigan State Spartans",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "Munn Ice Arena",
+    "city": "East Lansing, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260227_28",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T02:00:00Z",
+    "team": "Denver Pioneers",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Magness Arena",
+    "city": "Denver, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260227_29",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T04:07:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260228_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T21:00:00Z",
+    "team": "Army Black Knights",
+    "opponent": "Sacred Heart Pioneers",
+    "arena": "Tate Rink",
+    "city": "West Point, New York"
+  },
+  {
+    "id": "ncaaD1_20260228_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T23:00:00Z",
+    "team": "Canisius Golden Griffins",
+    "opponent": "Niagara Purple Eagles",
+    "arena": "LECOM Harborcenter",
+    "city": "Buffalo, New York"
+  },
+  {
+    "id": "ncaaD1_20260228_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T23:00:00Z",
+    "team": "Notre Dame Fighting Irish",
+    "opponent": "Penn State Nittany Lions",
+    "arena": "Compton Family Ice Arena",
+    "city": "South Bend, Indiana"
+  },
+  {
+    "id": "ncaaD1_20260228_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T23:00:00Z",
+    "team": "Merrimack Warriors",
+    "opponent": "Vermont Catamounts",
+    "arena": "Lawler Rink",
+    "city": "North Andover, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_05",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T23:05:00Z",
+    "team": "Bentley Falcons",
+    "opponent": "Air Force Falcons",
+    "arena": "Bentley Arena",
+    "city": "Waltham, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_06",
+    "league": "NCAA DIV1",
+    "date": "2026-02-28T23:07:00Z",
+    "team": "Michigan Tech Huskies",
+    "opponent": "Bowling Green Falcons",
+    "arena": "John MacInnes Student Ice Arena",
+    "city": "Houghton, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260228_07",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Cornell Big Red",
+    "opponent": "Clarkson Golden Knights",
+    "arena": "Lynah Rink",
+    "city": "Ithaca, New York"
+  },
+  {
+    "id": "ncaaD1_20260228_08",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Brown Bears",
+    "opponent": "Union Garnet Chargers",
+    "arena": "Meehan Auditorium",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_20260228_09",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Providence Friars",
+    "arena": "Whittemore Center",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260228_10",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Holy Cross Crusaders",
+    "opponent": "RIT Tigers",
+    "arena": "Hart Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_11",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Western Michigan Broncos",
+    "opponent": "North Dakota Fighting Hawks",
+    "arena": "Lawson Arena",
+    "city": "Kalamazoo, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260228_12",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Colgate Raiders",
+    "opponent": "St. Lawrence Saints",
+    "arena": "Class of 1965 Arena",
+    "city": "Hamilton, New York"
+  },
+  {
+    "id": "ncaaD1_20260228_13",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Harvard Crimson",
+    "opponent": "Quinnipiac Bobcats",
+    "arena": "Bright-Landry Hockey Center",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_14",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Dartmouth Big Green",
+    "opponent": "Princeton Tigers",
+    "arena": "Thompson Arena",
+    "city": "Hanover, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_20260228_15",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Robert Morris Colonials",
+    "opponent": "Mercyhurst Lakers",
+    "arena": "Clearview Arena",
+    "city": "Pittsburgh, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260228_16",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Northeastern Huskies",
+    "opponent": "Maine Black Bears",
+    "arena": "Matthews Arena",
+    "city": "Boston, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_17",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Boston College Eagles",
+    "opponent": "Boston University Terriers",
+    "arena": "Conte Forum",
+    "city": "Chestnut Hill, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_18",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Massachusetts Minutemen",
+    "opponent": "UConn Huskies",
+    "arena": "Mullins Center",
+    "city": "Amherst, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260228_19",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:00:00Z",
+    "team": "Yale Bulldogs",
+    "opponent": "Rensselaer Engineers",
+    "arena": "Ingalls Rink",
+    "city": "New Haven, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260228_20",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:07:00Z",
+    "team": "Minnesota State Mavericks",
+    "opponent": "Northern Michigan Wildcats",
+    "arena": "Mayo Clinic Health System Event Center",
+    "city": "Mankato, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260228_21",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:07:00Z",
+    "team": "Bemidji State Beavers",
+    "opponent": "St. Thomas Tommies",
+    "arena": "Sanford Center",
+    "city": "Bemidji, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260228_22",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T00:07:00Z",
+    "team": "Minnesota Duluth Bulldogs",
+    "opponent": "Colorado College Tigers",
+    "arena": "AMSOIL Arena",
+    "city": "Duluth, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260228_23",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T01:00:00Z",
+    "team": "Omaha Mavericks",
+    "opponent": "Miami RedHawks",
+    "arena": "Baxter Arena",
+    "city": "Omaha, Nebraska"
+  },
+  {
+    "id": "ncaaD1_20260228_24",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T01:00:00Z",
+    "team": "Denver Pioneers",
+    "opponent": "Arizona State Sun Devils",
+    "arena": "Magness Arena",
+    "city": "Denver, Colorado"
+  },
+  {
+    "id": "ncaaD1_20260228_25",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T01:00:00Z",
+    "team": "Michigan State Spartans",
+    "opponent": "Ohio State Buckeyes",
+    "arena": "Munn Ice Arena",
+    "city": "East Lansing, Michigan"
+  },
+  {
+    "id": "ncaaD1_20260228_26",
+    "league": "NCAA DIV1",
+    "date": "2026-03-01T04:07:00Z",
+    "team": "Alaska Nanooks",
+    "opponent": "Alaska Anchorage Seawolves",
+    "arena": "Carlson Center",
+    "city": "Fairbanks, Alaska"
+  },
+  {
+    "id": "ncaaD1_20260305_01",
+    "league": "NCAA DIV1",
+    "date": "2026-03-05T23:30:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260305_02",
+    "league": "NCAA DIV1",
+    "date": "2026-03-06T00:00:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Wisconsin Badgers",
+    "arena": "Pegula Ice Arena",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260305_03",
+    "league": "NCAA DIV1",
+    "date": "2026-03-06T00:00:00Z",
+    "team": "Massachusetts Minutemen",
+    "opponent": "Boston College Eagles",
+    "arena": "Mullins Center",
+    "city": "Amherst, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260305_04",
+    "league": "NCAA DIV1",
+    "date": "2026-03-06T00:00:00Z",
+    "team": "UConn Huskies",
+    "opponent": "New Hampshire Wildcats",
+    "arena": "Toscano Family Ice Forum",
+    "city": "Storrs, Connecticut"
+  },
+  {
+    "id": "ncaaD1_20260305_05",
+    "league": "NCAA DIV1",
+    "date": "2026-03-06T01:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Michigan State Spartans",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_20260206_01",
+    "league": "NCAA DIV1",
+    "date": "2026-02-06T23:30:00Z",
+    "team": "Ohio State Buckeyes",
+    "opponent": "Notre Dame Fighting Irish",
+    "arena": "Value City Arena",
+    "city": "Columbus, Ohio"
+  },
+  {
+    "id": "ncaaD1_20260206_02",
+    "league": "NCAA DIV1",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Penn State Nittany Lions",
+    "opponent": "Wisconsin Badgers",
+    "arena": "Pegula Ice Arena",
+    "city": "University Park, Pennsylvania"
+  },
+  {
+    "id": "ncaaD1_20260206_03",
+    "league": "NCAA DIV1",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Merrimack Warriors",
+    "opponent": "UMass Lowell River Hawks",
+    "arena": "Lawler Rink",
+    "city": "North Andover, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_20260206_04",
+    "league": "NCAA DIV1",
+    "date": "2026-02-07T01:00:00Z",
+    "team": "Minnesota Golden Gophers",
+    "opponent": "Michigan State Spartans",
+    "arena": "3M Arena at Mariucci",
+    "city": "Minneapolis, Minnesota"
+  },
+  {
+    "id": "ncaaD1_202603XX_01",
+    "league": "NCAA DIV1",
+    "date": "2026-03-XXT21:00:00Z",
+    "team": "Providence Friars",
+    "opponent": "UConn Huskies",
+    "arena": "Schneider Arena",
+    "city": "Providence, Rhode Island"
+  },
+  {
+    "id": "ncaaD1_202603XX_02",
+    "league": "NCAA DIV1",
+    "date": "2026-03-XXT23:05:00Z",
+    "team": "UMass Lowell River Hawks",
+    "opponent": "Boston University Terriers",
+    "arena": "Tsongas Center",
+    "city": "Lowell, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_202603XX_03",
+    "league": "NCAA DIV1",
+    "date": "2026-03-XXT00:00:00Z",
+    "team": "Boston College Eagles",
+    "opponent": "Northeastern Huskies",
+    "arena": "Conte Forum",
+    "city": "Chestnut Hill, Massachusetts"
+  },
+  {
+    "id": "ncaaD1_202603XX_04",
+    "league": "NCAA DIV1",
+    "date": "2026-03-XXT00:00:00Z",
+    "team": "New Hampshire Wildcats",
+    "opponent": "Massachusetts Minutemen",
+    "arena": "Whittemore Center",
+    "city": "Durham, New Hampshire"
+  },
+  {
+    "id": "ncaaD1_202603XX_05",
+    "league": "NCAA DIV1",
+    "date": "2026-03-XXT00:00:00Z",
+    "team": "Vermont Catamounts",
+    "opponent": "Maine Black Bears",
+    "arena": "Gutterson Fieldhouse",
+    "city": "Burlington, Vermont"
+  }
+]

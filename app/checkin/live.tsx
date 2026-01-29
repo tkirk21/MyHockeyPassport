@@ -4,19 +4,27 @@ import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
 import React, { useState } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const db = getFirestore(firebaseApp);
 const toStr = (v: any) => Array.isArray(v) ? (v[0] ?? '') : (v ?? '');
 
 export default function LiveCheckInScreen() {
   const router = useRouter();
+  const colorScheme = useColorScheme();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [friendsList, setFriendsList] = useState<{ id: string; name: string }[]>([]);
+  const [companionsText, setCompanionsText] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredFriends, setFilteredFriends] = useState<{ id: string; name: string }[]>([]);
+  const [cursorPosition, setCursorPosition] = useState(0);
   const params = useLocalSearchParams();
-
   const league = toStr(params.league);
   const arenaName = toStr(params.arenaName);
   const homeTeam = toStr(params.homeTeam);
@@ -29,7 +37,8 @@ export default function LiveCheckInScreen() {
   const [seatRow, setSeatRow] = useState('');
   const [seatNumber, setSeatNumber] = useState('');
   const [companions, setCompanions] = useState('');
-  const [notes, setNotes] = useState('');
+  const [highlights, setHighlights] = useState('');
+  const [parkingAndTravel, setParkingAndTravel] = useState('');
   const [images, setImages] = useState<string[]>([]);
 
   const [didBuyMerch, setDidBuyMerch] = useState(false);
@@ -38,6 +47,29 @@ export default function LiveCheckInScreen() {
 
   const [didBuyConcessions, setDidBuyConcessions] = useState(false);
   const [concessionItems, setConcessionItems] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const user = getAuth().currentUser;
+    if (!user) return;
+
+    const friendsRef = collection(db, 'profiles', user.uid, 'friends');
+    const unsub = onSnapshot(friendsRef, async (snap) => {
+      const friendIds = snap.docs.map(d => d.id);
+
+      const profiles = await Promise.all(
+        friendIds.map(async (id) => {
+          const profSnap = await getDoc(doc(db, 'profiles', id));
+          const name = profSnap.data()?.name?.trim();
+          return name ? { id, name } : null;
+        })
+      );
+
+      setFriendsList(profiles.filter(Boolean));
+      console.log('Friends loaded in live.tsx:', friendsList.length, friendsList);
+    });
+
+    return () => unsub();
+  }, []);
 
   // --- SAME CATEGORIES AS manual.tsx ---
   const merchCategories: Record<string, string[]> = {
@@ -78,7 +110,8 @@ export default function LiveCheckInScreen() {
     try {
       const user = getAuth(firebaseApp).currentUser;
       if (!user) {
-        alert('You must be logged in to submit a check-in.');
+        setAlertMessage('You must be logged in to submit a check-in.');
+        setAlertVisible(true);
         return;
       }
 
@@ -94,7 +127,8 @@ export default function LiveCheckInScreen() {
           seat: seatNumber,
         },
         companions,
-        notes,
+        highlights,
+        parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate || new Date().toISOString(),
@@ -105,10 +139,12 @@ export default function LiveCheckInScreen() {
       };
 
       await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
-      alert('Live check-in saved!');
+      setAlertMessage('Live check-in saved! Taking you to your profile...');
+      setAlertVisible(true);
     } catch (err) {
       console.error('Error saving live check-in:', err);
-      alert('Failed to save live check-in.');
+      setAlertMessage('Failed to save live check-in.');
+      setAlertVisible(true);
     }
   };
 
@@ -118,12 +154,23 @@ export default function LiveCheckInScreen() {
       alert('Permission to access camera roll is required!');
       return;
     }
+
+    const remaining = 3 - images.length;
+    if (remaining <= 0) {
+      alert('Maximum 3 photos allowed.');
+      return;
+    }
+
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.8,
+      allowsMultipleSelection: true,
+      selectionLimit: remaining,
     });
+
     if (!result.canceled && result.assets.length > 0) {
-      setImages([result.assets[0].uri]);
+      const newImages = result.assets.map(asset => asset.uri);
+      setImages(prev => [...prev, ...newImages].slice(0, 3));
     }
   };
 
@@ -143,366 +190,416 @@ export default function LiveCheckInScreen() {
     );
   }
 
+  const styles = StyleSheet.create({
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    backButton: { backgroundColor: '#0A2940', paddingVertical: 12, paddingHorizontal: 24, borderRadius: 6, },
+    backButtonText: { color: '#fff', fontSize: 16, fontWeight: '600', },
+    bottomRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 32, marginTop: 24, },
+    backIconButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', padding: 14, borderRadius: 30, width: 60, height: 60, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68',  },
+    buySectionLabel: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 12 },
+    categoryContainer: { marginBottom: 14, borderBottomWidth: 1, borderBottomColor: '#E2E8F0', paddingBottom: 10, },
+    categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 12, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', paddingHorizontal: 16, borderRadius: 8 },
+    categoryTitle: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    checkboxRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 16 },
+    checkboxLabel: { marginLeft: 12, fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42' },
+    checkboxRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 6, },
+    checkboxLabel: { marginLeft: 10, fontSize: 16,color: '#0D2C42', textTransform: 'capitalize', },
+    choiceButton: { borderWidth: 0, borderRadius: 30, paddingVertical: 8, paddingHorizontal: 16, marginRight: 10 },
+    choiceButtonSelected: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#5E819F' : '#0D2C42' },
+    choiceButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600' },
+    choiceButtonTextSelected: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700' },
+    companionsPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666', },
+    deleteButton: { position: 'absolute', top: -8, right: -8, backgroundColor: 'red', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' },
+    deleteText: { color: 'white', fontSize: 16 },
+    editLaterMessage: { textAlign: 'center', color: colorScheme === 'dark' ? '#fff' : '#666666', fontStyle: 'italic', padding: 16, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', borderRadius: 12, },
+    editLaterMessageText: { textAlign: 'center', color: colorScheme === 'dark' ? '#fff' : '#666666', fontStyle: 'italic' },
+    fallback: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20,},
+    fallbackText: { fontSize: 18, color: '#333', textAlign: 'center', marginBottom: 20, },
+    gameInfoContainer: { alignItems: 'center', marginBottom: 24, },
+    gameInfoCard: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#E3E8F0', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', padding: 16, borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: colorScheme === 'dark' ? 0.5 : 0.1, shadowRadius: 8, elevation: 8 },
+    gameInfoLabel: { fontSize: 18, fontWeight: '600', color: colorScheme === 'dark' ? '#ffffff' : '#0D2C42', marginTop: 12, textAlign: 'center' },
+    gameInfoValue: { fontSize: 15, fontWeight: 'bold', color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940', textAlign: 'center', marginBottom: 8 },
+    input: { borderWidth: 2, borderColor: colorScheme === 'dark' ? '#5E819F' : '#0D2C42', borderRadius: 8, padding: 12, marginBottom: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
+    label: { fontSize: 16, fontWeight: '600', color: '#0D2C42', marginTop: 18, marginBottom: 6, },
+    merchConcessionsContainer: { marginTop: 20, marginBottom: 20, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', padding: 16, borderRadius: 12 },
+    photoGrid: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, gap: 8 },
+    photoThumbnailWrapper: { position: 'relative', width: 100, height: 100 },
+    photoThumbnail: { width: 100, height: 100, borderRadius: 8 },
+    Placeholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    seatSectionContainer: { marginTop: 20, marginBottom: 20, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', padding: 16, borderRadius: 12 },
+    seatSectionTitle: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 8 },
+    seatRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
+    seatLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginRight: 6 },
+    seatLabelWithMargin: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginLeft: 12, marginRight: 6 },
+    seatInput: { width: 40, textAlign: 'center', marginTop: 0 },
+    screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    scrollContainer: { padding: 16, paddingBottom: 250, },
+    submitButton: { backgroundColor: '#0A2940', paddingVertical: 14, borderRadius: 30, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#2F4F68', },
+    submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
+    uploadPhotoLabel: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginTop: 18, marginBottom: 6 },
+    uploadPhotoText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
+  });
+
+  if (true) { // change to false to hide
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity onPress={() => {
+          router.replace({
+            pathname: '/checkin/live',
+            params: {
+              league: 'NHL',
+              arenaName: 'Enterprise Center',
+              homeTeam: 'St. Louis Blues',
+              opponent: 'Colorado Avalanche',
+              gameDate: new Date().toISOString(),
+            },
+          });
+        }} style={{ padding: 20, backgroundColor: 'red' }}>
+          <Text style={{ color: 'white' }}>TEST LIVE CHECKIN</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
-    <SafeAreaView style={styles.background}>
-    <Stack.Screen options={{ title: "Live Check-In" }} />
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        keyboardShouldPersistTaps="handled"
-        automaticallyAdjustKeyboardInsets={true}
-      >
-        <View style={styles.gameInfoContainer}>
-          <View style={styles.gameInfoCard}>
-            <Text style={styles.gameInfoLabel}>League</Text>
-            <Text style={styles.gameInfoValue}>{league}</Text>
+    <View style={styles.screenBackground}>
+      {/* CUSTOM THEMED ALERT MODAL */}
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>
+              {alertMessage.includes('saved') ? 'Success' : 'Error'}
+            </Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setAlertVisible(false);
+                if (alertMessage.includes('saved')) {
+                  router.replace('/(tabs)/profile');
+                }
+              }}
+              style={styles.alertButton}
+            >
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Stack.Screen options={{ title: "Live Check-In" }} />
+        <ScrollView
+          contentContainerStyle={{ padding: 16, paddingBottom: 100 }}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={styles.gameInfoContainer}>
+            <View style={styles.gameInfoCard}>
+              <Text style={styles.gameInfoLabel}>League</Text>
+              <Text style={styles.gameInfoValue}>{league}</Text>
 
-            <Text style={styles.gameInfoLabel}>Arena</Text>
-            <Text style={styles.gameInfoValue}>{arenaName}</Text>
+              <Text style={styles.gameInfoLabel}>Arena</Text>
+              <Text style={styles.gameInfoValue}>{arenaName}</Text>
 
-            <Text style={styles.gameInfoLabel}>Home Team</Text>
-            <Text style={styles.gameInfoValue}>{homeTeam}</Text>
+              <Text style={styles.gameInfoLabel}>Home Team</Text>
+              <Text style={styles.gameInfoValue}>{homeTeam}</Text>
 
-            <Text style={styles.gameInfoLabel}>Opponent</Text>
-            <Text style={styles.gameInfoValue}>{opponent}</Text>
+              <Text style={styles.gameInfoLabel}>Opponent</Text>
+              <Text style={styles.gameInfoValue}>{opponent}</Text>
 
-            <Text style={styles.gameInfoLabel}>Date / Time</Text>
-            <Text style={styles.gameInfoValue}>
-              {new Date(gameDate || Date.now()).toLocaleString()}
+              <Text style={styles.gameInfoLabel}>Date / Time</Text>
+              <Text style={styles.gameInfoValue}>
+                {new Date(gameDate || Date.now()).toLocaleString()}
+              </Text>
+            </View>
+          </View>
+
+          <View style={styles.editLaterMessage}>
+            <Text style={styles.editLaterMessageText}>
+              Final score and favorite player can be added later by editing this check-in on your profile.
             </Text>
           </View>
-        </View>
 
-        <View style={styles.section}>
-          <TextInput
-            placeholder="Favorite Player"
-            value={favoritePlayer}
-            onChangeText={setFavoritePlayer}
-            style={styles.input}
-          />
-        </View>
-
-        <Text style={styles.label}>Seat Information:</Text>
-        <View style={{ flexDirection:"row", alignItems:"center", flexWrap:"wrap", marginBottom:12 }}>
-          <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Section:</Text>
-          <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-          <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Row:</Text>
-          <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-          <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Seat:</Text>
-          <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-        </View>
-
-        <View style={styles.section}>
-          <Text style={{ fontWeight: "600", marginRight: 6 }}>Seat Information</Text>
-          <View style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
-            <Text style={{ fontWeight: "500", marginRight: 6 }}>Section:</Text>
-            <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
-            <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6 }}>Row:</Text>
-            <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
-            <Text style={{ fontWeight: "500", marginLeft: 12, marginRight: 6 }}>Seat:</Text>
-            <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, { width: 45, textAlign: "center", marginTop: 0 }]} />
-          </View>
-        </View>
-        <View style={styles.section}>
-          <TextInput
-            placeholder="Who did you go with?"
-            value={companions}
-            onChangeText={setCompanions}
-            style={styles.input}
-          />
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.label}>Upload Photo (1 only):</Text>
-          <TouchableOpacity style={styles.input} onPress={pickImage}>
-            <Text>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
-          </TouchableOpacity>
-          {images.map((uri, i) => (
-            <Image key={i} source={{ uri }} style={styles.photo} />
-          ))}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.label}>Did you buy any merch?</Text>
-          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
-            <Pressable
-              style={[
-                styles.choiceButton,
-                didBuyMerch === true && styles.choiceButtonSelected,
-              ]}
-              onPress={() => setDidBuyMerch(true)}
-            >
-              <Text style={[
-                styles.choiceButtonText,
-                didBuyMerch === true && { color: '#fff' }
-              ]}>
-                Yes
-              </Text>
-            </Pressable>
-
-            <Pressable
-              style={[
-                styles.choiceButton,
-                didBuyMerch === false && styles.choiceButtonSelected,
-              ]}
-              onPress={() => setDidBuyMerch(false)}
-            >
-              <Text style={[
-                styles.choiceButtonText,
-                didBuyMerch === false && { color: '#fff' }
-              ]}>
-                No
-              </Text>
-            </Pressable>
+          <View style={styles.seatSectionContainer}>
+            <Text style={styles.seatSectionTitle}>Seat Information</Text>
+            <View style={styles.seatRow}>
+              <Text style={styles.seatLabel}>Section:</Text>
+              <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, styles.seatInput]} />
+              <Text style={styles.seatLabelWithMargin}>Row:</Text>
+              <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, styles.seatInput]} />
+              <Text style={styles.seatLabelWithMargin}>Seat:</Text>
+              <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, styles.seatInput]} />
+            </View>
           </View>
 
-          {didBuyMerch && (
-            <>
-              {Object.keys(merchCategories).map((category) => (
-                <View key={category} style={styles.categoryContainer}>
-                  <Pressable
-                    onPress={() =>
-                      setExpandedCategories((prev) => ({
-                        ...prev,
-                        [category]: !prev[category],
-                      }))
-                    }
-                    style={styles.categoryHeader}
+          <View>
+            <TextInput
+              placeholder="Who did you go with? (@ to tag friends)"
+              placeholderTextColor={styles.companionsPlaceholder.color}
+              value={companionsText}
+              onChangeText={(text) => {
+                setCompanionsText(text);
+                setCompanions(text); // keeps the saved value in sync
+                const atIndex = text.lastIndexOf('@');
+                if (atIndex >= 0) {
+                  const query = text.slice(atIndex + 1).toLowerCase().trim();
+                  const matches = friendsList.filter(f => f.name.toLowerCase().includes(query));
+                  setFilteredFriends(matches);
+                  setShowSuggestions(matches.length > 0 && query.length > 0);
+                } else {
+                  setShowSuggestions(false);
+                }
+              }}
+              onSelectionChange={(e) => setCursorPosition(e.nativeEvent.selection.start)}
+              multiline
+              style={styles.input}
+            />
+
+            {showSuggestions && filteredFriends.length > 0 && (
+              <View style={{
+                position: 'absolute',
+                top: 48,
+                left: 0,
+                right: 0,
+                backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF',
+                borderWidth: 1,
+                borderColor: colorScheme === 'dark' ? '#334155' : '#D1D5DB',
+                borderRadius: 8,
+                maxHeight: 200,
+                zIndex: 10,
+              }}>
+                <ScrollView>
+                  {filteredFriends.map((friend) => (
+                    <TouchableOpacity
+                      key={friend.id}
+                      style={{
+                        padding: 12,
+                        borderBottomWidth: 1,
+                        borderBottomColor: colorScheme === 'dark' ? '#334155' : '#E5E7EB',
+                      }}
+                      onPress={() => {
+                        const beforeAt = companionsText.slice(0, companionsText.lastIndexOf('@'));
+                        const newText = `${beforeAt}@${friend.name} `;
+                        setCompanionsText(newText);
+                        setCompanions(newText);
+                        setShowSuggestions(false);
+                      }}
+                    >
+                      <Text style={{ color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' }}>
+                        {friend.name}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            )}
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.uploadPhotoLabel}>Upload Photos (up to 3)</Text>
+            <TouchableOpacity style={styles.input} onPress={pickImage}>
+              <Text style={styles.uploadPhotoText}>
+                {images.length === 0 ? 'Select Photos' : images.length < 3 ? 'Add More (max 3)' : 'Max 3 reached'}
+              </Text>
+            </TouchableOpacity>
+
+            <View style={styles.photoGrid}>
+              {images.map((uri, index) => (
+                <View key={index} style={styles.photoThumbnailWrapper}>
+                  <Image
+                    source={{ uri }}
+                    style={styles.photoThumbnail}
+                    resizeMode="cover"
+                  />
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => setImages(images.filter((_, i) => i !== index))}
                   >
-                    <Text style={styles.categoryTitle}>{category}</Text>
-                    <AntDesign
-                      name={expandedCategories[category] ? 'up' : 'down'}
-                      size={16}
-                      color="black"
-                    />
-                  </Pressable>
-
-                  {expandedCategories[category] &&
-                    merchCategories[category].map((item) => (
-                      <View key={item} style={styles.checkboxRow}>
-                        <Checkbox
-                          value={merchItems[item] || false}
-                          onValueChange={(v) =>
-                            setMerchItems((prev) => ({ ...prev, [item]: v }))
-                          }
-                        />
-                        <Text style={styles.checkboxLabel}>{item}</Text>
-                      </View>
-                    ))}
+                    <Text style={styles.deleteText}>×</Text>
+                  </TouchableOpacity>
                 </View>
               ))}
-            </>
-          )}
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.label}>Did you buy any concessions?</Text>
-          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
-            <Pressable
-              style={[
-                styles.choiceButton,
-                didBuyConcessions === true && styles.choiceButtonSelected,
-              ]}
-              onPress={() => setDidBuyConcessions(true)}
-            >
-              <Text style={[
-                styles.choiceButtonText,
-                didBuyConcessions === true && { color: '#fff' }
-              ]}>
-                Yes
-              </Text>
-            </Pressable>
-
-            <Pressable
-              style={[
-                styles.choiceButton,
-                didBuyConcessions === false && styles.choiceButtonSelected,
-              ]}
-              onPress={() => setDidBuyConcessions(false)}
-            >
-              <Text style={[
-                styles.choiceButtonText,
-                didBuyConcessions === false && { color: '#fff' }
-              ]}>
-                No
-              </Text>
-            </Pressable>
+            </View>
           </View>
 
-          {didBuyConcessions && (
-            <>
-              {Object.keys(concessionCategories).map((category) => (
-                <View key={category} style={styles.categoryContainer}>
-                  <Pressable
-                    onPress={() =>
-                      setExpandedCategories((prev) => ({
-                        ...prev,
-                        [category]: !prev[category],
-                      }))
-                    }
-                    style={styles.categoryHeader}
-                  >
-                    <Text style={styles.categoryTitle}>{category}</Text>
-                    <AntDesign
-                      name={expandedCategories[category] ? 'up' : 'down'}
-                      size={16}
-                      color="black"
-                    />
-                  </Pressable>
+          <View style={styles.merchConcessionsContainer}>
+            {/* Merch section */}
+            <Text style={styles.buySectionLabel}>Did you buy any merch?</Text>
+            <View style={{ flexDirection: 'row', marginBottom: 12 }}>
+              <Pressable
+                style={[
+                  styles.choiceButton,
+                  didBuyMerch === true && styles.choiceButtonSelected,
+                ]}
+                onPress={() => setDidBuyMerch(true)}
+              >
+                <Text style={[
+                  styles.choiceButtonText,
+                  didBuyMerch === true && styles.choiceButtonTextSelected
+                ]}>
+                  Yes
+                </Text>
+              </Pressable>
 
-                  {expandedCategories[category] &&
-                    concessionCategories[category].map((item) => (
-                      <View key={item} style={styles.checkboxRow}>
-                        <Checkbox
-                          value={concessionItems[item] || false}
-                          onValueChange={(v) =>
-                            setConcessionItems((prev) => ({ ...prev, [item]: v }))
-                          }
-                        />
-                        <Text style={styles.checkboxLabel}>{item}</Text>
-                      </View>
-                    ))}
-                </View>
-              ))}
-            </>
-          )}
-        </View>
+              <Pressable
+                style={[
+                  styles.choiceButton,
+                  didBuyMerch === false && styles.choiceButtonSelected,
+                ]}
+                onPress={() => setDidBuyMerch(false)}
+              >
+                <Text style={[
+                  styles.choiceButtonText,
+                  didBuyMerch === false && styles.choiceButtonTextSelected
+                ]}>
+                  No
+                </Text>
+              </Pressable>
+            </View>
 
-        {/* Notes — now LAST */}
-        <TextInput
-          placeholder="Notes"
-          value={notes}
-          onChangeText={setNotes}
-          style={styles.input}
-          multiline
-        />
+            {didBuyMerch && (
+              <>
+                {Object.keys(merchCategories).map((category) => (
+                  <View key={category} style={styles.categoryContainer}>
+                    <Pressable
+                      onPress={() =>
+                        setExpandedCategories((prev) => ({
+                          ...prev,
+                          [category]: !prev[category],
+                        }))
+                      }
+                      style={styles.categoryHeader}
+                    >
+                      <Text style={styles.categoryTitle}>{category}</Text>
+                      <AntDesign
+                        name={expandedCategories[category] ? 'up' : 'down'}
+                        size={16}
+                        color={colorScheme === 'dark' ? '#FFFFFF' : '#000000'}
+                      />
+                    </Pressable>
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-          <Text style={styles.submitText}>Submit</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </SafeAreaView>
+                    {expandedCategories[category] &&
+                      merchCategories[category].map((item) => (
+                        <View key={item} style={styles.checkboxRow}>
+                          <Checkbox
+                            value={merchItems[item] || false}
+                            onValueChange={(v) =>
+                              setMerchItems((prev) => ({ ...prev, [item]: v }))
+                            }
+                          />
+                          <Text style={styles.checkboxLabel}>{item}</Text>
+                        </View>
+                      ))}
+                  </View>
+                ))}
+              </>
+            )}
+
+            {/* Concessions section */}
+            <Text style={styles.buySectionLabel}>Did you buy any concessions?</Text>
+            <View style={{ flexDirection: 'row', marginBottom: 12 }}>
+              <Pressable
+                style={[
+                  styles.choiceButton,
+                  didBuyConcessions === true && styles.choiceButtonSelected,
+                ]}
+                onPress={() => setDidBuyConcessions(true)}
+              >
+                <Text style={[
+                  styles.choiceButtonText,
+                  didBuyConcessions === true && styles.choiceButtonTextSelected
+                ]}>
+                  Yes
+                </Text>
+              </Pressable>
+
+              <Pressable
+                style={[
+                  styles.choiceButton,
+                  didBuyConcessions === false && styles.choiceButtonSelected,
+                ]}
+                onPress={() => setDidBuyConcessions(false)}
+              >
+                <Text style={[
+                  styles.choiceButtonText,
+                  didBuyConcessions === false && styles.choiceButtonTextSelected
+                ]}>
+                  No
+                </Text>
+              </Pressable>
+            </View>
+
+            {didBuyConcessions && (
+              <>
+                {Object.keys(concessionCategories).map((category) => (
+                  <View key={category} style={styles.categoryContainer}>
+                    <Pressable
+                      onPress={() =>
+                        setExpandedCategories((prev) => ({
+                          ...prev,
+                          [category]: !prev[category],
+                        }))
+                      }
+                      style={styles.categoryHeader}
+                    >
+                      <Text style={styles.categoryTitle}>{category}</Text>
+                      <AntDesign
+                        name={expandedCategories[category] ? 'up' : 'down'}
+                        size={16}
+                        color={colorScheme === 'dark' ? '#FFFFFF' : '#000000'}
+                      />
+                    </Pressable>
+
+                    {expandedCategories[category] &&
+                      concessionCategories[category].map((item) => (
+                        <View key={item} style={styles.checkboxRow}>
+                          <Checkbox
+                            value={concessionItems[item] || false}
+                            onValueChange={(v) =>
+                              setConcessionItems((prev) => ({ ...prev, [item]: v }))
+                            }
+                          />
+                          <Text style={styles.checkboxLabel}>{item}</Text>
+                        </View>
+                      ))}
+                  </View>
+                ))}
+              </>
+            )}
+          </View>
+
+          <TextInput
+            placeholder="Highlights"
+            placeholderTextColor={styles.Placeholder.color}
+            value={highlights}
+            onChangeText={setHighlights}
+            style={styles.input}
+            multiline
+          />
+
+          <TextInput
+            placeholder="Parking and travel Tips"
+            placeholderTextColor={styles.Placeholder.color}
+            value={parkingAndTravel}
+            onChangeText={setParkingAndTravel}
+            style={styles.input}
+            multiline
+          />
+
+          <View style={styles.bottomRow}>
+            <TouchableOpacity style={styles.backIconButton} onPress={() => router.back()}>
+              <Ionicons name="arrow-back" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
+              <Text style={styles.submitText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  backButton: {
-    backgroundColor: '#0A2940',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 6,
-  },
-  backButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  categoryContainer: {
-    marginBottom: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
-    paddingBottom: 10,
-  },
-  categoryHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 8,
-  },
-  categoryTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#0A2940',
-  },
-  checkboxRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
-  },
-  checkboxLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: '#0D2C42',
-    textTransform: 'capitalize',
-  },
-  choiceButton: {
-    borderWidth: 2,
-    borderColor: '#0D2C42',
-    borderRadius: 8,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    marginRight: 10,
-  },
-  choiceButtonSelected: {
-    backgroundColor: '#0A2940',
-    borderColor: '#0A2940',
-  },
-  choiceButtonText: {
-    color: '#0D2C42',
-    fontSize: 16,
-  },
-  fallback: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  fallbackText: {
-    fontSize: 18,
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  gameInfoContainer: {
-    alignItems: 'center',
-    marginBottom: 24,           // ← space after the whole block
-  },
-  gameInfoCard: {
-    backgroundColor: '#E3E8F0',
-    padding: 10,
-    width: '100%',
-    borderWidth: 2,
-    borderColor: '#0D2C42',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  gameInfoLabel: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#0D2C42',
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  gameInfoValue: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0A2940',
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  input: {
-    borderWidth: 2,
-    borderColor: '#0D2C42',
-    borderRadius: 8,
-    padding: 12,
-    marginTop: 8,
-    marginBottom: 12,
-    fontSize: 16,
-    color: '#0A2940',
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#0D2C42',
-    marginTop: 18,
-    marginBottom: 6,
-  },
-  scrollContainer: {
-    padding: 16,
-    paddingBottom: 250,
-  },
-  submitButton: { backgroundColor: '#0A2940', paddingVertical: 14, borderRadius: 30, marginBottom: 40, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#2F4F68', },
-  submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
-});

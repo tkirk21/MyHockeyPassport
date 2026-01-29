@@ -1,3 +1,4 @@
+//app/index.tsx
 import { Redirect, Stack } from 'expo-router';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';

@@ -4727,7 +4727,7 @@
   {
     "id": "echl_20260123_001",
     "league": "ECHL",
-    "date": "2026-01-23T00:00:00Z",
+    "date": "2026-01-24T00:00:00Z",
     "opponent": "Fort Wayne Komets",
     "team": "Indy Fuel",
     "arena": "Fishers Event Center",
@@ -4736,7 +4736,7 @@
   {
     "id": "echl_20260123_002",
     "league": "ECHL",
-    "date": "2026-01-23T00:00:00Z",
+    "date": "2026-01-24T00:00:00Z",
     "opponent": "Iowa Heartlanders",
     "team": "Orlando Solar Bears",
     "arena": "Kia Center",
@@ -4745,7 +4745,7 @@
   {
     "id": "echl_20260123_003",
     "league": "ECHL",
-    "date": "2026-01-23T00:00:00Z",
+    "date": "2026-01-24T00:00:00Z",
     "opponent": "Savannah Ghost Pirates",
     "team": "Jacksonville Icemen",
     "arena": "VyStar Veterans Memorial Arena",
@@ -4754,7 +4754,7 @@
   {
     "id": "echl_20260123_004",
     "league": "ECHL",
-    "date": "2026-01-23T00:00:00Z",
+    "date": "2026-01-24T00:00:00Z",
     "opponent": "Adirondack Thunder",
     "team": "Greensboro Gargoyles",
     "arena": "First Horizon Coliseum",
@@ -4763,7 +4763,7 @@
   {
     "id": "echl_20260123_005",
     "league": "ECHL",
-    "date": "2026-01-23T00:05:00Z",
+    "date": "2026-01-24T00:05:00Z",
     "opponent": "Worcester Railers",
     "team": "Norfolk Admirals",
     "arena": "Norfolk Scope",
@@ -4772,7 +4772,7 @@
   {
     "id": "echl_20260123_006",
     "league": "ECHL",
-    "date": "2026-01-23T00:05:00Z",
+    "date": "2026-01-24T00:05:00Z",
     "opponent": "Atlanta Gladiators",
     "team": "South Carolina Stingrays",
     "arena": "North Charleston Coliseum",
@@ -4781,7 +4781,7 @@
   {
     "id": "echl_20260123_007",
     "league": "ECHL",
-    "date": "2026-01-23T00:05:00Z",
+    "date": "2026-01-24T00:05:00Z",
     "opponent": "Florida Everblades",
     "team": "Greenville Swamp Rabbits",
     "arena": "Bon Secours Wellness Arena",
@@ -4790,7 +4790,7 @@
   {
     "id": "echl_20260123_008",
     "league": "ECHL",
-    "date": "2026-01-23T00:10:00Z",
+    "date": "2026-01-24T00:10:00Z",
     "opponent": "Reading Royals",
     "team": "Wheeling Nailers",
     "arena": "WesBanco Arena",
@@ -4799,8 +4799,8 @@
   {
     "id": "echl_20260123_009",
     "league": "ECHL",
-    "date": "2026-01-23T00:15:00Z",
-    "opponent": "Trois-Rivi\u00e8res Lions",
+    "date": "2026-01-24T00:15:00Z",
+    "opponent": "Trois-Rivières Lions",
     "team": "Maine Mariners",
     "arena": "Cross Insurance Arena",
     "city": "Portland, Maine"
@@ -4808,7 +4808,7 @@
   {
     "id": "echl_20260123_010",
     "league": "ECHL",
-    "date": "2026-01-23T00:15:00Z",
+    "date": "2026-01-24T00:15:00Z",
     "opponent": "Kalamazoo Wings",
     "team": "Toledo Walleye",
     "arena": "Huntington Center",
@@ -4817,7 +4817,7 @@
   {
     "id": "echl_20260123_011",
     "league": "ECHL",
-    "date": "2026-01-23T01:00:00Z",
+    "date": "2026-01-24T01:00:00Z",
     "opponent": "Cincinnati Cyclones",
     "team": "Bloomington Bison",
     "arena": "Grossinger Motors Arena",
@@ -4826,7 +4826,7 @@
   {
     "id": "echl_20260123_012",
     "league": "ECHL",
-    "date": "2026-01-23T01:05:00Z",
+    "date": "2026-01-24T01:05:00Z",
     "opponent": "Tahoe Knight Monsters",
     "team": "Kansas City Mavericks",
     "arena": "Cable Dahmer Arena",
@@ -4835,7 +4835,7 @@
   {
     "id": "echl_20260123_013",
     "league": "ECHL",
-    "date": "2026-01-23T02:05:00Z",
+    "date": "2026-01-24T02:05:00Z",
     "opponent": "Utah Grizzlies",
     "team": "Rapid City Rush",
     "arena": "The Monument",
@@ -4844,7 +4844,7 @@
   {
     "id": "echl_20260123_014",
     "league": "ECHL",
-    "date": "2026-01-23T02:10:00Z",
+    "date": "2026-01-24T02:10:00Z",
     "opponent": "Allen Americans",
     "team": "Idaho Steelheads",
     "arena": "Idaho Central Arena",

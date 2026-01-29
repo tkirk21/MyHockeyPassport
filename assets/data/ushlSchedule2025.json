@@ -3,8 +3,8 @@
     "id": "ushl_2026090001",
     "league": "USHL",
     "date": "2025-09-04T23:30:00Z",
-    "team": "Waterloo Black Hawks",
-    "opponent": "Green Bay Gamblers",
+    "opponent": "Waterloo Black Hawks",
+    "team": "Green Bay Gamblers",
     "arena": "Young Arena",
     "city": "Waterloo, Iowa"
   },
@@ -12,8 +12,8 @@
     "id": "ushl_2026090002",
     "league": "USHL",
     "date": "2026-09-05T00:00:00Z",
-    "team": "Sioux City Musketeers",
-    "opponent": "Fargo Force",
+    "opponent": "Sioux City Musketeers",
+    "team": "Fargo Force",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -21,8 +21,8 @@
     "id": "ushl_2026090003",
     "league": "USHL",
     "date": "2026-09-05T17:00:00Z",
-    "team": "Omaha Lancers",
-    "opponent": "Sioux Falls Stampede",
+    "opponent": "Omaha Lancers",
+    "team": "Sioux Falls Stampede",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -30,8 +30,8 @@
     "id": "ushl_2026090004",
     "league": "USHL",
     "date": "2026-09-05T20:30:00Z",
-    "team": "Tri-City Storm",
-    "opponent": "Fargo Force",
+    "opponent": "Tri-City Storm",
+    "team": "Fargo Force",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -39,8 +39,8 @@
     "id": "ushl_2026090005",
     "league": "USHL",
     "date": "2026-09-05T22:00:00Z",
-    "team": "Youngstown Phantoms",
-    "opponent": "Muskegon Lumberjacks",
+    "opponent": "Youngstown Phantoms",
+    "team": "Muskegon Lumberjacks",
     "arena": "Printscape Arena",
     "city": "Canonsburg, Pennsylvania"
   },
@@ -48,8 +48,8 @@
     "id": "ushl_2026090006",
     "league": "USHL",
     "date": "2026-09-05T23:05:00Z",
-    "team": "Madison Capitols",
-    "opponent": "Cedar Rapids RoughRiders",
+    "opponent": "Madison Capitols",
+    "team": "Cedar Rapids RoughRiders",
     "arena": "Bob Suter's LEGACY20 Arena",
     "city": "Middleton, Wisconsin"
   },
@@ -57,8 +57,8 @@
     "id": "ushl_2026090007",
     "league": "USHL",
     "date": "2026-09-05T23:30:00Z",
-    "team": "Waterloo Black Hawks",
-    "opponent": "Green Bay Gamblers",
+    "opponent": "Waterloo Black Hawks",
+    "team": "Green Bay Gamblers",
     "arena": "Young Arena",
     "city": "Waterloo, Iowa"
   },
@@ -66,8 +66,8 @@
     "id": "ushl_2026090008",
     "league": "USHL",
     "date": "2026-09-06T00:00:00Z",
-    "team": "Sioux City Musketeers",
-    "opponent": "Des Moines Buccaneers",
+    "opponent": "Sioux City Musketeers",
+    "team": "Des Moines Buccaneers",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -75,17 +75,17 @@
     "id": "ushl_2026090009",
     "league": "USHL",
     "date": "2026-09-06T00:05:00Z",
-    "team": "Dubuque Fighting Saints",
-    "opponent": "Chicago Steel",
-    "arena": "ImOn Arena (Dubuque)",
+    "opponent": "Dubuque Fighting Saints",
+    "team": "Chicago Steel",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
     "id": "ushl_2026090010",
     "league": "USHL",
     "date": "2026-09-06T17:00:00Z",
-    "team": "Fargo Force",
-    "opponent": "Omaha Lancers",
+    "opponent": "Fargo Force",
+    "team": "Omaha Lancers",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -93,8 +93,8 @@
     "id": "ushl_2026090011",
     "league": "USHL",
     "date": "2026-09-06T19:00:00Z",
-    "team": "Youngstown Phantoms",
-    "opponent": "Muskegon Lumberjacks",
+    "opponent": "Youngstown Phantoms",
+    "team": "Muskegon Lumberjacks",
     "arena": "Printscape Arena",
     "city": "Canonsburg, Pennsylvania"
   },
@@ -102,8 +102,8 @@
     "id": "ushl_2026090012",
     "league": "USHL",
     "date": "2026-09-06T20:30:00Z",
-    "team": "Tri-City Storm",
-    "opponent": "Des Moines Buccaneers",
+    "opponent": "Tri-City Storm",
+    "team": "Des Moines Buccaneers",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -111,8 +111,8 @@
     "id": "ushl_2026090013",
     "league": "USHL",
     "date": "2026-09-07T00:00:00Z",
-    "team": "Sioux City Musketeers",
-    "opponent": "Sioux Falls Stampede",
+    "opponent": "Sioux City Musketeers",
+    "team": "Sioux Falls Stampede",
     "arena": "Tyson Events Center",
     "city": "Sioux City, Iowa"
   },
@@ -120,17 +120,17 @@
     "id": "ushl_2026090014",
     "league": "USHL",
     "date": "2026-09-07T00:05:00Z",
-    "team": "Cedar Rapids RoughRiders",
-    "opponent": "Madison Capitols",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "opponent": "Cedar Rapids RoughRiders",
+    "team": "Madison Capitols",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
     "id": "ushl_2026090015",
     "league": "USHL",
     "date": "2026-09-07T00:05:00Z",
-    "team": "Chicago Steel",
-    "opponent": "Dubuque Fighting Saints",
+    "opponent": "Chicago Steel",
+    "team": "Dubuque Fighting Saints",
     "arena": "Fox Valley Ice Arena",
     "city": "Geneva, Illinois"
   },
@@ -212,7 +212,7 @@
     "date": "2025-09-13T00:05:00Z",
     "team": "Dubuque Fighting Saints",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -257,7 +257,7 @@
     "date": "2025-09-14T00:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -500,7 +500,7 @@
     "date": "2025-09-28T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -518,7 +518,7 @@
     "date": "2025-10-04T00:05:00Z",
     "team": "Lincoln Stars",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -554,7 +554,7 @@
     "date": "2025-10-04T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -599,7 +599,7 @@
     "date": "2025-10-04T23:05:00Z",
     "team": "Tri-City Storm",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -617,7 +617,7 @@
     "date": "2025-10-05T00:05:00Z",
     "team": "Lincoln Stars",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -626,7 +626,7 @@
     "date": "2025-10-05T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -710,7 +710,7 @@
     "date": "2025-10-11T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -782,7 +782,7 @@
     "date": "2025-10-12T00:05:00Z",
     "team": "Chicago Steel",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -863,7 +863,7 @@
     "date": "2025-10-18T00:05:00Z",
     "team": "Chicago Steel",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -917,7 +917,7 @@
     "date": "2025-10-18T23:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -962,7 +962,7 @@
     "date": "2025-10-19T21:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1043,7 +1043,7 @@
     "date": "2025-10-25T23:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1088,7 +1088,7 @@
     "date": "2025-10-26T00:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1106,7 +1106,7 @@
     "date": "2025-10-26T21:05:00Z",
     "team": "Tri-City Storm",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1142,7 +1142,7 @@
     "date": "2025-10-31T00:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1259,7 +1259,7 @@
     "date": "2025-11-02T00:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1331,7 +1331,7 @@
     "date": "2025-11-08T01:05:00Z",
     "team": "Dubuque Fighting Saints",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1394,7 +1394,7 @@
     "date": "2025-11-09T01:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1502,7 +1502,7 @@
     "date": "2025-11-15T01:05:00Z",
     "team": "Tri-City Storm",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1574,7 +1574,7 @@
     "date": "2025-11-16T01:05:00Z",
     "team": "Tri-City Storm",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1628,7 +1628,7 @@
     "date": "2025-11-22T01:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1637,7 +1637,7 @@
     "date": "2025-11-22T01:05:00Z",
     "team": "Youngstown Phantoms",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1700,7 +1700,7 @@
     "date": "2025-11-23T01:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1718,7 +1718,7 @@
     "date": "2025-11-23T01:05:00Z",
     "team": "Youngstown Phantoms",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1754,7 +1754,7 @@
     "date": "2025-11-27T01:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -1772,7 +1772,7 @@
     "date": "2025-11-27T01:05:00Z",
     "team": "Fargo Force",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1790,7 +1790,7 @@
     "date": "2025-11-28T21:05:00Z",
     "team": "USA Hockey NTDP",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1871,7 +1871,7 @@
     "date": "2025-11-30T00:05:00Z",
     "team": "USA Hockey NTDP",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1898,7 +1898,7 @@
     "date": "2025-11-30T01:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -1907,7 +1907,7 @@
     "date": "2025-12-03T01:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -1952,7 +1952,7 @@
     "date": "2025-12-06T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2051,7 +2051,7 @@
     "date": "2025-12-07T01:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2069,7 +2069,7 @@
     "date": "2025-12-07T22:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -2087,7 +2087,7 @@
     "date": "2025-12-10T01:05:00Z",
     "team": "Lincoln Stars",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2231,7 +2231,7 @@
     "date": "2025-12-14T23:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2267,7 +2267,7 @@
     "date": "2025-12-28T00:05:00Z",
     "team": "Fargo Force",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2303,7 +2303,7 @@
     "date": "2025-12-28T01:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -2321,7 +2321,7 @@
     "date": "2025-12-28T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2366,7 +2366,7 @@
     "date": "2025-12-28T22:05:00Z",
     "team": "Lincoln Stars",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2402,7 +2402,7 @@
     "date": "2025-12-31T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2420,7 +2420,7 @@
     "date": "2025-12-31T00:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2501,7 +2501,7 @@
     "date": "2026-01-03T01:05:00Z",
     "team": "Chicago Steel",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2537,7 +2537,7 @@
     "date": "2026-01-04T00:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2643,9 +2643,9 @@
     "id": "ushl_2026010905",
     "league": "USHL",
     "date": "2026-01-10T01:05:00Z",
-    "team": "USA Hockey NTDP",
-    "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "opponent": "USA Hockey NTDP",
+    "team": "Dubuque Fighting Saints",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2661,9 +2661,9 @@
     "id": "ushl_2026010907",
     "league": "USHL",
     "date": "2026-01-10T01:05:00Z",
-    "team": "Muskegon Lumberjacks",
-    "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "opponent": "Muskegon Lumberjacks",
+    "TEAM": "Sioux Falls Stampede",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2717,7 +2717,7 @@
     "date": "2026-01-10T23:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2735,7 +2735,7 @@
     "date": "2026-01-11T01:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -2744,7 +2744,7 @@
     "date": "2026-01-11T01:05:00Z",
     "team": "USA Hockey NTDP",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2762,7 +2762,7 @@
     "date": "2026-01-17T01:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2834,7 +2834,7 @@
     "date": "2026-01-18T00:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -2861,7 +2861,7 @@
     "date": "2026-01-18T01:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -2924,7 +2924,7 @@
     "date": "2026-01-24T01:05:00Z",
     "team": "USA Hockey NTDP",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -2951,7 +2951,7 @@
     "date": "2026-01-24T01:05:00Z",
     "team": "Sioux Falls Stampede",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -2996,7 +2996,7 @@
     "date": "2026-01-25T01:05:00Z",
     "team": "USA Hockey NTDP",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3014,7 +3014,7 @@
     "date": "2026-01-25T01:05:00Z",
     "team": "Sioux Falls Stampede",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3059,7 +3059,7 @@
     "date": "2026-01-31T01:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3149,7 +3149,7 @@
     "date": "2026-02-01T01:05:00Z",
     "team": "Fargo Force",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3185,7 +3185,7 @@
     "date": "2026-02-01T22:05:00Z",
     "team": "Fargo Force",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3194,7 +3194,7 @@
     "date": "2026-02-06T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -3203,7 +3203,7 @@
     "date": "2026-02-06T01:05:00Z",
     "team": "Madison Capitols",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3257,7 +3257,7 @@
     "date": "2026-02-07T01:05:00Z",
     "team": "Cedar Rapids RoughRiders",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3311,7 +3311,7 @@
     "date": "2026-02-08T00:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -3320,7 +3320,7 @@
     "date": "2026-02-08T01:05:00Z",
     "team": "Dubuque Fighting Saints",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3419,7 +3419,7 @@
     "date": "2026-02-15T00:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -3500,7 +3500,7 @@
     "date": "2026-02-15T22:05:00Z",
     "team": "Fargo Force",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -3527,7 +3527,7 @@
     "date": "2026-02-21T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3563,7 +3563,7 @@
     "date": "2026-02-21T01:05:00Z",
     "team": "Chicago Steel",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3608,7 +3608,7 @@
     "date": "2026-02-22T01:05:00Z",
     "team": "Dubuque Fighting Saints",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3626,7 +3626,7 @@
     "date": "2026-02-22T01:05:00Z",
     "team": "Omaha Lancers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -3680,7 +3680,7 @@
     "date": "2026-02-28T01:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3860,7 +3860,7 @@
     "date": "2026-03-07T01:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -3959,7 +3959,7 @@
     "date": "2026-03-08T01:05:00Z",
     "team": "Chicago Steel",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -3968,7 +3968,7 @@
     "date": "2026-03-08T01:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4049,7 +4049,7 @@
     "date": "2026-03-14T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4130,7 +4130,7 @@
     "date": "2026-03-15T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4220,7 +4220,7 @@
     "date": "2026-03-21T00:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -4247,7 +4247,7 @@
     "date": "2026-03-21T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4274,7 +4274,7 @@
     "date": "2026-03-22T00:05:00Z",
     "team": "Sioux City Musketeers",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -4319,7 +4319,7 @@
     "date": "2026-03-22T01:05:00Z",
     "team": "Green Bay Gamblers",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4355,7 +4355,7 @@
     "date": "2026-03-26T01:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4436,7 +4436,7 @@
     "date": "2026-03-28T01:05:00Z",
     "team": "Des Moines Buccaneers",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4517,7 +4517,7 @@
     "date": "2026-04-02T00:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4526,7 +4526,7 @@
     "date": "2026-04-04T00:05:00Z",
     "team": "Youngstown Phantoms",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4544,7 +4544,7 @@
     "date": "2026-04-04T00:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -4553,7 +4553,7 @@
     "date": "2026-04-04T00:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4598,7 +4598,7 @@
     "date": "2026-04-04T23:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -4652,7 +4652,7 @@
     "date": "2026-04-05T00:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4661,7 +4661,7 @@
     "date": "2026-04-05T00:05:00Z",
     "team": "Youngstown Phantoms",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   },
   {
@@ -4670,7 +4670,7 @@
     "date": "2026-04-05T23:05:00Z",
     "team": "Waterloo Black Hawks",
     "opponent": "Sioux Falls Stampede",
-    "arena": "Denny Sanford PREMIER Center",
+    "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },
   {
@@ -4724,7 +4724,7 @@
     "date": "2026-04-06T00:05:00Z",
     "team": "Muskegon Lumberjacks",
     "opponent": "Dubuque Fighting Saints",
-    "arena": "ImOn Arena (Dubuque)",
+    "arena": "ImOn Arena",
     "city": "Dubuque, Iowa"
   },
   {
@@ -4733,7 +4733,7 @@
     "date": "2026-04-06T00:05:00Z",
     "team": "Youngstown Phantoms",
     "opponent": "Cedar Rapids RoughRiders",
-    "arena": "ImOn Ice Arena (Cedar Rapids)",
+    "arena": "ImOn Ice Arena",
     "city": "Cedar Rapids, Iowa"
   }
 ]

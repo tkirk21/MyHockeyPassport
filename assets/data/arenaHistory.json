@@ -1,12 +1,11 @@
 [
   {
-    "currentArena": "Honda Center",
-    "teamName": "Anaheim Ducks",
+    "currentArena": "Arrowhead Pond of Anaheim",
+    "teamName": "Mighty Ducks of Anaheim",
     "league": "NHL",
     "history": [
       { "name": "Pond of Anaheim", "from": "1993-06-17", "to": "1993-10-08" },
-      { "name": "Arrowhead Pond of Anaheim", "from": "1993-10-08", "to": "2006-11-15" },
-      { "name": "Honda Center", "from": "2006-11-16", "to": null }
+      { "name": "Arrowhead Pond of Anaheim", "from": "1993-10-08", "to": "2006-11-15" }
     ]
   },
   {
@@ -83,8 +82,8 @@
       { "name": "BankAtlantic Center", "from": "2005-10-01", "to": "2012-09-30" },
       { "name": "BB&T Center", "from": "2012-10-01", "to": "2021-08-31" },
       { "name": "FLA Live Arena", "from": "2021-09-01", "to": "2023-09-30" },
-      { "name": "Amerant Bank Arena", "from": "2023-10-01", "to": "2026-01-01" },
-      { "name": "Amerant Bank Arena", "from": "2026-01-04", "to": null }
+      { "name": "Amerant Bank Arena", "from": "2023-10-01", "to": "2026-01-02" },
+      { "name": "Amerant Bank Arena", "from": "2026-01-03", "to": null }
     ]
   },
   {
@@ -652,6 +651,192 @@
       { "name": "Harding Mazzotti Arena", "from": "2025-07-28", "to": null }
     ]
   },
+  {
+    "currentArena": "Vibrant Arena at The MARK",
+    "teamName": "Quad City Mallards",
+    "league": "ECHL",
+    "history": [
+      { "name": "The MARK of the Quad Cities", "from": "1993-09-01", "to": "2007-05-31" },
+      { "name": "iWireless Center", "from": "2007-09-01", "to": "2017-05-31" },
+      { "name": "TaxSlayer Center", "from": "2017-09-01", "to": "2022-08-30" },
+      { "name": "Vibrant Arena at The MARK", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Cable Dahmer Arena",
+    "teamName": "Kansas City Mavericks",
+    "league": "ECHL",
+    "history": [
+      { "name": "Independence Events Center", "from": "2009-09-01", "to": "2015-05-31" },
+      { "name": "Silverstein Eye Centers Arena", "from": "2015-09-01", "to": "2020-05-31" },
+      { "name": "Cable Dahmer Arena", "from": "2020-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Cable Dahmer Arena",
+    "teamName": "Missouri Mavericks",
+    "league": "ECHL",
+    "history": [
+      { "name": "Independence Events Center", "from": "2009-09-01", "to": "2015-05-31" },
+      { "name": "Silverstein Eye Centers Arena", "from": "2015-09-01", "to": "2020-05-31" },
+      { "name": "Cable Dahmer Arena", "from": "2020-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "CAA Centre",
+    "teamName": "Missouri Mavericks",
+    "league": "ECHL",
+    "history": [
+      { "name": "Brampton Centre for Sports and Entertainment", "from": "1998-09-01", "to": "2005-05-31" },
+      { "name": "Powerade Centre", "from": "2005-09-01", "to": "2018-05-31" },
+      { "name": "CAA Centre", "from": "2018-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Kia Center",
+    "teamName": "Orlando Solar Bears",
+    "league": "ECHL",
+    "history": [
+      { "name": "Amway Center", "from": "2010-09-01", "to": "2023-05-31" },
+      { "name": "Kia Center", "from": "2023-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "VyStar Veternans Memorial Arena",
+    "teamName": "Jacksonville Icemen",
+    "league": "ECHL",
+    "history": [
+      { "name": "Jacksonville Veterans Memorial Arena", "from": "2003-09-01", "to": "2019-05-31" },
+      { "name": "VyStar Veternans Memorial Arena", "from": "2019-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Blue Arena",
+    "teamName": "Colorado Eagles",
+    "league": "ECHL",
+    "history": [
+      { "name": "Budweiser Events Center", "from": "2003-06-01", "to": "2023-09-30" },
+      { "name": "Blue Arena", "from": "2023-10-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Wings Event Center",
+    "teamName": "Kalamazoo Wings",
+    "league": "ECHL",
+    "history": [
+      { "name": "Wings Stadium", "from": "2009-06-01", "to": "2015-05-31" },
+      { "name": "Wings Event Center", "from": "2015-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "US Airways Center",
+    "teamName": "Phoenix Roadrunners",
+    "league": "ECHL",
+    "history": [
+      { "name": "America West Arena", "from": "1992-09-01", "to": "2006-05-31" },
+      { "name": "US Airways Center", "from": "2006-09-01", "to": "2015-05-31" }
+    ]
+  },
+  {
+    "currentArena": "iPayOne Center",
+    "teamName": "San Diego Gulls",
+    "league": "ECHL",
+    "history": [
+      { "name": "San Diego Sports Arena", "from": "1970-09-01", "to": "2005-05-31" },
+      { "name": "iPayOne Center", "from": "2005-09-01", "to": "2007-05-31" }
+    ]
+  },
+  {
+    "currentArena": "CenturyLink Arena",
+    "teamName": "Idaho Steelheads",
+    "league": "ECHL",
+    "history": [
+      { "name": "Bank of America Centre", "from": "1997-09-01", "to": "2005-05-31" },
+      { "name": "Qwest Arena", "from": "2005-09-01", "to": "2011-05-31" },
+      { "name": "CenturyLink Arena", "from": "2011-09-01", "to": "2020-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Sun National Bank Center",
+    "teamName": "Trenton Titans",
+    "league": "ECHL",
+    "history": [
+      { "name": "Sovereign Bank Arena", "from": "1999-09-01", "to": "2009-05-31" },
+      { "name": "Sun National Bank Center", "from": "2009-09-01", "to": "2017-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Sun National Bank Center",
+    "teamName": "Trenton Devils",
+    "league": "ECHL",
+    "history": [
+      { "name": "Sovereign Bank Arena", "from": "1999-09-01", "to": "2009-05-31" },
+      { "name": "Sun National Bank Center", "from": "2009-09-01", "to": "2017-05-31" }
+    ]
+  },
+  {
+    "currentArena": "Heritage Bank Center",
+    "teamName": "Cincinnati Cyclones",
+    "league": "ECHL",
+    "history": [
+      { "name": "Firstar Center", "from": "1999-09-01", "to": "2002-05-31" },
+      { "name": "U.S. Bank Arena", "from": "2002-09-01", "to": "2019-05-31" },
+      { "name": "Heritage Bank Center", "from": "2019-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Spectrum Center",
+    "teamName": "Charlotte Checkers",
+    "league": "AHL",
+    "history": [
+      { "name": "Charlotte Bobcats Arena", "from": "2005-09-01", "to": "2008-05-31" },
+      { "name": "Time Warner Cable Arena", "from": "2008-09-01", "to": "2016-05-31" },
+      { "name": "Spectrum Center", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Spectrum Center",
+    "teamName": "Charlotte Checkers",
+    "league": "ECHL",
+    "history": [
+      { "name": "Charlotte Bobcats Arena", "from": "2005-09-01", "to": "2008-05-31" },
+      { "name": "Time Warner Cable Arena", "from": "2008-09-01", "to": "2016-05-31" },
+      { "name": "Spectrum Center", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Huntington Center",
+    "teamName": "Toledo Walleye",
+    "league": "ECHL",
+    "history": [
+      { "name": "Lucas County Arena", "from": "2009-09-01", "to": "2010-05-31" },
+      { "name": "Huntington Center", "from": "2010-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "James Brown Arena",
+    "teamName": "Augusta Lynx",
+    "league": "ECHL",
+    "history": [
+      { "name": "Augusta-Richmond County Civic Center", "from": "1980-09-01", "to": "2006-05-31" },
+      { "name": "James Brown Arena", "from": "2006-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Santander Arena",
+    "teamName": "Reading Royals",
+    "league": "ECHL",
+    "history": [
+      { "name": "Sovereign Center", "from": "2001-09-01", "to": "2013-05-31" },
+      { "name": "Santander Arena", "from": "2013-09-01", "to": null }
+    ]
+  },
+
+
+
+
+
+
 
 
 
@@ -734,6 +919,409 @@
     "history": [
       { "name": "Brantford and District Civic Centre", "from": "1967-01-01", "to": "2025-05-31" },
       { "name": "TD Civic Centre", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Boart Longyear Memorial Gardens",
+    "teamName": "North Bay Battalion",
+    "league": "OHL",
+    "history": [
+      { "name": "North Bay Memorial Gardens", "from": "1955-01-01", "to": "2025-05-31" },
+      { "name": "Boart Longyear Memorial Gardens", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "CAA Centre",
+    "teamName": "Brampton Battalion",
+    "league": "OHL",
+    "history": [
+      { "name": "Brampton Centre for Sports and Entertainment", "from": "1998-09-01", "to": "2005-05-31" },
+      { "name": "Powerade Centre", "from": "2005-09-01", "to": "2018-05-31" },
+      { "name": "CAA Centre", "from": "2018-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "CAA Centre",
+    "teamName": "Mississauga Steelheads",
+    "league": "OHL",
+    "history": [
+      { "name": "Hershey Centre", "from": "1998-09-01", "to": "2018-05-31" },
+      { "name": "Paramount Fine Foods Centre", "from": "2018-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Progressive Auto Sales Arena",
+    "teamName": "Sarnia Sting",
+    "league": "OHL",
+    "history": [
+      { "name": "Sarnia Sports and Entertainment Centre", "from": "1999-09-01", "to": "2009-05-31" },
+      { "name": "RBC Centre", "from": "2009-09-01", "to": "2015-05-31" },
+      { "name": "Sarnia Sports and Entertainment Centre", "from": "2015-09-01", "to": "2016-05-31" },
+      { "name": "Progressive Auto Sales Arena", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Civic Centre",
+    "teamName": "Brantford Bulldogs",
+    "league": "OHL",
+    "history": [
+      { "name": "Brantford and District Civic Centre", "from": "1967-09-01", "to": "2025-05-31" },
+      { "name": "TD Civic Centre", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "GFL Memorial Gardens",
+    "teamName": "Sault Ste. Marie Greyhounds",
+    "league": "OHL",
+    "history": [
+      { "name": "Steelback Centre", "from": "2006-09-01", "to": "2008-05-31" },
+      { "name": "Essar Centre", "from": "2008-09-01", "to": "2018-05-31" },
+      { "name": "GFL Memorial Gardens", "from": "2018-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Canadian Tire Centre",
+    "teamName": "Ottawa 67's",
+    "league": "OHL",
+    "history": [
+      { "name": "Corel Centre", "from": "1996-09-01", "to": "2006-05-31" },
+      { "name": "Scotiabank Place", "from": "2006-09-01", "to": "2013-05-31" },
+      { "name": "Canadian Tire Centre", "from": "2013-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Place Arena",
+    "teamName": "Ottawa 67's",
+    "league": "OHL",
+    "history": [
+      { "name": "Ottawa Civic Centre", "from": "1966-09-01", "to": "2009-05-31" },
+      { "name": "Urbandale Centre", "from": "2009-09-01", "to": "2010-05-31" },
+      { "name": "Rona Centre", "from": "2010-09-01", "to": "2011-05-31" },
+      { "name": "J. Benson Cartage Centre", "from": "2011-09-01", "to": "2012-05-31" },
+      { "name": "Ottawa Civic Centre", "from": "2012-09-01", "to": "2014-05-31" },
+      { "name": "TD Place Arena", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Tribute Communities Centre",
+    "teamName": "Oshawa Generals",
+    "league": "OHL",
+    "history": [
+      { "name": "General Motors Centre", "from": "2006-09-01", "to": "2016-05-31" },
+      { "name": "Tribute Communities Centre", "from": "2016-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Canada Life Place",
+    "teamName": "London Knights",
+    "league": "OHL",
+    "history": [
+      { "name": "John Labatt Centre", "from": "2002-09-01", "to": "2012-05-31" },
+      { "name": "Budweiser Gardens", "from": "2012-09-01", "to": "2024-05-31" },
+      { "name": "Canada Life Place", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "London Ice House",
+    "teamName": "London Knights",
+    "league": "OHL",
+    "history": [
+      { "name": "London Gardens", "from": "1980-09-01", "to": "1994-05-31" },
+      { "name": "London Ice House", "from": "1994-09-01", "to": "2002-12-31" }
+    ]
+  },
+  {
+    "currentArena": "Slush Puppie Place",
+    "teamName": "Kingston Frontenacs",
+    "league": "OHL",
+    "history": [
+      { "name": "K-Rock Centre", "from": "2008-09-01", "to": "2013-05-31" },
+      { "name": "Rogers K-Rock Centre", "from": "2013-09-01", "to": "2018-05-31" },
+      { "name": "Leon's Centre", "from": "2018-09-01", "to": "2024-05-31" },
+      { "name": "Slush Puppie Place", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Erie Insurance Arena",
+    "teamName": "Erie Otters",
+    "league": "OHL",
+    "history": [
+      { "name": "Erie Civic Center ", "from": "1983-09-01", "to": "2008-05-31" },
+      { "name": "Louis J. Tullio Arena", "from": "2008-09-01", "to": "2012-05-31" },
+      { "name": "Erie Insurance Arena", "from": "2012-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "TD Station",
+    "teamName": "Saint John Sea Dogs",
+    "league": "QMJHL",
+    "history": [
+      { "name": "Harbour Station", "from": "1993-09-01", "to": "2019-05-31" },
+      { "name": "TD Station", "from": "2019-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Scotiabank Centre",
+    "teamName": "Halifax Mooseheads",
+    "league": "QMJHL",
+    "history": [
+      { "name": "Halifax Metro Centre", "from": "1978-09-01", "to": "2014-05-31" },
+      { "name": "Scotiabank Centre", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Angel of the Winds Arena",
+    "teamName": "Everett Silvertips",
+    "league": "WHL",
+    "history": [
+      { "name": "Everett Events Center", "from": "2003-09-01", "to": "2007-05-31" },
+      { "name": "Comcast Arena at Everett", "from": "2007-09-01", "to": "2014-05-31" },
+      { "name": "Xfinity Arena", "from": "2014-09-01", "to": "2017-05-31" },
+      { "name": "Angel of the Winds Arena", "from": "2017-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Scotiabank Saddledome",
+    "teamName": "Calgary Hitmen",
+    "league": "WHL",
+    "history": [
+      { "name": "Canadian Airlines Saddledome", "from": "1995-09-01", "to": "2000-05-31" },
+      { "name": "Pengrowth Saddledome", "from": "2000-09-01", "to": "2010-05-31" },
+      { "name": "Scotiabank Saddledome", "from": "2010-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Marchant Crane Centrium",
+    "teamName": "Red Deer Rebels",
+    "league": "WHL",
+    "history": [
+      { "name": "Red Deer Centrium ", "from": "1992-09-01", "to": "1999-05-31" },
+      { "name": "ENMAX Centrium", "from": "1999-09-01", "to": "2019-05-31" },
+      { "name": "Peavey Mart Centrium", "from": "2021-09-01", "to": "2025-05-31" },
+      { "name": "Marchant Crane Centrium", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Prospera Place",
+    "teamName": "Red Deer Rebels",
+    "league": "WHL",
+    "history": [
+      { "name": "Skyreach Place", "from": "1999-09-01", "to": "2003-05-31" },
+      { "name": "Prospera Place", "from": "2003-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Spokane Veterans Memorial Arena",
+    "teamName": "Red Deer Rebels",
+    "league": "WHL",
+    "history": [
+      { "name": "Spokane Arena", "from": "1995-09-01", "to": "1999-05-31" },
+      { "name": "Spokane Veterans Memorial Arena", "from": "1999-09-01", "to": "2017-05-31" },
+      { "name": "Numerica Credit Union Arena", "from": "2017-09-01", "to": "2023-05-31" },
+      { "name": "Spokane Veterans Memorial Arena", "from": "2023-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Temple Gardens Centre",
+    "teamName": "Moose Jaw Warriors",
+    "league": "WHL",
+    "history": [
+      { "name": "Mosaic Place", "from": "2011-09-01", "to": "2022-05-31" },
+      { "name": "Moose Jaw Events Centre", "from": "2022-09-01", "to": "2025-05-31" },
+      { "name": "Temple Gardens Centre", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "CN Centre",
+    "teamName": "Prince George Cougars",
+    "league": "WHL",
+    "history": [
+      { "name": "Prince George Multiplex", "from": "1995-09-01", "to": "2005-05-31" },
+      { "name": "CN Centre", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "accesso ShoWare Center",
+    "teamName": "Seattle Thunderbirds",
+    "league": "WHL",
+    "history": [
+      { "name": "ShoWare Center", "from": "2009-09-01", "to": "2017-05-31" },
+      { "name": "accesso ShoWare Center", "from": "2017-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "VisitLethbridge.com Arena",
+    "teamName": "Lethbridge Hurricanes",
+    "league": "WHL",
+    "history": [
+      { "name": "Canada Games Sportsplex", "from": "1974-09-01", "to": "2000-05-31" },
+      { "name": "ENMAX Centre", "from": "2000-09-01", "to": "2024-05-31" },
+      { "name": "VisitLethbridge.com Arena", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "InnovationPlex",
+    "teamName": "Swift Current Broncos",
+    "league": "WHL",
+    "history": [
+      { "name": "Centennial Civic Centre", "from": "1967-09-01", "to": "2008-05-31" },
+      { "name": "Innovation Credit Union iPlex ", "from": "2008-09-01", "to": "2022-05-31" },
+      { "name": "InnovationPlex", "from": "2022-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Keystone Centre",
+    "teamName": "Brandon Wheat Kings",
+    "league": "WHL",
+    "history": [
+      { "name": "Westoba Place", "from": "1972-09-01", "to": "2007-05-31" },
+      { "name": "Keystone Centre", "from": "2007-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "SaskTel Centre",
+    "teamName": "Saskatoon Blades",
+    "league": "WHL",
+    "history": [
+      { "name": "Saskatchewan Place", "from": "1988-09-01", "to": "2004-05-31" },
+      { "name": "Credit Union Centre", "from": "2004-09-01", "to": "2014-05-31" },
+      { "name": "SaskTel Centre", "from": "2014-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Brandt Centre",
+    "teamName": "Regina Pats",
+    "league": "WHL",
+    "history": [
+      { "name": "Regina Agridome", "from": "1977-09-01", "to": "2005-05-31" },
+      { "name": "Brandt Centre", "from": "2005-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Sandman Centre",
+    "teamName": "Kamloops Blazers",
+    "league": "WHL",
+    "history": [
+      { "name": "Riverside Coliseum", "from": "1992-09-01", "to": "2000-05-31" },
+      { "name": "Sport Mart Place", "from": "2000-09-01", "to": "2005-05-31" },
+      { "name": "Interior Savings Centre", "from": "2005-09-01", "to": "2015-05-31" },
+      { "name": "Sandman Centre", "from": "2015-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Veterans Memorial Coliseum",
+    "teamName": "Portland Winterhawks",
+    "league": "WHL",
+    "history": [
+      { "name": "Memorial Coliseum", "from": "1960-09-01", "to": "2011-05-31" },
+      { "name": "Veterans Memorial Coliseum", "from": "2011-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Toyota Center",
+    "teamName": "Tri-City Americans",
+    "league": "WHL",
+    "history": [
+      { "name": "Tri-Cities Coliseum", "from": "1988-09-01", "to": "2004-05-31" },
+      { "name": "Three Rivers Coliseum", "from": "2004-09-01", "to": "2005-05-31" },
+      { "name": "Toyota Center", "from": "2005-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Grossinger Motors Arena",
+    "teamName": "Central Illinois Flying Aces",
+    "league": "USHL",
+    "history": [
+      { "name": "Tri-Cities Coliseum", "from": "2006-09-01", "to": "2016-05-31" },
+      { "name": "The Coliseum", "from": "2016-09-01", "to": "2017-05-31" },
+      { "name": "Grossinger Motors Arena", "from": "2017-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Grossinger Motors Arena",
+    "teamName": "Bloomington Thunder",
+    "league": "USHL",
+    "history": [
+      { "name": "Tri-Cities Coliseum", "from": "2006-09-01", "to": "2016-05-31" },
+      { "name": "The Coliseum", "from": "2016-09-01", "to": "2017-05-31" },
+      { "name": "Grossinger Motors Arena", "from": "2017-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Trinity Health Arena",
+    "teamName": "Muskegon Lumberjacks",
+    "league": "USHL",
+    "history": [
+      { "name": "L. C. Walker Arena", "from": "1960-09-01", "to": "2019-05-31" },
+      { "name": "Trinity Health Arena", "from": "2019-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Scheels Arena",
+    "teamName": "Fargo Force",
+    "league": "USHL",
+    "history": [
+      { "name": "Urban Plains Center", "from": "2008-09-01", "to": "2010-05-31" },
+      { "name": "Scheels Arena", "from": "2010-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Liberty First Credit Union Arena",
+    "teamName": "Omaha Lancers",
+    "league": "USHL",
+    "history": [
+      { "name": "Ralston Arena", "from": "2012-09-01", "to": "2021-05-31" },
+      { "name": "Liberty First Credit Union Arena", "from": "2021-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Buccaneer Arena",
+    "teamName": "Des Moines Buccaneers",
+    "league": "USHL",
+    "history": [
+      { "name": "Des Moines Ice Arena", "from": "1961-09-01", "to": "1973-06-01" },
+      { "name": "Metro Ice Sports Arena", "from": "1973-09-01", "to": "2004-06-01" },
+      { "name": "95-KGGO Arena", "from": "2005-09-01", "to": "2008-06-01" },
+      { "name": "Buccaneer Arena", "from": "2008-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Tyson Events Center",
+    "teamName": "Des Moines Buccaneers",
+    "league": "USHL",
+    "history": [
+      { "name": "Gateway Arena", "from": "2003-09-01", "to": "2019-06-01" },
+      { "name": "Fleet Farm Arena", "from": "2019-09-01", "to": "2025-06-01" },
+      { "name": "Tyson Events Center", "from": "2025-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Viaero Center",
+    "teamName": "Tri-City Storm",
+    "league": "USHL",
+    "history": [
+      { "name": "Tri-City Arena", "from": "2000-09-01", "to": "2004-06-01" },
+      { "name": "Kearney Event Center", "from": "2004-09-01", "to": "2006-06-01" },
+      { "name": "FirsTier Event Center", "from": "2006-09-01", "to": "2009-06-01" },
+      { "name": "Viaero Center", "from": "2009-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "LECOM Event Center",
+    "teamName": "Elmira Aviators",
+    "league": "USHL",
+    "history": [
+      { "name": "First Arena", "from": "2004-09-01", "to": "2024-06-01" },
+      { "name": "LECOM Event Center", "from": "2024-09-01", "to": null }
+    ]
+  },
+  {
+    "currentArena": "Grand Casino Arena",
+    "teamName": "Minnesota Frost",
+    "league": "PWHL",
+    "history": [
+      { "name": "Xcel Energy Center", "from": "2000-09-01", "to": "2025-06-01" },
+      { "name": "Grand Casino Arena", "from": "2025-09-01", "to": null }
     ]
   }
 ]

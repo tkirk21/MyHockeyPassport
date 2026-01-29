@@ -13,6 +13,8 @@ import ChirpBox from '@/components/friends/chirpBox';
 import TeamPin from '@/components/TeamPin';
 import * as Location from 'expo-location';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import LoadingPuck from "../../components/loadingPuck";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -55,6 +57,70 @@ export default function UserProfileScreen() {
   const currentUser = auth.currentUser;
   const router = useRouter();
   const colorScheme = useColorScheme();
+
+  const styles = StyleSheet.create({
+    arenaText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
+    backButton: { position: 'absolute', top: 46, left: -5, zIndex: 10, padding: 12 },
+    background: { flex: 1, width: '100%', height: '100%' },
+    blockedMessage: { marginTop: 50, textAlign: 'center', fontSize: 18, color: '#000', fontWeight: '600', },
+    cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center' },
+    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
+    checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
+    container: { padding: 20, flexGrow: 1, },
+    dateText: { fontSize: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'right', },
+    error: { marginTop: 50, textAlign: 'center', fontSize: 18, color: 'red', },
+    fullScreenLoading: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', zIndex: 9999 },
+    leagueBadge: { alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 6, borderWidth: 1.5, backgroundColor: 'transparent', },
+    leagueBadgeText: { fontSize: 12, fontWeight: '600', },
+    loadMoreButton: { alignSelf: "center", backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68' },
+    loadMoreText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: "bold", fontSize: 14 },
+    miniMap: { width: '100%', height: 280, borderRadius: 12, overflow: 'hidden', marginTop: 8, },
+    placeholder: { fontSize: 16, color: '#374151', textAlign: 'center' },
+    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    section: { marginBottom: 20, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    sectionTitle: { fontSize: 20, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', marginBottom: 8, textAlign: 'center', },
+    statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
+    statSection: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
+    teamsText: {fontSize: 14, fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 6, },
+    text: { fontSize: 16, textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
+    title: { fontSize: 34, fontWeight: 'bold', textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 16, marginTop: 30, textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
+    visitBadge: { backgroundColor: '#D32F2F', width: 10, height: 10, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 18, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
+    visitBadgeText: { color: 'white', fontWeight: '900', fontSize: 4, includeFontPadding: false, },
+
+    favouriteTeamsChipsContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 8,
+      justifyContent: 'center',
+      marginTop: 8,
+    },
+    favouriteTeamsChip: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#E0E7FF',
+      borderRadius: 20,
+      paddingHorizontal: 12,
+      paddingVertical: 6,
+    },
+    favouriteTeamsChipText: {
+      color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940',
+      fontWeight: '600',
+    },
+    favouriteTeamsLabel: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940',
+      marginTop: 12,
+      marginBottom: 8,
+      textAlign: 'center',
+    },
+    favouriteTeamsEmpty: {
+      fontSize: 14,
+      color: colorScheme === 'dark' ? '#888888' : '#666666',
+      fontStyle: 'italic',
+      textAlign: 'center',
+    },
+  });
 
   useEffect(() => {
     const loadProfileAndCheckins = async () => {
@@ -121,15 +187,7 @@ export default function UserProfileScreen() {
     loadProfileAndCheckins();
   }, [userId, currentUser]);
 
-  if (loading) {
-    return (
-      <ActivityIndicator
-        style={{ marginTop: 50 }}
-        size="large"
-        color="#0D2C42"
-      />
-    );
-  }
+
 
   if (blocked) {
     return (
@@ -140,6 +198,15 @@ export default function UserProfileScreen() {
       </View>
     );
   }
+
+  if (loading) {
+    return (
+      <View style={styles.fullScreenLoading}>
+        <LoadingPuck size={240} />
+      </View>
+    );
+  }
+
 
   if (errorMsg) {
     return (
@@ -152,34 +219,6 @@ export default function UserProfileScreen() {
   if (!profile) {
     return <Text style={styles.error}>Profile not found.</Text>;
   }
-
-  const styles = StyleSheet.create({
-    arenaText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
-    background: { flex: 1, width: '100%', height: '100%' },
-    blockedMessage: { marginTop: 50, textAlign: 'center', fontSize: 18, color: '#000', fontWeight: '600', },
-    cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center' },
-    cardTextBold: { fontSize: 26, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
-    checkinCard: { padding: 14, borderRadius: 10, marginBottom: 12, borderLeftWidth: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 3, elevation: 2, },
-    container: { padding: 20, flexGrow: 1, },
-    dateText: { fontSize: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'right', },
-    error: { marginTop: 50, textAlign: 'center', fontSize: 18, color: 'red', },
-    leagueBadge: { alignSelf: 'flex-start', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 6, borderWidth: 1.5, backgroundColor: 'transparent', },
-    leagueBadgeText: { fontSize: 12, fontWeight: '600', },
-    loadMoreButton: { alignSelf: "center", backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, borderWidth: 2, borderColor: '#2F4F68' },
-    loadMoreText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: "bold", fontSize: 14 },
-    miniMap: { width: '100%', height: 280, borderRadius: 12, overflow: 'hidden', marginTop: 8, },
-    placeholder: { fontSize: 16, color: '#374151', textAlign: 'center' },
-    profileImage: { width: 120, height: 120, borderRadius: 60, alignSelf: 'center', marginBottom: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
-    section: { marginBottom: 20, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, padding: 12, borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
-    sectionTitle: { fontSize: 20, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#1E3A8A', marginBottom: 8, textAlign: 'center', },
-    statsRow: { flexDirection: 'row', gap: 8, marginBottom: 20, },
-    statSection: { flex: 1, backgroundColor: colorScheme === 'dark' ? 'rgba(10,41,64,0.9)' : 'rgba(255,255,255,0.85)', borderRadius: 12, paddingVertical: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 4, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
-    teamsText: {fontSize: 14, fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 6, },
-    text: { fontSize: 16, textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
-    title: { fontSize: 34, fontWeight: 'bold', textAlign: 'center', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 16, marginTop: 30, textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
-    visitBadge: { backgroundColor: '#D32F2F', width: 10, height: 10, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 18, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
-    visitBadgeText: { color: 'white', fontWeight: '900', fontSize: 4, includeFontPadding: false, },
-  });
 
   return (
       <>
@@ -194,8 +233,15 @@ export default function UserProfileScreen() {
             style={styles.background}
             resizeMode="cover"
           >
-            <ScrollView
-              contentContainerStyle={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
+            {/* Custom back button */}
+              <TouchableOpacity
+                style={styles.backButton}
+                onPress={() => router.back()}
+              >
+                <Ionicons name="arrow-back" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+              </TouchableOpacity>
+
               <Text style={styles.title}>{profile.name}</Text>
 
               <Image
@@ -212,9 +258,34 @@ export default function UserProfileScreen() {
                 <Text style={styles.cardText}>
                   Location: {profile.location || 'Not set'}
                 </Text>
-                <Text style={styles.cardText}>
-                  Favorite Team: {profile.favouriteTeam || 'Not set'}
+
+                <Text style={styles.favouriteTeamsLabel}>
+                  Favourite Teams
                 </Text>
+
+                {profile.favouriteTeams && Array.isArray(profile.favouriteTeams) && profile.favouriteTeams.length > 0 ? (
+                  <View style={styles.favouriteTeamsChipsContainer}>
+                    {profile.favouriteTeams.map((team: string) => (
+                      <View key={team} style={styles.favouriteTeamsChip}>
+                        <Text style={styles.favouriteTeamsChipText}>
+                          {team}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                ) : profile.favouriteTeam ? (
+                  <View style={styles.favouriteTeamsChipsContainer}>
+                    <View style={styles.favouriteTeamsChip}>
+                      <Text style={styles.favouriteTeamsChipText}>
+                        {profile.favouriteTeam}
+                      </Text>
+                    </View>
+                  </View>
+                ) : (
+                  <Text style={styles.favouriteTeamsEmpty}>
+                    No favourite teams set
+                  </Text>
+                )}
               </View>
 
               <View style={styles.statsRow}>

@@ -1,8 +1,9 @@
-// app/checkin/edit/[checkinId].tsx
+//app/checkin/edit/[checkinId].tsx
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { getAuth } from 'firebase/auth';
 import firebaseApp from "@/firebaseConfig";
 import LoadingPuck from "@/components/loadingPuck";
 import EditCheckinForm from "@/components/editCheckinForm";

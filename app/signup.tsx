@@ -1,12 +1,18 @@
 //app/signup.tsx
 import { useState, useEffect } from 'react';
 import { Alert, Image, Request, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, signInWithCredential } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, signInWithCredential } from 'firebase/auth';
 import { auth, webClientId, androidClientId } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useColorScheme } from '../hooks/useColorScheme';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import * as Facebook from 'expo-auth-session/providers/facebook';
+import { useAuthRequest } from 'expo-auth-session';
+import * as AppleAuthentication from 'expo-apple-authentication';
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function Signup() {
   const router = useRouter();
@@ -14,6 +20,35 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
+    clientId: '763545830068611',
+    redirectUri: `fb763545830068611://authorize`,
+    scopes: ['public_profile', 'email'],
+  });
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com',
+      offlineAccess: true,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (fbResponse?.type === 'success') {
+      const { authentication } = fbResponse;
+      if (authentication?.accessToken) {
+        const credential = FacebookAuthProvider.credential(authentication.accessToken);
+        signInWithCredential(auth, credential)
+          .then(() => router.replace('/(tabs)'))
+          .catch((error) => {
+            Alert.alert('Error', 'Facebook sign-in failed: ' + error.message);
+            console.error(error);
+          });
+      }
+    } else if (fbResponse?.type === 'error') {
+      Alert.alert('Facebook Error', fbResponse.error?.message || 'Unknown');
+    }
+  }, [fbResponse]);
 
   const handleSignUp = async () => {
     try {
@@ -24,10 +59,75 @@ export default function Signup() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+
+      const userInfo = await GoogleSignin.signIn();
+
+      const idToken = userInfo.idToken || userInfo.data?.idToken;
+
+      if (!idToken) {
+        Alert.alert('Error', 'No idToken returned from Google');
+        return;
+      }
+
+      const googleCredential = GoogleAuthProvider.credential(idToken);
+
+      await signInWithCredential(auth, googleCredential);
+
+      router.replace('/(tabs)');
+    } catch (error: any) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // User cancelled — fine, do nothing
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // Already going
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        Alert.alert('Error', 'Google Play Services not available');
+      } else {
+        Alert.alert('Google Sign-In Failed', 'Something went wrong.');
+      }
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    try {
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+
+      if (!credential.identityToken) {
+        Alert.alert('Error', 'No identityToken from Apple');
+        return;
+      }
+
+      const nonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+      const provider = new OAuthProvider('apple.com');
+      const appleCredential = provider.credential({
+        idToken: credential.identityToken,
+        rawNonce: nonce,
+      });
+
+      await signInWithCredential(auth, appleCredential);
+
+      router.replace('/(tabs)');
+    } catch (e: any) {
+      if (e.code === 'ERR_CANCELED') {
+        // user cancelled
+      } else {
+        Alert.alert('Apple Sign-In Failed', e.message || 'Unknown error');
+      }
+    }
+  };
+
   const styles = StyleSheet.create({
     buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', marginBottom: 20, width: '66%', alignItems: 'center', alignSelf: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 3 }, shadowOpacity: colorScheme === 'dark' ? 0.5 : 0.2, shadowRadius: 4, elevation: 6, },
     buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18, fontWeight: '600', },
-    container: { padding: 20, paddingBottom: 100, backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF', },
+    container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF' },
     eyeIcon: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontSize: 22 },
     googleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
     input: { height: 50, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', borderWidth: 1, paddingHorizontal: 12, marginBottom: 16, borderRadius: 6, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
@@ -53,17 +153,28 @@ export default function Signup() {
         <View style={styles.socialRow}>
           <TouchableOpacity
             style={styles.googleBtn}
-            onPress={() => Alert.alert('Coming Soon', 'Google sign-in is temporarily unavailable')}
+            onPress={handleGoogleSignIn}
           >
             <Ionicons name="logo-google" style={styles.socialIcon} />
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.socialBtn}
-            onPress={() => Alert.alert('Coming Soon', 'Facebook login is temporarily unavailable')}
+            onPress={async () => {
+              await fbPromptAsync();
+            }}
           >
             <Ionicons name="logo-facebook" style={styles.socialIcon} />
           </TouchableOpacity>
+
+          <AppleAuthentication.AppleAuthenticationButton
+            buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+            buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+            cornerRadius={20}
+            style={{ width: 40, height: 40 }}
+            onPress={handleAppleSignIn}
+          />
+
         </View>
 
         <TextInput

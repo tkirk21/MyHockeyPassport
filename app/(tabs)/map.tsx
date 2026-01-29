@@ -5,12 +5,16 @@ import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query } from 'firebase/firestore';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { Alert, FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, Image, Modal, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, Polyline, UrlTile } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useColorScheme } from '../../hooks/useColorScheme';
 import { Ionicons } from '@expo/vector-icons';
+import ViewShot from 'react-native-view-shot';
+import * as Sharing from 'expo-sharing';
+import * as FileSystem from 'expo-file-system/legacy';
+import { usePremium } from '@/context/PremiumContext';
 
 import arenasData from '@/assets/data/arenas.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
@@ -22,6 +26,7 @@ const db = getFirestore(firebaseApp);
 
 export default function MapScreen() {
   const [pins, setPins] = useState<any[]>([]);
+  const { isPremium } = usePremium();
   const colorScheme = useColorScheme();
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -29,6 +34,7 @@ export default function MapScreen() {
   const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
   const [leagueOptions, setLeagueOptions] = useState<string[]>(['All']);
   const mapRef = useRef<MapView>(null);
+  const viewShotRef = useRef<ViewShot>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedArenaCheckIns, setSelectedArenaCheckIns] = useState<any[]>([]);
   const [allCheckIns, setAllCheckIns] = useState<any[]>([]);
@@ -37,6 +43,44 @@ export default function MapScreen() {
   const [showTravelLines, setShowTravelLines] = useState(false);
   const [travelAnimValue, setTravelAnimValue] = useState(0);
   const showTravel = showTravelLines && travelCoords.length > 1;
+
+  const handleShare = async () => {
+    try {
+      await new Promise(r => setTimeout(r, 500));
+
+      const uri = await viewShotRef.current?.capture();
+      if (!uri) throw new Error('Capture failed');
+
+      // Move the image to a sharable location
+      const fileUri = FileSystem.cacheDirectory + `map_${Date.now()}.png`;
+      await FileSystem.copyAsync({ from: uri, to: fileUri });
+
+      const shareText =
+        `Just added another arena to my Hockey Passport 🏒\n` +
+        `Track every rink you visit.\n` +
+        `https://play.google.com/store/apps/details?id=com.mysportspassport`;
+
+      await Sharing.shareAsync(fileUri, {
+        dialogTitle: 'Share your map',
+        mimeType: 'image/png',
+        UTI: 'public.png',
+        // Android only
+        message: shareText
+      });
+
+    } catch (e) {
+      console.log(e);
+      Alert.alert('Share failed', 'Could not share map');
+    }
+  };
+
+  const isDateInRange = (checkDate: Date, start: string | undefined, end: string | undefined) => {
+    if (!start) return false;
+    const checkTime = checkDate.getTime();
+    const startTime = new Date(start).getTime();
+    const endTime = end ? new Date(end).getTime() : Infinity;
+    return checkTime >= startTime && checkTime <= endTime;
+  };
 
   const visiblePins = useMemo(() => {
     if (selectedLeague === 'Favorites') {
@@ -238,9 +282,30 @@ export default function MapScreen() {
             teamCode = match.teamCode || '';
           } else {
             // Try historical teams json for old/defunct teams
-            const historicalMatch = historicalTeamsData.find((h: any) =>
-              h.teamName === data.teamName || h.arena === data.arenaName
+            let historicalMatch: any = null;
+
+            // First priority: exact arena name match (catches one-offs like LoanDepot perfectly)
+            historicalMatch = historicalTeamsData.find((h: any) =>
+              h.teamName === data.teamName && h.arena === data.arenaName
             );
+
+            if (!historicalMatch && data.teamName && data.gameDate) {
+              const gameDateObj = new Date(data.gameDate);
+
+              const candidates = historicalTeamsData
+                .filter((h: any) => h.teamName === data.teamName)
+                .sort((a: any, b: any) => {
+                  const aIn = isDateInRange(gameDateObj, a.startDate, a.endDate) ? -1 : 1;
+                  const bIn = isDateInRange(gameDateObj, b.startDate, b.endDate) ? -1 : 1;
+                  if (aIn !== bIn) return aIn - bIn; // prefer ones that contain the date
+
+                  // tiebreaker: closer start date
+                  return Math.abs(gameDateObj.getTime() - new Date(a.startDate).getTime()) -
+                         Math.abs(gameDateObj.getTime() - new Date(b.startDate).getTime());
+                });
+
+              historicalMatch = candidates[0] || null;
+            }
 
             if (historicalMatch) {
               lat = historicalMatch.latitude;
@@ -292,9 +357,29 @@ export default function MapScreen() {
               lng = match.longitude;
             } else {
               // Historical teams fallback
-              const historicalMatch = historicalTeamsData.find((h: any) =>
-                h.teamName === ci.teamName || h.arena === ci.arenaName
-              );
+              let historicalMatch: any = null;
+
+            // First priority: exact arena name match
+            historicalMatch = historicalTeamsData.find((h: any) =>
+              h.teamName === ci.teamName && h.arena === ci.arenaName
+            );
+
+            if (!historicalMatch && ci.teamName && ci.gameDate) {
+              const gameDateObj = new Date(ci.gameDate);
+
+              const candidates = historicalTeamsData
+                .filter((h: any) => h.teamName === ci.teamName)
+                .sort((a: any, b: any) => {
+                  const aIn = isDateInRange(gameDateObj, a.startDate, a.endDate) ? -1 : 1;
+                  const bIn = isDateInRange(gameDateObj, b.startDate, b.endDate) ? -1 : 1;
+                  if (aIn !== bIn) return aIn - bIn;
+
+                  return Math.abs(gameDateObj.getTime() - new Date(a.startDate).getTime()) -
+                         Math.abs(gameDateObj.getTime() - new Date(b.startDate).getTime());
+                });
+
+              historicalMatch = candidates[0] || null;
+            }
               if (historicalMatch) {
                 lat = historicalMatch.latitude;
                 lng = historicalMatch.longitude;
@@ -337,11 +422,11 @@ export default function MapScreen() {
   }, []);
 
   const styles = StyleSheet.create({
-    checkInRow: { padding: 12, borderBottomWidth: 1, borderBottomColor: '#eee', },
-    checkInDate: { fontSize: 16, fontWeight: '600', },
-    checkInMatchup: { fontSize: 14, color: '#555', },
-    closeButton: { marginTop: 10, padding: 10, backgroundColor: '#0D2C42', borderRadius: 8, alignItems: 'center', },
-    closeButtonText: { color: 'white', fontWeight: 'bold', },
+    checkInRow: { padding: 12, borderBottomWidth: 1, borderBottomColor: colorScheme === 'dark' ? '#2F4F68' : '#eee', },
+    checkInDate: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
+    checkInMatchup: { fontSize: 14, color: colorScheme === 'dark' ? '#BBBBBB' : '#555', },
+    closeButton: { marginTop: 20, paddingVertical: 12, paddingHorizontal: 32, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', alignSelf: 'center', alignItems: 'center', },
+    closeButtonText: {color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 12, fontWeight: '600', },
     dropdownContainer: { position: 'absolute', top: 55, alignSelf: 'center', width: '75%', zIndex: 10 },
     dropdownHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 14, paddingHorizontal: 18, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderWidth: 3, borderRadius: 16, borderColor: '#2F4F68' },
     dropdownHeaderText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 17, fontWeight: '600', textAlign: 'center', flex: 1 },
@@ -351,22 +436,22 @@ export default function MapScreen() {
     emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', },
     emptyText: { fontSize: 18, fontWeight: '600', color: '#0A2940', textAlign: 'center', },
     findLocationButton: { position: 'absolute', bottom: 30, right: 20, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', padding: 8, borderRadius: 24, borderWidth: 3, borderColor: '#2F4F68', zIndex: 10, elevation: 8 },
-    groupTitle: { fontSize: 18, fontWeight: 'bold', color: '#0A2940', marginBottom: 8, textAlign: 'center', width: '100%', },
-    loadingOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF', },
+    groupTitle: { fontSize: 18, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 8, textAlign: 'center', width: '100%', },
+    loadingOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
     map: { flex: 1 },
     markerContainer: { alignItems: 'center', },
-    modalContent: { width: '90%', maxHeight: '80%', backgroundColor: 'white', borderRadius: 12, padding: 20, },
+    modalContent: { width: '90%', maxHeight: '80%', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 12, padding: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 12, },
+    modalOverlay: { flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.6)', justifyContent: 'center', alignItems: 'center', },
     pickerSelectedText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 17, fontWeight: '600' },
     pickerArrow: { position: 'absolute', right: 16 },
     pinContainer: { width: 40, height: 40, justifyContent: 'center', alignItems: 'center', position: 'relative', },
     pinImage: { width: 40, height: 40, },
-    teamCodeText: { position: 'absolute', top: 6, left: 10, color: 'white', fontWeight: 'bold', fontSize: 8, },
-    travelLinesButton: { position: 'absolute', bottom: 30, alignSelf: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF' , paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, zIndex: 10, elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, borderWidth: 3, borderColor: '#2F4F68' },
+    shareButton: { position: 'absolute', bottom: 30, left: 20, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', padding: 8, borderRadius: 24, borderWidth: 3, borderColor: '#2F4F68', zIndex: 10, elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, },teamCodeText: { position: 'absolute', top: 6, left: 10, color: 'white', fontWeight: 'bold', fontSize: 8, },
+    travelLinesButton: { position: 'absolute', bottom: 30, alignSelf: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, zIndex: 10, elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
     travelLinesButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' , fontWeight: 'bold', fontSize: 16 },
     visitBadge: { backgroundColor: '#D32F2F', width: 15, height: 15, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 16, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
     visitBadgeText: { color: 'white', fontWeight: 'bold', fontSize: 6, },
   });
-
 
   if (loading) {
     return (
@@ -412,154 +497,188 @@ export default function MapScreen() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <Modal visible={modalVisible} transparent={true} animationType="slide">
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <FlatList
-              data={groupedCheckIns}
-              keyExtractor={(group) => group.name}
-              renderItem={({ item: group }) => (
-                <View style={{ marginBottom: 20 }}>
-                  <Text style={styles.groupTitle}>
-                    {group.name}
-                  </Text>
-                  {group.checkIns.map((ci) => (
-                    <TouchableOpacity
-                      key={ci.id}
-                      style={styles.checkInRow}
-                      onPress={() => {
-                        setModalVisible(false);
-                        router.push(`/checkin/${ci.id}?userId=${auth.currentUser?.uid}`);
-                      }}
-                    >
-                      <Text style={styles.checkInDate}>
-                        {new Date(ci.gameDate).toLocaleDateString()}
-                      </Text>
-                      <Text style={styles.checkInMatchup}>
-                        {ci.teamName} vs {ci.opponent}
-                      </Text>
-                    </TouchableOpacity>
-                  ))}
-                </View>
-              )}
-            />
-            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <View style={styles.dropdownContainer}>
-        <TouchableOpacity style={styles.dropdownHeader} onPress={() => setDropdownVisible(prev => !prev)}>
-          <Text style={styles.dropdownHeaderText}>
-            {selectedLeague === 'Favorites' ? 'Favorites' : selectedLeague}
-          </Text>
-          <Ionicons name={dropdownVisible ? 'chevron-up' : 'chevron-down'} size={24} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
-        </TouchableOpacity>
-
-        {dropdownVisible && (
-          <View style={styles.dropdownList}>
-            {['All', 'Favorites', ...leagueOptions.filter(opt => opt !== 'All')].map(opt => (
-              <TouchableOpacity
-                key={opt}
-                style={styles.dropdownItem}
-                onPress={() => {
-                  setSelectedLeague(opt);
-                  setDropdownVisible(false);
-                }}
-              >
-                <Text style={styles.dropdownItemText}>{opt}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
-      </View>
-
-      <TouchableOpacity
-        style={styles.travelLinesButton}
-        onPress={() => setShowTravelLines(prev => !prev)}
-      >
-        <Text style={styles.travelLinesButtonText}>
-          {showTravelLines ? 'Hide' : 'Show'} Travel Lines
-        </Text>
-      </TouchableOpacity>
-
-      <MapView
-        ref={mapRef}
-        style={styles.map}
-        mapType="none"
-        showsUserLocation={true}
-        followsUserLocation={false}
-        showsMyLocationButton={false}
-      >
-        <UrlTile
-          urlTemplate={colorScheme === 'dark'
-            ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-            : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
-          maximumZ={19}
-          zIndex={0}
-        />
-
-        {showTravel && (
-          <Polyline
-            coordinates={travelCoords.slice(
-              0,
-              Math.max(2, Math.floor(travelAnimValue * travelCoords.length))
-            )}
-            strokeColor={colorScheme === 'dark' ? '#FFFFFF' : '#2F4F68'}
-            strokeWidth={4}
-            lineCap="round"
-            lineJoin="round"
-            geodesic={true}
-            lineDashPattern={[4, 12]}
-            zIndex={1}
-          />
-        )}
-
-        {visiblePins.map(pin => {
-          const checkInsAtArena = allCheckIns.filter(ci =>
-            norm(getCurrentArenaName(ci.arenaName || '')) === norm(pin.title || '')
-          );
-
-          const visitCount = checkInsAtArena.length;
-
-          return (
-            <Marker
-              key={pin.id}
-              coordinate={{ latitude: pin.latitude, longitude: pin.longitude }}
-              title={pin.title || 'Arena'}
-              onPress={() => openCheckInModal(checkInsAtArena)}
-            >
-              <View style={styles.markerContainer}>
-                {visitCount > 1 && (
-                  <View style={styles.visitBadge}>
-                    <Text style={styles.visitBadgeText}>{visitCount}x</Text>
+    isPremium ? (
+      <View style={{ flex: 1 }}>
+        <Modal visible={modalVisible} transparent={true} animationType="slide">
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <FlatList
+                data={groupedCheckIns}
+                keyExtractor={(group) => group.name}
+                renderItem={({ item: group }) => (
+                  <View style={{ marginBottom: 20 }}>
+                    <Text style={styles.groupTitle}>
+                      {group.name}
+                    </Text>
+                    {group.checkIns.map((ci) => (
+                      <TouchableOpacity
+                        key={ci.id}
+                        style={styles.checkInRow}
+                        onPress={() => {
+                          setModalVisible(false);
+                          router.push(`/checkin/${ci.id}?userId=${auth.currentUser?.uid}`);
+                        }}
+                      >
+                        <Text style={styles.checkInDate}>
+                          {new Date(ci.gameDate).toLocaleDateString()}
+                        </Text>
+                        <Text style={styles.checkInMatchup}>
+                          {ci.teamName} vs {ci.opponent}
+                        </Text>
+                      </TouchableOpacity>
+                    ))}
                   </View>
                 )}
+              />
+              <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
 
-                <View style={styles.pinContainer}>
-                  <Image
-                    source={require('../../assets/images/pin_template.png')}
-                    style={[styles.pinImage, { tintColor: pin.colorCode || 'black' }]}
-                    resizeMode="contain"
-                  />
-                  <Text
-                    key="teamCode"
-                    style={styles.teamCodeText}
-                  >
-                    {pin.teamCode || ''}
-                  </Text>
-                </View>
-              </View>
-            </Marker>
-          );
-        })}
-      </MapView>
+        <View style={styles.dropdownContainer}>
+          <TouchableOpacity style={styles.dropdownHeader} onPress={() => setDropdownVisible(prev => !prev)}>
+            <Text style={styles.dropdownHeaderText}>
+              {selectedLeague === 'Favorites' ? 'Favorites' : selectedLeague}
+            </Text>
+            <Ionicons name={dropdownVisible ? 'chevron-up' : 'chevron-down'} size={24} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+          </TouchableOpacity>
+
+          {dropdownVisible && (
+            <View style={styles.dropdownList}>
+              {['All', 'Favorites', ...leagueOptions.filter(opt => opt !== 'All')].map(opt => (
+                <TouchableOpacity
+                  key={opt}
+                  style={styles.dropdownItem}
+                  onPress={() => {
+                    setSelectedLeague(opt);
+                    setDropdownVisible(false);
+                  }}
+                >
+                  <Text style={styles.dropdownItemText}>{opt}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+        </View>
+
+        <TouchableOpacity
+          style={styles.travelLinesButton}
+          onPress={() => setShowTravelLines(prev => !prev)}
+        >
+          <Text style={styles.travelLinesButtonText}>
+            {showTravelLines ? 'Hide' : 'Show'} Travel Lines
+          </Text>
+        </TouchableOpacity>
+
+        <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 0.9 }} style={{ flex: 1 }}>
+          <MapView
+            ref={mapRef}
+            style={styles.map}
+            mapType="none"
+            showsUserLocation={true}
+            followsUserLocation={false}
+            showsMyLocationButton={false}
+          >
+            <UrlTile
+              urlTemplate={colorScheme === 'dark'
+                ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+                : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
+              maximumZ={19}
+              zIndex={0}
+            />
+
+            {showTravel && (
+              <Polyline
+                coordinates={travelCoords.slice(
+                  0,
+                  Math.max(2, Math.floor(travelAnimValue * travelCoords.length))
+                )}
+                strokeColor={colorScheme === 'dark' ? '#FFFFFF' : '#2F4F68'}
+                strokeWidth={4}
+                lineCap="round"
+                lineJoin="round"
+                geodesic={true}
+                lineDashPattern={[4, 12]}
+                zIndex={1}
+              />
+            )}
+
+            {visiblePins.map(pin => {
+              const checkInsAtArena = allCheckIns.filter(ci =>
+                norm(getCurrentArenaName(ci.arenaName || '')) === norm(pin.title || '')
+              );
+
+              const visitCount = checkInsAtArena.length;
+
+              return (
+                <Marker
+                  key={pin.id}
+                  coordinate={{ latitude: pin.latitude, longitude: pin.longitude }}
+                  title={pin.title || 'Arena'}
+                  onPress={() => openCheckInModal(checkInsAtArena)}
+                >
+                  <View style={styles.markerContainer}>
+                    {visitCount > 1 && (
+                      <View style={styles.visitBadge}>
+                        <Text style={styles.visitBadgeText}>{visitCount}x</Text>
+                      </View>
+                    )}
+
+                    <View style={styles.pinContainer}>
+                      <Image
+                        source={require('../../assets/images/pin_template.png')}
+                        style={[styles.pinImage, { tintColor: pin.colorCode || 'black' }]}
+                        resizeMode="contain"
+                      />
+                      <Text
+                        key="teamCode"
+                        style={styles.teamCodeText}
+                      >
+                        {pin.teamCode || ''}
+                      </Text>
+                    </View>
+                  </View>
+                </Marker>
+              );
+            })}
+          </MapView>
+        </ViewShot>
+
         <TouchableOpacity style={styles.findLocationButton} onPress={centerOnCurrentLocation}>
           <Ionicons name="locate-outline" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
         </TouchableOpacity>
-    </View>
+
+        <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
+          <Ionicons name="share-social-outline" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+        </TouchableOpacity>
+      </View>
+    ) : (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF' }}>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 20 }}>
+          Upgrade to Premium
+        </Text>
+        <Text style={{ fontSize: 18, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 30, paddingHorizontal: 20 }}>
+          Unlock the full map, travel lines, sharing, and more! A monthly subscription is way cheaper than rink side parking.
+        </Text>
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#EF4444',
+            paddingVertical: 16,
+            paddingHorizontal: 32,
+            borderRadius: 30,
+          }}
+          onPress={() => {
+            // TODO: Your upgrade/subscribe route here
+            Alert.alert("Upgrade", "Redirecting to subscription...");
+          }}
+        >
+          <Text style={{ color: '#FFFFFF', fontSize: 18, fontWeight: 'bold' }}>
+            Subscribe Now
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
   );
 }

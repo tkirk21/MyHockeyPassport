@@ -2,5 +2,8 @@
   <string name="app_name">My Hockey Passport</string>
   <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
-  <string name="expo_system_ui_user_interface_style" translatable="false">light</string>
+  <string name="expo_system_ui_user_interface_style" translatable="false">automatic</string>
+  <string name="facebook_app_id">763545830068611</string>
+  <string name="facebook_client_token">e4204e738403a32bdc1f05829a641788</string>
+  <string name="fb_login_protocol_scheme">fb763545830068611</string>
 </resources>

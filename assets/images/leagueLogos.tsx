@@ -24,6 +24,7 @@ export const leagueLogos: Record<string, any> = {
   "puck_logo_icehl.png": require("./puck_logo_icehl.png"),
   "puck_logo_Slovakextraliga.png": require("./puck_logo_Slovakextraliga.png"),
   "puck_logo_aihl.png": require("./puck_logo_aihl.png"),
+  "puck_logo_pwhl.png": require("./puck_logo_pwhl.png"),
   "placeholder.png": require("./placeholder.png")
 };
 

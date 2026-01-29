@@ -1,15 +1,16 @@
 //app/checkin/manual.tsx
 import Checkbox from 'expo-checkbox';
 import * as ImagePicker from 'expo-image-picker';
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import firebaseApp from '../../firebaseConfig';
 import React, { useEffect, useState, } from 'react';
-import { KeyboardAvoidingView, Image, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { KeyboardAvoidingView, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useColorScheme } from '../../hooks/useColorScheme';
 
 import arenasData from '../../assets/data/arenas.json';
@@ -19,7 +20,15 @@ import arenaHistoryData from '../../assets/data/arenaHistory.json';
 const db = getFirestore(firebaseApp);
 
 const ManualCheckIn = () => {
+  const router = useRouter();
   const colorScheme = useColorScheme();
+  const [friendsList, setFriendsList] = useState<{ id: string; name: string }[]>([]);
+  const [companionsText, setCompanionsText] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredFriends, setFilteredFriends] = useState<{ id: string; name: string }[]>([]);
+  const [cursorPosition, setCursorPosition] = useState(0);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [gameDate, setGameDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [arenas, setArenas] = useState([]);
@@ -28,7 +37,6 @@ const ManualCheckIn = () => {
   const [arenaOpen, setArenaOpen] = useState(false);
   const [homeTeamOpen, setHomeTeamOpen] = useState(false);
   const [opponentTeamOpen, setOpponentTeamOpen] = useState(false);
-
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [selectedArena, setSelectedArena] = useState(null);
   const [selectedHomeTeam, setSelectedHomeTeam] = useState(null);
@@ -40,7 +48,8 @@ const ManualCheckIn = () => {
   const [seatRow, setSeatRow] = useState('');
   const [seatNumber, setSeatNumber] = useState('');
   const [companions, setCompanions] = useState('');
-  const [notes, setNotes] = useState('');
+  const [highlights, setHighlights] = useState('');
+  const [parkingAndTravel, setParkingAndTravel] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [didBuyMerch, setDidBuyMerch] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState({});
@@ -82,7 +91,8 @@ const ManualCheckIn = () => {
     try {
       const user = getAuth(firebaseApp).currentUser;
       if (!user) {
-        alert('You must be logged in to submit a check-in.');
+        setAlertMessage('You must be logged in to submit a check-in.');
+        setAlertVisible(true);
         return;
       }
 
@@ -114,7 +124,8 @@ const ManualCheckIn = () => {
           seat: seatNumber,
         },
         companions,
-        notes,
+        highlights,
+        parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
@@ -127,10 +138,12 @@ const ManualCheckIn = () => {
       };
 
       await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
-      alert('Check-in saved!');
+      setAlertMessage('Check-in saved! Taking you to your profile...');
+      setAlertVisible(true);
     } catch (error) {
       console.error('Error saving check-in:', error);
-      alert('Failed to save check-in.');
+      setAlertMessage('Failed to save check-in.');
+      setAlertVisible(true);
     }
   };
 
@@ -321,46 +334,118 @@ const ManualCheckIn = () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (!permissionResult.granted) {
-      alert('Permission to access camera roll is required!');
+      Alert.alert('Permission required', 'Need access to photos to upload.');
       return;
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.8,
+      allowsMultipleSelection: true, // key change
+      selectionLimit: 3 - images.length, // limit remaining slots
     });
 
     if (!result.canceled && result.assets.length > 0) {
-      const selectedURI = result.assets[0].uri;
-      setImages([selectedURI]);
+      const newImages = result.assets.map(asset => asset.uri);
+      setImages(prev => [...prev, ...newImages].slice(0, 3)); // enforce max 3
     }
   };
 
+  useEffect(() => {
+    const user = getAuth().currentUser;
+    if (!user) return;
+
+    const friendsRef = collection(db, 'profiles', user.uid, 'friends');
+    const unsub = onSnapshot(friendsRef, async (snap) => {
+      const friendIds = snap.docs.map(d => d.id);
+
+      const profiles = await Promise.all(
+        friendIds.map(async (id) => {
+          const profSnap = await getDoc(doc(db, 'profiles', id));
+          const name = profSnap.data()?.name?.trim();
+          return name ? { id, name } : null;
+        })
+      );
+
+      setFriendsList(profiles.filter(Boolean));
+    });
+
+    return () => unsub();
+  }, []);
+
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
+    bottomRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 32, marginTop: 24, },
+    backIconButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', padding: 14, borderRadius: 30, width: 60, height: 60, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68',  },
     container: { padding: 20, paddingBottom: 100, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', },
     categoryContainer: { marginBottom: 14, borderBottomWidth: 1, borderBottomColor: colorScheme === 'dark' ? '#334155' : '#E2E8F0', paddingBottom: 10, },
-    categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 8, backgroundColor: colorScheme === 'dark' ? '#FFFFFF' : '#F1F5F9', },categoryTitle: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
-    checkboxRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 6, },
-    checkboxLabel: { marginLeft: 10, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', textTransform: 'capitalize', },
+    categoryHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 12, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9', paddingHorizontal: 16, borderRadius: 8 },
+    categoryTitle: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    checkboxRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, paddingHorizontal: 16 },
+    checkboxLabel: { marginLeft: 12, fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42' },
     choiceButton: { borderWidth: 0, borderRadius: 30, paddingVertical: 8, paddingHorizontal: 16, marginRight: 10, },
     choiceButtonSelected: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#5E819F' : '#0D2C42', },
-    choiceButtonTextSelected: { color: '#FFFFFF', fontWeight: '700', },
+    choiceButtonTextSelected: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', },
     choiceButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600', },
+    companionsPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    datePickerText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
+    datePickerWrapper: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', padding: 20, borderRadius: 12 },
     dropdown: { marginBottom: 14, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderWidth: 2, borderRadius: 8, paddingHorizontal: 8, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     dropDownContainer: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', borderColor: colorScheme === 'dark' ? '#334155' : '#E2E8F0' },
     dropDownText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     dropDownListEmpty: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
-    dropdownPlaceholder: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    dropdownPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
+    favoritePlayerPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
     input: { borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderRadius: 8, padding: 12, marginBottom: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     label: { fontSize: 16, fontWeight: '600', marginTop: 18, marginBottom: 6, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', },
+    Placeholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    requestContainer: { marginTop: 16, marginBottom: 8, alignItems: 'center', },
+    requestQuestion: { fontSize: 15, color: colorScheme === 'dark' ? '#BBBBBB' : '#444444', textAlign: 'center', marginBottom: 4, },
+    requestLinkText: { fontSize: 15, color: '#0066CC', textDecorationLine: 'underline', fontWeight: '600', },
     screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', },
+    scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
+    scoreLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    scoreInput: { width: 60, textAlign: 'center', marginBottom: 0 },
     scrollContainer: { padding: 16, paddingBottom: 100, },
-    submitButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 14, borderRadius: 30, marginBottom: -20, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
-    submitText: { color: '#fff', fontSize: 16, fontWeight: '600', },
+    seatInfoRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 },
+    seatLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    seatLabelRow: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginLeft: 12, marginRight: 6 },
+    seatInput: { width: 50, textAlign: 'center', marginBottom: 0 },
+    submitButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 14, borderRadius: 30, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
+    submitText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600', },
+    uploadPhotoText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
   });
 
   return (
     <View style={styles.screenBackground}>
+      {/* CUSTOM THEMED ALERT MODAL */}
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>
+              {alertMessage.includes('saved') ? 'Success' :
+               alertMessage.includes('logged in') ? 'Login Required' : 'Error'}
+            </Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setAlertVisible(false);
+                if (alertMessage.includes('saved')) {
+                  router.replace('/(tabs)/profile');
+                }
+              }}
+              style={styles.alertButton}
+            >
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -376,7 +461,7 @@ const ManualCheckIn = () => {
             onPress={() => setShowDatePicker(true)}
             style={styles.input}
           >
-            <Text>{gameDate.toDateString()}</Text>
+            <Text style={styles.datePickerText}>{gameDate.toDateString()}</Text>
           </TouchableOpacity>
 
           <DropDownPicker
@@ -463,61 +548,158 @@ const ManualCheckIn = () => {
             )}
           />
 
+        <View style={{ marginTop: 5, alignItems: 'center' }}>
+          <Pressable
+            style={[
+              styles.choiceButton,
+              styles.choiceButtonSelected,
+            ]}
+            onPress={() => {
+              setSelectedLeague(null);
+              setSelectedArena(null);
+              setSelectedHomeTeam(null);
+              setSelectedOpponent(null);
+              setArenaItems([]);
+              setHomeTeamItems([]);
+              setOpponentItems([]);
+            }}
+          >
+            <Text style={styles.choiceButtonTextSelected}>
+              Reset League, Arena, Home Team, Opponent
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.requestContainer}>
+          <Text style={styles.requestQuestion}>
+            Can't find your league, arena or team?
+          </Text>
+          <TouchableOpacity
+            onPress={() => Linking.openURL('mailto:support@myhockeypassport.com?subject=Request%20New%20League%2FArena%2FTeam')}
+          >
+            <Text style={styles.requestLinkText}>
+              Request it here
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <Text style={styles.label}>Final Score:</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-          <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{selectedHomeTeam || 'Home'}:</Text>
+        <View style={styles.scoreRow}>
+          <Text style={styles.scoreLabel}>{'Home'}:</Text>
           <TextInput
             value={homeScore}
             onChangeText={setHomeScore}
-            style={[styles.input, { width: 60, textAlign: 'center', marginBottom: 0 }]}
+            style={[styles.input, styles.scoreInput]}
             keyboardType="number-pad"
-            placeholder="0"
+            placeholder=" "
           />
-          <Text style={{ fontWeight: '500', marginHorizontal: 12, color: '#0A2940' }}> - </Text>
-          <Text style={{ fontWeight: '500', marginRight: 6, color: '#0A2940' }}>{selectedOpponent || 'Away'}:</Text>
+          <Text style={styles.scoreLabel}>{'  Away'}:</Text>
           <TextInput
             value={awayScore}
             onChangeText={setAwayScore}
-            style={[styles.input, { width: 60, textAlign: 'center', marginBottom: 0 }]}
+            style={[styles.input, styles.scoreInput]}
             keyboardType="number-pad"
-            placeholder="0"
+            placeholder=" "
           />
         </View>
 
           <TextInput
             placeholder="Favorite Player"
+            placeholderTextColor={styles.favoritePlayerPlaceholder.color}
             value={favoritePlayer}
             onChangeText={setFavoritePlayer}
             style={styles.input}
           />
           <Text style={styles.label}>Seat Information:</Text>
-          <View style={{ flexDirection:"row", alignItems:"center", flexWrap:"wrap", marginBottom:12 }}>
-            <Text style={{ fontWeight:"500", marginRight:6, color:"#0A2940" }}>Section:</Text>
-            <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-            <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Row:</Text>
-            <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
-            <Text style={{ fontWeight:"500", marginLeft:12, marginRight:6, color:"#0A2940" }}>Seat:</Text>
-            <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input,{ width:50, textAlign:"center", marginBottom:0 }]} />
+          <View style={styles.seatInfoRow}>
+            <Text style={styles.seatLabel}>Section:</Text>
+            <TextInput value={seatSection} onChangeText={setSeatSection} style={[styles.input, styles.seatInput]} />
+            <Text style={styles.seatLabelRow}>Row:</Text>
+            <TextInput value={seatRow} onChangeText={setSeatRow} style={[styles.input, styles.seatInput]} />
+            <Text style={styles.seatLabelRow}>Seat:</Text>
+            <TextInput value={seatNumber} onChangeText={setSeatNumber} style={[styles.input, styles.seatInput]} />
           </View>
+
           <TextInput
-            placeholder="Who did you go with?"
-            value={companions}
-            onChangeText={setCompanions}
+            placeholder="Who did you go with? (@ to tag friends)"
+            placeholderTextColor={styles.Placeholder.color}
+            value={companionsText}
+            onChangeText={(text) => {
+              setCompanionsText(text);
+              setCompanions(text);
+              const lastChar = text[text.length - 1];
+              const atIndex = text.lastIndexOf('@');
+
+              if (lastChar === '@' || (atIndex >= 0 && cursorPosition > atIndex)) {
+                const query = text.slice(atIndex + 1).toLowerCase().trim();
+                const matches = friendsList.filter(f => f.name.toLowerCase().includes(query));
+                setFilteredFriends(matches);
+                setShowSuggestions(matches.length > 0);
+              } else {
+                setShowSuggestions(false);
+              }
+            }}
+            onSelectionChange={(e) => setCursorPosition(e.nativeEvent.selection.start)}
+            multiline
             style={styles.input}
           />
-          <Text style={styles.label}>Upload Photo (1 only):</Text>
+
+          {showSuggestions && (
+            <View style={{
+              backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF',
+              borderWidth: 1,
+              borderColor: colorScheme === 'dark' ? '#334155' : '#D1D5DB',
+              borderRadius: 8,
+              maxHeight: 200,
+              marginTop: 4,
+            }}>
+              <ScrollView>
+                {filteredFriends.map((friend) => (
+                  <TouchableOpacity
+                    key={friend.id}
+                    style={{
+                      padding: 12,
+                      borderBottomWidth: 1,
+                      borderBottomColor: colorScheme === 'dark' ? '#334155' : '#E5E7EB',
+                    }}
+                    onPress={() => {
+                      const beforeAt = companionsText.slice(0, companionsText.lastIndexOf('@'));
+                      const newText = `${beforeAt}@${friend.name} `;
+                      setCompanionsText(newText);
+                      setShowSuggestions(false);
+                    }}
+                  >
+                    <Text style={{ color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' }}>
+                      {friend.name}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          )}
+
+          <Text style={styles.label}>Upload Photos (up to 3):</Text>
           <TouchableOpacity style={styles.input} onPress={pickImage}>
-            <Text>{images.length > 0 ? 'Replace Photo' : 'Select Photo'}</Text>
+            <Text style={styles.uploadPhotoText}>
+              {images.length === 0 ? 'Select Photos' : images.length < 3 ? 'Add More (max 3)' : 'Max 3 reached'}
+            </Text>
           </TouchableOpacity>
 
-          <View style={{ marginTop: 10 }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, gap: 8 }}>
             {images.map((uri, index) => (
-              <Image
-                key={index}
-                source={{ uri }}
-                style={{ width: '100%', height: 200, borderRadius: 8 }}
-                resizeMode="cover"
-              />
+              <View key={index} style={{ position: 'relative', width: 100, height: 100 }}>
+                <Image
+                  source={{ uri }}
+                  style={{ width: 100, height: 100, borderRadius: 8 }}
+                  resizeMode="cover"
+                />
+                <TouchableOpacity
+                  style={{ position: 'absolute', top: -8, right: -8, backgroundColor: 'red', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' }}
+                  onPress={() => setImages(images.filter((_, i) => i !== index))}
+                >
+                  <Text style={{ color: 'white', fontSize: 16 }}>×</Text>
+                </TouchableOpacity>
+              </View>
             ))}
           </View>
 
@@ -664,22 +846,41 @@ const ManualCheckIn = () => {
           )}
 
           <TextInput
-            placeholder="Notes"
-            value={notes}
-            onChangeText={setNotes}
+            placeholder="Highlights"
+            placeholderTextColor={styles.Placeholder.color}
+            value={highlights}
+            onChangeText={setHighlights}
             style={styles.input}
             multiline
           />
 
-          <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-            <Text style={styles.submitText}>Submit</Text>
-          </TouchableOpacity>
+          <TextInput
+            placeholder="Parking and travel Tips"
+            placeholderTextColor={styles.Placeholder.color}
+            value={parkingAndTravel}
+            onChangeText={setParkingAndTravel}
+            style={styles.input}
+            multiline
+          />
+
+          <View style={styles.bottomRow}>
+            <TouchableOpacity style={styles.backIconButton} onPress={() => router.back()}>
+              <Ionicons name="arrow-back" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
+              <Text style={styles.submitText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
 
           {showDatePicker && (
             <DateTimePicker
               value={gameDate}
               mode="date"
               display="default"
+              themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
+              accentColor="#0D2C42"
+              textColor={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'}
               onChange={(event, selectedDate) => {
                 setShowDatePicker(false);
                 if (selectedDate) setGameDate(selectedDate);
@@ -693,4 +894,3 @@ const ManualCheckIn = () => {
 };
 
 export default ManualCheckIn;
-

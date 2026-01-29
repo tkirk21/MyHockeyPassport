@@ -291,7 +291,7 @@
     "id": "nhl_2025020409",
     "league": "NHL",
     "date": "2025-12-02T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Anaheim Ducks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -625,7 +625,7 @@
     "league": "NHL",
     "date": "2026-03-09T01:00:00Z",
     "team": "Anaheim Ducks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Honda Center",
     "city": "Anaheim, California"
   },
@@ -742,7 +742,7 @@
     "league": "NHL",
     "date": "2026-04-04T02:00:00Z",
     "team": "Anaheim Ducks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Honda Center",
     "city": "Anaheim, California"
   },
@@ -1093,7 +1093,7 @@
     "league": "NHL",
     "date": "2025-12-05T00:00:00Z",
     "team": "Boston Bruins",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "TD Garden",
     "city": "Boston, Massachusetts"
   },
@@ -1110,7 +1110,7 @@
     "id": "nhl_2025020472",
     "league": "NHL",
     "date": "2025-12-10T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Boston Bruins",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -1732,7 +1732,7 @@
     "league": "NHL",
     "date": "2025-11-07T00:00:00Z",
     "team": "Buffalo Sabres",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "KeyBank Center",
     "city": "New York"
   },
@@ -1938,7 +1938,7 @@
     "id": "nhl_2025020610",
     "league": "NHL",
     "date": "2025-12-30T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Buffalo Sabres",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -2407,7 +2407,7 @@
     "league": "NHL",
     "date": "2025-10-11T20:00:00Z",
     "team": "Calgary Flames",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Scotiabank Saddledome",
     "city": "Mountain"
   },
@@ -2541,7 +2541,7 @@
     "id": "nhl_2025020260",
     "league": "NHL",
     "date": "2025-11-12T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Calgary Flames",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -2938,7 +2938,7 @@
     "league": "NHL",
     "date": "2026-03-19T01:30:00Z",
     "team": "Calgary Flames",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Scotiabank Saddledome",
     "city": "Mountain"
   },
@@ -3459,7 +3459,7 @@
     "id": "nhl_2025020730",
     "league": "NHL",
     "date": "2026-01-14T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Carolina Hurricanes",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -3604,7 +3604,7 @@
     "league": "NHL",
     "date": "2026-03-12T23:00:00Z",
     "team": "Carolina Hurricanes",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Lenovo Center",
     "city": "Eastern"
   },
@@ -3765,7 +3765,7 @@
     "id": "nhl_2025010048",
     "league": "NHL",
     "date": "2025-09-27T23:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Chicago Blackhawks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -3802,7 +3802,7 @@
     "league": "NHL",
     "date": "2025-10-04T23:00:00Z",
     "team": "Chicago Blackhawks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "United Center",
     "city": "Chicago, Illinois"
   },
@@ -3837,7 +3837,7 @@
     "id": "nhl_2025020059",
     "league": "NHL",
     "date": "2025-10-16T01:30:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Chicago Blackhawks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -4017,7 +4017,7 @@
     "id": "nhl_2025020493",
     "league": "NHL",
     "date": "2025-12-13T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Chicago Blackhawks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -4126,7 +4126,7 @@
     "league": "NHL",
     "date": "2026-01-08T02:30:00Z",
     "team": "Chicago Blackhawks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "United Center",
     "city": "Chicago, Illinois"
   },
@@ -4423,7 +4423,7 @@
     "league": "NHL",
     "date": "2026-04-11T21:00:00Z",
     "team": "Chicago Blackhawks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "United Center",
     "city": "Chicago, Illinois"
   },
@@ -4756,7 +4756,7 @@
     "league": "NHL",
     "date": "2026-01-01T02:00:00Z",
     "team": "Colorado Avalanche",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Ball Arena",
     "city": "Denver, Colorado"
   },
@@ -5035,7 +5035,7 @@
     "league": "NHL",
     "date": "2026-04-06T01:30:00Z",
     "team": "Colorado Avalanche",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Ball Arena",
     "city": "Denver, Colorado"
   },
@@ -5043,7 +5043,7 @@
     "id": "nhl_2025021238",
     "league": "NHL",
     "date": "2026-04-08T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Colorado Avalanche",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -5080,7 +5080,7 @@
     "league": "NHL",
     "date": "2025-09-21T21:00:00Z",
     "team": "Columbus Blue Jackets",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Nationwide Arena",
     "city": "Eastern"
   },
@@ -5197,7 +5197,7 @@
     "league": "NHL",
     "date": "2025-11-01T23:00:00Z",
     "team": "Columbus Blue Jackets",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Nationwide Arena",
     "city": "Eastern"
   },
@@ -5520,7 +5520,7 @@
     "id": "nhl_2025020868",
     "league": "NHL",
     "date": "2026-02-01T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Columbus Blue Jackets",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -5701,7 +5701,7 @@
     "league": "NHL",
     "date": "2025-09-20T23:00:00Z",
     "team": "Dallas Stars",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "American Airlines Center",
     "city": "Dallas, Texas"
   },
@@ -5727,7 +5727,7 @@
     "id": "nhl_2025010102",
     "league": "NHL",
     "date": "2025-10-01T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Dallas Stars",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -5763,7 +5763,7 @@
     "id": "nhl_2025020083",
     "league": "NHL",
     "date": "2025-10-18T23:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Dallas Stars",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -6079,7 +6079,7 @@
     "league": "NHL",
     "date": "2026-01-24T01:00:00Z",
     "team": "Dallas Stars",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "American Airlines Center",
     "city": "Dallas, Texas"
   },
@@ -6087,7 +6087,7 @@
     "id": "nhl_2025020836",
     "league": "NHL",
     "date": "2026-01-28T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Dallas Stars",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -6124,7 +6124,7 @@
     "league": "NHL",
     "date": "2026-02-05T02:30:00Z",
     "team": "Dallas Stars",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "American Airlines Center",
     "city": "Dallas, Texas"
   },
@@ -6385,7 +6385,7 @@
     "league": "NHL",
     "date": "2025-10-25T23:00:00Z",
     "team": "Detroit Red Wings",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Little Caesars Arena",
     "city": "Detroit, Michigan"
   },
@@ -6393,7 +6393,7 @@
     "id": "nhl_2025020158",
     "league": "NHL",
     "date": "2025-10-29T00:15:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Detroit Red Wings",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -6996,7 +6996,7 @@
     "id": "nhl_2025020200",
     "league": "NHL",
     "date": "2025-11-04T01:30:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Edmonton Oilers",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -7195,7 +7195,7 @@
     "league": "NHL",
     "date": "2026-01-19T01:00:00Z",
     "team": "Edmonton Oilers",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Rogers Place",
     "city": "Edmonton"
   },
@@ -7293,7 +7293,7 @@
     "id": "nhl_2025021042",
     "league": "NHL",
     "date": "2026-03-14T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Edmonton Oilers",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -7645,7 +7645,7 @@
     "league": "NHL",
     "date": "2025-12-20T23:00:00Z",
     "team": "Florida Panthers",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Amerant Bank Arena",
     "city": "Sunrise, Florida"
   },
@@ -7761,7 +7761,7 @@
     "id": "nhl_2025020852",
     "league": "NHL",
     "date": "2026-01-30T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Florida Panthers",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -7995,7 +7995,7 @@
     "id": "nhl_2025020104",
     "league": "NHL",
     "date": "2025-10-22T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "LA Kings",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -8220,7 +8220,7 @@
     "id": "nhl_2025020816",
     "league": "NHL",
     "date": "2026-01-25T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "LA Kings",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -8347,7 +8347,7 @@
     "league": "NHL",
     "date": "2026-04-02T01:00:00Z",
     "team": "LA Kings",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Crypto.com Arena",
     "city": "Los Angeles"
   },
@@ -8427,7 +8427,7 @@
     "id": "nhl_2025020015",
     "league": "NHL",
     "date": "2025-10-10T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Minnesota Wild",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -8725,7 +8725,7 @@
     "league": "NHL",
     "date": "2026-03-01T23:30:00Z",
     "team": "Minnesota Wild",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Grand Casino Arena",
     "city": "Central"
   },
@@ -8832,7 +8832,7 @@
     "id": "nhl_2025021286",
     "league": "NHL",
     "date": "2026-04-14T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Minnesota Wild",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -9049,7 +9049,7 @@
     "league": "NHL",
     "date": "2025-12-08T00:00:00Z",
     "team": "Montreal Canadiens",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Centre Bell",
     "city": "Montreal"
   },
@@ -9120,7 +9120,7 @@
     "id": "nhl_2025020648",
     "league": "NHL",
     "date": "2026-01-03T21:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Montreal Canadiens",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -9445,7 +9445,7 @@
     "league": "NHL",
     "date": "2025-12-12T01:00:00Z",
     "team": "Nashville Predators",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Bridgestone Arena",
     "city": "Nashville, Tennessee"
   },
@@ -9453,7 +9453,7 @@
     "id": "nhl_2025020517",
     "league": "NHL",
     "date": "2025-12-16T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Nashville Predators",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -9480,7 +9480,7 @@
     "id": "nhl_2025020595",
     "league": "NHL",
     "date": "2025-12-28T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Nashville Predators",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -9580,7 +9580,7 @@
     "league": "NHL",
     "date": "2026-02-03T01:00:00Z",
     "team": "Nashville Predators",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Bridgestone Arena",
     "city": "Nashville, Tennessee"
   },
@@ -9841,7 +9841,7 @@
     "league": "NHL",
     "date": "2025-11-27T00:00:00Z",
     "team": "New Jersey Devils",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Prudential Center",
     "city": "Eastern"
   },
@@ -10038,7 +10038,7 @@
     "id": "nhl_2025020943",
     "league": "NHL",
     "date": "2026-03-01T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "New Jersey Devils",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -10255,7 +10255,7 @@
     "league": "NHL",
     "date": "2025-11-22T20:30:00Z",
     "team": "New York Islanders",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "UBS Arena",
     "city": "New York"
   },
@@ -10443,7 +10443,7 @@
     "id": "nhl_2025021019",
     "league": "NHL",
     "date": "2026-03-10T23:30:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "New York Islanders",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -10597,7 +10597,7 @@
     "league": "NHL",
     "date": "2025-11-25T00:00:00Z",
     "team": "New York Rangers",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Madison Square Garden",
     "city": "New York"
   },
@@ -10641,7 +10641,7 @@
     "id": "nhl_2025020541",
     "league": "NHL",
     "date": "2025-12-19T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "New York Rangers",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -10839,7 +10839,7 @@
     "id": "nhl_2025010084",
     "league": "NHL",
     "date": "2025-10-03T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Ottawa Senators",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -10920,7 +10920,7 @@
     "id": "nhl_2025020382",
     "league": "NHL",
     "date": "2025-11-28T21:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Ottawa Senators",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -10930,7 +10930,7 @@
     "league": "NHL",
     "date": "2025-12-07T00:00:00Z",
     "team": "Ottawa Senators",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Canadian Tire Centre",
     "city": "Eastern"
   },
@@ -11163,7 +11163,7 @@
     "id": "nhl_2025020280",
     "league": "NHL",
     "date": "2025-11-15T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Philadelphia Flyers",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -11173,7 +11173,7 @@
     "league": "NHL",
     "date": "2025-11-21T00:00:00Z",
     "team": "Philadelphia Flyers",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Xfinity Mobile Arena",
     "city": "Eastern"
   },
@@ -11398,7 +11398,7 @@
     "league": "NHL",
     "date": "2025-10-27T23:00:00Z",
     "team": "Pittsburgh Penguins",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "PPG Paints Arena",
     "city": "Eastern"
   },
@@ -11577,7 +11577,7 @@
     "id": "nhl_2025021299",
     "league": "NHL",
     "date": "2026-04-15T01:30:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Pittsburgh Penguins",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -11803,7 +11803,7 @@
     "league": "NHL",
     "date": "2026-03-07T03:00:00Z",
     "team": "San Jose Sharks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "SAP Center at San Jose",
     "city": "San Jose, California"
   },
@@ -11811,7 +11811,7 @@
     "id": "nhl_2025021143",
     "league": "NHL",
     "date": "2026-03-27T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "San Jose Sharks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -11821,7 +11821,7 @@
     "league": "NHL",
     "date": "2026-03-31T02:00:00Z",
     "team": "San Jose Sharks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "SAP Center at San Jose",
     "city": "San Jose, California"
   },
@@ -11910,7 +11910,7 @@
     "id": "nhl_2025020239",
     "league": "NHL",
     "date": "2025-11-09T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Seattle Kraken",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -11991,7 +11991,7 @@
     "id": "nhl_2025020925",
     "league": "NHL",
     "date": "2026-02-27T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Seattle Kraken",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12010,7 +12010,7 @@
     "league": "NHL",
     "date": "2026-03-05T03:00:00Z",
     "team": "Seattle Kraken",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Climate Pledge Arena",
     "city": "Seattle, WA"
   },
@@ -12082,7 +12082,7 @@
     "league": "NHL",
     "date": "2025-10-13T23:30:00Z",
     "team": "Vancouver Canucks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Rogers Arena",
     "city": "Vancouver"
   },
@@ -12090,7 +12090,7 @@
     "id": "nhl_2025020117",
     "league": "NHL",
     "date": "2025-10-24T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Utah Mammoth",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12099,7 +12099,7 @@
     "id": "nhl_2025020172",
     "league": "NHL",
     "date": "2025-10-31T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Vancouver Canucks",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12109,7 +12109,7 @@
     "league": "NHL",
     "date": "2025-11-06T00:30:00Z",
     "team": "Washington Capitals",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Capital One Arena",
     "city": "Washington, DC"
   },
@@ -12117,7 +12117,7 @@
     "id": "nhl_2025020292",
     "league": "NHL",
     "date": "2025-11-16T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Vegas Golden Knights",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12127,7 +12127,7 @@
     "league": "NHL",
     "date": "2025-11-19T00:00:00Z",
     "team": "Toronto Maple Leafs",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Scotiabank Arena",
     "city": "Toronto"
   },
@@ -12135,7 +12135,7 @@
     "id": "nhl_2025020398",
     "league": "NHL",
     "date": "2025-11-30T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Utah Mammoth",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12144,7 +12144,7 @@
     "id": "nhl_2025020531",
     "league": "NHL",
     "date": "2025-12-18T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Winnipeg Jets",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12154,7 +12154,7 @@
     "league": "NHL",
     "date": "2025-12-23T00:00:00Z",
     "team": "Tampa Bay Lightning",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Benchmark International Arena",
     "city": "Tampa, Florida"
   },
@@ -12162,7 +12162,7 @@
     "id": "nhl_2025020640",
     "league": "NHL",
     "date": "2026-01-02T20:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Vegas Golden Knights",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12172,7 +12172,7 @@
     "league": "NHL",
     "date": "2026-01-10T02:00:00Z",
     "team": "Utah Mammoth",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Delta Center",
     "city": "Salt Lake City, Utah"
   },
@@ -12181,7 +12181,7 @@
     "league": "NHL",
     "date": "2026-01-11T03:00:00Z",
     "team": "Vegas Golden Knights",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "T-Mobile Arena",
     "city": "Las Vegas, Nevada"
   },
@@ -12189,7 +12189,7 @@
     "id": "nhl_2025020751",
     "league": "NHL",
     "date": "2026-01-17T01:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Tampa Bay Lightning",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12199,7 +12199,7 @@
     "league": "NHL",
     "date": "2026-01-21T01:00:00Z",
     "team": "Winnipeg Jets",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Canada Life Centre",
     "city": "Winnipeg"
   },
@@ -12208,7 +12208,7 @@
     "league": "NHL",
     "date": "2026-03-15T19:00:00Z",
     "team": "Winnipeg Jets",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Canada Life Centre",
     "city": "Winnipeg"
   },
@@ -12217,7 +12217,7 @@
     "league": "NHL",
     "date": "2026-03-21T23:00:00Z",
     "team": "Vancouver Canucks",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Rogers Arena",
     "city": "Vancouver"
   },
@@ -12225,7 +12225,7 @@
     "id": "nhl_2025021128",
     "league": "NHL",
     "date": "2026-03-25T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Washington Capitals",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12234,7 +12234,7 @@
     "id": "nhl_2025021160",
     "league": "NHL",
     "date": "2026-03-28T23:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Toronto Maple Leafs",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12243,7 +12243,7 @@
     "id": "nhl_2025021253",
     "league": "NHL",
     "date": "2026-04-10T00:00:00Z",
-    "team": "St Louis Blues",
+    "team": "St. Louis Blues",
     "opponent": "Winnipeg Jets",
     "arena": "Enterprise Center",
     "city": "Central"
@@ -12253,7 +12253,7 @@
     "league": "NHL",
     "date": "2026-04-17T00:00:00Z",
     "team": "Utah Mammoth",
-    "opponent": "St Louis Blues",
+    "opponent": "St. Louis Blues",
     "arena": "Delta Center",
     "city": "Salt Lake City, Utah"
   },

@@ -1,16 +1,17 @@
 //app/_layout.tsx
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useColorScheme } from '@/hooks/useColorScheme';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
+import { PremiumProvider } from '@/context/PremiumContext';
+import { ThemeProvider } from '@/context/ThemeContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
@@ -32,7 +33,21 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider>
+      <PremiumProvider>
+        <NavigationThemeWrapper />
+        <StatusBar style="light" backgroundColor="#0A2940" />
+      </PremiumProvider>
+    </ThemeProvider>
+  );
+}
+
+// Separate component so we can use the hook inside the provider
+function NavigationThemeWrapper() {
+  const { effectiveScheme } = useTheme();
+
+  return (
+    <NavigationThemeProvider value={effectiveScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="signup" options={{ headerShown: false }} />
@@ -43,7 +58,6 @@ export default function RootLayout() {
         <Stack.Screen name="arenas/[arenaId]" options={{ headerShown: false }} />
         <Stack.Screen name="leagues/[leagueName]" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="light" backgroundColor="#0A2940" />
-    </ThemeProvider>
+    </NavigationThemeProvider>
   );
 }

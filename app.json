@@ -15,10 +15,29 @@
     },
     "ios": {
       "supportsTablet": true,
+      "usesAppleSignIn": true,
       "config": {
         "googleMapsApiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
       },
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.tkirk21.MyHockeyPassport",
+      "infoPlist": {
+        "SKAdNetworkItems": [
+          {
+            "SKAdNetworkIdentifier": "v9wttpbfk9.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "n38lu8286q.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "v9wttpbfk9.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "n38lu8286q.skadnetwork"
+          }
+        ],
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -27,13 +46,19 @@
       },
       "edgeToEdgeEnabled": true,
       "userInterfaceStyle": "automatic",
+      "package": "com.tkirk21.MyHockeyPassport",
+      "googleServicesFile": "./google-services.json",
       "config": {
+        "googleSignIn": {
+          "reservedClientId": "853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com"
+        },
         "googleMaps": {
           "apiKey": "AIzaSyBramj8qFsZfjXUZmAm8HMc8JVmZBHIDR8"
         }
       },
-      "package": "com.tkirk21.MyHockeyPassport",
-      "googleServicesFile": "./google-services.json"
+      "permissions": [
+        "android.permission.INTERNET"
+      ]
     },
     "updates": {
       "enabled": false,
@@ -58,7 +83,18 @@
       "expo-router",
       "@react-native-google-signin/google-signin",
       "expo-asset",
-      "expo-font"
-    ],
+      "expo-font",
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "763545830068611",
+          "clientToken": "e4204e738403a32bdc1f05829a641788",
+          "displayName": "My Hockey Passport",
+          "isAutoInitEnabled": true,
+          "autoLogAppEventsEnabled": false,
+          "advertiserIDCollectionEnabled": false
+        }
+      ]
+    ]
   }
 }

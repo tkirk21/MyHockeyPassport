@@ -5,11 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { collection, getDocs, doc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const auth = getAuth();
 
 export default function BlockedUsersScreen() {
   const router = useRouter();
+  const colorScheme = useColorScheme();
   const [blockedUsers, setBlockedUsers] = useState<any[]>([]);
 
   useEffect(() => {
@@ -59,18 +61,31 @@ export default function BlockedUsersScreen() {
     ]);
   };
 
+  const styles = StyleSheet.create({
+    avatar: { width: 40, height: 40, borderRadius: 20, },
+    backArrow: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    empty: { color: colorScheme === 'dark' ? '#BBBBBB' : '#888888', textAlign: 'center', marginTop: 50, fontSize: 16 },
+    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 28, fontWeight: '700', marginLeft: 20 },
+    inner: { padding: 20 },
+    label: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18 },
+    listRow: { flexDirection: 'row', alignItems: 'center', flex: 1 },
+    row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16 },
+    screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    unblockText: { color: colorScheme === 'dark' ? '#60A5FA' : '#1E88E5', fontWeight: '600' },
+    userName: { marginLeft: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18 },
+  });
+
   return (
-    <View style={{ flex: 1, backgroundColor: '#0A2940' }}>
+    <View style={styles.screenBackground}>
       <Stack.Screen options={{ headerShown: false }} />
 
       {/* Custom header */}
-      <View style={{ paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}>
+      <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="arrow-back" size={28} color="#fff" />
+          <Ionicons name="arrow-back" size={28} color={styles.backArrow.color} />
         </TouchableOpacity>
-        <Text style={{ color: '#fff', fontSize: 28, fontWeight: '700', marginLeft: 20 }}>
-          Blocked Users
-        </Text>
+        <Text style={styles.headerTitle}>Blocked Users</Text>
       </View>
 
       <ScrollView style={{ flex: 1 }}>
@@ -98,12 +113,3 @@ export default function BlockedUsersScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  inner: { padding: 20 },
-  row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 16 },
-  label: { color: '#fff', fontSize: 18 },
-  unblockText: { color: '#1E88E5', fontWeight: '600' },
-  empty: { color: '#888', textAlign: 'center', marginTop: 50, fontSize: 16 },
-  avatar: { width: 40, height: 40, borderRadius: 20, },
-});

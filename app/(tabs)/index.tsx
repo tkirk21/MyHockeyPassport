@@ -2,11 +2,13 @@
 import { Redirect } from 'expo-router';
 import { Image, View, Text, StyleSheet, Dimensions } from 'react-native';
 import { useEffect, useState } from 'react';
+import { useColorScheme } from '../../hooks/useColorScheme';
 
 const { height } = Dimensions.get('window');
 
 export default function TabsIndex() {
   const [showSplash, setShowSplash] = useState(true);
+  const colorScheme = useColorScheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,11 +18,17 @@ export default function TabsIndex() {
     return () => clearTimeout(timer);
   }, []);
 
+  const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF', justifyContent: 'center', alignItems: 'center' },
+    logo: { width: 200, height: 200, marginBottom: 40 },
+    loadingText: { fontSize: 20, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700' },
+  });
+
   if (showSplash) {
     return (
       <View style={styles.container}>
         <Image
-          source={require('../../assets/images/logo_with_font.png')} // ←←← UPDATE EXTENSION HERE ONCE YOU CONFIRM
+          source={colorScheme === 'dark' ? require('../../assets/images/logo_with_font_dark.jpg') : require('../../assets/images/logo_with_font.png')}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -31,22 +39,3 @@ export default function TabsIndex() {
 
   return <Redirect href="/home" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    marginBottom: 40,
-  },
-  loadingText: {
-    fontSize: 20,
-    color: '#0A2940',
-    fontWeight: '700',
-  },
-});

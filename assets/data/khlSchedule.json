@@ -1,0 +1,2585 @@
+[
+  {
+    "id": "khl_20260107_001",
+    "league": "KHL",
+    "date": "2026-01-07T11:00:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Amur Khabarovsk",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260107_002",
+    "league": "KHL",
+    "date": "2026-01-07T11:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Dynamo MSK",
+    "arena": "Bolshoy Ice Dome",
+    "city": "FT Sirius, Russia"
+  },
+  {
+    "id": "khl_20260107_003",
+    "league": "KHL",
+    "date": "2026-01-07T14:00:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Lada Togliatti",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260108_001",
+    "league": "KHL",
+    "date": "2026-01-08T10:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260108_002",
+    "league": "KHL",
+    "date": "2026-01-08T11:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260108_003",
+    "league": "KHL",
+    "date": "2026-01-08T11:30:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260108_004",
+    "league": "KHL",
+    "date": "2026-01-08T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Avangard Omsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260108_005",
+    "league": "KHL",
+    "date": "2026-01-08T14:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Dinamo Minsk",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260108_006",
+    "league": "KHL",
+    "date": "2026-01-08T14:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Barys Astana",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260109_001",
+    "league": "KHL",
+    "date": "2026-01-09T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260109_002",
+    "league": "KHL",
+    "date": "2026-01-09T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Lada Togliatti",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260109_003",
+    "league": "KHL",
+    "date": "2026-01-09T14:00:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Shanghai Dragons",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260110_001",
+    "league": "KHL",
+    "date": "2026-01-10T11:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260110_002",
+    "league": "KHL",
+    "date": "2026-01-10T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260110_003",
+    "league": "KHL",
+    "date": "2026-01-10T11:30:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Barys Astana",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260110_004",
+    "league": "KHL",
+    "date": "2026-01-10T14:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260111_001",
+    "league": "KHL",
+    "date": "2026-01-11T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260111_002",
+    "league": "KHL",
+    "date": "2026-01-11T15:00:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Spartak Moscow",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260112_001",
+    "league": "KHL",
+    "date": "2026-01-12T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Barys Astana",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260112_002",
+    "league": "KHL",
+    "date": "2026-01-12T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260112_003",
+    "league": "KHL",
+    "date": "2026-01-12T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260112_004",
+    "league": "KHL",
+    "date": "2026-01-12T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "HC Sochi",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260112_005",
+    "league": "KHL",
+    "date": "2026-01-12T16:30:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260113_001",
+    "league": "KHL",
+    "date": "2026-01-13T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260113_002",
+    "league": "KHL",
+    "date": "2026-01-13T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260113_003",
+    "league": "KHL",
+    "date": "2026-01-13T16:30:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260114_001",
+    "league": "KHL",
+    "date": "2026-01-14T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "HC Sochi",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260114_002",
+    "league": "KHL",
+    "date": "2026-01-14T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260114_003",
+    "league": "KHL",
+    "date": "2026-01-14T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260114_004",
+    "league": "KHL",
+    "date": "2026-01-14T16:30:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260114_005",
+    "league": "KHL",
+    "date": "2026-01-14T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Spartak Moscow",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260115_001",
+    "league": "KHL",
+    "date": "2026-01-15T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260115_002",
+    "league": "KHL",
+    "date": "2026-01-15T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "CSKA Moscow",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260115_003",
+    "league": "KHL",
+    "date": "2026-01-15T14:00:00Z",
+    "team": "Barys Astana",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260115_004",
+    "league": "KHL",
+    "date": "2026-01-15T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260115_005",
+    "league": "KHL",
+    "date": "2026-01-15T16:30:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Dinamo Minsk",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260116_001",
+    "league": "KHL",
+    "date": "2026-01-16T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "HC Sochi",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260117_001",
+    "league": "KHL",
+    "date": "2026-01-17T07:00:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260117_002",
+    "league": "KHL",
+    "date": "2026-01-17T07:00:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260117_003",
+    "league": "KHL",
+    "date": "2026-01-17T10:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260117_004",
+    "league": "KHL",
+    "date": "2026-01-17T11:30:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260117_005",
+    "league": "KHL",
+    "date": "2026-01-17T12:00:00Z",
+    "team": "Barys Astana",
+    "opponent": "CSKA Moscow",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260117_006",
+    "league": "KHL",
+    "date": "2026-01-17T14:00:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260117_007",
+    "league": "KHL",
+    "date": "2026-01-17T14:00:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Dinamo Minsk",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260117_008",
+    "league": "KHL",
+    "date": "2026-01-17T14:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Shanghai Dragons",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260118_001",
+    "league": "KHL",
+    "date": "2026-01-18T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Avangard Omsk",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260118_002",
+    "league": "KHL",
+    "date": "2026-01-18T13:30:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "HC Sochi",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260119_001",
+    "league": "KHL",
+    "date": "2026-01-19T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260119_002",
+    "league": "KHL",
+    "date": "2026-01-19T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260119_003",
+    "league": "KHL",
+    "date": "2026-01-19T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260119_004",
+    "league": "KHL",
+    "date": "2026-01-19T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Dinamo Minsk",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260119_005",
+    "league": "KHL",
+    "date": "2026-01-19T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Severstal Cherepovets",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260120_001",
+    "league": "KHL",
+    "date": "2026-01-20T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Avangard Omsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260120_002",
+    "league": "KHL",
+    "date": "2026-01-20T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260120_003",
+    "league": "KHL",
+    "date": "2026-01-20T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Barys Astana",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260120_004",
+    "league": "KHL",
+    "date": "2026-01-20T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Spartak Moscow",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260121_001",
+    "league": "KHL",
+    "date": "2026-01-21T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260121_002",
+    "league": "KHL",
+    "date": "2026-01-21T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Dinamo Minsk",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260121_003",
+    "league": "KHL",
+    "date": "2026-01-21T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260121_004",
+    "league": "KHL",
+    "date": "2026-01-21T16:30:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Dynamo Moscow",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260122_001",
+    "league": "KHL",
+    "date": "2026-01-22T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Avangard Omsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260122_002",
+    "league": "KHL",
+    "date": "2026-01-22T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260122_003",
+    "league": "KHL",
+    "date": "2026-01-22T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Barys Astana",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260122_004",
+    "league": "KHL",
+    "date": "2026-01-22T16:30:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Shanghai Dragons",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260122_005",
+    "league": "KHL",
+    "date": "2026-01-22T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Spartak Moscow",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260123_001",
+    "league": "KHL",
+    "date": "2026-01-23T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Dynamo Moscow",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260124_001",
+    "league": "KHL",
+    "date": "2026-01-24T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260124_002",
+    "league": "KHL",
+    "date": "2026-01-24T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260124_003",
+    "league": "KHL",
+    "date": "2026-01-24T14:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Barys Astana",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260124_004",
+    "league": "KHL",
+    "date": "2026-01-24T14:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260124_005",
+    "league": "KHL",
+    "date": "2026-01-24T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260124_006",
+    "league": "KHL",
+    "date": "2026-01-24T14:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260124_007",
+    "league": "KHL",
+    "date": "2026-01-24T14:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Shanghai Dragons",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260125_001",
+    "league": "KHL",
+    "date": "2026-01-25T14:00:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260126_001",
+    "league": "KHL",
+    "date": "2026-01-26T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260126_002",
+    "league": "KHL",
+    "date": "2026-01-26T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Amur Khabarovsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260126_003",
+    "league": "KHL",
+    "date": "2026-01-26T16:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260126_004",
+    "league": "KHL",
+    "date": "2026-01-26T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260126_005",
+    "league": "KHL",
+    "date": "2026-01-26T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Shanghai Dragons",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260126_006",
+    "league": "KHL",
+    "date": "2026-01-26T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Lada Togliatti",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260126_007",
+    "league": "KHL",
+    "date": "2026-01-26T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Severstal Cherepovets",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260127_001",
+    "league": "KHL",
+    "date": "2026-01-27T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260127_002",
+    "league": "KHL",
+    "date": "2026-01-27T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260128_001",
+    "league": "KHL",
+    "date": "2026-01-28T14:00:00Z",
+    "team": "Barys Astana",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260128_002",
+    "league": "KHL",
+    "date": "2026-01-28T16:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260128_003",
+    "league": "KHL",
+    "date": "2026-01-28T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Lada Togliatti",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260128_004",
+    "league": "KHL",
+    "date": "2026-01-28T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "CSKA Moscow",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260128_005",
+    "league": "KHL",
+    "date": "2026-01-28T16:30:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260129_001",
+    "league": "KHL",
+    "date": "2026-01-29T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260129_002",
+    "league": "KHL",
+    "date": "2026-01-29T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Dinamo Minsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260129_003",
+    "league": "KHL",
+    "date": "2026-01-29T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260130_001",
+    "league": "KHL",
+    "date": "2026-01-30T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Lada Togliatti",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260130_002",
+    "league": "KHL",
+    "date": "2026-01-30T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260130_003",
+    "league": "KHL",
+    "date": "2026-01-30T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "HC Sochi",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260130_004",
+    "league": "KHL",
+    "date": "2026-01-30T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Severstal Cherepovets",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260131_001",
+    "league": "KHL",
+    "date": "2026-01-31T07:00:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Barys Astana",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260131_002",
+    "league": "KHL",
+    "date": "2026-01-31T07:00:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260131_003",
+    "league": "KHL",
+    "date": "2026-01-31T10:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260131_004",
+    "league": "KHL",
+    "date": "2026-01-31T11:30:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260131_005",
+    "league": "KHL",
+    "date": "2026-01-31T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Dinamo Minsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260131_006",
+    "league": "KHL",
+    "date": "2026-01-31T14:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260201_001",
+    "league": "KHL",
+    "date": "2026-02-01T14:00:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260201_002",
+    "league": "KHL",
+    "date": "2026-02-01T14:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "HC Sochi",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260201_003",
+    "league": "KHL",
+    "date": "2026-02-01T14:00:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Avangard Omsk",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260202_001",
+    "league": "KHL",
+    "date": "2026-02-02T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Barys Astana",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260202_002",
+    "league": "KHL",
+    "date": "2026-02-02T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260202_003",
+    "league": "KHL",
+    "date": "2026-02-02T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260202_004",
+    "league": "KHL",
+    "date": "2026-02-02T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260202_005",
+    "league": "KHL",
+    "date": "2026-02-02T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Spartak Moscow",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260203_001",
+    "league": "KHL",
+    "date": "2026-02-03T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260203_002",
+    "league": "KHL",
+    "date": "2026-02-03T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260203_003",
+    "league": "KHL",
+    "date": "2026-02-03T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Avangard Omsk",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260203_004",
+    "league": "KHL",
+    "date": "2026-02-03T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "HC Sochi",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260204_001",
+    "league": "KHL",
+    "date": "2026-02-04T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260204_002",
+    "league": "KHL",
+    "date": "2026-02-04T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Barys Astana",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260204_003",
+    "league": "KHL",
+    "date": "2026-02-04T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260204_004",
+    "league": "KHL",
+    "date": "2026-02-04T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260204_005",
+    "league": "KHL",
+    "date": "2026-02-04T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Spartak Moscow",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260205_001",
+    "league": "KHL",
+    "date": "2026-02-05T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260205_002",
+    "league": "KHL",
+    "date": "2026-02-05T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Dinamo Minsk",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260205_003",
+    "league": "KHL",
+    "date": "2026-02-05T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260205_004",
+    "league": "KHL",
+    "date": "2026-02-05T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "CSKA Moscow",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260210_001",
+    "league": "KHL",
+    "date": "2026-02-10T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "HC Sochi",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260210_002",
+    "league": "KHL",
+    "date": "2026-02-10T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260210_003",
+    "league": "KHL",
+    "date": "2026-02-10T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260210_004",
+    "league": "KHL",
+    "date": "2026-02-10T16:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260210_005",
+    "league": "KHL",
+    "date": "2026-02-10T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260210_006",
+    "league": "KHL",
+    "date": "2026-02-10T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260210_007",
+    "league": "KHL",
+    "date": "2026-02-10T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Dynamo Moscow",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260211_001",
+    "league": "KHL",
+    "date": "2026-02-11T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260211_002",
+    "league": "KHL",
+    "date": "2026-02-11T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Avangard Omsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260212_001",
+    "league": "KHL",
+    "date": "2026-02-12T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Lada Togliatti",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260212_002",
+    "league": "KHL",
+    "date": "2026-02-12T14:30:00Z",
+    "team": "Barys Astana",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260212_003",
+    "league": "KHL",
+    "date": "2026-02-12T16:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "HC Sochi",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260212_004",
+    "league": "KHL",
+    "date": "2026-02-12T16:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260212_005",
+    "league": "KHL",
+    "date": "2026-02-12T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260212_006",
+    "league": "KHL",
+    "date": "2026-02-12T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Severstal Cherepovets",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260212_007",
+    "league": "KHL",
+    "date": "2026-02-12T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "CSKA Moscow",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260213_001",
+    "league": "KHL",
+    "date": "2026-02-13T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Avangard Omsk",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260213_002",
+    "league": "KHL",
+    "date": "2026-02-13T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260213_003",
+    "league": "KHL",
+    "date": "2026-02-13T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260213_004",
+    "league": "KHL",
+    "date": "2026-02-13T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Dynamo Moscow",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260214_001",
+    "league": "KHL",
+    "date": "2026-02-14T12:00:00Z",
+    "team": "Barys Astana",
+    "opponent": "Lada Togliatti",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260214_002",
+    "league": "KHL",
+    "date": "2026-02-14T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260215_001",
+    "league": "KHL",
+    "date": "2026-02-15T11:00:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260215_002",
+    "league": "KHL",
+    "date": "2026-02-15T12:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260215_003",
+    "league": "KHL",
+    "date": "2026-02-15T14:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260215_004",
+    "league": "KHL",
+    "date": "2026-02-15T14:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Dynamo Moscow",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260215_005",
+    "league": "KHL",
+    "date": "2026-02-15T14:00:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Dinamo Minsk",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260215_006",
+    "league": "KHL",
+    "date": "2026-02-15T14:00:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "CSKA Moscow",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260216_001",
+    "league": "KHL",
+    "date": "2026-02-16T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260216_002",
+    "league": "KHL",
+    "date": "2026-02-16T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260217_001",
+    "league": "KHL",
+    "date": "2026-02-17T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260217_002",
+    "league": "KHL",
+    "date": "2026-02-17T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "HC Sochi",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260217_003",
+    "league": "KHL",
+    "date": "2026-02-17T14:30:00Z",
+    "team": "Barys Astana",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260217_004",
+    "league": "KHL",
+    "date": "2026-02-17T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "CSKA Moscow",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260217_005",
+    "league": "KHL",
+    "date": "2026-02-17T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260218_001",
+    "league": "KHL",
+    "date": "2026-02-18T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260218_002",
+    "league": "KHL",
+    "date": "2026-02-18T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260218_003",
+    "league": "KHL",
+    "date": "2026-02-18T16:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Shanghai Dragons",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260218_004",
+    "league": "KHL",
+    "date": "2026-02-18T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Spartak Moscow",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260218_005",
+    "league": "KHL",
+    "date": "2026-02-18T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260219_001",
+    "league": "KHL",
+    "date": "2026-02-19T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260219_002",
+    "league": "KHL",
+    "date": "2026-02-19T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "HC Sochi",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260220_001",
+    "league": "KHL",
+    "date": "2026-02-20T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260220_002",
+    "league": "KHL",
+    "date": "2026-02-20T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260220_003",
+    "league": "KHL",
+    "date": "2026-02-20T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Admiral Vladivostok",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260220_004",
+    "league": "KHL",
+    "date": "2026-02-20T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260220_005",
+    "league": "KHL",
+    "date": "2026-02-20T14:30:00Z",
+    "team": "Barys Astana",
+    "opponent": "Shanghai Dragons",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260220_006",
+    "league": "KHL",
+    "date": "2026-02-20T16:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Spartak Moscow",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260221_001",
+    "league": "KHL",
+    "date": "2026-02-21T14:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Dinamo Minsk",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260221_002",
+    "league": "KHL",
+    "date": "2026-02-21T14:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260221_003",
+    "league": "KHL",
+    "date": "2026-02-21T14:00:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "CSKA Moscow",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260222_001",
+    "league": "KHL",
+    "date": "2026-02-22T11:00:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Amur Khabarovsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260222_002",
+    "league": "KHL",
+    "date": "2026-02-22T11:30:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Spartak Moscow",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260222_003",
+    "league": "KHL",
+    "date": "2026-02-22T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260222_004",
+    "league": "KHL",
+    "date": "2026-02-22T12:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Shanghai Dragons",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260222_005",
+    "league": "KHL",
+    "date": "2026-02-22T12:00:00Z",
+    "team": "Barys Astana",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260222_006",
+    "league": "KHL",
+    "date": "2026-02-22T14:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260223_001",
+    "league": "KHL",
+    "date": "2026-02-23T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Lada Togliatti",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260223_002",
+    "league": "KHL",
+    "date": "2026-02-23T14:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Dinamo Minsk",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260223_003",
+    "league": "KHL",
+    "date": "2026-02-23T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "CSKA Moscow",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260224_001",
+    "league": "KHL",
+    "date": "2026-02-24T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260224_002",
+    "league": "KHL",
+    "date": "2026-02-24T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260224_003",
+    "league": "KHL",
+    "date": "2026-02-24T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Avangard Omsk",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260224_004",
+    "league": "KHL",
+    "date": "2026-02-24T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Dynamo Moscow",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260224_005",
+    "league": "KHL",
+    "date": "2026-02-24T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260225_001",
+    "league": "KHL",
+    "date": "2026-02-25T16:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Lada Togliatti",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260225_002",
+    "league": "KHL",
+    "date": "2026-02-25T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260225_003",
+    "league": "KHL",
+    "date": "2026-02-25T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Dinamo Minsk",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260226_001",
+    "league": "KHL",
+    "date": "2026-02-26T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260226_002",
+    "league": "KHL",
+    "date": "2026-02-26T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260226_003",
+    "league": "KHL",
+    "date": "2026-02-26T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Dynamo Moscow",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260227_001",
+    "league": "KHL",
+    "date": "2026-02-27T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260227_002",
+    "league": "KHL",
+    "date": "2026-02-27T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Ak Bars Kazan",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260227_003",
+    "league": "KHL",
+    "date": "2026-02-27T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260227_004",
+    "league": "KHL",
+    "date": "2026-02-27T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Dinamo Minsk",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260227_005",
+    "league": "KHL",
+    "date": "2026-02-27T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Shanghai Dragons",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260228_001",
+    "league": "KHL",
+    "date": "2026-02-28T14:00:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Barys Astana",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260228_002",
+    "league": "KHL",
+    "date": "2026-02-28T14:00:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260301_001",
+    "league": "KHL",
+    "date": "2026-03-01T07:00:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260301_002",
+    "league": "KHL",
+    "date": "2026-03-01T07:00:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260301_003",
+    "league": "KHL",
+    "date": "2026-03-01T11:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260301_004",
+    "league": "KHL",
+    "date": "2026-03-01T13:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Shanghai Dragons",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260301_005",
+    "league": "KHL",
+    "date": "2026-03-01T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260301_006",
+    "league": "KHL",
+    "date": "2026-03-01T14:00:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260302_001",
+    "league": "KHL",
+    "date": "2026-03-02T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260302_002",
+    "league": "KHL",
+    "date": "2026-03-02T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Barys Astana",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260302_003",
+    "league": "KHL",
+    "date": "2026-03-02T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260302_004",
+    "league": "KHL",
+    "date": "2026-03-02T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Avangard Omsk",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260303_001",
+    "league": "KHL",
+    "date": "2026-03-03T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260303_002",
+    "league": "KHL",
+    "date": "2026-03-03T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260303_003",
+    "league": "KHL",
+    "date": "2026-03-03T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260303_004",
+    "league": "KHL",
+    "date": "2026-03-03T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260304_001",
+    "league": "KHL",
+    "date": "2026-03-04T16:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260304_002",
+    "league": "KHL",
+    "date": "2026-03-04T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260304_003",
+    "league": "KHL",
+    "date": "2026-03-04T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Avangard Omsk",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260304_004",
+    "league": "KHL",
+    "date": "2026-03-04T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260305_001",
+    "league": "KHL",
+    "date": "2026-03-05T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260305_002",
+    "league": "KHL",
+    "date": "2026-03-05T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260305_003",
+    "league": "KHL",
+    "date": "2026-03-05T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260305_004",
+    "league": "KHL",
+    "date": "2026-03-05T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260306_001",
+    "league": "KHL",
+    "date": "2026-03-06T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260306_002",
+    "league": "KHL",
+    "date": "2026-03-06T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Avangard Omsk",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260306_003",
+    "league": "KHL",
+    "date": "2026-03-06T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260307_001",
+    "league": "KHL",
+    "date": "2026-03-07T07:00:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260307_002",
+    "league": "KHL",
+    "date": "2026-03-07T07:00:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Salavat Yulaev Ufa",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260307_003",
+    "league": "KHL",
+    "date": "2026-03-07T13:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Spartak Moscow",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260307_004",
+    "league": "KHL",
+    "date": "2026-03-07T14:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260307_005",
+    "league": "KHL",
+    "date": "2026-03-07T14:00:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Barys Astana",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260307_006",
+    "league": "KHL",
+    "date": "2026-03-07T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260308_001",
+    "league": "KHL",
+    "date": "2026-03-08T11:30:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260308_002",
+    "league": "KHL",
+    "date": "2026-03-08T13:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Spartak Moscow",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260308_003",
+    "league": "KHL",
+    "date": "2026-03-08T14:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "HC Sochi",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260309_001",
+    "league": "KHL",
+    "date": "2026-03-09T11:00:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Sibir Novosibirsk",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260309_002",
+    "league": "KHL",
+    "date": "2026-03-09T14:00:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Dinamo Minsk",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260309_003",
+    "league": "KHL",
+    "date": "2026-03-09T14:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260310_001",
+    "league": "KHL",
+    "date": "2026-03-10T09:15:00Z",
+    "team": "Amur Khabarovsk",
+    "opponent": "Barys Astana",
+    "arena": "Platinum Arena",
+    "city": "Khabarovsk, Khabarovsk Krai"
+  },
+  {
+    "id": "khl_20260310_002",
+    "league": "KHL",
+    "date": "2026-03-10T16:00:00Z",
+    "team": "Neftekhimik Nizhnekamsk",
+    "opponent": "Traktor Chelyabinsk",
+    "arena": "SCC Arena",
+    "city": "Nizhnekamsk, Tatarstan"
+  },
+  {
+    "id": "khl_20260310_003",
+    "league": "KHL",
+    "date": "2026-03-10T16:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "Spartak Moscow",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260310_004",
+    "league": "KHL",
+    "date": "2026-03-10T16:30:00Z",
+    "team": "CSKA Moscow",
+    "opponent": "HC Sochi",
+    "arena": "CSKA Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260311_001",
+    "league": "KHL",
+    "date": "2026-03-11T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260311_002",
+    "league": "KHL",
+    "date": "2026-03-11T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260311_003",
+    "league": "KHL",
+    "date": "2026-03-11T14:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260311_004",
+    "league": "KHL",
+    "date": "2026-03-11T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260311_005",
+    "league": "KHL",
+    "date": "2026-03-11T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Shanghai Dragons",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260311_006",
+    "league": "KHL",
+    "date": "2026-03-11T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Dinamo Minsk",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260312_001",
+    "league": "KHL",
+    "date": "2026-03-12T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Barys Astana",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260312_002",
+    "league": "KHL",
+    "date": "2026-03-12T16:00:00Z",
+    "team": "Ak Bars Kazan",
+    "opponent": "HC Sochi",
+    "arena": "Tatneft Arena",
+    "city": "Kazan, Tatarstan"
+  },
+  {
+    "id": "khl_20260313_001",
+    "league": "KHL",
+    "date": "2026-03-13T09:30:00Z",
+    "team": "Admiral Vladivostok",
+    "opponent": "Barys Astana",
+    "arena": "Fetisov Arena",
+    "city": "Vladivostok, Primorsky Krai"
+  },
+  {
+    "id": "khl_20260313_002",
+    "league": "KHL",
+    "date": "2026-03-13T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260313_003",
+    "league": "KHL",
+    "date": "2026-03-13T13:30:00Z",
+    "team": "Avangard Omsk",
+    "opponent": "Shanghai Dragons",
+    "arena": "G-Drive Arena",
+    "city": "Omsk, Omsk Oblast"
+  },
+  {
+    "id": "khl_20260313_004",
+    "league": "KHL",
+    "date": "2026-03-13T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Torpedo Nizhny Novgorod",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260313_005",
+    "league": "KHL",
+    "date": "2026-03-13T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Dynamo Moscow",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260313_006",
+    "league": "KHL",
+    "date": "2026-03-13T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260313_007",
+    "league": "KHL",
+    "date": "2026-03-13T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260313_008",
+    "league": "KHL",
+    "date": "2026-03-13T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Severstal Cherepovets",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260314_001",
+    "league": "KHL",
+    "date": "2026-03-14T12:00:00Z",
+    "team": "Avtomobilist Yekaterinburg",
+    "opponent": "CSKA Moscow",
+    "arena": "UMMC Arena",
+    "city": "Yekaterinburg, Sverdlovsk Oblast"
+  },
+  {
+    "id": "khl_20260315_001",
+    "league": "KHL",
+    "date": "2026-03-15T11:30:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Shanghai Dragons",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260315_002",
+    "league": "KHL",
+    "date": "2026-03-15T14:00:00Z",
+    "team": "HC Sochi",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260315_003",
+    "league": "KHL",
+    "date": "2026-03-15T14:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Lokomotiv Yaroslavl",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260316_001",
+    "league": "KHL",
+    "date": "2026-03-16T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "CSKA Moscow",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260316_002",
+    "league": "KHL",
+    "date": "2026-03-16T14:00:00Z",
+    "team": "Metallurg Magnitogorsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Arena Metallurg",
+    "city": "Magnitogorsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260316_003",
+    "league": "KHL",
+    "date": "2026-03-16T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260316_004",
+    "league": "KHL",
+    "date": "2026-03-16T14:30:00Z",
+    "team": "Barys Astana",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Barys Arena",
+    "city": "Astana, Kazakhstan"
+  },
+  {
+    "id": "khl_20260316_005",
+    "league": "KHL",
+    "date": "2026-03-16T16:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260316_006",
+    "league": "KHL",
+    "date": "2026-03-16T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260316_007",
+    "league": "KHL",
+    "date": "2026-03-16T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Dynamo Moscow",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260317_001",
+    "league": "KHL",
+    "date": "2026-03-17T15:00:00Z",
+    "team": "Lada Togliatti",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Lada Arena",
+    "city": "Tolyatti, Samara Oblast"
+  },
+  {
+    "id": "khl_20260317_002",
+    "league": "KHL",
+    "date": "2026-03-17T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Avangard Omsk",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260318_001",
+    "league": "KHL",
+    "date": "2026-03-18T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "SKA Saint Petersburg",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260318_002",
+    "league": "KHL",
+    "date": "2026-03-18T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260318_003",
+    "league": "KHL",
+    "date": "2026-03-18T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260318_004",
+    "league": "KHL",
+    "date": "2026-03-18T16:30:00Z",
+    "team": "HC Sochi",
+    "opponent": "Ak Bars Kazan",
+    "arena": "Bolshoy Ice Dome",
+    "city": "Sochi, Krasnodar Krai"
+  },
+  {
+    "id": "khl_20260318_005",
+    "league": "KHL",
+    "date": "2026-03-18T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "CSKA Moscow",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260318_006",
+    "league": "KHL",
+    "date": "2026-03-18T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Admiral Vladivostok",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260318_007",
+    "league": "KHL",
+    "date": "2026-03-18T16:30:00Z",
+    "team": "Shanghai Dragons",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "SKA Arena",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260319_001",
+    "league": "KHL",
+    "date": "2026-03-19T16:00:00Z",
+    "team": "Torpedo Nizhny Novgorod",
+    "opponent": "Amur Khabarovsk",
+    "arena": "Trade Union Sport Palace",
+    "city": "Nizhny Novgorod, Nizhny Novgorod Oblast"
+  },
+  {
+    "id": "khl_20260319_002",
+    "league": "KHL",
+    "date": "2026-03-19T16:00:00Z",
+    "team": "Severstal Cherepovets",
+    "opponent": "Avangard Omsk",
+    "arena": "Cherepovets Ice Palace",
+    "city": "Cherepovets, Vologda Oblast"
+  },
+  {
+    "id": "khl_20260320_001",
+    "league": "KHL",
+    "date": "2026-03-20T12:30:00Z",
+    "team": "Sibir Novosibirsk",
+    "opponent": "Barys Astana",
+    "arena": "Sibir-Arena",
+    "city": "Novosibirsk, Novosibirsk Oblast"
+  },
+  {
+    "id": "khl_20260320_002",
+    "league": "KHL",
+    "date": "2026-03-20T14:00:00Z",
+    "team": "Traktor Chelyabinsk",
+    "opponent": "Admiral Vladivostok",
+    "arena": "Traktor Ice Arena",
+    "city": "Chelyabinsk, Chelyabinsk Oblast"
+  },
+  {
+    "id": "khl_20260320_003",
+    "league": "KHL",
+    "date": "2026-03-20T14:00:00Z",
+    "team": "Salavat Yulaev Ufa",
+    "opponent": "HC Sochi",
+    "arena": "Ufa Arena",
+    "city": "Ufa, Bashkortostan"
+  },
+  {
+    "id": "khl_20260320_004",
+    "league": "KHL",
+    "date": "2026-03-20T16:00:00Z",
+    "team": "Lokomotiv Yaroslavl",
+    "opponent": "Metallurg Magnitogorsk",
+    "arena": "Arena 2000",
+    "city": "Yaroslavl, Yaroslavl Oblast"
+  },
+  {
+    "id": "khl_20260320_005",
+    "league": "KHL",
+    "date": "2026-03-20T16:10:00Z",
+    "team": "Dinamo Minsk",
+    "opponent": "Avtomobilist Yekaterinburg",
+    "arena": "Minsk Arena",
+    "city": "Minsk, Belarus"
+  },
+  {
+    "id": "khl_20260320_006",
+    "league": "KHL",
+    "date": "2026-03-20T16:30:00Z",
+    "team": "SKA Saint Petersburg",
+    "opponent": "Shanghai Dragons",
+    "arena": "Saint Petersburg Ice Palace",
+    "city": "Saint Petersburg, Russia"
+  },
+  {
+    "id": "khl_20260320_007",
+    "league": "KHL",
+    "date": "2026-03-20T16:30:00Z",
+    "team": "Dynamo Moscow",
+    "opponent": "Ak Bars Kazan",
+    "arena": "VTB Arena",
+    "city": "Moscow, Russia"
+  },
+  {
+    "id": "khl_20260320_008",
+    "league": "KHL",
+    "date": "2026-03-20T16:30:00Z",
+    "team": "Spartak Moscow",
+    "opponent": "Neftekhimik Nizhnekamsk",
+    "arena": "Megasport Arena",
+    "city": "Moscow, Russia"
+  }
+]

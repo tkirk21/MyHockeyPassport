@@ -1,0 +1,254 @@
+[
+  {
+    "id": "ncaaD2_20260130_01",
+    "league": "NCAA DIV II",
+    "date": "2026-01-30T22:00:00Z",
+    "team": "Post Eagles",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260130_02",
+    "league": "NCAA DIV II",
+    "date": "2026-01-30T22:00:00Z",
+    "team": "Saint Anselm Hawks",
+    "opponent": "Southern New Hampshire Penmen",
+    "arena": "Thomas F. Sullivan Arena",
+    "city": "Goffstown, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260130_03",
+    "league": "NCAA DIV II",
+    "date": "2026-01-31T01:40:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Saint Michael's Purple Knights",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260131_01",
+    "league": "NCAA DIV II",
+    "date": "2026-01-31T22:00:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Saint Michael's Purple Knights",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260131_02",
+    "league": "NCAA DIV II",
+    "date": "2026-01-31T22:00:00Z",
+    "team": "Saint Anselm Hawks",
+    "opponent": "Southern New Hampshire Penmen",
+    "arena": "Thomas F. Sullivan Arena",
+    "city": "Goffstown, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260131_03",
+    "league": "NCAA DIV II",
+    "date": "2026-01-31T01:00:00Z",
+    "team": "Franklin Pierce Ravens",
+    "opponent": "Post Eagles",
+    "arena": "Jason Ritchie Ice Arena",
+    "city": "Winchendon, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260206_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T00:00:00Z",
+    "team": "Saint Anselm Hawks",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "Thomas F. Sullivan Arena",
+    "city": "Goffstown, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260206_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T01:00:00Z",
+    "team": "Saint Michael's Purple Knights",
+    "opponent": "Post Eagles",
+    "arena": "C. Douglas Cairns Recreation Arena",
+    "city": "Colchester, Vermont"
+  },
+  {
+    "id": "ncaaD2_20260206_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T01:40:00Z",
+    "team": "Southern New Hampshire Penmen",
+    "opponent": "Assumption Greyhounds",
+    "arena": "Ice Den",
+    "city": "Manchester, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260207_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T20:00:00Z",
+    "team": "Saint Michael's Purple Knights",
+    "opponent": "Post Eagles",
+    "arena": "C. Douglas Cairns Recreation Arena",
+    "city": "Colchester, Vermont"
+  },
+  {
+    "id": "ncaaD2_20260207_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T20:40:00Z",
+    "team": "Southern New Hampshire Penmen",
+    "opponent": "Assumption Greyhounds",
+    "arena": "Ice Den",
+    "city": "Manchester, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260207_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-07T21:00:00Z",
+    "team": "Saint Anselm Hawks",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "Thomas F. Sullivan Arena",
+    "city": "Goffstown, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260210_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-11T01:00:00Z",
+    "team": "Franklin Pierce Ravens",
+    "opponent": "Salve Regina Seahawks",
+    "arena": "Jason Ritchie Ice Arena",
+    "city": "Winchendon, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260213_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-13T22:00:00Z",
+    "team": "Post Eagles",
+    "opponent": "Southern New Hampshire Penmen",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260213_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-14T01:00:00Z",
+    "team": "Saint Michael's Purple Knights",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "C. Douglas Cairns Recreation Arena",
+    "city": "Colchester, Vermont"
+  },
+  {
+    "id": "ncaaD2_20260213_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-14T01:10:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Saint Anselm Hawks",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260214_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-14T19:00:00Z",
+    "team": "Post Eagles",
+    "opponent": "Southern New Hampshire Penmen",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260214_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-14T21:00:00Z",
+    "team": "Saint Michael's Purple Knights",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "C. Douglas Cairns Recreation Arena",
+    "city": "Colchester, Vermont"
+  },
+  {
+    "id": "ncaaD2_20260214_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-15T01:20:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Saint Anselm Hawks",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260220_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-20T22:00:00Z",
+    "team": "Post Eagles",
+    "opponent": "Saint Anselm Hawks",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260220_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-21T01:30:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260220_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-21T01:40:00Z",
+    "team": "Southern New Hampshire Penmen",
+    "opponent": "Saint Michael's Purple Knights",
+    "arena": "Ice Den",
+    "city": "Manchester, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260221_01",
+    "league": "NCAA DIV II",
+    "date": "2026-02-21T19:00:00Z",
+    "team": "Saint Anselm Hawks",
+    "opponent": "Post Eagles",
+    "arena": "Thomas F. Sullivan Arena",
+    "city": "Goffstown, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260221_02",
+    "league": "NCAA DIV II",
+    "date": "2026-02-21T20:40:00Z",
+    "team": "Southern New Hampshire Penmen",
+    "opponent": "Saint Michael's Purple Knights",
+    "arena": "Ice Den",
+    "city": "Manchester, New Hampshire"
+  },
+  {
+    "id": "ncaaD2_20260221_03",
+    "league": "NCAA DIV II",
+    "date": "2026-02-21T00:10:00Z",
+    "team": "Assumption Greyhounds",
+    "opponent": "Franklin Pierce Ravens",
+    "arena": "Worcester Ice Center",
+    "city": "Worcester, Massachusetts"
+  },
+  {
+    "id": "ncaaD2_20260224_01",
+    "league": "NCAA DIV II",
+    "date": "TBA",
+    "team": "Post Eagles",
+    "opponent": "Northeast 10 Opponent",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260228_01",
+    "league": "NCAA DIV II",
+    "date": "TBA",
+    "team": "Post Eagles",
+    "opponent": "Northeast 10 Opponent",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  },
+  {
+    "id": "ncaaD2_20260307_01",
+    "league": "NCAA DIV II",
+    "date": "TBA",
+    "team": "Post Eagles",
+    "opponent": "Northeast 10 Opponent",
+    "arena": "Sports Center of Connecticut",
+    "city": "Waterbury, Connecticut"
+  }
+]

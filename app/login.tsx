@@ -1,7 +1,7 @@
 //app/login.tsx
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { GoogleAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, db, webClientId } from '@/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'expo-router';
@@ -9,10 +9,11 @@ import LoadingPuck from "../components/loadingPuck";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { useColorScheme } from '../hooks/useColorScheme';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import * as AppleAuthentication from 'expo-apple-authentication';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -30,16 +31,9 @@ export default function Login() {
   const [alertTitle, setAlertTitle] = useState('Error');
   const [alertMessage, setAlertMessage] = useState('');
 
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: webClientId,
-    androidClientId: '853703034223-kd7chdctst44rgnh8r9pjr74v04fi6tv.apps.googleusercontent.com',
-    webClientId: webClientId,
-    redirectUri: 'https://auth.expo.io/@tkirk21/MyHockeyPassport',
-  });
-
   const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
     clientId: '763545830068611',
-    expoClientId: '763545830068611',
+    redirectUri: 'fb763545830068611://authorize',
   });
 
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -100,21 +94,11 @@ export default function Login() {
   }, []);
 
   useEffect(() => {
-    if (response?.type === 'success') {
-      const { id_token } = response.params;
-      const credential = GoogleAuthProvider.credential(id_token);
-      signInWithCredential(auth, credential)
-        .then(async () => {
-          const targetTab = await getStartupTabRoute();
-          router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
-        })
-        .catch((error) => {
-          setAlertTitle('Error');
-          setAlertMessage('Google login failed. Try again.');
-          setAlertVisible(true);
-        });
-    }
-  }, [response]);
+    GoogleSignin.configure({
+      webClientId: '853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com',
+      offlineAccess: true,
+    });
+  }, []);
 
   useEffect(() => {
     if (fbResponse?.type === 'success') {
@@ -180,6 +164,81 @@ export default function Login() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+
+      const userInfo = await GoogleSignin.signIn();
+
+      const idToken = userInfo.idToken || userInfo.data?.idToken;
+
+      if (!idToken) {
+        Alert.alert('Error', 'No idToken returned from Google');
+        return;
+      }
+
+      const googleCredential = GoogleAuthProvider.credential(idToken);
+
+      await signInWithCredential(auth, googleCredential);
+
+      const targetTab = await getStartupTabRoute();
+      router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+    } catch (error: any) {
+      console.log('Full Google error in login:', error);
+      if (error.code !== statusCodes.SIGN_IN_CANCELLED) {
+        setAlertTitle('Error');
+        setAlertMessage('Google sign-in failed. Try again.');
+        setAlertVisible(true);
+      }
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    try {
+      console.log('Starting Apple sign-in on login...');
+
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+
+      console.log('Apple credential received:', credential);
+
+      if (!credential.identityToken) {
+        console.log('No identityToken from Apple');
+        Alert.alert('Error', 'No identityToken from Apple');
+        return;
+      }
+
+      const nonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      console.log('Generated nonce:', nonce);
+
+      const provider = new OAuthProvider('apple.com');
+      const appleCredential = provider.credential({
+        idToken: credential.identityToken,
+        rawNonce: nonce,
+      });
+
+      console.log('Apple credential created for Firebase');
+
+      await signInWithCredential(auth, appleCredential);
+
+      console.log('Apple sign-in successful on login');
+
+      const targetTab = await getStartupTabRoute();
+      router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+    } catch (e: any) {
+      console.error('Apple sign-in error on login:', e);
+      if (e.code === 'ERR_CANCELED') {
+        console.log('User cancelled Apple sign-in');
+      } else {
+        Alert.alert('Apple Sign-In Failed', e.message || 'Unknown error');
+      }
+    }
+  };
+
   const handleGoToSignup = () => {
     router.replace('/signup');
   };
@@ -197,6 +256,7 @@ export default function Login() {
     eyeIcon: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontSize: 22 },
     forgotPasswordContainer: { alignItems: 'center', justifyContent: 'center', marginTop: 2, },
     forgotPasswordText: { color: '#5E819F', fontWeight: '500', },
+    fullScreenLoading: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
     googleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
     input: { height: 48, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', borderWidth: 1, paddingHorizontal: 12, marginBottom: 12, borderRadius: 12, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     link: { color: colorScheme === 'dark' ? '#5E819F' : '#5E819F', fontWeight: '600', },
@@ -236,17 +296,32 @@ export default function Login() {
             <View style={styles.socialRow}>
               <TouchableOpacity
                 style={styles.googleBtn}
-                onPress={() => Alert.alert('Coming Soon', 'Google sign-in is temporarily unavailable')}
+                onPress={handleGoogleSignIn}
               >
                 <Ionicons name="logo-google" style={styles.socialIcon} />
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.socialBtn}
-                onPress={() => Alert.alert('Coming Soon', 'Facebook login is temporarily unavailable')}
+                onPress={async () => {
+                  if (fbRequest) {
+                    await fbPromptAsync();
+                  } else {
+                    Alert.alert('Error', 'Facebook login not ready');
+                  }
+                }}
               >
                 <Ionicons name="logo-facebook" style={styles.socialIcon} />
               </TouchableOpacity>
+
+              <AppleAuthentication.AppleAuthenticationButton
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                cornerRadius={20}
+                style={{ width: 40, height: 40 }}
+                onPress={handleAppleSignIn}
+              />
+
             </View>
 
             <TextInput
@@ -306,7 +381,11 @@ export default function Login() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        {loading && <LoadingPuck />}
+        {loading && (
+          <View style={styles.fullScreenLoading}>
+            <LoadingPuck size={240} />
+          </View>
+        )}
       </KeyboardAvoidingView>
       {/* CUSTOM THEMED ALERT MODAL */}
       <Modal visible={alertVisible} transparent animationType="fade">

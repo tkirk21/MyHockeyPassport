@@ -4,24 +4,30 @@ import * as Location from 'expo-location';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { getAuth } from 'firebase/auth';
-import { collection, getDocs, getFirestore, query, where, } from 'firebase/firestore';
+import { collection, doc, getDocs, getFirestore, onSnapshot, query, where, } from 'firebase/firestore';
 import firebaseApp from '@/firebaseConfig';
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, ImageBackground, Linking, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
+import { Alert, ImageBackground, Linking, Modal, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
 import { useColorScheme } from '../../hooks/useColorScheme';
 
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
 import arenaHistoryData from '@/assets/data/arenaHistory.json';
 import nhlSchedule2025 from "@/assets/data/nhlSchedule2025.json";
+import khlSchedule from "@/assets/data/khlSchedule.json";
 import ahlSchedule2025 from "@/assets/data/ahlSchedule2025.json";
 import echlSchedule2025 from '@/assets/data/echlSchedule2025.json';
-import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
 import whlSchedule2025 from '@/assets/data/whlSchedule2025.json';
 import ohlSchedule2025 from '@/assets/data/ohlSchedule2025.json';
 import qmjhlSchedule2025 from '@/assets/data/qmjhlSchedule2025.json';
 import sphlSchedule2025 from '@/assets/data/sphlSchedule2025.json';
+import fphlSchedule from '@/assets/data/fphlSchedule.json';
+import ushlSchedule2025 from '@/assets/data/ushlSchedule2025.json';
+import nahlSchedule from '@/assets/data/nahlSchedule.json';
 import na3hlSchedule2025 from '@/assets/data/na3hlSchedule2025.json';
+import ncaaD1Schedule from '@/assets/data/ncaaD1Schedule.json';
+import ncaaD2Schedule from '@/assets/data/ncaaD2Schedule.json';
+import pwhlSchedule from '@/assets/data/pwhlSchedule.json';
 import aihlSchedule2025 from '@/assets/data/aihlSchedule2025.json';
 
 export default function ArenaScreen() {
@@ -33,9 +39,12 @@ export default function ArenaScreen() {
 
   const [loading, setLoading] = useState(true);
   const [checkingIn, setCheckingIn] = useState(false);
+  const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
   const [visitCount, setVisitCount] = useState(0);
   const [lastVisitDate, setLastVisitDate] = useState<Date | null>(null);
   const [timeLeft, setTimeLeft] = useState('00:00:00');
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const arena = arenaData.find((a) =>
       `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
     );
@@ -99,6 +108,18 @@ export default function ArenaScreen() {
     run();
   }, [arena, auth.currentUser]);
 
+  useEffect(() => {
+    if (!auth.currentUser) return;
+
+    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), snap => {
+      if (snap.exists()) {
+        setDistanceUnit(snap.data().distanceUnit === 'km' ? 'km' : 'miles');
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
   const teamCodeMap = useMemo(() => (
     Object.fromEntries(
       arenaData.map((a) => [`${a.league}_${a.teamCode}`, a.teamName])
@@ -113,6 +134,14 @@ export default function ArenaScreen() {
   // Combine known schedules
   const combinedSchedule = [
     ...nhlSchedule2025.map((game) => ({
+      id: game.id,
+      league: game.league,
+      date: game.date,
+      arena: game.arena,
+      homeTeam: teamCodeMap[`${game.league}_${game.team}`] || game.team,
+      awayTeam: teamCodeMap[`${game.league}_${game.opponent}`] || game.opponent,
+    })),
+    ...khlSchedule.map((game) => ({
       id: game.id,
       league: game.league,
       date: game.date,
@@ -137,6 +166,22 @@ export default function ArenaScreen() {
       awayTeam: game.opponent,
     })),
     ...sphlSchedule2025.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+...fphlSchedule.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...nahlSchedule.map((game) => ({
       id: `${game.team}_${game.opponent}_${game.date}`,
       league: game.league,
       arena: game.arena,
@@ -184,14 +229,38 @@ export default function ArenaScreen() {
       homeTeam: game.team,
       awayTeam: game.opponent,
     })),
+    ...ncaaD1Schedule.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...ncaaD2Schedule.map((game) => ({
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
+    ...pwhlSchedule.map((game) => ({
+      id: game.id,
+      league: game.league,
+      date: game.date,
+      arena: game.arena,
+      homeTeam: teamCodeMap[`${game.league}_${game.team}`] || game.team,
+      awayTeam: teamCodeMap[`${game.league}_${game.opponent}`] || game.opponent,
+    })),
     ...aihlSchedule2025.map((game) => ({
-          id: `${game.team}_${game.opponent}_${game.date}`,
-          league: game.league,
-          arena: game.arena,
-          date: game.date,
-          homeTeam: game.team,
-          awayTeam: game.opponent,
-        })),
+      id: `${game.team}_${game.opponent}_${game.date}`,
+      league: game.league,
+      arena: game.arena,
+      date: game.date,
+      homeTeam: game.team,
+      awayTeam: game.opponent,
+    })),
   ];
 
   // Filter & sort upcoming games at this arena
@@ -214,16 +283,12 @@ export default function ArenaScreen() {
 
   const lightColor = `${arena.colorCode}66`;
 
-  const getDistanceMiles = (lat1, lon1, lat2, lon2) => {
-    const R = 3958.8;
-    const toRad = (n) => (n * Math.PI) / 180;
+  const getDistance = (lat1, lon1, lat2, lon2) => {
+    const R = distanceUnit === 'km' ? 6371 : 3958.8; // Earth radius in km or miles
+    const toRad = n => n * Math.PI / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(toRad(lat1)) *
-        Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) ** 2;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   };
@@ -235,7 +300,8 @@ export default function ArenaScreen() {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setCheckingIn(false);
-        Alert.alert('Permission denied', 'Location is required to check in.');
+        setAlertMessage('Location permission is required to check in.');
+        setAlertVisible(true);
         return;
       }
 
@@ -244,19 +310,22 @@ export default function ArenaScreen() {
         maximumAge: 15000,
       });
 
-      const distanceMiles = getDistanceMiles(
+      const distance = getDistance(
         location.coords.latitude,
         location.coords.longitude,
         arena.latitude,
         arena.longitude
       );
 
-      if (distanceMiles > 0.28) {
+      const threshold = distanceUnit === 'km' ? 0.45 : 0.28;
+      const unit = distanceUnit === 'km' ? 'km' : 'miles';
+
+      if (distance > threshold) {
         setCheckingIn(false);
-        Alert.alert(
-          'Not close enough',
-          'You must be at the arena to check-in.'
+        setAlertMessage(
+          `You're ${distance.toFixed(2)} ${unit} from ${arena.arena}.\nGet closer to check in!`
         );
+        setAlertVisible(true);
         return;
       }
 
@@ -274,9 +343,10 @@ export default function ArenaScreen() {
         });
       }, 250);
 
-    } catch (err) {
+    } catch {
       setCheckingIn(false);
-      Alert.alert('Location failed', 'Could not get your location. Try again.');
+      setAlertMessage('Could not get your location. Try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -315,8 +385,14 @@ export default function ArenaScreen() {
   }, [upcomingGames]);
 
   const styles = StyleSheet.create({
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#1F2937', fontWeight: '700', fontSize: 16 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
     arenaName: { fontSize: 28, top: 10, fontWeight: 'bold', color: '#fff', textAlign: 'center', },
-    backButton: { position: 'absolute', top: 32, left: -5, zIndex: 10, borderRadius: 20, padding: 8, },
+    backButton: { position: 'absolute', top: 40, left: -5, zIndex: 10, borderRadius: 20, padding: 8, },
     button: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF' , marginHorizontal: 90, paddingVertical: 18, borderRadius: 30, alignItems: 'center', marginTop: 10, borderWidth: 2, borderColor: '#2F4F68', },
     buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600' },
     centered: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F4F7FA', },
@@ -347,6 +423,24 @@ export default function ArenaScreen() {
       style={styles.background}
       resizeMode="cover"
     >
+      {/* CUSTOM THEMED ALERT MODAL */}
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>Not Close Enough</Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <View style={{ flexDirection: 'row', gap: 16, marginTop: 12 }}>
+              <TouchableOpacity
+                style={styles.alertButton}
+                onPress={() => setAlertVisible(false)}
+              >
+                <Text style={styles.alertButtonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
       {checkingIn && (
         <View style={styles.loadingOverlay}>
           <LoadingPuck size={140} />
@@ -388,12 +482,8 @@ export default function ArenaScreen() {
           <View style={{
             ...StyleSheet.absoluteFillObject,
             backgroundColor: lightColor,
-            opacity: colorScheme === 'dark' ? 4 : 0.3,
+            opacity: colorScheme === 'dark' ? 0 : 0.3,  // dark mode doesn't need tint here
             borderRadius: 60,
-            height: 120,
-            width: 120,
-            marginTop: -4,
-            marginLeft: -4,
           }} />
           {loading ? (
             <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
@@ -431,21 +521,28 @@ export default function ArenaScreen() {
           <View style={{
             ...StyleSheet.absoluteFillObject,
             backgroundColor: lightColor,
-            opacity: 1,
-            borderRadius: 12,
-            marginTop: -4,
-            marginLeft: -4,
-            height: 198,
-            width: 320,
+            borderRadius: 8,
           }} />
           <Text style={styles.label}>Address</Text>
           <Text style={styles.value}>{arena.address}</Text>
 
-          <Text style={styles.label}>Team</Text>
-          <Text style={styles.value}>{arena.teamName}</Text>
+          <Text style={styles.label}>Teams</Text>
+          {arenaData
+            .filter(a => a.arena.trim().toLowerCase() === arena.arena.trim().toLowerCase())
+            .map((a, index) => (
+              <Text key={index} style={styles.value}>
+                {a.teamName}
+              </Text>
+            ))}
 
-          <Text style={styles.label}>League</Text>
-          <Text style={styles.value}>{arena.league}</Text>
+          <Text style={styles.label}>Leagues</Text>
+          {arenaData
+            .filter(a => a.arena.trim().toLowerCase() === arena.arena.trim().toLowerCase())
+            .map((a, index) => (
+              <Text key={index} style={styles.value}>
+                {a.league}
+              </Text>
+            ))}
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleDirections}>
@@ -492,12 +589,8 @@ export default function ArenaScreen() {
             <View style={{
               ...StyleSheet.absoluteFillObject,
               backgroundColor: lightColor,
-              opacity: 0.9,
-              borderRadius: 6,
-              height: colorScheme === 'dark' ? 345 : null,
-              width: colorScheme === 'dark' ? 320 : null,
-              marginTop: colorScheme === 'dark' ? -4 : 0,
-              marginLeft: colorScheme === 'dark' ? -4 : 0,
+              opacity: colorScheme === 'dark' ? 0 : 0.9,
+              borderRadius: 8,
             }} />
             <Text style={styles.sectionTitle}>Upcoming Games</Text>
 
@@ -519,8 +612,14 @@ export default function ArenaScreen() {
           </View>
         )}
 
-        <TouchableOpacity style={styles.button} onPress={handleDirections}>
-          <Text style={styles.buttonText}>Check-in to live game</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleCheckIn}
+          disabled={checkingIn}
+        >
+          <Text style={styles.buttonText}>
+            {checkingIn ? 'Checking in...' : 'Check-in to live game'}
+          </Text>
         </TouchableOpacity>
       </ScrollView>
     </ImageBackground>

@@ -5,8 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function PushSwitch() {
+  const colorScheme = useColorScheme();
   const [enabled, setEnabled] = useState(true);
   const user = getAuth().currentUser;
 
@@ -41,21 +43,26 @@ export default function PushSwitch() {
     }
   };
 
+  const styles = StyleSheet.create({
+    row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16 },
+    label: { flex: 1, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 18, marginLeft: 16 },
+    rowIcon: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    switchTrackFalse: { color: '#EF4444' },
+    switchTrackTrue: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42' },
+    switchThumbEnabled: { color: '#FFFFFF' },
+    switchThumbDisabled: { color: '#EF4444' },
+  });
+
   return (
     <View style={styles.row}>
-      <Ionicons name="notifications-outline" size={26} color="#fff" />
+      <Ionicons name="notifications-outline" size={26} color={styles.rowIcon.color} />
       <Text style={styles.label}>Push Notifications</Text>
       <Switch
         value={enabled}
         onValueChange={toggle}
-        trackColor={{ false: '#EF4444', true: '#FFFFFF' }}
-        thumbColor={enabled ? '#FFFFFF' : '#EF4444'}
+        trackColor={{ false: styles.switchTrackFalse.color, true: styles.switchTrackTrue.color }}
+        thumbColor={enabled ? styles.switchThumbEnabled.color : styles.switchThumbDisabled.color}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 16 },
-  label: { flex: 1, color: '#fff', fontSize: 18, marginLeft: 16 },
-});
