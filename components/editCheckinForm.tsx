@@ -7,6 +7,7 @@ import Checkbox from 'expo-checkbox';
 import { Pressable } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from "@/firebaseConfig"; // Adjust path if needed
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
@@ -20,6 +21,7 @@ import historicalTeamsData from '@/assets/data/historicalTeams.json';
 import arenaHistoryData from "@/assets/data/arenaHistory.json";
 
 const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
 
 export default function editCheckinForm({ initialData }: { initialData: any }) {
   const router = useRouter();
@@ -102,11 +104,62 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
   const handleSave = async () => {
     try {
-      const getSelectedItems = (sourceObject, categories) => {
-        const result = {};
+      const user = getAuth().currentUser;
+      if (!user) {
+        setAlertMessage('You must be logged in to edit.');
+        setAlertVisible(true);
+        return;
+      }
+
+      // ────────────────────────────────────────────────
+      // Handle photos: keep existing URLs, upload new local ones
+      // ────────────────────────────────────────────────
+      const existingPhotoUrls = initialData.photos?.filter((url: string) =>
+        typeof url === 'string' && url.startsWith('https://')
+      ) || [];
+
+      const newLocalImages = images.filter(uri =>
+        typeof uri === 'string' && (uri.startsWith('file://') || uri.startsWith('content://'))
+      );
+
+      let newPhotoUrls: string[] = [];
+
+      if (newLocalImages.length > 0) {
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const basePath = `checkins/${user.uid}/${timestamp}`;
+
+        const uploadPromises = newLocalImages.map(async (localUri, index) => {
+          try {
+            const response = await fetch(localUri);
+            if (!response.ok) throw new Error(`Failed to fetch image: ${response.status}`);
+
+            const blob = await response.blob();
+            const photoRef = ref(storage, `${basePath}/edit_${index}.jpg`);
+
+            await uploadBytes(photoRef, blob);
+            const url = await getDownloadURL(photoRef);
+            console.log(`Uploaded new edit photo ${index}: ${url}`);
+            return url;
+          } catch (err) {
+            console.error(`New photo upload failed ${index}:`, err);
+            throw err;
+          }
+        });
+
+        newPhotoUrls = await Promise.all(uploadPromises);
+      }
+
+      // Combine: old URLs + newly uploaded ones
+      const finalPhotos = [...existingPhotoUrls, ...newPhotoUrls];
+
+      // ────────────────────────────────────────────────
+      // Prepare docData with final photos
+      // ────────────────────────────────────────────────
+      const getSelectedItems = (sourceObject: any, categories: any) => {
+        const result: any = {};
         Object.keys(categories).forEach((category) => {
           result[category] = categories[category].filter(
-            (item) => sourceObject[item]
+            (item: string) => sourceObject[item]
           );
         });
         return result;
@@ -127,9 +180,9 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         awayScore,
         favoritePlayer,
         seatInfo: {
-        section: seatSection,
-        row: seatRow,
-        seat: seatNumber,
+          section: seatSection,
+          row: seatRow,
+          seat: seatNumber,
         },
         companions,
         highlights,
@@ -137,19 +190,25 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
-        photos: images,
+        photos: finalPhotos,  // ← fixed: only URLs
         latitude: match?.latitude ?? null,
         longitude: match?.longitude ?? null,
       };
 
-      const ref = doc(db, 'profiles', userId as string, 'checkins', initialData.id);
-      await updateDoc(ref, docData);
+      const checkinRef = doc(db, 'profiles', userId as string, 'checkins', initialData.id);
+      await updateDoc(checkinRef, docData);
+
       setAlertMessage('Check-in updated!');
       setAlertVisible(true);
-      // Remove router.back() from here
-    } catch (error) {
+      // router.back() is now in alert onPress
+
+    } catch (error: any) {
       console.error('Error updating check-in:', error);
-      setAlertMessage('Failed to update check-in.');
+      let msg = 'Failed to update check-in.';
+      if (error.message?.includes('fetch')) {
+        msg += ' Issue loading one of the new photos.';
+      }
+      setAlertMessage(msg);
       setAlertVisible(true);
     }
   };
@@ -158,40 +217,29 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   useEffect(() => {
     const selectedDate = gameDate;
 
-    const processed = arenasData.map(arena => {
-      const history = arenaHistoryData.find(
-        h =>
-          h.teamName === arena.teamName &&
-          h.league === arena.league
-      );
+    const processed = arenasData
+      .filter(arena => !arena.startDate || selectedDate >= new Date(arena.startDate))
+      .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
-      if (!history) {
-        return { ...arena, arena: arena.arena };
-      }
+    const processedHistorical = historicalTeamsData
+      .filter(hist => {
+        const start = new Date(hist.startDate);
+        let end = hist.endDate ? new Date(hist.endDate) : null;
+        if (end) end.setHours(23, 59, 59, 999);
+        return selectedDate >= start && (!end || selectedDate <= end);
+      })
+      .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
-      const correct = history.history.find(h => {
-        const from = new Date(h.from);
-        const to = h.to ? new Date(h.to) : null;
+    const allArenasRaw = [...processed, ...processedHistorical];
 
-        return (
-          selectedDate >= from &&
-          (to === null || selectedDate <= to)
-        );
-      });
+    // Filter out anything missing real league
+    const allArenas = allArenasRaw.filter(a =>
+      a.league &&
+      typeof a.league === 'string' &&
+      a.league.trim() !== ''
+    );
 
-      return {
-        ...arena,
-        arena: correct ? correct.name : arena.arena,
-
-        // Keep the modern arena colors even when name changes
-        color: arena.color,
-        colorCode: arena.colorCode,
-        SecondaryColor: arena.SecondaryColor,
-      };
-    });
-
-    const allArenas = [...processed, ...historicalTeamsData];
-
+    setAllArenas(allArenas);
     setArenas(allArenas);
 
     const leagues = [...new Set(allArenas.map(a => a.league))];

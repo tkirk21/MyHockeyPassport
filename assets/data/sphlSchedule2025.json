@@ -482,7 +482,7 @@
     "team": "Huntsville Havoc",
     "opponent": "Pensacola Ice Flyers",
     "arena": "Propst Arena",
-    "3": "Huntsville, Alabama",
+    "city": "Huntsville, Alabama",
     "date": "2025-11-22T23:00:00Z"
   },
   {
@@ -526,7 +526,7 @@
     "league": "SPHL",
     "team": "Roanoke Rail Yard Dawgs",
     "opponent": "Knoxville Ice Bears",
-    "aren": "Berglund Center",
+    "arena": "Berglund Center",
     "city": "Roanoke, Virginia",
     "date": "2025-11-26T23:00:00Z"
   },

@@ -638,18 +638,6 @@
     "arena": "Resch Center",
     "city": "Green Bay, Wisconsin"
   },
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "id": "ushl_2025101001",
     "league": "USHL",
@@ -2662,7 +2650,7 @@
     "league": "USHL",
     "date": "2026-01-10T01:05:00Z",
     "opponent": "Muskegon Lumberjacks",
-    "TEAM": "Sioux Falls Stampede",
+    "team": "Sioux Falls Stampede",
     "arena": "Denny Sanford Premier Center",
     "city": "Sioux Falls, South Dakota"
   },

@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from '../../firebaseConfig';
 import React, { useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
@@ -12,6 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from '../../hooks/useColorScheme';
 
 const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
 const toStr = (v: any) => Array.isArray(v) ? (v[0] ?? '') : (v ?? '');
 
 export default function LiveCheckInScreen() {
@@ -115,11 +117,56 @@ export default function LiveCheckInScreen() {
         return;
       }
 
+      // Upload photos to Firebase Storage
+      let photoUrls: string[] = [];
+
+      if (images.length > 0) {
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const basePath = `checkins/${user.uid}/${timestamp}`;
+
+        const uploadPromises = images.map(async (localUri, index) => {
+          try {
+            const response = await fetch(localUri);
+            if (!response.ok) throw new Error(`Failed to fetch image: ${response.status}`);
+
+            const blob = await response.blob();
+            const photoRef = ref(storage, `${basePath}/${index}.jpg`);
+
+            await uploadBytes(photoRef, blob);
+            const url = await getDownloadURL(photoRef);
+            console.log(`Uploaded photo ${index}: ${url}`);
+            return url;
+          } catch (uploadErr) {
+            console.error(`Upload failed for photo ${index}:`, uploadErr);
+            throw uploadErr; // let outer catch handle it
+          }
+        });
+
+        photoUrls = await Promise.all(uploadPromises);
+      }
+
+      // Original data prep
+      const getSelectedItems = (sourceObject: any, categories: any) => {
+        const result: any = {};
+        Object.keys(categories).forEach((category) => {
+          result[category] = categories[category].filter(
+            (item: string) => sourceObject[item]
+          );
+        });
+        return result;
+      };
+
+      const match = arenasData.find(
+        (arena: any) =>
+          arena.league === selectedLeague && arena.arena === selectedArena
+      );
+
       const docData = {
-        league,
-        arenaName,
-        teamName: homeTeam,
-        opponent,
+        league: selectedLeague,
+        arenaId: match?.id ?? null,
+        arenaName: selectedArena,
+        teamName: selectedHomeTeam,
+        opponent: selectedOpponent,
         favoritePlayer,
         seatInfo: {
           section: seatSection,
@@ -131,19 +178,32 @@ export default function LiveCheckInScreen() {
         parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
-        gameDate: gameDate || new Date().toISOString(),
-        checkinType: 'live',
-        photos: images,
+        gameDate: gameDate.toISOString(),
+        checkinType: 'Manual',
+        photos: photoUrls,  // ← now real URLs
         userId: user.uid,
         timestamp: serverTimestamp(),
+        latitude: match?.latitude ?? null,
+        longitude: match?.longitude ?? null,
       };
 
       await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
-      setAlertMessage('Live check-in saved! Taking you to your profile...');
+
+      setAlertMessage('Check-in saved! Taking you to your profile...');
       setAlertVisible(true);
-    } catch (err) {
-      console.error('Error saving live check-in:', err);
-      setAlertMessage('Failed to save live check-in.');
+
+      // Clean up local state
+      setImages([]);
+
+    } catch (error: any) {
+      console.error('Error during check-in submit:', error);
+      let msg = 'Failed to save check-in.';
+      if (error.message?.includes('fetch')) {
+        msg += ' Issue loading one of the photos.';
+      } else if (error.code === 'storage/unauthorized') {
+        msg += ' Storage permission issue — check Firebase rules.';
+      }
+      setAlertMessage(msg);
       setAlertVisible(true);
     }
   };

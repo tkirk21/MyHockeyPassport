@@ -5,6 +5,7 @@ import { Stack, useRouter } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from '../../firebaseConfig';
 import React, { useEffect, useState, } from 'react';
 import { KeyboardAvoidingView, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
@@ -17,7 +18,10 @@ import arenasData from '../../assets/data/arenas.json';
 import historicalTeamsData from '../../assets/data/historicalTeams.json';
 import arenaHistoryData from '../../assets/data/arenaHistory.json';
 
+console.log("MANUAL CHECKIN FILE VERSION: RILEY-DEBUG-2026-02-03-v2-UPLOAD-ATTEMPT");
+
 const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
 
 const ManualCheckIn = () => {
   const router = useRouter();
@@ -96,6 +100,33 @@ const ManualCheckIn = () => {
         return;
       }
 
+      // ────────────────────────────────────────────────
+      // NEW: Upload photos to Storage first
+      // ────────────────────────────────────────────────
+      let photoUrls: string[] = [];
+
+      if (images.length > 0) {
+        // We'll use a temp folder name based on timestamp + user
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const basePath = `checkins/${user.uid}/${timestamp}`;
+
+        const uploadPromises = images.map(async (localUri, index) => {
+          const response = await fetch(localUri);
+          const blob = await response.blob();
+
+          // Use .jpg extension (or detect real type if you want)
+          const photoRef = ref(storage, `${basePath}/${index}.jpg`);
+
+          await uploadBytes(photoRef, blob);
+          return getDownloadURL(photoRef);
+        });
+
+        photoUrls = await Promise.all(uploadPromises);
+      }
+
+      // ────────────────────────────────────────────────
+      // Original docData, but now with real URLs
+      // ────────────────────────────────────────────────
       const getSelectedItems = (sourceObject, categories) => {
         const result = {};
         Object.keys(categories).forEach((category) => {
@@ -130,7 +161,7 @@ const ManualCheckIn = () => {
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
         checkinType: 'Manual',
-        photos: images,
+        photos: photoUrls,          // ← this is the fix
         userId: user.uid,
         timestamp: serverTimestamp(),
         latitude: match?.latitude ?? null,
@@ -138,11 +169,16 @@ const ManualCheckIn = () => {
       };
 
       await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
+
       setAlertMessage('Check-in saved! Taking you to your profile...');
       setAlertVisible(true);
+
+      // Optional: clear images state after success
+      setImages([]);
+
     } catch (error) {
       console.error('Error saving check-in:', error);
-      setAlertMessage('Failed to save check-in.');
+      setAlertMessage('Failed to save check-in. Please try again.');
       setAlertVisible(true);
     }
   };
@@ -153,46 +189,28 @@ const ManualCheckIn = () => {
 
     const processed = arenasData
       .filter(arena => !arena.startDate || selectedDate >= new Date(arena.startDate))
-      .map(arena => {
-        const history = arenaHistoryData.find(h => h.teamName === arena.teamName && h.league === arena.league);
-        if (!history) return arena;
+      .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
-        const correct = history.history.find(h => {
-          const from = new Date(h.from);
-          const to = h.to ? new Date(h.to) : null;
-          return selectedDate >= from && (!to || selectedDate <= to);
-        });
-
-        return correct ? { ...arena, arena: correct.name } : arena;
-      });
-
-    // Process historical teams (with history rename)
     const processedHistorical = historicalTeamsData
       .filter(hist => {
         const start = new Date(hist.startDate);
         let end = hist.endDate ? new Date(hist.endDate) : null;
-        if (end) {
-          end.setHours(23, 59, 59, 999); // make endDate inclusive for the whole day
-        }
+        if (end) end.setHours(23, 59, 59, 999);
         return selectedDate >= start && (!end || selectedDate <= end);
       })
-      .map(arena => {
-        const history = arenaHistoryData.find(h => h.teamName === arena.teamName && h.league === arena.league);
-        if (!history) return arena;
+      .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
-        const correct = history.history.find(h => {
-          const from = new Date(h.from);
-          const to = h.to ? new Date(h.to) : null;
-          return selectedDate >= from && (!to || selectedDate <= to);
-        });
+    const allArenasRaw = [...processed, ...processedHistorical];
 
-        return correct ? { ...arena, arena: correct.name } : arena;
-      });
+    // Kill any bad/missing league entries
+    const allArenas = allArenasRaw.filter(a =>
+      a.league && typeof a.league === 'string' && a.league.trim() !== ''
+    );
 
-    const allArenas = [...processed, ...processedHistorical];
     setAllArenas(allArenas);
     setArenas(allArenas);
 
+    // Extract only valid leagues
     const leagues = [...new Set(allArenas.map(a => a.league))];
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
   }, [gameDate]);
