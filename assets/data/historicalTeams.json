@@ -35,7 +35,7 @@
     "league": "NHL",
     "timezone": "Sweden/Stockholm",
     "startDate": "2007-09-30",
-    "endDate": "20007-10-01"
+    "endDate": "2007-10-01"
   },
   {
     "teamName": "Atlanta Flames",
@@ -1240,6 +1240,24 @@
     "endDate": "1927-05-31"
   },
   {
+    "teamName": "Utah Hockey Club",
+    "teamCode": "UTA",
+    "arena": "Delta Center",
+    "city": "Salt Lake City, Utah",
+    "address": "302 S Temple, Salt Lake City, UT 84101",
+    "website": "https://nhl.com/utah",
+    "latitude": 40.7683,
+    "longitude": -111.9009,
+    "color": "Rock Black",
+    "colorCode": "#000000",
+    "colorCode2": "#7AB2E0",
+    "colorCode3": "#FFFFFF",
+    "league": "NHL",
+    "timezone": "America/Denver",
+    "startDate": "2024-09-01",
+    "endDate": "2025-05-31"
+  },
+  {
     "teamName": "Winnipeg Jets",
     "teamCode": "WIN",
     "arena": "Winnipeg Arena",
@@ -1792,7 +1810,7 @@
     "league": "NHL",
     "timezone": "Sweden/Stockholm",
     "startDate": "2007-09-29",
-    "endDate": "20007-09-30"
+    "endDate": "2007-09-30"
   },
   {
     "teamName": "Florida Panthers",
@@ -1947,7 +1965,7 @@
     "SecondaryColor": "#191970",
     "league": "NHL",
     "timezone": "America/Toronto",
-    "startDate": "1919/-01-10",
+    "startDate": "1919-01-10",
     "endDate": "1926-05-31"
   },
   {

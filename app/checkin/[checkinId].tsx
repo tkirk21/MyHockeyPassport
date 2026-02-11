@@ -27,14 +27,7 @@ const HeaderRightWithSafeArea = ({ checkinId, userId, handleDelete, handleShare 
   const router = useRouter();
 
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        gap: 24,
-        paddingTop: insets.top,
-        paddingRight: 16,
-      }}
-    >
+    <View style={{ flexDirection: "row", gap: 24, paddingRight: 16, justifyContent: "center", height: "100%", }}>
       <TouchableOpacity onPress={handleShare}>
         <Ionicons name="share-social-outline" size={22} color="#fff" />
       </TouchableOpacity>
@@ -65,6 +58,8 @@ export default function CheckinDetailsScreen() {
   const userId = params.userId as string;
   const [checkin, setCheckin] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
+  const [photosLoading, setPhotosLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const auth = getAuth();
@@ -186,6 +181,10 @@ export default function CheckinDetailsScreen() {
     return <LoadingPuck />;
   }
 
+  if (deleting) {
+    return <LoadingPuck />;
+  }
+
   if (error) {
     return (
       <View style={styles.centered}>
@@ -225,6 +224,8 @@ export default function CheckinDetailsScreen() {
 
   const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
   const overlayColor = `${teamColor}DD`;
+  const borderColor = arenaMatch?.colorCode2 || teamColor;
+
 
   const styles = StyleSheet.create({
     alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
@@ -237,21 +238,21 @@ export default function CheckinDetailsScreen() {
     category: { fontSize: 15, fontWeight: "600", color: "#fff", marginBottom: 4, },
     centered: { flex: 1, justifyContent: "center", alignItems: "center", },
     detail: { fontSize: 16, color: "#fff", marginBottom: 6, },
-    detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+    detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
     error: { fontSize: 18, color: "red", },
     gameDate: { fontSize: 16, fontWeight: "500", color: "#FFFFFF", marginTop: 4, textAlign: "center", },
     headerLeftContainerStyle: { paddingTop: insets.top, },
     label: { fontSize: 18, fontWeight: "700", color: "#FFFFFF", },
     listItem: { fontSize: 15, color: "#fff", marginLeft: 20, },
-    merchCard: { padding: 16, borderRadius: 12, marginBottom: 30, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+    merchCard: { padding: 16, borderRadius: 12, marginBottom: 30, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
     overlay: { ...StyleSheet.absoluteFillObject, },
     photo: { width: "100%", height: 220, borderRadius: 10, },
-    photoCard: { padding: 16, borderRadius: 12, marginBottom: 24, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+    photoCard: { padding: 16, borderRadius: 12, marginBottom: 24, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
     photoGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
     photoThumbnail: { width: 100, height: 100, borderRadius: 8 },
     retryButton: { marginTop: 16, paddingHorizontal: 20, paddingVertical: 10, backgroundColor: "#0A2940", borderRadius: 8, },
     retryText: { color: "#fff", fontWeight: "600", },
-    scoreCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginTop: -10, marginHorizontal: 20, borderWidth: 4, borderColor: "#ffffff44", shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
+    scoreCard: { padding: 16, borderRadius: 12, marginBottom: 16, marginTop: -10, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
     score: { fontSize: 32, fontWeight: "600", color: "#fff", textAlign: "center", marginBottom: 2,  },
     sectionTitle: { fontSize: 18, fontWeight: "700", color: "#fff", },
     sub: { fontSize: 16, fontWeight: "600", color: "#fff", textAlign: "center", marginBottom: 2, },
@@ -273,13 +274,22 @@ export default function CheckinDetailsScreen() {
                 style={[styles.alertButton, { backgroundColor: '#EF4444' }]}
                 onPress={async () => {
                   setAlertVisible(false);
+                  setDeleting(true);
+
                   try {
-                    const ref = doc(db, "profiles", String(userId), "checkins", String(checkinId));
+                    const ref = doc(
+                      db,
+                      "profiles",
+                      String(userId),
+                      "checkins",
+                      String(checkinId)
+                    );
                     await deleteDoc(ref);
                     router.back();
                   } catch (err) {
                     console.error("Delete failed:", err);
-                    setAlertMessage('Could not delete check-in.');
+                    setDeleting(false);
+                    setAlertMessage("Could not delete check-in.");
                     setAlertVisible(true);
                   }
                 }}
@@ -307,7 +317,7 @@ export default function CheckinDetailsScreen() {
           headerTintColor: "#fff",
           headerShadowVisible: false,
           headerLeft: () => (
-            <View style={{ paddingTop: insets.top, paddingLeft: 16 }}>
+            <View style={{ paddingLeft: 16, justifyContent: "center", height: "100%", }}>
               <TouchableOpacity onPress={() => router.back()}>
                 <Ionicons name="arrow-back" size={24} color="#fff" />
               </TouchableOpacity>
@@ -376,34 +386,32 @@ export default function CheckinDetailsScreen() {
             )}
 
             {checkin.photos && checkin.photos.length > 0 && (
-              <View style={[styles.photoCard, { backgroundColor: teamColor }]}>
+              <View style={[styles.photoCard, { backgroundColor: teamColor, minHeight: 240 }]}>
+
+                {photosLoading && <LoadingPuck size={120} />}
+
                 <ScrollView
                   horizontal
                   pagingEnabled
                   showsHorizontalScrollIndicator={false}
-                  snapToAlignment="center"          // ← this is the big one for clean centering
-                  snapToInterval={Dimensions.get('window').width - 32}  // matches the width we gave each page
-                  decelerationRate="fast"           // snappier feel, less floaty
-                  // Optional: slows it down a tiny bit if it feels too aggressive
-                  // decelerationRate={0.85}
+                  snapToAlignment="center"
+                  snapToInterval={Dimensions.get('window').width - 32}
+                  decelerationRate="fast"
+                  style={{ opacity: photosLoading ? 0 : 1 }}
                 >
                   {checkin.photos.slice(0, 3).map((uri, index) => (
                     <View
                       key={index}
                       style={{
-                        width: Dimensions.get('window').width - 32,  // keep this
-                        justifyContent: 'center',                    // helps vertical centering if needed
+                        width: Dimensions.get('window').width - 32,
                         alignItems: 'center',
                       }}
                     >
                       <Image
                         source={{ uri }}
-                        style={{
-                          width: '100%',
-                          height: 220,
-                          borderRadius: 10,
-                        }}
+                        style={{ width: '100%', height: 220, borderRadius: 10 }}
                         resizeMode="cover"
+                        onLoadEnd={() => setPhotosLoading(false)}
                       />
                     </View>
                   ))}
@@ -516,10 +524,10 @@ export default function CheckinDetailsScreen() {
                   </View>
                 )}
 
-                {checkin.parkingAndTravel && (
+                {checkin.ParkingAndTravel && (
                   <View>
                     <Text style={styles.label}>Parking & Travel Tips</Text>
-                    <Text style={styles.value}>{checkin.parkingAndTravel}</Text>
+                    <Text style={styles.value}>{checkin.ParkingAndTravel}</Text>
                   </View>
                 )}
               </View>

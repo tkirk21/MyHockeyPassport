@@ -3,7 +3,7 @@
     "name": "My Hockey Passport",
     "slug": "MyHockeyPassport",
     "scheme": "myhockeypassport",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/logo_with_font.png",
     "userInterfaceStyle": "automatic",
@@ -40,9 +40,9 @@
       }
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon_logo.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,

@@ -82,7 +82,7 @@
       { "name": "BankAtlantic Center", "from": "2005-10-01", "to": "2012-09-30" },
       { "name": "BB&T Center", "from": "2012-10-01", "to": "2021-08-31" },
       { "name": "FLA Live Arena", "from": "2021-09-01", "to": "2023-09-30" },
-      { "name": "Amerant Bank Arena", "from": "2023-10-01", "to": "2026-01-02" },
+      { "name": "Amerant Bank Arena", "from": "2023-10-01", "to": "2026-01-01" },
       { "name": "Amerant Bank Arena", "from": "2026-01-03", "to": null }
     ]
   },

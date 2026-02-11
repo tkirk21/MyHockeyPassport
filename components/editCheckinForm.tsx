@@ -15,6 +15,7 @@ import { Alert } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import LoadingPuck from './loadingPuck';
 
 import arenasData from "@/assets/data/arenas.json";
 import historicalTeamsData from '@/assets/data/historicalTeams.json';
@@ -69,6 +70,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     Object.values(initialData.concessionsBought || {}).flat().forEach(item => { items[item] = true; });
     return items;
   });
+  const [isSaving, setIsSaving] = useState(false);
   const scrollViewRef = React.useRef(null);
 
   const merchCategories = {
@@ -103,21 +105,33 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   const [opponentItems, setOpponentItems] = useState([]);
 
   const handleSave = async () => {
+    if (isSaving) return;
+
+    setIsSaving(true);
+
     try {
       const user = getAuth().currentUser;
       if (!user) {
         setAlertMessage('You must be logged in to edit.');
         setAlertVisible(true);
+        setIsSaving(false);
         return;
       }
 
       // ────────────────────────────────────────────────
-      // Handle photos: keep existing URLs, upload new local ones
+      // Handle photos: keep existing remote URLs that weren't deleted, upload new local ones
       // ────────────────────────────────────────────────
-      const existingPhotoUrls = initialData.photos?.filter((url: string) =>
+      const existingRemoteUrls = initialData.photos?.filter((url: string) =>
         typeof url === 'string' && url.startsWith('https://')
       ) || [];
 
+      // Current images state contains both remote URLs (kept) and local new ones
+      // Filter out any deleted ones (deleted means removed from images array)
+      const keptRemoteUrls = images.filter(uri =>
+        typeof uri === 'string' && uri.startsWith('https://')
+      );
+
+      // New local images to upload
       const newLocalImages = images.filter(uri =>
         typeof uri === 'string' && (uri.startsWith('file://') || uri.startsWith('content://'))
       );
@@ -149,12 +163,9 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         newPhotoUrls = await Promise.all(uploadPromises);
       }
 
-      // Combine: old URLs + newly uploaded ones
-      const finalPhotos = [...existingPhotoUrls, ...newPhotoUrls];
+      // Final photos = kept old remote + new uploaded
+      const finalPhotos = [...keptRemoteUrls, ...newPhotoUrls];
 
-      // ────────────────────────────────────────────────
-      // Prepare docData with final photos
-      // ────────────────────────────────────────────────
       const getSelectedItems = (sourceObject: any, categories: any) => {
         const result: any = {};
         Object.keys(categories).forEach((category) => {
@@ -186,11 +197,11 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         },
         companions,
         highlights,
-        parkingAndTravel,
+        ParkingAndTravel: parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
-        photos: finalPhotos,  // ← fixed: only URLs
+        photos: finalPhotos,
         latitude: match?.latitude ?? null,
         longitude: match?.longitude ?? null,
       };
@@ -200,8 +211,6 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
       setAlertMessage('Check-in updated!');
       setAlertVisible(true);
-      // router.back() is now in alert onPress
-
     } catch (error: any) {
       console.error('Error updating check-in:', error);
       let msg = 'Failed to update check-in.';
@@ -210,6 +219,8 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
       }
       setAlertMessage(msg);
       setAlertVisible(true);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -482,7 +493,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
   const styles = StyleSheet.create({
     alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
-    alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
     alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
     alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
     alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
@@ -508,6 +519,10 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     dropDownText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     dropDownListEmpty: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
     dropdownPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
+    dateModalContainer: { padding: 16, borderTopLeftRadius: 16, borderTopRightRadius: 16, },
+    dateModalDone: { marginTop: 12, alignSelf: 'flex-end', },
+    dateModalDoneText: { fontSize: 16, fontWeight: '600', color: '#0066CC', },
+    dateModalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)', },
     Placeholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
     input: { borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderRadius: 8, padding: 12, marginBottom: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
     label: { fontSize: 16, fontWeight: '600', marginTop: 18, marginBottom: 6, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
@@ -527,6 +542,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     seatLabelRow: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginLeft: 12, marginRight: 6 },
     seatInput: { width: 50, textAlign: 'center', marginBottom: 0 },
     submitButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 14, borderRadius: 30, width: '60%', alignItems: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68' },
+    submitButtonSaving: { opacity: 0.7 },
     submitText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600' },
     uploadPhotoText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
   });
@@ -956,12 +972,27 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
               <Ionicons name="arrow-back" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.submitButton} onPress={handleSave}>
-              <Text style={styles.submitText}>Save Changes</Text>
+            <TouchableOpacity
+              style={[
+                styles.submitButton,
+                isSaving && styles.submitButtonSaving
+              ]}
+              onPress={handleSave}
+              disabled={isSaving}
+            >
+              {isSaving ? (
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+                  <LoadingPuck size={56} />
+                  <Text style={styles.submitText}>Saving...</Text>
+                </View>
+              ) : (
+                <Text style={styles.submitText}>Save Changes</Text>
+              )}
             </TouchableOpacity>
           </View>
 
-          {showDatePicker && (
+          {/* ANDROID — keep native behavior */}
+          {showDatePicker && Platform.OS === 'android' && (
             <DateTimePicker
               value={gameDate}
               mode="date"
@@ -971,6 +1002,37 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
                 if (selectedDate) setGameDate(selectedDate);
               }}
             />
+          )}
+
+          {/* IOS / IPAD — modal picker */}
+          {showDatePicker && Platform.OS === 'ios' && (
+            <Modal transparent animationType="slide">
+              <View style={styles.dateModalOverlay}>
+                <View
+                  style={[
+                    styles.dateModalContainer,
+                    { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
+                  ]}
+                >
+                  <DateTimePicker
+                    value={gameDate}
+                    mode="date"
+                    display="spinner"
+                    themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
+                    onChange={(event, selectedDate) => {
+                      if (selectedDate) setGameDate(selectedDate);
+                    }}
+                  />
+
+                  <TouchableOpacity
+                    style={styles.dateModalDone}
+                    onPress={() => setShowDatePicker(false)}
+                  >
+                    <Text style={styles.dateModalDoneText}>Done</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
           )}
         </RNScrollView>
       </KeyboardAvoidingView>

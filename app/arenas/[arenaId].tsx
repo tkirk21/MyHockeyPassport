@@ -282,6 +282,10 @@ export default function ArenaScreen() {
   }
 
   const lightColor = `${arena.colorCode}66`;
+  const borderColor =
+    colorScheme === 'dark'
+      ? '#FFFFFF'
+      : (arena.colorCode2 || arena.colorCode);
 
   const getDistance = (lat1, lon1, lat2, lon2) => {
     const R = distanceUnit === 'km' ? 6371 : 3958.8; // Earth radius in km or miles
@@ -367,15 +371,26 @@ export default function ArenaScreen() {
         return;
       }
 
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const totalSeconds = Math.floor(diff / 1000);
 
-      setTimeLeft(
-        `${hours.toString().padStart(2, '0')}:${minutes
-          .toString()
-          .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
-      );
+      const days = Math.floor(totalSeconds / (24 * 60 * 60));
+      const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      let display = '';
+
+      if (days > 0) {
+        display = `${days}d ${hours}${hours !== 1 ? 'h' : 'h'} ${minutes}${minutes !== 1 ? 'm' : 'm'}`;
+      } else if (hours > 0) {
+        display = `${hours}${hours !== 1 ? 'h' : 'h'} ${minutes}${minutes !== 1 ? 'm' : 'm'}`;
+      } else if (minutes > 0) {
+        display = `${minutes}${minutes !== 1 ? 'm' : 'm'} ${seconds}${seconds !== 1 ? 's' : 's'}`;
+      } else {
+        display = `${seconds}${seconds !== 1 ? 's' : 's'}`;
+      }
+
+      setTimeLeft(display);
     };
 
     updateCountdown();
@@ -502,7 +517,8 @@ export default function ArenaScreen() {
           )}
         </View>
 
-        <View style={[styles.infoBox, { borderColor: colorScheme === 'dark' ? '#FFFFFF' : (arena.colorCode || "#0A2940") }]}>
+        <View style={[styles.infoBox, { borderColor }]}>
+
         {/* Solid background */}
           <View style={{
             ...StyleSheet.absoluteFillObject,
@@ -550,7 +566,7 @@ export default function ArenaScreen() {
         </TouchableOpacity>
 
         {upcomingGames.length === 0 && (
-          <View style={[styles.section, { borderColor: colorScheme === 'dark' ? '#FFFFFF' : (arena.colorCode || "#0A2940") }]}>
+          <View style={[styles.section, { borderColor }]}>
             <View style={{
               ...StyleSheet.absoluteFillObject,
               backgroundColor: colorScheme === 'dark' ? (arena.colorCode || '#0D2C42') : '#FFFFFF',
@@ -568,7 +584,7 @@ export default function ArenaScreen() {
         )}
 
         {upcomingGames.length > 0 && (
-          <View style={[styles.section, { borderColor: colorScheme === 'dark' ? '#FFFFFF' : (arena.colorCode || "#0A2940") }]}>
+          <View style={[styles.section, { borderColor }]}>
           {/* Solid background */}
             <View style={{
               ...StyleSheet.absoluteFillObject,

@@ -26,6 +26,13 @@ export default function SettingsScreen() {
   const [startupTab, setStartupTab] = useState<'home' | 'profile' | 'checkin' | 'map' | 'friends'>('home');
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const SOCIAL_LINKS = {
+    website: 'https://mysportspassport.app',
+    facebook: 'https://www.facebook.com/profile.php?id=61587432124971',
+    instagram: 'https://www.instagram.com/my_sports_passport?igsh=MTJla3R4Z3V0anhyNw==',
+    x: 'https://x.com/mysportpassport',
+  };
+
 
   useEffect(() => {
     const loadPushSetting = async () => {
@@ -129,6 +136,7 @@ export default function SettingsScreen() {
     alertButton: { backgroundColor: '#0D2C42', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
     alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
     backArrow: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42' },
+    disabledRow: { opacity: 0.5, },
     distanceDropdown: { height: 35, width: 130, backgroundColor: '#1A3A5A', borderRadius: 12, paddingHorizontal: 12, },
     distanceIcon: { width: 30, height: 30, },
     distanceItemContainer: { backgroundColor: '#1A3A5A', },
@@ -147,10 +155,12 @@ export default function SettingsScreen() {
     headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 28, fontWeight: '700', marginLeft: 20 },
     inner: { paddingHorizontal: 20 },
     label: { flex: 1, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 18, marginLeft: 16 },
+    labelDisabled: { flex: 1, fontSize: 18, marginLeft: 16, color: '#999', },
     link: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 17, },
     logoutButton: { backgroundColor: '#EF4444', padding: 18, borderRadius: 12, alignItems: 'center', width: 200, alignSelf: 'center', marginBottom: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', borderRadius: 30, },
     logoutText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
     row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8 },
+    rowIconDisabled: { color: '#999', },
     rowIcon: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     rowArrow: { color: colorScheme === 'dark' ? '#888888' : '#888888' },
     screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
@@ -211,16 +221,24 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </View>
 
+          {/* Subscription */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Subscription</Text>
+
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() => router.push('/settings/subscribe')}
+            >
+              <Ionicons name="card-outline" size={26} color={styles.rowIcon.color} />
+              <Text style={styles.label}>Manage Subscription</Text>
+              <Ionicons name="chevron-forward" size={24} color={styles.rowArrow.color} />
+            </TouchableOpacity>
+          </View>
+
           {/* Notifications */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Notifications</Text>
             <PushSwitch />
-
-            <TouchableOpacity style={styles.row}>
-              <Ionicons name="mail-outline" size={26} color={styles.rowIcon.color} />
-              <Text style={styles.label}>Email Notifications</Text>
-              <Ionicons name="chevron-forward" size={24} color={styles.rowArrow.color} />
-            </TouchableOpacity>
           </View>
 
           {/* Preferences */}
@@ -318,6 +336,47 @@ export default function SettingsScreen() {
             </View>
           </View>
 
+          {/* Socials */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Socials</Text>
+
+            {/* Website */}
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.website)}
+            >
+              <Ionicons name="globe-outline" size={26} color={styles.rowIcon.color} />
+              <Text style={styles.label}>Website</Text>
+            </TouchableOpacity>
+
+            {/* Facebook */}
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.facebook)}
+            >
+              <Ionicons name="logo-facebook" size={26} color={styles.rowIcon.color} />
+              <Text style={styles.label}>Facebook</Text>
+            </TouchableOpacity>
+
+            {/* Instagram – placeholder */}
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.instagram)}
+            >
+              <Ionicons name="logo-instagram" size={26} color={styles.rowIcon.color} />
+              <Text style={styles.label}>Instagram</Text>
+            </TouchableOpacity>
+
+            {/* X – placeholder */}
+            <TouchableOpacity
+              style={styles.row}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.x)}
+            >
+              <Ionicons name="logo-twitter" size={26} color={styles.rowIcon.color} />
+              <Text style={styles.label}>X</Text>
+            </TouchableOpacity>
+          </View>
+
           {/* Support */}
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Support</Text>
@@ -342,18 +401,18 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Legal</Text>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://docs.google.com/document/d/1R4McAPuvEhBEDAje3JG29njxmheqN8opaECX1d9eX1E/edit?tab=t.0')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/privacy.html')}>
               <Text style={styles.link}>Privacy Policy</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://docs.google.com/document/d/1Gev7CRJJBKkPxXOoLGeqVqmvYNDakd2VObxc7TDuxdg/edit?tab=t.0')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/terms.html')}>
               <Text style={styles.link}>Terms of Service</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.version}>
             <Text style={styles.versionText}>
-              Version {Constants.expoConfig?.version || '1.0.0'}
+              Version {Constants.expoConfig?.version || '1.0.4'}
             </Text>
           </View>
 

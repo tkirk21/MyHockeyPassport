@@ -541,6 +541,7 @@ useEffect(() => {
     header: { fontSize: 34, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginTop: 10, marginBottom: 15, textAlign: 'center', textShadowColor: colorScheme === 'dark' ? '#000000' : '#ffffff', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 2, },
     innerContainer: { paddingTop: 40, paddingHorizontal: 20, paddingBottom: 10, },
     input: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A2940' : "#fff", borderRadius: 12, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: colorScheme === 'dark' ? '#666' : "#ddd", fontSize: 14, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
+    inputWrapper: { marginBottom: 12, },
     leagueBlock: { marginTop: 8, backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#F0F4F8', borderRadius: 10, overflow: 'hidden', },
     leagueHeaderTouchable: { backgroundColor: colorScheme === 'dark' ? '#1E3A5A' : '#F0F4F8', paddingHorizontal: 20, paddingVertical: 12, },
     leaguesList: { marginTop: 8, },
@@ -724,20 +725,23 @@ useEffect(() => {
                 <Text style={styles.smallButtonText}>Upload Photo</Text>
               </TouchableOpacity>
 
-              <TextInput
-                style={styles.input}
-                placeholder="Your Name"
-                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#374151'}
-                value={name}
-                onChangeText={setName}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Location"
-                placeholderTextColor={colorScheme === 'dark' ? '#BBBBBB' : '#374151'}
-                value={location}
-                onChangeText={setLocation}
-              />
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  style={styles.input}
+                  value={name}
+                  onChangeText={setName}
+                  placeholder="Profile name"
+                />
+              </View>
+
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  style={styles.input}
+                  value={location}
+                  onChangeText={setLocation}
+                  placeholder="Location"
+                />
+              </View>
 
               <View style={{ marginBottom: 16 }}>
                 <Text style={styles.favouriteTeamsLabel}>

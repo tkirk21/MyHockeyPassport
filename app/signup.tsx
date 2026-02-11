@@ -1,15 +1,16 @@
 //app/signup.tsx
 import { useState, useEffect } from 'react';
-import { Alert, Image, Request, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, signInWithCredential } from 'firebase/auth';
-import { auth, webClientId, androidClientId } from '@/firebaseConfig';
+import { auth, } from '@/firebaseConfig';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/firebaseConfig';
 import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useColorScheme } from '../hooks/useColorScheme';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import * as Facebook from 'expo-auth-session/providers/facebook';
-import { useAuthRequest } from 'expo-auth-session';
 import * as AppleAuthentication from 'expo-apple-authentication';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -26,6 +27,19 @@ export default function Signup() {
     scopes: ['public_profile', 'email'],
   });
 
+  const ensureTrialStart = async (uid: string) => {
+    const ref = doc(db, 'profiles', uid);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists() || !snap.data()?.trialStart) {
+      await setDoc(
+        ref,
+        { trialStart: serverTimestamp() },
+        { merge: true }
+      );
+    }
+  };
+
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: '853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com',
@@ -33,13 +47,17 @@ export default function Signup() {
     });
   }, []);
 
+
   useEffect(() => {
     if (fbResponse?.type === 'success') {
       const { authentication } = fbResponse;
       if (authentication?.accessToken) {
         const credential = FacebookAuthProvider.credential(authentication.accessToken);
         signInWithCredential(auth, credential)
-          .then(() => router.replace('/(tabs)'))
+          .then(async (cred) => {
+            await ensureTrialStart(cred.user.uid);
+            router.replace('/(tabs)');
+          })
           .catch((error) => {
             Alert.alert('Error', 'Facebook sign-in failed: ' + error.message);
             console.error(error);
@@ -52,7 +70,10 @@ export default function Signup() {
 
   const handleSignUp = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+
+      await ensureTrialStart(cred.user.uid);
+
       router.replace('/(tabs)');
     } catch (err: any) {
       Alert.alert('Error', err.message);
@@ -74,9 +95,10 @@ export default function Signup() {
 
       const googleCredential = GoogleAuthProvider.credential(idToken);
 
-      await signInWithCredential(auth, googleCredential);
-
+      const cred = await signInWithCredential(auth, googleCredential);
+      await ensureTrialStart(cred.user.uid);
       router.replace('/(tabs)');
+
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // User cancelled — fine, do nothing
@@ -112,9 +134,10 @@ export default function Signup() {
         rawNonce: nonce,
       });
 
-      await signInWithCredential(auth, appleCredential);
-
+      const cred = await signInWithCredential(auth, appleCredential);
+      await ensureTrialStart(cred.user.uid);
       router.replace('/(tabs)');
+
     } catch (e: any) {
       if (e.code === 'ERR_CANCELED') {
         // user cancelled
@@ -146,69 +169,79 @@ export default function Signup() {
   });
 
   return (
-    <View style={styles.screenBackground}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Create Account</Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.screenBackground}>
+          <View style={styles.container}>
+            <Text style={styles.title}>Create Account</Text>
 
-        <View style={styles.socialRow}>
-          <TouchableOpacity
-            style={styles.googleBtn}
-            onPress={handleGoogleSignIn}
-          >
-            <Ionicons name="logo-google" style={styles.socialIcon} />
-          </TouchableOpacity>
+            <View style={styles.socialRow}>
+              <TouchableOpacity
+                style={styles.googleBtn}
+                onPress={handleGoogleSignIn}
+              >
+                <Ionicons name="logo-google" style={styles.socialIcon} />
+              </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.socialBtn}
-            onPress={async () => {
-              await fbPromptAsync();
-            }}
-          >
-            <Ionicons name="logo-facebook" style={styles.socialIcon} />
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.socialBtn}
+                onPress={async () => {
+                  await fbPromptAsync();
+                }}
+              >
+                <Ionicons name="logo-facebook" style={styles.socialIcon} />
+              </TouchableOpacity>
 
-          <AppleAuthentication.AppleAuthenticationButton
-            buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-            buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-            cornerRadius={20}
-            style={{ width: 40, height: 40 }}
-            onPress={handleAppleSignIn}
-          />
+              <AppleAuthentication.AppleAuthenticationButton
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                cornerRadius={20}
+                style={{ width: 40, height: 40 }}
+                onPress={handleAppleSignIn}
+              />
 
+            </View>
+
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#AAAAAA"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={styles.passwordInput}
+                placeholder="Password"
+                placeholderTextColor="#AAAAAA"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeButton}>
+                <Ionicons name={showPassword ? 'eye' : 'eye-off'} style={styles.eyeIcon} />
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity style={styles.buttonPrimary} onPress={handleSignUp}>
+             <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => router.replace('/login')} style={styles.toggle}>
+              <Text style={styles.toggleText}>Already have an account? Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          placeholderTextColor="#AAAAAA"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
-
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={styles.passwordInput}
-            placeholder="Password"
-            placeholderTextColor="#AAAAAA"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-          />
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeButton}>
-            <Ionicons name={showPassword ? 'eye' : 'eye-off'} style={styles.eyeIcon} />
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity style={styles.buttonPrimary} onPress={handleSignUp}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => router.replace('/login')} style={styles.toggle}>
-          <Text style={styles.toggleText}>Already have an account? Login</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }

@@ -13,15 +13,41 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import LoadingPuck from '@/components/loadingPuck';
 
 import arenasData from '../../assets/data/arenas.json';
 import historicalTeamsData from '../../assets/data/historicalTeams.json';
 import arenaHistoryData from '../../assets/data/arenaHistory.json';
 
-console.log("MANUAL CHECKIN FILE VERSION: RILEY-DEBUG-2026-02-03-v2-UPLOAD-ATTEMPT");
-
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
+
+// Resolve physical arena (lat/lng) from a historical arena name + date
+const resolveArenaLatLng = (
+  arenaName: string,
+  league: string,
+  date: Date
+) => {
+  const historyMatch = arenaHistoryData.find(h =>
+    h.league === league &&
+    h.history.some(rec => {
+      if (rec.name !== arenaName) return false;
+      const from = new Date(rec.from);
+      const to = rec.to ? new Date(rec.to) : null;
+      return date >= from && (!to || date <= to);
+    })
+  );
+
+  if (!historyMatch) return null;
+
+  const arena = arenasData.find(a =>
+    a.league === league && a.teamName === historyMatch.teamName
+  );
+
+  return arena
+    ? { latitude: arena.latitude, longitude: arena.longitude }
+    : null;
+};
 
 const ManualCheckIn = () => {
   const router = useRouter();
@@ -60,6 +86,7 @@ const ManualCheckIn = () => {
   const [merchItems, setMerchItems] = useState({});
   const [didBuyConcessions, setDidBuyConcessions] = useState(false);
   const [concessionItems, setConcessionItems] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const merchCategories = {
     'Jerseys': ['Home Jersey', 'Away Jersey', 'Third Jersey', 'Retro Jersey', 'Custom Jersey', 'Special Occasion Jersey'],
     'Apparel & Headwear': [
@@ -92,21 +119,22 @@ const ManualCheckIn = () => {
   const [opponentItems, setOpponentItems] = useState([]);
 
   const handleCheckInSubmit = async () => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
     try {
       const user = getAuth(firebaseApp).currentUser;
       if (!user) {
         setAlertMessage('You must be logged in to submit a check-in.');
         setAlertVisible(true);
+        setIsSubmitting(false);
         return;
       }
 
-      // ────────────────────────────────────────────────
-      // NEW: Upload photos to Storage first
-      // ────────────────────────────────────────────────
       let photoUrls: string[] = [];
 
       if (images.length > 0) {
-        // We'll use a temp folder name based on timestamp + user
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const basePath = `checkins/${user.uid}/${timestamp}`;
 
@@ -114,7 +142,6 @@ const ManualCheckIn = () => {
           const response = await fetch(localUri);
           const blob = await response.blob();
 
-          // Use .jpg extension (or detect real type if you want)
           const photoRef = ref(storage, `${basePath}/${index}.jpg`);
 
           await uploadBytes(photoRef, blob);
@@ -124,9 +151,6 @@ const ManualCheckIn = () => {
         photoUrls = await Promise.all(uploadPromises);
       }
 
-      // ────────────────────────────────────────────────
-      // Original docData, but now with real URLs
-      // ────────────────────────────────────────────────
       const getSelectedItems = (sourceObject, categories) => {
         const result = {};
         Object.keys(categories).forEach((category) => {
@@ -139,7 +163,8 @@ const ManualCheckIn = () => {
 
       const match = arenasData.find(
         (arena: any) =>
-          arena.league === selectedLeague && arena.arena === selectedArena
+          arena.league === selectedLeague &&
+          arena.teamName === selectedHomeTeam
       );
 
       const docData = {
@@ -156,12 +181,12 @@ const ManualCheckIn = () => {
         },
         companions,
         highlights,
-        parkingAndTravel,
+        ParkingAndTravel: parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
         gameDate: gameDate.toISOString(),
         checkinType: 'Manual',
-        photos: photoUrls,          // ← this is the fix
+        photos: photoUrls,
         userId: user.uid,
         timestamp: serverTimestamp(),
         latitude: match?.latitude ?? null,
@@ -173,46 +198,53 @@ const ManualCheckIn = () => {
       setAlertMessage('Check-in saved! Taking you to your profile...');
       setAlertVisible(true);
 
-      // Optional: clear images state after success
       setImages([]);
 
     } catch (error) {
       console.error('Error saving check-in:', error);
       setAlertMessage('Failed to save check-in. Please try again.');
       setAlertVisible(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  // league dropdown
+  // League dropdown
   useEffect(() => {
     const selectedDate = gameDate;
 
     const processed = arenasData
-      .filter(arena => !arena.startDate || selectedDate >= new Date(arena.startDate))
+      .filter(arena => {
+        const start = arena.startDate ? new Date(arena.startDate) : new Date(0);
+        const end = arena.endDate ? new Date(arena.endDate) : null;
+        if (end) end.setHours(23, 59, 59, 999);
+
+        return selectedDate >= start && (!end || selectedDate <= end);
+      })
       .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
     const processedHistorical = historicalTeamsData
       .filter(hist => {
         const start = new Date(hist.startDate);
-        let end = hist.endDate ? new Date(hist.endDate) : null;
+        const end = hist.endDate ? new Date(hist.endDate) : null;
         if (end) end.setHours(23, 59, 59, 999);
+
         return selectedDate >= start && (!end || selectedDate <= end);
       })
       .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
     const allArenasRaw = [...processed, ...processedHistorical];
 
-    // Kill any bad/missing league entries
-    const allArenas = allArenasRaw.filter(a =>
+    const allArenasFiltered = allArenasRaw.filter(a =>
       a.league && typeof a.league === 'string' && a.league.trim() !== ''
     );
 
-    setAllArenas(allArenas);
-    setArenas(allArenas);
+    setAllArenas(allArenasFiltered);
+    setArenas(allArenasFiltered);
 
-    // Extract only valid leagues
-    const leagues = [...new Set(allArenas.map(a => a.league))];
+    const leagues = [...new Set(allArenasFiltered.map(a => a.league))];
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
+
   }, [gameDate]);
 
   // League → set both arenas & teams
@@ -227,14 +259,12 @@ const ManualCheckIn = () => {
 
     const selectedDate = gameDate;
 
-    const filtered = allArenas.filter(a => a.league === selectedLeague);
+    const validArenas = allArenas.filter(item => {
+      if (item.league !== selectedLeague) return false;
 
-    const validArenas = filtered.filter(arenaItem => {
-      const start = arenaItem.startDate ? new Date(arenaItem.startDate) : new Date(0);
-      let end = arenaItem.endDate ? new Date(arenaItem.endDate) : null;
-      if (end) {
-        end.setHours(23, 59, 59, 999);
-      }
+      const start = item.startDate ? new Date(item.startDate) : new Date(0);
+      const end = item.endDate ? new Date(item.endDate) : null;
+
       return selectedDate >= start && (!end || selectedDate <= end);
     });
 
@@ -242,10 +272,12 @@ const ManualCheckIn = () => {
 
     validArenas.forEach(arenaItem => {
       const historyRecord = arenaHistoryData.find(h =>
-        h.teamName === arenaItem.teamName && h.league === selectedLeague
+        h.teamName === arenaItem.teamName &&
+        h.league === arenaItem.league &&
+        h.currentArena === arenaItem.arena
       );
 
-      let nameToAdd = arenaItem.arena;
+      let arenaName = arenaItem.arena;
 
       if (historyRecord) {
         const record = historyRecord.history.find(h => {
@@ -253,70 +285,83 @@ const ManualCheckIn = () => {
           const to = h.to ? new Date(h.to) : null;
           return selectedDate >= from && (!to || selectedDate <= to);
         });
-        if (record) nameToAdd = record.name;
+
+        if (record) {
+          arenaName = record.name;
+        }
       }
 
-      finalArenaNames.add(nameToAdd);
+      finalArenaNames.add(arenaName);
     });
+
 
     const arenaList = Array.from(finalArenaNames)
       .sort()
       .map(a => ({ label: a, value: a }));
 
-    setArenaItems(arenaList);
+    if (!selectedHomeTeam) {
+      setArenaItems(arenaList);
+    }
 
-    const validTeams = filtered.filter(team => {
-      const start = team.startDate ? new Date(team.startDate) : new Date(0);
-      const end = team.endDate ? new Date(team.endDate) : null;
-      return selectedDate >= start && (!end || selectedDate <= end);
-    });
-
-    const uniqueTeams = Array.from(new Set(validTeams.map(a => a.teamName)))
+    const uniqueTeams = Array.from(
+        new Set(validTeams.map(a => a.teamName)))
       .sort();
 
     setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
 
     setSelectedOpponent(null);
     setOpponentItems([]);
+
   }, [selectedLeague, gameDate]);
 
 
-   // Arena selected — filter home teams to teams that play at that arena
-   useEffect(() => {
-     if (!selectedArena || !selectedLeague) {
-       return;
-     }
-
-     const teamsAtArena = arenas
-       .filter(item => item.arena === selectedArena && item.league === selectedLeague)
-       .map(item => ({ label: item.teamName, value: item.teamName }))
-       .sort((a, b) => a.label.localeCompare(b.label));
-
-     setHomeTeamItems(teamsAtArena);
-
-     if (selectedHomeTeam && !teamsAtArena.find(t => t.value === selectedHomeTeam)) {
-       setSelectedHomeTeam(null);
-     }
-   }, [selectedArena, selectedLeague, arenas]);
-
-  // Home team selected — filter arenas to arenas that team plays in
+  // Arena selected — match INCLUDING history names
   useEffect(() => {
-    if (!selectedHomeTeam || !selectedLeague) {
-      return;
+    if (!selectedArena || !selectedLeague) return;
+
+    const selectedDate = gameDate;
+
+    const teams = allArenas
+      .filter(item => {
+        if (item.league !== selectedLeague) return false;
+
+        const historyRecord = arenaHistoryData.find(h =>
+          h.teamName === item.teamName &&
+          h.league === item.league &&
+          h.currentArena === item.arena
+        );
+
+        let resolvedName = item.arena;
+
+        if (historyRecord) {
+          const record = historyRecord.history.find(h => {
+            const from = new Date(h.from);
+            const to = h.to ? new Date(h.to) : null;
+            return selectedDate >= from && (!to || selectedDate <= to);
+          });
+
+          if (record) {
+            resolvedName = record.name;
+          }
+        }
+
+        return resolvedName === selectedArena;
+      })
+      .map(item => ({
+        label: item.teamName,
+        value: item.teamName,
+      }));
+
+    setHomeTeamItems(teams);
+
+    if (
+      selectedHomeTeam &&
+      !teams.find(t => t.value === selectedHomeTeam)
+    ) {
+      setSelectedHomeTeam(null);
     }
 
-    const arenasForTeam = arenas
-      .filter(item => item.league === selectedLeague && item.teamName === selectedHomeTeam)
-      .map(item => ({ label: item.arena, value: item.arena }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-
-    setArenaItems(arenasForTeam);
-
-    // Only clear selected arena if it's no longer valid
-    if (selectedArena && !arenasForTeam.find(a => a.value === selectedArena)) {
-      setSelectedArena(null);
-    }
-  }, [selectedHomeTeam, selectedLeague, arenas]);
+  }, [selectedArena, selectedLeague, gameDate, allArenas]);
 
   // Home Team → Opponents (with date filter)
   useEffect(() => {
@@ -347,6 +392,53 @@ const ManualCheckIn = () => {
       setOpponentItems([]);
     }
   }, [selectedHomeTeam, selectedLeague, arenas, gameDate]);
+
+  useEffect(() => {
+    if (!selectedHomeTeam || !selectedLeague) return;
+
+    const matching = allArenas.filter(item =>
+      item.league === selectedLeague &&
+      item.teamName === selectedHomeTeam
+    );
+
+    const resolvedArenaNames = matching.map(item => {
+      const historyRecord = arenaHistoryData.find(h =>
+        h.teamName === item.teamName &&
+        h.league === item.league &&
+        h.currentArena === item.arena
+      );
+
+      if (!historyRecord) return item.arena;
+
+      const record = historyRecord.history.find(h => {
+        const from = new Date(h.from);
+        const to = h.to ? new Date(h.to) : null;
+        return gameDate >= from && (!to || gameDate <= to);
+      });
+
+      return record ? record.name : item.arena;
+    });
+
+    const uniqueArenaNames = Array.from(new Set(resolvedArenaNames)).sort();
+
+    const arenaItemsList = uniqueArenaNames.map(name => ({
+      label: name,
+      value: name,
+    }));
+
+    setArenaItems(arenaItemsList);
+
+    // ONLY reset selectedArena if it's no longer valid
+    if (
+      selectedArena &&
+      !arenaItemsList.find(a => a.value === selectedArena)
+    ) {
+      setSelectedArena(null);
+    }
+
+  }, [selectedHomeTeam, selectedLeague, allArenas, gameDate]);
+
+
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -397,7 +489,7 @@ const ManualCheckIn = () => {
     alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
     alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
     alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
-    alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
     bottomRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 32, marginTop: 24, },
     backIconButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', padding: 14, borderRadius: 30, width: 60, height: 60, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68',  },
     container: { padding: 20, paddingBottom: 100, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', },
@@ -412,6 +504,10 @@ const ManualCheckIn = () => {
     choiceButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600', },
     companionsPlaceholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
     datePickerText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
+    dateModalContainer: { padding: 16, borderTopLeftRadius: 16, borderTopRightRadius: 16, },
+    dateModalDone: { marginTop: 12, alignSelf: 'flex-end', },
+    dateModalDoneText: { fontSize: 16, fontWeight: '600', color: '#0066CC', },
+    dateModalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)', },
     datePickerWrapper: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', padding: 20, borderRadius: 12 },
     dropdown: { marginBottom: 14, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderWidth: 2, borderRadius: 8, paddingHorizontal: 8, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     dropDownContainer: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', borderColor: colorScheme === 'dark' ? '#334155' : '#E2E8F0' },
@@ -435,8 +531,12 @@ const ManualCheckIn = () => {
     seatLabelRow: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginLeft: 12, marginRight: 6 },
     seatInput: { width: 50, textAlign: 'center', marginBottom: 0 },
     submitButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 14, borderRadius: 30, width: '50%', alignSelf: 'center', alignItems: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
+    submitButtonSubmitting: { opacity: 0.7 },
     submitText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600', },
     uploadPhotoText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
+
+
+
   });
 
   return (
@@ -886,24 +986,67 @@ const ManualCheckIn = () => {
               <Ionicons name="arrow-back" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.submitButton} onPress={handleCheckInSubmit}>
-              <Text style={styles.submitText}>Submit</Text>
+            <TouchableOpacity
+              style={[
+                styles.submitButton,
+                isSubmitting && styles.submitButtonSubmitting
+              ]}
+              onPress={handleCheckInSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+                  <LoadingPuck size={32} />
+                  <Text style={styles.submitText}>Submitting...</Text>
+                </View>
+              ) : (
+                <Text style={styles.submitText}>Submit</Text>
+              )}
             </TouchableOpacity>
           </View>
 
-          {showDatePicker && (
+          {/* ANDROID — keep native behavior */}
+          {showDatePicker && Platform.OS === 'android' && (
             <DateTimePicker
               value={gameDate}
               mode="date"
               display="default"
-              themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
-              accentColor="#0D2C42"
-              textColor={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'}
               onChange={(event, selectedDate) => {
                 setShowDatePicker(false);
                 if (selectedDate) setGameDate(selectedDate);
               }}
             />
+          )}
+
+          {/* IOS / IPAD — modal picker */}
+          {showDatePicker && Platform.OS === 'ios' && (
+            <Modal transparent animationType="slide">
+              <View style={styles.dateModalOverlay}>
+                <View
+                  style={[
+                    styles.dateModalContainer,
+                    { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
+                  ]}
+                >
+                  <DateTimePicker
+                    value={gameDate}
+                    mode="date"
+                    display="spinner"
+                    themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
+                    onChange={(event, selectedDate) => {
+                      if (selectedDate) setGameDate(selectedDate);
+                    }}
+                  />
+
+                  <TouchableOpacity
+                    style={styles.dateModalDone}
+                    onPress={() => setShowDatePicker(false)}
+                  >
+                    <Text style={styles.dateModalDoneText}>Done</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
           )}
         </ScrollView>
       </KeyboardAvoidingView>

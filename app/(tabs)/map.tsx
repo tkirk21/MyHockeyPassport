@@ -434,7 +434,7 @@ export default function MapScreen() {
     dropdownItem: { paddingVertical: 12, paddingHorizontal: 18 },
     dropdownItemText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 15, fontWeight: '500', textAlign: 'center' },
     emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', },
-    emptyText: { fontSize: 18, fontWeight: '600', color: '#0A2940', textAlign: 'center', },
+    emptyText: { fontSize: 18, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', },
     findLocationButton: { position: 'absolute', bottom: 30, right: 20, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', padding: 8, borderRadius: 24, borderWidth: 3, borderColor: '#2F4F68', zIndex: 10, elevation: 8 },
     groupTitle: { fontSize: 18, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 8, textAlign: 'center', width: '100%', },
     loadingOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },

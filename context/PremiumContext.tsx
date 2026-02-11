@@ -21,8 +21,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      console.log('AUTH UID:', user.uid);
-
       // User is logged in — set loading and let the separate listener handle profile
       setIsLoadingPremium(true);
     });
@@ -42,61 +40,57 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
     const run = async () => {
       try {
-        // 🔹 STEP 1: CHECK WHITELIST
+        // STEP 1: WHITELIST
         const whitelistRef = doc(db, 'premiumWhitelist', 'global');
         const whitelistSnap = await getDoc(whitelistRef);
 
         if (whitelistSnap.exists()) {
           const data = whitelistSnap.data();
           if (data?.whitelistedUids?.includes(user.uid)) {
-            console.log('WHITELISTED USER:', user.uid);
             setIsPremium(true);
             setIsLoadingPremium(false);
-            return; // ⛔ BYPASS TRIAL LOGIC COMPLETELY
-          }
-        }
-
-        // 🔹 STEP 2: FALL BACK TO TRIAL LOGIC (use getDoc instead of onSnapshot to avoid listen permission weirdness)
-        const profileRef = doc(db, 'profiles', user.uid);
-
-        console.log('Fetching profile with getDoc for trial check:', user.uid);
-
-        try {
-          const profileSnap = await getDoc(profileRef);
-          setIsLoadingPremium(false);
-
-          if (!profileSnap.exists()) {
-            console.log('Profile does not exist → creating with trialStart');
-            await setDoc(profileRef, {
-              trialStart: serverTimestamp(),
-              // add any other default fields you want
-            }, { merge: true });
-
-            setIsPremium(true);
             return;
           }
-
-          const data = profileSnap.data();
-          console.log('Profile data (getDoc):', data);
-
-          const trialStartRaw = data?.trialStart;
-
-          let trialStartDate = new Date(0);
-          if (trialStartRaw?.toDate) {
-            trialStartDate = trialStartRaw.toDate();
-          }
-
-          const trialExpired =
-            Date.now() - trialStartDate.getTime() >
-            3 * 24 * 60 * 60 * 1000; // 3 days
-
-          setIsPremium(!trialExpired);
-
-        } catch (err) {
-          console.error('getDoc trial check failed:', err);
-          setIsLoadingPremium(false);
-          setIsPremium(false); // fail closed
         }
+
+        // STEP 2: PROFILE
+        const profileRef = doc(db, 'profiles', user.uid);
+        const profileSnap = await getDoc(profileRef);
+
+        // STEP 2A: PAID SUBSCRIPTION
+        const sub = profileSnap.data()?.subscription;
+        if (
+          sub?.status === 'active' &&
+          sub?.expiresAt?.toDate &&
+          sub.expiresAt.toDate() > new Date()
+        ) {
+          setIsPremium(true);
+          setIsLoadingPremium(false);
+          return;
+        }
+
+        // STEP 2B: TRIAL (SAFE)
+        const data = profileSnap.data();
+
+        // Profile exists but NO trialStart → start trial NOW
+        if (!data?.trialStart) {
+          await setDoc(
+            profileRef,
+            { trialStart: serverTimestamp() },
+            { merge: true }
+          );
+          setIsPremium(true);
+          setIsLoadingPremium(false);
+          return;
+        }
+
+        const trialStartDate = data.trialStart.toDate();
+        const expired =
+          Date.now() - trialStartDate.getTime() >
+          3 * 24 * 60 * 60 * 1000;
+
+        setIsPremium(!expired);
+        setIsLoadingPremium(false);
 
       } catch (err) {
         console.error('Premium check failed:', err);

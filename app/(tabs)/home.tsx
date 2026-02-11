@@ -65,6 +65,21 @@ export default function HomeScreen() {
   const [myFriends, setMyFriends] = useState<string[]>([]);
   const leaderboardShotRef = useRef<ViewShot>(null);
 
+  // DEDUPE arenas so multi-team arenas only show once
+  const getUniqueArenas = (arenas: any[]) => {
+    const seen = new Map<string, any>();
+
+    arenas.forEach(arena => {
+      const key = `${arena.arena}_${arena.city}`;
+
+      if (!seen.has(key)) {
+        seen.set(key, arena);
+      }
+    });
+
+    return Array.from(seen.values());
+  };
+
 
   //Calculates distance between two coordinates in miles or km based on distanceUnit
   const getDistance = (lat1, lon1, lat2, lon2) => {
@@ -638,9 +653,19 @@ export default function HomeScreen() {
             {isPremium ? (
               <View key="closest-arenas" style={[styles.section, styles.blurredSection]}>
                 <Text style={styles.sectionTitle}>Closest Arenas</Text>
-                {location ? arenaData
-                  .map(arena => ({ ...arena, distance: getDistance(location.latitude, location.longitude, arena.latitude, arena.longitude) }))
-                  .filter(arena => favoriteLeagues.length === 0 || favoriteLeagues.includes(arena.league))
+                {location ? getUniqueArenas(arenaData)
+                  .map(arena => ({
+                    ...arena,
+                    distance: getDistance(
+                      location.latitude,
+                      location.longitude,
+                      arena.latitude,
+                      arena.longitude
+                    )
+                  }))
+                  .filter(arena =>
+                    favoriteLeagues.length === 0 || favoriteLeagues.includes(arena.league)
+                  )
                   .sort((a, b) => a.distance - b.distance)
                   .slice(0, 3)
                   .map((arena, index) => (
