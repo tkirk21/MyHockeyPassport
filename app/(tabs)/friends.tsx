@@ -89,6 +89,7 @@ export default function FriendsTab() {
   }, 300);
 
   const currentUser = auth.currentUser;
+  console.log("Current user:", currentUser?.uid);
   const router = useRouter();
   const colorScheme = useColorScheme();
   const [alertVisible, setAlertVisible] = useState(false);
@@ -393,12 +394,24 @@ export default function FriendsTab() {
 
   const handleSendRequest = async (userId: string) => {
     if (!currentUser) return;
+
     try {
-      const requestRef = doc(db, 'profiles', userId, 'friendRequests', currentUser.uid);
-      await setDoc(requestRef, { fromId: currentUser.uid, createdAt: new Date() });
+      // Write to THEIR friendRequests
+      await setDoc(
+        doc(db, 'profiles', userId, 'friendRequests', currentUser.uid),
+        { fromId: currentUser.uid, createdAt: serverTimestamp() }
+      );
+
+      // Write to YOUR sentFriendRequests
+      await setDoc(
+        doc(db, 'profiles', currentUser.uid, 'sentFriendRequests', userId),
+        { toId: userId, createdAt: serverTimestamp() }
+      );
+
       setSentRequests((prev) => [...prev, userId]);
       setAlertMessage('Friend request sent!');
       setAlertVisible(true);
+
     } catch (err) {
       console.error('Error sending friend request:', err);
       setAlertMessage('Failed to send friend request. Try again.');

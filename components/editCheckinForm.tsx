@@ -43,8 +43,18 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
   const [selectedArena, setSelectedArena] = useState(initialData.arenaName || null);
   const [selectedHomeTeam, setSelectedHomeTeam] = useState(initialData.teamName || null);
   const [selectedOpponent, setSelectedOpponent] = useState(initialData.opponent || null);
-  const [homeScore, setHomeScore] = useState(initialData.homeScore || '');
-  const [awayScore, setAwayScore] = useState(initialData.awayScore || '');
+  const [homeScore, setHomeScore] = useState(
+    initialData.homeScore !== undefined && initialData.homeScore !== null
+      ? String(initialData.homeScore)
+      : ''
+  );
+  const [awayScore, setAwayScore] = useState(
+    initialData.awayScore !== undefined && initialData.awayScore !== null
+      ? String(initialData.awayScore)
+      : ''
+  );
+  const [overtimeWin, setOvertimeWin] = useState(initialData.overtimeWin ?? false);
+  const [shootoutWin, setShootoutWin] = useState(initialData.shootoutWin ?? false);
   const [favoritePlayer, setFavoritePlayer] = useState(initialData.favoritePlayer || '');
   const [seatSection, setSeatSection] = useState(initialData.seatInfo?.section || '');
   const [seatRow, setSeatRow] = useState(initialData.seatInfo?.row || '');
@@ -118,13 +128,6 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         return;
       }
 
-      // ────────────────────────────────────────────────
-      // Handle photos: keep existing remote URLs that weren't deleted, upload new local ones
-      // ────────────────────────────────────────────────
-      const existingRemoteUrls = initialData.photos?.filter((url: string) =>
-        typeof url === 'string' && url.startsWith('https://')
-      ) || [];
-
       // Current images state contains both remote URLs (kept) and local new ones
       // Filter out any deleted ones (deleted means removed from images array)
       const keptRemoteUrls = images.filter(uri =>
@@ -176,7 +179,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         return result;
       };
 
-      const match = arenasData.find(
+      const match = allArenas.find(
         (arena: any) =>
           arena.league === selectedLeague && arena.arena === selectedArena
       );
@@ -187,19 +190,28 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
         arenaName: selectedArena,
         teamName: selectedHomeTeam,
         opponent: selectedOpponent,
-        homeScore,
-        awayScore,
+        homeScore: homeScore.trim() === '' ? null : Number(homeScore),
+        awayScore: awayScore.trim() === '' ? null : Number(awayScore),
+        overtimeWin: overtimeWin,
+        shootoutWin: shootoutWin,
         favoritePlayer,
-        seatInfo: {
-          section: seatSection,
-          row: seatRow,
-          seat: seatNumber,
-        },
+        seatInfo:
+          seatSection || seatRow || seatNumber
+            ? {
+                section: seatSection,
+                row: seatRow,
+                seat: seatNumber,
+              }
+            : null,
         companions,
         highlights,
         ParkingAndTravel: parkingAndTravel,
-        merchBought: getSelectedItems(merchItems, merchCategories),
-        concessionsBought: getSelectedItems(concessionItems, concessionCategories),
+        merchBought: didBuyMerch
+          ? getSelectedItems(merchItems, merchCategories)
+          : {},
+        concessionsBought: didBuyConcessions
+          ? getSelectedItems(concessionItems, concessionCategories)
+          : {},
         gameDate: gameDate.toISOString(),
         photos: finalPhotos,
         latitude: match?.latitude ?? null,
@@ -257,7 +269,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     setLeagueItems(leagues.map(l => ({ label: l, value: l })));
   }, [gameDate]);
 
-  // League + Date → populate arenas & teams with correct historical names + date filter
+  // League + Date → populate arenas & teams
   useEffect(() => {
     if (!selectedLeague) {
       setArenaItems([]);
@@ -267,51 +279,42 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
     const date = gameDate;
 
-    // --- Arenas (with historical names) ---
     const arenaOptions: any[] = [];
 
-    // Historical names
-    for (const h of arenaHistoryData) {
-      if (h.league !== selectedLeague) continue;
-      const active = h.history.find(entry => {
-        const from = new Date(entry.from);
-        const to = entry.to ? new Date(entry.to) : null;
-        return date >= from && (to === null || date <= to);
-      });
-      if (active) arenaOptions.push({ label: active.name, value: active.name });
-    }
-
-    // Current names (unless overridden)
-    for (const a of arenasData) {
+    for (const a of allArenas) {
       if (a.league !== selectedLeague) continue;
-      const overridden = arenaHistoryData.some(h => {
-        if (h.league !== selectedLeague || h.currentArena !== a.arena) return false;
-        return h.history.some(entry => {
-          const from = new Date(entry.from);
-          const to = entry.to ? new Date(entry.to) : null;
-          return date >= from && (to === null || date <= to) && entry.name !== a.arena;
-        });
+
+      arenaOptions.push({
+        label: a.arena,
+        value: a.arena,
       });
-      if (!overridden) arenaOptions.push({ label: a.arena, value: a.arena });
     }
 
-    const uniqueArenas = Array.from(new Map(arenaOptions.map(i => [i.value, i])).values())
-      .sort((a, b) => a.label.localeCompare(b.label));
+    const uniqueArenas = Array.from(
+      new Map(arenaOptions.map(i => [i.value, i])).values()
+    ).sort((a, b) => a.label.localeCompare(b.label));
+
     setArenaItems(uniqueArenas);
 
-    // --- Home Teams (filtered by startDate/endDate) ---
-    const validTeams = arenas.filter(team => {
+    const validTeams = allArenas.filter(team => {
       if (team.league !== selectedLeague) return false;
+
       const start = team.startDate ? new Date(team.startDate) : new Date(0);
       const end = team.endDate ? new Date(team.endDate) : null;
+
       return date >= start && (!end || date <= end);
     });
 
-    const uniqueTeams = Array.from(new Set(validTeams.map(a => a.teamName)))
-      .sort();
-    setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
+    const uniqueTeams = Array.from(
+      new Set(validTeams.map(a => a.teamName))
+    ).sort();
 
-  }, [selectedLeague, gameDate]);
+    setHomeTeamItems(
+      uniqueTeams.map(t => ({ label: t, value: t }))
+    );
+
+  }, [selectedLeague, gameDate, allArenas]);
+
 
   // Arena selected → set correct Home Team (works with historical names)
   useEffect(() => {
@@ -325,10 +328,14 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     let teamName = null;
 
     if (historical) {
-      const current = arenasData.find(a => a.arena === historical.currentArena && a.league === selectedLeague);
+      const current = allArenas.find(
+        a => a.arena === historical.currentArena && a.league === selectedLeague
+      );
       teamName = current?.teamName;
     } else {
-      const current = arenasData.find(a => a.arena === selectedArena && a.league === selectedLeague);
+      const current = allArenas.find(
+        a => a.arena === selectedArena && a.league === selectedLeague
+      );
       teamName = current?.teamName;
     }
 
@@ -339,13 +346,16 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
       setHomeTeamItems([]);
       setSelectedHomeTeam(null);
     }
-  }, [selectedArena, selectedLeague]);
+  }, [selectedArena, selectedLeague, allArenas]);
+
 
   // Home Team selected → set correct Arena (with historical name)
   useEffect(() => {
     if (!selectedHomeTeam || !selectedLeague) return;
 
-    const teamEntry = arenasData.find(a => a.teamName === selectedHomeTeam && a.league === selectedLeague);
+    const teamEntry = allArenas.find(
+      a => a.teamName === selectedHomeTeam && a.league === selectedLeague
+    );
     if (!teamEntry) return;
 
     const date = gameDate;
@@ -367,7 +377,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
     setArenaItems([{ label: correctName, value: correctName }]);
     setSelectedArena(correctName);
-  }, [selectedHomeTeam, selectedLeague, gameDate]);
+  }, [selectedHomeTeam, selectedLeague, gameDate, allArenas]);
 
   useEffect(() => {
     if (!selectedLeague || !selectedHomeTeam) {
@@ -417,29 +427,6 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
     // NO auto-select ever
   }, [selectedLeague, selectedHomeTeam, arenas, gameDate, initialData.league, initialData.teamName, initialData.opponent]);
-
-  useEffect(() => {
-    const user = getAuth().currentUser;
-    if (!user) return;
-
-    const friendsRef = collection(db, 'profiles', user.uid, 'friends');
-    const unsub = onSnapshot(friendsRef, async (snap) => {
-      const friendIds = snap.docs.map(d => d.id);
-
-      const profiles = await Promise.all(
-        friendIds.map(async (id) => {
-          const profSnap = await getDoc(doc(db, 'profiles', id));
-          const name = profSnap.data()?.name?.trim();
-          return name ? { id, name } : null;
-        })
-      );
-
-      setFriendsList(profiles.filter(Boolean));
-      console.log('Friends loaded in edit form:', friendsList.length, friendsList);
-    });
-
-    return () => unsub();
-  }, []);
 
   useEffect(() => {
     const user = getAuth().currentUser;
@@ -523,6 +510,8 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     dateModalDone: { marginTop: 12, alignSelf: 'flex-end', },
     dateModalDoneText: { fontSize: 16, fontWeight: '600', color: '#0066CC', },
     dateModalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)', },
+    deleteButton: { position: 'absolute', top: -8, right: -8, backgroundColor: 'red', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' },
+    deleteText: { color: 'white', fontSize: 16 },
     Placeholder: { color: colorScheme === 'dark' ? '#BBBBBB' : '#666666' },
     input: { borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderRadius: 8, padding: 12, marginBottom: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
     label: { fontSize: 16, fontWeight: '600', marginTop: 18, marginBottom: 6, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
@@ -530,8 +519,9 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     photoGrid: { flexDirection: 'row', flexWrap: 'wrap', marginTop: 10, gap: 8 },
     photoThumbnailWrapper: { position: 'relative', width: 100, height: 100 },
     photoThumbnail: { width: 100, height: 100, borderRadius: 8 },
-    deleteButton: { position: 'absolute', top: -8, right: -8, backgroundColor: 'red', borderRadius: 12, width: 24, height: 24, justifyContent: 'center', alignItems: 'center' },
-    deleteText: { color: 'white', fontSize: 16 },
+    resultOptionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 12, },
+    resultOptionItem: { flexDirection: 'row', alignItems: 'center', marginHorizontal: 12, },
+    resultOptionText: { marginLeft: 8, fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
     scoreLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     scoreInput: { width: 60, textAlign: 'center', marginBottom: 0 },
@@ -679,23 +669,55 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
           </View>
 
           <Text style={styles.label}>Final Score:</Text>
+
           <View style={styles.scoreRow}>
-            <Text style={styles.scoreLabel}>{ 'Home  '}</Text>
+            <Text style={styles.scoreLabel}>Home:</Text>
             <TextInput
               value={homeScore}
               onChangeText={setHomeScore}
               style={[styles.input, styles.scoreInput]}
               keyboardType="number-pad"
-              placeholder="0"
+              placeholder=" "
             />
-            <Text style={styles.scoreLabel}>{ '        Away  '}</Text>
+
+            <Text style={styles.scoreLabel}>  Away:</Text>
             <TextInput
               value={awayScore}
               onChangeText={setAwayScore}
               style={[styles.input, styles.scoreInput]}
               keyboardType="number-pad"
-              placeholder="0"
+              placeholder=" "
             />
+          </View>
+
+          <View style={styles.resultOptionsRow}>
+
+            <View style={styles.resultOptionItem}>
+              <Checkbox
+                value={overtimeWin}
+                onValueChange={(value) => {
+                  setOvertimeWin(value);
+                  if (value) setShootoutWin(false);
+                }}
+              />
+              <Text style={styles.resultOptionText}>
+                Overtime Win
+              </Text>
+            </View>
+
+            <View style={styles.resultOptionItem}>
+              <Checkbox
+                value={shootoutWin}
+                onValueChange={(value) => {
+                  setShootoutWin(value);
+                  if (value) setOvertimeWin(false);
+                }}
+              />
+              <Text style={styles.resultOptionText}>
+                Shootout Win
+              </Text>
+            </View>
+
           </View>
 
           <TextInput

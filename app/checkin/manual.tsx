@@ -73,6 +73,8 @@ const ManualCheckIn = () => {
   const [selectedOpponent, setSelectedOpponent] = useState(null);
   const [homeScore, setHomeScore] = useState('');
   const [awayScore, setAwayScore] = useState('');
+  const [overtimeWin, setOvertimeWin] = useState(false);
+  const [shootoutWin, setShootoutWin] = useState(false);
   const [favoritePlayer, setFavoritePlayer] = useState('');
   const [seatSection, setSeatSection] = useState('');
   const [seatRow, setSeatRow] = useState('');
@@ -161,7 +163,7 @@ const ManualCheckIn = () => {
         return result;
       };
 
-      const match = arenasData.find(
+      const match = allArenas.find(
         (arena: any) =>
           arena.league === selectedLeague &&
           arena.teamName === selectedHomeTeam
@@ -173,6 +175,10 @@ const ManualCheckIn = () => {
         arenaName: selectedArena,
         teamName: selectedHomeTeam,
         opponent: selectedOpponent,
+        homeScore: homeScore.trim() === '' ? null : Number(homeScore),
+        awayScore: awayScore.trim() === '' ? null : Number(awayScore),
+        overtimeWin: overtimeWin,
+        shootoutWin: shootoutWin,
         favoritePlayer,
         seatInfo: {
           section: seatSection,
@@ -247,9 +253,10 @@ const ManualCheckIn = () => {
 
   }, [gameDate]);
 
-  // League → set both arenas & teams
+  // League → set arenas & teams (uses historicalTeams.json via allArenas)
   useEffect(() => {
     if (!selectedLeague) {
+      setArenaItems([]);
       setHomeTeamItems([]);
       setSelectedHomeTeam(null);
       setSelectedOpponent(null);
@@ -259,7 +266,7 @@ const ManualCheckIn = () => {
 
     const selectedDate = gameDate;
 
-    const validArenas = allArenas.filter(item => {
+    const validEntries = allArenas.filter(item => {
       if (item.league !== selectedLeague) return false;
 
       const start = item.startDate ? new Date(item.startDate) : new Date(0);
@@ -268,51 +275,27 @@ const ManualCheckIn = () => {
       return selectedDate >= start && (!end || selectedDate <= end);
     });
 
-    const finalArenaNames = new Set<string>();
+    const arenaNames = Array.from(
+      new Set(validEntries.map(a => a.arena))
+    ).sort();
 
-    validArenas.forEach(arenaItem => {
-      const historyRecord = arenaHistoryData.find(h =>
-        h.teamName === arenaItem.teamName &&
-        h.league === arenaItem.league &&
-        h.currentArena === arenaItem.arena
-      );
+    setArenaItems(
+      arenaNames.map(name => ({ label: name, value: name }))
+    );
 
-      let arenaName = arenaItem.arena;
+    const teamNames = Array.from(
+      new Set(validEntries.map(a => a.teamName))
+    ).sort();
 
-      if (historyRecord) {
-        const record = historyRecord.history.find(h => {
-          const from = new Date(h.from);
-          const to = h.to ? new Date(h.to) : null;
-          return selectedDate >= from && (!to || selectedDate <= to);
-        });
-
-        if (record) {
-          arenaName = record.name;
-        }
-      }
-
-      finalArenaNames.add(arenaName);
-    });
-
-
-    const arenaList = Array.from(finalArenaNames)
-      .sort()
-      .map(a => ({ label: a, value: a }));
-
-    if (!selectedHomeTeam) {
-      setArenaItems(arenaList);
-    }
-
-    const uniqueTeams = Array.from(
-        new Set(validTeams.map(a => a.teamName)))
-      .sort();
-
-    setHomeTeamItems(uniqueTeams.map(t => ({ label: t, value: t })));
+    setHomeTeamItems(
+      teamNames.map(name => ({ label: name, value: name }))
+    );
 
     setSelectedOpponent(null);
     setOpponentItems([]);
 
-  }, [selectedLeague, gameDate]);
+  }, [selectedLeague, gameDate, allArenas]);
+
 
 
   // Arena selected — match INCLUDING history names
@@ -521,6 +504,9 @@ const ManualCheckIn = () => {
     requestContainer: { marginTop: 16, marginBottom: 8, alignItems: 'center', },
     requestQuestion: { fontSize: 15, color: colorScheme === 'dark' ? '#BBBBBB' : '#444444', textAlign: 'center', marginBottom: 4, },
     requestLinkText: { fontSize: 15, color: '#0066CC', textDecorationLine: 'underline', fontWeight: '600', },
+    resultOptionsRow: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginBottom: 12, },
+    resultOptionItem: { flexDirection: 'row', alignItems: 'center', marginHorizontal: 12, },
+    resultOptionText: { marginLeft: 8, fontSize: 15, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', },
     scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 12 },
     scoreLabel: { fontWeight: '500', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
@@ -534,9 +520,6 @@ const ManualCheckIn = () => {
     submitButtonSubmitting: { opacity: 0.7 },
     submitText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600', },
     uploadPhotoText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
-
-
-
   });
 
   return (
@@ -719,6 +702,36 @@ const ManualCheckIn = () => {
             keyboardType="number-pad"
             placeholder=" "
           />
+        </View>
+
+        <View style={styles.resultOptionsRow}>
+
+          <View style={styles.resultOptionItem}>
+            <Checkbox
+              value={overtimeWin}
+              onValueChange={(value) => {
+                setOvertimeWin(value);
+                if (value) setShootoutWin(false);
+              }}
+            />
+            <Text style={styles.resultOptionText}>
+              Overtime Win
+            </Text>
+          </View>
+
+          <View style={styles.resultOptionItem}>
+            <Checkbox
+              value={shootoutWin}
+              onValueChange={(value) => {
+                setShootoutWin(value);
+                if (value) setOvertimeWin(false);
+              }}
+            />
+            <Text style={styles.resultOptionText}>
+              Shootout Win
+            </Text>
+          </View>
+
         </View>
 
           <TextInput

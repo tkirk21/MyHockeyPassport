@@ -377,11 +377,20 @@ export default function CheckinDetailsScreen() {
             {(checkin.homeScore !== undefined || checkin.awayScore !== undefined) && (
               <View style={[styles.scoreCard, { backgroundColor: teamColor, marginTop: 8 }]}>
                 <Text style={styles.title}>Final Score</Text>
+
                 <Text style={styles.score}>
                   {checkin.homeScore ?? '?'}
                   {'  -  '}
                   {checkin.awayScore ?? '?'}
                 </Text>
+
+                {checkin.overtimeWin && (
+                  <Text style={styles.sub}>OVERTIME WIN!</Text>
+                )}
+
+                {checkin.shootoutWin && (
+                  <Text style={styles.sub}>SHOOTOUT WIN!</Text>
+                )}
               </View>
             )}
 
