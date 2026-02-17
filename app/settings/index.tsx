@@ -15,7 +15,7 @@ import { useColorScheme } from '../../hooks/useColorScheme';
 import { useTheme } from '@/context/ThemeContext';
 import { type ThemePreference } from '@/utils/themePersistence';
 import { registerForPushNotificationsAsync, disablePushToken } from '@/utils/pushNotifications';
-
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 const auth = getAuth();
 
@@ -480,14 +480,23 @@ export default function SettingsScreen() {
                   <TouchableOpacity
                     onPress={async () => {
                       setDeleteModalVisible(false);
+
                       try {
+                        const functions = getFunctions();
+                        const deleteUser = httpsCallable(functions, "deleteUserAccount");
+
+                        await deleteUser();
+
                         await auth.signOut();
                         router.dismissAll();
-                        router.replace('/login');
+                        router.replace("/login");
+
                       } catch (error) {
-                        console.error('Delete account logout error:', error);
+                        console.error("Account deletion error:", error);
+                        Alert.alert("Error", "Failed to delete account.");
                       }
                     }}
+
                     style={[styles.alertButton, { backgroundColor: '#EF4444' }]}
                   >
                     <Text style={styles.alertButtonText}>Delete</Text>

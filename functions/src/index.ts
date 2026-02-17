@@ -1,4 +1,5 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
+import { onDocumentCreated } from "firebase-functions/v2/firestore";
 import * as admin from "firebase-admin";
 import fetch from "node-fetch";
 
@@ -9,50 +10,64 @@ admin.initializeApp({
 const db = admin.firestore();
 
 /* ============================
-   DELETE USER ACCOUNT FUNCTION
+   DELETE USER ACCOUNT
 ============================ */
 
 export const deleteUserAccount = onCall(async (request) => {
-
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "User must be authenticated.");
   }
 
   const uid = request.auth.uid;
   const bucket = admin.storage().bucket();
-  const profileRef = db.collection("profiles").doc(uid);
 
-  const checkinsSnap = await profileRef.collection("checkins").get();
+  try {
+    // Remove user from other users' friend-related subcollections
+    const profilesSnap = await db.collection("profiles").get();
 
-  for (const checkinDoc of checkinsSnap.docs) {
+    for (const profileDoc of profilesSnap.docs) {
+      const otherUid = profileDoc.id;
+      if (otherUid === uid) continue;
 
-    const checkinRef = profileRef.collection("checkins").doc(checkinDoc.id);
+      const batch = db.batch();
 
-    const cheersSnap = await checkinRef.collection("cheers").get();
-    await Promise.all(cheersSnap.docs.map(doc => doc.ref.delete()));
+      batch.delete(
+        db.collection("profiles").doc(otherUid)
+          .collection("friends").doc(uid)
+      );
 
-    const chirpsSnap = await checkinRef.collection("chirps").get();
-    await Promise.all(chirpsSnap.docs.map(doc => doc.ref.delete()));
+      batch.delete(
+        db.collection("profiles").doc(otherUid)
+          .collection("friendRequests").doc(uid)
+      );
 
-    await checkinRef.delete();
+      batch.delete(
+        db.collection("profiles").doc(otherUid)
+          .collection("sentFriendRequests").doc(uid)
+      );
+
+      await batch.commit();
+    }
+
+    // Recursively delete entire profile tree (includes checkins, cheers, chirps, etc.)
+    await admin.firestore().recursiveDelete(
+      db.collection("profiles").doc(uid)
+    );
+
+    // Delete storage folders
+    await bucket.deleteFiles({ prefix: `profilePictures/${uid}` });
+    await bucket.deleteFiles({ prefix: `checkins/${uid}` });
+
+    // Delete auth user
+    await admin.auth().deleteUser(uid);
+
+    return { success: true };
+
+  } catch (error) {
+    console.error("Account deletion failed:", error);
+    throw new HttpsError("internal", "Account deletion failed.");
   }
-
-  const friendsSnap = await profileRef.collection("friends").get();
-  await Promise.all(friendsSnap.docs.map(doc => doc.ref.delete()));
-
-  const notificationsSnap = await profileRef.collection("notifications").get();
-  await Promise.all(notificationsSnap.docs.map(doc => doc.ref.delete()));
-
-  await profileRef.delete();
-
-  await bucket.deleteFiles({ prefix: `checkins/${uid}/` });
-  await bucket.file(`profilePictures/${uid}`).delete().catch(() => {});
-
-  await admin.auth().deleteUser(uid);
-
-  return { success: true };
 });
-
 
 /* ============================
    SEND PUSH NOTIFICATION
@@ -101,8 +116,6 @@ export const sendPushNotification = onCall(async (request) => {
 
   return { success: true };
 });
-
-import { onDocumentCreated } from "firebase-functions/v2/firestore";
 
 /* ============================
    FRIEND REQUEST TRIGGER
