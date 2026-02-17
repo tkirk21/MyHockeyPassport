@@ -7,6 +7,7 @@ import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import {  Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import arenasData from '@/assets/data/arenas.json';
+import historicalTeamsData from '@/assets/data/historicalTeams.json';
 import { logCheer } from "@/utils/activityLogger";
 import CheerButton from '@/components/friends/cheerButton';
 import ChirpBox from '@/components/friends/chirpBox';
@@ -345,90 +346,118 @@ export default function UserProfileScreen() {
                     initialRegion={{
                       latitude: 39.8283,
                       longitude: -98.5795,
-                      latitudeDelta: 35,
-                      longitudeDelta: 35,
+                      latitudeDelta: 40,
+                      longitudeDelta: 40,
                     }}
-                    mapType="none"  // THIS disables default tiles
+                    mapType="none"
                     scrollEnabled={true}
                     zoomEnabled={true}
                     rotateEnabled={true}
                     pitchEnabled={true}
                     showsUserLocation={false}
                   >
-                  {/* THEMED TILE LAYER – matches main map exactly */}
+                    {/* FORCE LIGHT MODE ALWAYS */}
                     <UrlTile
-                      urlTemplate={
-                        colorScheme === 'dark'
-                          ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-                          : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-                      }
+                      urlTemplate="https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                       maximumZ={19}
-                      zIndex={-1}  // behind markers
+                      zIndex={-1}
                     />
 
-                    {allCheckins
-                      .filter(c => c.latitude && c.longitude)
-                      .map((checkin, index) => {
-                        // Match arena to get teamCode and color
-                        const arenaEntry = (arenasData as any[]).find(
+                    {allCheckins.map((checkin, index) => {
+                      let latitude = checkin.latitude;
+                      let longitude = checkin.longitude;
+
+                      // If no lat/lng saved in checkin → resolve from JSON
+                      if (!latitude || !longitude) {
+                        const arenaMatch =
+                          (arenasData as any[]).find(
+                            (a: any) =>
+                              a.league === checkin.league &&
+                              (a.arena === checkin.arenaName || a.arena === checkin.arena)
+                          ) ||
+                          (historicalTeamsData as any[]).find(
+                            (a: any) =>
+                              a.league === checkin.league &&
+                              (a.arena === checkin.arenaName || a.arena === checkin.arena)
+                          );
+
+                        if (!arenaMatch) return null;
+
+                        latitude = arenaMatch.latitude;
+                        longitude = arenaMatch.longitude;
+                      }
+
+                      if (!latitude || !longitude) return null;
+
+                      const arenaEntry =
+                        (arenasData as any[]).find(
+                          (a: any) =>
+                            a.league === checkin.league &&
+                            (a.arena === checkin.arenaName || a.arena === checkin.arena)
+                        ) ||
+                        (historicalTeamsData as any[]).find(
                           (a: any) =>
                             a.league === checkin.league &&
                             (a.arena === checkin.arenaName || a.arena === checkin.arena)
                         );
 
-                        const teamCode = arenaEntry?.teamCode || '';
-                        const colorCode = arenaEntry?.colorCode || '#0D2C42';
+                      const teamCode = arenaEntry?.teamCode || '';
+                      const colorCode = arenaEntry?.colorCode || '#0D2C42';
 
-                        const visitCount = allCheckins.filter(
-                          c => (c.arenaName || c.arena) === (checkin.arenaName || checkin.arena)
-                        ).length;
+                      const visitCount = allCheckins.filter(
+                        c => (c.arenaName || c.arena) === (checkin.arenaName || checkin.arena)
+                      ).length;
 
-                        return (
-                          <Marker
-                            key={index}
-                            coordinate={{
-                              latitude: checkin.latitude,
-                              longitude: checkin.longitude,
-                            }}
-                            title={checkin.arenaName || checkin.arena}
-                            anchor={{ x: 0.5, y: 0.5 }}
-                            centerOffset={{ x: 0, y: -20 }}
-                          >
-                            <View style={{ alignItems: 'center' }}>
-                              {/* Visit Count Badge */}
-                              {visitCount >= 1 && (
-                                <View style={styles.visitBadge}>
-                                  <Text style={styles.visitBadgeText}>{visitCount}x</Text>
-                                </View>
-                              )}
-
-                              {/* Custom Pin */}
-                              <View style={{ width: 36, height: 36, justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                                <Image
-                                  source={require('@/assets/images/pin_template.png')}
-                                  style={{
-                                    width: 36,
-                                    height: 36,
-                                    tintColor: colorCode,
-                                  }}
-                                  resizeMode="contain"
-                                />
-                                <Text style={{
-                                  position: 'absolute',
-                                  color: 'white',
-                                  fontWeight: 'bold',
-                                  fontSize: 8,
-                                  textShadowColor: 'rgba(0,0,0,0.8)',
-                                  textShadowOffset: { width: 1, height: 1 },
-                                  textShadowRadius: 2,
-                                }}>
-                                  {teamCode}
-                                </Text>
+                      return (
+                        <Marker
+                          key={`visited-${index}`}
+                          coordinate={{
+                            latitude: Number(latitude),
+                            longitude: Number(longitude),
+                          }}
+                          title={checkin.arenaName || checkin.arena}
+                          anchor={{ x: 0.5, y: 0.5 }}
+                          centerOffset={{ x: 0, y: -20 }}
+                        >
+                          <View style={{ alignItems: 'center' }}>
+                            {visitCount >= 1 && (
+                              <View style={styles.visitBadge}>
+                                <Text style={styles.visitBadgeText}>{visitCount}x</Text>
                               </View>
+                            )}
+
+                            <View style={{
+                              width: 36,
+                              height: 36,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              position: 'relative'
+                            }}>
+                              <Image
+                                source={require('@/assets/images/pin_template.png')}
+                                style={{
+                                  width: 36,
+                                  height: 36,
+                                  tintColor: colorCode,
+                                }}
+                                resizeMode="contain"
+                              />
+                              <Text style={{
+                                position: 'absolute',
+                                color: 'white',
+                                fontWeight: 'bold',
+                                fontSize: 8,
+                                textShadowColor: 'rgba(0,0,0,0.8)',
+                                textShadowOffset: { width: 1, height: 1 },
+                                textShadowRadius: 2,
+                              }}>
+                                {teamCode}
+                              </Text>
                             </View>
-                          </Marker>
-                        );
-                      })}
+                          </View>
+                        </Marker>
+                      );
+                    })}
                   </MapView>
                 </View>
               )}

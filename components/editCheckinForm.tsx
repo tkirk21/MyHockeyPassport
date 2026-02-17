@@ -1028,33 +1028,15 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
 
           {/* IOS / IPAD — modal picker */}
           {showDatePicker && Platform.OS === 'ios' && (
-            <Modal transparent animationType="slide">
-              <View style={styles.dateModalOverlay}>
-                <View
-                  style={[
-                    styles.dateModalContainer,
-                    { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
-                  ]}
-                >
-                  <DateTimePicker
-                    value={gameDate}
-                    mode="date"
-                    display="spinner"
-                    themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
-                    onChange={(event, selectedDate) => {
-                      if (selectedDate) setGameDate(selectedDate);
-                    }}
-                  />
-
-                  <TouchableOpacity
-                    style={styles.dateModalDone}
-                    onPress={() => setShowDatePicker(false)}
-                  >
-                    <Text style={styles.dateModalDoneText}>Done</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </Modal>
+            <DateTimePicker
+              value={gameDate}
+              mode="date"
+              display="default"
+              onChange={(event, selectedDate) => {
+                setShowDatePicker(false);
+                if (selectedDate) setGameDate(selectedDate);
+              }}
+            />
           )}
         </RNScrollView>
       </KeyboardAvoidingView>

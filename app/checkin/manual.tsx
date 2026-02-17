@@ -490,7 +490,7 @@ const ManualCheckIn = () => {
     dateModalContainer: { padding: 16, borderTopLeftRadius: 16, borderTopRightRadius: 16, },
     dateModalDone: { marginTop: 12, alignSelf: 'flex-end', },
     dateModalDoneText: { fontSize: 16, fontWeight: '600', color: '#0066CC', },
-    dateModalOverlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.4)', },
+    dateModalOverlay: { flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.4)' },
     datePickerWrapper: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF', padding: 20, borderRadius: 12 },
     dropdown: { marginBottom: 14, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderWidth: 2, borderRadius: 8, paddingHorizontal: 8, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     dropDownContainer: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', borderColor: colorScheme === 'dark' ? '#334155' : '#E2E8F0' },
@@ -1033,33 +1033,15 @@ const ManualCheckIn = () => {
 
           {/* IOS / IPAD — modal picker */}
           {showDatePicker && Platform.OS === 'ios' && (
-            <Modal transparent animationType="slide">
-              <View style={styles.dateModalOverlay}>
-                <View
-                  style={[
-                    styles.dateModalContainer,
-                    { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
-                  ]}
-                >
-                  <DateTimePicker
-                    value={gameDate}
-                    mode="date"
-                    display="spinner"
-                    themeVariant={colorScheme === 'dark' ? 'dark' : 'light'}
-                    onChange={(event, selectedDate) => {
-                      if (selectedDate) setGameDate(selectedDate);
-                    }}
-                  />
-
-                  <TouchableOpacity
-                    style={styles.dateModalDone}
-                    onPress={() => setShowDatePicker(false)}
-                  >
-                    <Text style={styles.dateModalDoneText}>Done</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </Modal>
+            <DateTimePicker
+              value={gameDate}
+              mode="date"
+              display="default"
+              onChange={(event, selectedDate) => {
+                setShowDatePicker(false);
+                if (selectedDate) setGameDate(selectedDate);
+              }}
+            />
           )}
         </ScrollView>
       </KeyboardAvoidingView>
