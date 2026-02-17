@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { EmailAuthProvider, getAuth, reauthenticateWithCredential, sendSignInLinkToEmail, updateEmail, verifyBeforeUpdateEmail  } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const auth = getAuth();
 const db = getFirestore();
@@ -14,6 +15,7 @@ const db = getFirestore();
 export default function ChangeEmailScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const [newEmail, setNewEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -72,7 +74,7 @@ const handleChangeEmail = async () => {
     eyeIcon: { padding: 10 },
     eyeIconColor: { color: colorScheme === 'dark' ? '#BBBBBB' : '#888888' },
     field: { marginBottom: 20 },
-    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerRow: { paddingTop: insets.top + 10, paddingHorizontal: 20, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' },
     headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 28, fontWeight: '700', marginLeft: 20 },
     input: { flex: 1, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', paddingVertical: 12, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },
     label: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, marginBottom: 8 },

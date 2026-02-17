@@ -6,12 +6,15 @@ import { getAuth } from 'firebase/auth';
 import { collection, getDocs, doc, deleteDoc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 const auth = getAuth();
 
 export default function BlockedUsersScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const [blockedUsers, setBlockedUsers] = useState<any[]>([]);
 
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function BlockedUsersScreen() {
     avatar: { width: 40, height: 40, borderRadius: 20, },
     backArrow: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     empty: { color: colorScheme === 'dark' ? '#BBBBBB' : '#888888', textAlign: 'center', marginTop: 50, fontSize: 16 },
-    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerRow: { paddingTop: insets.top + 10, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
     headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 28, fontWeight: '700', marginLeft: 20 },
     inner: { padding: 20 },
     label: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18 },

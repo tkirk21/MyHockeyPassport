@@ -6,12 +6,14 @@ import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View, StyleSheet 
 import { Ionicons } from '@expo/vector-icons';
 import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const auth = getAuth();
 
 export default function ChangePasswordScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -74,7 +76,7 @@ export default function ChangePasswordScreen() {
     eyeIcon: { padding: 16 },
     eyeIconColor: { color: colorScheme === 'dark' ? '#BBBBBB' : '#888888' },
     field: { marginBottom: 20 },
-    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerRow: { paddingTop: insets.top + 10, paddingHorizontal: 20, paddingBottom: 10, flexDirection: 'row', alignItems: 'center' },
     headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 28, fontWeight: '700', marginLeft: 20 },
     label: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, marginBottom: 8 },
     passwordContainer: { flexDirection: 'row', alignItems: 'center', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', borderRadius: 8, paddingHorizontal: 12, marginBottom: 12, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF' },

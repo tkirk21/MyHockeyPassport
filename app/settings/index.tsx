@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PushSwitch from '@/components/PushSwitch';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useFocusEffect } from '@react-navigation/native';
@@ -20,6 +21,7 @@ export default function SettingsScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const { themePreference, setThemePreference } = useTheme();
+  const insets = useSafeAreaInsets();
   const [pushEnabled, setPushEnabled] = useState(false);
   const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
   const [favoriteLeagues, setFavoriteLeagues] = useState<string[]>([]);
@@ -151,7 +153,7 @@ export default function SettingsScreen() {
     dropdownItemContainer: { backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#F1F5F9',  },
     dropdownItemText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18 },
     dropdownRightIcon: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
-    headerRow: { paddingTop: 50, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' },
+    headerRow: { paddingHorizontal: 20, paddingBottom: 15, flexDirection: 'row', alignItems: 'center' },
     headerTitle: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 28, fontWeight: '700', marginLeft: 20 },
     inner: { paddingHorizontal: 20 },
     label: { flex: 1, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 18, marginLeft: 16 },
@@ -181,7 +183,7 @@ export default function SettingsScreen() {
       <Stack.Screen options={{ headerShown: false }} />
 
       {/* Custom header */}
-      <View style={styles.headerRow}>
+      <View style={[ styles.headerRow, { paddingTop: insets.top + 10 } ]}>
         <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={28} color={styles.backArrow.color} />
         </TouchableOpacity>

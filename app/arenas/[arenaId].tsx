@@ -9,6 +9,7 @@ import firebaseApp from '@/firebaseConfig';
 import { useEffect, useMemo, useState } from 'react';
 import { Alert, ImageBackground, Linking, Modal, StyleSheet, ScrollView, Text, TouchableOpacity, View, } from 'react-native';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import LoadingPuck from '@/components/loadingPuck';
 import arenaData from '@/assets/data/arenas.json';
@@ -36,6 +37,7 @@ export default function ArenaScreen() {
   const auth = getAuth(firebaseApp);
   const db = getFirestore(firebaseApp);
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const [loading, setLoading] = useState(true);
   const [checkingIn, setCheckingIn] = useState(false);
@@ -407,7 +409,7 @@ export default function ArenaScreen() {
     alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
     alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
     arenaName: { fontSize: 28, top: 10, fontWeight: 'bold', color: '#fff', textAlign: 'center', },
-    backButton: { position: 'absolute', top: 40, left: -5, zIndex: 10, borderRadius: 20, padding: 8, },
+    backButton: { position: 'absolute', left: 10, zIndex: 10, borderRadius: 20, padding: 8, },
     button: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF' , marginHorizontal: 90, paddingVertical: 18, borderRadius: 30, alignItems: 'center', marginTop: 10, borderWidth: 2, borderColor: '#2F4F68', },
     buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 16, fontWeight: '600' },
     centered: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#F4F7FA', },
@@ -464,7 +466,10 @@ export default function ArenaScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         {/* ← BACK BUTTON GOES RIGHT HERE */}
         <TouchableOpacity
-          style={styles.backButton}
+          style={[
+            styles.backButton,
+            { top: insets.top + 10 }
+          ]}
           onPress={() => router.back()}
         >
           <Ionicons name="arrow-back" size={28} color="#FFFFFF" />

@@ -41,11 +41,11 @@
     },
     "android": {
       "versionCode": 3,
+      "edgeToEdgeEnabled": false,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon_logo.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
       "userInterfaceStyle": "automatic",
       "package": "com.tkirk21.MyHockeyPassport",
       "googleServicesFile": "./google-services.json",

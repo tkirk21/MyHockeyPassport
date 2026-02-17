@@ -10,11 +10,13 @@ import LoadingPuck from '@/components/loadingPuck';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function LeagueDetails() {
   const [loading, setLoading] = React.useState(true);
   const { leagueName } = useLocalSearchParams();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const league = leagues.find((l: any) => (l.league || '').toUpperCase() === String(leagueName || '').toUpperCase());
   const leagueCode = (league?.league || '').toUpperCase();
   const leagueArenas = useMemo(() => {
@@ -51,7 +53,7 @@ export default function LeagueDetails() {
   }
 
   const styles = StyleSheet.create({
-    backButton: { position: 'absolute', top: 35, left: -10, zIndex: 10, padding: 12, },
+    backButton: { position: 'absolute', left: 10, zIndex: 10, padding: 12, },
     blueStrip: { position: 'absolute', top: -30, left: 0, right: 0, height: 120, zIndex: 5, },
     container: { padding: 20, paddingBottom: 80, alignItems: 'center', backgroundColor: '#E6E8EA', flexGrow: 1, },
     description: { fontSize: 16, marginBottom: 20, textAlign: 'center', color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', },
@@ -76,7 +78,15 @@ export default function LeagueDetails() {
   ) : (
     <SafeAreaView style={{ flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#EDEEF0' }}>
       <View style={styles.fullContainer}>
-        <View style={[styles.blueStrip, { backgroundColor: league.colorCode || '#0A2940' }]} />
+        <View
+          style={[
+            styles.blueStrip,
+            {
+              backgroundColor: league.colorCode || '#0A2940',
+              top: -insets.top - 10,
+            },
+          ]}
+        />
         <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={36} color="#E6E8EA" />
         </TouchableOpacity>

@@ -15,6 +15,7 @@ import * as Location from 'expo-location';
 import { useColorScheme } from '../../hooks/useColorScheme';
 import LoadingPuck from "../../components/loadingPuck";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -57,10 +58,11 @@ export default function UserProfileScreen() {
   const currentUser = auth.currentUser;
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
 
   const styles = StyleSheet.create({
     arenaText: { fontSize: 16, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 4, },
-    backButton: { position: 'absolute', top: 46, left: -5, zIndex: 10, padding: 12 },
+    backButton: { position: 'absolute', top: insets.top + 10, left: -5, zIndex: 10, padding: 12 },
     background: { flex: 1, width: '100%', height: '100%' },
     blockedMessage: { marginTop: 50, textAlign: 'center', fontSize: 18, color: '#000', fontWeight: '600', },
     cardText: { fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center' },

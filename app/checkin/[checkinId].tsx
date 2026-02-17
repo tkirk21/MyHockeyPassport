@@ -4,10 +4,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import firebaseApp from "@/firebaseConfig";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState, useRef } from "react";
-import { ActivityIndicator, Alert, Dimensions, Image, ImageBackground, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Dimensions, Image, ImageBackground, Modal, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColorScheme } from '../../hooks/useColorScheme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ViewShot from 'react-native-view-shot';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system/legacy';
@@ -22,35 +22,10 @@ const formatGameDate = (checkin: any) => {
   return new Intl.DateTimeFormat(undefined, {dateStyle: "medium",timeStyle: checkin.checkinType === "live" ? "short" : undefined,}).format(new Date(checkin.gameDate));
 };
 
-const HeaderRightWithSafeArea = ({ checkinId, userId, handleDelete, handleShare }) => {
-  const insets = useSafeAreaInsets();
-  const router = useRouter();
-
-  return (
-    <View style={{ flexDirection: "row", gap: 24, paddingRight: 16, justifyContent: "center", height: "100%", }}>
-      <TouchableOpacity onPress={handleShare}>
-        <Ionicons name="share-social-outline" size={22} color="#fff" />
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => {
-          router.push(`/checkin/edit/${checkinId}?userId=${userId}`);
-        }}
-      >
-        <Ionicons name="create-outline" size={22} color="#fff" />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={handleDelete}>
-        <Ionicons name="trash-outline" size={22} color="#fff" />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
 export default function CheckinDetailsScreen() {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const params = useLocalSearchParams();
@@ -67,12 +42,9 @@ export default function CheckinDetailsScreen() {
   const isOwner = currentUser && String(currentUser.uid) === String(userId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [friendsMap, setFriendsMap] = useState<{ [name: string]: string }>({});
-  const [friendsLoading, setFriendsLoading] = useState(true);
   const viewShotRef = useRef(null);
 
   const fetchCheckin = async () => {
-    checkin?.photos?.forEach((uri, i) => {
-    });
     if (!checkinId || !userId) {
       setError("Invalid check-in reference.");
       setLoading(false);
@@ -241,7 +213,6 @@ export default function CheckinDetailsScreen() {
     detailsCard: { padding: 16, borderRadius: 12,  marginBottom: 16, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
     error: { fontSize: 18, color: "red", },
     gameDate: { fontSize: 16, fontWeight: "500", color: "#FFFFFF", marginTop: 4, textAlign: "center", },
-    headerLeftContainerStyle: { paddingTop: insets.top, },
     label: { fontSize: 18, fontWeight: "700", color: "#FFFFFF", },
     listItem: { fontSize: 15, color: "#fff", marginLeft: 20, },
     merchCard: { padding: 16, borderRadius: 12, marginBottom: 30, marginHorizontal: 20, borderWidth: 4, borderColor, shadowColor: "#000", shadowOpacity: 0.08, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, },
@@ -309,29 +280,7 @@ export default function CheckinDetailsScreen() {
 
       <Stack.Screen
         options={{
-          headerShown: true,
-          headerTitle: "",
-          headerStyle: {
-            backgroundColor: teamColor,
-          },
-          headerTintColor: "#fff",
-          headerShadowVisible: false,
-          headerLeft: () => (
-            <View style={{ paddingLeft: 16, justifyContent: "center", height: "100%", }}>
-              <TouchableOpacity onPress={() => router.back()}>
-                <Ionicons name="arrow-back" size={24} color="#fff" />
-              </TouchableOpacity>
-            </View>
-          ),
-          headerRight: () =>
-            isOwner ? (
-              <HeaderRightWithSafeArea
-                checkinId={checkinId}
-                userId={userId}
-                handleDelete={handleDelete}
-                handleShare={handleShare}
-              />
-            ) : null,
+          headerShown: false,
         }}
       />
 
@@ -347,11 +296,46 @@ export default function CheckinDetailsScreen() {
             contentContainerStyle={{ paddingBottom: 20 }}
             style={{ flex: 1 }}
           >
+            <View
+              style={{
+                backgroundColor: teamColor,
+                paddingTop: insets.top + 10,
+                paddingBottom: 15,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingHorizontal: 16,
+              }}
+            >
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="arrow-back" size={24} color="#fff" />
+              </TouchableOpacity>
+
+              {isOwner && (
+                <View style={{ flexDirection: "row", gap: 20 }}>
+                  <TouchableOpacity onPress={handleShare}>
+                    <Ionicons name="share-social-outline" size={22} color="#fff" />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() =>
+                      router.push(`/checkin/edit/${checkinId}?userId=${userId}`)
+                    }
+                  >
+                    <Ionicons name="create-outline" size={22} color="#fff" />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={handleDelete}>
+                    <Ionicons name="trash-outline" size={22} color="#fff" />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
             <View style={[styles.arenaCard, { backgroundColor: teamColor }]}>
               <TouchableOpacity
                 onPress={() => {
                   const a = arenasData.find(x => x.arena === checkin.arenaName);
-                  if (!a) return console.warn("Arena not found in arenas.json");
+                  if (!a || !a.latitude || !a.longitude) return;
                   router.push(`/arenas/${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}`);
                 }}
               >

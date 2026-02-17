@@ -193,7 +193,7 @@ export default function CheckInScreen() {
     alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
     alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
     alertButtonText: { color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontWeight: '700', fontSize: 16 },
-    buttons: { position: "absolute", bottom: 139, left: 24, right: 24, gap: 40, left: 70, right: 70, },
+    buttons: { position: "absolute", bottom: 40, left: 40,right: 40, gap: 40, },
     buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', paddingVertical: 16, borderRadius: 30, },
     buttonSecondary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', borderRadius: 30, },
     buttonText: { fontSize: 16, color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontWeight: "600", textAlign: "center", },
