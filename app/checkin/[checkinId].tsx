@@ -6,17 +6,22 @@ import { getAuth } from "firebase/auth";
 import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, Alert, Dimensions, Image, ImageBackground, Modal, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
+import { getStorage, ref as storageRef, listAll, deleteObject } from "firebase/storage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useColorScheme } from '../../hooks/useColorScheme';
 import ViewShot from 'react-native-view-shot';
 import * as Sharing from 'expo-sharing';
 import * as FileSystem from 'expo-file-system/legacy';
 
+import { getFunctions, httpsCallable } from "firebase/functions";
 import LoadingPuck from "@/components/loadingPuck";
 import arenasData from "@/assets/data/arenas.json";
 import historicalArenasData from '@/assets/data/historicalTeams.json';
 
 const db = getFirestore(firebaseApp);
+const functions = getFunctions(firebaseApp);
+const deleteCheckinFn = httpsCallable(functions, "deleteCheckin");
+const storage = getStorage(firebaseApp);
 const formatGameDate = (checkin: any) => {
   if (!checkin.gameDate) return "";
   return new Intl.DateTimeFormat(undefined, {dateStyle: "medium",timeStyle: checkin.checkinType === "live" ? "short" : undefined,}).format(new Date(checkin.gameDate));
@@ -256,25 +261,45 @@ export default function CheckinDetailsScreen() {
               <TouchableOpacity
                 style={[styles.alertButton, { backgroundColor: '#EF4444' }]}
                 onPress={async () => {
+
                   setAlertVisible(false);
                   setDeleting(true);
 
                   try {
-                    const ref = doc(
-                      db,
-                      "profiles",
-                      String(userId),
-                      "checkins",
-                      String(checkinId)
-                    );
-                    await deleteDoc(ref);
+
+                    if (!currentUser || currentUser.uid !== userId) {
+                      throw new Error("Unauthorized delete attempt");
+                    }
+
+                    let folderName: string | null = null;
+
+                    if (checkin?.photos && checkin.photos.length > 0) {
+
+                      const firstPhotoUrl = checkin.photos[0];
+
+                      const encodedPath = firstPhotoUrl.split("/o/")[1].split("?")[0];
+
+                      const decodedPath = decodeURIComponent(encodedPath);
+
+                      const pathParts = decodedPath.split("/");
+
+                      folderName = pathParts[2];
+                    }
+
+                    await deleteCheckinFn({
+                      checkinId: checkinId,
+                      folderName: folderName
+                    });
+
                     router.back();
+
                   } catch (err) {
                     console.error("Delete failed:", err);
                     setDeleting(false);
                     setAlertMessage("Could not delete check-in.");
                     setAlertVisible(true);
                   }
+
                 }}
               >
                 <Text style={styles.alertButtonText}>Delete</Text>

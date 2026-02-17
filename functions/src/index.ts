@@ -248,3 +248,39 @@ export const onChirpAdded = onDocumentCreated(
     });
   }
 );
+
+export const deleteCheckin = onCall(async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "Must be authenticated.");
+  }
+
+  const { checkinId, folderName } = request.data;
+  const uid = request.auth.uid;
+
+  if (!checkinId || !folderName) {
+    throw new HttpsError("invalid-argument", "Missing fields.");
+  }
+
+  try {
+    const bucket = admin.storage().bucket();
+
+    // 1️⃣ Recursively delete Firestore checkin (includes cheers & chirps)
+    await admin.firestore().recursiveDelete(
+      db.collection("profiles")
+        .doc(uid)
+        .collection("checkins")
+        .doc(checkinId)
+    );
+
+    // 2️⃣ Delete storage folder
+    await bucket.deleteFiles({
+      prefix: `checkins/${uid}/${folderName}`
+    });
+
+    return { success: true };
+
+  } catch (error) {
+    console.error("Checkin deletion failed:", error);
+    throw new HttpsError("internal", "Deletion failed.");
+  }
+});
