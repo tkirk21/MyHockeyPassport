@@ -248,7 +248,7 @@ export default function MapScreen() {
           all.push({ id: doc.id, ...data });
 
           const currentArenaName = getCurrentArenaName(data.arenaName);
-          const key = `${data.league}-${currentArenaName}`;
+          const key = currentArenaName.toLowerCase().trim();
 
           if (seenArenas.has(key)) return;
           seenArenas.add(key);
@@ -311,7 +311,7 @@ export default function MapScreen() {
               lat = historicalMatch.latitude;
               lng = historicalMatch.longitude;
               displayName = historicalMatch.arena || data.arenaName;
-              colorCode = 'gray'; // or whatever you want for historical
+              colorCode = historicalMatch.colorCode || historicalMatch.color || 'red';
               teamCode = historicalMatch.teamCode || '';
             } else if (data.latitude != null && data.longitude != null) {
               // Final fallback to check-in coords
@@ -407,15 +407,6 @@ export default function MapScreen() {
       } finally {
         setLoading(false);
       }
-
-      setTimeout(() => {
-        mapRef.current?.animateToRegion({
-          latitude: userLat,
-          longitude: userLng,
-          latitudeDelta: delta,
-          longitudeDelta: delta,
-        }, 1200);
-      }, 800);
     };
 
     loadEverything();
@@ -580,11 +571,15 @@ export default function MapScreen() {
             showsUserLocation={true}
             followsUserLocation={false}
             showsMyLocationButton={false}
+            initialRegion={{
+              latitude: 39.8283,       // geographic center of USA
+              longitude: -98.5795,
+              latitudeDelta: 55,       // zoomed way out
+              longitudeDelta: 55,
+            }}
           >
             <UrlTile
-              urlTemplate={colorScheme === 'dark'
-                ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-                : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
+              urlTemplate="https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
               maximumZ={19}
               zIndex={0}
             />

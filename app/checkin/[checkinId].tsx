@@ -14,7 +14,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 
 import LoadingPuck from "@/components/loadingPuck";
 import arenasData from "@/assets/data/arenas.json";
-import historicalArenasData from '../../assets/data/historicalArenas.json';
+import historicalArenasData from '@/assets/data/historicalTeams.json';
 
 const db = getFirestore(firebaseApp);
 const formatGameDate = (checkin: any) => {
@@ -180,18 +180,30 @@ export default function CheckinDetailsScreen() {
     );
   }
 
-  let arenaMatch = arenasData.find(
-    (a: any) =>
-      a.arena === checkin.arenaName &&
-      a.league === checkin.league
-  );
-
-  if (!arenaMatch) {
-    arenaMatch = arenasData.find(
+  let arenaMatch =
+    arenasData.find(
       (a: any) =>
-        a.teamName === checkin.teamName &&
+        a.arena === checkin.arenaName &&
+        a.league === checkin.league
+    ) ||
+    historicalArenasData.find(
+      (a: any) =>
+        a.arena === checkin.arenaName &&
         a.league === checkin.league
     );
+
+  if (!arenaMatch) {
+    arenaMatch =
+      arenasData.find(
+        (a: any) =>
+          a.teamName === checkin.teamName &&
+          a.league === checkin.league
+      ) ||
+      historicalArenasData.find(
+        (a: any) =>
+          a.teamName === checkin.teamName &&
+          a.league === checkin.league
+      );
   }
 
   const teamColor = arenaMatch?.colorCode || arenaMatch?.color || "#0A2940";
@@ -334,7 +346,9 @@ export default function CheckinDetailsScreen() {
             <View style={[styles.arenaCard, { backgroundColor: teamColor }]}>
               <TouchableOpacity
                 onPress={() => {
-                  const a = arenasData.find(x => x.arena === checkin.arenaName);
+                  const a =
+                    arenasData.find(x => x.arena === checkin.arenaName) ||
+                    historicalArenasData.find(x => x.arena === checkin.arenaName);
                   if (!a || !a.latitude || !a.longitude) return;
                   router.push(`/arenas/${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}`);
                 }}
