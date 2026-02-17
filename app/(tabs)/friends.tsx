@@ -5,7 +5,7 @@ import { ActivityIndicator, Animated, Image, ImageBackground, KeyboardAvoidingVi
 import { Ionicons } from '@expo/vector-icons';
 import firebaseApp from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc,  } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp, setDoc, writeBatch } from 'firebase/firestore';
 import { useDebouncedCallback } from 'use-debounce';
 import { useFocusEffect } from '@react-navigation/native';
 import { ProfileAlertContext } from '../_layout';
@@ -421,21 +421,30 @@ export default function FriendsTab() {
 
   const handleAcceptRequest = async (senderId: string) => {
     if (!currentUser) return;
-    setFriends((prev) => [...prev, senderId]);
-    setPendingRequests((prev) => prev.filter((r) => r.id !== senderId));
+
     try {
-      await setDoc(doc(db, 'profiles', currentUser.uid, 'friends', senderId), {
-        addedAt: serverTimestamp(),
-      });
-      await setDoc(doc(db, 'profiles', senderId, 'friends', currentUser.uid), {
-        addedAt: serverTimestamp(),
-      });
-      await deleteDoc(doc(db, 'profiles', currentUser.uid, 'friendRequests', senderId));
+      const batch = writeBatch(db);
+
+      const myFriendRef = doc(db, 'profiles', currentUser.uid, 'friends', senderId);
+      const theirFriendRef = doc(db, 'profiles', senderId, 'friends', currentUser.uid);
+      const requestRef = doc(db, 'profiles', currentUser.uid, 'friendRequests', senderId);
+
+      batch.set(myFriendRef, { addedAt: serverTimestamp() });
+      batch.set(theirFriendRef, { addedAt: serverTimestamp() });
+      batch.delete(requestRef);
+
+      await batch.commit();
+
       await logFriendship(senderId);
+
+      setFriends(prev => [...prev, senderId]);
+      setPendingRequests(prev => prev.filter(r => r.id !== senderId));
+
     } catch (err) {
       console.error('Error accepting friend request:', err);
     }
   };
+
 
   const handleDenyRequest = async (senderId: string) => {
     if (!currentUser) return;
@@ -784,7 +793,7 @@ export default function FriendsTab() {
         {/* Your Friends */}
         {friends.length > 0 && (
           <View style={styles.card}>
-            <Text style={styles.subheading}>Your Friends ({friends.length})</Text>
+            <Text style={styles.subheading}>Your Friends</Text>
             {allUsers
               .filter((u) => friends.includes(u.id) && !isBlocked(u.id))
               .sort((a, b) => {

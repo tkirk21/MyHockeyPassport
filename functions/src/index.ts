@@ -1,132 +1,237 @@
-import { onDocumentCreated } from 'firebase-functions/v2/firestore';
-import * as admin from 'firebase-admin';
-import { Expo, ExpoPushMessage } from 'expo-server-sdk';
+import { onCall, HttpsError } from "firebase-functions/v2/https";
+import * as admin from "firebase-admin";
+import fetch from "node-fetch";
 
-admin.initializeApp();
-const expo = new Expo();
+admin.initializeApp({
+  storageBucket: "myhockeypassport.firebasestorage.app",
+});
 
-// Helper to send push
-async function sendPush(token: string, title: string, body: string, data: Record<string, unknown> = {}) {
-  if (!Expo.isExpoPushToken(token)) {
-    console.log(`Invalid Expo push token: ${token}`);
-    return;
+const db = admin.firestore();
+
+/* ============================
+   DELETE USER ACCOUNT FUNCTION
+============================ */
+
+export const deleteUserAccount = onCall(async (request) => {
+
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be authenticated.");
   }
 
-  const message: ExpoPushMessage = {
-    to: token,
-    sound: 'default',
+  const uid = request.auth.uid;
+  const bucket = admin.storage().bucket();
+  const profileRef = db.collection("profiles").doc(uid);
+
+  const checkinsSnap = await profileRef.collection("checkins").get();
+
+  for (const checkinDoc of checkinsSnap.docs) {
+
+    const checkinRef = profileRef.collection("checkins").doc(checkinDoc.id);
+
+    const cheersSnap = await checkinRef.collection("cheers").get();
+    await Promise.all(cheersSnap.docs.map(doc => doc.ref.delete()));
+
+    const chirpsSnap = await checkinRef.collection("chirps").get();
+    await Promise.all(chirpsSnap.docs.map(doc => doc.ref.delete()));
+
+    await checkinRef.delete();
+  }
+
+  const friendsSnap = await profileRef.collection("friends").get();
+  await Promise.all(friendsSnap.docs.map(doc => doc.ref.delete()));
+
+  const notificationsSnap = await profileRef.collection("notifications").get();
+  await Promise.all(notificationsSnap.docs.map(doc => doc.ref.delete()));
+
+  await profileRef.delete();
+
+  await bucket.deleteFiles({ prefix: `checkins/${uid}/` });
+  await bucket.file(`profilePictures/${uid}`).delete().catch(() => {});
+
+  await admin.auth().deleteUser(uid);
+
+  return { success: true };
+});
+
+
+/* ============================
+   SEND PUSH NOTIFICATION
+============================ */
+
+export const sendPushNotification = onCall(async (request) => {
+
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User must be authenticated.");
+  }
+
+  const { targetUid, title, body } = request.data;
+
+  if (!targetUid || !title || !body) {
+    throw new HttpsError("invalid-argument", "Missing fields.");
+  }
+
+  const profileSnap = await db.collection("profiles").doc(targetUid).get();
+
+  if (!profileSnap.exists) {
+    return { success: false };
+  }
+
+  const pushToken = profileSnap.data()?.pushToken;
+
+  if (!pushToken) {
+    return { success: false };
+  }
+
+  const message = {
+    to: pushToken,
+    sound: "default",
     title,
     body,
-    data,
+    data: { targetUid },
   };
 
-  try {
-    const receipts = await expo.sendPushNotificationsAsync([message]);
-    console.log(`Push sent to ${token}`, receipts);
-  } catch (error) {
-    console.error('Push send error:', error);
-  }
-}
+  await fetch("https://exp.host/--/api/v2/push/send", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(message),
+  });
 
-// 1. New chirp in a thread you've joined (friend's checkin only)
-export const onChirpInThread = onDocumentCreated(
-  'profiles/{ownerId}/checkins/{checkinId}/chirps/{chirpId}',
-  async (event) => {
-    const snap = event.data;
-    if (!snap) return;
+  return { success: true };
+});
 
-    const chirp = snap.data();
-    const ownerId = event.params.ownerId;
-    const chirperId = chirp.userId;
-    const chirperName = chirp.userName || 'Someone';
+import { onDocumentCreated } from "firebase-functions/v2/firestore";
 
-    // Get all previous chirps
-    const previousChirpsSnap = await admin.firestore()
-      .collection(`profiles/${ownerId}/checkins/${event.params.checkinId}/chirps`)
-      .where('timestamp', '<', chirp.timestamp)
-      .get();
+/* ============================
+   FRIEND REQUEST TRIGGER
+============================ */
 
-    const previousChirperIds = new Set<string>();
-    previousChirpsSnap.forEach((doc) => {
-      const data = doc.data();
-      if (data.userId && data.userId !== chirperId) {
-        previousChirperIds.add(data.userId);
-      }
-    });
-
-    if (previousChirperIds.size === 0) return;
-
-    const recipientSnaps = await Promise.all(
-      Array.from(previousChirperIds).map((uid) =>
-        admin.firestore().doc(`profiles/${uid}`).get()
-)
-);
-
-for (const recipientSnap of recipientSnaps) {
-      const recipient = recipientSnap.data();
-      if (!recipient?.pushNotifications || !recipient.pushToken) continue;
-
-      await sendPush(
-        recipient.pushToken,
-        'New reply in thread',
-        `${chirperName} replied to a chirp you're in`,
-        { type: 'thread_reply', checkinOwnerId: ownerId, checkinId: event.params.checkinId }
-      );
-    }
-  }
-);
-
-// 2. New chirp or cheer on YOUR checkin
-export const onActivityOnMyCheckin = onDocumentCreated(
-  'profiles/{ownerId}/checkins/{checkinId}/{collection}/{docId}',
-  async (event) => {
-    const { ownerId, collection } = event.params;
-    if (collection !== 'chirps' && collection !== 'cheers') return;
-
-    const snap = event.data;
-    if (!snap) return;
-
-    const newDoc = snap.data();
-    const actorId = newDoc.userId;
-    const actorName = newDoc.userName || 'Someone';
-
-    if (actorId === ownerId) return; // ignore self
-
-    const ownerSnap = await admin.firestore().doc(`profiles/${ownerId}`).get();
-    const owner = ownerSnap.data();
-    if (!owner?.pushNotifications || !owner.pushToken) return;
-
-    const title = collection === 'chirps' ? 'New chirp on your check-in' : 'New cheer on your check-in';
-    const body = `${actorName} ${collection === 'chirps' ? 'chirped' : 'cheered'} your check-in`;
-
-    await sendPush(owner.pushToken, title, body, {
-      type: 'my_checkin_activity',
-      checkinId: event.params.checkinId,
-    });
-  }
-);
-
-// 3. New incoming friend request
 export const onFriendRequest = onDocumentCreated(
-  'profiles/{recipientId}/friendRequests/{requestId}',
+  "profiles/{targetUid}/friendRequests/{requestId}",
   async (event) => {
-    const snap = event.data;
-    if (!snap) return;
 
-    const request = snap.data();
-    const recipientId = event.params.recipientId;
-    const senderId = request.senderId;
-    const senderName = request.senderName || 'Someone';
+    const snapshot = event.data;
+    if (!snapshot) return;
 
-    const recipientSnap = await admin.firestore().doc(`profiles/${recipientId}`).get();
-    const recipient = recipientSnap.data();
-    if (!recipient?.pushNotifications || !recipient.pushToken) return;
+    const targetUid = event.params.targetUid;
+    const requestData = snapshot.data();
 
-    await sendPush(
-      recipient.pushToken,
-      'New friend request',
-      `${senderName} sent you a friend request`,
-      { type: 'friend_request', senderId }
-    );
+    const senderUid = requestData?.fromUid;
+    if (!senderUid) return;
+
+    const senderProfile = await db.collection("profiles").doc(senderUid).get();
+    const senderName = senderProfile.data()?.name || "Someone";
+
+    const targetProfile = await db.collection("profiles").doc(targetUid).get();
+    const pushToken = targetProfile.data()?.pushToken;
+
+    if (!pushToken) return;
+
+    const message = {
+      to: pushToken,
+      sound: "default",
+      title: "New Friend Request",
+      body: `${senderName} sent you a friend request.`,
+      data: { type: "friend_request" },
+    };
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  }
+);
+
+/* ============================
+   CHEER TRIGGER
+============================ */
+
+export const onCheerAdded = onDocumentCreated(
+  "profiles/{ownerUid}/checkins/{checkinId}/cheers/{cheerId}",
+  async (event) => {
+
+    const snapshot = event.data;
+    if (!snapshot) return;
+
+    const ownerUid = event.params.ownerUid;
+    const cheerData = snapshot.data();
+
+    const senderUid = cheerData?.userId;
+    if (!senderUid || senderUid === ownerUid) return;
+
+    const senderProfile = await db.collection("profiles").doc(senderUid).get();
+    const senderName = senderProfile.data()?.name || "Someone";
+
+    const ownerProfile = await db.collection("profiles").doc(ownerUid).get();
+    const pushToken = ownerProfile.data()?.pushToken;
+
+    if (!pushToken) return;
+
+    const message = {
+      to: pushToken,
+      sound: "default",
+      title: "New Cheer",
+      body: `${senderName} cheered your check-in!`,
+      data: { type: "cheer" },
+    };
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
+  }
+);
+
+/* ============================
+   CHIRP TRIGGER
+============================ */
+
+export const onChirpAdded = onDocumentCreated(
+  "profiles/{ownerUid}/checkins/{checkinId}/chirps/{chirpId}",
+  async (event) => {
+
+    const snapshot = event.data;
+    if (!snapshot) return;
+
+    const ownerUid = event.params.ownerUid;
+    const chirpData = snapshot.data();
+
+    const senderUid = chirpData?.userId;
+    if (!senderUid || senderUid === ownerUid) return;
+
+    const senderProfile = await db.collection("profiles").doc(senderUid).get();
+    const senderName = senderProfile.data()?.name || "Someone";
+
+    const ownerProfile = await db.collection("profiles").doc(ownerUid).get();
+    const pushToken = ownerProfile.data()?.pushToken;
+
+    if (!pushToken) return;
+
+    const message = {
+      to: pushToken,
+      sound: "default",
+      title: "New Comment",
+      body: `${senderName} commented on your check-in.`,
+      data: { type: "chirp" },
+    };
+
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
   }
 );

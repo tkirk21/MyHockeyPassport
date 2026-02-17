@@ -14,6 +14,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useColorScheme } from '../../hooks/useColorScheme';
 import { useTheme } from '@/context/ThemeContext';
 import { type ThemePreference } from '@/utils/themePersistence';
+import { registerForPushNotificationsAsync, disablePushToken } from '@/utils/pushNotifications';
+
 
 const auth = getAuth();
 
@@ -106,8 +108,14 @@ export default function SettingsScreen() {
 
   const togglePushNotifications = async (value: boolean) => {
     if (!auth.currentUser) return;
+
     setPushEnabled(value);
-    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { pushNotifications: value }, { merge: true });
+
+    if (value) {
+      await registerForPushNotificationsAsync();
+    } else {
+      await disablePushToken();
+    }
   };
 
   const updateDistanceUnit = async (unit: 'miles' | 'km') => {
