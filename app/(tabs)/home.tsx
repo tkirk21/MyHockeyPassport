@@ -246,17 +246,86 @@ export default function HomeScreen() {
   };
 
   // Navigates to live check-in screen with game details
-  const handleCheckIn = (game) => {
-    router.push({
-      pathname: '/checkin/live',
-      params: {
-        league: game.league,
-        arenaName: game.arena,
-        homeTeam: game.homeTeam || game.team,
-        opponent: game.opponent || game.awayTeam,
-        gameDate: game.date,
-      },
-    });
+  const handleCheckIn = async (game) => {
+    setCheckingIn(true);
+
+    try {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setCheckingIn(false);
+        setAlertMessage('Location is required to check in.');
+        setAlertVisible(true);
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Lowest,
+        maximumAge: 10000,
+        timeout: 5000,
+      });
+
+      const arena = arenaData.find(a =>
+        (a.arena === game.arena || a.arena === game.location) &&
+        a.league === game.league
+      );
+
+      if (!arena) {
+        setCheckingIn(false);
+        setAlertMessage('Arena not found for this game.');
+        setAlertVisible(true);
+        return;
+      }
+
+      const distance = getDistance(
+        location.coords.latitude,
+        location.coords.longitude,
+        arena.latitude,
+        arena.longitude
+      );
+
+      const threshold = distanceUnit === 'km' ? 0.45 : 0.28;
+
+      if (distance > threshold) {
+        setCheckingIn(false);
+        setAlertMessage('Not close enough to the arena. You need to be at the arena.');
+        setAlertVisible(true);
+        return;
+      }
+
+      const now = new Date().getTime();
+      const start = new Date(game.date).getTime();
+
+      const oneHourBefore = start - (60 * 60 * 1000);
+      const threeHourGame = start + (3 * 60 * 60 * 1000);
+      const oneHourAfter = threeHourGame + (60 * 60 * 1000);
+
+      const insideLiveWindow = now >= oneHourBefore && now <= oneHourAfter;
+
+      if (!insideLiveWindow) {
+        setCheckingIn(false);
+        setAlertMessage('This game is not currently within the live check-in window.');
+        setAlertVisible(true);
+        return;
+      }
+
+      setCheckingIn(false);
+
+      router.push({
+        pathname: '/checkin/live',
+        params: {
+          league: game.league,
+          arenaName: arena.arena,
+          homeTeam: game.homeTeam || game.team,
+          opponent: game.opponent || game.awayTeam,
+          gameDate: game.date,
+        },
+      });
+
+    } catch (error) {
+      setCheckingIn(false);
+      setAlertMessage('Could not get your location. Try again.');
+      setAlertVisible(true);
+    }
   };
 
   const loadGlobalLeaderboard = async () => {
@@ -727,39 +796,91 @@ export default function HomeScreen() {
                         <Text style={styles.smallButtonText}>Get Directions</Text>
                       </TouchableOpacity>
 
-                      <TouchableOpacity style={styles.smallButton} onPress={async () => {
-                        setCheckingIn(true);
-                        try {
-                          const { status } = await Location.requestForegroundPermissionsAsync();
-                          if (status !== 'granted') {
+                      <TouchableOpacity
+                        style={styles.smallButton}
+                        onPress={async () => {
+                          setCheckingIn(true);
+
+                          try {
+                            const { status } = await Location.requestForegroundPermissionsAsync();
+                            if (status !== 'granted') {
+                              setCheckingIn(false);
+                              setAlertMessage('Location is required to check in.');
+                              setAlertVisible(true);
+                              return;
+                            }
+
+                            const location = await Location.getCurrentPositionAsync({
+                              accuracy: Location.Accuracy.Lowest,
+                              maximumAge: 10000,
+                              timeout: 5000,
+                            });
+
+                            const arena = arenaData.find(
+                              a =>
+                                (a.arena === game.arena || a.arena === game.location) &&
+                                a.league === game.league
+                            );
+
+                            if (!arena) {
+                              setCheckingIn(false);
+                              setAlertMessage('Arena not found for this game.');
+                              setAlertVisible(true);
+                              return;
+                            }
+
+                            const distance = getDistance(
+                              location.coords.latitude,
+                              location.coords.longitude,
+                              arena.latitude,
+                              arena.longitude
+                            );
+
+                            const threshold = distanceUnit === 'km' ? 0.45 : 0.28;
+
+                            if (distance > threshold) {
+                              setCheckingIn(false);
+                              setAlertMessage('Not close enough to the arena. You need to be at the arena.');
+                              setAlertVisible(true);
+                              return;
+                            }
+
+                            const now = new Date().getTime();
+                            const start = new Date(game.date).getTime();
+
+                            const oneHourBefore = start - 60 * 60 * 1000;
+                            const threeHourGame = start + 3 * 60 * 60 * 1000;
+                            const oneHourAfter = threeHourGame + 60 * 60 * 1000;
+
+                            const insideLiveWindow =
+                              now >= oneHourBefore && now <= oneHourAfter;
+
+                            if (!insideLiveWindow) {
+                              setCheckingIn(false);
+                              setAlertMessage('This game is not currently within the live check-in window.');
+                              setAlertVisible(true);
+                              return;
+                            }
+
                             setCheckingIn(false);
-                            setAlertMessage('Location is required to check in.');
-                            setAlertVisible(true);
-                            return;
-                          }
-                          const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Lowest, maximumAge: 10000, timeout: 5000 });
-                          const arena = arenaData.find(a => (a.arena === game.arena || a.arena === game.location) && a.league === game.league);
-                          if (!arena) {
+
+                            router.push({
+                              pathname: '/checkin/live',
+                              params: {
+                                league: game.league,
+                                arenaName: arena.arena,
+                                homeTeam: game.homeTeam || game.team,
+                                opponent: game.opponent || game.awayTeam,
+                                gameDate: game.date,
+                              },
+                            });
+                          } catch {
                             setCheckingIn(false);
-                            setAlertMessage('Arena not found for this game.');
+                            setAlertMessage('Could not get your location. Try again.');
                             setAlertVisible(true);
-                            return;
                           }
-                          const distance = getDistance(location.coords.latitude, location.coords.longitude, arena.latitude, arena.longitude);
-                          if (distance > (distanceUnit === 'km' ? 0.45 : 0.28)) {
-                            setCheckingIn(false);
-                            setAlertMessage('Not close enough to the arena. You need to be at the arena.');
-                            setAlertVisible(true);
-                            return;
-                          }
-                          setCheckingIn(false);
-                          handleCheckIn(game);
-                        } catch {
-                          setCheckingIn(false);
-                          setAlertMessage('Could not get your location. Try again.');
-                          setAlertVisible(true);
-                        }
-                      }}>
+                        }}
+                      >
                         <Text style={styles.smallButtonText}>Check-in</Text>
                       </TouchableOpacity>
                     </View>

@@ -1,16 +1,18 @@
 // app/checkin/live.tsx
 import Checkbox from 'expo-checkbox';
 import { AntDesign } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from '../../firebaseConfig';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useColorScheme } from '../../hooks/useColorScheme';
+import { useColorScheme } from '../../hooks/useColorScheme'
+import arenaData from '@/assets/data/arenas.json';
 
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp, 'gs://myhockeypassport.firebasestorage.app');
@@ -117,6 +119,38 @@ export default function LiveCheckInScreen() {
         return;
       }
 
+      const existingSnap = await getDocs(
+        collection(db, 'profiles', user.uid, 'checkins')
+      );
+
+      const alreadyExists = existingSnap.docs.some(doc => {
+        const data = doc.data();
+
+        if (data.checkinType !== 'Live') return false;
+
+        const existingDate = new Date(data.gameDate);
+        const newDate = new Date(gameDate);
+
+        const sameDay =
+          existingDate.getFullYear() === newDate.getFullYear() &&
+          existingDate.getMonth() === newDate.getMonth() &&
+          existingDate.getDate() === newDate.getDate();
+
+        return (
+          sameDay &&
+          data.league === league &&
+          data.arenaName === arenaName &&
+          data.teamName === homeTeam &&
+          data.opponent === opponent
+        );
+      });
+
+      if (alreadyExists) {
+        setAlertMessage('This game has already been checked in.');
+        setAlertVisible(true);
+        return;
+      }
+
       // Upload photos to Firebase Storage
       let photoUrls: string[] = [];
 
@@ -156,17 +190,17 @@ export default function LiveCheckInScreen() {
         return result;
       };
 
-      const match = arenasData.find(
+      const match = arenaData.find(
         (arena: any) =>
-          arena.league === selectedLeague && arena.arena === selectedArena
+          arena.league === league && arena.arena === arenaName
       );
 
       const docData = {
-        league: selectedLeague,
+        league,
         arenaId: match?.id ?? null,
-        arenaName: selectedArena,
-        teamName: selectedHomeTeam,
-        opponent: selectedOpponent,
+        arenaName,
+        teamName: homeTeam,
+        opponent,
         favoritePlayer,
         seatInfo: {
           section: seatSection,
@@ -178,8 +212,8 @@ export default function LiveCheckInScreen() {
         parkingAndTravel,
         merchBought: getSelectedItems(merchItems, merchCategories),
         concessionsBought: getSelectedItems(concessionItems, concessionCategories),
-        gameDate: gameDate.toISOString(),
-        checkinType: 'Manual',
+        gameDate: gameDate,
+        checkinType: 'Live',
         photos: photoUrls,  // ← now real URLs
         userId: user.uid,
         timestamp: serverTimestamp(),
@@ -305,7 +339,7 @@ export default function LiveCheckInScreen() {
     uploadPhotoText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#0A2940' },
   });
 
-  if (true) { // change to false to hide
+  if (false) { // change to false to hide
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={() => {
@@ -316,7 +350,7 @@ export default function LiveCheckInScreen() {
               arenaName: 'Enterprise Center',
               homeTeam: 'St. Louis Blues',
               opponent: 'Colorado Avalanche',
-              gameDate: new Date().toISOString(),
+              gameDate: '2026-02-20T01:00:00.000Z',
             },
           });
         }} style={{ padding: 20, backgroundColor: 'red' }}>

@@ -253,7 +253,7 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
       })
       .map(arena => ({ ...arena, league: arena.league?.trim() || null }));
 
-    const allArenasRaw = [...processed, ...processedHistorical];
+    const allArenasRaw = [...processedHistorical, ...processed];
 
     // Filter out anything missing real league
     const allArenas = allArenasRaw.filter(a =>
@@ -314,40 +314,6 @@ export default function editCheckinForm({ initialData }: { initialData: any }) {
     );
 
   }, [selectedLeague, gameDate, allArenas]);
-
-
-  // Arena selected → set correct Home Team (works with historical names)
-  useEffect(() => {
-    if (!selectedArena || !selectedLeague) return;
-
-    const historical = arenaHistoryData.find(h =>
-      h.league === selectedLeague &&
-      h.history.some(entry => entry.name === selectedArena)
-    );
-
-    let teamName = null;
-
-    if (historical) {
-      const current = allArenas.find(
-        a => a.arena === historical.currentArena && a.league === selectedLeague
-      );
-      teamName = current?.teamName;
-    } else {
-      const current = allArenas.find(
-        a => a.arena === selectedArena && a.league === selectedLeague
-      );
-      teamName = current?.teamName;
-    }
-
-    if (teamName) {
-      setHomeTeamItems([{ label: teamName, value: teamName }]);
-      setSelectedHomeTeam(teamName);
-    } else {
-      setHomeTeamItems([]);
-      setSelectedHomeTeam(null);
-    }
-  }, [selectedArena, selectedLeague, allArenas]);
-
 
   // Home Team selected → set correct Arena (with historical name)
   useEffect(() => {

@@ -335,26 +335,47 @@ export default function ArenaScreen() {
         return;
       }
 
-      // *** This is the required delay ***
-      setTimeout(() => {
-        router.push({
-          pathname: '/checkin/live',
-          params: {
-            arenaId,
-            arena: arena.arena,
-            latitude: arena.latitude,
-            longitude: arena.longitude,
-            league: arena.league,
-          },
-        });
-      }, 250);
+      const now = new Date().getTime();
 
-    } catch {
+      const liveWindowGame = combinedSchedule.find((game) => {
+        if (game.arena !== arena.arena) return false;
+
+        const start = new Date(game.date).getTime();
+
+        const oneHourBefore = start - (60 * 60 * 1000);
+        const threeHourGame = start + (3 * 60 * 60 * 1000);
+        const oneHourAfter = threeHourGame + (60 * 60 * 1000);
+
+        return now >= oneHourBefore && now <= oneHourAfter;
+      });
+
+      if (!liveWindowGame) {
+        setCheckingIn(false);
+        setAlertMessage('There is no live game at this arena right now.');
+        setAlertVisible(true);
+        return;
+      }
+
+      setCheckingIn(false);
+
+      router.push({
+        pathname: '/checkin/live',
+        params: {
+          league: liveWindowGame.league,
+          arenaName: arena.arena,
+          homeTeam: liveWindowGame.homeTeam,
+          opponent: liveWindowGame.awayTeam,
+          gameDate: liveWindowGame.date,
+        },
+      });
+
+    } catch (error) {
       setCheckingIn(false);
       setAlertMessage('Could not get your location. Try again.');
       setAlertVisible(true);
     }
   };
+
 
   useEffect(() => {
     if (upcomingGames.length === 0) {

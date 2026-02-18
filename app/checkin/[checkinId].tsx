@@ -189,12 +189,14 @@ export default function CheckinDetailsScreen() {
     arenasData.find(
       (a: any) =>
         a.arena === checkin.arenaName &&
-        a.league === checkin.league
+        a.league === checkin.league &&
+        a.teamName === checkin.teamName
     ) ||
     historicalArenasData.find(
       (a: any) =>
         a.arena === checkin.arenaName &&
-        a.league === checkin.league
+        a.league === checkin.league &&
+        a.teamName === checkin.teamName
     );
 
   if (!arenaMatch) {
@@ -397,14 +399,12 @@ export default function CheckinDetailsScreen() {
               </Text>
             </View>
 
-            {(checkin.homeScore !== undefined || checkin.awayScore !== undefined) && (
+            {checkin.homeScore != null && checkin.awayScore != null && (
               <View style={[styles.scoreCard, { backgroundColor: teamColor, marginTop: 8 }]}>
                 <Text style={styles.title}>Final Score</Text>
 
                 <Text style={styles.score}>
-                  {checkin.homeScore ?? '?'}
-                  {'  -  '}
-                  {checkin.awayScore ?? '?'}
+                  {checkin.homeScore}  -  {checkin.awayScore}
                 </Text>
 
                 {checkin.overtimeWin && (
@@ -451,7 +451,20 @@ export default function CheckinDetailsScreen() {
               </View>
             )}
 
-            {(checkin.favoritePlayer || checkin.seatInfo || checkin.companions || checkin.notes) && (
+            {(
+              (typeof checkin.favoritePlayer === "string" && checkin.favoritePlayer.trim() !== "") ||
+              (typeof checkin.notes === "string" && checkin.notes.trim() !== "") ||
+              (typeof checkin.companions === "string" && checkin.companions.trim() !== "") ||
+              (
+                checkin.seatInfo &&
+                typeof checkin.seatInfo === "object" &&
+                (
+                  (typeof checkin.seatInfo.section === "string" && checkin.seatInfo.section.trim() !== "") ||
+                  (typeof checkin.seatInfo.row === "string" && checkin.seatInfo.row.trim() !== "") ||
+                  (typeof checkin.seatInfo.seat === "string" && checkin.seatInfo.seat.trim() !== "")
+                )
+              )
+            ) && (
               <View style={[styles.detailsCard, { backgroundColor: teamColor }]}>
                 {checkin.seatInfo && (() => {
                   const s = checkin.seatInfo;
@@ -547,21 +560,26 @@ export default function CheckinDetailsScreen() {
                 </View>
               )}
 
-            { (checkin.highlights || checkin.parkingAndTravel) && (
+            {(
+              (checkin.highlights && checkin.highlights.trim() !== "") ||
+              (checkin.parkingAndTravel && checkin.parkingAndTravel.trim() !== "")
+            ) && (
               <View style={[styles.merchCard, { backgroundColor: teamColor }]}>
-                {checkin.highlights && (
+
+                {checkin.highlights && checkin.highlights.trim() !== "" && (
                   <View style={{ marginBottom: 16 }}>
                     <Text style={styles.label}>Highlights</Text>
                     <Text style={styles.value}>{checkin.highlights}</Text>
                   </View>
                 )}
 
-                {checkin.ParkingAndTravel && (
+                {checkin.parkingAndTravel && checkin.parkingAndTravel.trim() !== "" && (
                   <View>
                     <Text style={styles.label}>Parking & Travel Tips</Text>
-                    <Text style={styles.value}>{checkin.ParkingAndTravel}</Text>
+                    <Text style={styles.value}>{checkin.parkingAndTravel}</Text>
                   </View>
                 )}
+
               </View>
             )}
           </ScrollView>

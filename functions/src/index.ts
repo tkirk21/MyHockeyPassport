@@ -257,8 +257,8 @@ export const deleteCheckin = onCall(async (request) => {
   const { checkinId, folderName } = request.data;
   const uid = request.auth.uid;
 
-  if (!checkinId || !folderName) {
-    throw new HttpsError("invalid-argument", "Missing fields.");
+  if (!checkinId) {
+    throw new HttpsError("invalid-argument", "Missing checkinId.");
   }
 
   try {
@@ -272,10 +272,12 @@ export const deleteCheckin = onCall(async (request) => {
         .doc(checkinId)
     );
 
-    // 2️⃣ Delete storage folder
-    await bucket.deleteFiles({
-      prefix: `checkins/${uid}/${folderName}`
-    });
+    // 2️⃣ Delete storage folder ONLY if it exists
+    if (folderName) {
+      await bucket.deleteFiles({
+        prefix: `checkins/${uid}/${folderName}`
+      });
+    }
 
     return { success: true };
 

@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, doc, getDoc, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from '../../firebaseConfig';
 import React, { useEffect, useState, } from 'react';
@@ -129,6 +129,40 @@ const ManualCheckIn = () => {
       const user = getAuth(firebaseApp).currentUser;
       if (!user) {
         setAlertMessage('You must be logged in to submit a check-in.');
+        setAlertVisible(true);
+        setIsSubmitting(false);
+        return;
+      }
+
+      const existingSnap = await getDocs(
+        collection(db, 'profiles', user.uid, 'checkins')
+      );
+
+      const alreadyExists = existingSnap.docs.some(doc => {
+        const data = doc.data();
+
+        if (data.checkinType !== 'Manual') return false;
+
+        const existingDate = new Date(data.gameDate);
+        const newDate = gameDate;
+
+        const sameDay =
+          existingDate.getFullYear() === newDate.getFullYear() &&
+          existingDate.getMonth() === newDate.getMonth() &&
+          existingDate.getDate() === newDate.getDate();
+
+        return (
+          sameDay &&
+          data.league === selectedLeague &&
+          data.arenaName === selectedArena &&
+          data.teamName === selectedHomeTeam &&
+          data.opponent === selectedOpponent
+        );
+      });
+
+
+      if (alreadyExists) {
+        setAlertMessage('This game has already been checked in.');
         setAlertVisible(true);
         setIsSubmitting(false);
         return;

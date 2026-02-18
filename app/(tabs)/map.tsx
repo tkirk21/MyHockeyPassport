@@ -6,7 +6,7 @@ import firebaseApp from '@/firebaseConfig';
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query } from 'firebase/firestore';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { Alert, FlatList, Image, Modal, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import MapView, { Marker, Polyline, UrlTile } from 'react-native-maps';
+import MapView, { Marker, Polyline, UrlTile, Callout } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useColorScheme } from '../../hooks/useColorScheme';
@@ -93,6 +93,30 @@ export default function MapScreen() {
       : pins.filter(p => String(p.league || '').toUpperCase() === selectedLeague.toUpperCase());
   }, [pins, selectedLeague, favoriteLeagues]);
 
+  const norm = (s: string) => (s ?? '').toString().trim().toLowerCase();
+
+  const getCurrentArenaName = (oldName: string) => {
+    if (!oldName) return oldName;
+    const lowerOld = norm(oldName);
+    for (const h of arenaHistoryData) {
+      if (h.history.some((e: any) => norm(e.name) === lowerOld)) {
+        return h.currentArena;
+      }
+    }
+    return oldName;
+  };
+
+  const visitCountMap = useMemo(() => {
+    const map = new Map<string, number>();
+
+    allCheckIns.forEach(ci => {
+      const arenaKey = norm(getCurrentArenaName(ci.arenaName || ''));
+      map.set(arenaKey, (map.get(arenaKey) || 0) + 1);
+    });
+
+    return map;
+  }, [allCheckIns]);
+
   useEffect(() => {
     const load = async () => {
       const saved = await AsyncStorage.getItem('mapSelectedLeague');
@@ -161,19 +185,6 @@ export default function MapScreen() {
       if (animationId) cancelAnimationFrame(animationId);
     };
   }, [showTravelLines]);
-
-  const norm = (s: string) => (s ?? '').toString().trim().toLowerCase();
-
-  const getCurrentArenaName = (oldName: string) => {
-    if (!oldName) return oldName;
-    const lowerOld = norm(oldName);
-    for (const h of arenaHistoryData) {
-      if (h.history.some((e: any) => norm(e.name) === lowerOld)) {
-        return h.currentArena;
-      }
-    }
-    return oldName;
-  };
 
   const groupedCheckIns = useMemo(() => {
     if (selectedArenaCheckIns.length === 0) return [];
@@ -416,6 +427,8 @@ export default function MapScreen() {
     checkInRow: { padding: 12, borderBottomWidth: 1, borderBottomColor: colorScheme === 'dark' ? '#2F4F68' : '#eee', },
     checkInDate: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     checkInMatchup: { fontSize: 14, color: colorScheme === 'dark' ? '#BBBBBB' : '#555', },
+    calloutContainer: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 10, borderWidth: 3, borderColor: '#2F4F68', },
+    calloutText: { fontSize: 14, fontWeight: '600', textAlign: 'center', },
     closeButton: { marginTop: 20, paddingVertical: 12, paddingHorizontal: 32, backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', alignSelf: 'center', alignItems: 'center', },
     closeButtonText: {color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 12, fontWeight: '600', },
     dropdownContainer: { position: 'absolute', top: 55, alignSelf: 'center', width: '75%', zIndex: 10 },
@@ -601,17 +614,17 @@ export default function MapScreen() {
             )}
 
             {visiblePins.map(pin => {
+
+              const visitCount = visitCountMap.get(norm(pin.title || '')) || 0;
+
               const checkInsAtArena = allCheckIns.filter(ci =>
                 norm(getCurrentArenaName(ci.arenaName || '')) === norm(pin.title || '')
               );
-
-              const visitCount = checkInsAtArena.length;
 
               return (
                 <Marker
                   key={pin.id}
                   coordinate={{ latitude: pin.latitude, longitude: pin.longitude }}
-                  title={pin.title || 'Arena'}
                   onPress={() => openCheckInModal(checkInsAtArena)}
                 >
                   <View style={styles.markerContainer}>

@@ -94,7 +94,7 @@ export default function CheckInScreen() {
         timeout: 5000,
       });
 
-      const today = new Date().toDateString();
+      const now = new Date();
       const allGamesToday = [
         ...nhlSchedule2025,
         ...ahlSchedule2025,
@@ -111,7 +111,13 @@ export default function CheckInScreen() {
         ...ncaaD2Schedule,
         ...pwhlSchedule,
         ...aihlSchedule2025.map(g => ({ ...g, league: 'AIHL' })),
-      ].filter(g => new Date(g.date).toDateString() === today);
+      ].filter(g => {
+        const gameStart = new Date(g.date); // already UTC
+        const oneHourBefore = new Date(gameStart.getTime() - 60 * 60 * 1000);
+        const fourHoursAfter = new Date(gameStart.getTime() + 4 * 60 * 60 * 1000);
+
+        return now >= oneHourBefore && now <= fourHoursAfter;
+      });
 
       if (allGamesToday.length === 0) {
         setCheckingIn(false);
