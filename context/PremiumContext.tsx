@@ -92,8 +92,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         setIsPremium(!expired);
         setIsLoadingPremium(false);
 
-      } catch (err) {
-        console.error('Premium check failed:', err);
+      } catch (err: any) {
+        if (err?.code !== 'permission-denied') {
+          console.error('Premium check failed:', err);
+        }
+
         setIsPremium(false);
         setIsLoadingPremium(false);
       }

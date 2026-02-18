@@ -1,7 +1,7 @@
 //app/signup.tsx
 import { useState, useEffect } from 'react';
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { createUserWithEmailAndPassword, FacebookAuthProvider, GoogleAuthProvider, OAuthProvider, signInWithCredential } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, fetchSignInMethodsForEmail, GoogleAuthProvider, OAuthProvider, signInWithCredential, signOut } from 'firebase/auth';
 import { auth, } from '@/firebaseConfig';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/firebaseConfig';
@@ -83,11 +83,11 @@ export default function Signup() {
   const handleGoogleSignIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
+      await GoogleSignin.signOut();
 
       const userInfo = await GoogleSignin.signIn();
 
       const idToken = userInfo.idToken || userInfo.data?.idToken;
-
       if (!idToken) {
         Alert.alert('Error', 'No idToken returned from Google');
         return;
@@ -96,18 +96,37 @@ export default function Signup() {
       const googleCredential = GoogleAuthProvider.credential(idToken);
 
       const cred = await signInWithCredential(auth, googleCredential);
+
+      const profileRef = doc(db, 'profiles', cred.user.uid);
+      const profileSnap = await getDoc(profileRef);
+
+      const profileExists = profileSnap.exists();
+
+      if (profileExists) {
+        Alert.alert(
+          'Account Exists',
+          'An account already exists with this email. Please go to the Login page.'
+        );
+
+        await signOut(auth);
+        await GoogleSignin.signOut();
+
+        return;
+      }
+
       await ensureTrialStart(cred.user.uid);
+
       router.replace('/(tabs)');
 
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // User cancelled — fine, do nothing
+        return;
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        // Already going
+        return;
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         Alert.alert('Error', 'Google Play Services not available');
       } else {
-        Alert.alert('Google Sign-In Failed', 'Something went wrong.');
+        Alert.alert('Google Sign-Up Failed', error.message || 'Something went wrong.');
       }
     }
   };
