@@ -32,15 +32,14 @@ export default function Signup() {
   });
 
   const ensureTrialStart = async (uid: string) => {
-    const ref = doc(db, 'profiles', uid);
-    const snap = await getDoc(ref);
-
-    if (!snap.exists() || !snap.data()?.trialStart) {
-      await setDoc(
-        ref,
-        { trialStart: serverTimestamp() },
-        { merge: true }
-      );
+    try {
+      const ref = doc(db, 'profiles', uid);
+      const snap = await getDoc(ref);
+      if (!snap.exists() || !snap.data()?.trialStart) {
+        await setDoc(ref, { trialStart: serverTimestamp() }, { merge: true });
+      }
+    } catch (e) {
+      // silently fail
     }
   };
 

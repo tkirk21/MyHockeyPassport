@@ -14,12 +14,9 @@ export default function Index() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      console.log('INDEX: fired, user:', currentUser?.email || 'null');
       if (currentUser) {
         const stayLoggedIn = await AsyncStorage.getItem('stayLoggedIn');
         const activeLogin = await AsyncStorage.getItem('activeLogin');
-        console.log('INDEX: stayLoggedIn:', stayLoggedIn);
-        console.log('INDEX: activeLogin:', activeLogin);
         if (activeLogin === 'true') {
           await AsyncStorage.removeItem('activeLogin');
           setUser(currentUser);

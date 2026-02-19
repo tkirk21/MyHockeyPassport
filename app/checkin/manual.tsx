@@ -309,13 +309,32 @@ const ManualCheckIn = () => {
       return selectedDate >= start && (!end || selectedDate <= end);
     });
 
-    const arenaNames = Array.from(
-      new Set(validEntries.map(a => a.arena))
-    ).sort();
+    const resolvedArenaNames = validEntries.map(item => {
+
+      const historyRecord = arenaHistoryData.find(h =>
+        h.teamName === item.teamName &&
+        h.league === item.league
+      );
+
+      if (!historyRecord) {
+        return item.arena;
+      }
+
+      const record = historyRecord.history.find(h => {
+        const from = new Date(h.from);
+        const to = h.to ? new Date(h.to) : null;
+        return selectedDate >= from && (!to || selectedDate <= to);
+      });
+
+      return record ? record.name : item.arena;
+    });
+
+    const uniqueArenaNames = Array.from(new Set(resolvedArenaNames)).sort();
 
     setArenaItems(
-      arenaNames.map(name => ({ label: name, value: name }))
+      uniqueArenaNames.map(name => ({ label: name, value: name }))
     );
+
 
     const teamNames = Array.from(
       new Set(validEntries.map(a => a.teamName))
@@ -329,8 +348,6 @@ const ManualCheckIn = () => {
     setOpponentItems([]);
 
   }, [selectedLeague, gameDate, allArenas]);
-
-
 
   // Arena selected — match INCLUDING history names
   useEffect(() => {

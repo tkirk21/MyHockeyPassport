@@ -157,13 +157,17 @@ function CustomTabs() {
 
     const unsubs: (() => void)[] = [];
     const setup = async () => {
-      const friendsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'friends'));
-      const friendIds = friendsSnap.docs.map((d) => d.id);
-      for (const ownerId of friendIds) {
-        const checkinsSnap = await getDocs(collection(db, 'profiles', ownerId, 'checkins'));
-        checkinsSnap.docs.forEach((checkinDoc) => {
-          unsubs.push(onSnapshot(collection(db, 'profiles', ownerId, 'checkins', checkinDoc.id, 'chirps'), calc));
-        });
+      try {
+        const friendsSnap = await getDocs(collection(db, 'profiles', currentUser.uid, 'friends'));
+        const friendIds = friendsSnap.docs.map((d) => d.id);
+        for (const ownerId of friendIds) {
+          const checkinsSnap = await getDocs(collection(db, 'profiles', ownerId, 'checkins'));
+          checkinsSnap.docs.forEach((checkinDoc) => {
+            unsubs.push(onSnapshot(collection(db, 'profiles', ownerId, 'checkins', checkinDoc.id, 'chirps'), calc));
+          });
+        }
+      } catch (e) {
+        setFriendsReplyCount(0);
       }
     };
 

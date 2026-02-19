@@ -562,7 +562,7 @@ export default function CheckinDetailsScreen() {
 
             {(
               (checkin.highlights && checkin.highlights.trim() !== "") ||
-              (checkin.parkingAndTravel && checkin.parkingAndTravel.trim() !== "")
+              (checkin.ParkingAndTravel && checkin.ParkingAndTravel.trim() !== "")
             ) && (
               <View style={[styles.merchCard, { backgroundColor: teamColor }]}>
 
@@ -573,13 +573,12 @@ export default function CheckinDetailsScreen() {
                   </View>
                 )}
 
-                {checkin.parkingAndTravel && checkin.parkingAndTravel.trim() !== "" && (
+                {checkin.ParkingAndTravel && checkin.ParkingAndTravel.trim() !== "" && (
                   <View>
                     <Text style={styles.label}>Parking & Travel Tips</Text>
-                    <Text style={styles.value}>{checkin.parkingAndTravel}</Text>
+                    <Text style={styles.value}>{checkin.ParkingAndTravel}</Text>
                   </View>
                 )}
-
               </View>
             )}
           </ScrollView>

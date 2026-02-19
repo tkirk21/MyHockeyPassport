@@ -85,10 +85,6 @@ export default function Login() {
 
   useEffect(() => {
     const checkStoredLogin = async () => {
-      console.log('CHECKSTOREDLOGIN: fired');
-      console.log('CHECKSTOREDLOGIN: auth.currentUser:', auth.currentUser?.email || 'null');
-      const savedUser = await AsyncStorage.getItem('userEmail');
-      console.log('CHECKSTOREDLOGIN: userEmail in storage:', savedUser);
       try {
         const savedUser = await AsyncStorage.getItem('userEmail');
         if (savedUser && savedUser !== 'guest' && auth.currentUser) {
@@ -142,10 +138,9 @@ export default function Login() {
 
 
   const handleLogin = async () => {
-    console.log('HANDLELOGIN: button pressed');
     setLoading(true);
     try {
-      await AsyncStorage.setItem('activeLogin', 'true');  // ADD THIS LINE
+      await AsyncStorage.setItem('activeLogin', 'true');
       await signInWithEmailAndPassword(auth, email, password);
       if (stayLoggedIn) {
         await AsyncStorage.setItem('stayLoggedIn', 'true');
@@ -174,6 +169,7 @@ export default function Login() {
       return;
     }
     try {
+      await sendPasswordResetEmail(auth, email);
       setAlertTitle('Password Reset');
       setAlertMessage('Check your email for reset instructions.');
       setAlertVisible(true);
