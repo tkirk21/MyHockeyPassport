@@ -1,9 +1,10 @@
-//app/index.tsx
 import { Redirect, Stack } from 'expo-router';
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged, getAuth, signOut } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const auth = getAuth(firebaseApp);
 
@@ -12,11 +13,30 @@ export default function Index() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log('INDEX: fired, user:', currentUser?.email || 'null');
+      if (currentUser) {
+        const stayLoggedIn = await AsyncStorage.getItem('stayLoggedIn');
+        const activeLogin = await AsyncStorage.getItem('activeLogin');
+        console.log('INDEX: stayLoggedIn:', stayLoggedIn);
+        console.log('INDEX: activeLogin:', activeLogin);
+        if (activeLogin === 'true') {
+          await AsyncStorage.removeItem('activeLogin');
+          setUser(currentUser);
+        } else if (stayLoggedIn === 'session') {
+          await AsyncStorage.removeItem('userEmail');
+          await AsyncStorage.removeItem('stayLoggedIn');
+          await signOut(auth);
+          await GoogleSignin.signOut().catch(() => {});
+          setUser(null);
+        } else {
+          setUser(currentUser);
+        }
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 

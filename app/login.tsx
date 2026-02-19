@@ -1,7 +1,7 @@
 //app/login.tsx
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { GoogleAuthProvider, OAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { GoogleAuthProvider, OAuthProvider, FacebookAuthProvider, signInWithCredential, signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
 import { auth, db, webClientId } from '@/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import { useRouter } from 'expo-router';
@@ -12,8 +12,9 @@ import * as WebBrowser from 'expo-web-browser';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import { useColorScheme } from '../hooks/useColorScheme';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Crypto from 'expo-crypto';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -84,54 +85,76 @@ export default function Login() {
 
   useEffect(() => {
     const checkStoredLogin = async () => {
+      console.log('CHECKSTOREDLOGIN: fired');
+      console.log('CHECKSTOREDLOGIN: auth.currentUser:', auth.currentUser?.email || 'null');
       const savedUser = await AsyncStorage.getItem('userEmail');
-      if (savedUser && auth.currentUser) {
-        const targetTab = await getStartupTabRoute();
-        router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+      console.log('CHECKSTOREDLOGIN: userEmail in storage:', savedUser);
+      try {
+        const savedUser = await AsyncStorage.getItem('userEmail');
+        if (savedUser && savedUser !== 'guest' && auth.currentUser) {
+          const targetTab = await getStartupTabRoute();
+          router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+        } else if (auth.currentUser && !savedUser) {
+          await AsyncStorage.removeItem('userEmail');
+          await signOut(auth);
+          await GoogleSignin.signOut().catch(() => {});
+        }
+      } catch (e) {
+        console.log(e);
       }
     };
     checkStoredLogin();
   }, []);
 
   useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: '853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com',
-      offlineAccess: true,
-    });
-  }, []);
-
-  useEffect(() => {
     if (fbResponse?.type === 'success') {
-      const { authentication } = fbResponse;
-      const credential = FacebookAuthProvider.credential(authentication?.accessToken);
-      signInWithCredential(auth, credential)
-        .then(async () => {
+      const run = async () => {
+        try {
+          const { authentication } = fbResponse;
+          if (!authentication?.accessToken) return;
+
+          const credential = FacebookAuthProvider.credential(authentication.accessToken);
+          const cred = await signInWithCredential(auth, credential);
+          const isNewUser = cred.additionalUserInfo?.isNewUser === true;
+
+          if (isNewUser) {
+            setAlertTitle('No Account Found');
+            setAlertMessage('No account exists with this Facebook email. Please sign up first.');
+            setAlertVisible(true);
+
+            await signOut(auth);
+            return;
+          }
+
           const targetTab = await getStartupTabRoute();
           router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
-        })
-        .catch(err => {
+
+        } catch (err: any) {
           setAlertTitle('Error');
-          setAlertMessage(err.message);
+          setAlertMessage(err.message || 'Facebook login failed.');
           setAlertVisible(true);
-        });
+        }
+      };
+
+      run();
     }
   }, [fbResponse]);
 
+
   const handleLogin = async () => {
+    console.log('HANDLELOGIN: button pressed');
     setLoading(true);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-
+      await AsyncStorage.setItem('activeLogin', 'true');  // ADD THIS LINE
+      await signInWithEmailAndPassword(auth, email, password);
       if (stayLoggedIn) {
-        await AsyncStorage.setItem('userEmail', email);
+        await AsyncStorage.setItem('stayLoggedIn', 'true');
       } else {
-        await AsyncStorage.removeItem('userEmail');
+        await AsyncStorage.setItem('stayLoggedIn', 'session');
       }
-
       const targetTab = await getStartupTabRoute();
       router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
     } catch (error: any) {
-      console.log('Login error:', error.code);
       let message = 'Login failed.';
       if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential')
         message = 'Incorrect email or password.';
@@ -167,6 +190,7 @@ export default function Login() {
   const handleGoogleSignIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
+      await GoogleSignin.signOut();
 
       const userInfo = await GoogleSignin.signIn();
 
@@ -179,65 +203,85 @@ export default function Login() {
 
       const googleCredential = GoogleAuthProvider.credential(idToken);
 
-      await signInWithCredential(auth, googleCredential);
+      const cred = await signInWithCredential(auth, googleCredential);
+
+      const isNewUser = cred.additionalUserInfo?.isNewUser === true;
+
+      if (isNewUser) {
+        setAlertTitle('No Account Found');
+        setAlertMessage('No account exists with this Google email. Please sign up first.');
+        setAlertVisible(true);
+
+        await signOut(auth);
+        await GoogleSignin.signOut();
+
+        return;
+      }
 
       const targetTab = await getStartupTabRoute();
       router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+
     } catch (error: any) {
-      console.log('Full Google error in login:', error);
       if (error.code !== statusCodes.SIGN_IN_CANCELLED) {
         setAlertTitle('Error');
-        setAlertMessage('Google sign-in failed. Try again.');
+        setAlertMessage('Google login failed. Try again.');
         setAlertVisible(true);
       }
     }
   };
 
+
   const handleAppleSignIn = async () => {
     try {
-      console.log('Starting Apple sign-in on login...');
+      const rawNonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      const hashedNonce = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        rawNonce
+      );
 
       const credential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
         ],
+        nonce: hashedNonce,
       });
 
-      console.log('Apple credential received:', credential);
-
       if (!credential.identityToken) {
-        console.log('No identityToken from Apple');
         Alert.alert('Error', 'No identityToken from Apple');
         return;
       }
 
-      const nonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      console.log('Generated nonce:', nonce);
-
       const provider = new OAuthProvider('apple.com');
       const appleCredential = provider.credential({
         idToken: credential.identityToken,
-        rawNonce: nonce,
+        rawNonce: rawNonce,
       });
 
-      console.log('Apple credential created for Firebase');
+      const cred = await signInWithCredential(auth, appleCredential);
 
-      await signInWithCredential(auth, appleCredential);
+      const isNewUser = cred.additionalUserInfo?.isNewUser === true;
 
-      console.log('Apple sign-in successful on login');
+      if (isNewUser) {
+        setAlertTitle('No Account Found');
+        setAlertMessage('No account exists with this Apple ID. Please sign up first.');
+        setAlertVisible(true);
+        await signOut(auth);
+        return;
+      }
 
       const targetTab = await getStartupTabRoute();
       router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
+
     } catch (e: any) {
-      console.error('Apple sign-in error on login:', e);
       if (e.code === 'ERR_CANCELED') {
-        console.log('User cancelled Apple sign-in');
+        return;
       } else {
-        Alert.alert('Apple Sign-In Failed', e.message || 'Unknown error');
+        Alert.alert('Apple Login Failed', e.message || 'Unknown error');
       }
     }
   };
+
 
   const handleGoToSignup = () => {
     router.replace('/signup');

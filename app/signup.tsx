@@ -12,8 +12,10 @@ import { useColorScheme } from '../hooks/useColorScheme';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import * as Facebook from 'expo-auth-session/providers/facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Crypto from 'expo-crypto';
 
 WebBrowser.maybeCompleteAuthSession();
+WebBrowser.warmUpAsync();
 
 export default function Signup() {
   const router = useRouter();
@@ -25,6 +27,8 @@ export default function Signup() {
     clientId: '763545830068611',
     redirectUri: `fb763545830068611://authorize`,
     scopes: ['public_profile', 'email'],
+    authType: 'rerequest',
+    responseType: 'token',
   });
 
   const ensureTrialStart = async (uid: string) => {
@@ -50,23 +54,46 @@ export default function Signup() {
 
   useEffect(() => {
     if (fbResponse?.type === 'success') {
-      const { authentication } = fbResponse;
-      if (authentication?.accessToken) {
-        const credential = FacebookAuthProvider.credential(authentication.accessToken);
-        signInWithCredential(auth, credential)
-          .then(async (cred) => {
-            await ensureTrialStart(cred.user.uid);
-            router.replace('/(tabs)');
-          })
-          .catch((error) => {
-            Alert.alert('Error', 'Facebook sign-in failed: ' + error.message);
-            console.error(error);
-          });
-      }
-    } else if (fbResponse?.type === 'error') {
+      const run = async () => {
+        try {
+          const { authentication } = fbResponse;
+          if (!authentication?.accessToken) return;
+
+          const credential = FacebookAuthProvider.credential(authentication.accessToken);
+
+          const cred = await signInWithCredential(auth, credential);
+
+          const profileRef = doc(db, 'profiles', cred.user.uid);
+          const profileSnap = await getDoc(profileRef);
+
+          const profileExists = profileSnap.exists();
+
+          if (profileExists) {
+            Alert.alert(
+              'Account Exists',
+              'An account already exists with this email. Please go to the Login page.'
+            );
+
+            await signOut(auth);
+            return;
+          }
+
+          await ensureTrialStart(cred.user.uid);
+
+          router.replace('/(tabs)');
+        } catch (error: any) {
+          Alert.alert('Facebook Sign-Up Failed', error.message || 'Unknown error');
+        }
+      };
+
+      run();
+    }
+
+    if (fbResponse?.type === 'error') {
       Alert.alert('Facebook Error', fbResponse.error?.message || 'Unknown');
     }
   }, [fbResponse]);
+
 
   const handleSignUp = async () => {
     try {
@@ -76,7 +103,11 @@ export default function Signup() {
 
       router.replace('/(tabs)');
     } catch (err: any) {
-      Alert.alert('Error', err.message);
+      if (err.code === 'auth/email-already-in-use') {
+        Alert.alert('Account Exists', 'An account already exists with this email. Please go to the Login page.');
+      } else {
+        Alert.alert('Error', err.message);
+      }
     }
   };
 
@@ -133,11 +164,18 @@ export default function Signup() {
 
   const handleAppleSignIn = async () => {
     try {
+      const rawNonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      const hashedNonce = await Crypto.digestStringAsync(
+        Crypto.CryptoDigestAlgorithm.SHA256,
+        rawNonce
+      );
+
       const credential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
         ],
+        nonce: hashedNonce,
       });
 
       if (!credential.identityToken) {
@@ -145,31 +183,49 @@ export default function Signup() {
         return;
       }
 
-      const nonce = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-
       const provider = new OAuthProvider('apple.com');
       const appleCredential = provider.credential({
         idToken: credential.identityToken,
-        rawNonce: nonce,
+        rawNonce: rawNonce,
       });
 
       const cred = await signInWithCredential(auth, appleCredential);
+
+      const profileRef = doc(db, 'profiles', cred.user.uid);
+      const profileSnap = await getDoc(profileRef);
+
+      const profileExists = profileSnap.exists();
+
+      if (profileExists) {
+        Alert.alert(
+          'Account Exists',
+          'An account already exists with this email. Please go to the Login page.'
+        );
+
+        await signOut(auth);
+
+        return;
+      }
+
       await ensureTrialStart(cred.user.uid);
+
       router.replace('/(tabs)');
 
     } catch (e: any) {
       if (e.code === 'ERR_CANCELED') {
-        // user cancelled
+        return;
       } else {
-        Alert.alert('Apple Sign-In Failed', e.message || 'Unknown error');
+        Alert.alert('Apple Sign-Up Failed', e.message || 'Unknown error');
       }
     }
   };
+
 
   const styles = StyleSheet.create({
     buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', marginBottom: 20, width: '66%', alignItems: 'center', alignSelf: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 3 }, shadowOpacity: colorScheme === 'dark' ? 0.5 : 0.2, shadowRadius: 4, elevation: 6, },
     buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18, fontWeight: '600', },
     container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF' },
+    eyeButton: { padding: 8 },
     eyeIcon: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontSize: 22 },
     googleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
     input: { height: 50, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', borderWidth: 1, paddingHorizontal: 12, marginBottom: 16, borderRadius: 6, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
@@ -181,8 +237,6 @@ export default function Signup() {
     toggle: { marginTop: 16, alignItems: 'center', },
     toggleText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontWeight: '500', },
     screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF', },
-    socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
-    socialBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#1877F2', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 6, },
     socialIcon: { color: '#FFFFFF', fontSize: 20 },
     screenBackground: { flex: 1, backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF', },
   });
@@ -211,7 +265,10 @@ export default function Signup() {
               <TouchableOpacity
                 style={styles.socialBtn}
                 onPress={async () => {
-                  await fbPromptAsync();
+                  await WebBrowser.coolDownAsync();
+                  await fbPromptAsync({
+                    prompt: 'login',
+                  });
                 }}
               >
                 <Ionicons name="logo-facebook" style={styles.socialIcon} />
