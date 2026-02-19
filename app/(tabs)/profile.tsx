@@ -195,7 +195,6 @@ export default function ProfileScreen() {
       setAlertVisible(true);
       router.replace('/(tabs)/profile');
     } catch (error: any) {
-      console.error('Save error:', error);
       setAlertMessage(error.message || 'Something went wrong.');
       setAlertVisible(true);
     } finally {
@@ -372,7 +371,7 @@ useEffect(() => {
         await deleteDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId));
         setChirps(prev => prev.filter(c => c.id !== chirpId));
       } catch (err) {
-        console.error('Delete failed:', err);
+        // silent fail
       }
     };
 
@@ -384,7 +383,7 @@ useEffect(() => {
         });
         setChirps(prev => prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c));
       } catch (err) {
-        console.error('Edit failed:', err);
+        // silent fail
       } finally {
         setEditingId(null);
         setEditText('');

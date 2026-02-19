@@ -35,13 +35,13 @@ const handleCheer = async (checkinId: string, ownerId: string) => {
         userName = user.displayName;
       }
     } catch (err) {
-      console.warn("Could not fetch user name:", err);
+      // silent fail
     }
 
     await logCheer(checkinId, ownerId);
     alert(`${userName} cheered this 🎉`);
   } catch (err) {
-    console.error("Error cheering check-in:", err);
+    // silent fail
   }
 };
 
@@ -180,7 +180,6 @@ export default function UserProfileScreen() {
         }
 
       } catch (error: any) {
-        console.error('Error:', error);
         setErrorMsg('Failed to load profile');
       } finally {
         setLoading(false);
@@ -342,13 +341,15 @@ export default function UserProfileScreen() {
                 <View style={styles.section}>
                   <Text style={styles.sectionTitle}>Arenas Visited</Text>
                   <MapView
+                    key="userprofile-map"
                     style={styles.miniMap}
-                    initialRegion={{
-                      latitude: 39.8283,
-                      longitude: -98.5795,
-                      latitudeDelta: 40,
-                      longitudeDelta: 40,
+                    region={{
+                      latitude: 39.5,
+                      longitude: -98.35,
+                      latitudeDelta: 45,
+                      longitudeDelta: 45,
                     }}
+
                     mapType="none"
                     scrollEnabled={true}
                     zoomEnabled={true}
@@ -555,7 +556,6 @@ export default function UserProfileScreen() {
                         const snapshot = await getDocs(q);
 
                         if (snapshot.empty) {
-                          console.log("No more check-ins to load");
                           return;
                         }
 
@@ -566,7 +566,7 @@ export default function UserProfileScreen() {
 
                         setCheckins(prev => [...prev, ...moreCheckins]);
                       } catch (err) {
-                        console.error("Load more failed:", err);
+                        // silent fail
                       }
                     }}
                   >

@@ -23,7 +23,6 @@ export default function LeagueDetails() {
     return (arenas as any[]).filter((a) => (a.league || '').toUpperCase() === leagueCode);}, [leagueCode]);
   const [selectedArena, setSelectedArena] = useState(null);
   const mapRef = useRef<MapView>(null);
-  const leagueColor = league.colorCode || '#0A2940';
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);
@@ -56,6 +55,7 @@ export default function LeagueDetails() {
     backButton: { position: 'absolute', left: 10, zIndex: 10, padding: 12, },
     blueStrip: { position: 'absolute', top: -30, left: 0, right: 0, height: 120, zIndex: 5, },
     container: { padding: 20, paddingBottom: 80, alignItems: 'center', backgroundColor: '#E6E8EA', flexGrow: 1, },
+    fullContainer: { flex: 1 },
     description: { fontSize: 16, marginBottom: 20, textAlign: 'center', color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', },
     info: { fontSize: 14, marginBottom: 8, color: colorScheme === 'dark' ? '#F1F5F9' : '#0F172A', textAlign: 'center', },
     infoBox: { backgroundColor: colorScheme === 'dark' ? 'rgba(15, 35, 55, 0.85)' : 'rgba(255,255,255,0.85)', padding: 16, borderRadius: 12, borderWidth: 4, borderColor: colorScheme === 'dark' ? '#334155' : '#0D2C42', width: '100%', alignItems: 'center', },
@@ -112,20 +112,19 @@ export default function LeagueDetails() {
             <>
               <View style={styles.mapWrapper}>
                 <MapView
+                  key="league-map"
                   ref={mapRef}
                   style={styles.map}
                   mapType="none"
-                  initialRegion={{
-                    latitude: leagueArenas[0].latitude,
-                    longitude: leagueArenas[0].longitude,
-                    latitudeDelta: 12,
-                    longitudeDelta: 12,
+                  region={{
+                    latitude: 39.5,
+                    longitude: -98.35,
+                    latitudeDelta: 45,
+                    longitudeDelta: 45,
                   }}
                 >
                   <UrlTile
-                    urlTemplate={colorScheme === 'dark'
-                      ? "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-                      : "https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"}
+                    urlTemplate="https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
                     maximumZ={19}
                     zIndex={0}
                   />
@@ -198,11 +197,9 @@ export default function LeagueDetails() {
                 onPress={() => {
                   const rawUrl = league.website;
                   const url = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
-                  Linking.openURL(url).catch(err => {
+                  Linking.openURL(url).catch(() => {
                     const fallback = `http://${rawUrl}`;
-                    Linking.openURL(fallback).catch(fallbackErr =>
-                      console.log('Fallback failed too:', fallbackErr.message)
-                    );
+                    Linking.openURL(fallback).catch(() => {});
                   });
                 }}
               >

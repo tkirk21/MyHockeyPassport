@@ -353,7 +353,7 @@ export default function SettingsScreen() {
             {/* Website */}
             <TouchableOpacity
               style={styles.row}
-              onPress={() => Linking.openURL(SOCIAL_LINKS.website)}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.website).catch(() => {})}
             >
               <Ionicons name="globe-outline" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Website</Text>
@@ -362,7 +362,7 @@ export default function SettingsScreen() {
             {/* Facebook */}
             <TouchableOpacity
               style={styles.row}
-              onPress={() => Linking.openURL(SOCIAL_LINKS.facebook)}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.facebook).catch(() => {})}
             >
               <Ionicons name="logo-facebook" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Facebook</Text>
@@ -371,7 +371,7 @@ export default function SettingsScreen() {
             {/* Instagram – placeholder */}
             <TouchableOpacity
               style={styles.row}
-              onPress={() => Linking.openURL(SOCIAL_LINKS.instagram)}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.instagram).catch(() => {})}
             >
               <Ionicons name="logo-instagram" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Instagram</Text>
@@ -380,7 +380,7 @@ export default function SettingsScreen() {
             {/* X – placeholder */}
             <TouchableOpacity
               style={styles.row}
-              onPress={() => Linking.openURL(SOCIAL_LINKS.x)}
+              onPress={() => Linking.openURL(SOCIAL_LINKS.x).catch(() => {})}
             >
               <Ionicons name="logo-twitter" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>X</Text>
@@ -452,7 +452,7 @@ export default function SettingsScreen() {
                         router.dismissAll();
                         router.replace('/login');
                       } catch (error) {
-                        console.error('Logout error:', error);
+                        // silent fail
                       }
                     }}
                     style={styles.alertButton}
@@ -492,7 +492,6 @@ export default function SettingsScreen() {
                         router.replace("/login");
 
                       } catch (error) {
-                        console.error("Account deletion error:", error);
                         Alert.alert("Error", "Failed to delete account.");
                       }
                     }}

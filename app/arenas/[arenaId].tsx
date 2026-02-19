@@ -102,7 +102,7 @@ export default function ArenaScreen() {
         const sorted = gameDates.sort((a, b) => b.getTime() - a.getTime());
         setLastVisitDate(sorted[0] || null);
       } catch (err) {
-        console.log('Firestore error:', err);
+        // silent fail
       } finally {
         setLoading(false);
       }
@@ -130,7 +130,7 @@ export default function ArenaScreen() {
 
   const handleDirections = () => {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${arena.latitude},${arena.longitude}`;
-    Linking.openURL(url);
+    Linking.openURL(url).catch(() => {});
   };
 
   // Combine known schedules

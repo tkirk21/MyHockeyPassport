@@ -2025,6 +2025,24 @@
     "city": "Fairbanks, Alaska"
   },
   {
+    "id": "ncaaD1_20260221_28",
+    "league": "NCAA DIV I",
+    "date": "2026-02-22T01:10:00Z",
+    "team": "Lindenwood Lions",
+    "opponent": "USA Hockey National Team Development Program",
+    "arena": "Centene Community Ice Center",
+    "city": "Maryland Heights, Missouri"
+  },
+  {
+    "id": "ncaaD1_20260222_01",
+    "league": "NCAA DIV I",
+    "date": "2026-02-22T20:10:00Z",
+    "team": "Lindenwood Lions",
+    "opponent": "USA Hockey National Team Development Program",
+    "arena": "Centene Community Ice Center",
+    "city": "Maryland Heights, Missouri"
+  },
+  {
     "id": "ncaaD1_20260226_01",
     "league": "NCAA DIV I",
     "date": "2026-02-26T23:30:00Z",

@@ -242,7 +242,7 @@ export default function HomeScreen() {
     if (!arenaInfo) return;
 
     const url = `https://www.google.com/maps/dir/?api=1&destination=${arenaInfo.latitude},${arenaInfo.longitude}`;
-    Linking.openURL(url).catch(err => console.log('Linking error:', err));
+    Linking.openURL(url).catch(() => {});
   };
 
   // Navigates to live check-in screen with game details
@@ -366,7 +366,6 @@ export default function HomeScreen() {
 
       setGlobalLeaderboard(leaderboard);
     } catch (err) {
-      console.error('Global leaderboard failed:', err);
       setGlobalLeaderboard([]);
     } finally {
       setGlobalLbLoading(false);
@@ -398,7 +397,6 @@ export default function HomeScreen() {
 
       setTeamPopularityLeaderboard(leaderboard);
     } catch (err) {
-      console.error('Team popularity leaderboard failed:', err);
       setTeamPopularityLeaderboard([]);
     } finally {
       setTeamPopularityLoading(false);
@@ -420,7 +418,7 @@ export default function HomeScreen() {
         mimeType: 'image/png',
       });
     } catch (error) {
-      console.error('Share error:', error);
+      // silent fail
     }
   };
 
@@ -433,7 +431,7 @@ export default function HomeScreen() {
       if (!saved || saved === 'home') return;
       const target = { profile: 'profile', checkin: 'checkin', map: 'map', friends: 'friends' }[saved];
       if (target) router.replace(`/${target}`);
-    }).catch(e => console.log('Startup tab redirect failed:', e));
+    }).catch(() => {});
   }, []);
 
   //Pulsing fade animation for "Detecting location..." placeholder
