@@ -5,7 +5,7 @@ import { getAuth } from 'firebase/auth';
 import firebaseApp from '@/firebaseConfig';
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot, query } from 'firebase/firestore';
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { Alert, FlatList, Image, Modal, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MapView, { Marker, Polyline, UrlTile, Callout } from 'react-native-maps';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +25,7 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 
 export default function MapScreen() {
+  const user = auth.currentUser;
   const [pins, setPins] = useState<any[]>([]);
   const { isPremium } = usePremium();
   const colorScheme = useColorScheme();
@@ -40,20 +41,56 @@ export default function MapScreen() {
   const [allCheckIns, setAllCheckIns] = useState<any[]>([]);
   const [travelCoords, setTravelCoords] = useState<{latitude: number, longitude: number}[]>([]);
   const router = useRouter();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [showTravelLines, setShowTravelLines] = useState(false);
   const [travelAnimValue, setTravelAnimValue] = useState(0);
   const showTravel = showTravelLines && travelCoords.length > 1;
 
   const handleShare = async () => {
+    if (!user) return;
+
     try {
       await new Promise(r => setTimeout(r, 500));
 
-      const uri = await viewShotRef.current?.capture();
-      if (!uri) throw new Error('Capture failed');
+      if (!viewShotRef.current) {
+        setAlertMessage('Unable to capture map.');
+        setAlertVisible(true);
+        return;
+      }
 
-      // Move the image to a sharable location
+      let uri;
+      try {
+        uri = await viewShotRef.current.capture();
+      } catch {
+        setAlertMessage('Map capture failed.');
+        setAlertVisible(true);
+        return;
+      }
+
+      if (!uri) {
+        setAlertMessage('Map capture failed.');
+        setAlertVisible(true);
+        return;
+      }
+
       const fileUri = FileSystem.cacheDirectory + `map_${Date.now()}.png`;
-      await FileSystem.copyAsync({ from: uri, to: fileUri });
+
+      try {
+        await FileSystem.copyAsync({ from: uri, to: fileUri });
+      } catch {
+        setAlertMessage('Failed to prepare image for sharing.');
+        setAlertVisible(true);
+        return;
+      }
+
+      const available = await Sharing.isAvailableAsync();
+
+      if (!available) {
+        setAlertMessage('Sharing is not available on this device.');
+        setAlertVisible(true);
+        return;
+      }
 
       const shareText =
         `Just added another arena to my Hockey Passport 🏒\n` +
@@ -64,13 +101,18 @@ export default function MapScreen() {
         dialogTitle: 'Share your map',
         mimeType: 'image/png',
         UTI: 'public.png',
-        // Android only
         message: shareText
       });
 
-    } catch (e) {
-      console.log(e);
-      Alert.alert('Share failed', 'Could not share map');
+    } catch (error: any) {
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Sharing permission denied.');
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+      } else {
+        setAlertMessage('Could not share map.');
+      }
+      setAlertVisible(true);
     }
   };
 
@@ -130,31 +172,67 @@ export default function MapScreen() {
   }, [selectedLeague]);
 
   useEffect(() => {
-    if (!auth.currentUser) return;
+    if (!user) return;
+
+    const profileRef = doc(db, 'profiles', user.uid);
 
     const loadFavoriteLeagues = async () => {
-      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
-      if (docSnap.exists()) {
-        const saved = docSnap.data()?.favoriteLeagues;
-        if (Array.isArray(saved)) {
-          setFavoriteLeagues(saved);
+      try {
+        const docSnap = await getDoc(profileRef);
+        if (docSnap.exists()) {
+          const saved = docSnap.data()?.favoriteLeagues;
+          if (Array.isArray(saved)) {
+            setFavoriteLeagues(saved);
+          } else {
+            setFavoriteLeagues([]);
+          }
+        } else {
+          setFavoriteLeagues([]);
         }
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read favorite leagues.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+        } else {
+          setAlertMessage('Failed to load favorite leagues.');
+        }
+        setAlertVisible(true);
       }
     };
 
     loadFavoriteLeagues();
 
-    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), (snap) => {
-      if (snap.exists()) {
-        const saved = snap.data()?.favoriteLeagues;
-        if (Array.isArray(saved)) {
-          setFavoriteLeagues(saved);
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (snap.exists()) {
+          const saved = snap.data()?.favoriteLeagues;
+          if (Array.isArray(saved)) {
+            setFavoriteLeagues(saved);
+          } else {
+            setFavoriteLeagues([]);
+          }
+        } else {
+          setFavoriteLeagues([]);
         }
+      },
+      (error: any) => {
+        if (!auth.currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read favorite leagues.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+        } else {
+          setAlertMessage('Realtime update failed.');
+        }
+        setAlertVisible(true);
       }
-    });
+    );
 
     return () => unsub();
-  }, []);
+  }, [user]);
+
 
   // Travel line animation when toggling
   useEffect(() => {
@@ -224,12 +302,6 @@ export default function MapScreen() {
 
   useEffect(() => {
     const loadEverything = async () => {
-      const user = auth.currentUser;
-      if (!user) {
-        setLoading(false);
-        return;
-      }
-
       let userLat = 39.8283;
       let userLng = -98.5795;
       let delta = 30;
@@ -243,12 +315,27 @@ export default function MapScreen() {
           delta = 12;
         }
       } catch (e) {
-        console.log('Location failed, using USA center');
       }
 
       try {
-        const q = query(collection(db, 'profiles', user.uid, 'checkins'));
-        const snapshot = await getDocs(q);
+        let snapshot;
+        try {
+          const q = query(collection(db, 'profiles', user.uid, 'checkins'));
+          snapshot = await getDocs(q);
+        } catch (error: any) {
+          if (error?.code === 'permission-denied') {
+            setAlertMessage('Permission denied while loading check-ins.');
+          } else if (error?.code === 'unauthenticated') {
+            setAlertMessage('Session expired. Please log in again.');
+          } else if (error?.message?.includes('network') || error?.code === 'unavailable') {
+            setAlertMessage('Network error while loading check-ins.');
+          } else {
+            setAlertMessage('Failed to load check-ins.');
+          }
+          setAlertVisible(true);
+          setLoading(false);
+          return;
+        }
 
         const all: any[] = [];
         const seenArenas = new Set<string>();
@@ -407,14 +494,16 @@ export default function MapScreen() {
         setTravelCoords(coords);
 
       } catch (error: any) {
-        console.error('Error loading check-ins:', error);
-        if (error.code === 'permission-denied') {
-          Alert.alert('Location Permission Denied', 'Please allow location access in Settings to use the map.');
-        } else if (error.message?.includes('network') || error.code === 'unavailable') {
-          Alert.alert('No Internet', 'Check your connection and try again.');
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Please allow location access in Settings to use the map.');
+        } else if (error?.message?.includes('network') || error?.code === 'unavailable') {
+          setAlertMessage('No internet connection. Check your connection and try again.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
         } else {
-          Alert.alert('Map Error', 'Something went wrong loading your check-ins. Pull down to retry.');
+          setAlertMessage('Something went wrong loading your check-ins.');
         }
+        setAlertVisible(true);
       } finally {
         setLoading(false);
       }
@@ -424,6 +513,12 @@ export default function MapScreen() {
   }, []);
 
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
     checkInRow: { padding: 12, borderBottomWidth: 1, borderBottomColor: colorScheme === 'dark' ? '#2F4F68' : '#eee', },
     checkInDate: { fontSize: 16, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', },
     checkInMatchup: { fontSize: 14, color: colorScheme === 'dark' ? '#BBBBBB' : '#555', },
@@ -442,6 +537,8 @@ export default function MapScreen() {
     findLocationButton: { position: 'absolute', bottom: 30, right: 20, backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', padding: 8, borderRadius: 24, borderWidth: 3, borderColor: '#2F4F68', zIndex: 10, elevation: 8 },
     groupTitle: { fontSize: 18, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', marginBottom: 8, textAlign: 'center', width: '100%', },
     loadingOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    loggedOutContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#FFFFFF' },
+    loggedOutText: { fontSize: 18, fontWeight: '600', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center' },
     map: { flex: 1 },
     markerContainer: { alignItems: 'center', },
     modalContent: { width: '90%', maxHeight: '80%', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 12, padding: 20, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 12, },
@@ -454,8 +551,12 @@ export default function MapScreen() {
     travelLinesButton: { position: 'absolute', bottom: 30, alignSelf: 'center', backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingHorizontal: 20, paddingVertical: 12, borderRadius: 30, zIndex: 10, elevation: 8, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', },
     travelLinesButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' , fontWeight: 'bold', fontSize: 16 },
     visitBadge: { backgroundColor: '#D32F2F', width: 15, height: 15, borderRadius: 30, justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 16, right: 26, zIndex: 2, borderWidth: 1, borderColor: 'white', },
-    visitBadgeText: { color: 'white', fontWeight: 'bold', fontSize: 6, },
+    visitBadgeText: { color: 'white', fontWeight: 'bold', fontSize: 6 },
+    upgradeContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF' },
+    upgradeButton: { backgroundColor: '#EF4444', paddingVertical: 16, paddingHorizontal: 32, borderRadius: 30 },
   });
+
+  if (!user) return null;
 
   if (loading) {
     return (
@@ -481,10 +582,12 @@ export default function MapScreen() {
   };
 
   const centerOnCurrentLocation = async () => {
+    if (!user) return;
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permission required', 'Location permission is needed to center the map.');
+        setAlertMessage('Location permission is needed to center the map.');
+        setAlertVisible(true);
         return;
       }
 
@@ -496,13 +599,26 @@ export default function MapScreen() {
         longitudeDelta: 0.05,
       }, 1000);
     } catch (e) {
-      Alert.alert('Location failed', 'Could not get current location.');
+      setAlertMessage('Could not get current location.');
+      setAlertVisible(true);
     }
   };
 
   return (
     isPremium ? (
-      <View style={{ flex: 1 }}>
+      <>
+        <Modal visible={alertVisible} transparent animationType="fade">
+          <View style={styles.alertOverlay}>
+            <View style={styles.alertContainer}>
+              <Text style={styles.alertTitle}>Notice</Text>
+              <Text style={styles.alertMessage}>{alertMessage}</Text>
+              <TouchableOpacity style={styles.alertButton} onPress={() => setAlertVisible(false)}>
+                <Text style={styles.alertButtonText}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+        <View style={{ flex: 1 }}>
         <Modal visible={modalVisible} transparent={true} animationType="slide">
           <View style={styles.modalOverlay}>
             <View style={styles.modalContent}>
@@ -603,7 +719,7 @@ export default function MapScreen() {
                   0,
                   Math.max(2, Math.floor(travelAnimValue * travelCoords.length))
                 )}
-                strokeColor={colorScheme === 'dark' ? '#FFFFFF' : '#2F4F68'}
+                strokeColor="#2F4F68"
                 strokeWidth={4}
                 lineCap="round"
                 lineJoin="round"
@@ -662,8 +778,9 @@ export default function MapScreen() {
           <Ionicons name="share-social-outline" size={28} color={colorScheme === 'dark' ? '#FFFFFF' : '#0A2940'} />
         </TouchableOpacity>
       </View>
+    </>
     ) : (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF' }}>
+      <View style={styles.upgradeContainer}>
         <Text style={{ fontSize: 24, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 20 }}>
           Upgrade to Premium
         </Text>
@@ -671,15 +788,10 @@ export default function MapScreen() {
           Unlock the full map, travel lines, sharing, and more! A monthly subscription is way cheaper than rink side parking.
         </Text>
         <TouchableOpacity
-          style={{
-            backgroundColor: '#EF4444',
-            paddingVertical: 16,
-            paddingHorizontal: 32,
-            borderRadius: 30,
-          }}
+          style={styles.upgradeButton}
           onPress={() => {
-            // TODO: Your upgrade/subscribe route here
-            Alert.alert("Upgrade", "Redirecting to subscription...");
+            setAlertMessage('Redirecting to subscription...');
+            setAlertVisible(true);
           }}
         >
           <Text style={{ color: '#FFFFFF', fontSize: 18, fontWeight: 'bold' }}>

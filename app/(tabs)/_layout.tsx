@@ -7,6 +7,7 @@ import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
+import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
 
 const db = getFirestore(firebaseApp);
 
@@ -25,6 +26,26 @@ function CustomTabs() {
   const [profileUnreadCount, setProfileUnreadCount] = useState(0);
   const auth = getAuth(firebaseApp);
   const currentUser = auth.currentUser;
+  if (!currentUser) {
+    return null;
+  }
+
+  useEffect(() => {
+    if (!currentUser?.uid) return;
+
+    const run = async () => {
+      try {
+        const profileRef = doc(db, 'profiles', currentUser.uid);
+        const profileSnap = await getDoc(profileRef);
+
+        if (!profileSnap.exists()) return;
+
+        await registerForPushNotificationsAsync();
+      } catch {}
+    };
+
+    run();
+  }, [currentUser?.uid]);
 
   // ==================== PROFILE TAB BADGE (UNCHANGED) ====================
   useEffect(() => {
@@ -198,7 +219,13 @@ function CustomTabs() {
           listeners={{ focus: () => {
               if (!currentUser?.uid) return;
               setProfileUnreadCount(0);
-              setDoc(doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedProfileTab'), { timestamp: serverTimestamp() }, { merge: true } ).catch(() => {});
+              try {
+                setDoc(
+                  doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedProfileTab'),
+                  { timestamp: serverTimestamp() },
+                  { merge: true }
+                );
+              } catch {}
             },
           }}
         />

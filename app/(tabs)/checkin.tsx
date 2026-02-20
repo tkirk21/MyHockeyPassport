@@ -31,6 +31,10 @@ const auth = getAuth();
 
 export default function CheckInScreen() {
   const router = useRouter();
+  const user = auth.currentUser;
+  if (!user) {
+    return null;
+  }
   const { isPremium } = usePremium();
   const [lastPast, setLastPast] = useState<Date | null>(null);
   const [canAddPast, setCanAddPast] = useState(true);
@@ -41,6 +45,7 @@ export default function CheckInScreen() {
   const [upgradeAlertVisible, setUpgradeAlertVisible] = useState(false);
   const [upgradeAlertTitle, setUpgradeAlertTitle] = useState('');
   const [upgradeAlertMessage, setUpgradeAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState('');
 
   const showUpgradePrompt = (title: string, message: string) => {
     setUpgradeAlertTitle(title);
@@ -49,29 +54,50 @@ export default function CheckInScreen() {
   };
 
   useEffect(() => {
-    const user = auth.currentUser;
     if (!user) return;
 
     const profileRef = doc(db, 'profiles', user.uid);
 
-    const unsub = onSnapshot(profileRef, (snap) => {
-      if (!snap.exists()) {
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (!snap.exists()) {
+          setLastPast(null);
+          setCanAddPast(true);
+          return;
+        }
+
+        const data = snap.data();
+        const last = data.lastPastCheckIn?.toDate?.() || null;
+        setLastPast(last);
+
+        if (last) {
+          const daysSince =
+            (new Date().getTime() - last.getTime()) /
+            (1000 * 60 * 60 * 24);
+
+          setCanAddPast(daysSince >= 7);
+        } else {
+          setCanAddPast(true);
+        }
+      },
+      (error: any) => {
+        if (error?.code === 'permission-denied') {
+          setAlertTitle('Permission Denied');
+          setAlertMessage('Permission denied while reading profile.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertTitle('Session Expired');
+          setAlertMessage('Session expired. Please log in again.');
+        } else {
+          setAlertTitle('Error');
+          setAlertMessage('Failed to load profile data.');
+        }
+
+        setAlertVisible(true);
         setLastPast(null);
         setCanAddPast(true);
-        return;
       }
-
-      const data = snap.data();
-      const last = data.lastPastCheckIn?.toDate?.() || null;
-      setLastPast(last);
-
-      if (last) {
-        const daysSince = (new Date().getTime() - last.getTime()) / (1000 * 60 * 60 * 24);
-        setCanAddPast(daysSince >= 7);
-      } else {
-        setCanAddPast(true);
-      }
-    });
+    );
 
     return () => unsub();
   }, []);
@@ -83,6 +109,7 @@ export default function CheckInScreen() {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setCheckingIn(false);
+        setAlertTitle('Permission Denied');
         setAlertMessage('Location permission is needed to check in to a live game.');
         setAlertVisible(true);
         return;
@@ -121,6 +148,7 @@ export default function CheckInScreen() {
 
       if (allGamesToday.length === 0) {
         setCheckingIn(false);
+        setAlertTitle('No Games Today');
         setAlertMessage('There are no games scheduled in any league today.');
         setAlertVisible(true);
         return;
@@ -153,6 +181,7 @@ export default function CheckInScreen() {
 
       if (!closestGame || closestDistanceMiles > 0.28) {
         setCheckingIn(false);
+        setAlertTitle('Not Close Enough');
         setAlertMessage('You must be closer to the arena to check-in.');
         setAlertVisible(true);
         return;
@@ -170,9 +199,23 @@ export default function CheckInScreen() {
         },
       });
 
-    } catch (err) {
+    } catch (error: any) {
       setCheckingIn(false);
-      setAlertMessage('Unable to get GPS location. Try again.');
+
+      if (error?.code === 'permission-denied') {
+        setAlertTitle('Permission Denied');
+        setAlertMessage('Location permission denied.');
+      } else if (error?.code === 'unauthenticated') {
+        setAlertTitle('Session Expired');
+        setAlertMessage('Session expired. Please log in again.');
+      } else if (error?.message?.toLowerCase().includes('network')) {
+        setAlertTitle('Network Error');
+        setAlertMessage('Network error. Check your connection.');
+      } else {
+        setAlertTitle('Error');
+        setAlertMessage('Unable to complete live check-in.');
+      }
+
       setAlertVisible(true);
     }
   };
@@ -199,7 +242,7 @@ export default function CheckInScreen() {
     alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
     alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
     alertButtonText: { color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontWeight: '700', fontSize: 16 },
-    buttons: { position: "absolute", bottom: 40, left: 40,right: 40, gap: 40, },
+    buttons: { position: "absolute", bottom: 140, left: 60, right: 60, gap: 40, },
     buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', paddingVertical: 16, borderRadius: 30, },
     buttonSecondary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666' : '#2F4F68', borderRadius: 30, },
     buttonText: { fontSize: 16, color: colorScheme === 'dark' ? '#fff' : '#0A2940', fontWeight: "600", textAlign: "center", },
@@ -254,10 +297,34 @@ export default function CheckInScreen() {
 
               // If non-premium, update lastPastCheckIn to now
               if (!isPremium) {
-                const profileRef = doc(db, 'profiles', user.uid);
-                await setDoc(profileRef, {
-                  lastPastCheckIn: serverTimestamp(),
-                }, { merge: true });
+                try {
+                  const profileRef = doc(db, 'profiles', user.uid);
+
+                  await setDoc(
+                    profileRef,
+                    {
+                      lastPastCheckIn: serverTimestamp(),
+                    },
+                    { merge: true }
+                  );
+                } catch (error: any) {
+                  if (error?.code === 'permission-denied') {
+                    setAlertTitle('Permission Denied');
+                    setAlertMessage('Permission denied while updating profile.');
+                  } else if (error?.code === 'unauthenticated') {
+                    setAlertTitle('Session Expired');
+                    setAlertMessage('Session expired. Please log in again.');
+                  } else if (error?.message?.toLowerCase().includes('network')) {
+                    setAlertTitle('Network Error');
+                    setAlertMessage('Network error. Please check your connection.');
+                  } else {
+                    setAlertTitle('Error');
+                    setAlertMessage('Unexpected error while saving check-in.');
+                  }
+
+                  setAlertVisible(true);
+                  return;
+                }
               }
 
               router.push('/checkin/manual');

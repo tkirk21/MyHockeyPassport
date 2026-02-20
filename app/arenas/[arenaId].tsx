@@ -39,6 +39,11 @@ export default function ArenaScreen() {
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
 
+  const user = auth.currentUser;
+  if (!user) {
+    return null;
+  }
+
   const [loading, setLoading] = useState(true);
   const [checkingIn, setCheckingIn] = useState(false);
   const [distanceUnit, setDistanceUnit] = useState<'miles' | 'km'>('miles');
@@ -48,36 +53,35 @@ export default function ArenaScreen() {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const arena = arenaData.find((a) =>
-      `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
-    );
+    `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
+  );
 
-    if (!arena) {
-      return (
-        <View style={styles.centered}>
-          <Text style={styles.errorText}>Arena not found.</Text>
-        </View>
-      );
-    }
+  if (!arena) {
+    setAlertMessage('Arena not found.');
+    setAlertVisible(true);
+    return null;
+  }
 
   useEffect(() => {
     const run = async () => {
-      const user = auth.currentUser;
-      if (!user || !arena) return;
+      if (!arena) return;
+
       try {
         setLoading(true);
 
-        // Get all past names for this arena
         const historyEntry = arenaHistoryData.find(
           h => h.currentArena === arena.arena
         );
+
         const oldNames = historyEntry
           ? historyEntry.history.map(h => h.name)
           : [];
 
-        // Build query that matches current name OR any old name
+        const namesToMatch = [arena.arena, ...oldNames];
+
         const q = query(
           collection(db, 'profiles', user.uid, 'checkins'),
-          where('arenaName', 'in', [arena.arena, ...oldNames])
+          where('arenaName', 'in', namesToMatch)
         );
 
         const snapshot = await getDocs(q);
@@ -99,25 +103,59 @@ export default function ArenaScreen() {
           })
           .filter(date => date !== null);
 
-        const sorted = gameDates.sort((a, b) => b.getTime() - a.getTime());
+        const sorted = gameDates.sort(
+          (a, b) => b.getTime() - a.getTime()
+        );
+
         setLastVisitDate(sorted[0] || null);
-      } catch (err) {
-        // silent fail
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to load visit history.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+        } else {
+          setAlertMessage('Failed to load visit data.');
+        }
+
+        setAlertVisible(true);
+
+        setVisitCount(0);
+        setLastVisitDate(null);
       } finally {
         setLoading(false);
       }
     };
+
     run();
-  }, [arena, auth.currentUser]);
+  }, [arena]);
 
   useEffect(() => {
-    if (!auth.currentUser) return;
+    const profileRef = doc(db, 'profiles', user.uid);
 
-    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), snap => {
-      if (snap.exists()) {
-        setDistanceUnit(snap.data().distanceUnit === 'km' ? 'km' : 'miles');
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (snap.exists()) {
+          const unit =
+            snap.data().distanceUnit === 'km' ? 'km' : 'miles';
+          setDistanceUnit(unit);
+        } else {
+          setDistanceUnit('miles');
+        }
+      },
+      (error: any) => {
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read distance preference.');
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+        } else {
+          setAlertMessage('Failed to load distance preference.');
+        }
+
+        setAlertVisible(true);
+        setDistanceUnit('miles');
       }
-    });
+    );
 
     return () => unsub();
   }, []);
@@ -128,9 +166,23 @@ export default function ArenaScreen() {
     )
   ), []);
 
-  const handleDirections = () => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${arena.latitude},${arena.longitude}`;
-    Linking.openURL(url).catch(() => {});
+  const handleDirections = async () => {
+    try {
+      const url = `https://www.google.com/maps/dir/?api=1&destination=${arena.latitude},${arena.longitude}`;
+
+      const supported = await Linking.canOpenURL(url);
+
+      if (!supported) {
+        setAlertMessage('Cannot open Google Maps on this device.');
+        setAlertVisible(true);
+        return;
+      }
+
+      await Linking.openURL(url);
+    } catch (error: any) {
+      setAlertMessage('Failed to open directions.');
+      setAlertVisible(true);
+    }
   };
 
   // Combine known schedules
@@ -267,8 +319,24 @@ export default function ArenaScreen() {
 
   // Filter & sort upcoming games at this arena
   let upcomingGames = combinedSchedule
-    .filter((game) => game.arena === arena.arena && new Date(game.date) > new Date())
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .filter((game) => {
+      if (!game?.date) return false;
+      if (game.arena !== arena.arena) return false;
+
+      const gameDate = new Date(game.date);
+      if (isNaN(gameDate.getTime())) return false;
+
+      return gameDate.getTime() > Date.now();
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      if (isNaN(dateA.getTime())) return 1;
+      if (isNaN(dateB.getTime())) return -1;
+
+      return dateA.getTime() - dateB.getTime();
+    })
     .slice(0, 3);
 
   // ✅ Fallback: if no upcoming games, default to next preseason
@@ -338,9 +406,13 @@ export default function ArenaScreen() {
       const now = new Date().getTime();
 
       const liveWindowGame = combinedSchedule.find((game) => {
+        if (!game?.date) return false;
         if (game.arena !== arena.arena) return false;
 
-        const start = new Date(game.date).getTime();
+        const startDate = new Date(game.date);
+        if (isNaN(startDate.getTime())) return false;
+
+        const start = startDate.getTime();
 
         const oneHourBefore = start - (60 * 60 * 1000);
         const threeHourGame = start + (3 * 60 * 60 * 1000);
@@ -369,24 +441,47 @@ export default function ArenaScreen() {
         },
       });
 
-    } catch (error) {
+    } catch (error: any) {
       setCheckingIn(false);
-      setAlertMessage('Could not get your location. Try again.');
+
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Permission denied while checking in.');
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+      } else if (error?.message?.toLowerCase().includes('network')) {
+        setAlertMessage('Network error. Check your connection and try again.');
+      } else {
+        setAlertMessage('Unexpected error during check-in.');
+      }
+
       setAlertVisible(true);
     }
   };
 
-
   useEffect(() => {
-    if (upcomingGames.length === 0) {
+    if (!upcomingGames || upcomingGames.length === 0) {
       setTimeLeft('');
       return;
     }
 
-    const nextGameTime = new Date(upcomingGames[0].date).getTime();
+    const firstGame = upcomingGames[0];
+
+    if (!firstGame?.date) {
+      setTimeLeft('');
+      return;
+    }
+
+    const startDate = new Date(firstGame.date);
+
+    if (isNaN(startDate.getTime())) {
+      setTimeLeft('');
+      return;
+    }
+
+    const nextGameTime = startDate.getTime();
 
     const updateCountdown = () => {
-      const now = new Date().getTime();
+      const now = Date.now();
       const diff = nextGameTime - now;
 
       if (diff <= 0) {
@@ -404,13 +499,13 @@ export default function ArenaScreen() {
       let display = '';
 
       if (days > 0) {
-        display = `${days}d ${hours}${hours !== 1 ? 'h' : 'h'} ${minutes}${minutes !== 1 ? 'm' : 'm'}`;
+        display = `${days}d ${hours}h ${minutes}m`;
       } else if (hours > 0) {
-        display = `${hours}${hours !== 1 ? 'h' : 'h'} ${minutes}${minutes !== 1 ? 'm' : 'm'}`;
+        display = `${hours}h ${minutes}m`;
       } else if (minutes > 0) {
-        display = `${minutes}${minutes !== 1 ? 'm' : 'm'} ${seconds}${seconds !== 1 ? 's' : 's'}`;
+        display = `${minutes}m ${seconds}s`;
       } else {
-        display = `${seconds}${seconds !== 1 ? 's' : 's'}`;
+        display = `${seconds}s`;
       }
 
       setTimeLeft(display);
@@ -465,14 +560,32 @@ export default function ArenaScreen() {
       <Modal visible={alertVisible} transparent animationType="fade">
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <Text style={styles.alertTitle}>Not Close Enough</Text>
+            <Text style={styles.alertTitle}>
+              {alertMessage.toLowerCase().includes('permission')
+                ? 'Permission Error'
+                : alertMessage.toLowerCase().includes('session')
+                ? 'Session Expired'
+                : alertMessage.toLowerCase().includes('network')
+                ? 'Network Error'
+                : alertMessage.toLowerCase().includes('arena not found')
+                ? 'Error'
+                : alertMessage.toLowerCase().includes('unable')
+                ? 'Error'
+                : alertMessage.toLowerCase().includes('failed')
+                ? 'Error'
+                : alertMessage.toLowerCase().includes('close')
+                ? 'Not Close Enough'
+                : 'Error'}
+            </Text>
+
             <Text style={styles.alertMessage}>{alertMessage}</Text>
+
             <View style={{ flexDirection: 'row', gap: 16, marginTop: 12 }}>
               <TouchableOpacity
                 style={styles.alertButton}
                 onPress={() => setAlertVisible(false)}
               >
-                <Text style={styles.alertButtonText}>Cancel</Text>
+                <Text style={styles.alertButtonText}>OK</Text>
               </TouchableOpacity>
             </View>
           </View>

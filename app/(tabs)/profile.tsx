@@ -30,23 +30,44 @@ function norm(s: any) { return (s ?? '').toString().trim().toLowerCase(); }
 
 async function getCheerCount(userId: string, checkinId: string) {
   try {
-    const cheersRef = collection(db, "profiles", userId, "checkins", checkinId, "cheers");
+    const cheersRef = collection(
+      db,
+      "profiles",
+      userId,
+      "checkins",
+      checkinId,
+      "cheers"
+    );
+
     const snap = await getDocs(cheersRef);
     const cheerCount = snap.size;
-    const cheerNames = snap.docs.map(d => d.data().name).filter(Boolean);
+    const cheerNames = snap.docs
+      .map(d => d.data()?.name)
+      .filter(Boolean);
+
     return { cheerCount, cheerNames };
-  } catch {
+  } catch (error: any) {
+    if (error?.code === 'permission-denied') {
+      Alert.alert('Permission Error', 'You do not have access to cheers.');
+    }
     return { cheerCount: 0, cheerNames: [] };
   }
 }
 
+
 export default function ProfileScreen() {
+  const user = auth.currentUser;
+  if (!user) {
+    return null;
+  }
+
   const router = useRouter();
   const { isPremium } = usePremium();
   const { setProfileAlertCount } = useContext(ProfileAlertContext);
   const colorScheme = useColorScheme();
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState('');
   const [profileAlertVisible, setProfileAlertVisible] = useState(false);
   const [profileAlertMessage, setProfileAlertMessage] = useState('');
   const [profileAlertTitle, setProfileAlertTitle] = useState('');
@@ -59,16 +80,28 @@ export default function ProfileScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      setProfileAlertCount(0);
+      const run = async () => {
+        setProfileAlertCount(0);
 
-      const user = auth.currentUser;
-      if (user) {
-        setDoc(
-          doc(db, 'profiles', user.uid, 'notifications', 'lastViewedProfile'),
-          { timestamp: serverTimestamp() },
-          { merge: true }
-        );
-      }
+        const user = auth.currentUser;
+        if (!user) return;
+
+        try {
+          await setDoc(
+            doc(db, 'profiles', user.uid, 'notifications', 'lastViewedProfile'),
+            { timestamp: serverTimestamp() },
+            { merge: true }
+          );
+        } catch (error: any) {
+          if (error?.code === 'permission-denied') {
+            Alert.alert(
+              'Permission Error',
+              'Cannot update profile notification timestamp.'
+            );
+          }
+        }
+      };
+      run();
     }, [setProfileAlertCount])
   );
 
@@ -142,14 +175,13 @@ export default function ProfileScreen() {
   const saveProfile = async () => {
     const user = auth.currentUser;
     if (!user) {
-      Alert.alert('Error', 'No user is logged in');
+      Alert.alert('Authentication Error', 'User session expired. Please log in again.');
       return;
     }
 
     setLoading(true);
 
     try {
-      // Step 1: Check if the name is already taken by someone else
       const profilesRef = collection(db, 'profiles');
       const q = query(profilesRef, where('name', '==', name.trim()));
       const querySnapshot = await getDocs(q);
@@ -169,38 +201,54 @@ export default function ProfileScreen() {
         return;
       }
 
-      // Name is free or it's the current user's own name → proceed
       let uploadedImageUrl: string | null = null;
-      if (image && image !== imageUrl) { // only upload if changed
-        const response = await fetch(image);
-        const blob = await response.blob();
-        const imageRef = ref(storage, `profilePictures/${user.uid}`);
-        await uploadBytes(imageRef, blob);
-        uploadedImageUrl = await getDownloadURL(imageRef);
+
+      if (image && image !== imageUrl) {
+        try {
+          const response = await fetch(image);
+          const blob = await response.blob();
+          const imageRef = ref(storage, `profilePictures/${user.uid}`);
+          await uploadBytes(imageRef, blob);
+          uploadedImageUrl = await getDownloadURL(imageRef);
+        } catch (uploadError: any) {
+          Alert.alert('Upload Failed', 'Profile image upload failed. Please try again.');
+          setLoading(false);
+          return;
+        }
       }
 
-      await setDoc(
-        doc(db, 'profiles', user.uid),
-        {
-          name: name.trim(),
-          location,
-          favouriteTeams,
-          imageUrl: uploadedImageUrl || imageUrl,
-          createdAt: new Date(),
-        },
-        { merge: true }
-      );
-
+      try {
+        await setDoc(
+          doc(db, 'profiles', user.uid),
+          {
+            name: name.trim(),
+            location,
+            favouriteTeams,
+            imageUrl: uploadedImageUrl || imageUrl,
+            createdAt: new Date(),
+          },
+          { merge: true }
+        );
+      } catch (writeError: any) {
+        if (writeError?.code === 'permission-denied') {
+          Alert.alert('Permission Error', 'You do not have permission to update this profile.');
+        } else {
+          Alert.alert('Error', 'Failed to save profile.');
+        }
+        setLoading(false);
+        return;
+      }
+      setAlertTitle('Success');
       setAlertMessage('Profile saved!');
       setAlertVisible(true);
       router.replace('/(tabs)/profile');
     } catch (error: any) {
-      setAlertMessage(error.message || 'Something went wrong.');
-      setAlertVisible(true);
+      Alert.alert('Error', error?.message || 'Something went wrong.');
     } finally {
       setLoading(false);
     }
   };
+
 
 useEffect(() => {
   const user = auth.currentUser;
@@ -211,27 +259,40 @@ useEffect(() => {
   }
 
   const fetchProfile = async () => {
-    const docRef = doc(db, "profiles", user.uid);
-    const snap = await getDoc(docRef);
+    try {
+      const docRef = doc(db, "profiles", user.uid);
+      const snap = await getDoc(docRef);
 
-    if (snap.exists()) {
-      const data = snap.data() as any;
-      setName(data.name || "");
-      setLocation(data.location || "");
-      let teams: string[] = [];
+      if (snap.exists()) {
+        const data = snap.data() as any;
 
-      if (data.favouriteTeams && Array.isArray(data.favouriteTeams)) {
-        teams = data.favouriteTeams.filter((t): t is string => typeof t === 'string' && t.trim() !== '');
-      } else if (data.favouriteTeam && typeof data.favouriteTeam === 'string') {
-        const oldTeam = data.favouriteTeam.trim();
-        if (oldTeam) {
-          teams = [oldTeam];
+        setName(data?.name || "");
+        setLocation(data?.location || "");
+
+        let teams: string[] = [];
+
+        if (data?.favouriteTeams && Array.isArray(data.favouriteTeams)) {
+          teams = data.favouriteTeams.filter(
+            (t): t is string =>
+              typeof t === 'string' && t.trim() !== ''
+          );
+        } else if (data?.favouriteTeam && typeof data.favouriteTeam === 'string') {
+          const oldTeam = data.favouriteTeam.trim();
+          if (oldTeam) {
+            teams = [oldTeam];
+          }
         }
-      }
 
-      setFavouriteTeams(teams);
-      setImage(data.imageUrl || null);
-      setImageUrl(data.imageUrl || null);
+        setFavouriteTeams(teams);
+        setImage(data?.imageUrl || null);
+        setImageUrl(data?.imageUrl || null);
+      }
+    } catch (error: any) {
+      if (error?.code === 'permission-denied') {
+        Alert.alert('Permission Error', 'You do not have access to this profile.');
+      } else {
+        Alert.alert('Error', 'Failed to load profile.');
+      }
     }
   };
 
@@ -240,40 +301,50 @@ useEffect(() => {
   const checkInsRef = collection(db, "profiles", user.uid, "checkins");
   const q = query(checkInsRef, orderBy("timestamp", "desc"));
 
-  const unsub = onSnapshot(q, async (snapshot) => {
-    const checkIns = await Promise.all(
-      snapshot.docs.map(async (d) => {
-        const data = d.data();
+  const unsub = onSnapshot(
+    q,
+    async (snapshot) => {
+      const checkIns = await Promise.all(
+        snapshot.docs.map(async (d) => {
+          const data = d.data();
 
-        const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
+          const { cheerCount, cheerNames } = await getCheerCount(user.uid, d.id);
 
-        const chirpsRef = collection(db, "profiles", user.uid, "checkins", d.id, "chirps");
-        const chirpSnap = await getDocs(chirpsRef);
-        const hasChirps = chirpSnap.size > 0;
+          const chirpsRef = collection(db, "profiles", user.uid, "checkins", d.id, "chirps");
+          const chirpSnap = await getDocs(chirpsRef);
+          const hasChirps = chirpSnap.size > 0;
 
-        return {
-          id: d.id,
-          ...data,
-          cheerCount,
-          cheerNames,
-          hasChirps,
-          newChirpText: "",
-        };
-      })
-    );
+          return {
+            id: d.id,
+            ...data,
+            cheerCount,
+            cheerNames,
+            hasChirps,
+            newChirpText: "",
+          };
+        })
+      );
 
-    checkIns.sort((a, b) => {
-      const da = a.gameDate ? new Date(a.gameDate).getTime() : 0;
-      const db = b.gameDate ? new Date(b.gameDate).getTime() : 0;
-      return db - da;
-    });
+      checkIns.sort((a, b) => {
+        const da = a.gameDate ? new Date(a.gameDate).getTime() : 0;
+        const db = b.gameDate ? new Date(b.gameDate).getTime() : 0;
+        return db - da;
+      });
 
-    setRecentCheckIns(checkIns);
-    recalcStats(checkIns);
-  });
+      setRecentCheckIns(checkIns);
+      recalcStats(checkIns);
+    },
+    (error) => {
+      if (!auth.currentUser) return;
+      if (error?.code === 'permission-denied') {
+        Alert.alert('Permission Error', 'You do not have access to these check-ins.');
+      } else {
+        Alert.alert('Error', 'Failed to load check-ins.');
+      }
+    }
+  );
 
   return () => unsub();
-}, [auth.currentUser?.uid]);
 
   const toggleLeague = (league: string) => {
     setExpandedLeagues(prev => ({
@@ -368,22 +439,39 @@ useEffect(() => {
 
     const deleteChirp = async (chirpId: string) => {
       try {
-        await deleteDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId));
+        await deleteDoc(
+          doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId)
+        );
+
         setChirps(prev => prev.filter(c => c.id !== chirpId));
-      } catch (err) {
-        // silent fail
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          Alert.alert('Permission Error', 'You cannot delete this chirp.');
+        } else {
+          Alert.alert('Error', 'Failed to delete chirp.');
+        }
       }
     };
 
+
     const saveEdit = async (chirpId: string) => {
       if (!editText.trim()) return;
+
       try {
-        await updateDoc(doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId), {
-          text: editText.trim(),
-        });
-        setChirps(prev => prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c));
-      } catch (err) {
-        // silent fail
+        await updateDoc(
+          doc(db, 'profiles', userId, 'checkins', checkinId, 'chirps', chirpId),
+          { text: editText.trim() }
+        );
+
+        setChirps(prev =>
+          prev.map(c => c.id === chirpId ? { ...c, text: editText.trim() } : c)
+        );
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          Alert.alert('Permission Error', 'You cannot edit this chirp.');
+        } else {
+          Alert.alert('Error', 'Failed to update chirp.');
+        }
       } finally {
         setEditingId(null);
         setEditText('');
@@ -601,9 +689,7 @@ useEffect(() => {
             <Modal visible={alertVisible} transparent animationType="fade">
               <View style={styles.alertOverlay}>
                 <View style={styles.alertContainer}>
-                  <Text style={styles.alertTitle}>
-                    {alertMessage.includes('Error') ? 'Error' : 'Success'}
-                  </Text>
+                  <Text style={styles.alertTitle}>{alertTitle}</Text>
                   <Text style={styles.alertMessage}>{alertMessage}</Text>
                   <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
                     <Text style={styles.alertButtonText}>OK</Text>
@@ -1035,13 +1121,22 @@ useEffect(() => {
                                   if (!text) return;
                                   const user = auth.currentUser;
                                   const chirpsRef = collection(db, 'profiles', user.uid, 'checkins', checkIn.id, 'chirps');
-                                  await addDoc(chirpsRef, {
-                                    text,
-                                    userName: name || 'Anonymous',
-                                    userImage: imageUrl || null,
-                                    userId: auth.currentUser?.uid,
-                                    timestamp: serverTimestamp(),
-                                  });
+                                  try {
+                                    await addDoc(chirpsRef, {
+                                      text,
+                                      userName: name || 'Anonymous',
+                                      userImage: imageUrl || null,
+                                      userId: auth.currentUser?.uid,
+                                      timestamp: serverTimestamp(),
+                                    });
+                                  } catch (error: any) {
+                                    if (error?.code === 'permission-denied') {
+                                      Alert.alert('Permission Error', 'You cannot reply to this check-in.');
+                                    } else {
+                                      Alert.alert('Error', 'Failed to post chirp.');
+                                    }
+                                    return;
+                                  }
                                   setRecentCheckIns((prev) =>
                                     prev.map((ci) =>
                                       ci.id === checkIn.id ? { ...ci, newChirpText: '' } : ci

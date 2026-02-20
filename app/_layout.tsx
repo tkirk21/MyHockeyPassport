@@ -5,8 +5,6 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { registerForPushNotificationsAsync } from '@/utils/pushNotifications';
 import { PremiumProvider } from '@/context/PremiumContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -18,16 +16,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     SystemUI.setBackgroundColorAsync('#0A2940');
-  }, []);
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        registerForPushNotificationsAsync();
-      }
-    });
-    return () => unsubscribe();
   }, []);
 
   if (!loaded) return null;

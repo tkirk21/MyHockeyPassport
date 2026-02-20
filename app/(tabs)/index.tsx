@@ -3,10 +3,16 @@ import { Redirect } from 'expo-router';
 import { Image, View, Text, StyleSheet, Dimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 import { useColorScheme } from '../../hooks/useColorScheme';
+import { getAuth } from 'firebase/auth';
 
 const { height } = Dimensions.get('window');
+const auth = getAuth();
 
 export default function TabsIndex() {
+  const user = auth.currentUser;
+  if (!user) {
+    return <Redirect href="/login" />;
+  }
   const [showSplash, setShowSplash] = useState(true);
   const colorScheme = useColorScheme();
 

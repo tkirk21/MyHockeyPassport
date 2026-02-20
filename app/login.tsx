@@ -32,6 +32,13 @@ export default function Login() {
   const [alertTitle, setAlertTitle] = useState('Error');
   const [alertMessage, setAlertMessage] = useState('');
 
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '853703034223-101527k79a64l7aupv9ru8h0ph5sb2lf.apps.googleusercontent.com',
+      offlineAccess: true,
+    });
+  }, []);
+
   const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
     clientId: '763545830068611',
     redirectUri: 'fb763545830068611://authorize',
@@ -57,7 +64,7 @@ export default function Login() {
           return tabMap[saved] || 'index';
         }
       } catch (error) {
-        console.error('Failed to load startup tab:', error);
+        // silent fail
       }
       return 'index';
     };
@@ -96,7 +103,7 @@ export default function Login() {
           await GoogleSignin.signOut().catch(() => {});
         }
       } catch (e) {
-        console.log(e);
+        // silent fail
       }
     };
     checkStoredLogin();
@@ -193,7 +200,9 @@ export default function Login() {
       const idToken = userInfo.idToken || userInfo.data?.idToken;
 
       if (!idToken) {
-        Alert.alert('Error', 'No idToken returned from Google');
+        setAlertTitle('Error');
+        setAlertMessage('No idToken returned from Google.');
+        setAlertVisible(true);
         return;
       }
 
@@ -218,14 +227,19 @@ export default function Login() {
       router.replace(`/${targetTab === 'index' ? '' : targetTab}`);
 
     } catch (error: any) {
-      if (error.code !== statusCodes.SIGN_IN_CANCELLED) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) return;
+      if (error.code === statusCodes.IN_PROGRESS) return;
+      if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         setAlertTitle('Error');
-        setAlertMessage('Google login failed. Try again.');
+        setAlertMessage('Google Play Services not available.');
         setAlertVisible(true);
+        return;
       }
+      setAlertTitle('Error');
+      setAlertMessage(error.message || 'Google login failed. Try again.');
+      setAlertVisible(true);
     }
   };
-
 
   const handleAppleSignIn = async () => {
     try {
@@ -273,7 +287,9 @@ export default function Login() {
       if (e.code === 'ERR_CANCELED') {
         return;
       } else {
-        Alert.alert('Apple Login Failed', e.message || 'Unknown error');
+        setAlertTitle('Apple Login Failed');
+        setAlertMessage(e.message || 'Unknown error');
+        setAlertVisible(true);
       }
     }
   };

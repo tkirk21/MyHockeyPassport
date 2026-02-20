@@ -1,6 +1,6 @@
 //app/signup.tsx
 import { useState, useEffect } from 'react';
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { createUserWithEmailAndPassword, FacebookAuthProvider, fetchSignInMethodsForEmail, GoogleAuthProvider, OAuthProvider, signInWithCredential, signOut } from 'firebase/auth';
 import { auth, } from '@/firebaseConfig';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
@@ -23,6 +23,9 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const [fbRequest, fbResponse, fbPromptAsync] = Facebook.useAuthRequest({
     clientId: '763545830068611',
     redirectUri: `fb763545830068611://authorize`,
@@ -56,7 +59,12 @@ export default function Signup() {
       const run = async () => {
         try {
           const { authentication } = fbResponse;
-          if (!authentication?.accessToken) return;
+          if (!authentication?.accessToken) {
+            setAlertTitle('Facebook Error');
+            setAlertMessage('No access token returned from Facebook.');
+            setAlertVisible(true);
+            return;
+          }
 
           const credential = FacebookAuthProvider.credential(authentication.accessToken);
 
@@ -81,7 +89,9 @@ export default function Signup() {
 
           router.replace('/(tabs)');
         } catch (error: any) {
-          Alert.alert('Facebook Sign-Up Failed', error.message || 'Unknown error');
+          setAlertTitle('Facebook Sign-Up Failed');
+          setAlertMessage(error.message || 'Unknown error');
+          setAlertVisible(true);
         }
       };
 
@@ -89,7 +99,9 @@ export default function Signup() {
     }
 
     if (fbResponse?.type === 'error') {
-      Alert.alert('Facebook Error', fbResponse.error?.message || 'Unknown');
+      setAlertTitle('Facebook Error');
+      setAlertMessage(fbResponse.error?.message || 'Unknown');
+      setAlertVisible(true);
     }
   }, [fbResponse]);
 
@@ -103,7 +115,9 @@ export default function Signup() {
       router.replace('/(tabs)');
     } catch (err: any) {
       if (err.code === 'auth/email-already-in-use') {
-        Alert.alert('Account Exists', 'An account already exists with this email. Please go to the Login page.');
+        setAlertTitle('Account Exists');
+        setAlertMessage('An account already exists with this email. Please go to the Login page.');
+        setAlertVisible(true);
       } else {
         Alert.alert('Error', err.message);
       }
@@ -113,18 +127,19 @@ export default function Signup() {
   const handleGoogleSignIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      await GoogleSignin.signOut();
 
       const userInfo = await GoogleSignin.signIn();
 
       const idToken = userInfo.idToken || userInfo.data?.idToken;
+
       if (!idToken) {
-        Alert.alert('Error', 'No idToken returned from Google');
+        setAlertTitle('Error');
+        setAlertMessage('No idToken returned from Google');
+        setAlertVisible(true);
         return;
       }
 
       const googleCredential = GoogleAuthProvider.credential(idToken);
-
       const cred = await signInWithCredential(auth, googleCredential);
 
       const profileRef = doc(db, 'profiles', cred.user.uid);
@@ -133,14 +148,11 @@ export default function Signup() {
       const profileExists = profileSnap.exists();
 
       if (profileExists) {
-        Alert.alert(
-          'Account Exists',
-          'An account already exists with this email. Please go to the Login page.'
-        );
+        setAlertTitle('Account Exists');
+        setAlertMessage('An account already exists with this email. Please go to the Login page.');
+        setAlertVisible(true);
 
         await signOut(auth);
-        await GoogleSignin.signOut();
-
         return;
       }
 
@@ -154,12 +166,19 @@ export default function Signup() {
       } else if (error.code === statusCodes.IN_PROGRESS) {
         return;
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        Alert.alert('Error', 'Google Play Services not available');
+        setAlertTitle('Error');
+        setAlertMessage('Google Play Services not available');
+        setAlertVisible(true);
       } else {
-        Alert.alert('Google Sign-Up Failed', error.message || 'Something went wrong.');
+        setAlertTitle('Google Sign-Up Failed');
+        setAlertMessage(error.message || 'Something went wrong.');
+        setAlertVisible(true);
       }
     }
   };
+
+
+
 
   const handleAppleSignIn = async () => {
     try {
@@ -178,7 +197,9 @@ export default function Signup() {
       });
 
       if (!credential.identityToken) {
-        Alert.alert('Error', 'No identityToken from Apple');
+        setAlertTitle('Error');
+        setAlertMessage('No identityToken from Apple');
+        setAlertVisible(true);
         return;
       }
 
@@ -189,38 +210,37 @@ export default function Signup() {
       });
 
       const cred = await signInWithCredential(auth, appleCredential);
+      const isNewUser = cred.additionalUserInfo?.isNewUser === true;
 
-      const profileRef = doc(db, 'profiles', cred.user.uid);
-      const profileSnap = await getDoc(profileRef);
-
-      const profileExists = profileSnap.exists();
-
-      if (profileExists) {
-        Alert.alert(
-          'Account Exists',
-          'An account already exists with this email. Please go to the Login page.'
-        );
-
+      if (!isNewUser) {
+        setAlertTitle('Account Exists');
+        setAlertMessage('An account already exists with this Apple ID. Please go to the Login page.');
+        setAlertVisible(true);
         await signOut(auth);
-
         return;
       }
 
       await ensureTrialStart(cred.user.uid);
-
       router.replace('/(tabs)');
 
     } catch (e: any) {
       if (e.code === 'ERR_CANCELED') {
         return;
       } else {
-        Alert.alert('Apple Sign-Up Failed', e.message || 'Unknown error');
+        setAlertTitle('Apple Sign-Up Failed');
+        setAlertMessage(e.message || 'Unknown error');
+        setAlertVisible(true);
       }
     }
   };
 
-
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0F1E33' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: '#0D2C42', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.4, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: '#0D2C42', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
     buttonPrimary: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 16, paddingHorizontal: 24, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', marginBottom: 20, width: '66%', alignItems: 'center', alignSelf: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 3 }, shadowOpacity: colorScheme === 'dark' ? 0.5 : 0.2, shadowRadius: 4, elevation: 6, },
     buttonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontSize: 18, fontWeight: '600', },
     container: { flex: 1, padding: 20, justifyContent: 'center', backgroundColor: colorScheme === 'dark' ? '#0A1420' : '#FFFFFF' },
@@ -231,7 +251,7 @@ export default function Signup() {
     passwordContainer: { flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: colorScheme === 'dark' ? '#334155' : '#5E819F', borderRadius: 6, height: 50, marginBottom: 16, paddingRight: 12, backgroundColor: colorScheme === 'dark' ? '#1E293B' : '#FFFFFF', },
     passwordInput: { flex: 1, height: 50, paddingHorizontal: 12, fontSize: 16, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', backgroundColor: 'transparent', },
     socialRow: { flexDirection: 'row', justifyContent: 'center', gap: 12, marginBottom: 20, },
-    socialBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#DB4437', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 4, },
+   socialBtn: { width: 40, height: 40, borderRadius: 15, backgroundColor: '#1877F2', justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.3, shadowRadius: 4, elevation: 4, },
     title: { fontSize: 26, fontWeight: 'bold', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', marginBottom: 24, textAlign: 'center', },
     toggle: { marginTop: 16, alignItems: 'center', },
     toggleText: { color: colorScheme === 'dark' ? '#BBBBBB' : '#2F4F68', fontWeight: '500', },
@@ -314,9 +334,21 @@ export default function Signup() {
             <TouchableOpacity onPress={() => router.replace('/login')} style={styles.toggle}>
               <Text style={styles.toggleText}>Already have an account? Login</Text>
             </TouchableOpacity>
+
           </View>
         </View>
       </ScrollView>
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </KeyboardAvoidingView>
   );
 }

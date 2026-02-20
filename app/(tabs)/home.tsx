@@ -8,7 +8,7 @@ import { db } from '@/firebaseConfig';
 import { getAuth } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Alert, Animated, Clipboard, Dimensions, FlatList, Image, ImageBackground, Linking, Modal, Pressable, SafeAreaView, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Animated, Clipboard, Dimensions, FlatList, Image, ImageBackground, Linking, Modal, Pressable, SafeAreaView, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Picker } from '@react-native-picker/picker';
 import { useColorScheme } from '../../hooks/useColorScheme';
@@ -39,6 +39,10 @@ import pwhlSchedule from '@/assets/data/pwhlSchedule.json';
 const auth = getAuth();
 
 export default function HomeScreen() {
+  const user = auth.currentUser;
+  if (!user) {
+    return null;
+  }
   const router = useRouter();
   const { isPremium } = usePremium();
   const colorScheme = useColorScheme();
@@ -225,25 +229,52 @@ export default function HomeScreen() {
   }, [exploreFilterMode, selectedGroup, favoriteLeagues]);
 
   // Opens Google Maps directions to the arena (with accent-insensitive matching)
-  const handleDirections = (arenaName) => {
-    if (!arenaName) return;
+  const handleDirections = async (arenaName) => {
+    try {
+      if (!arenaName) return;
 
-    const normalize = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+      const normalize = (str: string) =>
+        str
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .trim();
 
-    const normalizedInput = normalize(arenaName);
+      const normalizedInput = normalize(arenaName);
 
-    const arenaInfo = arenaData.find(a => {
-      const normalizedDB = normalize(a.arena);
-      return normalizedDB === normalizedInput ||
-             normalizedDB.includes(normalizedInput) ||
-             normalizedInput.includes(normalizedDB.split(' (')[0]);
-    });
+      const arenaInfo = arenaData.find(a => {
+        const normalizedDB = normalize(a.arena);
+        return (
+          normalizedDB === normalizedInput ||
+          normalizedDB.includes(normalizedInput) ||
+          normalizedInput.includes(normalizedDB.split(' (')[0])
+        );
+      });
 
-    if (!arenaInfo) return;
+      if (!arenaInfo) {
+        setAlertMessage('Arena location not found.');
+        setAlertVisible(true);
+        return;
+      }
 
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${arenaInfo.latitude},${arenaInfo.longitude}`;
-    Linking.openURL(url).catch(() => {});
+      const url = `https://www.google.com/maps/dir/?api=1&destination=${arenaInfo.latitude},${arenaInfo.longitude}`;
+
+      const supported = await Linking.canOpenURL(url);
+
+      if (!supported) {
+        setAlertMessage('Unable to open maps.');
+        setAlertVisible(true);
+        return;
+      }
+
+
+      await Linking.openURL(url);
+    } catch (error) {
+      setAlertMessage('Failed to open directions.');
+      setAlertVisible(true);
+    }
   };
+
 
   // Navigates to live check-in screen with game details
   const handleCheckIn = async (game) => {
@@ -330,73 +361,122 @@ export default function HomeScreen() {
 
   const loadGlobalLeaderboard = async () => {
     setGlobalLbLoading(true);
+
     try {
       const profilesSnap = await getDocs(collection(db, 'profiles'));
-      const leaderboard = [];
+      const leaderboard: any[] = [];
 
       for (const profileDoc of profilesSnap.docs) {
-        const profileData = profileDoc.data();
-        const checkinsSnap = await getDocs(collection(db, 'profiles', profileDoc.id, 'checkins'));
-        const checkins = checkinsSnap.docs.map(d => d.data());
+        try {
+          const profileData = profileDoc.data();
 
-        const arenas = new Set(
-          checkins.map(c => c.arenaName || c.arena).filter(Boolean)
-        ).size;
+          const checkinsSnap = await getDocs(
+            collection(db, 'profiles', profileDoc.id, 'checkins')
+          );
 
-        const teams = new Set(
-          checkins.flatMap(c => [
-            c.teamName || c.team,
-            c.opponent
-          ].filter(Boolean))
-        ).size;
+          const checkins = checkinsSnap.docs.map(d => d.data());
 
-        const favourites = profileData.favouriteTeams && Array.isArray(profileData.favouriteTeams)
-          ? profileData.favouriteTeams.length
-          : 0;
+          const arenas = new Set(
+            checkins.map(c => c.arenaName || c.arena).filter(Boolean)
+          ).size;
 
-        leaderboard.push({
-          id: profileDoc.id,
-          name: profileData.name || 'Unknown',
-          imageUrl: profileData.imageUrl,
-          arenas,
-          teams,
-          favourites,
-        });
+          const teams = new Set(
+            checkins.flatMap(c =>
+              [c.teamName || c.team, c.opponent].filter(Boolean)
+            )
+          ).size;
+
+          const favourites =
+            profileData.favouriteTeams &&
+            Array.isArray(profileData.favouriteTeams)
+              ? profileData.favouriteTeams.length
+              : 0;
+
+          leaderboard.push({
+            id: profileDoc.id,
+            name: profileData.name || 'Unknown',
+            imageUrl: profileData.imageUrl,
+            arenas,
+            teams,
+            favourites,
+          });
+        } catch (innerError: any) {
+          if (innerError?.code === 'permission-denied') {
+            setAlertMessage('Unable to read some leaderboard data.');
+            setAlertVisible(true);
+          } else if (innerError?.code === 'unauthenticated') {
+            setAlertMessage('Session expired. Please log in again.');
+            setAlertVisible(true);
+          }
+        }
       }
 
       setGlobalLeaderboard(leaderboard);
-    } catch (err) {
+    } catch (error: any) {
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Unable to load leaderboard.');
+        setAlertVisible(true);
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
+      }
+
       setGlobalLeaderboard([]);
     } finally {
       setGlobalLbLoading(false);
     }
   };
 
+
   const loadTeamPopularityLeaderboard = async () => {
     setTeamPopularityLoading(true);
+
     try {
       const profilesSnap = await getDocs(collection(db, 'profiles'));
       const teamCounts: Record<string, number> = {};
 
       for (const profileDoc of profilesSnap.docs) {
-        const profileData = profileDoc.data();
-        if (profileData.favouriteTeams && Array.isArray(profileData.favouriteTeams)) {
-          profileData.favouriteTeams.forEach((team: string) => {
-            if (team && typeof team === 'string' && team.trim()) {
-              const trimmedTeam = team.trim();
-              teamCounts[trimmedTeam] = (teamCounts[trimmedTeam] || 0) + 1;
-            }
-          });
+        try {
+          const profileData = profileDoc.data();
+
+          if (
+            profileData.favouriteTeams &&
+            Array.isArray(profileData.favouriteTeams)
+          ) {
+            profileData.favouriteTeams.forEach((team: string) => {
+              if (team && typeof team === 'string' && team.trim()) {
+                const trimmedTeam = team.trim();
+                teamCounts[trimmedTeam] =
+                  (teamCounts[trimmedTeam] || 0) + 1;
+              }
+            });
+          }
+        } catch (innerError: any) {
+          if (innerError?.code === 'permission-denied') {
+            setAlertMessage('Unable to read some team popularity data.');
+            setAlertVisible(true);
+          } else if (innerError?.code === 'unauthenticated') {
+            setAlertMessage('Session expired. Please log in again.');
+            setAlertVisible(true);
+          }
         }
       }
 
       const leaderboard = Object.entries(teamCounts)
         .map(([teamName, count]) => ({ teamName, count }))
         .sort((a, b) => b.count - a.count)
-        .slice(0, 10);  // top 10 most favourited teams
+        .slice(0, 10);
 
       setTeamPopularityLeaderboard(leaderboard);
-    } catch (err) {
+    } catch (error: any) {
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Unable to load team popularity leaderboard.');
+        setAlertVisible(true);
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
+      }
+
       setTeamPopularityLeaderboard([]);
     } finally {
       setTeamPopularityLoading(false);
@@ -405,34 +485,77 @@ export default function HomeScreen() {
 
   const handleShareLeaderboard = async () => {
     try {
-      if (!leaderboardShotRef.current) return;
+      if (!leaderboardShotRef.current) {
+        setAlertMessage('Unable to capture leaderboard.');
+        setAlertVisible(true);
+        return;
+      }
 
       const uri = await leaderboardShotRef.current.capture();
 
-      if (!uri) return;
+      if (!uri) {
+        setAlertMessage('Capture failed.');
+        setAlertVisible(true);
+        return;
+      }
 
       const available = await Sharing.isAvailableAsync();
-      if (!available) return;
+
+      if (!available) {
+        setAlertMessage('Sharing is not available on this device.');
+        setAlertVisible(true);
+        return;
+      }
 
       await Sharing.shareAsync(uri, {
         mimeType: 'image/png',
       });
-    } catch (error) {
-      // silent fail
+    } catch (error: any) {
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Sharing permission denied.');
+        setAlertVisible(true);
+      } else {
+        setAlertMessage('Failed to share leaderboard.');
+        setAlertVisible(true);
+      }
     }
   };
 
+
+
   //Redirects to user's saved startup tab on app resume
   useEffect(() => {
-    if (!auth.currentUser?.uid) return;
-    getDoc(doc(db, 'profiles', auth.currentUser.uid)).then(snap => {
-      if (!snap.exists()) return;
-      const saved = snap.data()?.startupTab;
-      if (!saved || saved === 'home') return;
-      const target = { profile: 'profile', checkin: 'checkin', map: 'map', friends: 'friends' }[saved];
-      if (target) router.replace(`/${target}`);
-    }).catch(() => {});
+    const loadStartupTab = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'profiles', user.uid));
+        if (!snap.exists()) return;
+        const saved = snap.data()?.startupTab;
+        if (!saved || saved === 'home') return;
+        const target =
+          {
+            profile: 'profile',
+            checkin: 'checkin',
+            map: 'map',
+            friends: 'friends',
+          }[saved];
+
+        if (target) {
+          router.replace(`/${target}`);
+        }
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read startup preferences.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
+      }
+    };
+
+    loadStartupTab();
   }, []);
+
 
   //Pulsing fade animation for "Detecting location..." placeholder
   useEffect(() => {
@@ -446,26 +569,64 @@ export default function HomeScreen() {
 
   //Requests location permission and gets current position on mount
   useEffect(() => {
-    Location.requestForegroundPermissionsAsync().then(({ status }) => {
-      if (status === 'granted') Location.getCurrentPositionAsync({}).then(loc => setLocation(loc.coords));
-    });
+    const loadLocation = async () => {
+      try {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+
+        if (status !== 'granted') {
+          return;
+        }
+
+        const loc = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Lowest,
+          maximumAge: 10000,
+          timeout: 5000,
+        });
+
+        if (loc?.coords) {
+          setLocation(loc.coords);
+        }
+      } catch (error: any) {
+        if (error?.code === 'E_LOCATION_UNAUTHORIZED') {
+          setAlertMessage('Location access denied.');
+          setAlertVisible(true);
+        }
+      }
+    };
+
+    loadLocation();
   }, []);
 
-  useEffect(() => {
-    if (!auth.currentUser?.uid) return;
 
-    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), snap => {
-      if (snap.exists()) {
-        const data = snap.data();
-        if (Array.isArray(data?.favouriteTeams)) {
-          setFavoriteTeams(data.favouriteTeams);
+  useEffect(() => {
+    const profileRef = doc(db, 'profiles', user.uid);
+
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (snap.exists()) {
+          const data = snap.data();
+
+          if (Array.isArray(data?.favouriteTeams)) {
+            setFavoriteTeams(data.favouriteTeams);
+          } else {
+            setFavoriteTeams([]);
+          }
         } else {
           setFavoriteTeams([]);
         }
-      } else {
-        setFavoriteTeams([]);
+      },
+      (error: any) => {
+        if (!auth.currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read favourite teams.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
       }
-    });
+    );
 
     return () => unsub();
   }, []);
@@ -532,39 +693,82 @@ export default function HomeScreen() {
 
   // Listens for distance unit (miles/km) changes in user profile and updates state
   useEffect(() => {
-    if (!auth.currentUser) return;
+    const profileRef = doc(db, 'profiles', user.uid);
 
-    const unsub = onSnapshot(doc(db, 'profiles', auth.currentUser.uid), snap => {
-      if (snap.exists()) {
-        setDistanceUnit(snap.data().distanceUnit === 'km' ? 'km' : 'miles');
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (snap.exists()) {
+          const unit = snap.data().distanceUnit === 'km' ? 'km' : 'miles';
+          setDistanceUnit(unit);
+        }
+      },
+      (error: any) => {
+        if (!auth.currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read distance preference.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
       }
-    });
+    );
 
     return () => unsub();
   }, []);
+
 
   // Loads favorite leagues on mount and listens for real-time updates from Firestore
   useEffect(() => {
-    if (!auth.currentUser) return;
+    const profileRef = doc(db, 'profiles', user.uid);
 
-    const profileRef = doc(db, 'profiles', auth.currentUser.uid);
+    const loadInitialFavoriteLeagues = async () => {
+      try {
+        const snap = await getDoc(profileRef);
 
-    // Initial load
-    getDoc(profileRef).then(snap => {
-      if (snap.exists() && Array.isArray(snap.data()?.favoriteLeagues)) {
-        setFavoriteLeagues(snap.data().favoriteLeagues);
+        if (snap.exists() && Array.isArray(snap.data()?.favoriteLeagues)) {
+          setFavoriteLeagues(snap.data().favoriteLeagues);
+        } else {
+          setFavoriteLeagues([]);
+        }
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read favorite leagues.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
       }
-    });
+    };
 
-    // Real-time listener
-    const unsub = onSnapshot(profileRef, snap => {
-      if (snap.exists() && Array.isArray(snap.data()?.favoriteLeagues)) {
-        setFavoriteLeagues(snap.data().favoriteLeagues);
+    loadInitialFavoriteLeagues();
+
+    const unsub = onSnapshot(
+      profileRef,
+      (snap) => {
+        if (snap.exists() && Array.isArray(snap.data()?.favoriteLeagues)) {
+          setFavoriteLeagues(snap.data().favoriteLeagues);
+        } else {
+          setFavoriteLeagues([]);
+        }
+      },
+      (error: any) => {
+        if (!auth.currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to read favorite leagues.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
       }
-    });
+    );
 
     return () => unsub();
   }, []);
+
 
   //Loads saved Explore Leagues filter (favorites or group) from AsyncStorage on mount
   useEffect(() => {
@@ -589,25 +793,32 @@ export default function HomeScreen() {
     }
   }, [exploreFilterMode, selectedGroup]);
 
-  //Loads distance unit (miles/km) from user profile on mount
-  useEffect(() => {
-    if (!auth.currentUser) return;
-    getDoc(doc(db, 'profiles', auth.currentUser.uid)).then(snap => {
-      if (snap.exists()) setDistanceUnit(snap.data().distanceUnit === 'km' ? 'km' : 'miles');
-    });
-  }, []);
+
 
   useEffect(() => {
-    if (!auth.currentUser?.uid) return;
+    const friendsRef = collection(db, 'profiles', user.uid, 'friends');
 
-    const friendsRef = collection(db, 'profiles', auth.currentUser.uid, 'friends');
-    const unsub = onSnapshot(friendsRef, (snap) => {
-      const friendIds = snap.docs.map(doc => doc.id);
-      setMyFriends(friendIds);
-    });
+    const unsub = onSnapshot(
+      friendsRef,
+      (snap) => {
+        const friendIds = snap.docs.map(doc => doc.id);
+        setMyFriends(friendIds);
+      },
+      (error: any) => {
+        if (!auth.currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertMessage('Unable to load friends list.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
+      }
+    );
 
     return () => unsub();
   }, []);
+
 
   useEffect(() => {
     loadGlobalLeaderboard();
@@ -796,91 +1007,11 @@ export default function HomeScreen() {
 
                       <TouchableOpacity
                         style={styles.smallButton}
-                        onPress={async () => {
-                          setCheckingIn(true);
-
-                          try {
-                            const { status } = await Location.requestForegroundPermissionsAsync();
-                            if (status !== 'granted') {
-                              setCheckingIn(false);
-                              setAlertMessage('Location is required to check in.');
-                              setAlertVisible(true);
-                              return;
-                            }
-
-                            const location = await Location.getCurrentPositionAsync({
-                              accuracy: Location.Accuracy.Lowest,
-                              maximumAge: 10000,
-                              timeout: 5000,
-                            });
-
-                            const arena = arenaData.find(
-                              a =>
-                                (a.arena === game.arena || a.arena === game.location) &&
-                                a.league === game.league
-                            );
-
-                            if (!arena) {
-                              setCheckingIn(false);
-                              setAlertMessage('Arena not found for this game.');
-                              setAlertVisible(true);
-                              return;
-                            }
-
-                            const distance = getDistance(
-                              location.coords.latitude,
-                              location.coords.longitude,
-                              arena.latitude,
-                              arena.longitude
-                            );
-
-                            const threshold = distanceUnit === 'km' ? 0.45 : 0.28;
-
-                            if (distance > threshold) {
-                              setCheckingIn(false);
-                              setAlertMessage('Not close enough to the arena. You need to be at the arena.');
-                              setAlertVisible(true);
-                              return;
-                            }
-
-                            const now = new Date().getTime();
-                            const start = new Date(game.date).getTime();
-
-                            const oneHourBefore = start - 60 * 60 * 1000;
-                            const threeHourGame = start + 3 * 60 * 60 * 1000;
-                            const oneHourAfter = threeHourGame + 60 * 60 * 1000;
-
-                            const insideLiveWindow =
-                              now >= oneHourBefore && now <= oneHourAfter;
-
-                            if (!insideLiveWindow) {
-                              setCheckingIn(false);
-                              setAlertMessage('This game is not currently within the live check-in window.');
-                              setAlertVisible(true);
-                              return;
-                            }
-
-                            setCheckingIn(false);
-
-                            router.push({
-                              pathname: '/checkin/live',
-                              params: {
-                                league: game.league,
-                                arenaName: arena.arena,
-                                homeTeam: game.homeTeam || game.team,
-                                opponent: game.opponent || game.awayTeam,
-                                gameDate: game.date,
-                              },
-                            });
-                          } catch {
-                            setCheckingIn(false);
-                            setAlertMessage('Could not get your location. Try again.');
-                            setAlertVisible(true);
-                          }
-                        }}
+                        onPress={() => handleCheckIn(game)}
                       >
                         <Text style={styles.smallButtonText}>Check-in</Text>
                       </TouchableOpacity>
+
                     </View>
                   </View>
                 ))}

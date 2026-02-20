@@ -1,5 +1,5 @@
 //app/settings/index.tsx
-import { Alert, Linking, Modal, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
@@ -20,6 +20,10 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 const auth = getAuth();
 
 export default function SettingsScreen() {
+  const currentUser = auth.currentUser;
+  if (!currentUser) {
+    return null;
+  }
   const router = useRouter();
   const colorScheme = useColorScheme();
   const { themePreference, setThemePreference } = useTheme();
@@ -38,58 +42,77 @@ export default function SettingsScreen() {
   };
 
 
-  useEffect(() => {
-    const loadPushSetting = async () => {
-      if (!auth.currentUser) return;
-      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
-      if (docSnap.exists()) {
-        setPushEnabled(docSnap.data().pushNotifications ?? true);
-      }
-    };
-    loadPushSetting();
-  }, []);
-
-  useEffect(() => {
-    const loadDistanceUnit = async () => {
-      if (!auth.currentUser) return;
-      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
-      if (docSnap.exists()) {
-        const unit = docSnap.data().distanceUnit;
-        if (unit === 'km') {
-          setDistanceUnit('km');
-        } else {
-          setDistanceUnit('miles');
+    useEffect(() => {
+      const loadPushSetting = async () => {
+        try {
+          if (!currentUser?.uid) return;
+          const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
+          if (docSnap.exists()) {
+            setPushEnabled(docSnap.data()?.pushNotifications ?? true);
+          }
+        } catch (error: any) {
+          if (error?.code === 'permission-denied') {
+            Alert.alert('Permission Error', 'You do not have access to this data.');
+          }
         }
-      } else {
-        setDistanceUnit('miles');
-      }
-    };
-    loadDistanceUnit();
-  }, []);
+      };
 
-  useEffect(() => {
-    const loadStartupTab = async () => {
-      if (!auth.currentUser) return;
-      const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
-      if (docSnap.exists()) {
-        const saved = docSnap.data().startupTab;
-        if (saved === 'home' || saved === 'profile' || saved === 'checkin' || saved === 'map' || saved === 'friends') {
-          setStartupTab(saved);
-        } else {
-          setStartupTab('home');
+      loadPushSetting();
+    }, []);
+
+
+    useEffect(() => {
+      const loadDistanceUnit = async () => {
+        try {
+          if (!currentUser?.uid) return;
+          const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
+          if (docSnap.exists()) {
+            const unit = docSnap.data()?.distanceUnit;
+            setDistanceUnit(unit === 'km' ? 'km' : 'miles');
+          } else {
+            setDistanceUnit('miles');
+          }
+        } catch (error: any) {
+          if (error?.code === 'permission-denied') {
+            Alert.alert('Permission Error', 'You do not have access to this data.');
+          }
         }
-      } else {
-        setStartupTab('home');
-      }
-    };
-    loadStartupTab();
-  }, []);
+      };
+
+      loadDistanceUnit();
+    }, []);
+
+    useEffect(() => {
+      const loadStartupTab = async () => {
+        try {
+          if (!currentUser?.uid) return;
+          const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
+          if (docSnap.exists()) {
+            const saved = docSnap.data()?.startupTab;
+            if (saved === 'home' || saved === 'profile' || saved === 'checkin' || saved === 'map' || saved === 'friends') {
+              setStartupTab(saved);
+            } else {
+              setStartupTab('home');
+            }
+          } else {
+            setStartupTab('home');
+          }
+        } catch (error: any) {
+          if (error?.code === 'permission-denied') {
+            Alert.alert('Permission Error', 'You do not have access to this data.');
+          }
+        }
+      };
+
+      loadStartupTab();
+    }, []);
+
 
   useFocusEffect(
     React.useCallback(() => {
       const loadFavoriteLeagues = async () => {
-        if (!auth.currentUser) return;
-        const docSnap = await getDoc(doc(db, 'profiles', auth.currentUser.uid));
+        if (!currentUser?.uid) return;
+        const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
         if (docSnap.exists()) {
           const saved = docSnap.data()?.favoriteLeagues;
           setFavoriteLeagues(Array.isArray(saved) ? saved : []);
@@ -106,29 +129,61 @@ export default function SettingsScreen() {
     setThemePreference(newPreference);
   };
 
-  const togglePushNotifications = async (value: boolean) => {
-    if (!auth.currentUser) return;
+    const togglePushNotifications = async (value: boolean) => {
+      try {
+        if (!currentUser?.uid) return;
 
-    setPushEnabled(value);
+        setPushEnabled(value);
 
-    if (value) {
-      await registerForPushNotificationsAsync();
-    } else {
-      await disablePushToken();
-    }
-  };
+        if (value) {
+          await registerForPushNotificationsAsync();
+        } else {
+          await disablePushToken();
+        }
+      } catch {
+        Alert.alert('Error', 'Failed to update push notification settings.');
+        setPushEnabled(!value);
+      }
+    };
 
-  const updateDistanceUnit = async (unit: 'miles' | 'km') => {
-    if (!auth.currentUser) return;
-    setDistanceUnit(unit);
-    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { distanceUnit: unit }, { merge: true });
-  };
 
-  const updateStartupTab = async (tab: 'home' | 'profile' | 'checkin' | 'map' | 'friends') => {
-    if (!auth.currentUser) return;
-    setStartupTab(tab);
-    await setDoc(doc(db, 'profiles', auth.currentUser.uid), { startupTab: tab }, { merge: true });
-  };
+    const updateDistanceUnit = async (unit: 'miles' | 'km') => {
+      try {
+        if (!currentUser?.uid) return;
+        setDistanceUnit(unit);
+        await setDoc(
+          doc(db, 'profiles', currentUser.uid),
+          { distanceUnit: unit },
+          { merge: true }
+        );
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          Alert.alert('Permission Error', 'You do not have permission to update this setting.');
+        } else {
+          Alert.alert('Error', 'Failed to update distance unit.');
+        }
+      }
+    };
+
+
+    const updateStartupTab = async (tab: 'home' | 'profile' | 'checkin' | 'map' | 'friends') => {
+      try {
+        if (!auth.currentUser) return;
+        setStartupTab(tab);
+        await setDoc(
+          doc(db, 'profiles', currentUser.uid),
+          { startupTab: tab },
+          { merge: true }
+        );
+      } catch (error: any) {
+        if (error?.code === 'permission-denied') {
+          Alert.alert('Permission Error', 'You do not have permission to update this setting.');
+        } else {
+          Alert.alert('Error', 'Failed to update startup tab.');
+        }
+      }
+    };
+
 
   const logout = () => {
     setLogoutModalVisible(true);
@@ -391,17 +446,17 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Support</Text>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://apps.apple.com/app/idYOUR_ID/reviews')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://apps.apple.com/app/idYOUR_ID/reviews').catch(() => {})}>
               <Ionicons name="star-outline" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Rate the App</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('mailto:support@mysportspassport.app')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('mailto:support@mysportspassport.app').catch(() => {})}>
               <Ionicons name="mail-outline" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Contact Support</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('mailto:request@mysportspassport.app')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('mailto:request@mysportspassport.app').catch(() => {})}>
               <Ionicons name="mail-outline" size={26} color={styles.rowIcon.color} />
               <Text style={styles.label}>Request a League, Arena or Team</Text>
             </TouchableOpacity>
@@ -411,11 +466,11 @@ export default function SettingsScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Legal</Text>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/privacy.html')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/privacy.html').catch(() => {})}>
               <Text style={styles.link}>Privacy Policy</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/terms.html')}>
+            <TouchableOpacity style={styles.row} onPress={() => Linking.openURL('https://mysportspassport.app/terms.html').catch(() => {})}>
               <Text style={styles.link}>Terms of Service</Text>
             </TouchableOpacity>
           </View>
@@ -491,9 +546,13 @@ export default function SettingsScreen() {
                         router.dismissAll();
                         router.replace("/login");
 
-                      } catch (error) {
-                        Alert.alert("Error", "Failed to delete account.");
-                      }
+                      } catch (error: any) {
+                          if (error?.code === 'permission-denied') {
+                            Alert.alert('Permission Error', 'You do not have permission to delete this account.');
+                          } else {
+                            Alert.alert('Error', 'Failed to delete account.');
+                          }
+                        }
                     }}
 
                     style={[styles.alertButton, { backgroundColor: '#EF4444' }]}

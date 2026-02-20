@@ -89,10 +89,10 @@ export default function FriendsTab() {
   }, 300);
 
   const currentUser = auth.currentUser;
-  console.log("Current user:", currentUser?.uid);
   const router = useRouter();
   const colorScheme = useColorScheme();
   const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
   const [alertMessage, setAlertMessage] = useState('');
 
   const getMutualFriendsCount = (userId: string) => {
@@ -125,7 +125,6 @@ export default function FriendsTab() {
           const sentSnap = await getDocs(sentRef);
           sentList = sentSnap.docs.map((d) => d.id);
         } catch (err) {
-          console.warn("Could not load sentFriendRequests:", err);
         }
         setSentRequests(sentList);
 
@@ -142,7 +141,6 @@ export default function FriendsTab() {
             const uFriendsSnap = await getDocs(uFriendsRef);
             tempMap[u.id] = uFriendsSnap.docs.map((d) => d.id);
           } catch (err) {
-            console.warn(`Could not fetch friends for ${u.id}:`, err);
             tempMap[u.id] = [];
           }
         }
@@ -204,7 +202,9 @@ export default function FriendsTab() {
         const blockedIds = blockedSnap.docs.map((d) => d.id);
         setBlockedFriends(blockedIds);
       } catch (error) {
-        console.error('Error fetching users or feed:', error);
+        setAlertTitle('Unable to Load Data');
+        setAlertMessage('We couldn’t load your friends right now. Please try again.');
+        setAlertVisible(true);
       } finally {
         setLoading(false);
       }
@@ -251,7 +251,9 @@ export default function FriendsTab() {
         );
 
       } catch (err) {
-        console.error("Refresh failed:", err);
+        setAlertTitle('Unable to Refresh Feed');
+        setAlertMessage('We couldn’t refresh your feed right now. Please try again.');
+        setAlertVisible(true);
       } finally {
 
         setRefreshing(false);
@@ -319,7 +321,9 @@ export default function FriendsTab() {
 
         setLeaderboardData(leaderboard);
       } catch (err) {
-        console.error('Leaderboard failed:', err);
+        setAlertTitle('Unable to Load Leaderboard');
+        setAlertMessage('We couldn’t load the leaderboard right now. Please try again.');
+        setAlertVisible(true);
         setLeaderboardData([]);
       } finally {
         setLbLoading(false);
@@ -409,12 +413,13 @@ export default function FriendsTab() {
       );
 
       setSentRequests((prev) => [...prev, userId]);
-      setAlertMessage('Friend request sent!');
+      setAlertTitle('Request Sent');
+      setAlertMessage('Your friend request has been sent.');
       setAlertVisible(true);
 
     } catch (err) {
-      console.error('Error sending friend request:', err);
-      setAlertMessage('Failed to send friend request. Try again.');
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t send your friend request. Please try again.');
       setAlertVisible(true);
     }
   };
@@ -441,8 +446,11 @@ export default function FriendsTab() {
       setPendingRequests(prev => prev.filter(r => r.id !== senderId));
 
     } catch (err) {
-      console.error('Error accepting friend request:', err);
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t accept this friend request. Please try again.');
+      setAlertVisible(true);
     }
+
   };
 
 
@@ -452,7 +460,9 @@ export default function FriendsTab() {
     try {
       await deleteDoc(doc(db, 'profiles', currentUser.uid, 'friendRequests', senderId));
     } catch (err) {
-      console.error('Error denying friend request:', err);
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t deny this friend request. Please try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -467,10 +477,11 @@ export default function FriendsTab() {
       try {
         await deleteDoc(theirRef);
       } catch (err) {
-        console.warn('Unfriend cleanup (their side) failed:', err);
       }
     } catch (err) {
-      console.error('Error unfriending user:', err);
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t remove this friend. Please try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -484,7 +495,9 @@ export default function FriendsTab() {
       setBlockedFriends((prev) => [...prev, user.id]);
       setSelectedFriend(null);
     } catch (err) {
-      console.error('Error blocking user:', err);
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t block this user. Please try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -494,7 +507,9 @@ export default function FriendsTab() {
       await deleteDoc(doc(db, 'profiles', currentUser.uid, 'blocked', userId));
       setBlockedFriends((prev) => prev.filter((id) => id !== userId));
     } catch (err) {
-      console.error('Error unblocking user:', err);
+      setAlertTitle('Unable to Complete Request');
+      setAlertMessage('We couldn’t unblock this user. Please try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -505,30 +520,35 @@ export default function FriendsTab() {
   const filteredUsers = React.useMemo(() =>
     allUsers.filter(
       (user) =>
+        currentUser &&
         user.id !== currentUser.uid &&
         user.name?.toLowerCase().includes(searchQuery.toLowerCase()) &&
         !friends.includes(user.id) &&
         !sentRequests.includes(user.id) &&
         !blockedFriends.includes(user.id)
     ),
-    [allUsers, searchQuery, friends, sentRequests, blockedFriends, currentUser.uid]
+    [allUsers, searchQuery, friends, sentRequests, blockedFriends, currentUser]
   );
 
   const handleFriendLeaderboardShare = async () => {
     try {
       const uri = await friendsLeaderboardRef.current?.capture();
       if (!uri) {
-        Alert.alert('Error', 'Could not capture leaderboard');
+        setAlertTitle('Unable to Share');
+        setAlertMessage('We couldn’t generate the leaderboard image. Please try again.');
+        setAlertVisible(true);
         return;
       }
+
 
       await Sharing.shareAsync(uri, {
         mimeType: 'image/png',
         dialogTitle: 'Share Friends Leaderboard',
       });
     } catch (error) {
-      console.error('Share failed:', error);
-      Alert.alert('Share Failed', 'Something went wrong');
+      setAlertTitle('Unable to Share');
+      setAlertMessage('We couldn’t share the leaderboard right now. Please try again.');
+      setAlertVisible(true);
     }
   };
 
@@ -630,7 +650,7 @@ export default function FriendsTab() {
     <Modal visible={alertVisible} transparent animationType="fade">
       <View style={styles.alertOverlay}>
         <View style={styles.alertContainer}>
-          <Text style={styles.alertTitle}>Success</Text>
+          <Text style={styles.alertTitle}>{alertTitle}</Text>
           <Text style={styles.alertMessage}>{alertMessage}</Text>
           <TouchableOpacity onPress={() => setAlertVisible(false)} style={styles.alertButton}>
             <Text style={styles.alertButtonText}>OK</Text>

@@ -71,14 +71,13 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
         // STEP 2B: TRIAL (SAFE)
         const data = profileSnap.data();
+        if (!profileSnap.exists()) {
+          setIsPremium(true);
+          setIsLoadingPremium(false);
+          return;
+        }
 
-        // Profile exists but NO trialStart → start trial NOW
         if (!data?.trialStart) {
-          await setDoc(
-            profileRef,
-            { trialStart: serverTimestamp() },
-            { merge: true }
-          );
           setIsPremium(true);
           setIsLoadingPremium(false);
           return;
