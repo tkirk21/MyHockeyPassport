@@ -47,10 +47,17 @@ async function getCheerCount(userId: string, checkinId: string) {
 
     return { cheerCount, cheerNames };
   } catch (error: any) {
-    if (error?.code === 'permission-denied') {
-      Alert.alert('Permission Error', 'You do not have access to cheers.');
-    }
-    return { cheerCount: 0, cheerNames: [] };
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('You do not have access to cheers.');
+        setAlertVisible(true);
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
+      } else {
+        setAlertMessage('Failed to load cheers.');
+        setAlertVisible(true);
+      }
+      return { cheerCount: 0, cheerNames: [] };
   }
 }
 
@@ -94,10 +101,15 @@ export default function ProfileScreen() {
           );
         } catch (error: any) {
           if (error?.code === 'permission-denied') {
-            Alert.alert(
-              'Permission Error',
-              'Cannot update profile notification timestamp.'
-            );
+            setAlertMessage('Cannot update profile notification timestamp.');
+            setAlertVisible(true);
+          } else if (error?.code === 'unauthenticated') {
+            setAlertMessage('Session expired. Please log in again.');
+            setAlertVisible(true);
+          } else {
+            setAlertMessage('Failed to update notification timestamp.');
+            setAlertVisible(true);
+          }
           }
         }
       };
@@ -162,7 +174,8 @@ export default function ProfileScreen() {
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permissionResult.granted) {
-      Alert.alert('Permission required', 'You must grant access to upload a profile picture.');
+      setAlertMessage('You must grant access to upload a profile picture.');
+      setAlertVisible(true);
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -175,7 +188,8 @@ export default function ProfileScreen() {
   const saveProfile = async () => {
     const user = auth.currentUser;
     if (!user) {
-      Alert.alert('Authentication Error', 'User session expired. Please log in again.');
+      setAlertMessage('User session expired. Please log in again.');
+      setAlertVisible(true);
       return;
     }
 
@@ -211,10 +225,11 @@ export default function ProfileScreen() {
           await uploadBytes(imageRef, blob);
           uploadedImageUrl = await getDownloadURL(imageRef);
         } catch (uploadError: any) {
-          Alert.alert('Upload Failed', 'Profile image upload failed. Please try again.');
+          setAlertMessage('Profile image upload failed. Please try again.');
+          setAlertVisible(true);
           setLoading(false);
           return;
-        }
+
       }
 
       try {
@@ -231,9 +246,14 @@ export default function ProfileScreen() {
         );
       } catch (writeError: any) {
         if (writeError?.code === 'permission-denied') {
-          Alert.alert('Permission Error', 'You do not have permission to update this profile.');
+          setAlertMessage('You do not have permission to update this profile.');
+          setAlertVisible(true);
+        } else if (writeError?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
         } else {
-          Alert.alert('Error', 'Failed to save profile.');
+          setAlertMessage('Failed to save profile.');
+          setAlertVisible(true);
         }
         setLoading(false);
         return;
@@ -243,7 +263,8 @@ export default function ProfileScreen() {
       setAlertVisible(true);
       router.replace('/(tabs)/profile');
     } catch (error: any) {
-      Alert.alert('Error', error?.message || 'Something went wrong.');
+      setAlertMessage(error?.message || 'Something went wrong.');
+      setAlertVisible(true);
     } finally {
       setLoading(false);
     }
@@ -289,9 +310,14 @@ useEffect(() => {
       }
     } catch (error: any) {
       if (error?.code === 'permission-denied') {
-        Alert.alert('Permission Error', 'You do not have access to this profile.');
+        setAlertMessage('You do not have access to this profile.');
+        setAlertVisible(true);
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
       } else {
-        Alert.alert('Error', 'Failed to load profile.');
+        setAlertMessage('Failed to load profile.');
+        setAlertVisible(true);
       }
     }
   };
@@ -337,9 +363,14 @@ useEffect(() => {
     (error) => {
       if (!auth.currentUser) return;
       if (error?.code === 'permission-denied') {
-        Alert.alert('Permission Error', 'You do not have access to these check-ins.');
+        setAlertMessage('You do not have access to these check-ins.');
+        setAlertVisible(true);
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
       } else {
-        Alert.alert('Error', 'Failed to load check-ins.');
+        setAlertMessage('Failed to load check-ins.');
+        setAlertVisible(true);
       }
     }
   );
@@ -446,13 +477,17 @@ useEffect(() => {
         setChirps(prev => prev.filter(c => c.id !== chirpId));
       } catch (error: any) {
         if (error?.code === 'permission-denied') {
-          Alert.alert('Permission Error', 'You cannot delete this chirp.');
+          setAlertMessage('You cannot delete this chirp.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
         } else {
-          Alert.alert('Error', 'Failed to delete chirp.');
+          setAlertMessage('Failed to delete chirp.');
+          setAlertVisible(true);
         }
       }
     };
-
 
     const saveEdit = async (chirpId: string) => {
       if (!editText.trim()) return;
@@ -468,9 +503,14 @@ useEffect(() => {
         );
       } catch (error: any) {
         if (error?.code === 'permission-denied') {
-          Alert.alert('Permission Error', 'You cannot edit this chirp.');
+          setAlertMessage('You cannot edit this chirp.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
         } else {
-          Alert.alert('Error', 'Failed to update chirp.');
+          setAlertMessage('Failed to update chirp.');
+          setAlertVisible(true);
         }
       } finally {
         setEditingId(null);
@@ -1131,9 +1171,14 @@ useEffect(() => {
                                     });
                                   } catch (error: any) {
                                     if (error?.code === 'permission-denied') {
-                                      Alert.alert('Permission Error', 'You cannot reply to this check-in.');
+                                      setAlertMessage('You cannot reply to this check-in.');
+                                      setAlertVisible(true);
+                                    } else if (error?.code === 'unauthenticated') {
+                                      setAlertMessage('Session expired. Please log in again.');
+                                      setAlertVisible(true);
                                     } else {
-                                      Alert.alert('Error', 'Failed to post chirp.');
+                                      setAlertMessage('Failed to post chirp.');
+                                      setAlertVisible(true);
                                     }
                                     return;
                                   }

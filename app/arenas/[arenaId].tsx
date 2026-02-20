@@ -52,15 +52,12 @@ export default function ArenaScreen() {
   const [timeLeft, setTimeLeft] = useState('00:00:00');
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState('');
   const arena = arenaData.find((a) =>
     `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}` === arenaId
   );
 
-  if (!arena) {
-    setAlertMessage('Arena not found.');
-    setAlertVisible(true);
-    return null;
-  }
+  if (!arena) return null;
 
   useEffect(() => {
     const run = async () => {
@@ -110,10 +107,13 @@ export default function ArenaScreen() {
         setLastVisitDate(sorted[0] || null);
       } catch (error: any) {
         if (error?.code === 'permission-denied') {
+          setAlertTitle('Permission Error');
           setAlertMessage('Unable to load visit history.');
         } else if (error?.code === 'unauthenticated') {
+          setAlertTitle('Session Expired');
           setAlertMessage('Session expired. Please log in again.');
         } else {
+          setAlertTitle('Error');
           setAlertMessage('Failed to load visit data.');
         }
 
@@ -144,11 +144,15 @@ export default function ArenaScreen() {
         }
       },
       (error: any) => {
+        if (!auth.currentUser) return;
         if (error?.code === 'permission-denied') {
+          setAlertTitle('Permission Error');
           setAlertMessage('Unable to read distance preference.');
         } else if (error?.code === 'unauthenticated') {
+          setAlertTitle('Session Expired');
           setAlertMessage('Session expired. Please log in again.');
         } else {
+          setAlertTitle('Error');
           setAlertMessage('Failed to load distance preference.');
         }
 
@@ -173,6 +177,7 @@ export default function ArenaScreen() {
       const supported = await Linking.canOpenURL(url);
 
       if (!supported) {
+        setAlertTitle('Error');
         setAlertMessage('Cannot open Google Maps on this device.');
         setAlertVisible(true);
         return;
@@ -180,6 +185,7 @@ export default function ArenaScreen() {
 
       await Linking.openURL(url);
     } catch (error: any) {
+      setAlertTitle('Error');
       setAlertMessage('Failed to open directions.');
       setAlertVisible(true);
     }
@@ -374,6 +380,7 @@ export default function ArenaScreen() {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setCheckingIn(false);
+        setAlertTitle('Permission Error');
         setAlertMessage('Location permission is required to check in.');
         setAlertVisible(true);
         return;
@@ -396,6 +403,7 @@ export default function ArenaScreen() {
 
       if (distance > threshold) {
         setCheckingIn(false);
+        setAlertTitle('Not Close Enough')
         setAlertMessage(
           `You're ${distance.toFixed(2)} ${unit} from ${arena.arena}.\nGet closer to check in!`
         );
@@ -423,6 +431,7 @@ export default function ArenaScreen() {
 
       if (!liveWindowGame) {
         setCheckingIn(false);
+        setAlertTitle('No Game');
         setAlertMessage('There is no live game at this arena right now.');
         setAlertVisible(true);
         return;
@@ -445,12 +454,16 @@ export default function ArenaScreen() {
       setCheckingIn(false);
 
       if (error?.code === 'permission-denied') {
+        setAlertTitle('Permission Error');
         setAlertMessage('Permission denied while checking in.');
       } else if (error?.code === 'unauthenticated') {
+        setAlertTitle('Session Expired');
         setAlertMessage('Session expired. Please log in again.');
       } else if (error?.message?.toLowerCase().includes('network')) {
+        setAlertTitle('Network Error');
         setAlertMessage('Network error. Check your connection and try again.');
       } else {
+        setAlertTitle('Error');
         setAlertMessage('Unexpected error during check-in.');
       }
 
@@ -560,23 +573,7 @@ export default function ArenaScreen() {
       <Modal visible={alertVisible} transparent animationType="fade">
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <Text style={styles.alertTitle}>
-              {alertMessage.toLowerCase().includes('permission')
-                ? 'Permission Error'
-                : alertMessage.toLowerCase().includes('session')
-                ? 'Session Expired'
-                : alertMessage.toLowerCase().includes('network')
-                ? 'Network Error'
-                : alertMessage.toLowerCase().includes('arena not found')
-                ? 'Error'
-                : alertMessage.toLowerCase().includes('unable')
-                ? 'Error'
-                : alertMessage.toLowerCase().includes('failed')
-                ? 'Error'
-                : alertMessage.toLowerCase().includes('close')
-                ? 'Not Close Enough'
-                : 'Error'}
-            </Text>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
 
             <Text style={styles.alertMessage}>{alertMessage}</Text>
 
