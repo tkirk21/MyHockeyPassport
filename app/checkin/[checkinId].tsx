@@ -4,7 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import firebaseApp from "@/firebaseConfig";
 import { getAuth } from "firebase/auth";
 import { useEffect, useState, useRef } from "react";
-import { ActivityIndicator, Alert, Dimensions, Image, ImageBackground, Modal, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, Image, ImageBackground, Modal, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
 import { getStorage, ref as storageRef, listAll, deleteObject } from "firebase/storage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -33,6 +33,7 @@ export default function CheckinDetailsScreen() {
   const insets = useSafeAreaInsets();
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState('');
   const params = useLocalSearchParams();
   const checkinId = params.checkinId as string;
   const userId = params.userId as string;
@@ -72,17 +73,26 @@ export default function CheckinDetailsScreen() {
         ...snap.data(),
       });
 
-
       if (currentUser) {
-        await setDoc(
-          doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
-          { timestamp: serverTimestamp() },
-          { merge: true }
-        ).catch(() => {});
+        try {
+          await setDoc(
+            doc(db, 'profiles', currentUser.uid, 'notifications', 'lastViewedFriendsTab'),
+            { timestamp: serverTimestamp() },
+            { merge: true }
+          );
+        } catch (notifErr: any) {
+          if (notifErr?.code === 'permission-denied') {
+            setAlertTitle('Permission Error');
+            setAlertMessage('Unable to update notification timestamp.');
+            setAlertVisible(true);
+          } else if (notifErr?.code === 'unauthenticated') {
+            setAlertTitle('Session Expired');
+            setAlertMessage('Session expired. Please log in again.');
+            setAlertVisible(true);
+          }
+        }
       }
     } catch (err: any) {
-      console.error("❌ Firestore error:", err);
-
       if (err.code === "permission-denied") {
         setError("You do not have permission to view this check-in.");
       } else if (err.code === "unavailable") {
@@ -96,17 +106,20 @@ export default function CheckinDetailsScreen() {
   };
 
   const handleDelete = () => {
+    setAlertTitle('Delete Check-In');
     setAlertMessage('');
     setAlertVisible(true);
   };
 
-  const handleShare = async () => {
+const handleShare = async () => {
     try {
-      await new Promise(r => setTimeout(r, 500)); // delay to let view render
+      await new Promise(r => setTimeout(r, 500));
 
       const uri = await viewShotRef.current?.capture();
       if (!uri) {
-        Alert.alert('Error', 'Could not capture the screen');
+        setAlertTitle('Error');
+        setAlertMessage('Could not capture the screen.');
+        setAlertVisible(true);
         return;
       }
 
@@ -120,9 +133,10 @@ export default function CheckinDetailsScreen() {
         mimeType: 'image/png',
         message: shareText,
       });
-    } catch (error) {
-      console.error('Share error:', error);
-      Alert.alert('Share Failed', 'Something went wrong');
+    } catch (error: any) {
+      setAlertTitle('Share Failed');
+      setAlertMessage('Something went wrong while sharing.');
+      setAlertVisible(true);
     }
   };
 
@@ -255,10 +269,10 @@ export default function CheckinDetailsScreen() {
       <Modal visible={alertVisible} transparent animationType="fade">
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <Text style={styles.alertTitle}>Delete Check-In</Text>
-            <Text style={styles.alertMessage}>
-              Are you sure you want to delete this check-in? This cannot be undone.
-            </Text>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
+              <Text style={styles.alertMessage}>
+                {alertMessage || 'Are you sure you want to delete this check-in? This cannot be undone.'}
+              </Text>
             <View style={{ flexDirection: 'row', gap: 16, marginTop: 12 }}>
               <TouchableOpacity
                 style={[styles.alertButton, { backgroundColor: '#EF4444' }]}
@@ -295,10 +309,10 @@ export default function CheckinDetailsScreen() {
 
                     router.back();
 
-                  } catch (err) {
-                    console.error("Delete failed:", err);
+                  } catch (err: any) {
                     setDeleting(false);
-                    setAlertMessage("Could not delete check-in.");
+                    setAlertTitle('Error');
+                    setAlertMessage('Could not delete check-in.');
                     setAlertVisible(true);
                   }
 

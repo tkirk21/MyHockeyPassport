@@ -992,8 +992,8 @@ export default function HomeScreen() {
 
                 {filteredGames.length === 0 ? (
                   <Text style={styles.placeholder}>No games scheduled for today.</Text>
-                ) : filteredGames.map(game => (
-                  <View key={game.id} style={styles.gameCard}>
+                ) : filteredGames.map((game, index) => (
+                  <View key={`${game.id}_${index}`} style={styles.gameCard}>
                     <View>
                       <Text style={styles.cardText}>{(game.homeTeam || game.team)} vs {game.opponent || game.awayTeam}</Text>
                       <Text style={styles.cardText}>{game.arena}</Text>

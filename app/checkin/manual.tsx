@@ -3,12 +3,12 @@ import Checkbox from 'expo-checkbox';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter } from "expo-router";
 import { AntDesign } from '@expo/vector-icons';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import firebaseApp from '../../firebaseConfig';
 import React, { useEffect, useState, } from 'react';
-import { KeyboardAvoidingView, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import { Alert, KeyboardAvoidingView, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -52,6 +52,9 @@ const resolveArenaLatLng = (
 const ManualCheckIn = () => {
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const auth = getAuth(firebaseApp);
+  const user = auth.currentUser;
+  if (!user) return null;
   const [friendsList, setFriendsList] = useState<{ id: string; name: string }[]>([]);
   const [companionsText, setCompanionsText] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -89,6 +92,7 @@ const ManualCheckIn = () => {
   const [didBuyConcessions, setDidBuyConcessions] = useState(false);
   const [concessionItems, setConcessionItems] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [authReady, setAuthReady] = useState(true);
   const merchCategories = {
     'Jerseys': ['Home Jersey', 'Away Jersey', 'Third Jersey', 'Retro Jersey', 'Custom Jersey', 'Special Occasion Jersey'],
     'Apparel & Headwear': [
@@ -115,6 +119,17 @@ const ManualCheckIn = () => {
     'Alcoholic Beverages': ['Beer (Domestic)', 'Beer (Craft)', 'Cider', 'Hard Seltzer', 'Wine', 'Cocktail', 'Spiked Slushie']
   };
 
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => {
+      if (!u) {
+        setAlertMessage('Session expired. Please log in again.');
+        setAlertVisible(true);
+        router.replace('/auth/login');
+      }
+    });
+    return () => unsub();
+  }, []);
+
   const [leagueItems, setLeagueItems] = useState([]);
   const [arenaItems, setArenaItems] = useState([]);
   const [homeTeamItems, setHomeTeamItems] = useState([]);
@@ -129,6 +144,26 @@ const ManualCheckIn = () => {
       const user = getAuth(firebaseApp).currentUser;
       if (!user) {
         setAlertMessage('You must be logged in to submit a check-in.');
+        setAlertVisible(true);
+        setIsSubmitting(false);
+        return;
+      }
+      if (!selectedLeague || !selectedArena || !selectedHomeTeam || !selectedOpponent) {
+        setAlertMessage('League, arena, home team and opponent are required.');
+        setAlertVisible(true);
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (homeScore && isNaN(Number(homeScore))) {
+        setAlertMessage('Home score must be a valid number.');
+        setAlertVisible(true);
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (awayScore && isNaN(Number(awayScore))) {
+        setAlertMessage('Away score must be a valid number.');
         setAlertVisible(true);
         setIsSubmitting(false);
         return;
@@ -174,17 +209,47 @@ const ManualCheckIn = () => {
         const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
         const basePath = `checkins/${user.uid}/${timestamp}`;
 
-        const uploadPromises = images.map(async (localUri, index) => {
-          const response = await fetch(localUri);
-          const blob = await response.blob();
+        try {
+          const uploadPromises = images.map(async (localUri, index) => {
+            try {
+              const response = await fetch(localUri);
+              if (!response.ok) {
+                throw new Error('Failed to read image file.');
+              }
 
-          const photoRef = ref(storage, `${basePath}/${index}.jpg`);
+              const blob = await response.blob();
 
-          await uploadBytes(photoRef, blob);
-          return getDownloadURL(photoRef);
-        });
+              const photoRef = ref(storage, `${basePath}/${index}.jpg`);
 
-        photoUrls = await Promise.all(uploadPromises);
+              await uploadBytes(photoRef, blob);
+
+              const downloadUrl = await getDownloadURL(photoRef);
+              return downloadUrl;
+
+            } catch (innerError: any) {
+              console.error('Image upload failed:', innerError);
+
+              if (innerError?.code === 'permission-denied') {
+                setAlertMessage('Permission denied while uploading photos.');
+              } else if (innerError?.code === 'unauthenticated') {
+                setAlertMessage('Session expired. Please log in again.');
+              } else if (innerError?.message?.toLowerCase().includes('network')) {
+                setAlertMessage('Network error during photo upload. Check connection and try again.');
+              } else {
+                setAlertMessage('Image upload failed. Please try again.');
+              }
+
+              setAlertVisible(true);
+              return null;
+            }
+          });
+
+          const uploadResults = await Promise.all(uploadPromises);
+          photoUrls = uploadResults.filter((url) => typeof url === 'string');
+        } catch (uploadError) {
+          setIsSubmitting(false);
+          return;
+        }
       }
 
       const getSelectedItems = (sourceObject, categories) => {
@@ -229,20 +294,45 @@ const ManualCheckIn = () => {
         photos: photoUrls,
         userId: user.uid,
         timestamp: serverTimestamp(),
-        latitude: match?.latitude ?? null,
-        longitude: match?.longitude ?? null,
+        latitude: typeof match?.latitude === 'number' ? match.latitude : null,
+        longitude: typeof match?.longitude === 'number' ? match.longitude : null,
       };
 
-      await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
+      try {
+        await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
+      } catch (writeError: any) {
+        if (writeError?.code === 'permission-denied') {
+          setAlertMessage('Permission denied while saving check-in.');
+        } else if (writeError?.code === 'unauthenticated') {
+          setAlertMessage('Session expired. Please log in again.');
+        } else if (writeError?.message?.toLowerCase().includes('network')) {
+          setAlertMessage('Network error while saving check-in. Check connection and try again.');
+        } else {
+          setAlertMessage('Failed to save check-in. Please try again.');
+        }
+        setAlertVisible(true);
+        setIsSubmitting(false);
+        return;
+      }
 
       setAlertMessage('Check-in saved! Taking you to your profile...');
       setAlertVisible(true);
 
       setImages([]);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error saving check-in:', error);
-      setAlertMessage('Failed to save check-in. Please try again.');
+
+      if (error?.code === 'permission-denied') {
+        setAlertMessage('Permission denied while saving check-in.');
+      } else if (error?.code === 'unauthenticated') {
+        setAlertMessage('Session expired. Please log in again.');
+      } else if (error?.message?.toLowerCase().includes('network')) {
+        setAlertMessage('Network error. Check connection and try again.');
+      } else {
+        setAlertMessage('Unexpected error occurred while saving.');
+      }
+
       setAlertVisible(true);
     } finally {
       setIsSubmitting(false);
@@ -478,16 +568,24 @@ const ManualCheckIn = () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (!permissionResult.granted) {
-      Alert.alert('Permission required', 'Need access to photos to upload.');
+      setAlertMessage('Permission required. Need access to photos to upload.');
+      setAlertVisible(true);
       return;
     }
 
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 0.8,
-      allowsMultipleSelection: true, // key change
-      selectionLimit: 3 - images.length, // limit remaining slots
-    });
+    let result;
+    try {
+      result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.8,
+        allowsMultipleSelection: true,
+        selectionLimit: 3 - images.length,
+      });
+    } catch (error) {
+      setAlertMessage('Failed to open image picker. Please try again.');
+      setAlertVisible(true);
+      return;
+    }
 
     if (!result.canceled && result.assets.length > 0) {
       const newImages = result.assets.map(asset => asset.uri);

@@ -23,6 +23,7 @@ export default function LiveCheckInScreen() {
   const colorScheme = useColorScheme();
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [alertTitle, setAlertTitle] = useState('');
   const [friendsList, setFriendsList] = useState<{ id: string; name: string }[]>([]);
   const [companionsText, setCompanionsText] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -52,25 +53,43 @@ export default function LiveCheckInScreen() {
   const [didBuyConcessions, setDidBuyConcessions] = useState(false);
   const [concessionItems, setConcessionItems] = useState<Record<string, boolean>>({});
 
-  useEffect(() => {
+useEffect(() => {
     const user = getAuth().currentUser;
     if (!user) return;
 
     const friendsRef = collection(db, 'profiles', user.uid, 'friends');
-    const unsub = onSnapshot(friendsRef, async (snap) => {
-      const friendIds = snap.docs.map(d => d.id);
+    const unsub = onSnapshot(
+      friendsRef,
+      async (snap) => {
+        const friendIds = snap.docs.map(d => d.id);
 
-      const profiles = await Promise.all(
-        friendIds.map(async (id) => {
-          const profSnap = await getDoc(doc(db, 'profiles', id));
-          const name = profSnap.data()?.name?.trim();
-          return name ? { id, name } : null;
-        })
-      );
+        const profiles = await Promise.all(
+          friendIds.map(async (id) => {
+            try {
+              const profSnap = await getDoc(doc(db, 'profiles', id));
+              const name = profSnap.data()?.name?.trim();
+              return name ? { id, name } : null;
+            } catch {
+              return null;
+            }
+          })
+        );
 
-      setFriendsList(profiles.filter(Boolean));
-      console.log('Friends loaded in live.tsx:', friendsList.length, friendsList);
-    });
+        setFriendsList(profiles.filter(Boolean));
+      },
+      (error: any) => {
+        if (!getAuth().currentUser) return;
+        if (error?.code === 'permission-denied') {
+          setAlertTitle('Permission Error');
+          setAlertMessage('Unable to load friends list.');
+          setAlertVisible(true);
+        } else if (error?.code === 'unauthenticated') {
+          setAlertTitle('Session Expired');
+          setAlertMessage('Session expired. Please log in again.');
+          setAlertVisible(true);
+        }
+      }
+    );
 
     return () => unsub();
   }, []);
@@ -113,8 +132,8 @@ export default function LiveCheckInScreen() {
   const handleCheckInSubmit = async () => {
     try {
       const user = getAuth(firebaseApp).currentUser;
-      if (!user) {
-        setAlertMessage('You must be logged in to submit a check-in.');
+      if (alreadyExists) {
+        setAlertMessage('This game has already been checked in.');
         setAlertVisible(true);
         return;
       }
@@ -146,6 +165,7 @@ export default function LiveCheckInScreen() {
       });
 
       if (alreadyExists) {
+        setAlertTitle('Already Checked In');
         setAlertMessage('This game has already been checked in.');
         setAlertVisible(true);
         return;
@@ -223,6 +243,7 @@ export default function LiveCheckInScreen() {
 
       await addDoc(collection(db, 'profiles', user.uid, 'checkins'), docData);
 
+      setAlertTitle('Success');
       setAlertMessage('Check-in saved! Taking you to your profile...');
       setAlertVisible(true);
 
@@ -230,13 +251,17 @@ export default function LiveCheckInScreen() {
       setImages([]);
 
     } catch (error: any) {
-      console.error('Error during check-in submit:', error);
       let msg = 'Failed to save check-in.';
-      if (error.message?.includes('fetch')) {
+      if (error?.message?.includes('fetch')) {
         msg += ' Issue loading one of the photos.';
-      } else if (error.code === 'storage/unauthorized') {
-        msg += ' Storage permission issue — check Firebase rules.';
+      } else if (error?.code === 'storage/unauthorized') {
+        msg += ' Storage permission issue.';
+      } else if (error?.code === 'permission-denied') {
+        msg = 'Permission denied. Please log in again.';
+      } else if (error?.code === 'unauthenticated') {
+        msg = 'Session expired. Please log in again.';
       }
+      setAlertTitle('Error');
       setAlertMessage(msg);
       setAlertVisible(true);
     }
@@ -245,13 +270,17 @@ export default function LiveCheckInScreen() {
   const pickImage = async () => {
     const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!perm.granted) {
-      alert('Permission to access camera roll is required!');
+      setAlertTitle('Permission Required');
+      setAlertMessage('Permission to access camera roll is required.');
+      setAlertVisible(true);
       return;
     }
 
     const remaining = 3 - images.length;
     if (remaining <= 0) {
-      alert('Maximum 3 photos allowed.');
+      setAlertTitle('Limit Reached');
+      setAlertMessage('Maximum 3 photos allowed.');
+      setAlertVisible(true);
       return;
     }
 
@@ -366,9 +395,7 @@ export default function LiveCheckInScreen() {
       <Modal visible={alertVisible} transparent animationType="fade">
         <View style={styles.alertOverlay}>
           <View style={styles.alertContainer}>
-            <Text style={styles.alertTitle}>
-              {alertMessage.includes('saved') ? 'Success' : 'Error'}
-            </Text>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
             <Text style={styles.alertMessage}>{alertMessage}</Text>
             <TouchableOpacity
               onPress={() => {

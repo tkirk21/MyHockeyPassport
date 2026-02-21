@@ -2,15 +2,13 @@
 import { useRouter } from 'expo-router';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
-import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Modal, ScrollView,  StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { EmailAuthProvider, getAuth, reauthenticateWithCredential, sendSignInLinkToEmail, updateEmail, verifyBeforeUpdateEmail  } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { EmailAuthProvider, getAuth, reauthenticateWithCredential, verifyBeforeUpdateEmail } from 'firebase/auth';
 import { useColorScheme } from '../../hooks/useColorScheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const auth = getAuth();
-const db = getFirestore();
 
 export default function ChangeEmailScreen() {
   const router = useRouter();
@@ -21,15 +19,22 @@ export default function ChangeEmailScreen() {
   const [loading, setLoading] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
 
-const handleChangeEmail = async () => {
+  const handleChangeEmail = async () => {
     if (newEmail !== confirmEmail) {
-      Alert.alert('Error', 'Email addresses do not match');
+      setAlertTitle('Error');
+      setAlertMessage('Email addresses do not match.');
+      setAlertVisible(true);
       return;
     }
 
     if (!newEmail.includes('@') || newEmail.length < 5) {
-      Alert.alert('Error', 'Please enter a valid email address');
+      setAlertTitle('Error');
+      setAlertMessage('Please enter a valid email address.');
+      setAlertVisible(true);
       return;
     }
 
@@ -43,15 +48,12 @@ const handleChangeEmail = async () => {
       const credential = EmailAuthProvider.credential(user.email, currentPassword);
       await reauthenticateWithCredential(user, credential);
 
-      // Send verification to the NEW email and update automatically when clicked
       await verifyBeforeUpdateEmail(user, newEmail);
 
-      // Show clear success message upfront
-      Alert.alert(
-        'Verification Required',
-        `We sent a verification email to ${newEmail}.\n\nClick the link in the email to complete the email change.\n\nAfter clicking, log back in with your new email.`,
-        [{ text: 'OK', onPress: () => router.back() }]
-      );
+      setAlertTitle('Verification Required');
+      setAlertMessage(`We sent a verification email to ${newEmail}.\n\nClick the link in the email to complete the email change.\n\nAfter clicking, log back in with your new email.`);
+      setAlertVisible(true);
+
     } catch (error: any) {
       let message = 'Failed to send verification email.';
 
@@ -63,13 +65,21 @@ const handleChangeEmail = async () => {
         message = 'Invalid email address.';
       }
 
-      Alert.alert('Error', message);
+      setAlertTitle('Error');
+      setAlertMessage(message);
+      setAlertVisible(true);
     } finally {
       setLoading(false);
     }
   };
 
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0A2940' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30 },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940', fontWeight: '700', fontSize: 16 },
     backArrow: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
     eyeIcon: { padding: 10 },
     eyeIconColor: { color: colorScheme === 'dark' ? '#BBBBBB' : '#888888' },
@@ -90,6 +100,24 @@ const handleChangeEmail = async () => {
   return (
     <View style={styles.screenBackground}>
       <Stack.Screen options={{ headerShown: false }} />
+
+      <Modal visible={alertVisible} transparent animationType="fade">
+        <View style={styles.alertOverlay}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.alertTitle}>{alertTitle}</Text>
+            <Text style={styles.alertMessage}>{alertMessage}</Text>
+            <TouchableOpacity
+              style={styles.alertButton}
+              onPress={() => {
+                setAlertVisible(false);
+                if (alertTitle === 'Verification Required') router.back();
+              }}
+            >
+              <Text style={styles.alertButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
       {/* Custom header */}
       <View style={styles.headerRow}>

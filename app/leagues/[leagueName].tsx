@@ -17,6 +17,7 @@ export default function LeagueDetails() {
   const { leagueName } = useLocalSearchParams();
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  if (!leagueName || typeof leagueName !== 'string') return null;
   const league = leagues.find((l: any) => (l.league || '').toUpperCase() === String(leagueName || '').toUpperCase());
   const leagueCode = (league?.league || '').toUpperCase();
   const leagueArenas = useMemo(() => {
@@ -30,24 +31,56 @@ export default function LeagueDetails() {
   }, [leagueName]);
 
   useEffect(() => {
-    if (selectedArena && mapRef.current) {
-      mapRef.current.animateToRegion(
-        {
-          latitude: selectedArena.latitude,
-          longitude: selectedArena.longitude,
-          latitudeDelta: 0.02,
-          longitudeDelta: 0.02,
-        },
-        500
-      );
+    if (
+      selectedArena &&
+      typeof selectedArena.latitude === 'number' &&
+      typeof selectedArena.longitude === 'number' &&
+      mapRef.current
+    ) {
+      try {
+        mapRef.current.animateToRegion(
+          {
+            latitude: selectedArena.latitude,
+            longitude: selectedArena.longitude,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          },
+          500
+        );
+      } catch {
+        setAlertMessage('Map failed to animate to selected arena.');
+        setAlertVisible(true);
+      }
     }
   }, [selectedArena]);
 
   if (!league) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>League not found</Text>
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <Modal visible={alertVisible} transparent animationType="fade">
+          <View style={styles.alertOverlay}>
+            <View style={styles.alertContainer}>
+              <Text style={styles.alertTitle}>Error</Text>
+              <Text style={styles.alertMessage}>
+                League not found or invalid route parameter.
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setAlertVisible(false);
+                  router.back();
+                }}
+                style={styles.alertButton}
+              >
+                <Text style={styles.alertButtonText}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
+        <View style={styles.container}>
+          <Text style={styles.title}>League not found</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
@@ -64,6 +97,9 @@ export default function LeagueDetails() {
     logoContainer: { top: 10, left: -10, alignSelf: 'center', width: 136, height: 136, zIndex: 20 },
     logoInnerCircle: { width: 168, height: 94, borderWidth: 16, borderBottomWidth: 0, borderColor: colorScheme === 'dark' ? '#0A2940' : '#EDEEF0', borderTopLeftRadius: 84, borderTopRightRadius: 84, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginTop: 30 },
     logoImage: { width: 170, height: 170, marginTop: -101  },
+    markerContainer: { width: 40, height: 40, justifyContent: 'center', alignItems: 'center', position: 'relative' },
+    markerImage: { width: 40, height: 40 },
+    markerText: { position: 'absolute', top: 6, left: 10, color: 'white', fontWeight: 'bold', fontSize: 8, textAlign: 'center' },
     map: { width: 310, height: 300, borderColor: colorScheme === 'dark' ?  '#0D2C42' : '#334155' , },
     mapWrapper: { borderWidth: 4, borderColor: colorScheme === 'dark' ?  '#334155' : '#334155', borderRadius: 12, overflow: 'hidden', marginBottom: 16, },
     safeArea: { flex: 1, backgroundColor: '#EDEEF0', },
@@ -128,48 +164,37 @@ export default function LeagueDetails() {
                     maximumZ={19}
                     zIndex={0}
                   />
-                  {leagueArenas.map((a, idx) => (
-                    <Marker
-                      key={`${a.league}-${a.arena}-${idx}`}
-                      coordinate={{ latitude: a.latitude, longitude: a.longitude }}
-                      title={a.arena}
-                      description={a.city || ''}
-                      onPress={() => setSelectedArena(a)}
-                      calloutEnabled={true}
-                      onCalloutPress={() => {
-                        const arenaId = `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}`;
-                        router.push(`/arenas/${arenaId}`);
-                      }}
-                    >
-                      <View
-                        style={{
-                          width: 40,
-                          height: 40,
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          position: 'relative',
+                  {leagueArenas
+                    .filter(a => typeof a.latitude === 'number' && typeof a.longitude === 'number')
+                    .map((a, idx) => (
+                      <Marker
+                        key={`${a.league}-${a.arena}-${idx}`}
+                        coordinate={{ latitude: a.latitude, longitude: a.longitude }}
+                        title={a.arena}
+                        description={a.city || ''}
+                        onPress={() => setSelectedArena(a)}
+                        calloutEnabled={true}
+                        onCalloutPress={() => {
+                          try {
+                            const arenaId = `${a.latitude.toFixed(6)}_${a.longitude.toFixed(6)}`;
+                            router.push(`/arenas/${arenaId}`);
+                          } catch {
+                            setAlertMessage('Unable to open arena.');
+                            setAlertVisible(true);
+                          }
                         }}
                       >
-                        <Image
-                          source={require('../../assets/images/pin_template.png')}
-                          style={{ width: 40, height: 40, tintColor: a.colorCode || 'red' }}
-                          resizeMode="contain"
-                        />
-                        <Text
-                          style={{
-                            position: 'absolute',
-                            top: 6,
-                            left: 10,
-                            color: 'white',
-                            fontWeight: 'bold',
-                            fontSize: 8,
-                            textAlign: 'center',
-                          }}
-                        >
-                          {a.teamCode || ''}
-                        </Text>
-                      </View>
-                    </Marker>
+                        <View style={styles.markerContainer}>
+                          <Image
+                            source={require('../../assets/images/pin_template.png')}
+                            style={[styles.markerImage, { tintColor: a.colorCode || 'red' }]}
+                            resizeMode="contain"
+                          />
+                          <Text style={styles.markerText}>
+                            {a.teamCode || ''}
+                          </Text>
+                        </View>
+                      </Marker>
                   ))}
                 </MapView>
               </View>
@@ -194,13 +219,23 @@ export default function LeagueDetails() {
 
             {league.website && (
               <TouchableOpacity
-                onPress={() => {
-                  const rawUrl = league.website;
-                  const url = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
-                  Linking.openURL(url).catch(() => {
-                    const fallback = `http://${rawUrl}`;
-                    Linking.openURL(fallback).catch(() => {});
-                  });
+                onPress={async () => {
+                  try {
+                    const rawUrl = league.website;
+                    const formattedUrl = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
+                    const supported = await Linking.canOpenURL(formattedUrl);
+
+                    if (!supported) {
+                      setAlertMessage('Invalid or unsupported website link.');
+                      setAlertVisible(true);
+                      return;
+                    }
+
+                    await Linking.openURL(formattedUrl);
+                  } catch {
+                    setAlertMessage('Failed to open website.');
+                    setAlertVisible(true);
+                  }
                 }}
               >
                 <Text style={styles.link}>Visit Website</Text>

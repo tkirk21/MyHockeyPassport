@@ -110,9 +110,9 @@ export default function ProfileScreen() {
             setAlertMessage('Failed to update notification timestamp.');
             setAlertVisible(true);
           }
-          }
         }
       };
+
       run();
     }, [setProfileAlertCount])
   );
@@ -188,6 +188,7 @@ export default function ProfileScreen() {
   const saveProfile = async () => {
     const user = auth.currentUser;
     if (!user) {
+      setAlertTitle('Error');
       setAlertMessage('User session expired. Please log in again.');
       setAlertVisible(true);
       return;
@@ -225,11 +226,12 @@ export default function ProfileScreen() {
           await uploadBytes(imageRef, blob);
           uploadedImageUrl = await getDownloadURL(imageRef);
         } catch (uploadError: any) {
+          setAlertTitle('Upload Failed');
           setAlertMessage('Profile image upload failed. Please try again.');
           setAlertVisible(true);
           setLoading(false);
           return;
-
+        }
       }
 
       try {
@@ -246,23 +248,26 @@ export default function ProfileScreen() {
         );
       } catch (writeError: any) {
         if (writeError?.code === 'permission-denied') {
+          setAlertTitle('Permission Error');
           setAlertMessage('You do not have permission to update this profile.');
-          setAlertVisible(true);
         } else if (writeError?.code === 'unauthenticated') {
+          setAlertTitle('Session Expired');
           setAlertMessage('Session expired. Please log in again.');
-          setAlertVisible(true);
         } else {
+          setAlertTitle('Error');
           setAlertMessage('Failed to save profile.');
-          setAlertVisible(true);
         }
+        setAlertVisible(true);
         setLoading(false);
         return;
       }
+
       setAlertTitle('Success');
       setAlertMessage('Profile saved!');
       setAlertVisible(true);
       router.replace('/(tabs)/profile');
     } catch (error: any) {
+      setAlertTitle('Error');
       setAlertMessage(error?.message || 'Something went wrong.');
       setAlertVisible(true);
     } finally {
@@ -270,16 +275,15 @@ export default function ProfileScreen() {
     }
   };
 
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (!user) {
+      setRecentCheckIns([]);
+      recalcStats([]);
+      return;
+    }
 
-useEffect(() => {
-  const user = auth.currentUser;
-  if (!user) {
-    setRecentCheckIns([]);
-    recalcStats([]);
-    return;
-  }
-
-  const fetchProfile = async () => {
+    const fetchProfile = async () => {
     try {
       const docRef = doc(db, "profiles", user.uid);
       const snap = await getDoc(docRef);
@@ -376,6 +380,7 @@ useEffect(() => {
   );
 
   return () => unsub();
+}, [auth.currentUser?.uid]);
 
   const toggleLeague = (league: string) => {
     setExpandedLeagues(prev => ({
