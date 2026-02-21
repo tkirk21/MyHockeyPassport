@@ -1,5 +1,5 @@
 //app/settings/index.tsx
-import { Alert, Linking, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
@@ -34,6 +34,9 @@ export default function SettingsScreen() {
   const [startupTab, setStartupTab] = useState<'home' | 'profile' | 'checkin' | 'map' | 'friends'>('home');
   const [logoutModalVisible, setLogoutModalVisible] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const SOCIAL_LINKS = {
     website: 'https://mysportspassport.app',
     facebook: 'https://www.facebook.com/profile.php?id=61587432124971',
@@ -51,9 +54,20 @@ export default function SettingsScreen() {
             setPushEnabled(docSnap.data()?.pushNotifications ?? true);
           }
         } catch (error: any) {
+          let title = 'Error';
+          let message = 'Failed to load notification settings.';
+
           if (error?.code === 'permission-denied') {
-            Alert.alert('Permission Error', 'You do not have access to this data.');
+            title = 'Permission Error';
+            message = 'You do not have access to this data.';
+          } else if (error?.code === 'unavailable') {
+            title = 'Network Error';
+            message = 'Network connection lost. Please try again.';
           }
+
+          setAlertTitle(title);
+          setAlertMessage(message);
+          setAlertVisible(true);
         }
       };
 
@@ -73,9 +87,20 @@ export default function SettingsScreen() {
             setDistanceUnit('miles');
           }
         } catch (error: any) {
+          let title = 'Error';
+          let message = 'Failed to load distance unit.';
+
           if (error?.code === 'permission-denied') {
-            Alert.alert('Permission Error', 'You do not have access to this data.');
+            title = 'Permission Error';
+            message = 'You do not have access to this data.';
+          } else if (error?.code === 'unavailable') {
+            title = 'Network Error';
+            message = 'Network connection lost. Please try again.';
           }
+
+          setAlertTitle(title);
+          setAlertMessage(message);
+          setAlertVisible(true);
         }
       };
 
@@ -98,9 +123,20 @@ export default function SettingsScreen() {
             setStartupTab('home');
           }
         } catch (error: any) {
+          let title = 'Error';
+          let message = 'Failed to load startup tab.';
+
           if (error?.code === 'permission-denied') {
-            Alert.alert('Permission Error', 'You do not have access to this data.');
+            title = 'Permission Error';
+            message = 'You do not have access to this data.';
+          } else if (error?.code === 'unavailable') {
+            title = 'Network Error';
+            message = 'Network connection lost. Please try again.';
           }
+
+          setAlertTitle(title);
+          setAlertMessage(message);
+          setAlertVisible(true);
         }
       };
 
@@ -112,12 +148,30 @@ export default function SettingsScreen() {
     React.useCallback(() => {
       const loadFavoriteLeagues = async () => {
         if (!currentUser?.uid) return;
-        const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
-        if (docSnap.exists()) {
-          const saved = docSnap.data()?.favoriteLeagues;
-          setFavoriteLeagues(Array.isArray(saved) ? saved : []);
-        } else {
-          setFavoriteLeagues([]);
+
+        try {
+          const docSnap = await getDoc(doc(db, 'profiles', currentUser.uid));
+          if (docSnap.exists()) {
+            const saved = docSnap.data()?.favoriteLeagues;
+            setFavoriteLeagues(Array.isArray(saved) ? saved : []);
+          } else {
+            setFavoriteLeagues([]);
+          }
+        } catch (error: any) {
+          let title = 'Error';
+          let message = 'Failed to load favorite leagues.';
+
+          if (error?.code === 'permission-denied') {
+            title = 'Permission Error';
+            message = 'You do not have access to this data.';
+          } else if (error?.code === 'unavailable') {
+            title = 'Network Error';
+            message = 'Network connection lost. Please try again.';
+          }
+
+          setAlertTitle(title);
+          setAlertMessage(message);
+          setAlertVisible(true);
         }
       };
 
@@ -129,61 +183,89 @@ export default function SettingsScreen() {
     setThemePreference(newPreference);
   };
 
-    const togglePushNotifications = async (value: boolean) => {
-      try {
-        if (!currentUser?.uid) return;
+  const togglePushNotifications = async (value: boolean) => {
+    try {
+      if (!currentUser?.uid) return;
 
-        setPushEnabled(value);
+      setPushEnabled(value);
 
-        if (value) {
-          await registerForPushNotificationsAsync();
-        } else {
-          await disablePushToken();
-        }
-      } catch {
-        Alert.alert('Error', 'Failed to update push notification settings.');
-        setPushEnabled(!value);
+      if (value) {
+        await registerForPushNotificationsAsync();
+      } else {
+        await disablePushToken();
       }
-    };
+    } catch (error: any) {
+      let title = 'Error';
+      let message = 'Failed to update push notification settings.';
 
-
-    const updateDistanceUnit = async (unit: 'miles' | 'km') => {
-      try {
-        if (!currentUser?.uid) return;
-        setDistanceUnit(unit);
-        await setDoc(
-          doc(db, 'profiles', currentUser.uid),
-          { distanceUnit: unit },
-          { merge: true }
-        );
-      } catch (error: any) {
-        if (error?.code === 'permission-denied') {
-          Alert.alert('Permission Error', 'You do not have permission to update this setting.');
-        } else {
-          Alert.alert('Error', 'Failed to update distance unit.');
-        }
+      if (error?.code === 'permission-denied') {
+        title = 'Permission Error';
+        message = 'You do not have permission to update this setting.';
+      } else if (error?.code === 'unavailable') {
+        title = 'Network Error';
+        message = 'Network connection lost. Please try again.';
       }
-    };
 
+      setPushEnabled(!value);
+      setAlertTitle(title);
+      setAlertMessage(message);
+      setAlertVisible(true);
+    }
+  };
 
-    const updateStartupTab = async (tab: 'home' | 'profile' | 'checkin' | 'map' | 'friends') => {
-      try {
-        if (!auth.currentUser) return;
-        setStartupTab(tab);
-        await setDoc(
-          doc(db, 'profiles', currentUser.uid),
-          { startupTab: tab },
-          { merge: true }
-        );
-      } catch (error: any) {
-        if (error?.code === 'permission-denied') {
-          Alert.alert('Permission Error', 'You do not have permission to update this setting.');
-        } else {
-          Alert.alert('Error', 'Failed to update startup tab.');
-        }
+  const updateDistanceUnit = async (unit: 'miles' | 'km') => {
+    try {
+      if (!currentUser?.uid) return;
+      setDistanceUnit(unit);
+      await setDoc(
+        doc(db, 'profiles', currentUser.uid),
+        { distanceUnit: unit },
+        { merge: true }
+      );
+    } catch (error: any) {
+      let title = 'Error';
+      let message = 'Failed to update distance unit.';
+
+      if (error?.code === 'permission-denied') {
+        title = 'Permission Error';
+        message = 'You do not have permission to update this setting.';
+      } else if (error?.code === 'unavailable') {
+        title = 'Network Error';
+        message = 'Network connection lost. Please try again.';
       }
-    };
 
+      setAlertTitle(title);
+      setAlertMessage(message);
+      setAlertVisible(true);
+    }
+  };
+
+  const updateStartupTab = async (tab: 'home' | 'profile' | 'checkin' | 'map' | 'friends') => {
+    try {
+      if (!auth.currentUser) return;
+      setStartupTab(tab);
+      await setDoc(
+        doc(db, 'profiles', currentUser.uid),
+        { startupTab: tab },
+        { merge: true }
+      );
+    } catch (error: any) {
+      let title = 'Error';
+      let message = 'Failed to update startup tab.';
+
+      if (error?.code === 'permission-denied') {
+        title = 'Permission Error';
+        message = 'You do not have permission to update this setting.';
+      } else if (error?.code === 'unavailable') {
+        title = 'Network Error';
+        message = 'Network connection lost. Please try again.';
+      }
+
+      setAlertTitle(title);
+      setAlertMessage(message);
+      setAlertVisible(true);
+    }
+  };
 
   const logout = () => {
     setLogoutModalVisible(true);
@@ -222,8 +304,8 @@ export default function SettingsScreen() {
     label: { flex: 1, color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 18, marginLeft: 16 },
     labelDisabled: { flex: 1, fontSize: 18, marginLeft: 16, color: '#999', },
     link: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontSize: 17, },
-    logoutButton: { backgroundColor: '#EF4444', padding: 18, borderRadius: 12, alignItems: 'center', width: 200, alignSelf: 'center', marginBottom: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', borderRadius: 30, },
-    logoutText: { color: '#fff', fontWeight: 'bold', fontSize: 18 },
+    logoutButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', padding: 18, borderRadius: 30, alignItems: 'center', width: 200, alignSelf: 'center', marginBottom: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
+        logoutText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontWeight: '700', fontSize: 18 },
     row: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8 },
     rowIconDisabled: { color: '#999', },
     rowIcon: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0A2940' },
@@ -519,6 +601,22 @@ export default function SettingsScreen() {
             </View>
           </Modal>
 
+          {/* Global Error Modal */}
+          <Modal visible={alertVisible} transparent animationType="fade">
+            <View style={styles.alertOverlay}>
+              <View style={styles.alertContainer}>
+                <Text style={styles.alertTitle}>{alertTitle}</Text>
+                <Text style={styles.alertMessageText}>{alertMessage}</Text>
+                <TouchableOpacity
+                  onPress={() => setAlertVisible(false)}
+                  style={styles.alertButton}
+                >
+                  <Text style={styles.alertButtonText}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+
           {/* Custom Delete Account Modal */}
           <Modal visible={deleteModalVisible} transparent animationType="fade">
             <View style={styles.alertOverlay}>
@@ -547,12 +645,21 @@ export default function SettingsScreen() {
                         router.replace("/login");
 
                       } catch (error: any) {
-                          if (error?.code === 'permission-denied') {
-                            Alert.alert('Permission Error', 'You do not have permission to delete this account.');
-                          } else {
-                            Alert.alert('Error', 'Failed to delete account.');
-                          }
+                        let title = 'Error';
+                        let message = 'Failed to delete account.';
+
+                        if (error?.code === 'permission-denied') {
+                          title = 'Permission Error';
+                          message = 'You do not have permission to delete this account.';
+                        } else if (error?.code === 'unavailable') {
+                          title = 'Network Error';
+                          message = 'Network connection lost. Please try again.';
                         }
+
+                        setAlertTitle(title);
+                        setAlertMessage(message);
+                        setAlertVisible(true);
+                      }
                     }}
 
                     style={[styles.alertButton, { backgroundColor: '#EF4444' }]}
