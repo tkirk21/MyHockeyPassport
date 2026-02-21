@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { Linking, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';;[;]
 import { Stack, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -8,12 +9,35 @@ export default function SubscribeScreen() {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertTitle, setAlertTitle] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
 
-  const openGoogleSubscriptions = () => {
-    Linking.openURL('https://play.google.com/store/account/subscriptions');
+  const openGoogleSubscriptions = async () => {
+    try {
+      const supported = await Linking.canOpenURL('https://play.google.com/store/account/subscriptions');
+      if (!supported) {
+        setAlertTitle('Unavailable');
+        setAlertMessage('Unable to open subscription settings on this device.');
+        setAlertVisible(true);
+        return;
+      }
+
+      await Linking.openURL('https://play.google.com/store/account/subscriptions');
+    } catch {
+      setAlertTitle('Error');
+      setAlertMessage('Failed to open subscription settings. Please try again.');
+      setAlertVisible(true);
+    }
   };
 
   const styles = StyleSheet.create({
+    alertOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 20 },
+    alertContainer: { backgroundColor: colorScheme === 'dark' ? '#0F1E33' : '#FFFFFF', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340, alignItems: 'center', borderWidth: 3, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.4, shadowRadius: 16, elevation: 16 },
+    alertTitle: { fontSize: 18, fontWeight: '700', color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', textAlign: 'center', marginBottom: 12 },
+    alertMessage: { fontSize: 15, color: colorScheme === 'dark' ? '#CCCCCC' : '#374151', textAlign: 'center', marginBottom: 24, lineHeight: 22 },
+    alertButton: { backgroundColor: colorScheme === 'dark' ? '#0D2C42' : '#E0E7FF', paddingVertical: 12, paddingHorizontal: 32, borderRadius: 30, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68' },
+    alertButtonText: { color: colorScheme === 'dark' ? '#FFFFFF' : '#0D2C42', fontWeight: '700', fontSize: 16 },
     button: { backgroundColor: '#0D2C42', paddingVertical: 14, borderRadius: 30, alignItems: 'center', },
     buttonText: { color: '#FFFFFF', fontSize: 18, fontWeight: '700', },
     card: { backgroundColor: colorScheme === 'dark' ? '#0F1E33' : '#F8FAFC', borderRadius: 16, padding: 20, borderWidth: 2, borderColor: colorScheme === 'dark' ? '#666666' : '#2F4F68', },
@@ -43,7 +67,7 @@ export default function SubscribeScreen() {
         <Text style={styles.title}>My Sports Passport Premium</Text>
         <Text style={styles.text}>
           • 3-day free trial{'\n'}
-          • $3.99 per month after trial{'\n'}
+          • $2.99 per month after trial{'\n'}
           • Unlimited check-ins, maps, and stats{'\n'}
           • Support ongoing development
         </Text>
@@ -51,6 +75,22 @@ export default function SubscribeScreen() {
         <TouchableOpacity style={styles.button} onPress={openGoogleSubscriptions}>
           <Text style={styles.buttonText}>Manage Subscription</Text>
         </TouchableOpacity>
+
+        <Modal visible={alertVisible} transparent animationType="fade">
+          <View style={styles.alertOverlay}>
+            <View style={styles.alertContainer}>
+              <Text style={styles.alertTitle}>{alertTitle}</Text>
+              <Text style={styles.alertMessage}>{alertMessage}</Text>
+              <TouchableOpacity
+                style={styles.alertButton}
+                onPress={() => setAlertVisible(false)}
+              >
+                <Text style={styles.alertButtonText}>OK</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+
       </View>
     </View>
   );
